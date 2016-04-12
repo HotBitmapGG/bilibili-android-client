@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.hotbitmapgg.ohmybilibili"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+    >
+
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="false"
+        android:resizeable="true"
+        android:smallScreens="true"/>
+
+    <!-- 用户权限设置 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+
+
+    <application
+        android:name=".config.OhMyBiliBiliApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon, android:theme, android:label">
+        <activity
+            android:name=".ui.SplashActivity"
+            android:theme="@style/ColorTranslucentTheme"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+
+        <!--主界面 -->
+        <activity
+            android:name=".ui.HomeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+        </activity>
+
+
+        <!-- 登录界面 -->
+        <activity
+            android:name=".ui.LoginActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+        <!-- 我的二维码 -->
+        <activity
+            android:name=".ui.IQrCodeActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- APP简介界面 -->
+        <activity
+            android:name=".ui.AppIntroduceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ColorTranslucentTheme">
+        </activity>
+
+
+        <!-- 意见反馈界面 -->
+        <activity
+            android:name=".ui.FeedBackActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+        <!-- home跳转webView界面 -->
+        <activity
+            android:name=".ui.BrowserActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- 视频video界面 -->
+        <activity
+            android:name=".ui.VideoViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ColorTranslucentTheme">
+        </activity>
+
+        <!-- bilibili用户界面 -->
+        <activity
+            android:name=".ui.UserInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ColorTranslucentTheme">
+        </activity>
+
+        <!-- bilibili用户关注界面 -->
+        <activity
+            android:name=".ui.UserAttentionActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+        <!-- 专题详情界面 -->
+        <activity
+            android:name=".ui.SpecialDetailsActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- 热门推荐更多界面 -->
+        <activity
+            android:name=".ui.RecommendMoreActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- 分区界面 根据传递的标题集合完成界面 -->
+        <activity
+            android:name=".ui.PartitionMoreActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!--用户粉丝界面-->
+        <activity
+            android:name=".ui.UserFansActivity"
+            android:screenOrientation="portrait"/>
+
+
+        <!--番剧专题界面-->
+        <activity
+            android:name=".ui.BangumiTimeLineActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--视频评论界面-->
+        <activity
+            android:name=".ui.VideoCommentActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--游戏中心界面-->
+        <activity
+            android:name=".ui.GameCentreActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--视频相关推荐界面-->
+        <activity
+            android:name=".ui.VideoPartsListMoreActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--离线缓存界面-->
+        <activity
+            android:name=".ui.OffLineDownloadActivity"
+            android:screenOrientation="portrait"/>
+
+        <!-- 初始化界面 -->
+        <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+
+        <activity
+            android:name=".ui.UpMoreCoverActivity"
+            android:screenOrientation="portrait"
+            />
+
+        <!-- 播放器播放界面 -->
+        <activity
+            android:name=".ui.BiliBiliPlayerVideoActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:process=":vitamio"
+            android:screenOrientation="landscape"
+            android:theme="@style/ColorTranslucentTheme"
+            android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+
+        <!-- 视频后台播放Service -->
+        <service
+            android:name=".service.PlayerService"
+            android:process=":vitamio"/>
+
+
+    </application>
+
+</manifest>

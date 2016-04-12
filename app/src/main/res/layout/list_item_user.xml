@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin" >
+
+    <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+        android:id="@+id/user_avatar_view"
+        android:layout_width="@dimen/list_item_avatar_size"
+        android:layout_height="@dimen/list_item_avatar_size"
+        android:layout_marginBottom="@dimen/list_item_vertical_margin_small"
+        android:layout_marginTop="@dimen/list_item_vertical_margin_small" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="@dimen/list_item_user_name_size" />
+
+</LinearLayout>

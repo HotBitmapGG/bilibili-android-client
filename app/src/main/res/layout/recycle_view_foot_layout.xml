@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/foot_load_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    >
+
+    <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
+        android:id="@+id/load_pro"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        app:matProg_barColor="?attr/colorPrimary"
+        app:matProg_barWidth="2dp"
+        app:matProg_progressIndeterminate="true"/>
+
+    <TextView
+        android:id="@+id/load_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="正在加载"
+        android:textColor="@color/font_normal"
+        android:textSize="14sp"/>
+</LinearLayout>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Android Design Support Library -->
+    <style name="Widget.Design.ScrimInsetsFrameLayout" parent="">
+        <item name="insetForeground">#4000</item>
+    </style>
+
+    <style name="Widget.Design.NavigationView" parent="">
+        <item name="elevation">@dimen/navigation_elevation</item>
+        <item name="android:background">?android:attr/windowBackground</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:maxWidth">@dimen/navigation_max_width</item>
+    </style>
+
+</resources>

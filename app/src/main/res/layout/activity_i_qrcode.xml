@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/i_qrcode_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/top_bar_bg"
+            android:elevation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            />
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/i_qrcode_top"
+        android:layout_centerInParent="true"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/i_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/i_qrcode"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="关于我:\n\n哔哩哔哩开发者QQ,扫一扫添加我.\n有任何问题可以联系我.\n邮箱:100332338@qq.com.\n微博:HotBitmapgg,欢迎关注我."
+                android:textColor="@color/black_alpha"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </com.hotbitmapgg.ohmybilibili.widget.SpringScrollView>
+
+</RelativeLayout>

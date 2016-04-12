@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.vov.vitamio.widget.CenterLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/video_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="horizontal" >
+
+    <com.hotbitmapgg.ohmybilibili.widget.VideoView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:saveEnabled="true" />
+
+    <master.flame.danmaku.ui.widget.DanmakuView
+        android:id="@+id/sv_danmaku"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/video_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" >
+
+            <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
+                android:id="@+id/video_loading_progress"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                app:matProg_barColor="?attr/colorPrimary"
+                app:matProg_barWidth="2dp" />
+
+            <TextView
+                android:id="@+id/video_loading_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/video_loading_progress"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="7dp"
+                android:text="加载中..."
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/video_start"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/bilibg"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/bili_anim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bili_anim" />
+
+            <TextView
+                android:id="@+id/video_start_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="初始化播放器..."
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/subtitle_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10.0dip" >
+
+            <io.vov.vitamio.widget.OutlineTextView
+                android:id="@+id/subtitle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:shadowColor="@color/gray"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/subtitle_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</io.vov.vitamio.widget.CenterLayout>

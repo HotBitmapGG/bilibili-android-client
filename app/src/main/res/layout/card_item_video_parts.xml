@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:id="@+id/video_card"
+                                    xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/card_margin"
+                                    android:clickable="true"
+                                    android:foreground="?attr/selectableItemBackground"
+                                    app:cardBackgroundColor="@color/card_view_background_dark"
+                                    app:cardCornerRadius="@dimen/card_corner_radius"
+                                    app:cardElevation="@dimen/card_elevation"
+                                    tools:minWidth="160dp">
+
+    <include layout="@layout/list_item_video_part_item"/>
+
+</android.support.v7.widget.CardView>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_tap_bg"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical">
+    <include
+        android:id="@+id/recommend_top"
+        layout="@layout/top_layout" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/recommend_top">
+
+        <com.hotbitmapgg.ohmybilibili.widget.AcFunPullDownRefreshListView
+            android:id="@+id/recommend_pull_refresh_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@color/transparent"
+            android:divider="@color/transparent"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:listSelector="@android:color/transparent"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:smoothScrollbar="true"
+            android:visibility="gone"/>
+
+        <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
+            android:id="@+id/recommend_more_list_circle_progress"
+            android:layout_width="@dimen/circle_progress_view_default_size"
+            android:layout_height="@dimen/circle_progress_view_default_size"
+            android:layout_gravity="center"
+            app:matProg_barColor="?attr/colorPrimary"
+            app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
+    </FrameLayout>
+
+</RelativeLayout>

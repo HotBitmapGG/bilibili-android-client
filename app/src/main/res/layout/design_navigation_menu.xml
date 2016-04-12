@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hotbitmapgg.ohmybilibili.widget.NavigationMenuView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:divider="@null"
+    android:listSelector="?attr/selectableItemBackground"
+    android:paddingBottom="@dimen/navigation_padding_bottom"
+    android:paddingTop="@dimen/navigation_padding_top_default"/>

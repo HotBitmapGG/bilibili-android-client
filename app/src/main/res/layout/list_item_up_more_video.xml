@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="10dp" >
+
+        <ImageView
+            android:id="@+id/user_video_pic"
+            android:layout_width="130dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@+id/user_video_pic"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/user_video_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/font_normal"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/video_info_mini_icons_size"
+                    android:layout_height="@dimen/video_info_mini_icons_size"
+                    android:src="@drawable/icon_up" />
+
+                <TextView
+                    android:id="@+id/user_video_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="@dimen/video_info_mini_icons_size"
+                    android:layout_height="@dimen/video_info_mini_icons_size"
+                    android:src="@drawable/ic_play_circle_outline_black_24dp" />
+
+                <TextView
+                    android:id="@+id/user_play_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_alpha"
+                    android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+                    android:textSize="12sp" />
+
+                <Space
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_width="@dimen/video_info_mini_icons_size"
+                    android:layout_height="@dimen/video_info_mini_icons_size"
+                    android:src="@drawable/ic_subtitles_black_24dp" />
+
+                <TextView
+                    android:id="@+id/user_review_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+                    android:singleLine="true"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

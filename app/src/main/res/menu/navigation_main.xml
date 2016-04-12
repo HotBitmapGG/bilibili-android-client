@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_home"
+            android:checked="true"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/item_home"/>
+
+        <item
+            android:id="@+id/item_download"
+            android:icon="@drawable/ic_file_download_black_24dp"
+            android:title="@string/item_downloaded"/>
+
+        <item
+            android:id="@+id/item_favourite"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:title="@string/item_favourite"/>
+
+        <item
+            android:id="@+id/item_history"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="@string/item_history"/>
+
+
+        <item
+            android:id="@+id/item_group"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="@string/item_group"/>
+        <item
+            android:id="@+id/item_tracker"
+            android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+            android:title="@string/item_tracker"/>
+
+
+        <item
+            android:id="@+id/item_theme"
+            android:icon="@drawable/ic_color_lens_black_24dp"
+            android:title="@string/item_theme"/>
+
+        <item
+            android:id="@+id/item_app"
+            android:icon="@drawable/ic_shop_black_24dp"
+            android:title="@string/item_app"/>
+
+
+        <item
+            android:id="@+id/item_settings"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/item_settings"/>
+    </group>
+
+</menu>

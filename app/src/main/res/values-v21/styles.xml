@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/BaseAppTheme">
+
+        <item name="android:statusBarColor">@color/status_bar_color</item>
+
+    </style>
+
+    <!-- 启动页 引导页设置StatusBar为透明色 -->
+    <style name="ColorTranslucentTheme" parent="@style/BaseAppTheme">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!-- Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色 -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- AppBarLayout -->
+    <style name="Theme.AppCompat.TranslucentStatusBar" parent="Base.Theme.AppCompat.HotBitmapGG">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.TranslucentStatusBar" parent="Base.Theme.AppCompat.Light.HotBitmapGG">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.DarkActionBar.TranslucentStatusBar" parent="Base.Theme.AppCompat.Light.DarkActionBar.HotBitmapGG">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+</resources>

@@ -1,0 +1,127 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="base_action_bar_height">48dp</dimen>
+    <dimen name="base_action_bar_title_size">22sp</dimen>
+    <dimen name="register_margin">10dp</dimen>
+    <dimen name="base_scrollview_top_height">50dp</dimen>
+    <dimen name="tab_padding_top_bottom">15dp</dimen>
+    <dimen name="tab_padding_left_right">40dp</dimen>
+    <dimen name="tab_height">48dp</dimen>
+    <dimen name="base_line_width_1">1dp</dimen>
+    <dimen name="base_line_width_2">2dp</dimen>
+    <dimen name="base_line_width">0.5dp</dimen>
+    <dimen name="time_line_line_left_margin">24dp</dimen>
+    <dimen name="time_line_line_width">2dp</dimen>
+    <dimen name="time_line_content_left_margin">52dp</dimen>
+    <dimen name="time_line_content_right_margin">7dp</dimen>
+    <dimen name="score_item_height">100dp</dimen>
+    <dimen name="message_top_height">70dp</dimen>
+    <dimen name="margin_chat_top">5dp</dimen>
+    <!-- CircleIndicator -->
+    <dimen name="circle_indicator_default_height">20dp</dimen>
+    <!-- Common resources -->
+    <dimen name="toolbar_elevation">5dp</dimen>
+    <dimen name="appbar_parallax_max_height">256dp</dimen>
+    <dimen name="appbar_height">80dp</dimen>
+    <dimen name="appbar_banner_title_size">18sp</dimen>
+    <dimen name="appbar_tab_height">48dp</dimen>
+    <dimen name="floating_action_button_margin">16dp</dimen>
+    <dimen name="floating_action_button_size_half">32dp</dimen>
+
+    <!-- CircleProgressView -->
+    <dimen name="circle_progress_view_default_size">56dp</dimen>
+    <dimen name="circle_progress_view_default_border_width">4dp</dimen>
+
+    <!-- UserTagView -->
+    <dimen name="user_avatar_size">38dp</dimen>
+    <dimen name="user_avatar_margin">4dp</dimen>
+    <dimen name="user_tag_corner_size">28dp</dimen>
+    <dimen name="user_tag_view_height">56dp</dimen>
+    <dimen name="user_name_min_width">72dp</dimen>
+
+    <!-- Card -->
+    <dimen name="touch_raise">6dp</dimen>
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="card_title_margin">10dp</dimen>
+    <dimen name="title_margin_small">8dp</dimen>
+
+    <!-- List -->
+    <dimen name="list_item_vertical_margin_small">8dp</dimen>
+    <dimen name="list_item_avatar_size">48dp</dimen>
+    <dimen name="list_item_user_name_size">14sp</dimen>
+
+    <!-- Bangumi -->
+    <dimen name="bangumi_horizontal_list_height">220dp</dimen>
+    <dimen name="bangumi_horizontal_single_item_width">120dp</dimen>
+    <dimen name="bangumi_horizontal_title_frame_max_height">48sp</dimen>
+
+    <!-- Navigation -->
+    <dimen name="navigation_header_height">180dp</dimen>
+    <dimen name="navigation_avatar_size">84dp</dimen>
+    <dimen name="navigation_avatar_margin">16dp</dimen>
+    <dimen name="navigation_subtitle_height">56dp</dimen>
+    <dimen name="navigation_subtitle_primary_text_size">16sp</dimen>
+    <dimen name="navigation_subtitle_secondary_text_size">14sp</dimen>
+    <dimen name="navigation_subtitle_text_padding_vertical">8dp</dimen>
+    <dimen name="navigation_subtitle_text_padding_vertical_smaller">4dp</dimen>
+    <dimen name="navigation_subtitle_text_padding_horizontal">16dp</dimen>
+
+    <!-- Android Design Support Library -->
+    <dimen name="navigation_elevation">12dp</dimen>
+    <dimen name="navigation_icon_padding">32dp</dimen>
+    <dimen name="navigation_icon_size">24dp</dimen>
+    <dimen name="navigation_max_width">280dp</dimen>
+    <dimen name="navigation_padding_bottom">8dp</dimen>
+    <dimen name="navigation_padding_top_default">0dp</dimen>
+    <dimen name="navigation_separator_vertical_padding">8dp</dimen>
+
+    <!-- Layouts' special resources -->
+    <!-- activity_video_view.xml -->
+    <dimen name="video_info_mini_icons_size">16dp</dimen>
+    <dimen name="video_info_count_text_margin_start">4dp</dimen>
+
+    <!-- activity_user_info.xml -->
+    <dimen name="user_info_avatar_size">84dp</dimen>
+    <dimen name="user_info_avatar_padding">24dp</dimen>
+    <dimen name="user_info_details_layout_horizontal_padding">12dp</dimen>
+    <dimen name="user_info_details_number_divider_size">1dp</dimen>
+    <dimen name="user_info_details_number_divider_margin">20dp</dimen>
+    <dimen name="user_info_details_number_bar_height">48dp</dimen>
+    <dimen name="user_info_details_number_padding">12dp</dimen>
+
+    <!-- activity_sp_view.xml -->
+    <dimen name="sp_preview_padding">10dp</dimen>
+
+    <!-- 主界面titleBar滑动高度 -->
+    <dimen name="home_title_bar_height">0dp</dimen>
+
+    <!-- 播放器 -->
+    <dimen name="LargeTextSize">16dp</dimen>
+    <dimen name="BasicTextSize">15dp</dimen>
+    <dimen name="TitleTextSize">18dp</dimen>
+    <dimen name="SmallTextSize">14dp</dimen>
+    <dimen name="SmallerTextSize">13dp</dimen>
+    <dimen name="LargestTextSize">30dp</dimen>
+    <dimen name="ChattingContentMinHeight">49dp</dimen>
+    <dimen name="ChuZhuangWH">40dp</dimen>
+    <dimen name="action_bar_default_height">48dp</dimen>
+    <dimen name="mediacontroller_button_space">32dp</dimen>
+    <dimen name="mediacontroller_buttons_top_margin">2dp</dimen>
+    <dimen name="mediacontroller_buttons_bottom_margin">0dp</dimen>
+
+    <!-- 分区详情查看界面TabLayout滑动高度 -->
+    <dimen name="title_bar_height">108dp</dimen>
+
+    <dimen name="pic_margin_left">10dp</dimen>
+
+    <dimen name="main_banner_height">120dp</dimen>
+
+</resources>

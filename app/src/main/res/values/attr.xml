@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- StatusBarHeaderView -->
+    <declare-styleable name="StatusBarHeaderView">
+        <attr name="colorNormal" format="reference"/>
+        <attr name="colorDark" format="reference"/>
+        <attr name="enableMode" format="enum">
+            <enum name="Kitkat" value="1"/>
+            <enum name="Lollipop" value="2"/>
+            <enum name="All" value="3"/>
+        </attr>
+    </declare-styleable>
+
+    <!-- NavigationView -->
+    <declare-styleable name="NavigationView">
+        <attr name="android:background"/>
+        <attr name="android:fitsSystemWindows"/>
+        <attr name="android:maxWidth"/>
+        <attr name="elevation"/>
+        <attr name="menu" format="reference"/>
+        <attr name="itemIconTint" format="color"/>
+        <attr name="itemTextColor" format="color"/>
+        <attr name="itemBackground" format="reference"/>
+        <attr name="headerLayout" format="reference"/>
+    </declare-styleable>
+
+    <!-- Android Design Support Library -->
+    <declare-styleable name="ScrimInsetsFrameLayout">
+        <attr name="insetForeground" format="color|reference"/>
+    </declare-styleable>
+
+    <!--进度条-->
+    <declare-styleable name="NumberProgressBar">
+        <attr name="progress_current" format="integer"/>
+        <attr name="progress_max" format="integer"/>
+        <attr name="progress_unreached_color" format="color"/>
+        <attr name="progress_reached_color" format="color"/>
+        <attr name="progress_reached_bar_height" format="dimension"/>
+        <attr name="progress_unreached_bar_height" format="dimension"/>
+        <attr name="progress_text_size" format="dimension"/>
+        <attr name="progress_text_color" format="color"/>
+        <attr name="progress_text_offset" format="dimension"/>
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0"/>
+            <enum name="invisible" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="Themes">
+        <attr name="numberProgressBarStyle" format="reference"/>
+    </declare-styleable>
+
+</resources>

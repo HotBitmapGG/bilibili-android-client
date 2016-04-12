@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/login_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/top_bar_bg"
+            android:elevation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            />
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/logo_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_top"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_icon_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_22"/>
+
+        <ImageView
+            android:id="@+id/iv_icon_centre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_bili_logo"/>
+
+        <ImageView
+            android:id="@+id/iv_icon_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_33"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo_ll"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/app_name"
+        android:textColor="@color/black_alpha"
+        android:textSize="16sp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/login_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_logo"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_input_rounded_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:paddingRight="10dp">
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/ic_login_username_default"
+                android:drawablePadding="10dp"
+                android:ellipsize="start"
+                android:hint="请输入您的哔哩哔哩账号"
+                android:inputType="textVisiblePassword"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/login_text_color"
+                android:textColorHint="@color/text_hint"
+                android:textSize="16sp"/>
+
+            <ImageButton
+                android:id="@+id/delete_username"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:paddingLeft="20dp"
+                android:paddingRight="8dp"
+                android:src="@drawable/icon_app_delete_normal"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#dadada"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_login_password_default"
+            android:drawablePadding="10dp"
+            android:hint="请输入您的密码"
+            android:inputType="textPassword"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="@color/login_text_color"
+            android:textColorHint="@color/text_hint"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/login_ll"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/blue_corner_btn"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+
+</RelativeLayout>
