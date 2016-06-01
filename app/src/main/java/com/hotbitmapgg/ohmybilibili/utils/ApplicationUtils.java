@@ -25,7 +25,6 @@ public class ApplicationUtils
 
     /**
      * 备份App 首先无需提升权限就就可以复制APK，查看权限你就会知道，在data/app下的APK权限如下：-rw-r--r-- system
-     * system 5122972 我们是有读取权限的。
      *
      * @param packageName
      * @param mActivity
@@ -107,7 +106,6 @@ public class ApplicationUtils
 
     /**
      * 返回当前的应用是否处于前台显示状态 不需要android.permission.GET_TASKS权限
-     * http://zengrong.net/post/1680.htm
      *
      * @param packageName
      * @return
