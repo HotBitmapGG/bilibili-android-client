@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,12 +14,12 @@ import android.os.SystemClock;
 import android.widget.ImageView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.AbsBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 
 import java.util.Random;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 /**
@@ -26,7 +27,7 @@ import butterknife.Bind;
  *
  * @HotBitmapGG
  */
-public class SplashActivity extends AbsBaseActivity
+public class SplashActivity extends Activity
 {
 
     /**
@@ -52,25 +53,14 @@ public class SplashActivity extends AbsBaseActivity
     private static final float SCALE_END = 1.13F;
 
     @Override
-    public int getLayoutId()
+    protected void onCreate(Bundle savedInstanceState)
     {
 
-        return R.layout.activity_splash;
-    }
-
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
-
-
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+        ButterKnife.bind(this);
         Random random = new Random(SystemClock.elapsedRealtime());
         mSplashImage.setImageResource(SPLASH_PIC[random.nextInt(SPLASH_PIC.length)]);
-    }
-
-    @Override
-    public void initToolBar()
-    {
-
     }
 
 
@@ -149,5 +139,6 @@ public class SplashActivity extends AbsBaseActivity
     {
 
         super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
     }
 }
