@@ -5,9 +5,10 @@
 	<string name="home_tab_recent_bangumi">专题推荐</string>
 	<string name="home_tab_more">更多</string>
 
-	<string name="section_recommend">推荐</string>
+	<string name="section_recommend">主站</string>
+	<string name="section_live">直播</string>
 	<string name="section_anime">番剧</string>
-	<string name="section_cartoon">卡通</string>
+	<string name="section_cartoon">动画</string>
 	<string name="section_music">音乐</string>
 	<string name="section_dance">舞蹈</string>
 	<string name="section_game">游戏</string>
@@ -17,6 +18,8 @@
 	<string name="section_movie">电影</string>
 	<string name="section_tv_series">电视剧</string>
 	<string name="section_more">分区</string>
+	<string name="section_list">推荐</string>
+	<string name="section_discover">发现</string>
 
 	<string name="weekday_sun">周日</string>
 	<string name="weekday_mon">周一</string>

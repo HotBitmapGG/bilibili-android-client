@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bacground"
     android:orientation="vertical"
     android:overScrollMode="never">
 
@@ -15,9 +16,11 @@
         android:background="@color/top_bar_bg"
         android:elevation="3dp"
         app:tl_indicator_corner_radius="1.5dp"
-        app:tl_tab_padding="@dimen/main_tab_padding"
         app:tl_indicator_height="3dp"
-        app:tl_indicator_width="10dp"/>
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:tl_tab_space_equal="true"
+        app:tl_indicator_width="20dp"/>
 
 
     <android.support.v4.view.ViewPager

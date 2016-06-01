@@ -14,68 +14,69 @@ import com.hotbitmapgg.ohmybilibili.R;
 public class MoreLayoutAdapter extends BaseAdapter
 {
 
-	private String[] itemNames = new String[] { "番剧", "动画", "音乐", "舞蹈", "游戏", "科技", "娱乐", "鬼畜", "电影", "电视剧", };
+    private String[] itemNames = new String[]{"番剧", "动画", "音乐", "舞蹈", "游戏", "科技", "娱乐", "鬼畜", "电影", "电视剧",};
 
-	private int[] itemIcons = new int[] {R.drawable.ic_category_t13, R.drawable.ic_category_t1, R.drawable.ic_category_t3, R.drawable.ic_category_t129, R.drawable.ic_category_t4, R.drawable.ic_category_t36, R.drawable.ic_category_t5, R.drawable.ic_category_t119, R.drawable.ic_category_t23, R.drawable.ic_category_t11 };
+    private int[] itemIcons = new int[]{R.drawable.ic_category_t13, R.drawable.ic_category_t1, R.drawable.ic_category_t3, R.drawable.ic_category_t129, R.drawable.ic_category_t4, R.drawable.ic_category_t36, R.drawable.ic_category_t5, R.drawable.ic_category_t119, R.drawable.ic_category_t23, R.drawable.ic_category_t11};
 
-	private Context context;
+    private Context context;
 
-	public MoreLayoutAdapter(Context context)
-	{
-		this.context = context;
-	}
+    public MoreLayoutAdapter(Context context)
+    {
 
-	@Override
-	public int getCount()
-	{
-		// TODO Auto-generated method stub
-		return itemNames.length;
-	}
+        this.context = context;
+    }
 
-	@Override
-	public Object getItem(int position)
-	{
-		// TODO Auto-generated method stub
-		return itemIcons[position];
-	}
+    @Override
+    public int getCount()
+    {
+        // TODO Auto-generated method stub
+        return itemNames.length;
+    }
 
-	@Override
-	public long getItemId(int position)
-	{
-		// TODO Auto-generated method stub
-		return position;
-	}
+    @Override
+    public Object getItem(int position)
+    {
+        // TODO Auto-generated method stub
+        return itemIcons[position];
+    }
 
-	@SuppressWarnings("null")
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent)
-	{
-		MoreLayoutViewHolder mViewHolder;
-		if (convertView == null)
-		{
-			mViewHolder = new MoreLayoutViewHolder();
-			convertView = LayoutInflater.from(context).inflate(R.layout.item_grid_home_more, null);
-			mViewHolder.mItemPic = (ImageView) convertView.findViewById(R.id.item_more_icon);
-			mViewHolder.mItemText = (TextView) convertView.findViewById(R.id.item_more_text);
+    @Override
+    public long getItemId(int position)
+    {
+        // TODO Auto-generated method stub
+        return position;
+    }
 
-			convertView.setTag(mViewHolder);
-		}
-		else
-		{
-			mViewHolder = (MoreLayoutViewHolder) convertView.getTag();
-		}
+    @SuppressWarnings("null")
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
 
-		mViewHolder.mItemPic.setImageResource(itemIcons[position]);
-		mViewHolder.mItemText.setText(itemNames[position]);
+        MoreLayoutViewHolder mViewHolder;
+        if (convertView == null)
+        {
+            mViewHolder = new MoreLayoutViewHolder();
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_grid_home_more, null);
+            mViewHolder.mItemPic = (ImageView) convertView.findViewById(R.id.item_more_icon);
+            mViewHolder.mItemText = (TextView) convertView.findViewById(R.id.item_more_text);
 
-		return convertView;
-	}
+            convertView.setTag(mViewHolder);
+        } else
+        {
+            mViewHolder = (MoreLayoutViewHolder) convertView.getTag();
+        }
 
-	static class MoreLayoutViewHolder
-	{
-		ImageView mItemPic;
+        mViewHolder.mItemPic.setImageResource(itemIcons[position]);
+        mViewHolder.mItemText.setText(itemNames[position]);
 
-		TextView mItemText;
-	}
+        return convertView;
+    }
 
+    static class MoreLayoutViewHolder
+    {
+
+        ImageView mItemPic;
+
+        TextView mItemText;
+    }
 }

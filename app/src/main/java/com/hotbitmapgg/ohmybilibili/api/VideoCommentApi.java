@@ -6,7 +6,9 @@ import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 /**
- * Created by hcc on 16/3/27.
+ * 视频评论查询Api
+ *
+ * @HotBitmapGG
  */
 public class VideoCommentApi
 {

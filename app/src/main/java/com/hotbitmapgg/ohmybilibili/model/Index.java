@@ -2,9 +2,10 @@ package com.hotbitmapgg.ohmybilibili.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Index
+public class Index implements Serializable
 {
 
     @SerializedName("type1")
@@ -37,7 +38,7 @@ public class Index
     @SerializedName("type119")
     public FuckList typeFunny;
 
-    public class FuckList
+    public class FuckList implements Serializable
     {
 
         @SerializedName("0")

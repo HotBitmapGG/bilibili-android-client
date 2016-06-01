@@ -44,15 +44,13 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/iv_head_noftiy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_navigation_header_notification"
-                />
+                android:src="@drawable/ic_navigation_header_notification"/>
 
 
             <ImageView
@@ -60,8 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:src="@drawable/ic_switch_night"
-                />
+                android:src="@drawable/ic_switch_night"/>
 
 
         </LinearLayout>

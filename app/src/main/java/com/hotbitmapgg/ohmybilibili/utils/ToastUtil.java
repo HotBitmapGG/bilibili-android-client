@@ -5,8 +5,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.hotbitmapgg.ohmybilibili.config.OhMyBiliBiliApplication;
+import com.hotbitmapgg.ohmybilibili.config.OhMyBiliBiliApp;
 
+/**
+ * Toast相关工具类
+ *
+ * @HotBitmapGG
+ */
 public class ToastUtil
 {
 
@@ -44,7 +49,7 @@ public class ToastUtil
             public void run()
             {
 
-                Toast.makeText(OhMyBiliBiliApplication.getInstance(), text, Toast.LENGTH_LONG).show();
+                Toast.makeText(OhMyBiliBiliApp.getInstance(), text, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -59,7 +64,7 @@ public class ToastUtil
             public void run()
             {
 
-                Toast.makeText(OhMyBiliBiliApplication.getInstance(), stringId, Toast.LENGTH_LONG).show();
+                Toast.makeText(OhMyBiliBiliApp.getInstance(), stringId, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -74,7 +79,7 @@ public class ToastUtil
             public void run()
             {
 
-                Toast.makeText(OhMyBiliBiliApplication.getInstance(), text, Toast.LENGTH_SHORT).show();
+                Toast.makeText(OhMyBiliBiliApp.getInstance(), text, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -89,7 +94,7 @@ public class ToastUtil
             public void run()
             {
 
-                Toast.makeText(OhMyBiliBiliApplication.getInstance(), stringId, Toast.LENGTH_SHORT).show();
+                Toast.makeText(OhMyBiliBiliApp.getInstance(), stringId, Toast.LENGTH_SHORT).show();
             }
         });
     }

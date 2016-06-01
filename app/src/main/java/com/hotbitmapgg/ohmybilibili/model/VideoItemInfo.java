@@ -3,9 +3,10 @@ package com.hotbitmapgg.ohmybilibili.model;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class VideoItemInfo
+public class VideoItemInfo implements Serializable
 {
 
     public String duration; /* 视频时长 */

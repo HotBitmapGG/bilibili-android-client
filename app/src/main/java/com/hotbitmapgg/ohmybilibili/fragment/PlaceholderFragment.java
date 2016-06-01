@@ -5,49 +5,52 @@ import android.os.Bundle;
 import android.widget.ScrollView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.Index;
 
+import butterknife.Bind;
+
+/**
+ * 占位Fragment
+ *
+ * @HotBitmapGG
+ */
 @SuppressLint("ValidFragment")
 public class PlaceholderFragment extends BaseHomeFragment
 {
 
-	private ScrollView mScrollView;
+    @Bind(R.id.scrollable)
+    ScrollView mScrollView;
 
-	public static PlaceholderFragment newInstance()
-	{
-		PlaceholderFragment fragment = new PlaceholderFragment();
-		return fragment;
-	}
+    public static PlaceholderFragment newInstance()
+    {
 
-	@Override
-	public int getLayoutResId()
-	{
-		return R.layout.fragment_tab_placeholder;
-	}
+        PlaceholderFragment fragment = new PlaceholderFragment();
+        return fragment;
+    }
 
-	@Override
-	public void finishCreateView(Bundle state)
-	{
-		mScrollView = $(R.id.scrollable);
+    @Override
+    public int getLayoutResId()
+    {
 
-	}
+        return R.layout.fragment_tab_placeholder;
+    }
 
-	@Override
-	public void scrollToTop()
-	{
-		mScrollView.smoothScrollTo(mScrollView.getScrollX(), 0);
-	}
+    @Override
+    public void finishCreateView(Bundle state)
+    {
 
-	@Override
-	public boolean canScrollVertically(int direction)
-	{
-		return mScrollView != null && mScrollView.canScrollVertically(direction);
-	}
+    }
 
-	@Override
-	public void notifyIndexDataUpdate(Index data)
-	{
+    @Override
+    public void scrollToTop()
+    {
 
-	}
+        mScrollView.smoothScrollTo(mScrollView.getScrollX(), 0);
+    }
 
+    @Override
+    public boolean canScrollVertically(int direction)
+    {
+
+        return mScrollView != null && mScrollView.canScrollVertically(direction);
+    }
 }

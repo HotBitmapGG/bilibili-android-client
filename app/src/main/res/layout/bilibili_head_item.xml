@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/first_step_view"
+        android:layout_width="230dp"
+        android:layout_height="100dp"
+        android:src="@drawable/tv_loading_01" />
+
+    <com.hotbitmapgg.ohmybilibili.widget.pulldownrefresh.PullDownAnimView
+        android:id="@+id/second_step_view"
+        android:layout_width="220dp"
+        android:layout_height="90dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_pull_to_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:padding="10dp"
+        android:text="下拉刷新"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
 
     <android.support.design.widget.AppBarLayout
@@ -29,9 +28,8 @@
             android:layout_height="48dp"
             android:background="@color/top_bar_bg"
             app:tl_indicator_corner_radius="1.5dp"
-            app:tl_tab_padding="@dimen/main_tab_padding"
             app:tl_indicator_height="3dp"
-            app:tl_indicator_width="10dp"/>
+            app:tl_indicator_width="25dp"/>
 
 
     </android.support.design.widget.AppBarLayout>

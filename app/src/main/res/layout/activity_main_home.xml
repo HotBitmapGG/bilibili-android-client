@@ -39,12 +39,12 @@
     </android.support.design.widget.CoordinatorLayout>
 
 
-    <com.hotbitmapgg.ohmybilibili.widget.NavigationView
+    <com.hotbitmapgg.ohmybilibili.widget.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="@dimen/navigation_max_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/common_tap_bg"
+        android:background="@color/navigation_view_bg"
         android:overScrollMode="never"
         app:headerLayout="@layout/main_navigation_header"
         app:itemIconTint="@color/navigation_view_item_icon_color"

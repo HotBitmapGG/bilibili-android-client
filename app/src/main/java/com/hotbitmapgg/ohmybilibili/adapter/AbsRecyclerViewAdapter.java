@@ -8,6 +8,12 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 封装了一个通用的RecycleViewAdapter
+ * 可设计item点击点击 长按时间等
+ *
+ * @HotBitmapGG
+ */
 public abstract class AbsRecyclerViewAdapter extends RecyclerView.Adapter<AbsRecyclerViewAdapter.ClickableViewHolder>
 {
 

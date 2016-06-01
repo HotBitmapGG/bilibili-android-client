@@ -40,6 +40,11 @@ import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+/**
+ * Vitamio提供的一个视频控制类
+ *
+ * @HotBitmapGG
+ */
 public class MediaController extends FrameLayout
 {
 

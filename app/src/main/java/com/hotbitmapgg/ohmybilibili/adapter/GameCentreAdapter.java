@@ -11,16 +11,12 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.model.GameItem;
-import com.hotbitmapgg.ohmybilibili.ui.BrowserActivity;
+import com.hotbitmapgg.ohmybilibili.activity.BrowserActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by hcc on 16/4/9 15:00
- * 100332338@qq.com
- */
 public class GameCentreAdapter extends AbsRecyclerViewAdapter
 {
 

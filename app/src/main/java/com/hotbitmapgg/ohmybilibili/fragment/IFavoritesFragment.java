@@ -3,16 +3,22 @@ package com.hotbitmapgg.ohmybilibili.fragment;
 import android.os.Bundle;
 
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.base.AbsBaseFragment;
 import com.hotbitmapgg.ohmybilibili.widget.EmptyView;
 
+import butterknife.Bind;
+
 /**
- * Created by hcc on 16/4/10 20:07
- * 100332338@qq.com
- * <p/>
  * 我的收藏
+ * 没有Api进行调用
+ *
+ * @HotBitmapGG
  */
-public class IFavoritesFragment extends LazyFragment
+public class IFavoritesFragment extends AbsBaseFragment
 {
+
+    @Bind(R.id.empty_view)
+    EmptyView mEmptyView;
 
     @Override
     public int getLayoutResId()
@@ -25,7 +31,6 @@ public class IFavoritesFragment extends LazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        EmptyView mEmptyView = $(R.id.empty_view);
         mEmptyView.setEmptyImage(R.drawable.img_tips_error_fav_no_data);
         mEmptyView.setEmptyText("没有找到你的收藏哟");
     }

@@ -19,6 +19,14 @@
             android:gravity="center_horizontal|center"
             android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/mediacontroller_lock"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:src="@drawable/mediacontroller_unlock"/>
+
 
             <TextView
                 android:id="@+id/mediacontroller_file_name"
@@ -52,6 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="12dp"
+                android:drawableLeft="@drawable/player_battery_charging_icon"
+                android:drawablePadding="3dp"
                 android:textColor="@android:color/white"/>
 
             <ImageButton
@@ -94,6 +104,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/mediacontroller_buttons_bottom_margin"
                 android:layout_marginTop="@dimen/mediacontroller_buttons_top_margin"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -102,7 +114,6 @@
                     android:layout_height="35dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    android:layout_marginLeft="12dp"
                     android:background="@null"
                     android:gravity="center"
                     android:src="@drawable/mediacontroller_pause"/>
@@ -151,15 +162,6 @@
                     android:src="@drawable/mediacontroller_snapshot"
                     android:visibility="gone"/>
 
-                <ImageButton
-                    android:id="@+id/mediacontroller_lock"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="22dp"
-                    android:layout_toLeftOf="@+id/mediacontroller_send_danmaku"
-                    android:background="@null"
-                    android:src="@drawable/mediacontroller_unlock"/>
 
                 <ImageButton
                     android:id="@+id/mediacontroller_send_danmaku"
@@ -190,7 +192,6 @@
                     android:layout_height="35dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="12dp"
                     android:background="@null"
                     android:gravity="center"
                     android:src="@drawable/bili_player_danmaku_is_open"/>

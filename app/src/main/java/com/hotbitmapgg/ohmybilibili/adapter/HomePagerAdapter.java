@@ -7,109 +7,84 @@ import android.support.v13.app.FragmentPagerAdapter;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.fragment.BaseHomeFragment;
+import com.hotbitmapgg.ohmybilibili.fragment.HomeDiscoverFragment;
 import com.hotbitmapgg.ohmybilibili.fragment.HomeMoreFragment;
+import com.hotbitmapgg.ohmybilibili.fragment.HomeLiveFragment;
+import com.hotbitmapgg.ohmybilibili.fragment.HomeListFragment;
 import com.hotbitmapgg.ohmybilibili.fragment.PlaceholderFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.RecommendFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.SimpleListFragment;
-import com.hotbitmapgg.ohmybilibili.model.Index;
+import com.hotbitmapgg.ohmybilibili.fragment.HomeRecommendFragment;
 
 public class HomePagerAdapter extends FragmentPagerAdapter
 {
 
-	private final String[] TITLES;
-	private BaseHomeFragment[] fragments;
+    private final String[] TITLES;
 
-	public HomePagerAdapter(FragmentManager fm, Context context)
-	{
-		super(fm);
-		TITLES = context.getResources().getStringArray(R.array.sections);
-		fragments = new BaseHomeFragment[TITLES.length];
-	}
+    private BaseHomeFragment[] fragments;
 
-	@Override
-	public Fragment getItem(int position)
-	{
-		if (fragments[position] == null)
-		{
-			switch (position)
-			{
-			case 0:
-				fragments[position] = RecommendFragment.newInstance();
-				break;
-			case 1:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_ANIME);
-				break;
-			case 2:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_CARTOON);
-				break;
-			case 3:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_MUSIC);
-				break;
-			case 4:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_DANCE);
-				break;
-			case 5:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_GAME);
-				break;
-			case 6:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_TECHNOLOGY);
-				break;
-			case 7:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_ENTERTAINMENT);
-				break;
-			case 8:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_FUNNY);
-				break;
-			case 9:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_MOVIE);
-				break;
-			case 10:
-				fragments[position] = SimpleListFragment.newInstance(SimpleListFragment.TYPE_TV_SERIES);
-				break;
-			case 11:
-				fragments[position] = HomeMoreFragment.newInstance();
-				break;
-			default:
-				fragments[position] = PlaceholderFragment.newInstance();
-			}
-		}
-		return fragments[position];
-	}
+    public HomePagerAdapter(FragmentManager fm, Context context)
+    {
 
-	@Override
-	public int getCount()
-	{
-		return TITLES.length;
-	}
+        super(fm);
+        TITLES = context.getResources().getStringArray(R.array.sections);
+        fragments = new BaseHomeFragment[TITLES.length];
+    }
 
-	@Override
-	public CharSequence getPageTitle(int position)
-	{
-		return TITLES[position];
-	}
+    @Override
+    public Fragment getItem(int position)
+    {
 
-	public void scrollToTop(int pos)
-	{
-		if (fragments[pos] != null)
-		{
-			fragments[pos].scrollToTop();
-		}
-	}
+        if (fragments[position] == null)
+        {
+            switch (position)
+            {
+                case 0:
+                    fragments[position] = HomeRecommendFragment.newInstance();
+                    break;
+                case 1:
+                    fragments[position] = HomeListFragment.newInstance();
+                    break;
+                case 2:
+                    fragments[position] = HomeLiveFragment.newIntance();
+                    break;
+                case 3:
+                    fragments[position] = HomeMoreFragment.newInstance();
+                    break;
+                case 4:
+                    fragments[position] = HomeDiscoverFragment.newInstance();
+                    break;
+                default:
+                    fragments[position] = PlaceholderFragment.newInstance();
+            }
+        }
+        return fragments[position];
+    }
 
-	public boolean canScrollVertically(int position, int direction)
-	{
-		return fragments[position] != null && fragments[position].canScrollVertically(direction);
-	}
+    @Override
+    public int getCount()
+    {
 
-	public void notifyIndexDataUpdateAll(Index data)
-	{
-		for (BaseHomeFragment fragment : fragments)
-		{
-			if (fragment != null)
-			{
-				fragment.notifyIndexDataUpdate(data);
-			}
-		}
-	}
+        return TITLES.length;
+    }
 
+    @Override
+    public CharSequence getPageTitle(int position)
+    {
+
+        return TITLES[position];
+    }
+
+    public void scrollToTop(int pos)
+    {
+
+        if (fragments[pos] != null)
+        {
+            fragments[pos].scrollToTop();
+        }
+    }
+
+    public boolean canScrollVertically(int position, int direction)
+    {
+
+        return fragments[position] != null && fragments[position].canScrollVertically(direction);
+    }
 }

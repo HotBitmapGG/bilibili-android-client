@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/parts_more"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_below="@+id/video_part_list"
+    android:paddingEnd="@dimen/title_margin_small"
+    android:paddingStart="@dimen/title_margin_small">
+
+
+    <TextView
+        android:id="@+id/btn_more_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:text="点击查看更多哟 (●'◡'●)ﾉ♥ "
+        android:textColor="@color/pink_300"
+        android:textSize="16sp"/>
+
+</RelativeLayout>
+

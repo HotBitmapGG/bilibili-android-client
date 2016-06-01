@@ -16,35 +16,44 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.PartitionMoreListViewAdapter;
 import com.hotbitmapgg.ohmybilibili.api.PartitionMoreApi;
+import com.hotbitmapgg.ohmybilibili.base.AbsBaseFragment;
 import com.hotbitmapgg.ohmybilibili.model.PartitionMoreList;
 import com.hotbitmapgg.ohmybilibili.model.PartitionMoreVideoItem;
-import com.hotbitmapgg.ohmybilibili.okhttp.OkHttpClientManager;
-import com.hotbitmapgg.ohmybilibili.ui.PartitionMoreActivity;
-import com.hotbitmapgg.ohmybilibili.ui.VideoViewActivity;
+import com.hotbitmapgg.ohmybilibili.activity.VideoDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.squareup.okhttp.Request;
-import com.ypy.eventbus.EventBus;
+import com.hotbitmapgg.ohmybilibili.widget.swiperefresh.EndlessRecyclerOnScrollListener;
+import com.hotbitmapgg.ohmybilibili.widget.swiperefresh.HeaderViewRecyclerAdapter;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.easydone.swiperefreshendless.EndlessRecyclerOnScrollListener;
-import cn.easydone.swiperefreshendless.HeaderViewRecyclerAdapter;
+import butterknife.Bind;
+import okhttp3.Call;
 
-
+/**
+ * 分区详情列表界面
+ *
+ * @HotBitmapGG
+ */
 @SuppressLint("NewApi")
-public class PartitionMoreSimpleListFragment extends PartitionMoreBaseHomeFragment
+public class PartitionMoreSimpleListFragment extends AbsBaseFragment
 {
 
-    private RecyclerView mRecyclerView;
+    @Bind(R.id.bangumi_more_list)
+    RecyclerView mRecyclerView;
+
+    @Bind(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
+    @Bind(R.id.bangumi_more_list_circle_progress)
+    CircleProgressView mProgressView;
 
     private PartitionMoreListViewAdapter mListViewAdapter;
 
-    private PartitionMoreList videoData;
-
-    private ArrayList<PartitionMoreVideoItem> items;
-
-    private CircleProgressView mProgressView;
+    private ArrayList<PartitionMoreVideoItem> items = new ArrayList<>();
 
     private int pageNum = 1;
 
@@ -52,7 +61,8 @@ public class PartitionMoreSimpleListFragment extends PartitionMoreBaseHomeFragme
 
     private String tid;
 
-    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private static final String EXTRA_TID = "extra_tid";
+
 
     private Handler mHandler = new Handler()
     {
@@ -63,7 +73,6 @@ public class PartitionMoreSimpleListFragment extends PartitionMoreBaseHomeFragme
 
             if (msg.what == 0)
             {
-                makeUpItems();
                 mListViewAdapter = new PartitionMoreListViewAdapter(mRecyclerView, items);
                 mRecyclerView.setHasFixedSize(true);
                 LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
@@ -91,23 +100,26 @@ public class PartitionMoreSimpleListFragment extends PartitionMoreBaseHomeFragme
                     @Override
                     public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
                     {
+
                         PartitionMoreVideoItem bangumiMoreVideoItem = items.get(position);
                         int aid = bangumiMoreVideoItem.aid;
-                        VideoViewActivity.launch(getSupportActivity(), aid);
+                        VideoDetailsActivity.launch(getSupportActivity(), aid);
                     }
                 });
             }
         }
-
-
     };
 
+    private View loadMoreView;
 
 
-    public static PartitionMoreSimpleListFragment newInstance()
+    public static PartitionMoreSimpleListFragment newInstance(String tid)
     {
 
         PartitionMoreSimpleListFragment fragment = new PartitionMoreSimpleListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_TID, tid);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -124,8 +136,11 @@ public class PartitionMoreSimpleListFragment extends PartitionMoreBaseHomeFragme
     public void finishCreateView(Bundle state)
     {
 
-        mRecyclerView = $(R.id.bangumi_more_list);
-        mSwipeRefreshLayout = $(R.id.swipe_refresh_layout);
+        Bundle arguments = getArguments();
+        if (arguments != null)
+        {
+            tid = arguments.getString(EXTRA_TID);
+        }
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.top_bar_bg);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
@@ -135,70 +150,64 @@ public class PartitionMoreSimpleListFragment extends PartitionMoreBaseHomeFragme
             public void onRefresh()
             {
 
-
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-        mSwipeRefreshLayout.setRefreshing(true);
 
-
-        mProgressView = $(R.id.bangumi_more_list_circle_progress);
-
-        videoData = ((PartitionMoreActivity) getActivity()).getIndexData();
-        makeUpItems();
-
+        getBangumiMoreList(tid, "1");
     }
 
-    private void makeUpItems()
+    public void getBangumiMoreList(String tid, String pagenum)
     {
 
-        if (videoData != null)
+        String url = PartitionMoreApi.getListUrl(tid, pagenum, "10", PartitionMoreApi.ORDER_DEFAULT);
+        LogUtil.lsw(url);
+        OkHttpUtils.get().url(url).build().execute(new StringCallback()
         {
 
-            items = (ArrayList<PartitionMoreVideoItem>) videoData.lists;
-        } else
-        {
-            items = new ArrayList<>();
-        }
+            @Override
+            public void onError(Call call, Exception e)
+            {
+
+            }
+
+            @Override
+            public void onResponse(String response)
+            {
+
+                PartitionMoreList bangumiMoreList = PartitionMoreList.createFromJson(response);
+                if (bangumiMoreList.lists != null && bangumiMoreList.lists.size() > 0)
+                {
+                    items.clear();
+                    items.addAll(bangumiMoreList.lists);
+                }
+
+                finishGetBangumiMoreTask();
+            }
+        });
     }
 
-    @Override
-    public void scrollToTop()
-    {
-        //mRecyclerView.smoothScrollToPosition(0);
-    }
-
-    @SuppressLint("NewApi")
-    @Override
-    public boolean canScrollVertically(int direction)
+    private void finishGetBangumiMoreTask()
     {
 
-        return mRecyclerView != null && mRecyclerView.canScrollVertically(direction);
-    }
-
-    @Override
-    public void notifyIndexDataUpdate(PartitionMoreList data)
-    {
-
-        if (data == null)
-            return;
         mRecyclerView.setVisibility(View.GONE);
         mProgressView.setVisibility(View.VISIBLE);
         mProgressView.spin();
-        videoData = data;
-        mHandler.sendEmptyMessageDelayed(0, 500);
+
+        mHandler.sendEmptyMessageDelayed(0, 1000);
     }
+
 
     public void LoadMoreBangumiMoreList(String tid, String pagenum)
     {
 
         String url = PartitionMoreApi.getListUrl(tid, pagenum, "10", PartitionMoreApi.ORDER_DEFAULT);
-        OkHttpClientManager.getAsyn(url, new OkHttpClientManager.ResultCallback<String>()
+        OkHttpUtils.get().url(url).build().execute(new StringCallback()
         {
 
             @Override
-            public void onError(Request request, Exception e)
+            public void onError(Call call, Exception e)
             {
-                // TODO Auto-generated method stub
 
             }
 
@@ -218,47 +227,23 @@ public class PartitionMoreSimpleListFragment extends PartitionMoreBaseHomeFragme
                     if (lists.size() < 10)
                     {
                         mRecyclerAdapter.notifyDataSetChanged();
+                        loadMoreView.setVisibility(View.GONE);
                     }
                     mRecyclerAdapter.notifyDataSetChanged();
-
                 } else
                 {
                     mRecyclerAdapter.notifyDataSetChanged();
+                    loadMoreView.setVisibility(View.GONE);
                 }
             }
         });
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        // TODO Auto-generated method stub
-        super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onDestroy()
-    {
-        // TODO Auto-generated method stub
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
-
-    public void onEventMainThread(Bundle mBundle)
-    {
-
-        if (mBundle != null)
-        {
-            tid = mBundle.getString("tid");
-        }
     }
 
 
     private void createLoadMoreView()
     {
 
-        View loadMoreView = LayoutInflater.from(getActivity()).inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
+        loadMoreView = LayoutInflater.from(getActivity()).inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
         mRecyclerAdapter.addFooterView(loadMoreView);
     }
 }

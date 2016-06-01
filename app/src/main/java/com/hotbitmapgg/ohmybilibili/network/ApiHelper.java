@@ -5,12 +5,18 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+/**
+ * B站api请求网络管理类
+ *
+ * @HotBitmapGG
+ */
 public class ApiHelper
 {
 
@@ -23,9 +29,6 @@ public class ApiHelper
     public static final String BILIBILI_SITE = "http://www.bilibili.com";
 
     public static final String HDSLB_HOST = "http://i2.hdslb.com";
-
-    //获取当前直播信息
-    public static final String GET_LIVE_LIST_URL = "http://live.bilibili.com/all?ajax=1";
 
     //通过HTML5API抓包获取到的视频源地址 因为安卓5.0以上无法使用flash播放器来播放视频
     public static final String API_HTML5_VIDEO_HOST = "http://www.bilibili.tv";
@@ -122,14 +125,14 @@ public class ApiHelper
      * @param page
      * @return
      */
-    public static String getUserVideoListUrl(int mid, int page , int pagesize)
+    public static String getUserVideoListUrl(int mid, int page, int pagesize)
     {
 
         UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.LIST);
 
         builder.addParams("mid", mid);
         builder.addParams("page", page);
-        builder.addParams("pagesize" , pagesize);
+        builder.addParams("pagesize", pagesize);
         addAPIParmasAndComplete(builder);
 
         return builder.toString();

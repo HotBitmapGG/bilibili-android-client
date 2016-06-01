@@ -7,6 +7,11 @@ import com.hotbitmapgg.ohmybilibili.model.HomeBanner;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 首页主站Banner查询Api
+ *
+ * @HotBitmapGG
+ */
 public class BannerApi
 {
 

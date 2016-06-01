@@ -15,105 +15,127 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.ui.UserInfoActivity;
+import com.hotbitmapgg.ohmybilibili.activity.UserInfoActivity;
 import com.squareup.picasso.Picasso;
 
+/**
+ * 用于视频详情展示用户头像+用户名的View
+ * 方便使用
+ *
+ * @HotBitmapGG
+ */
 public class UserTagView extends FrameLayout
 {
 
-	private LinearLayout cardView;
-	private CircleImageView avatarView;
-	private TextView userNameText;
+    private LinearLayout cardView;
 
-	private OnClickListener onClickListener;
+    private CircleImageView avatarView;
 
-	private Activity activity;
-	private String name;
-	private int mid = -1;
-	private String avatarUrl;
+    private TextView userNameText;
 
-	public UserTagView(Context context)
-	{
-		this(context, null);
-	}
+    private OnClickListener onClickListener;
 
-	public UserTagView(Context context, AttributeSet attrs)
-	{
-		this(context, attrs, 0);
-	}
+    private Activity activity;
 
-	public UserTagView(Context context, AttributeSet attrs, int defStyleAttr)
-	{
-		super(context, attrs, defStyleAttr);
-		cardView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.widget_user_tag_view, null);
-		avatarView = (CircleImageView) cardView.findViewById(R.id.user_avatar);
-		userNameText = (TextView) cardView.findViewById(R.id.user_name);
+    private String name;
 
-		ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getResources().getDimensionPixelSize(R.dimen.user_tag_view_height));
-		this.addView(cardView, lp);
+    private int mid = -1;
 
-		cardView.setOnClickListener(new OnClickListener()
-		{
-			@Override
-			public void onClick(View view)
-			{
-				if (mid != -1 && activity != null)
-				{
-					UserInfoActivity.launch(activity, name, mid, avatarUrl);
-				}
-				else if (onClickListener != null)
-				{
-					onClickListener.onClick(view);
-				}
-			}
-		});
-	}
+    private String avatarUrl;
 
-	public void setAvatar(Bitmap bitmap)
-	{
-		avatarView.setImageBitmap(bitmap);
-	}
+    public UserTagView(Context context)
+    {
 
-	public void setAvatar(Drawable drawable)
-	{
-		avatarView.setImageDrawable(drawable);
-	}
+        this(context, null);
+    }
 
-	public void setAvatar(@DrawableRes int id)
-	{
-		avatarView.setImageResource(id);
-	}
+    public UserTagView(Context context, AttributeSet attrs)
+    {
 
-	public CircleImageView getAvatarView()
-	{
-		return this.avatarView;
-	}
+        this(context, attrs, 0);
+    }
 
-	public void setUserName(String userName)
-	{
-		userNameText.setText(userName);
-	}
+    public UserTagView(Context context, AttributeSet attrs, int defStyleAttr)
+    {
 
-	public TextView getUserNameText()
-	{
-		return this.userNameText;
-	}
+        super(context, attrs, defStyleAttr);
+        cardView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.widget_user_tag_view, null);
+        avatarView = (CircleImageView) cardView.findViewById(R.id.user_avatar);
+        userNameText = (TextView) cardView.findViewById(R.id.user_name);
 
-	public void setUpWithInfo(Activity activity, String name, int mid, String avatarUrl)
-	{
-		this.activity = activity;
-		this.name = name;
-		this.mid = mid;
-		this.avatarUrl = avatarUrl;
-		this.setUserName(name);
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getResources().getDimensionPixelSize(R.dimen.user_tag_view_height));
+        this.addView(cardView, lp);
 
-		Picasso.with(getContext()).load(this.avatarUrl).placeholder(R.drawable.ico_user_default).into(avatarView);
-	}
+        cardView.setOnClickListener(new OnClickListener()
+        {
 
-	@Override
-	public void setOnClickListener(OnClickListener listener)
-	{
-		this.onClickListener = listener;
-	}
+            @Override
+            public void onClick(View view)
+            {
 
+                if (mid != -1 && activity != null)
+                {
+                    UserInfoActivity.launch(activity, name, mid, avatarUrl);
+                } else if (onClickListener != null)
+                {
+                    onClickListener.onClick(view);
+                }
+            }
+        });
+    }
+
+    public void setAvatar(Bitmap bitmap)
+    {
+
+        avatarView.setImageBitmap(bitmap);
+    }
+
+    public void setAvatar(Drawable drawable)
+    {
+
+        avatarView.setImageDrawable(drawable);
+    }
+
+    public void setAvatar(@DrawableRes int id)
+    {
+
+        avatarView.setImageResource(id);
+    }
+
+    public CircleImageView getAvatarView()
+    {
+
+        return this.avatarView;
+    }
+
+    public void setUserName(String userName)
+    {
+
+        userNameText.setText(userName);
+    }
+
+    public TextView getUserNameText()
+    {
+
+        return this.userNameText;
+    }
+
+    public void setUpWithInfo(Activity activity, String name, int mid, String avatarUrl)
+    {
+
+        this.activity = activity;
+        this.name = name;
+        this.mid = mid;
+        this.avatarUrl = avatarUrl;
+        this.setUserName(name);
+
+        Picasso.with(getContext()).load(this.avatarUrl).placeholder(R.drawable.ico_user_default).into(avatarView);
+    }
+
+    @Override
+    public void setOnClickListener(OnClickListener listener)
+    {
+
+        this.onClickListener = listener;
+    }
 }

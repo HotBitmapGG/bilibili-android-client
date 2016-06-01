@@ -2,9 +2,6 @@ package com.hotbitmapgg.ohmybilibili.model;
 
 import java.util.List;
 
-/**
- * Created by hcc on 16/3/13.
- */
 public class AuthorRecommend
 {
 

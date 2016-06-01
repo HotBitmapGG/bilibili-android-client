@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/common_tap_bg"
+                android:background="@color/bacground"
                 android:orientation="vertical">
 
     <com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
@@ -31,7 +31,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="20dp"
-                    android:text="通用设置"
+                    android:text="我的二维码"
                     android:textColor="@color/font_normal"
                     android:textSize="16sp"/>
 
@@ -92,7 +92,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="20dp"
-                    android:text="我的二维码"
+                    android:text="关于我"
                     android:textColor="@color/font_normal"
                     android:textSize="16sp"/>
 
@@ -190,7 +190,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="32dp"
-                android:background="@drawable/blue_corner_btn"
+                android:background="@drawable/corner_btn"
                 android:gravity="center"
                 android:text="退出登录"
                 android:textColor="@color/white"

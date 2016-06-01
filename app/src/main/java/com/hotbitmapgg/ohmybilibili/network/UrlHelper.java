@@ -4,6 +4,15 @@ import android.util.Log;
 
 import com.hotbitmapgg.ohmybilibili.model.UserInfo;
 
+/**
+ * 根据B站返回的数据
+ * 个人参数由于返回限制
+ * 需要进行特殊处理，如视频封面
+ * 用户头像等url 进行url改装
+ * 才能进行展示.
+ *
+ * @HotBitmapGG
+ */
 public class UrlHelper
 {
 

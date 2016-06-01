@@ -1,0 +1,148 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bacground">
+
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_layout"/>
+
+    <FrameLayout
+        android:id="@+id/live_layout"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_below="@+id/toolbar_layout"
+        android:background="@drawable/shadow_gradient_reserve">
+
+        <SurfaceView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/bili_anim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bili_anim"/>
+
+            <TextView
+                android:id="@+id/video_start_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bili_anim"
+                android:layout_marginTop="10dp"
+                android:text="初始化播放器..."
+                android:textColor="@android:color/black"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/right_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="40dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_tv_play"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/bottom_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_portrait_play"/>
+
+            <ImageView
+                android:id="@+id/bottom_fullscreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_portrait_fullscreen"/>
+        </RelativeLayout>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/user_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/live_layout">
+
+
+        <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+            android:id="@+id/user_pic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/ico_user_default"/>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/user_pic"
+            android:padding="5dp"
+            android:text="用户名"
+            android:textColor="@color/pink_300"
+            android:textSize="12sp"/>
+
+
+        <TextView
+            android:id="@+id/live_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/user_name"
+            android:drawableLeft="@drawable/ic_muti_people"
+            android:drawablePadding="5dp"
+            android:padding="5dp"
+            android:text="1192"
+            android:textColor="@color/gray"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_pin_bg"
+            android:gravity="center"
+            android:text="+关注"
+            android:textColor="@color/pink_300"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/user_info_layout"
+        android:background="@color/line_bg"/>
+
+
+</RelativeLayout>

@@ -2,6 +2,11 @@ package com.hotbitmapgg.ohmybilibili.utils;
 
 import java.lang.reflect.Array;
 
+/**
+ * Array工具类
+ *
+ * @HotBitmapGG
+ */
 public class ArrayUtils
 {
 

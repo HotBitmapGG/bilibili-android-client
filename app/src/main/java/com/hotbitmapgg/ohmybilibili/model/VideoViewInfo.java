@@ -2,7 +2,9 @@ package com.hotbitmapgg.ohmybilibili.model;
 
 import com.google.gson.Gson;
 
-public class VideoViewInfo
+import java.io.Serializable;
+
+public class VideoViewInfo implements Serializable
 {
 
     public int play; // 播放次数

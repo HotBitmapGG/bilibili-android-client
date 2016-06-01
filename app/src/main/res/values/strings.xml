@@ -5,21 +5,13 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
-
     <!-- 主界面 -->
     <string-array name="sections">
         <item>@string/section_recommend</item>
-        <item>@string/section_anime</item>
-        <item>@string/section_cartoon</item>
-        <item>@string/section_music</item>
-        <item>@string/section_dance</item>
-        <item>@string/section_game</item>
-        <item>@string/section_technology</item>
-        <item>@string/section_entertainment</item>
-        <item>@string/section_funny</item>
-        <item>@string/section_movie</item>
-        <item>@string/section_tv_series</item>
+        <item>@string/section_list</item>
+        <item>@string/section_live</item>
         <item>@string/section_more</item>
+        <item>@string/section_discover</item>
     </string-array>
 
     <!-- 番剧 -->
@@ -95,7 +87,7 @@
     <string name="about_developers">关于我</string>
     <string name="about_open_source_lis">感谢开源贡献</string>
     <string name="about_introduce_and_help">介绍与帮助</string>
-    <string name="about_open_source_libraries_list">Bmob后端云\nBiliBili烈焰弹幕库\nOkhttp\npicasso\nEventBus\nVitamio\n</string>
+    <string name="about_open_source_libraries_list">com.github.ozodrukh:CircularReveal:1.1.0@aar\ncom.squareup.picasso:picasso:2.5.2\ncn.bmob.android:bmob-sdk:3.4.6\ncom.flyco.tablayout:FlycoTabLayout_Lib:2.0.0@aar\ncom.zhy:flowlayout-lib:1.0.1\ncom.jakewharton:butterknife:7.0.1\ncom.squareup.okhttp3:okhttp:3.2.0\nio.reactivex:rxandroid:1.1.0\nio.reactivex:rxjava:1.1.0\ncom.squareup.retrofit:retrofit:2.0.0-beta1\ntv.danmaku.ijk.media:ijkplayer-java:0.4.5.1</string>
     <string name="about_function">实现功能</string>
     <string name="about_function_list">* 主站推荐\n* 分区\n* 番剧专题\n* 全站搜索\n* 离线缓存\n* 视频播放\n* 烈焰弹幕库\n* Material Design设计规则\n*  第三方平台分享</string>
     <string name="about">关于哔哩哔哩</string>

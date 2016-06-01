@@ -7,6 +7,11 @@ import com.hotbitmapgg.ohmybilibili.model.Sp;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 专题视频查询Api
+ *
+ * @HotBitmapGG
+ */
 public class SpApi
 {
 

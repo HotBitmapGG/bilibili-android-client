@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/common_tap_bg"
-    android:orientation="vertical" >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bacground"
+                android:orientation="vertical">
 
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        android:scrollbars="none"
-        >
+        android:scrollbars="none">
 
         <com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView
             android:id="@+id/more_layout"
@@ -30,11 +29,10 @@
             android:paddingRight="10dp"
             android:paddingTop="10dp"
             android:scrollbars="none"
-            android:verticalSpacing="10dp" >
+            android:verticalSpacing="10dp">
         </com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView>
 
     </android.support.v4.widget.NestedScrollView>
-
 
 
 </RelativeLayout>

@@ -11,7 +11,6 @@ public class VP
 
     public static final String SESSION_LAST_POSITION_SUFIX = ".last";
 
-    // key
     public static final String SUB_SHADOW_COLOR = "vplayer_sub_shadow_color";
 
     public static final String SUB_POSITION = "vplayer_sub_position";
@@ -32,7 +31,6 @@ public class VP
 
     public static final String SUB_HEIGHT_KEY = "sub_height";
 
-    // default value 1024
     public static final int DEFAULT_BUF_SIZE = 512 * 1024;
 
     public static final int DEFAULT_VIDEO_QUALITY = MediaPlayer.VIDEOQUALITY_MEDIUM;

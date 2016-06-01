@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/bacground">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:scrollbars="none"/>
+
+    <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
+        android:id="@+id/circle_progress"
+        android:layout_width="@dimen/circle_progress_view_default_size"
+        android:layout_height="@dimen/circle_progress_view_default_size"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="20dp"
+        app:matProg_barColor="?attr/colorPrimary"
+        app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
+
+    <com.hotbitmapgg.ohmybilibili.widget.EmptyView
+        android:id="@+id/empty_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+
+</FrameLayout>

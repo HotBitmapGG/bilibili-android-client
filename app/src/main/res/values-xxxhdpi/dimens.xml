@@ -126,7 +126,8 @@
 
     <dimen name="user_info_padding">15dp</dimen>
 
-    <dimen name="main_tab_padding">20dp</dimen>
+    <dimen name="main_tab_padding">28dp</dimen>
     <dimen name="other_tab_padding">70dp</dimen>
+    <dimen name="video_tab_padding">40dp</dimen>
 
 </resources>

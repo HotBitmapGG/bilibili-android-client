@@ -13,9 +13,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by hcc on 16/3/27.
- */
 public class UserFansAdapter extends AbsRecyclerViewAdapter
 {
 

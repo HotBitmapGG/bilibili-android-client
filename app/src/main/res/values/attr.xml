@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- StatusBarHeaderView -->
-    <declare-styleable name="StatusBarHeaderView">
-        <attr name="colorNormal" format="reference"/>
-        <attr name="colorDark" format="reference"/>
-        <attr name="enableMode" format="enum">
-            <enum name="Kitkat" value="1"/>
-            <enum name="Lollipop" value="2"/>
-            <enum name="All" value="3"/>
-        </attr>
-    </declare-styleable>
-
     <!-- NavigationView -->
     <declare-styleable name="NavigationView">
         <attr name="android:background"/>

@@ -2,9 +2,6 @@ package com.hotbitmapgg.ohmybilibili.model;
 
 import java.util.ArrayList;
 
-/**
- * Created by hcc on 16/3/27.
- */
 public class UserFans
 {
 

@@ -5,74 +5,55 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.support.v13.app.FragmentPagerAdapter;
 
-import com.hotbitmapgg.ohmybilibili.fragment.PartitionMoreBaseHomeFragment;
 import com.hotbitmapgg.ohmybilibili.fragment.PartitionMoreSimpleListFragment;
-import com.hotbitmapgg.ohmybilibili.model.PartitionMoreList;
 import com.hotbitmapgg.ohmybilibili.model.PartitionMoreType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PartitionMorePagerAdapter extends FragmentPagerAdapter
 {
-	
-	private List<PartitionMoreType> titles;
 
-	private PartitionMoreBaseHomeFragment[] fragments;
+    private List<PartitionMoreType> titles;
 
-	public PartitionMorePagerAdapter(FragmentManager fm, Context context , List<PartitionMoreType> titles)
-	{
-		super(fm);
-		this.titles = titles;
-		fragments = new PartitionMoreBaseHomeFragment[titles.size()];
-	}
+    private List<Fragment> fragments = new ArrayList<>();
 
-	@Override
-	public Fragment getItem(int position)
-	{
-		if (fragments[position] == null)
-		{
-			fragments[position] = PartitionMoreSimpleListFragment.newInstance();
+    public PartitionMorePagerAdapter(FragmentManager fm, Context context, List<PartitionMoreType> titles)
+    {
 
-		}
-		return fragments[position];
-	}
+        super(fm);
+        this.titles = titles;
+        initFragments();
+    }
 
-	@Override
-	public int getCount()
-	{
-		// TODO Auto-generated method stub
-		return titles.size();
-	}
+    private void initFragments()
+    {
 
-	@Override
-	public CharSequence getPageTitle(int position)
-	{
-		return titles.get(position).getTitleName();
-	}
+        for (int i = 0; i < titles.size(); i++)
+        {
+            fragments.add(PartitionMoreSimpleListFragment.newInstance(titles.get(i).getTitleType() + ""));
+        }
+    }
 
-	public void scrollToTop(int pos)
-	{
-		if (fragments[pos] != null)
-		{
-			fragments[pos].scrollToTop();
-		}
-	}
+    @Override
+    public Fragment getItem(int position)
+    {
 
-	public boolean canScrollVertically(int position, int direction)
-	{
-		return fragments[position] != null && fragments[position].canScrollVertically(direction);
-	}
 
-	public void notifyIndexDataUpdateAll(PartitionMoreList data)
-	{
-		for (PartitionMoreBaseHomeFragment fragment : fragments)
-		{
-			if (fragment != null)
-			{
-				fragment.notifyIndexDataUpdate(data);
-			}
-		}
+        return fragments.get(position);
+    }
 
-	}
+    @Override
+    public int getCount()
+    {
+        // TODO Auto-generated method stub
+        return titles.size();
+    }
 
+    @Override
+    public CharSequence getPageTitle(int position)
+    {
+
+        return titles.get(position).getTitleName();
+    }
 }

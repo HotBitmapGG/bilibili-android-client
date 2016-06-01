@@ -6,7 +6,11 @@ import com.hotbitmapgg.ohmybilibili.model.VideoSrc;
 import com.hotbitmapgg.ohmybilibili.model.VideoViewInfo;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
-
+/**
+ * 视频详情查询Api
+ *
+ * @HotBitmapGG
+ */
 public class VideoApi
 {
 

@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * 系统版本信息类
  *
- * @author tangjun
+ * @HotBitmapGG
  */
 public class VideoDeviceUtils
 {

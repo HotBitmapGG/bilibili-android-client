@@ -5,6 +5,11 @@ import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.Index;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
+/**
+ * 首页分区推荐查询Api
+ *
+ * @HotBitmapGG
+ */
 public class IndexApi
 {
 

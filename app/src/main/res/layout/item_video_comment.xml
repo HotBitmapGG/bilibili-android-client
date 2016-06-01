@@ -14,22 +14,19 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
-        >
+        android:paddingLeft="10dp">
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
             android:id="@+id/comment_user_avatar"
             android:layout_width="@dimen/list_item_avatar_size"
             android:layout_height="@dimen/list_item_avatar_size"
             android:layout_marginBottom="@dimen/list_item_vertical_margin_small"
-            android:layout_marginTop="@dimen/list_item_vertical_margin_small"
-            />
+            android:layout_marginTop="@dimen/list_item_vertical_margin_small"/>
 
         <ImageView
             android:id="@+id/comment_user_lever"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content"/>
 
 
     </LinearLayout>
@@ -41,26 +38,21 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
-        android:paddingBottom="20dp"
-
-        >
+        android:paddingBottom="20dp">
 
         <TextView
             android:id="@+id/comment_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/font_normal"
-            android:textSize="14sp"
-
-            />
+            android:textSize="14sp"/>
 
         <ImageView
             android:id="@+id/comment_user_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/comment_user_name"
-            android:paddingLeft="3dp"
-            />
+            android:paddingLeft="3dp"/>
 
         <TextView
             android:id="@+id/comment_floor"
@@ -68,9 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/comment_user_name"
             android:textColor="@color/black_alpha"
-            android:textSize="12sp"
-
-            />
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/comment_time"
@@ -80,9 +70,7 @@
             android:layout_toRightOf="@+id/comment_floor"
             android:paddingLeft="5dp"
             android:textColor="@color/black_alpha"
-            android:textSize="12sp"
-
-            />
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/comment_num"
@@ -93,9 +81,7 @@
             android:drawablePadding="5dp"
             android:paddingRight="5dp"
             android:textColor="@color/black_alpha"
-            android:textSize="12sp"
-
-            />
+            android:textSize="12sp"/>
 
 
         <TextView
@@ -107,9 +93,7 @@
             android:drawablePadding="5dp"
             android:paddingRight="10dp"
             android:textColor="@color/black_alpha"
-            android:textSize="12sp"
-
-            />
+            android:textSize="12sp"/>
 
 
         <TextView
@@ -121,11 +105,16 @@
             android:maxLines="3"
             android:paddingTop="5dp"
             android:textColor="@color/font_gray"
-            android:textSize="14sp"
-            />
+            android:textSize="14sp"/>
 
 
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_bg"
+        android:layout_alignParentBottom="true"/>
 
 
 </RelativeLayout>

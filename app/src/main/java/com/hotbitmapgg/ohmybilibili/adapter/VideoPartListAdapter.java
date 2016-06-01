@@ -15,9 +15,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 根据用户推荐视频Adapter
- */
 public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 {
 

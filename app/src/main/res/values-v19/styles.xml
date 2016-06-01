@@ -10,17 +10,4 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <!-- AppBarLayout -->
-    <style name="Theme.AppCompat.TranslucentStatusBar" parent="Base.Theme.AppCompat.HotBitmapGG">
-        <item name="android:windowTranslucentStatus">true</item>
-    </style>
-
-    <style name="Theme.AppCompat.Light.TranslucentStatusBar" parent="Base.Theme.AppCompat.Light.HotBitmapGG">
-        <item name="android:windowTranslucentStatus">true</item>
-    </style>
-
-    <style name="Theme.AppCompat.Light.DarkActionBar.TranslucentStatusBar" parent="Base.Theme.AppCompat.Light.DarkActionBar.HotBitmapGG">
-        <item name="android:windowTranslucentStatus">true</item>
-    </style>
-
 </resources>

@@ -3,16 +3,22 @@ package com.hotbitmapgg.ohmybilibili.fragment;
 import android.os.Bundle;
 
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.base.AbsBaseFragment;
 import com.hotbitmapgg.ohmybilibili.widget.EmptyView;
 
+import butterknife.Bind;
+
 /**
- * Created by hcc on 16/4/10 20:29
- * 100332338@qq.com
- *
  * 消费记录
+ * 没有Api进行调用
+ *
+ * @HotBitmapGG
  */
-public class ConsumeHistoryFragment extends LazyFragment
+public class ConsumeHistoryFragment extends AbsBaseFragment
 {
+
+    @Bind(R.id.empty_view)
+    EmptyView mEmptyView;
 
     @Override
     public int getLayoutResId()
@@ -24,7 +30,7 @@ public class ConsumeHistoryFragment extends LazyFragment
     @Override
     public void finishCreateView(Bundle state)
     {
-        EmptyView mEmptyView = $(R.id.empty_view);
+
         mEmptyView.setEmptyImage(R.drawable.ic_movie_pay_area_limit);
         mEmptyView.setEmptyText("你还没有消费记录哟");
     }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:id="@+id/card_view"
+                                    xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/card_margin"
+                                    android:clickable="true"
+                                    android:foreground="?attr/selectableItemBackground"
+                                    app:cardBackgroundColor="@color/card_view_background_dark"
+                                    app:cardCornerRadius="@dimen/card_corner_radius"
+                                    app:cardElevation="@dimen/card_elevation"
+                                    tools:minWidth="160dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/white"
+        android:minWidth="180dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/video_preview"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/card_title_margin">
+
+            <TextView
+                android:id="@+id/video_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/font_normal"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/video_info_mini_icons_size"
+                android:layout_height="@dimen/video_info_mini_icons_size"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_play_circle_outline_black_24dp"/>
+
+            <TextView
+                android:id="@+id/video_play_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+                android:gravity="center"
+                android:textColor="@color/black_alpha"
+                android:textSize="14sp"/>
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:layout_width="@dimen/video_info_mini_icons_size"
+                android:layout_height="@dimen/video_info_mini_icons_size"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_subtitles_black_24dp"/>
+
+            <TextView
+                android:id="@+id/video_review_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+                android:gravity="center"
+                android:textColor="@color/black_alpha"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
+
+
+
+

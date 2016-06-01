@@ -5,6 +5,11 @@ import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.RecommendList;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
+/**
+ * 主站推荐查询Api
+ *
+ * @HotBitmapGG
+ */
 public class RecommendApi
 {
 

@@ -11,8 +11,7 @@ import android.widget.ScrollView;
 /**
  * 有弹性的ScrollView 实现下拉弹回和上拉弹回
  *
- * @author Administrator
- * @hcc
+ * @HotBitmapGG
  */
 public class SpringScrollView extends ScrollView
 {

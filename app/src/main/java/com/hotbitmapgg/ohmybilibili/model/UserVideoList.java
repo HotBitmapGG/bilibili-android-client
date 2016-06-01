@@ -12,36 +12,39 @@ import java.util.Map;
 public class UserVideoList
 {
 
-	public int pages;
-	public int code;
-	public int results;
+    public int pages;
 
-	public List<UserVideoItem> lists;
+    public int code;
 
-	private JsonObject list;
+    public int results;
 
-	public static UserVideoList createFromJson(String json)
-	{
-		UserVideoList result = new Gson().fromJson(json, UserVideoList.class);
-		Iterator<Map.Entry<String, JsonElement>> iterator = result.list.entrySet().iterator();
-		if (result.lists == null)
-		{
-			result.lists = new ArrayList<>();
-		}
-		while (iterator.hasNext())
-		{
-			Map.Entry<String, JsonElement> element = iterator.next();
-			try
-			{
-				result.lists.add(new Gson().fromJson(element.getValue(), UserVideoItem.class));
-			} catch (Exception e)
-			{
-				// Just ignore it.
-			}
-		}
+    public List<UserVideoItem> lists;
 
-		result.list = null;
+    private JsonObject list;
 
-		return result;
-	}
+    public static UserVideoList createFromJson(String json)
+    {
+
+        UserVideoList result = new Gson().fromJson(json, UserVideoList.class);
+        Iterator<Map.Entry<String,JsonElement>> iterator = result.list.entrySet().iterator();
+        if (result.lists == null)
+        {
+            result.lists = new ArrayList<>();
+        }
+        while (iterator.hasNext())
+        {
+            Map.Entry<String,JsonElement> element = iterator.next();
+            try
+            {
+                result.lists.add(new Gson().fromJson(element.getValue(), UserVideoItem.class));
+            } catch (Exception e)
+            {
+
+            }
+        }
+
+        result.list = null;
+
+        return result;
+    }
 }

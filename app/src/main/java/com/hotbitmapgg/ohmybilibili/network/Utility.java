@@ -9,6 +9,11 @@ import android.view.WindowManager;
 
 import java.lang.reflect.Method;
 
+/**
+ * 通用工具类
+ *
+ * @HotBitmapGG
+ */
 public class Utility
 {
 

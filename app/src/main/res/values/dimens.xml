@@ -121,12 +121,10 @@
     <dimen name="title_bar_height">108dp</dimen>
 
     <dimen name="pic_margin_left">10dp</dimen>
-
     <dimen name="main_banner_height">120dp</dimen>
-
     <dimen name="user_info_padding">10dp</dimen>
-
-    <dimen name="main_tab_padding">30dp</dimen>
+    <dimen name="main_tab_padding">22dp</dimen>
     <dimen name="other_tab_padding">60dp</dimen>
+    <dimen name="video_tab_padding">30dp</dimen>
 
 </resources>

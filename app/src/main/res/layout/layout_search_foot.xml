@@ -13,7 +13,6 @@
         android:clickable="true"
         android:text="清空历史记录"
         android:textColor="@color/black_alpha_30"
-        android:textSize="14sp"
-        />
+        android:textSize="14sp"/>
 
 </LinearLayout>

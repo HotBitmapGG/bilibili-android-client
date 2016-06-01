@@ -14,10 +14,6 @@ import com.hotbitmapgg.ohmybilibili.model.SearchHistoryItem;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by hcc on 16/4/10 16:40
- * 100332338@qq.com
- */
 public class SearchRecycleAdapter extends BaseAdapter
 {
 

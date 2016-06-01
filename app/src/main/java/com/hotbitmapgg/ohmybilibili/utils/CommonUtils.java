@@ -8,6 +8,11 @@ import android.os.StatFs;
 
 import java.io.File;
 
+/**
+ * 个人自用小工具类
+ *
+ * @HotBitmapGG
+ */
 public class CommonUtils
 {
 

@@ -5,7 +5,11 @@ import com.hotbitmapgg.ohmybilibili.model.UserInfo;
 
 import java.util.ArrayList;
 
-
+/**
+ * 用户关注的人查询Api
+ *
+ * @HotBitmapGG
+ */
 public class FriendApi
 {
 

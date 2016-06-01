@@ -3,7 +3,7 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/common_tap_bg"
+                android:background="@color/bacground"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical">
     <include
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/recommend_top">
 
-        <com.hotbitmapgg.ohmybilibili.widget.AcFunPullDownRefreshListView
+        <com.hotbitmapgg.ohmybilibili.widget.pulldownrefresh.BiliBiliPullDownRefreshListView
             android:id="@+id/recommend_pull_refresh_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

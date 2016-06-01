@@ -5,7 +5,9 @@ import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 
 /**
- * Created by hcc on 16/3/13.
+ * Up主推荐视频查询Api
+ *
+ * @HotBitmapGG
  */
 public class AuthorRecommendApi
 {

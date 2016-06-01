@@ -3,15 +3,14 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:background="@color/common_tap_bg"
+              android:background="@color/bacground"
               android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        app:elevation="0dp"
-        >
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -20,8 +19,7 @@
             android:background="@color/top_bar_bg"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            />
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
 
     </android.support.design.widget.AppBarLayout>
@@ -87,7 +85,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/blue_corner_btn"
+        android:background="@drawable/corner_btn"
         android:gravity="center"
         android:text="提交"
         android:textColor="@color/white"

@@ -1,46 +1,10 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
-
-
-
-
-
-
-
-
-
-
-
-
-    -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-
-
-
-
-
-
-
-
-
-
-
-
-
-        -->
-    </style>
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light"/>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <!-- All customizations that are NOT specific to a particular LiveApi-level can go here. -->
         <item name="android:listDivider">@drawable/recycle_default_line</item>
     </style>
 
@@ -53,55 +17,10 @@
     </style>
 
     <!-- 启动页 引导页设置StatusBar为透明色 -->
-    <style name="ColorTranslucentTheme" parent="@style/BaseAppTheme"></style>
+    <style name="ColorTranslucentTheme" parent="@style/BaseAppTheme"/>
 
-
-    <style name="Loading" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowCloseOnTouchOutside">false</item>
-    </style>
-
-
-    <!-- AppBarLayout -->
-
-    <style name="Widget.FengMoe.AppBarLayout" parent="">
-        <item name="enableElevation">true</item>
-    </style>
-
-    <style name="Widget.StatusBarHeaderView" parent="">
-        <item name="colorNormal">@android:color/transparent</item>
-        <item name="enableMode">All</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.HotBitmapGG" parent="Theme.AppCompat">
-        <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.Light.HotBitmapGG" parent="Theme.AppCompat.Light">
-        <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
-    <style name="Base.Theme.AppCompat.Light.DarkActionBar.HotBitmapGG" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.AppCompat.TranslucentStatusBar" parent="Base.Theme.AppCompat.HotBitmapGG"/>
-
-    <style name="Theme.AppCompat.Light.TranslucentStatusBar" parent="Base.Theme.AppCompat.Light.HotBitmapGG"/>
-
-    <style name="Theme.AppCompat.Light.DarkActionBar.TranslucentStatusBar" parent="Base.Theme.AppCompat.Light.DarkActionBar.HotBitmapGG"/>
 
     <!-- 播放器 -->
-
     <style name="MediaController_SeekBar">
         <item name="android:minHeight">3dp</item>
         <item name="android:maxHeight">3dp</item>

@@ -5,9 +5,13 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
-import com.hotbitmapgg.ohmybilibili.config.OhMyBiliBiliApplication;
+import com.hotbitmapgg.ohmybilibili.config.OhMyBiliBiliApp;
 
-
+/**
+ * 缓存相关工具类
+ *
+ * @HotBitmapGG
+ */
 public final class PreferenceUtils
 {
 
@@ -25,19 +29,19 @@ public final class PreferenceUtils
     public static String getString(String key, String defValue)
     {
 
-        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance()).getString(key, defValue);
+        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance()).getString(key, defValue);
     }
 
     public static long getLong(String key, long defValue)
     {
 
-        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance()).getLong(key, defValue);
+        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance()).getLong(key, defValue);
     }
 
     public static float getFloat(String key, float defValue)
     {
 
-        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance()).getFloat(key, defValue);
+        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance()).getFloat(key, defValue);
     }
 
     public static void put(String key, String value)
@@ -67,7 +71,7 @@ public final class PreferenceUtils
     public static void putFloat(String key, float value)
     {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
         Editor editor = sharedPreferences.edit();
         editor.putFloat(key, value);
         editor.commit();
@@ -76,25 +80,25 @@ public final class PreferenceUtils
     public static SharedPreferences getPreferences()
     {
 
-        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance());
+        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
     }
 
     public static int getInt(String key, int defValue)
     {
 
-        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance()).getInt(key, defValue);
+        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance()).getInt(key, defValue);
     }
 
     public static boolean getBoolean(String key, boolean defValue)
     {
 
-        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance()).getBoolean(key, defValue);
+        return PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance()).getBoolean(key, defValue);
     }
 
     public static void putStringProcess(String key, String value)
     {
 
-        SharedPreferences sharedPreferences = OhMyBiliBiliApplication.getInstance().getSharedPreferences("preference_mu", Context.MODE_MULTI_PROCESS);
+        SharedPreferences sharedPreferences = OhMyBiliBiliApp.getInstance().getSharedPreferences("preference_mu", Context.MODE_MULTI_PROCESS);
         Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         editor.commit();
@@ -103,21 +107,21 @@ public final class PreferenceUtils
     public static String getStringProcess(String key, String defValue)
     {
 
-        SharedPreferences sharedPreferences = OhMyBiliBiliApplication.getInstance().getSharedPreferences("preference_mu", Context.MODE_MULTI_PROCESS);
+        SharedPreferences sharedPreferences = OhMyBiliBiliApp.getInstance().getSharedPreferences("preference_mu", Context.MODE_MULTI_PROCESS);
         return sharedPreferences.getString(key, defValue);
     }
 
     public static boolean hasString(String key)
     {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
         return sharedPreferences.contains(key);
     }
 
     public static void putString(String key, String value)
     {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
         Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         editor.commit();
@@ -126,7 +130,7 @@ public final class PreferenceUtils
     public static void putLong(String key, long value)
     {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
         Editor editor = sharedPreferences.edit();
         editor.putLong(key, value);
         editor.commit();
@@ -135,7 +139,7 @@ public final class PreferenceUtils
     public static void putBoolean(String key, boolean value)
     {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
         Editor editor = sharedPreferences.edit();
         editor.putBoolean(key, value);
         editor.commit();
@@ -144,7 +148,7 @@ public final class PreferenceUtils
     public static void putInt(String key, int value)
     {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
         Editor editor = sharedPreferences.edit();
         editor.putInt(key, value);
         editor.commit();
@@ -155,7 +159,7 @@ public final class PreferenceUtils
 
         if (keys != null)
         {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApplication.getInstance());
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
             Editor editor = sharedPreferences.edit();
             for (String key : keys)
             {

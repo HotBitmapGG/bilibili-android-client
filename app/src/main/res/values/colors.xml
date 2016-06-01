@@ -1,53 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!--StatusBar颜色，由蓝色主题改为粉红主题 跟B站一致-->
-    <!-- 状态栏颜色 #FF03A9F4   #ff45c3f5 -->
-    <color name="primary">#F06292</color>
-    <color name="primary_dark">#F06292</color>
+    <!--主题配色-->
+    <color name="primary">#FA7198</color>
+    <color name="primary_dark">#96435B</color>
     <color name="status_bar_color">@color/primary_dark</color>
-
-    <!-- 白色背景色 -->
-    <color name="bacground">#f0f0f0</color>
-
-    <!--ToolBar颜色，由蓝色主题改为粉红主题 跟B站一致-->
-    <!-- topBar颜色  #F06292   #ff45c3f5-->
-    <color name="top_bar_bg">#F06292</color>
-
-    <!-- 主题蓝色 50浅蓝  70 深蓝 -->
-    <color name="blue_50">#ff16b2f0</color>
-    <color name="blue_70">#ff278ce9</color>
-
-    <!-- 按钮默认灰色背景 -->
-    <color name="button_normal_bg">#f5f7f7</color>
-
-    <!-- 主页灰白色 -->
-    <color name="white_50">#e8e8e8</color>
-
-    <!-- 描边线 -->
-    <color name="button_divider">#dbd9d9</color>
-
-    <!-- 亮白色 -->
-    <color name="light_white">#aaffffff</color>
-
-    <!-- 灰色背景色 -->
-    <color name="common_tap_bg">#fff8f8f8</color>
-
-    <!-- icon背景色 -->
-    <color name="icon_blue">#45c3f5</color>
-
-    <!-- 我的背景图片颜色 -->
-    <color name="user_icon_bg">#2DBBEB</color>
-
-    <!-- 聊天背景颜色 -->
-    <color name="chat_bg">#ECEDF1</color>
+    <color name="bacground">#F1F1F1</color>
+    <color name="top_bar_bg">@color/primary</color>
 
     <!-- 播放器使用颜色 -->
     <color name="bilibg">#f2f2f2</color>
     <color name="mediacontroller_bg">#99000000</color>
-
-    <!-- item黑色背景透明色 -->
-    <color name="item_black_alpha">#4f000000</color>
 
     <!-- 主界面背景颜色 -->
     <color name="toolbar_default_background_dark">#212121</color>
@@ -74,122 +36,48 @@
     <color name="navigation_subtitle_secondary_text">#BFFFFFFF</color>
     <color name="card_view_background_dark">#424242</color>
     <color name="gray_80">#bebbb4</color>
-    <color name="blue_main">#ff45c3f5</color>
-    <color name="green_30">#5AFF5A</color>
-    <color name="news_red">#D33D30</color>
-    <color name="top_title_color">#353535</color>
-    <color name="font_lighter">#999999</color>
-    <color name="base_actionbar_bg">#f5f5f5</color>
-    <color name="base_action_bar_title_color">#2f2725</color>
-    <color name="base_tab_indicator_text_color">#f82c22</color>
-    <color name="base_menu_left_bg">#393c44</color>
-    <color name="pull_refresh_textview">#000000</color>
-    <color name="base_color_text_black">#3e3e39</color>
-    <color name="base_color_text_gray">#9fa0a0</color>
-    <color name="base_color_text_white">#ffffff</color>
-    <color name="home_item_color_bg">#f4f6f6</color>
-    <color name="base_bg">#f4f6f6</color>
-    <color name="color_half_transparent">#b0000000</color>
-    <color name="color_transparent_bg">#80000000</color>
-    <color name="color_transparent_bg1">#e0000000</color>
-    <color name="msg_emote_divider">#ffa1a1a1</color>
-    <color name="color_bottom_bg">#272a2e</color>
-    <color name="color_bottom_text_normal">#9da0a4</color>
-    <color name="color_bottom_text_press">#4f9ef6</color>
-    <color name="text_gray">#969696</color>
-    <color name="transparent">#00000000</color>
-    <color name="msg_chat_bg">#eceff4</color>
-    <color name="theme_bg_color">#f0f2f5</color>
-    <color name="color_theme">#489cfa</color>
-    <color name="c_f98800">#ed4e23</color>
-    <color name="dialog_color_title">#f82c22</color>
-    <color name="guide_color">#898989</color>
-    <color name="common_bg">#fcfcfc</color>
+
 
     <!-- 常用色 -->
-
+    <color name="transparent">#00000000</color>
+    <color name="white_80">#FAFAFA</color>
     <color name="global_color">#34343c</color>
-    <color name="login_ed_bg_color">#b2b2b2</color>
-    <color name="top_title_text_color">#a1a1a1</color>
-    <color name="upload_top_bg_color">#f4f4f4</color>
-    <color name="top_title_text_bg">#888888</color>
-    <color name="upload_list_item_color">#eaeaea</color>
-    <color name="offline_top_title_text_color">#444444</color>
-    <color name="line_bg">#e6e6e6</color>
-    <color name="color_gree">#4eb96f</color>
-    <color name="white">#ffffff</color>
     <!-- 白色 -->
-    <color name="tab_bg">#222222</color>
-    <!-- 暗黑色 -->
-    <color name="title_bg">#22292c</color>
-    <!-- 暗黑色 -->
-    <color name="title_btn">#a9e5e3e4</color>
-    <!-- 暗黑色 1a2022  1e2326 -->
-    <color name="black_alpha">#71000000</color>
+    <color name="white">#ffffff</color>
     <!-- 45%透明黑 -->
-    <color name="black_alpha_30">#48000000</color>
+    <color name="black_alpha">#71000000</color>
     <!-- 30%透明黑 -->
-    <color name="red">#fe4343</color>
-    <!-- ee3b2b 红色 ed0000 -->
-    <color name="red_deep">#cf4646</color>
-    <!-- 深红色 -->
-
-    <color name="green_d">#4cb147</color>
-    <!-- 深绿色 -->
+    <color name="black_alpha_30">#48000000</color>
+    <!-- 灰色 -->
     <color name="gray">#b8b8b8</color>
-    <!-- 灰色 -->
-    <color name="share_gray">#acaead</color>
-    <!-- 灰色 -->
     <color name="gray_bg">#f0f0f0</color>
     <color name="gray_light">#e5e5e5</color>
-    <!-- 灰色 -->
-    <color name="gray_deep">#dddddd</color>
-    <!-- 灰色 -->
-    <color name="text_hint">#b3b3b3</color>
     <!-- hint色 -->
+    <color name="text_hint">#b3b3b3</color>
+    <!-- 输入边框 -->
     <color name="login_text_color">#222222</color>
     <color name="input_border">#a5a5a5</color>
-    <!-- 输入边框 -->
-    <color name="listview_divier">#dedede</color>
-    <color name="text_color">#555555</color>
-    <color name="text_sub_color">#888888</color>
-    <color name="tab_green">#59bf54</color>
-    <color name="blue">#4286d1</color>
-    <color name="blue_light">#048bd5</color>
-    <color name="yellow">#fffbe2</color>
-
     <!-- 字体颜色 -->
     <color name="font_normal">#555555</color>
     <color name="font_deep">#222222</color>
     <color name="font_light">#888888</color>
-
-    <!-- adadad -->
-    <color name="font_lighter2">#aaaaaa</color>
-    <!-- adadad -->
-    <color name="hint">#bebebe</color>
-
+    <color name="font_gray">#656565</color>
     <!-- 分割线 -->
     <color name="line">#e5e5e5</color>
-    <!-- 灰线  d8d8d8 -->
+    <color name="line_bg">#e6e6e6</color>
+    <color name="listview_divier">#dedede</color>
+    <!-- 按钮默认灰色背景 -->
+    <color name="button_normal_bg">#f5f7f7</color>
+    <!-- 主页灰白色 -->
+    <color name="white_50">#e8e8e8</color>
+    <!-- 描边线 -->
+    <color name="button_divider">#dbd9d9</color>
+    <!-- 亮白色 -->
+    <color name="light_white">#aaffffff</color>
+    <!-- 灰色背景色 -->
+    <color name="navigation_view_bg">#fff8f8f8</color>
+    <!-- item黑色背景透明色 -->
+    <color name="item_black_alpha">#4f000000</color>
 
-    <color name="black">@android:color/black</color>
-    <color name="font_gray">#656565</color>
-    <color name="weibo_light_gray">#eeeeee</color>
-    <color name="color_gray_light">#99C9C9C9</color>
-    <color name="a_line">#ebebeb</color>
-    <color name="a_v_line">#d0cbcb</color>
-    <color name="possible_result_points">#c0ffff00</color>
-    <color name="result_view">#b0000000</color>
-    <color name="viewfinder_frame">#ff000000</color>
-    <color name="viewfinder_laser">#ffff0000</color>
-    <color name="viewfinder_mask">#60000000</color>
-    <color name="month_color">#9AA6B4</color>
-    <color name="done_color">#86BB71</color>
-    <color name="noDone_color">#FF6600</color>
-    <color name="image_bg">#ff171b19</color>
-    <color name="menu_bottom_bg">#f9f9f9</color>
-    <!-- 表情布局颜色 -->
-    <color name="horizontal_divider">#8f8f8f</color>
-    <color name="horizontal_vertical">#8f8f8f</color>
 
 </resources>

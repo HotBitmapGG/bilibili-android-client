@@ -11,37 +11,40 @@ import java.util.Map;
 
 public class PartitionMoreList
 {
-	public int pages;
-	public int code;
-	public int results;
 
-	public List<PartitionMoreVideoItem> lists;
+    public int pages;
 
-	private JsonObject list;
+    public int code;
 
-	public static PartitionMoreList createFromJson(String json)
-	{
-		PartitionMoreList result = new Gson().fromJson(json, PartitionMoreList.class);
-		Iterator<Map.Entry<String, JsonElement>> iterator = result.list.entrySet().iterator();
-		if (result.lists == null)
-		{
-			result.lists = new ArrayList<>();
-		}
-		while (iterator.hasNext())
-		{
-			Map.Entry<String, JsonElement> element = iterator.next();
-			try
-			{
-				result.lists.add(new Gson().fromJson(element.getValue(), PartitionMoreVideoItem.class));
-			} catch (Exception e)
-			{
-				// Just ignore it.
-			}
-		}
+    public int results;
 
-		result.list = null;
+    public List<PartitionMoreVideoItem> lists;
 
-		return result;
-	}
+    private JsonObject list;
 
+    public static PartitionMoreList createFromJson(String json)
+    {
+
+        PartitionMoreList result = new Gson().fromJson(json, PartitionMoreList.class);
+        Iterator<Map.Entry<String,JsonElement>> iterator = result.list.entrySet().iterator();
+        if (result.lists == null)
+        {
+            result.lists = new ArrayList<>();
+        }
+        while (iterator.hasNext())
+        {
+            Map.Entry<String,JsonElement> element = iterator.next();
+            try
+            {
+                result.lists.add(new Gson().fromJson(element.getValue(), PartitionMoreVideoItem.class));
+            } catch (Exception e)
+            {
+
+            }
+        }
+
+        result.list = null;
+
+        return result;
+    }
 }

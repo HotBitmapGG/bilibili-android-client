@@ -6,6 +6,11 @@ import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.UserInfo;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
+/**
+ * 用户个人数据查询Api
+ *
+ * @HotBitmapGG
+ */
 public class UserInfoApi
 {
 

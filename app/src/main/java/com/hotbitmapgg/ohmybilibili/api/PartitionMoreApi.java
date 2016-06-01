@@ -2,7 +2,12 @@ package com.hotbitmapgg.ohmybilibili.api;
 
 
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
-
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+/**
+ * 分区详情列表查询Api
+ *
+ * @HotBitmapGG
+ */
 public class PartitionMoreApi
 {
 
@@ -14,6 +19,7 @@ public class PartitionMoreApi
     {
 
         String url = ApiHelper.getTypeListUrl(tid, pagenum, pagesize, ORDER_VALUE[order]);
+        LogUtil.lsw(url);
         return url;
     }
 }

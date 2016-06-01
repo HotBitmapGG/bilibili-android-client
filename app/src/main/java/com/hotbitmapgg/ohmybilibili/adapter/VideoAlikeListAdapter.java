@@ -1,10 +1,9 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,102 +12,81 @@ import com.hotbitmapgg.ohmybilibili.model.UserVideoItem;
 import com.hotbitmapgg.ohmybilibili.network.UrlHelper;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 根据tid查询相关视频Adapter
- */
-public class VideoAlikeListAdapter extends BaseAdapter
+public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<UserVideoItem> parts;
+    private List<UserVideoItem> parts = new ArrayList<>();
 
-    private LayoutInflater mInflater;
-
-    private Context context;
-
-    public VideoAlikeListAdapter(Context context, List<UserVideoItem> userVideoList)
+    public VideoAlikeListAdapter(RecyclerView recyclerView, List<UserVideoItem> parts)
     {
-        mInflater = LayoutInflater.from(context);
-        this.parts = userVideoList;
-        this.context = context;
+
+        super(recyclerView);
+        this.parts = parts;
     }
 
     @Override
-    public int getCount()
+    public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
+
+        bindContext(parent.getContext());
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.list_item_user_up_video, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(ClickableViewHolder holder, int position)
+    {
+
+        if (holder instanceof ItemViewHolder)
+        {
+            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+            UserVideoItem userVideoItem = parts.get(position);
+            String pic = userVideoItem.pic;
+            String play = userVideoItem.play;
+            int video_review = userVideoItem.video_review;
+            String title = userVideoItem.title;
+
+            Picasso.with(getContext()).load(UrlHelper.getClearVideoPreviewUrl(pic)).placeholder(R.drawable.bili_default_image_tv).into(itemViewHolder.mVideoPic);
+            itemViewHolder.mVideoTitle.setText(title);
+            itemViewHolder.mVideoPlayNum.setText(play);
+            itemViewHolder.mVideoReviewNum.setText(video_review + "");
+        }
+
+        super.onBindViewHolder(holder, position);
+    }
+
+    @Override
+    public int getItemCount()
+    {
+
         return parts.size();
     }
 
-    @Override
-    public UserVideoItem getItem(int i)
+    public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
-        return parts.get(i);
-    }
 
-    @Override
-    public long getItemId(int i)
-    {
-        return i;
-    }
+        public ImageView mVideoPic;
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup)
-    {
-        ViewHolder vh;
-        if (view == null)
+        public TextView mVideoTitle;
+
+        public TextView mVideoPlayNum;
+
+        public TextView mVideoReviewNum;
+
+        public ItemViewHolder(View itemView)
         {
-            view = mInflater.inflate(R.layout.list_item_user_up_video, null);
-            vh = new ViewHolder(view);
-            view.setTag(vh);
+
+            super(itemView);
+
+            mVideoPic = $(R.id.video_pic);
+
+            mVideoTitle = $(R.id.video_title);
+
+            mVideoPlayNum = $(R.id.video_play_num);
+
+            mVideoReviewNum = $(R.id.video_review_count);
         }
-        else
-        {
-            vh = (ViewHolder) view.getTag();
-        }
-
-        UserVideoItem item = getItem(i);
-        String author = item.author;
-        String pic = item.pic;
-        String play = item.play;
-        int video_review = item.video_review;
-        String title = item.title;
-
-        Picasso.with(context).load(UrlHelper.getClearVideoPreviewUrl(pic)).placeholder(R.drawable.bili_default_image_tv).into(vh.mVideoPic);
-        vh.mVideoTitle.setText(title);
-        vh.mVideoUserInfo.setText(author);
-        vh.mVideoPlayNum.setText(play);
-        vh.mVideoReviewNum.setText(video_review + "");
-
-        return view;
     }
-
-    private class ViewHolder
-    {
-
-        ImageView mVideoPic;
-
-        TextView mVideoTitle;
-
-        TextView mVideoUserInfo;
-
-        TextView mVideoPlayNum;
-
-        TextView mVideoReviewNum;
-
-        public ViewHolder(View parentView)
-        {
-            mVideoPic = (ImageView) parentView.findViewById(R.id.user_video_pic);
-
-            mVideoTitle = (TextView) parentView.findViewById(R.id.user_video_title);
-
-            mVideoUserInfo = (TextView) parentView.findViewById(R.id.user_video_info);
-
-            mVideoPlayNum = (TextView) parentView.findViewById(R.id.user_play_num);
-
-            mVideoReviewNum = (TextView) parentView.findViewById(R.id.user_review_count);
-        }
-
-    }
-
 }

@@ -36,7 +36,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:layout_marginRight="10dp"
-        android:background="@drawable/blue_corner_btn"
+        android:background="@drawable/corner_btn"
         android:text="下载"
         android:textColor="@color/white"
         android:textSize="14sp"
