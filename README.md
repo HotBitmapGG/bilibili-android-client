@@ -17,29 +17,29 @@ OhMyBiliBili/app/src/main/java/com/hotbitmapgg/ohmybilibili/config/Secret.java
 
 ## 截图
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/01.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/01.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/02.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/02.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/03.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/03.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/04.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/04.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/05.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/05.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/06.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/06.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/07.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/07.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/08.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/08.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/09.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/09.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/10.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/10.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/11.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/11.jpg?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/tree/OhMyBiliBili/bilibiliPic/12.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/12.jpg?raw=true)
 
 ##声明
 本项目使用请遵守开源协议,如有任何侵犯B站权益的地方,马上删除该项目!
