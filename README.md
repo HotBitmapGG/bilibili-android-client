@@ -5,14 +5,19 @@
 ## 简介
 
 高仿B站安卓客户端
+</p>该项目是大概半年前开始做的,断断续续做了有小半年,因为B站的Api太麻烦了,AppKey也是问题,没有AppKey是获取不到视频详情数据和播放视频的,
+</p>因为之前项目没有使用Retrofit2来做网络请求,用的是自己封装的OkHttp,和鸿洋大神的OkHttpUtils,到后来加入B站的直播这些才开始使用Retrofit2的,
+</p>后期会慢慢都把Api请求改为Retrofit, 小弟不才,代码写的也不是很漂亮,还请各位大神指点,做这个东西,完全是因为对B站的热爱,有意见也请提issues.
 
-##使用说明
+
+## 使用说明
 该项目所使用Api均来自:
 https://github.com/fython/BilibiliAPIDocs
 
 因为B站Api需要Appkey才可正常使用,具体Appkey请自行获取.
 放置到Secret的Appkey中即可.
-OhMyBiliBili/app/src/main/java/com/hotbitmapgg/ohmybilibili/config/Secret.java
+</p>OhMyBiliBili/app/src/main/java/com/hotbitmapgg/ohmybilibili/config/Secret.java
+
 
 
 ## 截图
