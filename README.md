@@ -45,8 +45,15 @@ https://github.com/fython/BilibiliAPIDocs
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/12.jpg?raw=true)
 
-##声明
+## 声明
 本项目使用请遵守开源协议,如有任何侵犯B站权益的地方,马上删除该项目!
+
+
+## Other
+
+* 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
+* 高仿BiliBili客户端:https://github.com/HotBitmapGG/OhMyBiliBili
+* Gank.IO客户端 :https://github.com/HotBitmapGG/StudyProject
 
 ## License
 
