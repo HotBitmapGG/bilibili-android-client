@@ -16,7 +16,7 @@ import android.os.Environment;
 import android.widget.Toast;
 
 /**
- * App相关工具类11
+ * App相关工具类
  *
  * @HotBitmapGG
  */
