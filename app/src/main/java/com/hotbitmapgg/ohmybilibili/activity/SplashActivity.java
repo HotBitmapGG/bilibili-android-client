@@ -47,7 +47,7 @@ public class SplashActivity extends Activity
 
 
     // 动画执行时间
-    private static final int ANIMATION_DURATION = 3000;
+    private static final int ANIMATION_DURATION = 2000;
 
     // 缩放动画的结束值
     private static final float SCALE_END = 1.13F;
@@ -105,10 +105,10 @@ public class SplashActivity extends Activity
         boolean login = PreferenceUtils.getBoolean("login", false);
         if (login)
         {
-            mHandler.sendEmptyMessageDelayed(GO_HOME, 2000);
+            mHandler.sendEmptyMessageDelayed(GO_HOME, 1000);
         } else
         {
-            mHandler.sendEmptyMessageDelayed(GO_LOGIN, 2000);
+            mHandler.sendEmptyMessageDelayed(GO_LOGIN, 1000);
         }
     }
 

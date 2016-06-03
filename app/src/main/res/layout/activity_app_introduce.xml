@@ -158,7 +158,6 @@
                     android:layout_alignTop="@id/tv_avator_blog"
                     android:layout_toRightOf="@id/tv_avator_blog"
                     android:autoLink="web"
-                    android:text="laucherish"
                     android:textColor="@color/font_normal"
                     android:visibility="gone"/>
 

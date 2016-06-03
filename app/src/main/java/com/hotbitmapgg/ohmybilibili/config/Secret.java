@@ -10,7 +10,6 @@ package com.hotbitmapgg.ohmybilibili.config;
 public class Secret
 {
 
-    //8e9fc618fbd41e28
     public static final String APP_KEY = "";
 
     public static final String APP_SECRET = "";
