@@ -31,8 +31,7 @@
         tools:replace="android:icon, android:theme, android:label">
         <activity
             android:name=".activity.SplashActivity"
-            android:theme="@style/ColorTranslucentTheme"
-            >
+            android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
