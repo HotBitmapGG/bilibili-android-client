@@ -103,6 +103,8 @@ public class BrowserActivity extends AbsBaseActivity implements DownloadListener
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         webSettings.setDomStorageEnabled(true);
         webSettings.setGeolocationEnabled(true);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLoadWithOverviewMode(true);
         mWebView.getSettings().setRenderPriority(RenderPriority.HIGH);
         mWebView.getSettings().setBlockNetworkImage(true);
         mWebView.setWebViewClient(webViewClient);
@@ -195,5 +197,21 @@ public class BrowserActivity extends AbsBaseActivity implements DownloadListener
                 mWebView.loadUrl("javascript:initialize()");
             }
         });
+    }
+
+    @Override
+    protected void onPause()
+    {
+
+        mWebView.reload();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+
+        mWebView.destroy();
+        super.onDestroy();
     }
 }
