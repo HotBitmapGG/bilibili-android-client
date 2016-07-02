@@ -1,12 +1,20 @@
 # OhMyBiliBili
 
-莆田系高仿真哔哩哔哩动画客户端
-------
-
 ## 简介
-</p>该项目是大概半年前开始做的,断断续续做了有小半年,因为B站的Api太麻烦了,AppKey也是问题,没有AppKey是获取不到视频详情数据和播放视频的.
-</p>因为之前项目没有使用Retrofit2来做网络请求,用的是自己封装的OkHttp,和鸿洋大神的OkHttpUtils,到后来加入B站的直播这些才开始使用Retrofit2的.
-</p>后期会慢慢都会把Api请求改为Retrofit, 小弟学疏才浅,代码写的也不是很漂亮,还请各位大神指点,做这个东西,完全是因为对B站的热爱,有意见也请提issues.
+
+这是个目前做的跟原版最像的一个高仿B站客户端,喜欢的请star一波,谢谢.
+
+## 功能介绍
+
+* 首页五大模块,主站推荐, 分类推荐, B站直播, 视频分区, 发现模块.
+* 全站搜索,目前这个功能暂时无法使用,后期会慢慢调整.
+* 完美模仿原版B站UI效果,Material Design.
+* 视频详情,该界面Api需要使用AppKey才可正常使用.
+* 视频评论
+* 分类推荐,每天B站各分区最热视频查看.
+* 直播频道,抓包获取Api数据,使用B站自家ijkPlayer播放直播视频.
+* 视频播放,需要AppKey才可正常使用,使用Vitamio播放器开发,加上B站自家烈焰弹幕库加载弹幕数据,支持高清,超清切换.
+* 更多精彩,请自行发现.
 
 
 ## 使用说明
@@ -19,6 +27,13 @@ https://github.com/fython/BilibiliAPIDocs
 
 ## Apk下载
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/bilibili.png?raw=true)
+
+
+## 关于OhMyBiliBili
+
+这个高仿B站,自己做了很久,做的时候只是纯粹是想练习下MD的一些控件使用以及一些新特性,B站真的做的很好,
+自己做的这个App,很多地方跟原版可能是有点差距,毕竟B站的开放Api文档已经没有了,很多Api都没有办法获取到了,
+有的Api必须需要AppKey才能查看,所以有做的不好的地方,还请见谅,我会一直持续更新这个项目.
 
 
 
