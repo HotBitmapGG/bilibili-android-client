@@ -27,6 +27,10 @@ https://github.com/fython/BilibiliAPIDocs
 放置到Secret的Appkey中即可.
 </p>OhMyBiliBili/app/src/main/java/com/hotbitmapgg/ohmybilibili/config/Secret.java
 
+## Tips
+Apk安装说明 : minSdkVersion 22
+也可以fork代码自行修改运行.
+
 ## Apk下载
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/bilibili.png?raw=true)
 
