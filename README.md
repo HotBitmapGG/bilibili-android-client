@@ -75,10 +75,19 @@ Apk安装说明 : minSdkVersion 22
 
 ## Other
 
-* 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
-* 高仿BiliBili客户端: https://github.com/HotBitmapGG/OhMyBiliBili
-* Gank.IO客户端: https://github.com/HotBitmapGG/StudyProject
-* 妹子福利App: https://github.com/HotBitmapGG/MoeQuest
+  * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
+
+  * 高仿BiliBili客户端: https://github.com/HotBitmapGG/OhMyBiliBili
+
+  * Gank.IO客户端: https://github.com/HotBitmapGG/StudyProject
+
+  * 妹子福利App: https://github.com/HotBitmapGG/MoeQuest
+
+  * 圆环进度条:https://github.com/HotBitmapGG/RingProgressBar
+
+  * 安卓学习代码练习:https://github.com/HotBitmapGG/AndroidEveryDayPractice
+  
+  * 轻量级的RecycleViewAdapter辅助类库 :https://github.com/HotBitmapGG/EasyRecycleAdapterHelper
 
 ## License
 
