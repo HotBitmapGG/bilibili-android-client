@@ -24,7 +24,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/ic_photo"
+                android:src="@drawable/ic_bg"
                 app:border_color="@color/gray"
                 app:border_width="1dp"/>
 
@@ -57,6 +57,15 @@
                 android:layout_marginTop="30dp"
                 android:autoLink="web"
                 android:text="新浪微博:http://m.weibo.cn/users/3223089177/qq"
+                android:textSize="14sp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:autoLink="web"
+                android:text="简书:http://www.jianshu.com/notebooks/5181955/latest"
                 android:textSize="14sp"/>
 
 
