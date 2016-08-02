@@ -50,7 +50,7 @@ public class RetrofitHelper
                 if (liveBilibiliRetrofit == null)
                 {
                     liveBilibiliRetrofit = new Retrofit.Builder()
-                            .baseUrl("http://live.bilibili.com/")
+                            .baseUrl("http://bilibili-service.daoapp.io/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                             .build();
