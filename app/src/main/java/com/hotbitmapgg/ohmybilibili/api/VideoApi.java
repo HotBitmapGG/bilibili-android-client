@@ -1,9 +1,9 @@
 package com.hotbitmapgg.ohmybilibili.api;
 
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
-import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
-import com.hotbitmapgg.ohmybilibili.model.VideoSrc;
-import com.hotbitmapgg.ohmybilibili.model.VideoViewInfo;
+import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.model.video.VideoSrc;
+import com.hotbitmapgg.ohmybilibili.model.video.VideoViewInfo;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 /**

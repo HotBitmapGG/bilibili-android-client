@@ -1,7 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.api;
 
-import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
-import com.hotbitmapgg.ohmybilibili.model.VideoComment;
+import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.model.video.VideoComment;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 

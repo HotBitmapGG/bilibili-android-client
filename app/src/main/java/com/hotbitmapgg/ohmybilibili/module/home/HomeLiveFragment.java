@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.LiveFragmentAdapter;
 import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
-import com.hotbitmapgg.ohmybilibili.model.LiveIndex;
+import com.hotbitmapgg.ohmybilibili.model.live.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.retrofit.LiveApi;
 import com.hotbitmapgg.ohmybilibili.retrofit.LiveService;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;

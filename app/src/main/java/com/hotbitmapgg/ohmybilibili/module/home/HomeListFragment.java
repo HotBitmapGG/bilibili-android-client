@@ -9,8 +9,8 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.MainListRecycleAdapter;
 import com.hotbitmapgg.ohmybilibili.api.IndexApi;
 import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
-import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
-import com.hotbitmapgg.ohmybilibili.model.Index;
+import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.model.index.Index;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 import java.util.ArrayList;

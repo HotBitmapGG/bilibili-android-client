@@ -10,7 +10,7 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendedRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
-import com.hotbitmapgg.ohmybilibili.model.Banner;
+import com.hotbitmapgg.ohmybilibili.model.live.Banner;
 import com.hotbitmapgg.ohmybilibili.model.recommended.Body;
 import com.hotbitmapgg.ohmybilibili.model.recommended.Recommend;
 import com.hotbitmapgg.ohmybilibili.model.recommended.Result;
@@ -69,6 +69,7 @@ public class HomeRecommendedFragment extends BaseHomeFragment
 
         RetrofitHelper.getHomeRecommendedApi()
                 .getRecommended()
+                .compose(this.<Recommend>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Recommend>()

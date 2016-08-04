@@ -12,8 +12,8 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.PartitionMorePagerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.model.PartitionMoreTitle;
-import com.hotbitmapgg.ohmybilibili.model.PartitionMoreType;
+import com.hotbitmapgg.ohmybilibili.model.partition.PartitionMoreTitle;
+import com.hotbitmapgg.ohmybilibili.model.partition.PartitionMoreType;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.hotbitmapgg.ohmybilibili.api;
 
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
-import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
-import com.hotbitmapgg.ohmybilibili.model.Sp;
+import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.model.video.Sp;
 
 import java.util.ArrayList;
 import java.util.List;

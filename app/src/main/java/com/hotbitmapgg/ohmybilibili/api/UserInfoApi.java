@@ -2,8 +2,8 @@ package com.hotbitmapgg.ohmybilibili.api;
 
 
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
-import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
-import com.hotbitmapgg.ohmybilibili.model.UserInfo;
+import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.model.user.UserInfo;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 /**

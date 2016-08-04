@@ -8,6 +8,8 @@ import java.util.ArrayList;
 /**
  * Created by hcc on 16/8/4 11:47
  * 100332338@qq.com
+ * <p/>
+ * 首页 推荐内容
  */
 public class Recommend
 {

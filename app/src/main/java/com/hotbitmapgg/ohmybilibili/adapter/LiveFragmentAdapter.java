@@ -12,10 +12,10 @@ import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveBannerViewHolder;
 import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveEntranceViewHolder;
 import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveItemViewHolder;
 import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LivePartitionViewHolder;
-import com.hotbitmapgg.ohmybilibili.model.Banner;
-import com.hotbitmapgg.ohmybilibili.model.Live;
-import com.hotbitmapgg.ohmybilibili.model.LiveIndex;
-import com.hotbitmapgg.ohmybilibili.model.PartitionSub;
+import com.hotbitmapgg.ohmybilibili.model.live.Banner;
+import com.hotbitmapgg.ohmybilibili.model.live.Live;
+import com.hotbitmapgg.ohmybilibili.model.live.LiveIndex;
+import com.hotbitmapgg.ohmybilibili.model.live.PartitionSub;
 import com.hotbitmapgg.ohmybilibili.module.video.BiliBiliLivePlayerActivity;
 import com.squareup.picasso.Picasso;
 

@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
-import com.hotbitmapgg.ohmybilibili.model.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 
 import java.io.IOException;
 

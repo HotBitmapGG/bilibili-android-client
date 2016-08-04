@@ -15,8 +15,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.ListMoreDetailsRecycleAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.model.Index;
-import com.hotbitmapgg.ohmybilibili.model.VideoItemInfo;
+import com.hotbitmapgg.ohmybilibili.model.index.Index;
+import com.hotbitmapgg.ohmybilibili.model.video.VideoItemInfo;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.io.Serializable;

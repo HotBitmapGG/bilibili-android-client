@@ -2,8 +2,8 @@ package com.hotbitmapgg.ohmybilibili.retrofit;
 
 import android.util.Log;
 
-import com.hotbitmapgg.ohmybilibili.model.LiveIndex;
-import com.hotbitmapgg.ohmybilibili.model.Result;
+import com.hotbitmapgg.ohmybilibili.model.live.LiveIndex;
+import com.hotbitmapgg.ohmybilibili.model.base.Result;
 
 import rx.Observable;
 import rx.functions.Func1;

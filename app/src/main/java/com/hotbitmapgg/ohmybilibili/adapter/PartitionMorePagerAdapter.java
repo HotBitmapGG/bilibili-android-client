@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hotbitmapgg.ohmybilibili.model.PartitionMoreType;
+import com.hotbitmapgg.ohmybilibili.model.partition.PartitionMoreType;
 import com.hotbitmapgg.ohmybilibili.module.partition.PartitionMoreSimpleListFragment;
 
 import java.util.ArrayList;
