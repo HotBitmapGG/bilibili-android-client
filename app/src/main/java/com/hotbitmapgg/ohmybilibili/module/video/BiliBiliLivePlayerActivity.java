@@ -15,21 +15,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.retrofit.LiveService;
-import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
@@ -79,8 +77,6 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
     private SurfaceHolder holder;
 
     private OkHttpClient client;
-
-    private LiveService liveService;
 
     private int flag = 0;
 
@@ -197,8 +193,6 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
         client = new OkHttpClient();
         holder = videoView.getHolder();
         ijkMediaPlayer = new IjkMediaPlayer();
-
-        liveService = RetrofitHelper.getLiveBilibiliRetrofit().create(LiveService.class);
 
         new Thread(new Runnable()
         {

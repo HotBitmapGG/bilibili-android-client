@@ -10,7 +10,6 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiIndexAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.bangumi.BangumiIndex;
-import com.hotbitmapgg.ohmybilibili.retrofit.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
@@ -23,9 +22,10 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
- * 番剧索引
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 番剧索引界面
  */
 public class BangumiIndexActivity extends RxAppCompatBaseActivity
 {
@@ -43,8 +43,6 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
 
     private String year = "2016";
 
-    private BangumiIndexService bangumiIndexService;
-
     private List<BangumiIndex> bangumiIndexList = new ArrayList<>();
 
 
@@ -58,8 +56,6 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
     @Override
     public void initViews(Bundle savedInstanceState)
     {
-
-        bangumiIndexService = RetrofitHelper.getBiliBili().create(BangumiIndexService.class);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(BangumiIndexActivity.this, 3));
@@ -92,7 +88,8 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
     public void getBangumiIndex()
     {
 
-        bangumiIndexService.getBangumiIndex(year, month)
+        RetrofitHelper.getBangumiIndexApi()
+                .getBangumiIndex(year, month)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<BangumiIndex>>()

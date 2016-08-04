@@ -9,14 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.LiveFragmentAdapter;
 import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
+import com.hotbitmapgg.ohmybilibili.model.base.Result;
 import com.hotbitmapgg.ohmybilibili.model.live.LiveIndex;
-import com.hotbitmapgg.ohmybilibili.retrofit.LiveApi;
-import com.hotbitmapgg.ohmybilibili.retrofit.LiveService;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 
 import butterknife.Bind;
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -34,8 +35,6 @@ public class HomeLiveFragment extends BaseHomeFragment
     SwipeRefreshLayout liveRefresh;
 
     private LiveFragmentAdapter liveFragmentAdapter;
-
-    private LiveService liveBilibiliService;
 
 
     public static HomeLiveFragment newIntance()
@@ -57,7 +56,6 @@ public class HomeLiveFragment extends BaseHomeFragment
     public void finishCreateView(Bundle state)
     {
 
-        liveBilibiliService = RetrofitHelper.getLiveBilibiliRetrofit().create(LiveService.class);
         liveRefresh.setColorSchemeResources(R.color.primary);
         liveFragmentAdapter = new LiveFragmentAdapter(getActivity());
         liveRecyclerView.setAdapter(liveFragmentAdapter);
@@ -94,7 +92,23 @@ public class HomeLiveFragment extends BaseHomeFragment
     public void liveRequest()
     {
 
-        LiveApi.getLiveIndex(liveBilibiliService)
+        RetrofitHelper.getBiliBiliLiveApi()
+                .getIndexRx()
+                .compose(this.<Result<LiveIndex>>bindToLifecycle())
+                .flatMap(new Func1<Result<LiveIndex>,Observable<LiveIndex>>()
+                {
+
+                    @Override
+                    public Observable<LiveIndex> call(Result<LiveIndex> liveIndexResult)
+                    {
+
+                        if (liveIndexResult.code != 0)
+                        {
+                            throw new RuntimeException();
+                        }
+                        return Observable.just(liveIndexResult.data);
+                    }
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<LiveIndex>()

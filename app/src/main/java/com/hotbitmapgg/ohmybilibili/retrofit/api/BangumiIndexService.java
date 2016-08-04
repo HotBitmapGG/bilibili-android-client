@@ -1,21 +1,22 @@
-package com.hotbitmapgg.ohmybilibili.retrofit;
+package com.hotbitmapgg.ohmybilibili.retrofit.api;
 
 import com.hotbitmapgg.ohmybilibili.model.bangumi.BangumiIndex;
 
 import java.util.List;
 
-import retrofit.http.GET;
-import retrofit.http.Path;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
- * B站番剧索引请求
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 12:03
+ * 100332338@qq.com
+ * <p/>
+ * 番剧索引数据请求
  */
 public interface BangumiIndexService
 {
 
-    @GET("/index/bangumi/{year}-{month}.json")
+    @GET("index/bangumi/{year}-{month}.json")
     Observable<List<BangumiIndex>> getBangumiIndex(@Path("year") String year, @Path("month") String month);
 }

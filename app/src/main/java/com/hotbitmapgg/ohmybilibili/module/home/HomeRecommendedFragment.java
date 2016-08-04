@@ -66,7 +66,6 @@ public class HomeRecommendedFragment extends BaseHomeFragment
     @Override
     public void finishCreateView(Bundle state)
     {
-
         RetrofitHelper.getHomeRecommendedApi()
                 .getRecommended()
                 .compose(this.<Recommend>bindToLifecycle())

@@ -51,9 +51,9 @@ dependencies {
     //Rxjava Retrofit2
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
-    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta1'
-    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta1'
-    compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     //vitamio视频播放器
     compile(name: 'Vitamio-release', ext: 'aar')
     compile(name: 'zImaster-release', ext: 'aar')

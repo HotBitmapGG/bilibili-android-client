@@ -1,24 +1,20 @@
 package com.hotbitmapgg.ohmybilibili.retrofit;
 
-import android.util.Log;
-
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
-import com.squareup.okhttp.Interceptor;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import com.squareup.okhttp.ResponseBody;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.RxJavaCallAdapterFactory;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Retrofit管理类
@@ -33,90 +29,76 @@ import retrofit.RxJavaCallAdapterFactory;
 public class RetrofitHelper
 {
 
-    private volatile static Retrofit liveBilibiliRetrofit;
-
-    private volatile static Retrofit bilibiliRetrofit;
-
-    private static HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 
     private static OkHttpClient mOkHttpClient;
+
+    private static final String LIVE_BASE_URL = "http://bilibili-service.daoapp.io/";
+
+    private static final String MAIN_BASE_URL = "http://www.bilibili.com/";
+
+    private static final String APP_BASE_URL = "http://app.bilibili.com/";
 
     static
     {
         initOkHttpClient();
     }
 
-    private RetrofitHelper()
+    /**
+     * 获取哔哩哔哩直播Api
+     *
+     * @return
+     */
+    public static LiveService getBiliBiliLiveApi()
     {
 
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(LIVE_BASE_URL)
+                .client(mOkHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        LiveService liveService = retrofit.create(LiveService.class);
+
+        return liveService;
     }
 
 
-    public static Retrofit getLiveBilibiliRetrofit()
+    /**
+     * 获取番剧索引Api
+     *
+     * @return
+     */
+    public static BangumiIndexService getBangumiIndexApi()
     {
 
-        if (liveBilibiliRetrofit == null)
-        {
-            synchronized (Retrofit.class)
-            {
-                if (liveBilibiliRetrofit == null)
-                {
-                    liveBilibiliRetrofit = new Retrofit.Builder()
-                            .baseUrl("http://bilibili-service.daoapp.io/")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                            .build();
-                }
-            }
-        }
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MAIN_BASE_URL)
+                .client(mOkHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
 
-        liveBilibiliRetrofit.client()
-                .interceptors()
-                .add(new LoggingInterceptor());
+        BangumiIndexService bangumiIndexService = retrofit.create(BangumiIndexService.class);
 
-        return liveBilibiliRetrofit;
+        return bangumiIndexService;
     }
 
-
-    public static Retrofit getBiliBili()
-    {
-
-        if (bilibiliRetrofit == null)
-        {
-            synchronized (Retrofit.class)
-            {
-                if (bilibiliRetrofit == null)
-                {
-                    bilibiliRetrofit = new Retrofit.Builder()
-                            .baseUrl("http://www.bilibili.com")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                            .build();
-                }
-            }
-        }
-
-        bilibiliRetrofit.client()
-                .interceptors()
-                .add(new LoggingInterceptor());
-
-        return bilibiliRetrofit;
-    }
-
+    /**
+     * 获取主页推荐Api
+     *
+     * @return
+     */
     public static RecommendedService getHomeRecommendedApi()
     {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://app.bilibili.com/")
+                .baseUrl(APP_BASE_URL)
+                .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-
-        retrofit.client()
-                .interceptors()
-                .add(new LoggingInterceptor());
 
         RecommendedService recommendedService = retrofit.create(RecommendedService.class);
 
@@ -126,6 +108,9 @@ public class RetrofitHelper
 
     /**
      * 初始化OKHttpClient
+     * 设置缓存
+     * 设置超时时间
+     * 设置打印日志
      */
     private static void initOkHttpClient()
     {
@@ -139,7 +124,8 @@ public class RetrofitHelper
                 if (mOkHttpClient == null)
                 {
                     //设置Http缓存
-                    Cache cache = new Cache(new File(OhMyBiliBiliApp.getInstance().getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
+                    Cache cache = new Cache(new File(OhMyBiliBiliApp.getInstance()
+                            .getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
 
                     mOkHttpClient = new OkHttpClient.Builder()
                             .cache(cache)
@@ -150,38 +136,6 @@ public class RetrofitHelper
                             .build();
                 }
             }
-        }
-    }
-
-
-    static class LoggingInterceptor implements Interceptor
-    {
-
-        @Override
-        public Response intercept(Interceptor.Chain chain) throws IOException
-        {
-
-            Request request = chain.request();
-
-            long t1 = System.nanoTime();
-
-            //可以添加公共参数 增加校验签名等
-            request.uri().getQuery();
-            Log.d("retrofit request", request.url().toString());
-
-            Response response = chain.proceed(request);
-
-            long t2 = System.nanoTime();
-            String bodyString = response.body().string();
-            Log.d("retrofit response",
-                    "request time " + (t2 - t1) / 1e6d + "ms\n" +
-                            "request url " + response.request().url().toString() + "\n"
-                            + "response body " + bodyString
-            );
-
-            return response.newBuilder()
-                    .body(ResponseBody.create(response.body().contentType(), bodyString))
-                    .build();
         }
     }
 }
