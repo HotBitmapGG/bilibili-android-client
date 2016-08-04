@@ -39,7 +39,7 @@ public class AllRankGridAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_main_list_recycle, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_all_rank_grid, parent, false));
     }
 
     @Override
