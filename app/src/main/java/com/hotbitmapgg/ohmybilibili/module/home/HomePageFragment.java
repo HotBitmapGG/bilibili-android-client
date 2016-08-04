@@ -18,7 +18,7 @@ import butterknife.Bind;
  *
  * @HotBitmapGG
  */
-public class SectionHomeFragment extends RxLazyFragment
+public class HomePageFragment extends RxLazyFragment
 {
 
     @Bind(R.id.tab_pager)

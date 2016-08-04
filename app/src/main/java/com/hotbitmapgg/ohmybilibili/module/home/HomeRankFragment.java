@@ -26,11 +26,11 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * 首页-推荐
+ * 首页-排行榜
  *
  * @HotBitmapGG
  */
-public class HomeListFragment extends BaseHomeFragment
+public class HomeRankFragment extends BaseHomeFragment
 {
 
     @Bind(R.id.main_list)
@@ -50,11 +50,11 @@ public class HomeListFragment extends BaseHomeFragment
             TYPE_DANCE = 129, TYPE_FUNNY = 119;
 
 
-    public static HomeListFragment newInstance()
+    public static HomeRankFragment newInstance()
     {
 
-        HomeListFragment homeListFragment = new HomeListFragment();
-        return homeListFragment;
+        HomeRankFragment homeRankFragment = new HomeRankFragment();
+        return homeRankFragment;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home;
+package com.hotbitmapgg.ohmybilibili.module.common;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,13 +18,13 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.module.common.GameCentreActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.AttentionPeopleFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.ConsumeHistoryFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.HistoryFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.IFavoritesFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.OffLineDownloadActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.SettingFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.navigation.NavigationView;
 
@@ -38,7 +38,7 @@ import butterknife.Bind;
  *
  * @HotBitmapGG
  */
-public class HomeActivity extends RxAppCompatBaseActivity implements NavigationView.OnNavigationItemSelectedListener
+public class MainActivity extends RxAppCompatBaseActivity implements NavigationView.OnNavigationItemSelectedListener
 {
 
 
@@ -70,7 +70,7 @@ public class HomeActivity extends RxAppCompatBaseActivity implements NavigationV
 
     private int index;
 
-    private SectionHomeFragment mSectionHomeFragment;
+    private HomePageFragment mHomePageFragment;
 
     private SettingFragment mSettingFragment;
 
@@ -110,7 +110,7 @@ public class HomeActivity extends RxAppCompatBaseActivity implements NavigationV
         mDrawerLayout.addDrawerListener(new DrawerListener());
         mNavigationView.setNavigationItemSelectedListener(this);
         // 添加显示第一个fragment
-        getSupportFragmentManager().beginTransaction().add(R.id.container, mSectionHomeFragment).show(mSectionHomeFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.container, mHomePageFragment).show(mHomePageFragment).commit();
         //进入应用随机设置头像
         random = new Random(SystemClock.elapsedRealtime());
         mUserAcatarView.setImageResource(avatars[random.nextInt(avatars.length)]);
@@ -134,7 +134,7 @@ public class HomeActivity extends RxAppCompatBaseActivity implements NavigationV
     private void initFragments()
     {
 
-        mSectionHomeFragment = new SectionHomeFragment();
+        mHomePageFragment = new HomePageFragment();
         mSettingFragment = new SettingFragment();
         mFavoritesFragment = new IFavoritesFragment();
         mHistoryFragment = new HistoryFragment();
@@ -143,7 +143,7 @@ public class HomeActivity extends RxAppCompatBaseActivity implements NavigationV
 
 
         fragments = new Fragment[]{
-                mSectionHomeFragment,
+                mHomePageFragment,
                 mSettingFragment,
                 mFavoritesFragment,
                 mHistoryFragment,
@@ -211,12 +211,12 @@ public class HomeActivity extends RxAppCompatBaseActivity implements NavigationV
         {
             case R.id.id_action_game:
                 //游戏中心
-                startActivity(new Intent(HomeActivity.this, GameCentreActivity.class));
+                startActivity(new Intent(MainActivity.this, GameCentreActivity.class));
                 break;
 
             case R.id.id_action_download:
                 //离线缓存
-                startActivity(new Intent(HomeActivity.this, OffLineDownloadActivity.class));
+                startActivity(new Intent(MainActivity.this, OffLineDownloadActivity.class));
                 break;
 
             case R.id.id_action_search:
@@ -271,7 +271,7 @@ public class HomeActivity extends RxAppCompatBaseActivity implements NavigationV
 
             case R.id.item_download:
                 // 离线缓存
-                startActivity(new Intent(HomeActivity.this, OffLineDownloadActivity.class));
+                startActivity(new Intent(MainActivity.this, OffLineDownloadActivity.class));
 
                 return true;
 

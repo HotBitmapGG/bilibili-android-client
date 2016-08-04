@@ -9,7 +9,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
 import com.hotbitmapgg.ohmybilibili.module.common.PlaceholderFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeDiscoverFragment;
-import com.hotbitmapgg.ohmybilibili.module.home.HomeListFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeRankFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeLiveFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeMoreFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeRecommendedFragment;
@@ -44,7 +44,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter
                     fragments[position] = HomeRecommendedFragment.newInstance();
                     break;
                 case 1:
-                    fragments[position] = HomeListFragment.newInstance();
+                    fragments[position] = HomeRankFragment.newInstance();
                     break;
                 case 2:
                     fragments[position] = HomeLiveFragment.newIntance();

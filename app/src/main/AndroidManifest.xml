@@ -42,7 +42,7 @@
 
         <!--主界面 -->
         <activity
-            android:name=".module.home.HomeActivity"
+            android:name=".module.common.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">

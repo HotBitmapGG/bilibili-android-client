@@ -13,7 +13,6 @@ import android.os.Message;
 import android.widget.ImageView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.home.HomeActivity;
 import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 
 import butterknife.Bind;
@@ -84,7 +83,7 @@ public class SplashActivity extends Activity
 
                 if (flag == 0)
                 {
-                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();
                 } else
                 {
