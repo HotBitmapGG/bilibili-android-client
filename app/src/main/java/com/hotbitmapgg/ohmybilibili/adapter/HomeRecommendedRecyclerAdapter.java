@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.model.home.Body;
-import com.hotbitmapgg.ohmybilibili.model.home.Result;
+import com.hotbitmapgg.ohmybilibili.model.recommended.Body;
+import com.hotbitmapgg.ohmybilibili.model.recommended.Result;
 
 import java.util.ArrayList;
 import java.util.List;

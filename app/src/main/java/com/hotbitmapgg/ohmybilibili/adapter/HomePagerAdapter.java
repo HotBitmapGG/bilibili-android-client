@@ -12,7 +12,7 @@ import com.hotbitmapgg.ohmybilibili.module.home.HomeDiscoverFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeListFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeLiveFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeMoreFragment;
-import com.hotbitmapgg.ohmybilibili.module.home.NewHomeRecommendedFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeRecommendedFragment;
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
@@ -41,7 +41,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter
             switch (position)
             {
                 case 0:
-                    fragments[position] = NewHomeRecommendedFragment.newInstance();
+                    fragments[position] = HomeRecommendedFragment.newInstance();
                     break;
                 case 1:
                     fragments[position] = HomeListFragment.newInstance();

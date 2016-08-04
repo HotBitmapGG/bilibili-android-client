@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.model.home;
+package com.hotbitmapgg.ohmybilibili.model.recommended;
 
 import org.json.*;
 

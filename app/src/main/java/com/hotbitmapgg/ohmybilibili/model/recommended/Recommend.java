@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.model.home;
+package com.hotbitmapgg.ohmybilibili.model.recommended;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by hcc on 16/8/4 11:47
  * 100332338@qq.com
  */
-public class Home
+public class Recommend
 {
 
     private ArrayList<Result> result;
@@ -17,13 +17,13 @@ public class Home
     private int code;
 
 
-    public Home()
+    public Recommend()
 
     {
 
     }
 
-    public Home(JSONObject json)
+    public Recommend(JSONObject json)
     {
 
 

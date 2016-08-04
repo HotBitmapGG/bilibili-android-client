@@ -11,9 +11,9 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendedRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
 import com.hotbitmapgg.ohmybilibili.model.Banner;
-import com.hotbitmapgg.ohmybilibili.model.home.Body;
-import com.hotbitmapgg.ohmybilibili.model.home.Home;
-import com.hotbitmapgg.ohmybilibili.model.home.Result;
+import com.hotbitmapgg.ohmybilibili.model.recommended.Body;
+import com.hotbitmapgg.ohmybilibili.model.recommended.Recommend;
+import com.hotbitmapgg.ohmybilibili.model.recommended.Result;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
@@ -33,7 +33,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 新的主页推荐界面
  */
-public class NewHomeRecommendedFragment extends BaseHomeFragment
+public class HomeRecommendedFragment extends BaseHomeFragment
 {
 
     @Bind(R.id.swipe_refresh_layout)
@@ -50,10 +50,10 @@ public class NewHomeRecommendedFragment extends BaseHomeFragment
 
     private HomeRecommendedRecyclerAdapter mAdapter;
 
-    public static NewHomeRecommendedFragment newInstance()
+    public static HomeRecommendedFragment newInstance()
     {
 
-        return new NewHomeRecommendedFragment();
+        return new HomeRecommendedFragment();
     }
 
     @Override
@@ -71,18 +71,18 @@ public class NewHomeRecommendedFragment extends BaseHomeFragment
                 .getRecommended()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Home>()
+                .subscribe(new Action1<Recommend>()
                 {
 
                     @Override
-                    public void call(Home home)
+                    public void call(Recommend recommend)
                     {
 
 
-                        int size = home.getResult().size();
+                        int size = recommend.getResult().size();
                         for (int i = 0; i < size; i++)
                         {
-                            Result result = home.getResult().get(i);
+                            Result result = recommend.getResult().get(i);
                             Banner banner;
                             if (result.getType() != null)
                             {
