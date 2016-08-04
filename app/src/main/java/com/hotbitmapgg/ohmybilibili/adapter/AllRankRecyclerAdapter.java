@@ -13,16 +13,18 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.model.index.Index;
 import com.hotbitmapgg.ohmybilibili.model.video.VideoItemInfo;
-import com.hotbitmapgg.ohmybilibili.module.home.ListMoreDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 全区排行itemAdapter
  */
-public class MainListRecycleAdapter extends AbsRecyclerViewAdapter
+public class AllRankRecyclerAdapter extends AbsRecyclerViewAdapter
 {
 
     private List<Index.FuckList> indexs = new ArrayList<>();
@@ -38,11 +40,11 @@ public class MainListRecycleAdapter extends AbsRecyclerViewAdapter
     };
 
     private String[] titles = new String[]{
-            "番剧区", "动画区", "音乐区", "舞蹈区", "娱乐区",
-            "鬼畜区", "游戏区", "电影区", "科技区", "电视剧区"
+            "番剧区排行", "动画区排行", "音乐区排行", "舞蹈区排行", "娱乐区排行",
+            "鬼畜区排行", "游戏区排行", "电影区排行", "科技区排行", "电视剧区排行"
     };
 
-    public MainListRecycleAdapter(RecyclerView recyclerView, List<Index.FuckList> indexs, Activity activity)
+    public AllRankRecyclerAdapter(RecyclerView recyclerView, List<Index.FuckList> indexs, Activity activity)
     {
 
         super(recyclerView);
@@ -67,25 +69,14 @@ public class MainListRecycleAdapter extends AbsRecyclerViewAdapter
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.mTypeImg.setImageResource(icons[position]);
             itemViewHolder.mTypeTv.setText(titles[position]);
-            itemViewHolder.mTypeMore.setOnClickListener(new View.OnClickListener()
-            {
-
-                @Override
-                public void onClick(View v)
-                {
-
-                    ListMoreDetailsActivity.luancher(activity, titles[position], indexs.get(position));
-
-                }
-            });
             Index.FuckList fuckList = indexs.get(position);
             final List<VideoItemInfo> videoItemInfos = setVideoItemInfos(fuckList);
             itemViewHolder.mItemRecycle.setHasFixedSize(true);
             itemViewHolder.mItemRecycle.setNestedScrollingEnabled(false);
             itemViewHolder.mItemRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
-            MainListRecycleItemAdapter mainListRecycleItemAdapter = new MainListRecycleItemAdapter(itemViewHolder.mItemRecycle, videoItemInfos);
-            itemViewHolder.mItemRecycle.setAdapter(mainListRecycleItemAdapter);
-            mainListRecycleItemAdapter.setOnItemClickListener(new OnItemClickListener()
+            AllRankGridAdapter allRankGridAdapter = new AllRankGridAdapter(itemViewHolder.mItemRecycle, videoItemInfos);
+            itemViewHolder.mItemRecycle.setAdapter(allRankGridAdapter);
+            allRankGridAdapter.setOnItemClickListener(new OnItemClickListener()
             {
 
                 @Override
@@ -105,11 +96,21 @@ public class MainListRecycleAdapter extends AbsRecyclerViewAdapter
 
         List<VideoItemInfo> videoItemInfos = new ArrayList<>();
 
+        VideoItemInfo item0 = fuckList.item0;
+        VideoItemInfo item1 = fuckList.item1;
+        VideoItemInfo item2 = fuckList.item2;
+        VideoItemInfo item3 = fuckList.item3;
+        VideoItemInfo item4 = fuckList.item4;
         VideoItemInfo item5 = fuckList.item5;
         VideoItemInfo item6 = fuckList.item6;
         VideoItemInfo item7 = fuckList.item7;
         VideoItemInfo item8 = fuckList.item8;
 
+        videoItemInfos.add(item0);
+        videoItemInfos.add(item1);
+        videoItemInfos.add(item2);
+        videoItemInfos.add(item3);
+        videoItemInfos.add(item4);
         videoItemInfos.add(item5);
         videoItemInfos.add(item6);
         videoItemInfos.add(item7);
@@ -135,8 +136,6 @@ public class MainListRecycleAdapter extends AbsRecyclerViewAdapter
 
         public TextView mTypeTv;
 
-        public TextView mTypeMore;
-
         public ItemViewHolder(View itemView)
         {
 
@@ -144,7 +143,6 @@ public class MainListRecycleAdapter extends AbsRecyclerViewAdapter
             mItemRecycle = $(R.id.item_list);
             mTypeImg = $(R.id.type_img);
             mTypeTv = $(R.id.type_tv);
-            mTypeMore = $(R.id.type_more);
         }
     }
 }

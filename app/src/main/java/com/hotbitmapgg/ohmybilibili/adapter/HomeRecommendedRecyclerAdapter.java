@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.model.recommended.Body;
 import com.hotbitmapgg.ohmybilibili.model.recommended.Result;
+import com.hotbitmapgg.ohmybilibili.module.home.AllRankActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,10 +70,32 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.mTypeImg.setImageResource(icons[position]);
             itemViewHolder.mTypeTv.setText(result.getHead().getTitle());
+            if(position == 0)
+            {
+                itemViewHolder.mTypeRankBtn.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                itemViewHolder.mTypeMore.setVisibility(View.VISIBLE);
+            }
 
             initGrid(itemViewHolder, result);
+            setRankBtnClick(itemViewHolder);
         }
         super.onBindViewHolder(holder, position);
+    }
+
+    private void setRankBtnClick(ItemViewHolder itemViewHolder)
+    {
+       itemViewHolder.mTypeRankBtn.setOnClickListener(new View.OnClickListener()
+       {
+
+           @Override
+           public void onClick(View v)
+           {
+              getContext().startActivity(new Intent(getContext() , AllRankActivity.class));
+           }
+       });
     }
 
     private void initGrid(ItemViewHolder itemViewHolder, Result result)
@@ -81,7 +105,7 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
         itemViewHolder.mItemRecycle.setHasFixedSize(true);
         itemViewHolder.mItemRecycle.setNestedScrollingEnabled(false);
         itemViewHolder.mItemRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        HomeRecommendedGridAdapter mGridAdapter = new HomeRecommendedGridAdapter(itemViewHolder.mItemRecycle,body);
+        HomeRecommendedGridAdapter mGridAdapter = new HomeRecommendedGridAdapter(itemViewHolder.mItemRecycle, body);
         itemViewHolder.mItemRecycle.setAdapter(mGridAdapter);
         mGridAdapter.setOnItemClickListener(new OnItemClickListener()
         {
@@ -112,6 +136,8 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
 
         public TextView mTypeMore;
 
+        public TextView mTypeRankBtn;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -120,6 +146,7 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
             mTypeImg = $(R.id.item_type_img);
             mTypeTv = $(R.id.item_type_tv);
             mTypeMore = $(R.id.item_type_more);
+            mTypeRankBtn = $(R.id.item_type_rank_btn);
         }
     }
 }

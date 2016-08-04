@@ -33,6 +33,22 @@
             android:textColor="@color/font_normal"
             android:textSize="16sp" />
 
+
+        <TextView
+            android:id="@+id/item_type_rank_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_rank_bg"
+            android:drawableLeft="@drawable/ic_pay_rank"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/white"
+            android:padding="10dp"
+            android:text="排行榜"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/item_type_more"
             android:layout_width="wrap_content"
@@ -43,7 +59,8 @@
             android:clickable="true"
             android:text="@string/home_tab_more"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

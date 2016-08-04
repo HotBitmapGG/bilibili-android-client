@@ -32,18 +32,6 @@
             android:text="动画区"
             android:textColor="@color/font_normal"
             android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/type_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:background="@drawable/btn_more_bg"
-            android:clickable="true"
-            android:text="@string/home_tab_more"
-            android:textColor="@color/white"
-            android:textSize="12sp"/>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

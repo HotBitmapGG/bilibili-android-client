@@ -15,16 +15,19 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 全区排行Adapter
  */
-public class MainListRecycleItemAdapter extends AbsRecyclerViewAdapter
+public class AllRankGridAdapter extends AbsRecyclerViewAdapter
 {
 
     List<VideoItemInfo> videoItemInfos = new ArrayList<>();
 
-    public MainListRecycleItemAdapter(RecyclerView recyclerView, List<VideoItemInfo> videoItemInfos)
+    public AllRankGridAdapter(RecyclerView recyclerView, List<VideoItemInfo> videoItemInfos)
     {
 
         super(recyclerView);
@@ -43,15 +46,18 @@ public class MainListRecycleItemAdapter extends AbsRecyclerViewAdapter
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
 
-        if(holder instanceof ItemViewHolder)
+        if (holder instanceof ItemViewHolder)
         {
-            ItemViewHolder itemViewHolder = (ItemViewHolder)holder;
+            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             VideoItemInfo videoItemInfo = videoItemInfos.get(position);
             itemViewHolder.mVideoTitle.setText(videoItemInfo.title);
             itemViewHolder.mVideoPlayNum.setText(videoItemInfo.play);
             itemViewHolder.mVideoReviewCount.setText((videoItemInfo.video_review) + "");
 
-            Picasso.with(getContext()).load(Uri.parse(videoItemInfo.pic)).placeholder(R.drawable.bili_default_image_tv).into(itemViewHolder.mVideoImg);
+            Picasso.with(getContext())
+                    .load(Uri.parse(videoItemInfo.pic))
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(itemViewHolder.mVideoImg);
         }
         super.onBindViewHolder(holder, position);
     }

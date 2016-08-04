@@ -7,11 +7,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.MenuItem;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.api.BangumiApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 
 import java.util.ArrayList;
@@ -20,9 +19,10 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * 新番推荐
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 新番推荐界面
  */
 public class BangumiTimeLineActivity extends RxAppCompatBaseActivity
 {
@@ -36,13 +36,13 @@ public class BangumiTimeLineActivity extends RxAppCompatBaseActivity
     @Bind(R.id.sp_toolbar)
     Toolbar mToolbar;
 
-    private ActionBar mActionBar;
-
     private List<Fragment> fragments = new ArrayList<>();
 
     private BangumiFragmentAdapter mAdapter;
 
     private String[] titles = new String[]{"一", "二", "三", "四", "五", "六", "日"};
+
+    private int[] wids = new int[]{1, 2, 3, 4, 5, 6, 0};
 
     @Override
     public int getLayoutId()
@@ -54,64 +54,33 @@ public class BangumiTimeLineActivity extends RxAppCompatBaseActivity
     @Override
     public void initViews(Bundle savedInstanceState)
     {
-        initFragment();
-        mAdapter = new BangumiFragmentAdapter(getSupportFragmentManager());
 
+        mAdapter = new BangumiFragmentAdapter(getSupportFragmentManager());
         mTabPager.setAdapter(mAdapter);
         mSlidingTab.setViewPager(mTabPager);
-        mTabPager.setOffscreenPageLimit(2);
-    }
-
-    private void initFragment()
-    {
-
-        WeekDayBangumiFragment monDay = WeekDayBangumiFragment.newInstance(BangumiApi.WD_MON);
-        WeekDayBangumiFragment tueDay = WeekDayBangumiFragment.newInstance(BangumiApi.WD_TUE);
-        WeekDayBangumiFragment wedDay = WeekDayBangumiFragment.newInstance(BangumiApi.WD_WED);
-        WeekDayBangumiFragment thuDay = WeekDayBangumiFragment.newInstance(BangumiApi.WD_THU);
-        WeekDayBangumiFragment friDay = WeekDayBangumiFragment.newInstance(BangumiApi.WD_FRI);
-        WeekDayBangumiFragment satDay = WeekDayBangumiFragment.newInstance(BangumiApi.WD_SAT);
-        WeekDayBangumiFragment sunDay = WeekDayBangumiFragment.newInstance(BangumiApi.WD_SUN);
-
-        fragments.add(monDay);
-        fragments.add(tueDay);
-        fragments.add(wedDay);
-        fragments.add(thuDay);
-        fragments.add(friDay);
-        fragments.add(satDay);
-        fragments.add(sunDay);
-
     }
 
     @Override
     public void initToolBar()
     {
 
+        mToolbar.setTitle("新番放送表");
         setSupportActionBar(mToolbar);
-        mActionBar = getSupportActionBar();
+        ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)
         {
             mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setDisplayUseLogoEnabled(true);
-            mActionBar.setDisplayShowTitleEnabled(false);
         }
-
-
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
-        mToolbar.setTitle("新番放送");
-        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                finish();
-            }
-        });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
 
     private class BangumiFragmentAdapter extends FragmentStatePagerAdapter
     {
@@ -127,7 +96,7 @@ public class BangumiTimeLineActivity extends RxAppCompatBaseActivity
         public Fragment getItem(int position)
         {
 
-            return fragments.get(position);
+            return WeekDayBangumiFragment.newInstance(wids[position]);
         }
 
         @Override

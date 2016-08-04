@@ -2,16 +2,18 @@ package com.hotbitmapgg.ohmybilibili.module.home;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.MainListRecycleAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.AllRankRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.api.IndexApi;
-import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
+import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.index.Index;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +32,17 @@ import rx.schedulers.Schedulers;
  *
  * @HotBitmapGG
  */
-public class HomeRankFragment extends BaseHomeFragment
+public class AllRankActivity extends RxAppCompatBaseActivity
 {
 
-    @Bind(R.id.main_list)
+    @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
     @Bind(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
+
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
 
     List<Index.FuckList> indexs = new ArrayList<>();
 
@@ -49,28 +54,35 @@ public class HomeRankFragment extends BaseHomeFragment
             TYPE_MOVIE = 23, TYPE_TECHNOLOGY = 36,
             TYPE_DANCE = 129, TYPE_FUNNY = 119;
 
-
-    public static HomeRankFragment newInstance()
+    @Override
+    public int getLayoutId()
     {
 
-        HomeRankFragment homeRankFragment = new HomeRankFragment();
-        return homeRankFragment;
+        return R.layout.activity_rank;
     }
 
     @Override
-    public int getLayoutResId()
+    public void initViews(Bundle savedInstanceState)
     {
 
-        return R.layout.fragment_main_list;
+        showProgressBar();
     }
 
-    @Override
-    public void finishCreateView(Bundle state)
+    private void showProgressBar()
     {
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
+        mSwipeRefreshLayout.postDelayed(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+
+                mSwipeRefreshLayout.setRefreshing(true);
+                getIndex();
+            }
+        }, 500);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
 
@@ -81,21 +93,26 @@ public class HomeRankFragment extends BaseHomeFragment
                 getIndex();
             }
         });
-
-        getIndex();
     }
 
     @Override
-    public void scrollToTop()
+    public void initToolBar()
     {
 
+        mToolbar.setTitle("全区排行榜");
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public boolean canScrollVertically(int direction)
+    public boolean onOptionsItemSelected(MenuItem item)
     {
 
-        return false;
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
     }
 
     public void getIndex()
@@ -139,7 +156,15 @@ public class HomeRankFragment extends BaseHomeFragment
                     public void onError(Throwable error)
                     {
 
-                        LogUtil.lsw("加载index数据失败");
+                        mSwipeRefreshLayout.post(new Runnable()
+                        {
+
+                            @Override
+                            public void run()
+                            {
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                     }
                 });
 
@@ -150,9 +175,7 @@ public class HomeRankFragment extends BaseHomeFragment
     private void finishGetTask()
     {
 
-        indexs.clear();
         mSwipeRefreshLayout.setRefreshing(false);
-
         if (mTypeIndex != null)
         {
             Index.FuckList typeAnime = mTypeIndex.typeAnime;
@@ -178,9 +201,10 @@ public class HomeRankFragment extends BaseHomeFragment
             indexs.add(typeTechnology);
             indexs.add(typeTvSeries);
 
-
-            MainListRecycleAdapter mainListRecycleAdapter = new MainListRecycleAdapter(mRecyclerView, indexs, getActivity());
-            mRecyclerView.setAdapter(mainListRecycleAdapter);
+            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(AllRankActivity.this));
+            AllRankRecyclerAdapter allRankRecyclerAdapter = new AllRankRecyclerAdapter(mRecyclerView, indexs, AllRankActivity.this);
+            mRecyclerView.setAdapter(allRankRecyclerAdapter);
         }
     }
 }

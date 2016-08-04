@@ -30,9 +30,10 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * 番剧放送表
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 番剧放送表界面
  */
 public class WeekDayBangumiFragment extends RxLazyFragment
 {

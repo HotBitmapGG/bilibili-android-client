@@ -90,6 +90,7 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getBangumiIndexApi()
                 .getBangumiIndex(year, month)
+                .compose(this.<List<BangumiIndex>>bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<BangumiIndex>>()

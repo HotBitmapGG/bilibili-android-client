@@ -66,9 +66,45 @@ public class HomeRecommendedFragment extends BaseHomeFragment
     @Override
     public void finishCreateView(Bundle state)
     {
+
+        showProgressBar();
+    }
+
+    private void showProgressBar()
+    {
+
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
+        mSwipeRefreshLayout.postDelayed(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+
+                mSwipeRefreshLayout.setRefreshing(true);
+                getHomeRecommendedData();
+            }
+        }, 500);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+
+            @Override
+            public void onRefresh()
+            {
+
+                getHomeRecommendedData();
+            }
+        });
+    }
+
+
+    private void getHomeRecommendedData()
+    {
+
         RetrofitHelper.getHomeRecommendedApi()
                 .getRecommended()
-                .compose(this.<Recommend>bindToLifecycle())
+                .compose(this.<Recommend> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Recommend>()
@@ -96,20 +132,17 @@ public class HomeRecommendedFragment extends BaseHomeFragment
                                     banner.title = body.getTitle();
                                     banner.link = body.getParam();
                                     banners.add(banner);
-                                }
-                                else
+                                } else
                                 {
                                     results.add(result);
                                 }
-
-
                             }
                         }
 
                         LogUtil.lsw(banners.size() + "weblink");
                         LogUtil.lsw(results.size() + "result");
 
-                        initRecycleView();
+                        finishTask();
                     }
                 }, new Action1<Throwable>()
                 {
@@ -119,14 +152,25 @@ public class HomeRecommendedFragment extends BaseHomeFragment
                     {
 
                         LogUtil.lsw("主页数据加载失败" + throwable.getMessage());
+                        mSwipeRefreshLayout.post(new Runnable()
+                        {
+
+                            @Override
+                            public void run()
+                            {
+
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                     }
                 });
     }
 
 
-    private void initRecycleView()
+    private void finishTask()
     {
 
+        mSwipeRefreshLayout.setRefreshing(false);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -144,6 +188,7 @@ public class HomeRecommendedFragment extends BaseHomeFragment
         bannerView.delayTime(5).build(banners);
         mHeaderViewRecyclerAdapter.addHeaderView(headView);
     }
+
 
     @Override
     public void scrollToTop()
