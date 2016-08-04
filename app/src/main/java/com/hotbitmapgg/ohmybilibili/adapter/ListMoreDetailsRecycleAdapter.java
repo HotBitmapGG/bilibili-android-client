@@ -9,12 +9,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.model.VideoItemInfo;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ */
 public class ListMoreDetailsRecycleAdapter extends AbsRecyclerViewAdapter
 {
 

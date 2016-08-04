@@ -11,9 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.adapter.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.ListMoreDetailsRecycleAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.Index;
 import com.hotbitmapgg.ohmybilibili.model.VideoItemInfo;

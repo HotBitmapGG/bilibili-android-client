@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.adapter.holder;
+package com.hotbitmapgg.ohmybilibili.adapter.liveholder;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.model.Index;
 import com.hotbitmapgg.ohmybilibili.model.VideoItemInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.ListMoreDetailsActivity;
@@ -17,7 +18,10 @@ import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ */
 public class MainListRecycleAdapter extends AbsRecyclerViewAdapter
 {
 

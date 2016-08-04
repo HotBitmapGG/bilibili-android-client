@@ -2,13 +2,19 @@ package com.hotbitmapgg.ohmybilibili.retrofit;
 
 import android.util.Log;
 
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.okhttp.ResponseBody;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -32,6 +38,13 @@ public class RetrofitHelper
     private volatile static Retrofit bilibiliRetrofit;
 
     private static HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+
+    private static OkHttpClient mOkHttpClient;
+
+    static
+    {
+        initOkHttpClient();
+    }
 
     private RetrofitHelper()
     {
@@ -89,6 +102,55 @@ public class RetrofitHelper
                 .add(new LoggingInterceptor());
 
         return bilibiliRetrofit;
+    }
+
+    public static RecommendedService getHomeRecommendedApi()
+    {
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://app.bilibili.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        retrofit.client()
+                .interceptors()
+                .add(new LoggingInterceptor());
+
+        RecommendedService recommendedService = retrofit.create(RecommendedService.class);
+
+        return recommendedService;
+    }
+
+
+    /**
+     * 初始化OKHttpClient
+     */
+    private static void initOkHttpClient()
+    {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        if (mOkHttpClient == null)
+        {
+            synchronized (RetrofitHelper.class)
+            {
+                if (mOkHttpClient == null)
+                {
+                    //设置Http缓存
+                    Cache cache = new Cache(new File(OhMyBiliBiliApp.getInstance().getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
+
+                    mOkHttpClient = new OkHttpClient.Builder()
+                            .cache(cache)
+                            .addInterceptor(interceptor)
+                            .addNetworkInterceptor(new StethoInterceptor())
+                            .retryOnConnectionFailure(true)
+                            .connectTimeout(15, TimeUnit.SECONDS)
+                            .build();
+                }
+            }
+        }
     }
 
 

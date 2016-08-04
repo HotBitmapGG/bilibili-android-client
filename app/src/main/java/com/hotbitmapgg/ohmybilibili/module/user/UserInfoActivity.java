@@ -14,9 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.adapter.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.UserUpVideoAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.api.UserInfoApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.BasicMessage;

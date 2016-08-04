@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.adapter;
+package com.hotbitmapgg.ohmybilibili.adapter.base;
 
 import android.content.Context;
 import android.support.annotation.IdRes;
@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 封装了一个通用的RecycleViewAdapter
- * 可设计item点击点击 长按时间等
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * RecycleViewAdapter 基类
  */
 public abstract class AbsRecyclerViewAdapter extends RecyclerView.Adapter<AbsRecyclerViewAdapter.ClickableViewHolder>
 {

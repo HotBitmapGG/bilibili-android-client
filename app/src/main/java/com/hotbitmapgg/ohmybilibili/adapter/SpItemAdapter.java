@@ -15,7 +15,10 @@ import com.hotbitmapgg.ohmybilibili.model.Sp;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ */
 public class SpItemAdapter extends BaseAdapter
 {
 

@@ -10,25 +10,26 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.model.VideoItemInfo;
+import com.hotbitmapgg.ohmybilibili.model.home.Body;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
  */
-public class MainListRecycleItemAdapter extends AbsRecyclerViewAdapter
+public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
 {
 
-    List<VideoItemInfo> videoItemInfos = new ArrayList<>();
+    List<Body> bodys = new ArrayList<>();
 
-    public MainListRecycleItemAdapter(RecyclerView recyclerView, List<VideoItemInfo> videoItemInfos)
+    public HomeRecommendedGridAdapter(RecyclerView recyclerView, List<Body> bodys)
     {
 
         super(recyclerView);
-        this.videoItemInfos = videoItemInfos;
+        this.bodys = bodys;
     }
 
     @Override
@@ -36,22 +37,24 @@ public class MainListRecycleItemAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_main_list_recycle, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_home_recommended_grid, parent, false));
     }
 
     @Override
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
 
-        if(holder instanceof ItemViewHolder)
+        if (holder instanceof ItemViewHolder)
         {
-            ItemViewHolder itemViewHolder = (ItemViewHolder)holder;
-            VideoItemInfo videoItemInfo = videoItemInfos.get(position);
-            itemViewHolder.mVideoTitle.setText(videoItemInfo.title);
-            itemViewHolder.mVideoPlayNum.setText(videoItemInfo.play);
-            itemViewHolder.mVideoReviewCount.setText((videoItemInfo.video_review) + "");
-
-            Picasso.with(getContext()).load(Uri.parse(videoItemInfo.pic)).placeholder(R.drawable.bili_default_image_tv).into(itemViewHolder.mVideoImg);
+            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+            Body body = bodys.get(position);
+            Picasso.with(getContext())
+                    .load(Uri.parse(body.getCover()))
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(itemViewHolder.mVideoImg);
+            itemViewHolder.mVideoTitle.setText(body.getTitle());
+            itemViewHolder.mVideoPlayNum.setText(body.getPlay());
+            itemViewHolder.mVideoReviewCount.setText(body.getDanmaku());
         }
         super.onBindViewHolder(holder, position);
     }
@@ -60,9 +63,8 @@ public class MainListRecycleItemAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return videoItemInfos.size();
+        return bodys.size();
     }
-
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {

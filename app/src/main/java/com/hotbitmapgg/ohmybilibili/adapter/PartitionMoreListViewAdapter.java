@@ -9,11 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.model.PartitionMoreVideoItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ */
 public class PartitionMoreListViewAdapter extends AbsRecyclerViewAdapter
 {
 

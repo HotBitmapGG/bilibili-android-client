@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoAlikeListAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.UserVideoItem;
 import com.hotbitmapgg.ohmybilibili.model.UserVideoList;

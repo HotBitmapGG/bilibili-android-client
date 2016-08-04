@@ -11,8 +11,8 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.UserItemRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.api.FriendApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.BasicMessage;

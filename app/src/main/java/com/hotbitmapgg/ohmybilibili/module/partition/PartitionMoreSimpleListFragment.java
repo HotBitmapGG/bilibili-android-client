@@ -13,8 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.PartitionMoreListViewAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.api.PartitionMoreApi;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.PartitionMoreList;

@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 
-
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ */
 public class MoreLayoutAdapter extends BaseAdapter
 {
 

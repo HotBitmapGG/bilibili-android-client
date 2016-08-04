@@ -7,9 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.topic.SpecialDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.adapter.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiTimeLineRecycleAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.module.topic.SpecialDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.api.BangumiApi;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.Bangumi;

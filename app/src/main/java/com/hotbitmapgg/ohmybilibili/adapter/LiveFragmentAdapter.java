@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.holder.LiveBannerViewHolder;
-import com.hotbitmapgg.ohmybilibili.adapter.holder.LiveEntranceViewHolder;
-import com.hotbitmapgg.ohmybilibili.adapter.holder.LiveItemViewHolder;
-import com.hotbitmapgg.ohmybilibili.adapter.holder.LivePartitionViewHolder;
+import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveBannerViewHolder;
+import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveEntranceViewHolder;
+import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveItemViewHolder;
+import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LivePartitionViewHolder;
 import com.hotbitmapgg.ohmybilibili.model.Banner;
 import com.hotbitmapgg.ohmybilibili.model.Live;
 import com.hotbitmapgg.ohmybilibili.model.LiveIndex;
@@ -21,7 +21,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ */
 public class LiveFragmentAdapter extends RecyclerView.Adapter
 {
 
