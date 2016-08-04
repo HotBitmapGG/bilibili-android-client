@@ -12,8 +12,8 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.model.Index;
 import com.hotbitmapgg.ohmybilibili.model.VideoItemInfo;
-import com.hotbitmapgg.ohmybilibili.activity.ListMoreDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.activity.VideoDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.ListMoreDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;

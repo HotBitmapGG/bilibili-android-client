@@ -1,18 +1,18 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.fragment.BaseHomeFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeDiscoverFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeMoreFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeLiveFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeListFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.PlaceholderFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeRecommendFragment;
+import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
+import com.hotbitmapgg.ohmybilibili.module.common.PlaceholderFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeDiscoverFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeListFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeLiveFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeMoreFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeRecommendFragment;
 
 public class HomePagerAdapter extends FragmentPagerAdapter
 {

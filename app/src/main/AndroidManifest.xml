@@ -30,7 +30,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon, android:theme, android:label">
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".module.common.SplashActivity"
             android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -42,7 +42,7 @@
 
         <!--主界面 -->
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".module.home.HomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
@@ -51,20 +51,20 @@
 
         <!-- 登录界面 -->
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".module.common.LoginActivity"
             android:screenOrientation="portrait">
         </activity>
 
 
         <!-- 我的二维码 -->
         <activity
-            android:name=".activity.IQrCodeActivity"
+            android:name=".module.common.IQrCodeActivity"
             android:screenOrientation="portrait">
         </activity>
 
         <!-- APP简介界面 -->
         <activity
-            android:name=".activity.AppIntroduceActivity"
+            android:name=".module.common.AppIntroduceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme">
         </activity>
@@ -79,92 +79,92 @@
 
         <!-- home跳转webView界面 -->
         <activity
-            android:name=".activity.BrowserActivity"
+            android:name=".module.common.BrowserActivity"
             android:screenOrientation="portrait">
         </activity>
 
         <!-- 视频详情界面 -->
         <activity
-            android:name=".activity.VideoDetailsActivity"
+            android:name=".module.video.VideoDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"/>
 
         <!-- bilibili用户界面 -->
         <activity
-            android:name=".activity.UserInfoActivity"
+            android:name=".module.user.UserInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme">
         </activity>
 
         <!-- bilibili用户关注界面 -->
         <activity
-            android:name=".activity.UserAttentionActivity"
+            android:name=".module.user.UserAttentionActivity"
             android:screenOrientation="portrait">
         </activity>
 
 
         <!-- 专题详情界面 -->
         <activity
-            android:name=".activity.SpecialDetailsActivity"
+            android:name=".module.topic.SpecialDetailsActivity"
             android:screenOrientation="portrait">
         </activity>
 
         <!-- 热门推荐更多界面 -->
         <activity
-            android:name=".activity.RecommendMoreActivity"
+            android:name=".module.home.RecommendMoreActivity"
             android:screenOrientation="portrait">
         </activity>
 
         <!-- 分区界面 根据传递的标题集合完成界面 -->
         <activity
-            android:name=".activity.PartitionMoreActivity"
+            android:name=".module.partition.PartitionMoreActivity"
             android:screenOrientation="portrait">
         </activity>
 
         <!--用户粉丝界面-->
         <activity
-            android:name=".activity.UserFansActivity"
+            android:name=".module.user.UserFansActivity"
             android:screenOrientation="portrait"/>
 
 
         <!--番剧专题界面-->
         <activity
-            android:name=".activity.BangumiTimeLineActivity"
+            android:name=".module.bangumi.BangumiTimeLineActivity"
             android:screenOrientation="portrait"/>
 
         <!--游戏中心界面-->
         <activity
-            android:name=".activity.GameCentreActivity"
+            android:name=".module.common.GameCentreActivity"
             android:screenOrientation="portrait"/>
 
         <!--视频相关推荐界面-->
         <activity
-            android:name=".activity.VideoPartsListMoreActivity"
+            android:name=".module.video.VideoPartsListMoreActivity"
             android:screenOrientation="portrait"/>
 
         <!--离线缓存界面-->
         <activity
-            android:name=".activity.OffLineDownloadActivity"
+            android:name=".module.entry.OffLineDownloadActivity"
             android:screenOrientation="portrait"/>
 
         <!--直播详情界面-->
         <activity
-            android:name=".activity.BiliBiliLivePlayerActivity"
+            android:name=".module.video.BiliBiliLivePlayerActivity"
             android:screenOrientation="portrait"/>
 
         <!-- 推荐列表更多界面-->
         <activity
-            android:name=".activity.ListMoreDetailsActivity"
+            android:name=".module.home.ListMoreDetailsActivity"
             android:screenOrientation="portrait"/>
 
         <!--番剧索引界面-->
         <activity
-            android:name=".activity.BangumiIndexActivity"
+            android:name=".module.bangumi.BangumiIndexActivity"
             android:screenOrientation="portrait"/>
 
         <!--关于我详情界面-->
         <activity
-            android:name=".activity.HotBitmapGGInfoActivity"
+            android:name=".module.common.HotBitmapGGInfoActivity"
             android:screenOrientation="portrait"/>
 
 
@@ -179,12 +179,12 @@
 
         <!--U主推荐视频界面-->
         <activity
-            android:name=".activity.UpMoreCoverActivity"
+            android:name=".module.user.UpMoreCoverActivity"
             android:screenOrientation="portrait"/>
 
         <!-- 播放器播放界面 -->
         <activity
-            android:name=".activity.BiliBiliPlayerVideoActivity"
+            android:name=".module.video.BiliBiliPlayerVideoActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:label="@string/app_name"
             android:launchMode="singleTop"

@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.activity.UserInfoActivity;
+import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
 import com.squareup.picasso.Picasso;
 
 /**

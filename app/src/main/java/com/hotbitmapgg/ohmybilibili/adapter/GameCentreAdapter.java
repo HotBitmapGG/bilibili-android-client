@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.model.GameItem;
-import com.hotbitmapgg.ohmybilibili.activity.BrowserActivity;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

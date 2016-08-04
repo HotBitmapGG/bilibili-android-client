@@ -16,7 +16,7 @@ import com.hotbitmapgg.ohmybilibili.model.Banner;
 import com.hotbitmapgg.ohmybilibili.model.Live;
 import com.hotbitmapgg.ohmybilibili.model.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.model.PartitionSub;
-import com.hotbitmapgg.ohmybilibili.activity.BiliBiliLivePlayerActivity;
+import com.hotbitmapgg.ohmybilibili.module.video.BiliBiliLivePlayerActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
