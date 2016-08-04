@@ -14,5 +14,4 @@ public class Secret
 
     public static final String APP_SECRET = "";
 
-    public static String BMBO_KEY = "b0d3e44679384c31dd28855c08a7520d";
 }

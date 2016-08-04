@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.hotbitmapgg.ohmybilibili.config.OhMyBiliBiliApp;
+import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 
 /**
  * Toast相关工具类

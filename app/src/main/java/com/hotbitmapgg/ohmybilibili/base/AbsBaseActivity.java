@@ -3,11 +3,9 @@ package com.hotbitmapgg.ohmybilibili.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.utils.StatusBarCompat;
 
 import butterknife.ButterKnife;
-import cn.bmob.v3.Bmob;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -39,8 +37,6 @@ public abstract class AbsBaseActivity extends AppCompatActivity
         initToolBar();
         //设置全局状态栏颜色
         StatusBarCompat.compat(this);
-        //初始化Bmob
-        Bmob.initialize(this, Secret.BMBO_KEY);
     }
 
     @Override

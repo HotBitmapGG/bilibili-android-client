@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/bacground"
-                android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bacground"
+    android:orientation="vertical">
 
     <com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="我的二维码"
                     android:textColor="@color/font_normal"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -41,12 +41,12 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
                     android:layout_marginRight="15dp"
-                    android:src="@drawable/register_bottom_arrow"/>
+                    android:src="@drawable/register_bottom_arrow" />
             </RelativeLayout>
 
 
             <RelativeLayout
-                android:id="@+id/rl_idea"
+                android:id="@+id/rl_about_me"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="20dp"
@@ -59,42 +59,9 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="20dp"
-                    android:text="意见反馈"
-                    android:textColor="@color/font_normal"
-                    android:textSize="16sp"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="15dp"
-                    android:src="@drawable/register_bottom_arrow"/>
-            </RelativeLayout>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:background="@color/white"
-                android:src="@drawable/line_bg"/>
-
-
-            <RelativeLayout
-                android:id="@+id/rl_about_me"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:background="@drawable/btn_selector">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="20dp"
                     android:text="关于我"
                     android:textColor="@color/font_normal"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -102,14 +69,14 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
                     android:layout_marginRight="15dp"
-                    android:src="@drawable/register_bottom_arrow"/>
+                    android:src="@drawable/register_bottom_arrow" />
             </RelativeLayout>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:background="@color/white"
-                android:src="@drawable/line_bg"/>
+                android:src="@drawable/line_bg" />
 
 
             <RelativeLayout
@@ -127,7 +94,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="关于哔哩哔哩"
                     android:textColor="@color/font_normal"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -135,14 +102,14 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
                     android:layout_marginRight="15dp"
-                    android:src="@drawable/register_bottom_arrow"/>
+                    android:src="@drawable/register_bottom_arrow" />
             </RelativeLayout>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:background="@color/white"
-                android:src="@drawable/line_bg"/>
+                android:src="@drawable/line_bg" />
 
             <RelativeLayout
                 android:id="@+id/rl_update"
@@ -158,7 +125,7 @@
                     android:layout_marginLeft="20dp"
                     android:text="检查更新"
                     android:textColor="@color/font_normal"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/app_version_code"
@@ -169,7 +136,7 @@
                     android:layout_toLeftOf="@+id/update_arrow"
                     android:text="V1.0"
                     android:textColor="@color/black_alpha"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/update_arrow"
@@ -178,7 +145,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
                     android:layout_marginRight="15dp"
-                    android:src="@drawable/register_bottom_arrow"/>
+                    android:src="@drawable/register_bottom_arrow" />
             </RelativeLayout>
 
 
@@ -194,7 +161,7 @@
                 android:gravity="center"
                 android:text="退出登录"
                 android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </LinearLayout>
     </com.hotbitmapgg.ohmybilibili.widget.SpringScrollView>
 

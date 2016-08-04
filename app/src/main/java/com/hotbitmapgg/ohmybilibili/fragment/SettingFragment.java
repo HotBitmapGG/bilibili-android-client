@@ -10,12 +10,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.activity.AppIntroduceActivity;
 import com.hotbitmapgg.ohmybilibili.activity.HotBitmapGGInfoActivity;
 import com.hotbitmapgg.ohmybilibili.activity.IQrCodeActivity;
-import com.hotbitmapgg.ohmybilibili.base.AbsBaseFragment;
-import com.hotbitmapgg.ohmybilibili.activity.AppIntroduceActivity;
-import com.hotbitmapgg.ohmybilibili.activity.FeedBackActivity;
 import com.hotbitmapgg.ohmybilibili.activity.LoginActivity;
+import com.hotbitmapgg.ohmybilibili.base.AbsBaseFragment;
 import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 
 import butterknife.Bind;
@@ -30,9 +29,6 @@ public class SettingFragment extends AbsBaseFragment implements View.OnClickList
 
     @Bind(R.id.rl_common_setting)
     RelativeLayout mCommomSetting;
-
-    @Bind(R.id.rl_idea)
-    RelativeLayout mFeedBack;
 
     @Bind(R.id.rl_about_me)
     RelativeLayout mAboutMe;
@@ -61,7 +57,6 @@ public class SettingFragment extends AbsBaseFragment implements View.OnClickList
     {
 
         mCommomSetting.setOnClickListener(this);
-        mFeedBack.setOnClickListener(this);
         mAboutMe.setOnClickListener(this);
         mAboutApp.setOnClickListener(this);
         mUpdateApp.setOnClickListener(this);
@@ -79,11 +74,6 @@ public class SettingFragment extends AbsBaseFragment implements View.OnClickList
             case R.id.rl_common_setting:
                 //通用设置
                 startActivity(new Intent(getActivity(), IQrCodeActivity.class));
-                break;
-
-            case R.id.rl_idea:
-                //意见反馈
-                startActivity(new Intent(getActivity(), FeedBackActivity.class));
                 break;
 
             case R.id.rl_about_me:

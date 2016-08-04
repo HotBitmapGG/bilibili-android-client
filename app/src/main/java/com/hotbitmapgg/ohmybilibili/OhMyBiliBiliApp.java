@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.config;
+package com.hotbitmapgg.ohmybilibili;
 
 import android.app.Application;
 import android.os.Environment;

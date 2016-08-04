@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
-import com.hotbitmapgg.ohmybilibili.config.OhMyBiliBiliApp;
+import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 
 /**
  * 缓存相关工具类
