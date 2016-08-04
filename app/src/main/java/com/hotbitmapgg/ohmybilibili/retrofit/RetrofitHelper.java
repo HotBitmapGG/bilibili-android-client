@@ -132,7 +132,7 @@ public class RetrofitHelper
                             .addInterceptor(interceptor)
                             .addNetworkInterceptor(new StethoInterceptor())
                             .retryOnConnectionFailure(true)
-                            .connectTimeout(15, TimeUnit.SECONDS)
+                            .connectTimeout(30, TimeUnit.SECONDS)
                             .build();
                 }
             }

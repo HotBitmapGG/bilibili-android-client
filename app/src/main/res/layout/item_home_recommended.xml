@@ -45,8 +45,20 @@
             android:drawableTint="@color/white"
             android:padding="10dp"
             android:text="排行榜"
-            android:textSize="12sp"
             android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/item_live_all_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/item_type_more"
+            android:padding="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
             android:visibility="gone" />
 
         <TextView
@@ -60,7 +72,7 @@
             android:text="@string/home_tab_more"
             android:textColor="@color/white"
             android:textSize="12sp"
-            android:visibility="gone" />
+            android:visibility="visible" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

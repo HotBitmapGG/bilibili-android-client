@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -23,13 +25,16 @@ import java.util.List;
 public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
 {
 
-    List<Body> bodys = new ArrayList<>();
+    private List<Body> bodys = new ArrayList<>();
 
-    public HomeRecommendedGridAdapter(RecyclerView recyclerView, List<Body> bodys)
+    private int pos;
+
+    public HomeRecommendedGridAdapter(RecyclerView recyclerView, List<Body> bodys, int pos)
     {
 
         super(recyclerView);
         this.bodys = bodys;
+        this.pos = pos;
     }
 
     @Override
@@ -52,9 +57,32 @@ public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
                     .load(Uri.parse(body.getCover()))
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoImg);
+
             itemViewHolder.mVideoTitle.setText(body.getTitle());
-            itemViewHolder.mVideoPlayNum.setText(body.getPlay());
-            itemViewHolder.mVideoReviewCount.setText(body.getDanmaku());
+
+            if (pos == 1)
+            {
+                itemViewHolder.mLiveLayout.setVisibility(View.VISIBLE);
+                itemViewHolder.mVideoLayout.setVisibility(View.GONE);
+                itemViewHolder.mLiveUp.setText(body.getUp());
+                itemViewHolder.mLiveOnline.setText(body.getOnline() + "");
+            } else if (pos == 2)
+            {
+                itemViewHolder.mLiveLayout.setVisibility(View.VISIBLE);
+                itemViewHolder.mVideoLayout.setVisibility(View.GONE);
+                itemViewHolder.mLiveUp.setText(body.getDesc1());
+            } else if(pos == 9)
+            {
+                itemViewHolder.mLiveLayout.setVisibility(View.GONE);
+                itemViewHolder.mVideoLayout.setVisibility(View.GONE);
+            }
+            else
+            {
+                itemViewHolder.mLiveLayout.setVisibility(View.GONE);
+                itemViewHolder.mVideoLayout.setVisibility(View.VISIBLE);
+                itemViewHolder.mVideoPlayNum.setText(body.getPlay());
+                itemViewHolder.mVideoReviewCount.setText(body.getDanmaku());
+            }
         }
         super.onBindViewHolder(holder, position);
     }
@@ -77,6 +105,14 @@ public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
 
         public TextView mVideoReviewCount;
 
+        public LinearLayout mVideoLayout;
+
+        public RelativeLayout mLiveLayout;
+
+        public TextView mLiveUp;
+
+        public TextView mLiveOnline;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -85,6 +121,10 @@ public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
             mVideoTitle = $(R.id.video_title);
             mVideoPlayNum = $(R.id.video_play_num);
             mVideoReviewCount = $(R.id.video_review_count);
+            mLiveLayout = $(R.id.layout_live);
+            mVideoLayout = $(R.id.layout_video);
+            mLiveOnline = $(R.id.item_live_online);
+            mLiveUp = $(R.id.item_live_up);
         }
     }
 }

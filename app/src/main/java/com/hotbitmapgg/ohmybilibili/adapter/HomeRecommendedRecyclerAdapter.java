@@ -70,16 +70,26 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.mTypeImg.setImageResource(icons[position]);
             itemViewHolder.mTypeTv.setText(result.getHead().getTitle());
-            if(position == 0)
+            if (position == 0)
             {
+                itemViewHolder.mTypeMore.setVisibility(View.GONE);
                 itemViewHolder.mTypeRankBtn.setVisibility(View.VISIBLE);
+                itemViewHolder.mAllLiveNum.setVisibility(View.GONE);
+            } else if (position == 1)
+            {
+                itemViewHolder.mTypeRankBtn.setVisibility(View.GONE);
+                itemViewHolder.mTypeMore.setVisibility(View.VISIBLE);
+                itemViewHolder.mAllLiveNum.setVisibility(View.VISIBLE);
+                itemViewHolder.mAllLiveNum.setText("当前" + result.getHead().getCount() + "个直播");
             }
             else
             {
+                itemViewHolder.mTypeRankBtn.setVisibility(View.GONE);
                 itemViewHolder.mTypeMore.setVisibility(View.VISIBLE);
+                itemViewHolder.mAllLiveNum.setVisibility(View.GONE);
             }
 
-            initGrid(itemViewHolder, result);
+            initGrid(itemViewHolder, result,position);
             setRankBtnClick(itemViewHolder);
         }
         super.onBindViewHolder(holder, position);
@@ -87,25 +97,27 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
 
     private void setRankBtnClick(ItemViewHolder itemViewHolder)
     {
-       itemViewHolder.mTypeRankBtn.setOnClickListener(new View.OnClickListener()
-       {
 
-           @Override
-           public void onClick(View v)
-           {
-              getContext().startActivity(new Intent(getContext() , AllRankActivity.class));
-           }
-       });
+        itemViewHolder.mTypeRankBtn.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                getContext().startActivity(new Intent(getContext(), AllRankActivity.class));
+            }
+        });
     }
 
-    private void initGrid(ItemViewHolder itemViewHolder, Result result)
+    private void initGrid(ItemViewHolder itemViewHolder, Result result , int pos)
     {
 
         ArrayList<Body> body = result.getBody();
         itemViewHolder.mItemRecycle.setHasFixedSize(true);
         itemViewHolder.mItemRecycle.setNestedScrollingEnabled(false);
         itemViewHolder.mItemRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        HomeRecommendedGridAdapter mGridAdapter = new HomeRecommendedGridAdapter(itemViewHolder.mItemRecycle, body);
+        HomeRecommendedGridAdapter mGridAdapter = new HomeRecommendedGridAdapter(itemViewHolder.mItemRecycle, body , pos);
         itemViewHolder.mItemRecycle.setAdapter(mGridAdapter);
         mGridAdapter.setOnItemClickListener(new OnItemClickListener()
         {
@@ -138,6 +150,8 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
 
         public TextView mTypeRankBtn;
 
+        public TextView mAllLiveNum;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -147,6 +161,7 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
             mTypeTv = $(R.id.item_type_tv);
             mTypeMore = $(R.id.item_type_more);
             mTypeRankBtn = $(R.id.item_type_rank_btn);
+            mAllLiveNum = $(R.id.item_live_all_num);
         }
     }
 }
