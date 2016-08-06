@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.model.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.model.bangumi.TwoDimensional;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -19,16 +19,16 @@ import java.util.List;
  * Created by hcc on 16/8/6 11:51
  * 100332338@qq.com
  */
-public class BangumiRecommendAdapter extends AbsRecyclerViewAdapter
+public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<BangumiRecommend.RecommendsBean> recommends = new ArrayList<>();
+    private List<TwoDimensional.ListBean> twoDimensionals = new ArrayList<>();
 
-    public BangumiRecommendAdapter(RecyclerView recyclerView, List<BangumiRecommend.RecommendsBean> recommends)
+    public TwoDimensionalRecyclerAdapter(RecyclerView recyclerView, List<TwoDimensional.ListBean> twoDimensionals)
     {
 
         super(recyclerView);
-        this.recommends = recommends;
+        this.twoDimensionals = twoDimensionals;
     }
 
     @Override
@@ -47,14 +47,14 @@ public class BangumiRecommendAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            BangumiRecommend.RecommendsBean recommendsBean = recommends.get(position);
+            TwoDimensional.ListBean listBean = twoDimensionals.get(position);
             Picasso.with(getContext())
-                    .load(recommendsBean.getPic())
+                    .load(listBean.getCover())
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mImage);
 
-            itemViewHolder.mTitle.setText(recommendsBean.getTitle());
-            itemViewHolder.mDesc.setText(recommendsBean.getDescription());
+            itemViewHolder.mTitle.setText(listBean.getTitle());
+            itemViewHolder.mDesc.setText(listBean.getLastupdate_at());
         }
         super.onBindViewHolder(holder, position);
     }
@@ -63,7 +63,7 @@ public class BangumiRecommendAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return recommends.size();
+        return twoDimensionals.size();
     }
 
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder

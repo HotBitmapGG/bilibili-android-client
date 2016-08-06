@@ -6,6 +6,7 @@ import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.TwoDimensionalService;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -51,9 +52,7 @@ public class RetrofitHelper
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 
-        LiveService liveService = retrofit.create(LiveService.class);
-
-        return liveService;
+        return retrofit.create(LiveService.class);
     }
 
 
@@ -73,9 +72,7 @@ public class RetrofitHelper
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 
-        BangumiIndexService bangumiIndexService = retrofit.create(BangumiIndexService.class);
-
-        return bangumiIndexService;
+        return retrofit.create(BangumiIndexService.class);
     }
 
     /**
@@ -95,9 +92,7 @@ public class RetrofitHelper
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 
-        RecommendedService recommendedService = retrofit.create(RecommendedService.class);
-
-        return recommendedService;
+        return retrofit.create(RecommendedService.class);
     }
 
     /**
@@ -116,9 +111,20 @@ public class RetrofitHelper
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        BangumiRecommendService bangumiRecommendService = retrofit.create(BangumiRecommendService.class);
+        return retrofit.create(BangumiRecommendService.class);
+    }
 
-        return bangumiRecommendService;
+    public static TwoDimensionalService getTwoDimensionalApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(TwoDimensionalService.class);
     }
 
 

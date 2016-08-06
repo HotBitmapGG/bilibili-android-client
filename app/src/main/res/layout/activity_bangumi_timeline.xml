@@ -17,8 +17,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat"
-            app:theme="@style/ThemeOverlay.AppCompat"/>
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
 
         <com.flyco.tablayout.SlidingTabLayout

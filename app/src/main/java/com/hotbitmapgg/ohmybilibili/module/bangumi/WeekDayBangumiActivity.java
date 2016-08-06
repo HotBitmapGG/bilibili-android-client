@@ -3,6 +3,7 @@ package com.hotbitmapgg.ohmybilibili.module.bangumi;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -13,18 +14,15 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.Bind;
 
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
  * <p/>
- * 新番推荐界面
+ * 新番放送表界面
  */
-public class BangumiTimeLineActivity extends RxAppCompatBaseActivity
+public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.bangumi_tab_pager)
@@ -36,11 +34,9 @@ public class BangumiTimeLineActivity extends RxAppCompatBaseActivity
     @Bind(R.id.sp_toolbar)
     Toolbar mToolbar;
 
-    private List<Fragment> fragments = new ArrayList<>();
-
     private BangumiFragmentAdapter mAdapter;
 
-    private String[] titles = new String[]{"一", "二", "三", "四", "五", "六", "日"};
+    private String[] titles = new String[]{"周一", "周二", "周三", "周四", "周五", "周六", "周日"};
 
     private int[] wids = new int[]{1, 2, 3, 4, 5, 6, 0};
 
@@ -86,7 +82,7 @@ public class BangumiTimeLineActivity extends RxAppCompatBaseActivity
     {
 
 
-        public BangumiFragmentAdapter(android.support.v4.app.FragmentManager fm)
+        public BangumiFragmentAdapter(FragmentManager fm)
         {
 
             super(fm);
@@ -103,7 +99,7 @@ public class BangumiTimeLineActivity extends RxAppCompatBaseActivity
         public int getCount()
         {
 
-            return fragments.size();
+            return titles.length;
         }
 
         @Override

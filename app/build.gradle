@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.hotbitmapgg.ohmybilibili"
-        minSdkVersion 22
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 2
         versionName "2.0"

@@ -1,17 +1,24 @@
 package com.hotbitmapgg.ohmybilibili.module.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.BangumiRecommendAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.TwoDimensionalRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.BangumiRecommendRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
 import com.hotbitmapgg.ohmybilibili.model.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.model.bangumi.TwoDimensional;
 import com.hotbitmapgg.ohmybilibili.model.live.Banner;
+import com.hotbitmapgg.ohmybilibili.module.bangumi.BangumiIndexActivity;
+import com.hotbitmapgg.ohmybilibili.module.bangumi.WeekDayBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
@@ -44,7 +51,9 @@ public class HomeBangumiFragment extends BaseHomeFragment
 
     private List<BangumiRecommend.BannersBean> banners;
 
-    private BangumiRecommendAdapter mAdapter;
+    private List<TwoDimensional.ListBean> twoDimensionals;
+
+    private TwoDimensionalRecyclerAdapter mAdapter;
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
@@ -53,6 +62,10 @@ public class HomeBangumiFragment extends BaseHomeFragment
     private View headView_banner;
 
     private View headView_item;
+
+    private View headView_list;
+
+    private RecyclerView mHeadRecommendList;
 
 
     public static HomeBangumiFragment newInstance()
@@ -88,6 +101,7 @@ public class HomeBangumiFragment extends BaseHomeFragment
 
                 mSwipeRefreshLayout.setRefreshing(true);
                 getBangumiRecommends();
+                getTwoDimensionals();
             }
         }, 500);
 
@@ -103,6 +117,53 @@ public class HomeBangumiFragment extends BaseHomeFragment
         });
     }
 
+    /**
+     * 获取二次元新番
+     */
+    private void getTwoDimensionals()
+    {
+
+        RetrofitHelper.getTwoDimensionalApi()
+                .getTwoDimensional()
+                .compose(this.<TwoDimensional> bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<TwoDimensional>()
+                {
+
+                    @Override
+                    public void call(TwoDimensional twoDimensional)
+                    {
+
+                        twoDimensionals = twoDimensional.getList();
+                        finishTask();
+                    }
+                }, new Action1<Throwable>()
+                {
+
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        LogUtil.lsw("二次元新番获取失败" + throwable.getMessage());
+                        mSwipeRefreshLayout.post(new Runnable()
+                        {
+
+                            @Override
+                            public void run()
+                            {
+
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
+                    }
+                });
+    }
+
+    /**
+     * 获取番剧推荐数据
+     * 包含Banner和番剧推荐内容
+     */
     private void getBangumiRecommends()
     {
 
@@ -121,7 +182,7 @@ public class HomeBangumiFragment extends BaseHomeFragment
 
                         banners = bangumiRecommend.getBanners();
                         recommends = bangumiRecommend.getRecommends();
-                        finishTask();
+                        //finishTask();
                     }
                 }, new Action1<Throwable>()
                 {
@@ -152,26 +213,29 @@ public class HomeBangumiFragment extends BaseHomeFragment
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new BangumiRecommendAdapter(mRecyclerView, recommends);
+        mAdapter = new TwoDimensionalRecyclerAdapter(mRecyclerView, twoDimensionals);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         createHead();
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
     }
 
+
     private void createHead()
     {
 
         headView_banner = LayoutInflater.from(getActivity()).inflate(R.layout.layout_head_home_recommended, mRecyclerView, false);
-        bannerView = (BannerView) headView_banner.findViewById(R.id.home_recommended_banner);
         headView_item = LayoutInflater.from(getActivity()).inflate(R.layout.layout_head_bangumi_item, mRecyclerView, false);
-        converBanner();
-
-
+        headView_list = LayoutInflater.from(getActivity()).inflate(R.layout.layout_head_recommend_bangumi, mRecyclerView, false);
+        //处理头部数据
+        processHeadView();
     }
 
-    private void converBanner()
+
+    private void processHeadView()
     {
 
+        //设置Banner
+        bannerView = (BannerView) headView_banner.findViewById(R.id.home_recommended_banner);
         if (banners != null && banners.size() > 0)
         {
             int size = banners.size();
@@ -187,9 +251,42 @@ public class HomeBangumiFragment extends BaseHomeFragment
             }
             bannerView.delayTime(5).build(bannerList);
             mHeaderViewRecyclerAdapter.addHeaderView(headView_banner);
-            mHeaderViewRecyclerAdapter.addHeaderView(headView_item);
         }
+
+        //设置Item
+        TextView mWeekBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_week);
+        TextView mIndexBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_index);
+        mWeekBangumiItem.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                startActivity(new Intent(getActivity(), WeekDayBangumiActivity.class));
+            }
+        });
+        mIndexBangumiItem.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                startActivity(new Intent(getActivity(), BangumiIndexActivity.class));
+            }
+        });
+        mHeaderViewRecyclerAdapter.addHeaderView(headView_item);
+
+        //设置番剧推荐
+        mHeadRecommendList = (RecyclerView) headView_list.findViewById(R.id.head_recommend_list);
+        mHeadRecommendList.setHasFixedSize(false);
+        mHeadRecommendList.setNestedScrollingEnabled(false);
+        mHeadRecommendList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mHeadRecommendList.setAdapter(new BangumiRecommendRecyclerAdapter(mHeadRecommendList, recommends));
+        mHeaderViewRecyclerAdapter.addHeaderView(headView_list);
     }
+
 
     @Override
     public void scrollToTop()

@@ -2,25 +2,40 @@ package com.hotbitmapgg.ohmybilibili.model.bangumi;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Created by hcc on 16/8/6 11:08
+ * 100332338@qq.com
+ * <p/>
+ * 番剧放送表
+ */
 public class Bangumi
 {
 
-    public String title; // 标题
+    // 标题
+    public String title;
 
-    public String cover; // 封面图片地址
+    // 封面图片地址
+    public String cover;
 
-    public int bgmcount; // 番剧当前总集数
+    // 番剧当前总集数
+    public int bgmcount;
 
-    public int weekday; // 番剧周信息
+    // 番剧周信息
+    public int weekday;
 
-    public int lastupdate; // 最后更新时间 UNIX 时间戳
+    // 最后更新时间 UNIX 时间戳
+    public int lastupdate;
 
-    public String lastupdate_at; // 最后更新时间
+    // 最后更新时间
+    public String lastupdate_at;
 
+    // 是否最近有更新
     @SerializedName("new")
-    public boolean isnew; // 是否最近有更新
+    public boolean isnew;
 
-    public String spid;  //番剧id
+    //番剧id
+    public String spid;
 
-    public int season_id; //专题详情id
+    //专题详情id
+    public int season_id;
 }

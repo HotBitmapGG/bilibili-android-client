@@ -106,7 +106,7 @@
 
         <!--番剧专题界面-->
         <activity
-            android:name=".module.bangumi.BangumiTimeLineActivity"
+            android:name=".module.bangumi.WeekDayBangumiActivity"
             android:screenOrientation="portrait" />
 
         <!--游戏中心界面-->
