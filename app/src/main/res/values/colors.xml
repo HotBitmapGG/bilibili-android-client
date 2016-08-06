@@ -6,7 +6,11 @@
     <color name="status_bar_color">@color/primary_dark</color>
     <color name="bacground">#F1F1F1</color>
     <color name="top_bar_bg">@color/primary</color>
-    <color name="yellow">#ffc400</color>
+    <color name="yellow">#FFD11B</color>
+    <color name="yellow_30">#FEA501</color>
+    <color name="pink">#FD7071</color>
+    <color name="blue">#20C1FD</color>
+    <color name="white_90">#E9EAEA</color>
 
     <!-- 播放器使用颜色 -->
     <color name="bilibg">#f2f2f2</color>

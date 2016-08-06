@@ -3,6 +3,7 @@ package com.hotbitmapgg.ohmybilibili.retrofit;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
 
@@ -16,15 +17,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Retrofit管理类
- * <p/>
- * retrofit是项目后来才使用的，之前一直使用okHttp和Rxjava来进行网络请求
- * 目前使用retrofit完成了直播界面的网络需求和番剧索引
- * 因为对之前改起来比较麻烦 所以就没有全部换掉
- *
- * @HotBitmapGG
- */
 
 public class RetrofitHelper
 {
@@ -32,7 +24,7 @@ public class RetrofitHelper
 
     private static OkHttpClient mOkHttpClient;
 
-    private static final String LIVE_BASE_URL = "http://bilibili-service.daoapp.io/";
+    private static final String API_BASE_URL = "http://bilibili-service.daoapp.io/";
 
     private static final String MAIN_BASE_URL = "http://www.bilibili.com/";
 
@@ -48,11 +40,12 @@ public class RetrofitHelper
      *
      * @return
      */
+
     public static LiveService getBiliBiliLiveApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(LIVE_BASE_URL)
+                .baseUrl(API_BASE_URL)
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -69,6 +62,7 @@ public class RetrofitHelper
      *
      * @return
      */
+
     public static BangumiIndexService getBangumiIndexApi()
     {
 
@@ -89,6 +83,7 @@ public class RetrofitHelper
      *
      * @return
      */
+
     public static RecommendedService getHomeRecommendedApi()
     {
 
@@ -103,6 +98,27 @@ public class RetrofitHelper
         RecommendedService recommendedService = retrofit.create(RecommendedService.class);
 
         return recommendedService;
+    }
+
+    /**
+     * 获取首页番剧推荐列表
+     *
+     * @return
+     */
+
+    public static BangumiRecommendService getBnagumiRecommendApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        BangumiRecommendService bangumiRecommendService = retrofit.create(BangumiRecommendService.class);
+
+        return bangumiRecommendService;
     }
 
 

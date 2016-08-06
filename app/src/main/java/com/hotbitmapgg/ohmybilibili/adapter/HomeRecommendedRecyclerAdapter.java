@@ -28,8 +28,8 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
     private List<Result> results = new ArrayList<>();
 
     private int[] icons = new int[]{
-            R.drawable.ic_tuijian,
-            R.drawable.ic_category_live,
+            R.drawable.ic_header_hot,
+            R.drawable.ic_head_live,
             R.drawable.ic_category_t13,
             R.drawable.ic_category_t1,
             R.drawable.ic_category_t3,
@@ -37,10 +37,10 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
             R.drawable.ic_category_t4,
             R.drawable.ic_category_t119,
             R.drawable.ic_category_t36,
-            R.drawable.ic_category_t137,
-            R.drawable.ic_category_t47,
+            R.drawable.ic_header_activity_center,
+            R.drawable.ic_category_t160,
             R.drawable.ic_category_t155,
-            R.drawable.ic_category_t31,
+            R.drawable.ic_category_t5,
             R.drawable.ic_category_t11,
             R.drawable.ic_category_t23
     };
