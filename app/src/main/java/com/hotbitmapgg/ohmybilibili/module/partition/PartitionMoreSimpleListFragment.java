@@ -15,12 +15,11 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.PartitionMoreListViewAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreApi;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.partition.PartitionMoreList;
 import com.hotbitmapgg.ohmybilibili.model.partition.PartitionMoreVideoItem;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreApi;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.swiperefresh.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.widget.swiperefresh.HeaderViewRecyclerAdapter;
@@ -162,7 +161,6 @@ public class PartitionMoreSimpleListFragment extends RxLazyFragment
     {
 
         String url = PartitionMoreApi.getListUrl(tid, pagenum, "10", PartitionMoreApi.ORDER_DEFAULT);
-        LogUtil.lsw(url);
         OkHttpUtils.get().url(url).build().execute(new StringCallback()
         {
 

@@ -21,13 +21,12 @@ import android.widget.ImageView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.network.api.VideoApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.video.VideoItemInfo;
 import com.hotbitmapgg.ohmybilibili.model.video.VideoViewInfo;
 import com.hotbitmapgg.ohmybilibili.network.UrlHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.network.api.VideoApi;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -275,7 +274,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                     public void onError(Throwable error)
                     {
 
-                        LogUtil.lsw("视频详情数据加载失败");
                     }
                 });
 

@@ -210,7 +210,6 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
                         mHeaderViewRecyclerAdapter.notifyDataSetChanged();
                     } else
                     {
-                        LogUtil.lsw("数据为空");
                         mHeaderViewRecyclerAdapter.notifyDataSetChanged();
                         loadMoreView.setVisibility(View.GONE);
                     }

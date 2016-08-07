@@ -13,13 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.adapter.SpItemAdapter;
-import com.hotbitmapgg.ohmybilibili.network.api.SpApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.video.Sp;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.network.api.SpApi;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
 import com.squareup.picasso.Picasso;
@@ -245,7 +244,6 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
                     public void onError(Throwable error)
                     {
 
-                        LogUtil.lsw("专题数据加载失败");
                     }
                 });
 

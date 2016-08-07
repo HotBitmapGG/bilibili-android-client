@@ -142,8 +142,6 @@ public class WeekDayBangumiFragment extends RxLazyFragment
                     @Override
                     public void onError(Throwable error)
                     {
-
-                        LogUtil.lsw("二次元新番加载失败");
                         mCircleProgressView.setVisibility(View.GONE);
                         mCircleProgressView.stopSpinning();
                         mEmptyView.setVisibility(View.VISIBLE);

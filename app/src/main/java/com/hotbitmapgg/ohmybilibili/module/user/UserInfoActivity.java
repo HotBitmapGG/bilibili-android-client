@@ -16,16 +16,15 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserUpVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.network.api.UserInfoApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.user.UserInfo;
 import com.hotbitmapgg.ohmybilibili.model.user.UserVideoItem;
 import com.hotbitmapgg.ohmybilibili.model.user.UserVideoList;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 import com.hotbitmapgg.ohmybilibili.network.UrlHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.network.api.UserInfoApi;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.squareup.picasso.Picasso;
@@ -231,7 +230,6 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         }
 
         List<Integer> attentions = userInfo.attentions;
-        LogUtil.lsw(attentions.size() + "");
         uids.addAll(attentions);
 
         startGetListTask();
@@ -406,7 +404,6 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
                     public void onError(Throwable error)
                     {
 
-                        LogUtil.lsw("用户数据加载失败");
                     }
                 });
 

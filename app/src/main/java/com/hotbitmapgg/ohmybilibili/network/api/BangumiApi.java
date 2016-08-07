@@ -3,7 +3,6 @@ package com.hotbitmapgg.ohmybilibili.network.api;
 import com.hotbitmapgg.ohmybilibili.model.bangumi.Bangumi;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,6 @@ public class BangumiApi
     {
 
         String url = ApiHelper.getBangumiUrl(btype, weekday);
-        LogUtil.lsw(url);
         BasicMessage<BangumiResult> result = ApiHelper.getSimpleUrlResult(url, BangumiResult.class);
         BasicMessage<ArrayList<Bangumi>> msg = new BasicMessage<>();
         if (result.getCode() == BasicMessage.CODE_SUCCEED)

@@ -1396,16 +1396,16 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
         protected Integer doInBackground(String... arg0)
         {
 
-            LogUtil.lsw("开始解析视频地址");
+            LogUtil.all("开始解析视频地址");
 
             String videoUrl = getVideoUrl();
             Gson mGson = new Gson();
             VideoSrc videoSrc = mGson.fromJson(videoUrl, VideoSrc.class);
-            LogUtil.lsw(videoSrc.src);
+            LogUtil.all(videoSrc.src);
             danmakuPath = videoSrc.cid;
             mUri = Uri.parse(videoSrc.src);
 
-            LogUtil.lsw("开始加载弹幕");
+            LogUtil.all("开始加载弹幕");
             mParser = createParser(danmakuPath);
 
 
@@ -1418,7 +1418,7 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
             // TODO Auto-generated method stub
             super.onPostExecute(result);
 
-            LogUtil.lsw("加载弹幕成功");
+            LogUtil.all("加载弹幕成功");
             if (mParser != null)
             {
                 mDanmakuView.prepare(mParser, DanmakuContext.create());

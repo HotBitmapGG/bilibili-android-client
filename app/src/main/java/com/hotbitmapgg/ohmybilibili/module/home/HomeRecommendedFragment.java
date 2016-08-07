@@ -122,7 +122,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
                             Banner banner;
                             if (result.getType() != null)
                             {
-                                LogUtil.lsw(result.getType());
                                 if (result.getType().equals("weblink"))
                                 {
                                     ArrayList<Body> bodys = result.getBody();
@@ -139,9 +138,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
                             }
                         }
 
-                        LogUtil.lsw(banners.size() + "weblink");
-                        LogUtil.lsw(results.size() + "result");
-
                         finishTask();
                     }
                 }, new Action1<Throwable>()
@@ -151,7 +147,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.lsw("主页数据加载失败" + throwable.getMessage());
                         mSwipeRefreshLayout.post(new Runnable()
                         {
 

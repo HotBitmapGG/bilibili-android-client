@@ -17,7 +17,6 @@ import com.hotbitmapgg.ohmybilibili.model.user.UserVideoItem;
 import com.hotbitmapgg.ohmybilibili.model.user.UserVideoList;
 import com.hotbitmapgg.ohmybilibili.model.video.VideoViewInfo;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.UserTagView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -204,7 +203,6 @@ public class VideoInfoFragment extends RxLazyFragment
         Random random = new Random();
         int anInt = random.nextInt(50);
         String url = ApiHelper.getVideoListPartsByTid(tid, anInt + "", "10", "default");
-        LogUtil.lsw(url);
         OkHttpUtils.get().url(url).build().execute(new StringCallback()
         {
 

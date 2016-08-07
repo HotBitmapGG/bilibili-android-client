@@ -2,7 +2,6 @@ package com.hotbitmapgg.ohmybilibili.network.api;
 
 
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -21,7 +20,6 @@ public class PartitionMoreApi
     {
 
         String url = ApiHelper.getTypeListUrl(tid, pagenum, pagesize, ORDER_VALUE[order]);
-        LogUtil.lsw(url);
         return url;
     }
 }

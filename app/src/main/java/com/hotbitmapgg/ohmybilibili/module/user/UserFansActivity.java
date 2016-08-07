@@ -170,7 +170,6 @@ public class UserFansActivity extends RxAppCompatBaseActivity
                     public void onError(Throwable error)
                     {
 
-                        LogUtil.lsw("粉丝数据加载失败");
                     }
                 });
 
@@ -244,7 +243,6 @@ public class UserFansActivity extends RxAppCompatBaseActivity
                     public void onError(Throwable error)
                     {
 
-                        LogUtil.lsw("粉丝数据上拉加载失败");
                         mAdapter.notifyDataSetChanged();
                         loadMoreView.setVisibility(View.GONE);
                     }

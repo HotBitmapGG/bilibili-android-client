@@ -129,7 +129,6 @@ public class VideoCommentFragment extends RxLazyFragment
                     public void onError(Throwable error)
                     {
 
-                        LogUtil.lsw("评论数据加载失败");
                     }
                 });
 
@@ -203,8 +202,6 @@ public class VideoCommentFragment extends RxLazyFragment
                     @Override
                     public void onError(Throwable error)
                     {
-
-                        LogUtil.lsw("加载更多评论数据失败");
                         loadMoreView.setVisibility(View.GONE);
                         mAdapter.notifyDataSetChanged();
                     }
