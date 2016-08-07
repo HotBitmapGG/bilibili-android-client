@@ -25,9 +25,10 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * 系统版本信息类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 视频播放设备工具类
  */
 public class VideoDeviceUtils
 {

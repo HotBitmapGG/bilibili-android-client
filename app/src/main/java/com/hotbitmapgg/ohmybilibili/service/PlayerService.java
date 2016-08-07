@@ -31,9 +31,10 @@ import io.vov.vitamio.MediaPlayer.OnVideoSizeChangedListener;
 import io.vov.vitamio.Vitamio;
 
 /**
- * Vitamio提供的播放服务
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 视频播放服务
  */
 public class PlayerService extends Service implements OnBufferingUpdateListener, OnCompletionListener, OnPreparedListener, OnVideoSizeChangedListener, OnErrorListener, OnInfoListener, OnSeekCompleteListener, OnTimedTextListener
 {
@@ -449,7 +450,6 @@ public class PlayerService extends Service implements OnBufferingUpdateListener,
 
         if (mInitialized)
             mPlayer.setTimedTextShown(shown);
-
     }
 
     public boolean isBuffering()
@@ -503,7 +503,6 @@ public class PlayerService extends Service implements OnBufferingUpdateListener,
         {
             String enc = encoding.equals(VP.DEFAULT_SUB_ENCODING) ? null : encoding;
             mPlayer.setTimedTextEncoding(enc);
-
         }
     }
 

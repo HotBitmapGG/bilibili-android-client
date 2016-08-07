@@ -12,9 +12,10 @@ import java.util.HashSet;
 import java.util.Map;
 
 /**
- * 文件相关工具类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 文件操作相关工具类
  */
 public class FileUtils
 {

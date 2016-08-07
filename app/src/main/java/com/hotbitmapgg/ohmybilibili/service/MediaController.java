@@ -41,9 +41,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * Vitamio提供的一个视频控制类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 视频播放控制帮助类
  */
 public class MediaController extends FrameLayout
 {

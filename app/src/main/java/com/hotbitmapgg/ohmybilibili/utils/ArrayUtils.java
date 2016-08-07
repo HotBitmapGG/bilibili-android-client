@@ -3,9 +3,10 @@ package com.hotbitmapgg.ohmybilibili.utils;
 import java.lang.reflect.Array;
 
 /**
- * Array工具类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * Array数组工具类
  */
 public class ArrayUtils
 {

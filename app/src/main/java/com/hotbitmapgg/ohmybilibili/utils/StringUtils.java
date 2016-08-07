@@ -12,9 +12,10 @@ import java.util.Iterator;
 import java.util.TimeZone;
 
 /**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
  * 字符串工具类
- *
- * @HotBitmapGG
  */
 public class StringUtils
 {

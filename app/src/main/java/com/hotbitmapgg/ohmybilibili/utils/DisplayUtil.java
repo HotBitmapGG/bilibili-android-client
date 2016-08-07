@@ -4,9 +4,10 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 
 /**
- * 屏幕相关工具类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 屏幕像素转换工具类
  */
 public class DisplayUtil
 {

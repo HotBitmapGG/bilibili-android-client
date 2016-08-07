@@ -3,9 +3,10 @@ package com.hotbitmapgg.ohmybilibili.utils;
 import android.util.Log;
 
 /**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
  * 日志打印工具类
- *
- * @HotBitmapGG
  */
 public class LogUtil
 {
@@ -47,11 +48,11 @@ public class LogUtil
             Log.e(tag, msg);
     }
 
-    public static void lsw(String msg)
+    public static void all(String msg)
     {
 
         if (isShow)
-            Log.e("lsw", msg);
+            Log.e("all", msg);
     }
 
     public static void i(String msg)
