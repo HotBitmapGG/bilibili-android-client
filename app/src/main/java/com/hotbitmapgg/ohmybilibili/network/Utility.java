@@ -10,9 +10,10 @@ import android.view.WindowManager;
 import java.lang.reflect.Method;
 
 /**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
  * 通用工具类
- *
- * @HotBitmapGG
  */
 public class Utility
 {

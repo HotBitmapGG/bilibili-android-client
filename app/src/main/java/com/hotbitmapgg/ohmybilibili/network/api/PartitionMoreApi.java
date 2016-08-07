@@ -3,10 +3,12 @@ package com.hotbitmapgg.ohmybilibili.network.api;
 
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+
 /**
- * 分区详情列表查询Api
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 分区详情列表查询API
  */
 public class PartitionMoreApi
 {

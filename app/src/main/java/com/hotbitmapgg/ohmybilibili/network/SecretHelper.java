@@ -4,11 +4,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * B站请求签名算法
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
  * <p/>
- * 需要对应的Appkey
- *
- * @HotBitmapGG
+ * 请求签名算法帮助类
  */
 public class SecretHelper
 {

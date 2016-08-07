@@ -13,9 +13,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * B站api请求网络管理类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 网络请求帮助类
  */
 public class ApiHelper
 {

@@ -3,12 +3,12 @@ package com.hotbitmapgg.ohmybilibili.network.api;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.video.VideoComment;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 /**
- * 视频评论查询Api
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 视频评论查询API
  */
 public class VideoCommentApi
 {
@@ -17,7 +17,6 @@ public class VideoCommentApi
     {
 
         String url = ApiHelper.getVideoComment(aid, page, pagesize, ver);
-        LogUtil.lsw(url);
         BasicMessage<VideoComment> msg = ApiHelper.getSimpleUrlResult(url, VideoComment.class);
         if (msg.getCode() == BasicMessage.CODE_SUCCEED)
         {

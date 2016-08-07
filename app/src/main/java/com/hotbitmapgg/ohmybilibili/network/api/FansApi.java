@@ -3,12 +3,12 @@ package com.hotbitmapgg.ohmybilibili.network.api;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.user.UserFans;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 /**
- * 用户粉丝查询Api
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 用户粉丝查询API
  */
 public class FansApi
 {
@@ -17,7 +17,6 @@ public class FansApi
     {
 
         String url = ApiHelper.getUserFansList(mid, page, pagesize);
-        LogUtil.lsw(url + "!!!!");
         BasicMessage<UserFans> msg = ApiHelper.getSimpleUrlResult(url, UserFans.class);
         if (msg.getCode() == BasicMessage.CODE_SUCCEED)
         {

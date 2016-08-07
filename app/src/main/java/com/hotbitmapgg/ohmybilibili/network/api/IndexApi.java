@@ -1,23 +1,22 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.index.Index;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 
 /**
- * 首页分区推荐查询Api
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 9个热门视频排行查询API
  */
 public class IndexApi
 {
 
-	public static BasicMessage<Index> getIndex()
-	{
-		String url = ApiHelper.getIndexUrl();
-		LogUtil.lsw(url);
-		return ApiHelper.getSimpleUrlResult(url, Index.class);
-	}
+    public static BasicMessage<Index> getIndex()
+    {
 
+        String url = ApiHelper.getIndexUrl();
+        return ApiHelper.getSimpleUrlResult(url, Index.class);
+    }
 }

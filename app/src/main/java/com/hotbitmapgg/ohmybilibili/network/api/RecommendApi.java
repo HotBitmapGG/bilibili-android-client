@@ -1,14 +1,15 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.recommended.RecommendList;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 
 /**
- * 主站推荐查询Api
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 推荐视频查询API
+ * 根据类型进行查询
  */
 public class RecommendApi
 {
@@ -21,7 +22,6 @@ public class RecommendApi
     {
 
         String url = ApiHelper.getRecommendUrl(tid, pagenum, pagesize, ORDER_VALUE[order]);
-        LogUtil.lsw(url);
         return ApiHelper.getSimpleUrlResult(url, RecommendList.class);
     }
 }

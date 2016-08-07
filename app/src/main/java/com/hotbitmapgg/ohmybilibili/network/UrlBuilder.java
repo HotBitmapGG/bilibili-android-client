@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Url拼接辅助类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * URL拼接辅助类
  */
 public class UrlBuilder
 {

@@ -5,9 +5,10 @@ import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 
 /**
- * Up主推荐视频查询Api
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * Up主推荐视频查询API
  */
 public class AuthorRecommendApi
 {

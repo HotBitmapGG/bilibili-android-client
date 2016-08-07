@@ -6,9 +6,10 @@ import com.hotbitmapgg.ohmybilibili.model.user.UserInfo;
 import java.util.ArrayList;
 
 /**
- * 用户关注的人查询Api
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 关注的人查询API
  */
 public class FriendApi
 {

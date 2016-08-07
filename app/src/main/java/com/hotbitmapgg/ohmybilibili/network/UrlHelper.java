@@ -5,13 +5,13 @@ import android.util.Log;
 import com.hotbitmapgg.ohmybilibili.model.user.UserInfo;
 
 /**
- * 根据B站返回的数据
- * 个人参数由于返回限制
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 根据B站返回的数据 个人参数由于返回限制
  * 需要进行特殊处理，如视频封面
  * 用户头像等url 进行url改装
  * 才能进行展示.
- *
- * @HotBitmapGG
  */
 public class UrlHelper
 {

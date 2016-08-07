@@ -7,9 +7,10 @@ import com.hotbitmapgg.ohmybilibili.model.video.VideoViewInfo;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 /**
- * 视频详情查询Api
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 视频详情查询API
  */
 public class VideoApi
 {
