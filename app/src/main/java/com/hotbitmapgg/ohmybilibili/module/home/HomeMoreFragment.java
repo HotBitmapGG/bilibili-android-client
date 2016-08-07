@@ -23,9 +23,10 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * 首页-分区
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 首页分区界面
  */
 public class HomeMoreFragment extends RxLazyFragment
 {

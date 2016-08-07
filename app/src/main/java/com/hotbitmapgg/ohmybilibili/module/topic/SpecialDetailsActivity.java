@@ -36,9 +36,10 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * 专题视频详情界面
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 专题详情界面
  */
 public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 {
@@ -161,15 +162,15 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         });
 
         Subscription subscribe = observable.map(new Func1<BasicMessage<Sp>,Sp>()
-                {
+        {
 
-                    @Override
-                    public Sp call(BasicMessage<Sp> spBasicMessage)
-                    {
+            @Override
+            public Sp call(BasicMessage<Sp> spBasicMessage)
+            {
 
-                        return spBasicMessage.getObject();
-                    }
-                })
+                return spBasicMessage.getObject();
+            }
+        })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<Sp>()
@@ -328,5 +329,4 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
             }
         });
     }
-
 }

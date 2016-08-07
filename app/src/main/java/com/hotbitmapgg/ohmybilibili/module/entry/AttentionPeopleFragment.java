@@ -9,10 +9,10 @@ import com.hotbitmapgg.ohmybilibili.widget.EmptyView;
 import butterknife.Bind;
 
 /**
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
+ * <p/>
  * 关注的人
- * 没有Api进行调用
- *
- * @HotBitmapGG
  */
 public class AttentionPeopleFragment extends RxLazyFragment
 {

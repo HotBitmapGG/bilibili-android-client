@@ -33,9 +33,10 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * 关注的人
- *
- * @author HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 用户关注的人
  */
 public class UserAttentionActivity extends RxAppCompatBaseActivity
 {

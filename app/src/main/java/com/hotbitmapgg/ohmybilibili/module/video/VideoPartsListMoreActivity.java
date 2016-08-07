@@ -30,9 +30,10 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * 视频相关查看更多
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 视频详情查看更多
  */
 public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
 {

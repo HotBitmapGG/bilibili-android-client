@@ -77,9 +77,10 @@ import master.flame.danmaku.danmaku.parser.android.BiliDanmukuParser;
 import okhttp3.Response;
 
 /**
- * B站视频播放界面
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 视频播放界面
  */
 @SuppressLint("HandlerLeak")
 public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements MediaController.MediaPlayerControl, VideoView.SurfaceCallback

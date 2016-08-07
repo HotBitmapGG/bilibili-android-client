@@ -18,12 +18,10 @@ import com.hotbitmapgg.ohmybilibili.widget.NumberProgressBar;
 import butterknife.Bind;
 
 /**
- * 离线缓存界面
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
  * <p/>
- * 目前只实现了UI的展示
- * 具体功能以后会完善
- *
- * @HotBitmapgg
+ * 离线缓存
  */
 public class OffLineDownloadActivity extends RxAppCompatBaseActivity
 {

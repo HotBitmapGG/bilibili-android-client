@@ -28,11 +28,12 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * 首页-排行榜
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 9个热门视频排行榜界面
  */
-public class AllRankActivity extends RxAppCompatBaseActivity
+public class AllHotRankActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.recycle)
@@ -58,7 +59,7 @@ public class AllRankActivity extends RxAppCompatBaseActivity
     public int getLayoutId()
     {
 
-        return R.layout.activity_rank;
+        return R.layout.activity_all_hot_rank;
     }
 
     @Override
@@ -162,6 +163,7 @@ public class AllRankActivity extends RxAppCompatBaseActivity
                             @Override
                             public void run()
                             {
+
                                 mSwipeRefreshLayout.setRefreshing(false);
                             }
                         });
@@ -202,8 +204,8 @@ public class AllRankActivity extends RxAppCompatBaseActivity
             indexs.add(typeTvSeries);
 
             mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(AllRankActivity.this));
-            AllRankRecyclerAdapter allRankRecyclerAdapter = new AllRankRecyclerAdapter(mRecyclerView, indexs, AllRankActivity.this);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(AllHotRankActivity.this));
+            AllRankRecyclerAdapter allRankRecyclerAdapter = new AllRankRecyclerAdapter(mRecyclerView, indexs, AllHotRankActivity.this);
             mRecyclerView.setAdapter(allRankRecyclerAdapter);
         }
     }

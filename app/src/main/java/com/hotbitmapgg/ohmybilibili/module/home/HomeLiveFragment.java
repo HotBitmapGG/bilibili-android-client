@@ -21,9 +21,10 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * 首页-直播
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 首页直播界面
  */
 public class HomeLiveFragment extends RxLazyFragment
 {
@@ -56,6 +57,12 @@ public class HomeLiveFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
+        showProgressBar();
+    }
+
+    private void showProgressBar()
+    {
+
         liveRefresh.setColorSchemeResources(R.color.primary);
         liveFragmentAdapter = new LiveFragmentAdapter(getActivity());
         liveRecyclerView.setAdapter(liveFragmentAdapter);
@@ -84,8 +91,17 @@ public class HomeLiveFragment extends RxLazyFragment
                 liveRequest();
             }
         });
-        //开始请求
-        liveRequest();
+
+        liveRefresh.postDelayed(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+
+                liveRequest();
+            }
+        }, 500);
     }
 
 
@@ -94,7 +110,7 @@ public class HomeLiveFragment extends RxLazyFragment
 
         RetrofitHelper.getBiliBiliLiveApi()
                 .getIndexRx()
-                .compose(this.<Result<LiveIndex>>bindToLifecycle())
+                .compose(this.<Result<LiveIndex>> bindToLifecycle())
                 .flatMap(new Func1<Result<LiveIndex>,Observable<LiveIndex>>()
                 {
 

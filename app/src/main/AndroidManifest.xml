@@ -138,7 +138,7 @@
 
         <!--AllRank界面-->
         <activity
-            android:name=".module.home.AllRankActivity"
+            android:name=".module.home.AllHotRankActivity"
             android:screenOrientation="portrait" />
 
 

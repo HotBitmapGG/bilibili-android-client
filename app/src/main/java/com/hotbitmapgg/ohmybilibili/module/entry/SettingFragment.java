@@ -19,9 +19,10 @@ import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 import butterknife.Bind;
 
 /**
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
+ * <p/>
  * 设置与帮助
- *
- * @HotBitmapGG
  */
 public class SettingFragment extends RxLazyFragment implements View.OnClickListener
 {
@@ -57,6 +58,7 @@ public class SettingFragment extends RxLazyFragment implements View.OnClickListe
     @Override
     public void finishCreateView(Bundle state)
     {
+
         mAboutMe.setOnClickListener(this);
         mAboutApp.setOnClickListener(this);
         mUpdateApp.setOnClickListener(this);

@@ -46,9 +46,10 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
  * 用户个人中心界面
- *
- * @HotBitmapGG
  */
 public class UserInfoActivity extends RxAppCompatBaseActivity implements View.OnClickListener
 {

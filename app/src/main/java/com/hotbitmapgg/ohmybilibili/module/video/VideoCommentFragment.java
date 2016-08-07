@@ -30,9 +30,10 @@ import rx.schedulers.Schedulers;
 
 
 /**
- * 视频评论
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 视频评论界面
  */
 public class VideoCommentFragment extends RxLazyFragment
 {

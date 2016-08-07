@@ -34,9 +34,10 @@ import butterknife.Bind;
 import okhttp3.Call;
 
 /**
- * 分区详情列表界面
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 分区对应类型详情界面
  */
 @SuppressLint("NewApi")
 public class PartitionMoreSimpleListFragment extends RxLazyFragment

@@ -12,11 +12,10 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import butterknife.Bind;
 
 /**
- * 主界面Fragment
- * 对应下边:
- * 主站，推荐，直播，分区，发现
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 首页模块主界面
  */
 public class HomePageFragment extends RxLazyFragment
 {

@@ -43,9 +43,10 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
  * 视频详情界面
- *
- * @HotBitmapGG
  */
 public class VideoDetailsActivity extends RxAppCompatBaseActivity
 {
@@ -230,7 +231,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
         mFAB.animate().scaleX(0f).scaleY(0f).setInterpolator(new AccelerateInterpolator()).start();
     }
-
 
 
     public void getVideoInfo()

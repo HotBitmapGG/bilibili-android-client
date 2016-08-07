@@ -29,9 +29,10 @@ import butterknife.Bind;
 import okhttp3.Call;
 
 /**
- * Up主上传视频查看更多
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * UP主上传视频更多界面
  */
 public class UpMoreCoverActivity extends RxAppCompatBaseActivity
 {
@@ -133,6 +134,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
             @Override
             public void onResponse(String response)
             {
+
                 UserVideoList videoList = UserVideoList.createFromJson(response);
                 if (videoList != null)
                 {
@@ -143,8 +145,6 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
                 }
             }
         });
-
-
     }
 
     private void finishUserVideoListGetTask()
@@ -190,6 +190,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
             @Override
             public void onResponse(String response)
             {
+
                 UserVideoList videoList = UserVideoList.createFromJson(response);
                 if (videoList != null)
                 {
@@ -219,8 +220,6 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
                 }
             }
         });
-
-
     }
 
     private void createLoadMoreView()

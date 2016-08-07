@@ -31,7 +31,7 @@ import rx.schedulers.Schedulers;
  * Created by hcc on 16/8/4 11:58
  * 100332338@qq.com
  * <p/>
- * 新的主页推荐界面
+ * 主页推荐界面
  */
 public class HomeRecommendedFragment extends RxLazyFragment
 {

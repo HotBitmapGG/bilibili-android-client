@@ -35,9 +35,10 @@ import butterknife.OnClick;
 import okhttp3.Call;
 
 /**
- * 视频详情
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 视频详情Fragment
  */
 public class VideoInfoFragment extends RxLazyFragment
 {

@@ -19,9 +19,10 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * 首页-发现
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 首页发现界面
  */
 public class HomeDiscoverFragment extends RxLazyFragment
 {

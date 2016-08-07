@@ -20,9 +20,10 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * 分区界面
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 分区详情界面
  */
 public class PartitionMoreActivity extends RxAppCompatBaseActivity
 {
