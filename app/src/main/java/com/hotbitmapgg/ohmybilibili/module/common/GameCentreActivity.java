@@ -1,11 +1,11 @@
 package com.hotbitmapgg.ohmybilibili.module.common;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -21,9 +21,10 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * 游戏中心
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 游戏中心界面
  */
 public class GameCentreActivity extends RxAppCompatBaseActivity
 {
@@ -54,21 +55,6 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
 
     private List<GameItem> games = new ArrayList<>();
 
-    private Handler mHandler = new Handler()
-    {
-
-        @Override
-        public void handleMessage(Message msg)
-        {
-
-            super.handleMessage(msg);
-            if (msg.what == 0)
-            {
-                hideProgress();
-            }
-        }
-    };
-
 
     @Override
     public int getLayoutId()
@@ -81,34 +67,31 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        initData();
         showProgress();
-
-        mRecycle.setHasFixedSize(true);
-        mRecycle.setLayoutManager(new LinearLayoutManager(GameCentreActivity.this));
-        mRecycle.addItemDecoration(new DividerItemDecoration(GameCentreActivity.this, DividerItemDecoration.VERTICAL_LIST));
-        GameCentreAdapter mAdapter = new GameCentreAdapter(mRecycle, games);
-        mRecycle.setAdapter(mAdapter);
-
-        mHandler.sendEmptyMessageDelayed(0, 2000);
     }
 
     @Override
     public void initToolBar()
     {
 
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
         mToolbar.setTitle("游戏中心");
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        switch (item.getItemId())
         {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                finish();
-            }
-        });
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initData()
@@ -124,6 +107,8 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
 
             games.add(mGameItem);
         }
+
+        hideProgress();
     }
 
 
@@ -133,6 +118,8 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
         mCircleProgressView.setVisibility(View.VISIBLE);
         mCircleProgressView.spin();
         mRecycle.setVisibility(View.GONE);
+
+        initData();
     }
 
     public void hideProgress()
@@ -141,5 +128,17 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
         mRecycle.setVisibility(View.VISIBLE);
+
+        initRecyclerView();
+    }
+
+    private void initRecyclerView()
+    {
+
+        mRecycle.setHasFixedSize(true);
+        mRecycle.setLayoutManager(new LinearLayoutManager(GameCentreActivity.this));
+        mRecycle.addItemDecoration(new DividerItemDecoration(GameCentreActivity.this, DividerItemDecoration.VERTICAL_LIST));
+        GameCentreAdapter mAdapter = new GameCentreAdapter(mRecycle, games);
+        mRecycle.setAdapter(mAdapter);
     }
 }

@@ -22,12 +22,10 @@ import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import butterknife.Bind;
 
 /**
- * 登录
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
  * <p/>
- * 该登录是假登录，随便输入账号都可以
- * 只是觉得B站这个登录界面设计的真心赞!
- *
- * @HotBitmapGG
+ * 登录界面
  */
 public class LoginActivity extends RxAppCompatBaseActivity implements OnClickListener
 {

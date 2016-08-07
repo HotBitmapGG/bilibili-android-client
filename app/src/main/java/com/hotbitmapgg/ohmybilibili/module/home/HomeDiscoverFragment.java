@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
+import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -23,7 +23,7 @@ import butterknife.OnClick;
  *
  * @HotBitmapGG
  */
-public class HomeDiscoverFragment extends BaseHomeFragment
+public class HomeDiscoverFragment extends RxLazyFragment
 {
 
     @Bind(R.id.tags_layout)
@@ -81,18 +81,5 @@ public class HomeDiscoverFragment extends BaseHomeFragment
     void locaMore()
     {
 
-    }
-
-    @Override
-    public void scrollToTop()
-    {
-
-    }
-
-    @Override
-    public boolean canScrollVertically(int direction)
-    {
-
-        return false;
     }
 }

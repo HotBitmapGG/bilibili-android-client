@@ -4,8 +4,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.MenuItem;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
@@ -17,7 +18,7 @@ import butterknife.Bind;
  * Created by hcc on 16/8/7 14:12
  * 100332338@qq.com
  * <p/>
- * App界面界面
+ * App介绍界面
  */
 public class AppIntroduceActivity extends RxAppCompatBaseActivity
 {
@@ -28,6 +29,7 @@ public class AppIntroduceActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
+
     @Override
     public int getLayoutId()
     {
@@ -45,19 +47,25 @@ public class AppIntroduceActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
-            @Override
-            public void onClick(View v)
-            {
-
-                onBackPressed();
-            }
-        });
-        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         mCollapsingToolbarLayout.setTitle(getString(R.string.about) + "v" + getVersion());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private String getVersion()

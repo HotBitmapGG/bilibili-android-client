@@ -65,7 +65,7 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return 6;
+        return recommends.size();
     }
 
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder

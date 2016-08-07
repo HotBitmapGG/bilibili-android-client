@@ -11,16 +11,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.TwoDimensionalRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiRecommendRecyclerAdapter;
-import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
+import com.hotbitmapgg.ohmybilibili.adapter.TwoDimensionalRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.bangumi.BangumiRecommend;
 import com.hotbitmapgg.ohmybilibili.model.bangumi.TwoDimensional;
 import com.hotbitmapgg.ohmybilibili.model.live.Banner;
 import com.hotbitmapgg.ohmybilibili.module.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.bangumi.WeekDayBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
 import com.hotbitmapgg.ohmybilibili.widget.swiperefresh.HeaderViewRecyclerAdapter;
 
@@ -28,8 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -38,7 +39,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 首页番剧界面
  */
-public class HomeBangumiFragment extends BaseHomeFragment
+public class HomeBangumiFragment extends RxLazyFragment
 {
 
     @Bind(R.id.swipe_refresh_layout)
@@ -101,7 +102,6 @@ public class HomeBangumiFragment extends BaseHomeFragment
 
                 mSwipeRefreshLayout.setRefreshing(true);
                 getBangumiRecommends();
-                getTwoDimensionals();
             }
         }, 500);
 
@@ -117,14 +117,32 @@ public class HomeBangumiFragment extends BaseHomeFragment
         });
     }
 
+
     /**
+     * 获取番剧推荐数据
+     * 包含Banner和番剧推荐内容
      * 获取二次元新番
      */
-    private void getTwoDimensionals()
+    private void getBangumiRecommends()
     {
 
-        RetrofitHelper.getTwoDimensionalApi()
-                .getTwoDimensional()
+        RetrofitHelper.getBnagumiRecommendApi()
+                .getBangumiRecommended()
+                .compose(this.<BangumiRecommend> bindToLifecycle())
+                .flatMap(new Func1<BangumiRecommend,Observable<TwoDimensional>>()
+                {
+
+                    @Override
+                    public Observable<TwoDimensional> call(BangumiRecommend bangumiRecommend)
+                    {
+
+                        banners = bangumiRecommend.getBanners();
+                        recommends = bangumiRecommend.getRecommends();
+
+                        return RetrofitHelper.getTwoDimensionalApi()
+                                .getTwoDimensional();
+                    }
+                })
                 .compose(this.<TwoDimensional> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -145,53 +163,6 @@ public class HomeBangumiFragment extends BaseHomeFragment
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.lsw("二次元新番获取失败" + throwable.getMessage());
-                        mSwipeRefreshLayout.post(new Runnable()
-                        {
-
-                            @Override
-                            public void run()
-                            {
-
-                                mSwipeRefreshLayout.setRefreshing(false);
-                            }
-                        });
-                    }
-                });
-    }
-
-    /**
-     * 获取番剧推荐数据
-     * 包含Banner和番剧推荐内容
-     */
-    private void getBangumiRecommends()
-    {
-
-        RetrofitHelper.getBnagumiRecommendApi()
-                .getBangumiRecommended()
-                .compose(this.<BangumiRecommend> bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<BangumiRecommend>()
-                {
-
-
-                    @Override
-                    public void call(BangumiRecommend bangumiRecommend)
-                    {
-
-                        banners = bangumiRecommend.getBanners();
-                        recommends = bangumiRecommend.getRecommends();
-                        //finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        LogUtil.lsw("新番推荐获取失败" + throwable.getMessage());
                         mSwipeRefreshLayout.post(new Runnable()
                         {
 
@@ -287,17 +258,4 @@ public class HomeBangumiFragment extends BaseHomeFragment
         mHeaderViewRecyclerAdapter.addHeaderView(headView_list);
     }
 
-
-    @Override
-    public void scrollToTop()
-    {
-
-    }
-
-    @Override
-    public boolean canScrollVertically(int direction)
-    {
-
-        return false;
-    }
 }

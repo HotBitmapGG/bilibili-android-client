@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.module.common.AppIntroduceActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.HotBitmapGGInfoActivity;
-import com.hotbitmapgg.ohmybilibili.module.common.IQrCodeActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.LoginActivity;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
@@ -26,9 +25,6 @@ import butterknife.Bind;
  */
 public class SettingFragment extends RxLazyFragment implements View.OnClickListener
 {
-
-    @Bind(R.id.rl_common_setting)
-    RelativeLayout mCommomSetting;
 
     @Bind(R.id.rl_about_me)
     RelativeLayout mAboutMe;
@@ -45,6 +41,12 @@ public class SettingFragment extends RxLazyFragment implements View.OnClickListe
     @Bind(R.id.app_version_code)
     TextView mVersionCode;
 
+    public static SettingFragment newInstance()
+    {
+
+        return new SettingFragment();
+    }
+
     @Override
     public int getLayoutResId()
     {
@@ -55,8 +57,6 @@ public class SettingFragment extends RxLazyFragment implements View.OnClickListe
     @Override
     public void finishCreateView(Bundle state)
     {
-
-        mCommomSetting.setOnClickListener(this);
         mAboutMe.setOnClickListener(this);
         mAboutApp.setOnClickListener(this);
         mUpdateApp.setOnClickListener(this);
@@ -71,10 +71,6 @@ public class SettingFragment extends RxLazyFragment implements View.OnClickListe
 
         switch (v.getId())
         {
-            case R.id.rl_common_setting:
-                //通用设置
-                startActivity(new Intent(getActivity(), IQrCodeActivity.class));
-                break;
 
             case R.id.rl_about_me:
                 //关于我

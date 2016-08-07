@@ -32,11 +32,11 @@ import java.util.Random;
 
 import butterknife.Bind;
 
-
 /**
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
+ * <p/>
  * 主界面
- *
- * @HotBitmapGG
  */
 public class MainActivity extends RxAppCompatBaseActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -60,8 +60,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
     @Bind(R.id.user_other_info)
     TextView mUserSign;
 
-    private ActionBar mActionBar;
-
     private ActionBarDrawerToggle mDrawerToggle;
 
     private Fragment[] fragments;
@@ -70,21 +68,10 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
 
     private int index;
 
-    private HomePageFragment mHomePageFragment;
-
-    private SettingFragment mSettingFragment;
-
     private boolean isShowMenu = false;
 
     private Random random;
 
-    private IFavoritesFragment mFavoritesFragment;
-
-    private HistoryFragment mHistoryFragment;
-
-    private AttentionPeopleFragment mAttentionPeopleFragment;
-
-    private ConsumeHistoryFragment mConsumeHistoryFragment;
 
     //随机头像设置数组
     private static final int[] avatars = new int[]{
@@ -105,12 +92,11 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
     public void initViews(Bundle savedInstanceState)
     {
 
+        //初始化Fragment
         initFragments();
-
+        //设置侧滑菜单
         mDrawerLayout.addDrawerListener(new DrawerListener());
         mNavigationView.setNavigationItemSelectedListener(this);
-        // 添加显示第一个fragment
-        getSupportFragmentManager().beginTransaction().add(R.id.container, mHomePageFragment).show(mHomePageFragment).commit();
         //进入应用随机设置头像
         random = new Random(SystemClock.elapsedRealtime());
         mUserAcatarView.setImageResource(avatars[random.nextInt(avatars.length)]);
@@ -125,21 +111,23 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
             public void onClick(View v)
             {
 
-
                 mUserAcatarView.setImageResource(avatars[random.nextInt(avatars.length)]);
             }
         });
     }
 
+    /**
+     * 初始化Fragments
+     */
     private void initFragments()
     {
 
-        mHomePageFragment = new HomePageFragment();
-        mSettingFragment = new SettingFragment();
-        mFavoritesFragment = new IFavoritesFragment();
-        mHistoryFragment = new HistoryFragment();
-        mAttentionPeopleFragment = new AttentionPeopleFragment();
-        mConsumeHistoryFragment = new ConsumeHistoryFragment();
+        HomePageFragment mHomePageFragment = HomePageFragment.newInstance();
+        SettingFragment mSettingFragment = SettingFragment.newInstance();
+        IFavoritesFragment mFavoritesFragment = IFavoritesFragment.newInstance();
+        HistoryFragment mHistoryFragment = HistoryFragment.newInstance();
+        AttentionPeopleFragment mAttentionPeopleFragment = AttentionPeopleFragment.newInstance();
+        ConsumeHistoryFragment mConsumeHistoryFragment = ConsumeHistoryFragment.newInstance();
 
 
         fragments = new Fragment[]{
@@ -150,6 +138,12 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
                 mAttentionPeopleFragment,
                 mConsumeHistoryFragment
         };
+
+        // 添加显示第一个fragment
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container, mHomePageFragment)
+                .show(mHomePageFragment).commit();
     }
 
     @Override
@@ -158,7 +152,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
 
         mToolbar.setLogo(R.drawable.ic_bili_logo_white);
         setSupportActionBar(mToolbar);
-        mActionBar = getSupportActionBar();
+        ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)
         {
             mActionBar.setDisplayHomeAsUpEnabled(true);
@@ -265,14 +259,11 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
                 mToolbar.setLogo(R.drawable.ic_bili_logo_white);
                 mToolbar.setTitle("");
                 setMenuShow(false);
-
                 return true;
-
 
             case R.id.item_download:
                 // 离线缓存
                 startActivity(new Intent(MainActivity.this, OffLineDownloadActivity.class));
-
                 return true;
 
             case R.id.item_favourite:
@@ -293,7 +284,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
                 mToolbar.setTitle("历史记录");
                 mToolbar.setLogo(null);
                 setMenuShow(true);
-
                 return true;
 
             case R.id.item_group:
@@ -304,7 +294,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
                 mToolbar.setTitle("关注的人");
                 mToolbar.setLogo(null);
                 setMenuShow(true);
-
                 return true;
 
             case R.id.item_tracker:
@@ -335,13 +324,18 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
                 mToolbar.setTitle("设置与帮助");
                 mToolbar.setLogo(null);
                 setMenuShow(true);
-
                 return true;
         }
 
         return false;
     }
 
+
+    /**
+     * Fragment切换
+     *
+     * @param fragment
+     */
     private void setShowingFragment(Fragment fragment)
     {
 

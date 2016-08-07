@@ -53,9 +53,6 @@
 
 
         <!-- 我的二维码 -->
-        <activity
-            android:name=".module.common.IQrCodeActivity"
-            android:screenOrientation="portrait"/>
 
         <!-- APP简介界面 -->
         <activity

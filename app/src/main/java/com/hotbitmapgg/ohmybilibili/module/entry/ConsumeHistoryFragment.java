@@ -20,6 +20,12 @@ public class ConsumeHistoryFragment extends RxLazyFragment
     @Bind(R.id.empty_view)
     EmptyView mEmptyView;
 
+    public static ConsumeHistoryFragment newInstance()
+    {
+
+        return new ConsumeHistoryFragment();
+    }
+
     @Override
     public int getLayoutResId()
     {

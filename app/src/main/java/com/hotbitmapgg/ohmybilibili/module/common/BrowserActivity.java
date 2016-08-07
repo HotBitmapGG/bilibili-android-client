@@ -25,9 +25,10 @@ import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import butterknife.Bind;
 
 /**
- * 浏览器WebView
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 浏览器界面
  */
 public class BrowserActivity extends RxAppCompatBaseActivity implements DownloadListener
 {
@@ -167,7 +168,7 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
             view.loadDataWithBaseURL(null, errorHtml, "text/html", "UTF-8", null);
         }
     }
-    
+
     @Override
     public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength)
     {
@@ -212,6 +213,7 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
     {
 
         mWebView.destroy();
+        mHandler.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
 }

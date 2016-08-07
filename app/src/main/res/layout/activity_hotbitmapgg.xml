@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_layout"/>
+    <include layout="@layout/toolbar_layout" />
 
     <com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +25,7 @@
                 android:layout_marginTop="20dp"
                 android:src="@drawable/ic_bg"
                 app:border_color="@color/gray"
-                app:border_width="1dp"/>
+                app:border_width="1dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,13 +33,13 @@
                 android:layout_marginTop="40dp"
                 android:text="HotBitmapGG"
                 android:textColor="@color/font_normal"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <View
                 android:layout_width="120dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@android:color/darker_gray" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -48,7 +47,7 @@
                 android:layout_marginTop="30dp"
                 android:autoLink="web"
                 android:text="GitHub:https://github.com/HotBitmapGG"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
 
             <TextView
@@ -57,7 +56,7 @@
                 android:layout_marginTop="30dp"
                 android:autoLink="web"
                 android:text="新浪微博:http://m.weibo.cn/users/3223089177/qq"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
 
             <TextView
@@ -66,7 +65,7 @@
                 android:layout_marginTop="30dp"
                 android:autoLink="web"
                 android:text="简书:http://www.jianshu.com/notebooks/5181955/latest"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
 
         </LinearLayout>

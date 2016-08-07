@@ -10,8 +10,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.MoreLayoutAdapter;
+import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
-import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
 import com.hotbitmapgg.ohmybilibili.model.partition.PartitionMoreTitle;
 import com.hotbitmapgg.ohmybilibili.model.partition.PartitionMoreType;
 import com.hotbitmapgg.ohmybilibili.module.partition.PartitionMoreActivity;
@@ -27,7 +27,7 @@ import butterknife.Bind;
  *
  * @HotBitmapGG
  */
-public class HomeMoreFragment extends BaseHomeFragment
+public class HomeMoreFragment extends RxLazyFragment
 {
 
     @Bind(R.id.more_layout)
@@ -321,19 +321,5 @@ public class HomeMoreFragment extends BaseHomeFragment
         bundle.putString("typeTitle", typeTitle);
         mIntent.putExtras(bundle);
         startActivity(mIntent);
-    }
-
-    @Override
-    public void scrollToTop()
-    {
-
-        mMoreLayout.smoothScrollToPosition(0);
-    }
-
-    @Override
-    public boolean canScrollVertically(int direction)
-    {
-        // TODO Auto-generated method stub
-        return mMoreLayout != null && mMoreLayout.canScrollVertically(direction);
     }
 }

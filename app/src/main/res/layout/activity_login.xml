@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/bacground"
-                android:fitsSystemWindows="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bacground"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/login_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        app:elevation="0dp"
-        >
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -21,8 +20,7 @@
             android:background="@color/top_bar_bg"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            />
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
     </android.support.design.widget.AppBarLayout>
@@ -40,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_22"/>
+            android:src="@drawable/ic_22" />
 
         <ImageView
             android:id="@+id/iv_icon_centre"
@@ -48,14 +46,14 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/ic_bili_logo"/>
+            android:src="@drawable/ic_bili_logo" />
 
         <ImageView
             android:id="@+id/iv_icon_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_33"/>
+            android:src="@drawable/ic_33" />
     </RelativeLayout>
 
     <TextView
@@ -68,7 +66,7 @@
         android:text="@string/app_name"
         android:textColor="@color/black_alpha"
         android:textSize="16sp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/login_ll"
@@ -103,7 +101,7 @@
                 android:singleLine="true"
                 android:textColor="@color/login_text_color"
                 android:textColorHint="@color/text_hint"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <ImageButton
                 android:id="@+id/delete_username"
@@ -113,13 +111,13 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="8dp"
                 android:src="@drawable/ic_edittext_clear"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#dadada"/>
+            android:background="#dadada" />
 
         <EditText
             android:id="@+id/et_password"
@@ -135,7 +133,7 @@
             android:singleLine="true"
             android:textColor="@color/login_text_color"
             android:textColorHint="@color/text_hint"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
     </LinearLayout>
 
 
@@ -152,7 +150,7 @@
         android:gravity="center"
         android:text="登录"
         android:textColor="@color/white"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
 
 </RelativeLayout>

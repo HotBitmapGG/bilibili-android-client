@@ -29,6 +29,12 @@ public class HomePageFragment extends RxLazyFragment
 
     private HomePagerAdapter mHomeAdapter;
 
+    public static HomePageFragment newInstance()
+    {
+
+        return new HomePageFragment();
+    }
+
 
     @Override
     public int getLayoutResId()

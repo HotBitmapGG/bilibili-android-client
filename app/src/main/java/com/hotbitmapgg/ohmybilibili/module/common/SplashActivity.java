@@ -20,9 +20,10 @@ import butterknife.ButterKnife;
 
 
 /**
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
+ * <p/>
  * 欢迎页
- *
- * @HotBitmapGG
  */
 public class SplashActivity extends Activity
 {

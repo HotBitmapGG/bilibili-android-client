@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.LiveFragmentAdapter;
-import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
+import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.base.Result;
 import com.hotbitmapgg.ohmybilibili.model.live.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
@@ -25,7 +25,7 @@ import rx.schedulers.Schedulers;
  *
  * @HotBitmapGG
  */
-public class HomeLiveFragment extends BaseHomeFragment
+public class HomeLiveFragment extends RxLazyFragment
 {
 
     @Bind(R.id.frag_live_recycler)
@@ -137,18 +137,5 @@ public class HomeLiveFragment extends BaseHomeFragment
                         liveRecyclerView.scrollToPosition(0);
                     }
                 });
-    }
-
-    @Override
-    public void scrollToTop()
-    {
-
-    }
-
-    @Override
-    public boolean canScrollVertically(int direction)
-    {
-
-        return false;
     }
 }

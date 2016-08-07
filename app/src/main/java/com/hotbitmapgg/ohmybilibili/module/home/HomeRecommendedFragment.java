@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendedRecyclerAdapter;
-import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
+import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.live.Banner;
 import com.hotbitmapgg.ohmybilibili.model.recommended.Body;
 import com.hotbitmapgg.ohmybilibili.model.recommended.Recommend;
@@ -33,7 +33,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 新的主页推荐界面
  */
-public class HomeRecommendedFragment extends BaseHomeFragment
+public class HomeRecommendedFragment extends RxLazyFragment
 {
 
     @Bind(R.id.swipe_refresh_layout)
@@ -187,19 +187,5 @@ public class HomeRecommendedFragment extends BaseHomeFragment
         BannerView bannerView = (BannerView) headView.findViewById(R.id.home_recommended_banner);
         bannerView.delayTime(5).build(banners);
         mHeaderViewRecyclerAdapter.addHeaderView(headView);
-    }
-
-
-    @Override
-    public void scrollToTop()
-    {
-
-    }
-
-    @Override
-    public boolean canScrollVertically(int direction)
-    {
-
-        return false;
     }
 }

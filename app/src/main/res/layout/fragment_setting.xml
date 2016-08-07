@@ -18,34 +18,6 @@
 
 
             <RelativeLayout
-                android:id="@+id/rl_common_setting"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/btn_selector">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="20dp"
-                    android:text="我的二维码"
-                    android:textColor="@color/font_normal"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="15dp"
-                    android:src="@drawable/register_bottom_arrow" />
-            </RelativeLayout>
-
-
-            <RelativeLayout
                 android:id="@+id/rl_about_me"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
@@ -115,6 +87,7 @@
                 android:id="@+id/rl_update"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/btn_selector">
 
                 <TextView

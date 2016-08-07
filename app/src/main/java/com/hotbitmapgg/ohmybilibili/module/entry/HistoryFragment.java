@@ -20,6 +20,11 @@ public class HistoryFragment extends RxLazyFragment
     @Bind(R.id.empty_view)
     EmptyView mEmptyView;
 
+    public static HistoryFragment newInstance()
+    {
+
+        return new HistoryFragment();
+    }
 
     @Override
     public int getLayoutResId()

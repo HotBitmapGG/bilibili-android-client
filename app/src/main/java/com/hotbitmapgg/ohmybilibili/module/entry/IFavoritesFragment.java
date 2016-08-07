@@ -20,6 +20,12 @@ public class IFavoritesFragment extends RxLazyFragment
     @Bind(R.id.empty_view)
     EmptyView mEmptyView;
 
+    public static IFavoritesFragment newInstance()
+    {
+
+        return new IFavoritesFragment();
+    }
+
     @Override
     public int getLayoutResId()
     {

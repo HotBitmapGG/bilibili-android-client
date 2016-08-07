@@ -20,6 +20,12 @@ public class AttentionPeopleFragment extends RxLazyFragment
     @Bind(R.id.empty_view)
     EmptyView mEmptyView;
 
+    public static AttentionPeopleFragment newInstance()
+    {
+
+        return new AttentionPeopleFragment();
+    }
+
     @Override
     public int getLayoutResId()
     {

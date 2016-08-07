@@ -6,30 +6,31 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.BaseHomeFragment;
-import com.hotbitmapgg.ohmybilibili.module.common.PlaceholderFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeBangumiFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeDiscoverFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeLiveFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeMoreFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeRecommendedFragment;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 主界面Fragment模块
  */
 public class HomePagerAdapter extends FragmentPagerAdapter
 {
 
     private final String[] TITLES;
 
-    private BaseHomeFragment[] fragments;
+    private Fragment[] fragments;
 
     public HomePagerAdapter(FragmentManager fm, Context context)
     {
 
         super(fm);
         TITLES = context.getResources().getStringArray(R.array.sections);
-        fragments = new BaseHomeFragment[TITLES.length];
+        fragments = new Fragment[TITLES.length];
     }
 
     @Override
@@ -56,7 +57,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter
                     fragments[position] = HomeDiscoverFragment.newInstance();
                     break;
                 default:
-                    fragments[position] = PlaceholderFragment.newInstance();
+                    break;
             }
         }
         return fragments[position];
@@ -74,20 +75,5 @@ public class HomePagerAdapter extends FragmentPagerAdapter
     {
 
         return TITLES[position];
-    }
-
-    public void scrollToTop(int pos)
-    {
-
-        if (fragments[pos] != null)
-        {
-            fragments[pos].scrollToTop();
-        }
-    }
-
-    public boolean canScrollVertically(int position, int direction)
-    {
-
-        return fragments[position] != null && fragments[position].canScrollVertically(direction);
     }
 }
