@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget.navigation;
+package com.hotbitmapgg.ohmybilibili.widget.navigation_view;
 
 import android.content.Context;
 import android.content.res.ColorStateList;

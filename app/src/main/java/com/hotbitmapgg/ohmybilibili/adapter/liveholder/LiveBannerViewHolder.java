@@ -9,6 +9,12 @@ import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 直播界面Banner ViewHolder
+ */
 public class LiveBannerViewHolder extends RecyclerView.ViewHolder
 {
 

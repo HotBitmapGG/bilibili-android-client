@@ -13,9 +13,12 @@ import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 用户粉丝Adapter
  */
 public class UserFansAdapter extends AbsRecyclerViewAdapter
 {
@@ -44,9 +47,9 @@ public class UserFansAdapter extends AbsRecyclerViewAdapter
 
         super.onBindViewHolder(holder, position);
 
-        if(holder instanceof  itemViewHolder)
+        if (holder instanceof itemViewHolder)
         {
-            itemViewHolder mHolder =  (itemViewHolder) holder;
+            itemViewHolder mHolder = (itemViewHolder) holder;
             UserFans.FansInfo fansInfo = infos.get(position);
             Picasso.with(getContext()).load(fansInfo.face).into(mHolder.mUserAvatar);
             mHolder.mUserName.setText(fansInfo.uname);
@@ -55,6 +58,7 @@ public class UserFansAdapter extends AbsRecyclerViewAdapter
 
     public void addData(UserFans.FansInfo fansInfo)
     {
+
         infos.add(fansInfo);
     }
 

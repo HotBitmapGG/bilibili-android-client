@@ -11,9 +11,10 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 
 /**
- * 显示没有数据时和加载数据失败的EmptyView
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 自定义EmptyView
  */
 public class EmptyView extends FrameLayout
 {

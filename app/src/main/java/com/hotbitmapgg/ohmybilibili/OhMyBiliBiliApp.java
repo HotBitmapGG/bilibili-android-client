@@ -14,10 +14,10 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 /**
- * OhMyBiliBiliApp
- * 高仿哔哩哔哩动画
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 高仿哔哩哔哩动画App
  */
 public class OhMyBiliBiliApp extends Application
 {

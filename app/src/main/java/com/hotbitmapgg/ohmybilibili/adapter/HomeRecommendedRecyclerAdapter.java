@@ -21,6 +21,8 @@ import java.util.List;
 /**
  * Created by hcc on 16/8/4 12:45
  * 100332338@qq.com
+ * <p/>
+ * 首页推荐ItemAdapter
  */
 public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
 {
@@ -81,15 +83,14 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
                 itemViewHolder.mTypeMore.setVisibility(View.VISIBLE);
                 itemViewHolder.mAllLiveNum.setVisibility(View.VISIBLE);
                 itemViewHolder.mAllLiveNum.setText("当前" + result.getHead().getCount() + "个直播");
-            }
-            else
+            } else
             {
                 itemViewHolder.mTypeRankBtn.setVisibility(View.GONE);
                 itemViewHolder.mTypeMore.setVisibility(View.VISIBLE);
                 itemViewHolder.mAllLiveNum.setVisibility(View.GONE);
             }
 
-            initGrid(itemViewHolder, result,position);
+            initGrid(itemViewHolder, result, position);
             setRankBtnClick(itemViewHolder);
         }
         super.onBindViewHolder(holder, position);
@@ -110,14 +111,14 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
         });
     }
 
-    private void initGrid(ItemViewHolder itemViewHolder, Result result , int pos)
+    private void initGrid(ItemViewHolder itemViewHolder, Result result, int pos)
     {
 
         ArrayList<Body> body = result.getBody();
         itemViewHolder.mItemRecycle.setHasFixedSize(true);
         itemViewHolder.mItemRecycle.setNestedScrollingEnabled(false);
         itemViewHolder.mItemRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        HomeRecommendedGridAdapter mGridAdapter = new HomeRecommendedGridAdapter(itemViewHolder.mItemRecycle, body , pos);
+        HomeRecommendedGridAdapter mGridAdapter = new HomeRecommendedGridAdapter(itemViewHolder.mItemRecycle, body, pos);
         itemViewHolder.mItemRecycle.setAdapter(mGridAdapter);
         mGridAdapter.setOnItemClickListener(new OnItemClickListener()
         {

@@ -20,7 +20,7 @@ import java.util.List;
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
  * <p/>
- * 全区排行Adapter
+ * 9个分区热门视频查看GridAdapter
  */
 public class AllRankGridAdapter extends AbsRecyclerViewAdapter
 {

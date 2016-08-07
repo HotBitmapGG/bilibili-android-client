@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.LiveFragmentAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.BiliBiliLiveRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.base.Result;
 import com.hotbitmapgg.ohmybilibili.model.live.LiveIndex;
@@ -35,7 +35,7 @@ public class HomeLiveFragment extends RxLazyFragment
     @Bind(R.id.frag_live_refresh)
     SwipeRefreshLayout liveRefresh;
 
-    private LiveFragmentAdapter liveFragmentAdapter;
+    private BiliBiliLiveRecyclerAdapter biliBiliLiveRecyclerAdapter;
 
 
     public static HomeLiveFragment newIntance()
@@ -64,8 +64,8 @@ public class HomeLiveFragment extends RxLazyFragment
     {
 
         liveRefresh.setColorSchemeResources(R.color.primary);
-        liveFragmentAdapter = new LiveFragmentAdapter(getActivity());
-        liveRecyclerView.setAdapter(liveFragmentAdapter);
+        biliBiliLiveRecyclerAdapter = new BiliBiliLiveRecyclerAdapter(getActivity());
+        liveRecyclerView.setAdapter(biliBiliLiveRecyclerAdapter);
 
         GridLayoutManager layout = new GridLayoutManager(getActivity(), 12);
         layout.setOrientation(LinearLayoutManager.VERTICAL);
@@ -76,7 +76,7 @@ public class HomeLiveFragment extends RxLazyFragment
             public int getSpanSize(int position)
             {
 
-                return liveFragmentAdapter.getSpanSize(position);
+                return biliBiliLiveRecyclerAdapter.getSpanSize(position);
             }
         });
 
@@ -148,8 +148,8 @@ public class HomeLiveFragment extends RxLazyFragment
                     public void onNext(LiveIndex liveIndex)
                     {
 
-                        liveFragmentAdapter.setLiveIndex(liveIndex);
-                        liveFragmentAdapter.notifyDataSetChanged();
+                        biliBiliLiveRecyclerAdapter.setLiveIndex(liveIndex);
+                        biliBiliLiveRecyclerAdapter.notifyDataSetChanged();
                         liveRecyclerView.scrollToPosition(0);
                     }
                 });

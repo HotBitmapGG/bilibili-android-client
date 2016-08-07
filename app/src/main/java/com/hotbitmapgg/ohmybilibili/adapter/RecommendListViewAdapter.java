@@ -14,9 +14,12 @@ import com.hotbitmapgg.ohmybilibili.model.video.VideoItemInfo;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 暂时没用的按类型查询的推荐视频Adapter
  */
 public class RecommendListViewAdapter extends AbsRecyclerViewAdapter
 {
@@ -79,7 +82,7 @@ public class RecommendListViewAdapter extends AbsRecyclerViewAdapter
 
         public TextView mPlayNum;
 
-		public TextView  mReviewNum;
+        public TextView mReviewNum;
 
 
         public CardHolder(View itemView)

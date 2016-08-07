@@ -16,9 +16,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 关注的人Adapter
  */
 public class UserItemRecyclerAdapter extends AbsRecyclerViewAdapter
 {
@@ -44,14 +47,13 @@ public class UserItemRecyclerAdapter extends AbsRecyclerViewAdapter
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
 
-        if(holder instanceof ItemViewHolder)
+        if (holder instanceof ItemViewHolder)
         {
             String temp;
-            ItemViewHolder mHolder = (ItemViewHolder)holder;
+            ItemViewHolder mHolder = (ItemViewHolder) holder;
             mHolder.mUserName.setText(!TextUtils.isEmpty(temp = items.get(position).name) ? temp : !TextUtils.isEmpty(temp = items.get(position).uname) ? temp : items.get(position).userid);
 
             Picasso.with(getContext()).load(UrlHelper.getFaceUrl(items.get(position))).placeholder(R.drawable.ico_user_default).into(mHolder.mUserPhoto);
-
         }
 
         super.onBindViewHolder(holder, position);

@@ -11,10 +11,10 @@ import android.view.ViewGroup.LayoutParams;
 import com.hotbitmapgg.ohmybilibili.utils.DeviceUtils;
 
 /**
- * Vitamio提供的VideoView
- * 用于播放视频
- *
- * @HotBitmaoGG
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 自定义VideoView
  */
 public class VideoView extends SurfaceView
 {

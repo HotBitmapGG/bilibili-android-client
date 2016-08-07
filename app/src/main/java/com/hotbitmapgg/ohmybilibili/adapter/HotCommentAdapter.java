@@ -15,9 +15,12 @@ import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 热门评论Adapter
  */
 public class HotCommentAdapter extends AbsRecyclerViewAdapter
 {

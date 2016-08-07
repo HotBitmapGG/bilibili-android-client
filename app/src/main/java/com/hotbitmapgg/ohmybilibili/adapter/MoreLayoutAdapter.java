@@ -13,6 +13,8 @@ import com.hotbitmapgg.ohmybilibili.R;
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 首页分区Adapter
  */
 public class MoreLayoutAdapter extends BaseAdapter
 {

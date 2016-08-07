@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget.recycle;
+package com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,9 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * RecycleView分割线实现类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * RecyclerView分割线
  */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration
 {

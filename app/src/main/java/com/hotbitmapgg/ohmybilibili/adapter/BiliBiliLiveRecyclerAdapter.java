@@ -21,11 +21,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * B站直播Adapter
  */
-public class LiveFragmentAdapter extends RecyclerView.Adapter
+public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 {
 
     private Context context;
@@ -38,21 +41,23 @@ public class LiveFragmentAdapter extends RecyclerView.Adapter
 
     private List<Banner> banner;
 
-    private static final int TYPE_ENTRANCE = 0;     //快速入口
+    //快速入口
+    private static final int TYPE_ENTRANCE = 0;
 
-    private static final int TYPE_LIVE_ITEM = 1;    //直播Item
+    //直播Item
+    private static final int TYPE_LIVE_ITEM = 1;
 
-    private static final int TYPE_PARTITION = 2;    //分类Title
+    //分类Title
+    private static final int TYPE_PARTITION = 2;
 
-    private static final int TYPE_BANNER = 3;       //直播页Banner
+    //直播页Banner
+    private static final int TYPE_BANNER = 3;
 
-    public LiveFragmentAdapter(Context context)
+    public BiliBiliLiveRecyclerAdapter(Context context)
     {
 
         this.context = context;
     }
-
-    //    private int[] liveSize = new int[];
     private List<Integer> liveSizes = new ArrayList<>();
 
     private int tempSize;
@@ -74,7 +79,6 @@ public class LiveFragmentAdapter extends RecyclerView.Adapter
         {
             liveSizes.add(tempSize);
             tempSize += data.partitions.get(i).lives.size();
-//            liveSize[i] = tempSize;
         }
     }
 
@@ -130,38 +134,45 @@ public class LiveFragmentAdapter extends RecyclerView.Adapter
         if (holder instanceof LiveEntranceViewHolder)
         {
             ((LiveEntranceViewHolder) holder).title.setText(liveIndex.entranceIcons.get(position).name);
-            Picasso.with(context).load(liveIndex.entranceIcons.get(position).entrance_icon.src).into(((LiveEntranceViewHolder) holder).image);
-            //((LiveEntranceViewHolder) holder).image.setUrl(liveIndex.entranceIcons.get(position).entrance_icon.src);
+            Picasso.with(context)
+                    .load(liveIndex.entranceIcons.get(position).entrance_icon.src)
+                    .into(((LiveEntranceViewHolder) holder).image);
         } else if (holder instanceof LiveItemViewHolder)
         {
             try
             {
-                item = liveIndex.partitions.get(partitionCol(position)).lives.get(position - 1 - entranceSize - partitionCol(position) * 5);
+                item = liveIndex.partitions.get(partitionCol(position))
+                        .lives.get(position - 1 - entranceSize - partitionCol(position) * 5);
 
-            //((LiveItemViewHolder) holder).itemLiveCover.setUrl(item.cover.src);
-            Picasso.with(context).load(item.cover.src).placeholder(R.drawable.bili_default_image_tv).into(((LiveItemViewHolder) holder).itemLiveCover);
-            ((LiveItemViewHolder) holder).itemLiveTitle.setText(item.title);
-            ((LiveItemViewHolder) holder).itemLiveUser.setText(item.owner.name);
-            Picasso.with(context).load(item.owner.face).into(((LiveItemViewHolder) holder).itemLiveUserCover);
-            //((LiveItemViewHolder) holder).itemLiveUserCover.avatar().setUrl(item.owner.face);
-            ((LiveItemViewHolder) holder).itemLiveCount.setText(item.online + "");
-            ((LiveItemViewHolder) holder).itemLiveLayout.setOnClickListener(new View.OnClickListener()
-            {
+                Picasso.with(context)
+                        .load(item.cover.src)
+                        .placeholder(R.drawable.bili_default_image_tv)
+                        .into(((LiveItemViewHolder) holder).itemLiveCover);
 
-                @Override
-                public void onClick(View v)
+                ((LiveItemViewHolder) holder).itemLiveTitle.setText(item.title);
+                ((LiveItemViewHolder) holder).itemLiveUser.setText(item.owner.name);
+
+                Picasso.with(context)
+                        .load(item.owner.face)
+                        .into(((LiveItemViewHolder) holder).itemLiveUserCover);
+                ((LiveItemViewHolder) holder).itemLiveCount.setText(item.online + "");
+                ((LiveItemViewHolder) holder).itemLiveLayout.setOnClickListener(new View.OnClickListener()
                 {
 
-                    Intent intent = new Intent(context, BiliBiliLivePlayerActivity.class);
-                    intent.putExtra("cid", item.room_id);
-                    intent.putExtra("title", item.title);
-                    intent.putExtra("online", item.online);
-                    intent.putExtra("face", item.owner.face);
-                    intent.putExtra("name", item.owner.name);
-                    intent.putExtra("mid", item.owner.mid);
-                    context.startActivity(intent);
-                }
-            });
+                    @Override
+                    public void onClick(View v)
+                    {
+
+                        Intent intent = new Intent(context, BiliBiliLivePlayerActivity.class);
+                        intent.putExtra("cid", item.room_id);
+                        intent.putExtra("title", item.title);
+                        intent.putExtra("online", item.online);
+                        intent.putExtra("face", item.owner.face);
+                        intent.putExtra("name", item.owner.name);
+                        intent.putExtra("mid", item.owner.mid);
+                        context.startActivity(intent);
+                    }
+                });
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -169,8 +180,10 @@ public class LiveFragmentAdapter extends RecyclerView.Adapter
         } else if (holder instanceof LivePartitionViewHolder)
         {
             partition = liveIndex.partitions.get(partitionCol(position)).partition;
-            Picasso.with(context).load(partition.sub_icon.src).into(((LivePartitionViewHolder) holder).itemIcon);
-            //((LivePartitionViewHolder) holder).itemIcon.setUrl(partition.sub_icon.src);
+            Picasso.with(context)
+                    .load(partition.sub_icon.src)
+                    .into(((LivePartitionViewHolder) holder).itemIcon);
+
             ((LivePartitionViewHolder) holder).itemTitle.setText(partition.name);
             ((LivePartitionViewHolder) holder).itemCount.setText("当前" + partition.count + "个直播");
         } else if (holder instanceof LiveBannerViewHolder)
@@ -187,7 +200,6 @@ public class LiveFragmentAdapter extends RecyclerView.Adapter
         {
             return 1 + liveIndex.entranceIcons.size()
                     + liveIndex.partitions.size() * 5;
-//                    + tempSize;
         } else
         {
             return 0;

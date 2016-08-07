@@ -15,9 +15,12 @@ import com.hotbitmapgg.ohmybilibili.model.bangumi.Bangumi;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 番剧放送表Adapter
  */
 public class BangumiTimeLineRecycleAdapter extends AbsRecyclerViewAdapter
 {
@@ -54,15 +57,13 @@ public class BangumiTimeLineRecycleAdapter extends AbsRecyclerViewAdapter
             holder.mWeekdayView.setText(String.format(getContext().getString(R.string.weekday_update), getContext().getResources().getStringArray(R.array.weekdays)[getItem(position).weekday])
             );
 
-            if(!TextUtils.isEmpty(getItem(position).cover))
+            if (!TextUtils.isEmpty(getItem(position).cover))
             {
                 Picasso.with(getContext()).load(Uri.parse(getItem(position).cover)).placeholder(R.drawable.bili_default_image_tv).error(R.drawable.bili_default_image_tv).into(holder.mPreviewImage);
-            }
-            else
+            } else
             {
                 holder.mPreviewImage.setImageResource(R.drawable.bili_default_image_tv);
             }
-
         }
     }
 

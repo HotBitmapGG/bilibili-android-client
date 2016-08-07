@@ -18,7 +18,7 @@ import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.user.UserInfo;
 import com.hotbitmapgg.ohmybilibili.network.api.FriendApi;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.hotbitmapgg.ohmybilibili.widget.recycle.DividerItemDecoration;
+import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;

@@ -19,7 +19,7 @@ import java.util.List;
  * Created by hcc on 16/8/6 14:31
  * 100332338@qq.com
  * <p/>
- * 二次元新番Adapter
+ * 首页番剧推荐Adapter
  */
 public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
 {

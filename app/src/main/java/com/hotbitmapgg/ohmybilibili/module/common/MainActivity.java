@@ -26,7 +26,7 @@ import com.hotbitmapgg.ohmybilibili.module.entry.OffLineDownloadActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.SettingFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
-import com.hotbitmapgg.ohmybilibili.widget.navigation.NavigationView;
+import com.hotbitmapgg.ohmybilibili.widget.navigation_view.NavigationView;
 
 import java.util.Random;
 

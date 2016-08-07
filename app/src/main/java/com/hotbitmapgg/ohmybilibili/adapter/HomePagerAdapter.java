@@ -16,7 +16,7 @@ import com.hotbitmapgg.ohmybilibili.module.home.HomeRecommendedFragment;
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
  * <p/>
- * 主界面Fragment模块
+ * 主界面Fragment模块Adapter
  */
 public class HomePagerAdapter extends FragmentPagerAdapter
 {

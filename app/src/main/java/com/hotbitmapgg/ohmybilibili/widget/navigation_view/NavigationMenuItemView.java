@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget.navigation;
+package com.hotbitmapgg.ohmybilibili.widget.navigation_view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

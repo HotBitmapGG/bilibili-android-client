@@ -19,10 +19,10 @@ import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
 import com.squareup.picasso.Picasso;
 
 /**
- * 用于视频详情展示用户头像+用户名的View
- * 方便使用
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 用户Tag自定义View
  */
 public class UserTagView extends FrameLayout
 {

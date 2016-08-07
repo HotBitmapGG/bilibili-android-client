@@ -9,9 +9,10 @@ import butterknife.ButterKnife;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * 全局Activity基类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * Activity基类
  */
 public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity
 {

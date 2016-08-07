@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.hotbitmapgg.ohmybilibili.widget.roundedimageview;
+package com.hotbitmapgg.ohmybilibili.widget.rounded_imageview;
 
 
 import android.content.res.ColorStateList;

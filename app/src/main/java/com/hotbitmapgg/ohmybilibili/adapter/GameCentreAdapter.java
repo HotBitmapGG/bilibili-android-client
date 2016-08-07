@@ -17,9 +17,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 游戏中心Adapter
  */
 public class GameCentreAdapter extends AbsRecyclerViewAdapter
 {

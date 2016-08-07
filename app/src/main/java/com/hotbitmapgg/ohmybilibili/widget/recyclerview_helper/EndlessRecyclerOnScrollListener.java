@@ -1,8 +1,14 @@
-package com.hotbitmapgg.ohmybilibili.widget.swiperefresh;
+package com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+/**
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 自定义RecylcerView上拉加载处理
+ */
 public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener
 {
 

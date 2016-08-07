@@ -8,6 +8,12 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+/**
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * Banner适配器
+ */
 public class BannerAdapter extends PagerAdapter
 {
 
@@ -44,11 +50,6 @@ public class BannerAdapter extends PagerAdapter
         }
         ImageView v = mList.get(position);
         v.setScaleType(ImageView.ScaleType.FIT_XY);
-//        GenericDraweeHierarchy hierarchy = v.getBuilder()
-//                .setActualImageScaleType(ScalingUtils.ScaleType.FIT_CENTER)
-//                .build();
-//        v.setHierarchy(hierarchy);
-
         //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
         ViewParent vp = v.getParent();
         if (vp != null)

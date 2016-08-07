@@ -15,9 +15,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- * Created by hcc on 16/8/4 14:12
+ * Created by hcc on 16/8/7 21:18
  * 100332338@qq.com
+ * <p/>
+ * UP主上传视频查看Adapter
  */
 public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 {

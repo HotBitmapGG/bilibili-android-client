@@ -38,7 +38,7 @@
     </android.support.design.widget.CoordinatorLayout>
 
 
-    <com.hotbitmapgg.ohmybilibili.widget.navigation.NavigationView
+    <com.hotbitmapgg.ohmybilibili.widget.navigation_view.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="@dimen/navigation_max_width"
         android:layout_height="match_parent"

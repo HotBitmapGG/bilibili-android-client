@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget.swiperefresh;
+package com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,6 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * RecyclerView添加HeadAndFoot辅助类
+ */
 public class HeaderViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
 

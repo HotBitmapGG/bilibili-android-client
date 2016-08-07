@@ -13,7 +13,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.GameCentreAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.game.GameItem;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.hotbitmapgg.ohmybilibili.widget.recycle.DividerItemDecoration;
+import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;

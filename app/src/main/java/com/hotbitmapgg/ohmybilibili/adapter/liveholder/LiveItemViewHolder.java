@@ -12,6 +12,12 @@ import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 直播界面Grid Item ViewHolder
+ */
 public class LiveItemViewHolder extends RecyclerView.ViewHolder
 {
 

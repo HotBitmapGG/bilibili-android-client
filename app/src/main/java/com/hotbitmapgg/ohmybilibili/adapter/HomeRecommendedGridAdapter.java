@@ -21,6 +21,8 @@ import java.util.List;
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 首页推荐GridAdapter
  */
 public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
 {
@@ -71,12 +73,11 @@ public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
                 itemViewHolder.mLiveLayout.setVisibility(View.VISIBLE);
                 itemViewHolder.mVideoLayout.setVisibility(View.GONE);
                 itemViewHolder.mLiveUp.setText(body.getDesc1());
-            } else if(pos == 9)
+            } else if (pos == 9)
             {
                 itemViewHolder.mLiveLayout.setVisibility(View.GONE);
                 itemViewHolder.mVideoLayout.setVisibility(View.GONE);
-            }
-            else
+            } else
             {
                 itemViewHolder.mLiveLayout.setVisibility(View.GONE);
                 itemViewHolder.mVideoLayout.setVisibility(View.VISIBLE);

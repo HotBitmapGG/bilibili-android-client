@@ -10,6 +10,12 @@ import com.hotbitmapgg.ohmybilibili.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 直播界面分区类型 ViewHolder
+ */
 public class LivePartitionViewHolder extends RecyclerView.ViewHolder
 {
 

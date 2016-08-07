@@ -15,9 +15,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
+ * <p/>
+ * 用户上传更多视频查看Adapter
  */
 public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 {
@@ -71,6 +74,7 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 
     public void addData(UserVideoItem item)
     {
+
         userVideoList.add(item);
     }
 

@@ -15,9 +15,10 @@ import butterknife.ButterKnife;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * 全区Fragment基类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * Fragment基类
  */
 public abstract class RxLazyFragment extends RxFragment
 {

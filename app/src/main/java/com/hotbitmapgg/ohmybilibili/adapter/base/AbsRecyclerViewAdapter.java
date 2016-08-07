@@ -12,7 +12,7 @@ import java.util.List;
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
  * <p/>
- * RecycleViewAdapter 基类
+ * RecycleViewAdapter基类
  */
 public abstract class AbsRecyclerViewAdapter extends RecyclerView.Adapter<AbsRecyclerViewAdapter.ClickableViewHolder>
 {

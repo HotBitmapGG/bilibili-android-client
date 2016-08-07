@@ -1,9 +1,15 @@
-package com.hotbitmapgg.ohmybilibili.widget.swiperefresh;
+package com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+/**
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * RecyclerView的Gridlayout分割线实现
+ */
 public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration
 {
 

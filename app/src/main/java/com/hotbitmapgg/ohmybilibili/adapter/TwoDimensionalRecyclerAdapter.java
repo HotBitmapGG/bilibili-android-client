@@ -18,6 +18,8 @@ import java.util.List;
 /**
  * Created by hcc on 16/8/6 11:51
  * 100332338@qq.com
+ * <p/>
+ * 二次元新番Adapter
  */
 public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
 {

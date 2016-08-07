@@ -21,7 +21,7 @@ import com.hotbitmapgg.ohmybilibili.module.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.bangumi.WeekDayBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
-import com.hotbitmapgg.ohmybilibili.widget.swiperefresh.HeaderViewRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

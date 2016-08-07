@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget.navigation;
+package com.hotbitmapgg.ohmybilibili.widget.navigation_view;
 
 import android.content.Context;
 import android.support.v7.view.menu.MenuBuilder;

@@ -28,6 +28,12 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
+/**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 自定义Banner无限轮播控件
+ */
 public class BannerView extends RelativeLayout
 {
 
@@ -39,7 +45,8 @@ public class BannerView extends RelativeLayout
 
     private CompositeSubscription compositeSubscription;
 
-    private int delayTime = 10;     //默认轮播时间，10s
+    //默认轮播时间，10s
+    private int delayTime = 10;
 
     private List<ImageView> imageViewList;
 
@@ -49,9 +56,11 @@ public class BannerView extends RelativeLayout
 
     private List<Banner> bannerList;
 
-    private int selectRes = R.color.white;      //选中显示Indicator
+    //选中显示Indicator
+    private int selectRes = R.color.white;
 
-    private int unSelcetRes = R.color.black_alpha;    //非选中显示Indicator
+    //非选中显示Indicator
+    private int unSelcetRes = R.color.black_alpha;
 
     public BannerView(Context context)
     {
