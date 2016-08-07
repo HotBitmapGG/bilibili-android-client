@@ -9,7 +9,7 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.CommentAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.HotCommentAdapter;
-import com.hotbitmapgg.ohmybilibili.api.VideoCommentApi;
+import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentApi;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.video.VideoComment;

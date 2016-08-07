@@ -1,5 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.module.common;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
@@ -12,9 +14,10 @@ import butterknife.Bind;
 
 
 /**
- * App简介
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 14:12
+ * 100332338@qq.com
+ * <p/>
+ * App界面界面
  */
 public class AppIntroduceActivity extends RxAppCompatBaseActivity
 {
@@ -25,7 +28,6 @@ public class AppIntroduceActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
-
     @Override
     public int getLayoutId()
     {
@@ -51,10 +53,24 @@ public class AppIntroduceActivity extends RxAppCompatBaseActivity
             public void onClick(View v)
             {
 
-                finish();
+                onBackPressed();
             }
         });
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        mCollapsingToolbarLayout.setTitle(getString(R.string.about));
+        mCollapsingToolbarLayout.setTitle(getString(R.string.about) + "v" + getVersion());
+    }
+
+    private String getVersion()
+    {
+
+        try
+        {
+            PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), 0);
+            return pi.versionName;
+        } catch (PackageManager.NameNotFoundException e)
+        {
+            e.printStackTrace();
+            return getString(R.string.about_version);
+        }
     }
 }

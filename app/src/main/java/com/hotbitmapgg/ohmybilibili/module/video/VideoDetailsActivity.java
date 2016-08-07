@@ -21,7 +21,7 @@ import android.widget.ImageView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.api.VideoApi;
+import com.hotbitmapgg.ohmybilibili.network.api.VideoApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.video.VideoItemInfo;

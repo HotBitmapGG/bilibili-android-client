@@ -10,7 +10,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiTimeLineRecycleAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.module.topic.SpecialDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.api.BangumiApi;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiApi;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.model.bangumi.Bangumi;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;

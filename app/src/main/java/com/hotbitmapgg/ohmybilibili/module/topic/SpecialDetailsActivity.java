@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.adapter.SpItemAdapter;
-import com.hotbitmapgg.ohmybilibili.api.SpApi;
+import com.hotbitmapgg.ohmybilibili.network.api.SpApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.video.Sp;

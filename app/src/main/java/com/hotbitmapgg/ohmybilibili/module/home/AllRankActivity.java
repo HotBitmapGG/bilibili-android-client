@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.AllRankRecyclerAdapter;
-import com.hotbitmapgg.ohmybilibili.api.IndexApi;
+import com.hotbitmapgg.ohmybilibili.network.api.IndexApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.index.Index;

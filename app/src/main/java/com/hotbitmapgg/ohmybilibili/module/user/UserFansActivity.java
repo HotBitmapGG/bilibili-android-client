@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserFansAdapter;
-import com.hotbitmapgg.ohmybilibili.api.FansApi;
+import com.hotbitmapgg.ohmybilibili.network.api.FansApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.model.user.UserFans;

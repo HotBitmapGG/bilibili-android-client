@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.api;
+package com.hotbitmapgg.ohmybilibili.network.api;
 
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;

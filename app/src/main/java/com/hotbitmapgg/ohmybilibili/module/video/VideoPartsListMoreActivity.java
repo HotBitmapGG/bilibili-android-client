@@ -10,7 +10,7 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoPartListAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.api.AuthorRecommendApi;
+import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.model.user.AuthorRecommend;
 import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
