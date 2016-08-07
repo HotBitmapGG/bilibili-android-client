@@ -4,7 +4,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiRecommendService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.BiliBiliLiveService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.TwoDimensionalService;
 
@@ -18,10 +18,14 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
+/**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * Retrofit帮助类
+ */
 public class RetrofitHelper
 {
-
 
     private static OkHttpClient mOkHttpClient;
 
@@ -30,6 +34,8 @@ public class RetrofitHelper
     private static final String MAIN_BASE_URL = "http://www.bilibili.com/";
 
     private static final String APP_BASE_URL = "http://app.bilibili.com/";
+
+    private static final String LIVE_BASE_URL = "http://live.bilibili.com/";
 
     static
     {
@@ -42,17 +48,17 @@ public class RetrofitHelper
      * @return
      */
 
-    public static LiveService getBiliBiliLiveApi()
+    public static BiliBiliLiveService getBiliBiliLiveApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
+                .baseUrl(LIVE_BASE_URL)
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 
-        return retrofit.create(LiveService.class);
+        return retrofit.create(BiliBiliLiveService.class);
     }
 
 
@@ -114,6 +120,11 @@ public class RetrofitHelper
         return retrofit.create(BangumiRecommendService.class);
     }
 
+    /**
+     * 获取二次元新番
+     *
+     * @return
+     */
     public static TwoDimensionalService getTwoDimensionalApi()
     {
 
