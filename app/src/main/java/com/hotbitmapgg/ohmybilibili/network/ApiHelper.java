@@ -313,26 +313,26 @@ public class ApiHelper
 //        return builder.toString();
 //    }
 
-    /**
-     * 获取视频评论列表
-     *
-     * @param aid
-     * @param page
-     * @param pagesize
-     * @param ver
-     * @return
-     */
-    public static String getVideoComment(int aid, int page, int pagesize, int ver)
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.VIDEO_COMMENT);
-        builder.addParams("aid", aid);
-        builder.addParams("page", page);
-        builder.addParams("pagesize", pagesize);
-        builder.addParams("ver", ver);
-
-        return builder.toString();
-    }
+//    /**
+//     * 获取视频评论列表
+//     *
+//     * @param aid
+//     * @param page
+//     * @param pagesize
+//     * @param ver
+//     * @return
+//     */
+//    public static String getVideoComment(int aid, int page, int pagesize, int ver)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.VIDEO_COMMENT);
+//        builder.addParams("aid", aid);
+//        builder.addParams("page", page);
+//        builder.addParams("pagesize", pagesize);
+//        builder.addParams("ver", ver);
+//
+//        return builder.toString();
+//    }
 
 
     private static void addAPIParmasAndComplete(UrlBuilder builder)

@@ -8,23 +8,18 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.CommentAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.HotCommentAdapter;
-import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentApi;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 import butterknife.Bind;
-import rx.Single;
-import rx.SingleSubscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 
@@ -42,8 +37,6 @@ public class VideoCommentFragment extends RxLazyFragment
 
     private ArrayList<VideoComment.List> comments = new ArrayList<>();
 
-    private ArrayList<VideoComment.HotList> hotComments = new ArrayList<>();
-
     private HeaderViewRecyclerAdapter mAdapter;
 
     private int pageNum = 1;
@@ -57,6 +50,8 @@ public class VideoCommentFragment extends RxLazyFragment
     private static final String AID = "aid";
 
     private View loadMoreView;
+
+    private int aid;
 
     public static VideoCommentFragment newInstance(int aid)
     {
@@ -79,139 +74,13 @@ public class VideoCommentFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
+        aid = getArguments().getInt(AID);
+        initRecyclerView();
         getCommentList();
     }
 
-    public void getCommentList()
+    private void initRecyclerView()
     {
-
-        Single<BasicMessage<VideoComment>> single = Single.fromCallable(new Callable<BasicMessage<VideoComment>>()
-        {
-
-            @Override
-            public BasicMessage<VideoComment> call() throws Exception
-            {
-
-                return VideoCommentApi.getVideoCommentList(getArguments().getInt(AID), pageNum, pageSize, ver);
-            }
-        });
-
-        Subscription subscribe = single.map(new Func1<BasicMessage<VideoComment>,VideoComment>()
-        {
-
-            @Override
-            public VideoComment call(BasicMessage<VideoComment> videoCommentBasicMessage)
-            {
-
-                return videoCommentBasicMessage.getObject();
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<VideoComment>()
-                {
-
-                    @Override
-                    public void onSuccess(VideoComment value)
-                    {
-
-                        ArrayList<VideoComment.List> list = value.list;
-                        ArrayList<VideoComment.HotList> hotList = value.hotList;
-                        if (list != null && list.size() > 0 && hotList != null && hotList.size() > 0)
-                        {
-                            comments.addAll(list);
-                            hotComments.addAll(hotList);
-                            finishTask();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable error)
-                    {
-
-                    }
-                });
-
-        compositeSubscription.add(subscribe);
-    }
-
-
-    public void loadMoreCommentList()
-    {
-
-        Single<BasicMessage<VideoComment>> single = Single.fromCallable(new Callable<BasicMessage<VideoComment>>()
-        {
-
-            @Override
-            public BasicMessage<VideoComment> call() throws Exception
-            {
-
-                return VideoCommentApi.getVideoCommentList(getArguments().getInt(AID), pageNum, pageSize, ver);
-            }
-        });
-
-        Subscription subscribe = single.map(new Func1<BasicMessage<VideoComment>,VideoComment>()
-        {
-
-            @Override
-            public VideoComment call(BasicMessage<VideoComment> videoCommentBasicMessage)
-            {
-
-                return videoCommentBasicMessage.getObject();
-            }
-        })
-                .map(new Func1<VideoComment,ArrayList<VideoComment.List>>()
-                {
-
-                    @Override
-                    public ArrayList<VideoComment.List> call(VideoComment videoComment)
-                    {
-
-                        return videoComment.list;
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ArrayList<VideoComment.List>>()
-                {
-
-                    @Override
-                    public void onSuccess(ArrayList<VideoComment.List> value)
-                    {
-
-                        if (value != null && value.size() > 0)
-                        {
-                            for (int i = 0; i < value.size(); i++)
-                            {
-                                mRecyclerAdapter.addData(value.get(i));
-                                mAdapter.notifyDataSetChanged();
-                            }
-
-                            if (value.size() < pageSize)
-                            {
-                                loadMoreView.setVisibility(View.GONE);
-                                mAdapter.notifyDataSetChanged();
-                            }
-                        } else
-                        {
-                            loadMoreView.setVisibility(View.GONE);
-                            mAdapter.notifyDataSetChanged();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable error)
-                    {
-                        loadMoreView.setVisibility(View.GONE);
-                        mAdapter.notifyDataSetChanged();
-                    }
-                });
-
-        compositeSubscription.add(subscribe);
-    }
-
-    private void finishTask()
-    {
-
         mRecyclerAdapter = new CommentAdapter(mRecyclerView, comments);
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
@@ -227,33 +96,61 @@ public class VideoCommentFragment extends RxLazyFragment
             {
 
                 pageNum++;
-                loadMoreCommentList();
+                getCommentList();
+                loadMoreView.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    public void getCommentList()
+    {
+
+        RetrofitHelper.getVideoCommentApi()
+                .getVideoComment(aid, pageNum, pageSize, ver)
+                .compose(this.<VideoComment> bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<VideoComment>()
+                {
+
+                    @Override
+                    public void call(VideoComment videoComment)
+                    {
+
+                        ArrayList<VideoComment.List> list = videoComment.list;
+                        if (list.size() < pageSize)
+                            loadMoreView.setVisibility(View.GONE);
+
+                        comments.addAll(list);
+                        finishTask();
+                    }
+                }, new Action1<Throwable>()
+                {
+
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        LogUtil.all("视频评论数据获取失败" + throwable.getMessage());
+                        loadMoreView.setVisibility(View.GONE);
+                    }
+                });
+    }
+
+    private void finishTask()
+    {
+        if (pageNum * pageSize - pageSize - 1 > 0)
+            mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
+        else
+            mAdapter.notifyDataSetChanged();
     }
 
     private void createLoadMoreView()
     {
 
-        View headView = LayoutInflater.from(getActivity()).inflate(R.layout.video_hot_comment_head_layout, mRecyclerView, false);
         loadMoreView = LayoutInflater.from(getActivity()).inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
-
-
-        mAdapter.addHeaderView(headView);
         mAdapter.addFooterView(loadMoreView);
-
-        initHeadView(headView);
-    }
-
-    private void initHeadView(View headView)
-    {
-
-        RecyclerView mHotRecyclerView = (RecyclerView) headView.findViewById(R.id.hot_recycle);
-        mHotRecyclerView.setHasFixedSize(false);
-        mHotRecyclerView.setNestedScrollingEnabled(false);
-        mHotRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        HotCommentAdapter mHotCommentAdapter = new HotCommentAdapter(mHotRecyclerView, hotComments);
-        mHotRecyclerView.setAdapter(mHotCommentAdapter);
+        loadMoreView.setVisibility(View.GONE);
     }
 }
 

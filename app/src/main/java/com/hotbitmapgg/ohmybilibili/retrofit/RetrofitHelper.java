@@ -15,6 +15,7 @@ import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.TwoDimensionalService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.UserInfoService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.UserUpVideoService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.VideoCommentService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.VideoDetailsService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.WeekDayBangumiService;
 
@@ -331,6 +332,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(IndexService.class);
+    }
+
+
+    /**
+     * 获取视频评论
+     *
+     * @return
+     */
+    public static VideoCommentService getVideoCommentApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(VideoCommentService.class);
     }
 
 
