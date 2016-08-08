@@ -224,33 +224,33 @@ public class ApiHelper
         return builder.toString();
     }
 
-    /**
-     * 根据类型查询对应分区下的视频
-     *
-     * @param tid
-     * @param pagenum
-     * @param pagesize
-     * @param order
-     * @return
-     */
-    public static String getTypeListUrl(String tid, String pagenum, String pagesize, String order)
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.LIST);
-
-        if (tid != null)
-            builder.addParams("tid", tid);
-        if (pagenum != null)
-            builder.addParams("page", pagenum);
-        if (pagesize != null)
-            builder.addParams("pagesize", pagesize);
-        if (order != null)
-            builder.addParams("order", order);
-
-        addAPIParmasAndComplete(builder);
-
-        return builder.toString();
-    }
+//    /**
+//     * 根据类型查询对应分区下的视频
+//     *
+//     * @param tid
+//     * @param pagenum
+//     * @param pagesize
+//     * @param order
+//     * @return
+//     */
+//    public static String getTypeListUrl(String tid, String pagenum, String pagesize, String order)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.LIST);
+//
+//        if (tid != null)
+//            builder.addParams("tid", tid);
+//        if (pagenum != null)
+//            builder.addParams("page", pagenum);
+//        if (pagesize != null)
+//            builder.addParams("pagesize", pagesize);
+//        if (order != null)
+//            builder.addParams("order", order);
+//
+//        addAPIParmasAndComplete(builder);
+//
+//        return builder.toString();
+//    }
 
     /**
      * 根据类型id查询相关的视频列表

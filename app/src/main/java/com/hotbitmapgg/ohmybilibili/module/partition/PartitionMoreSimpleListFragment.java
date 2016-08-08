@@ -1,14 +1,9 @@
 package com.hotbitmapgg.ohmybilibili.module.partition;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -16,46 +11,47 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.PartitionMoreListViewAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
+import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreList;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreVideoItem;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreApi;
-import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
-import okhttp3.Call;
+import okhttp3.ResponseBody;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by hcc on 16/8/4 21:18
  * 100332338@qq.com
  * <p/>
- * 分区对应类型详情界面
+ * 分区对应类型列表详情界面
  */
-@SuppressLint("NewApi")
 public class PartitionMoreSimpleListFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.bangumi_more_list)
+    @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
     @Bind(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    @Bind(R.id.bangumi_more_list_circle_progress)
-    CircleProgressView mProgressView;
-
-    private PartitionMoreListViewAdapter mListViewAdapter;
+    private PartitionMoreListViewAdapter mAdapter;
 
     private ArrayList<PartitionMoreVideoItem> items = new ArrayList<>();
 
     private int pageNum = 1;
+
+    private int pageSize = 10;
 
     private HeaderViewRecyclerAdapter mRecyclerAdapter;
 
@@ -63,60 +59,14 @@ public class PartitionMoreSimpleListFragment extends RxLazyFragment
 
     private static final String EXTRA_TID = "extra_tid";
 
-
-    private Handler mHandler = new Handler()
-    {
-
-
-        public void handleMessage(android.os.Message msg)
-        {
-
-            if (msg.what == 0)
-            {
-                mListViewAdapter = new PartitionMoreListViewAdapter(mRecyclerView, items);
-                mRecyclerView.setHasFixedSize(true);
-                LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
-                mRecyclerView.setLayoutManager(mLinearLayoutManager);
-                mRecyclerAdapter = new HeaderViewRecyclerAdapter(mListViewAdapter);
-                mRecyclerView.setAdapter(mRecyclerAdapter);
-                createLoadMoreView();
-                mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager)
-                {
-
-                    @Override
-                    public void onLoadMore(int i)
-                    {
-
-                        pageNum++;
-                        LoadMoreBangumiMoreList(tid, pageNum + "");
-                    }
-                });
-                mRecyclerView.setVisibility(View.VISIBLE);
-                mProgressView.setVisibility(View.GONE);
-                mProgressView.stopSpinning();
-                mListViewAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-                {
-
-                    @Override
-                    public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-                    {
-
-                        PartitionMoreVideoItem bangumiMoreVideoItem = items.get(position);
-                        int aid = bangumiMoreVideoItem.aid;
-                        VideoDetailsActivity.launch(getSupportActivity(), aid);
-                    }
-                });
-            }
-        }
-    };
-
     private View loadMoreView;
 
 
     public static PartitionMoreSimpleListFragment newInstance(String tid)
     {
 
-        PartitionMoreSimpleListFragment fragment = new PartitionMoreSimpleListFragment();
+        PartitionMoreSimpleListFragment fragment =
+                new PartitionMoreSimpleListFragment();
         Bundle bundle = new Bundle();
         bundle.putString(EXTRA_TID, tid);
         fragment.setArguments(bundle);
@@ -130,19 +80,43 @@ public class PartitionMoreSimpleListFragment extends RxLazyFragment
         return R.layout.fragment_partition_more_list;
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    @SuppressLint("NewApi")
     @Override
     public void finishCreateView(Bundle state)
     {
 
-        Bundle arguments = getArguments();
-        if (arguments != null)
-        {
-            tid = arguments.getString(EXTRA_TID);
-        }
+        tid = getArguments().getString(EXTRA_TID);
+        showProgressBar();
+        initRecyclerView();
+    }
 
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.top_bar_bg);
+    private void initRecyclerView()
+    {
+
+        mRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mAdapter = new PartitionMoreListViewAdapter(mRecyclerView, items);
+        mRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        mRecyclerView.setAdapter(mRecyclerAdapter);
+        createLoadMoreView();
+        mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager)
+        {
+
+            @Override
+            public void onLoadMore(int i)
+            {
+
+                pageNum++;
+                getPartitionMore(tid);
+                loadMoreView.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    private void showProgressBar()
+    {
+
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
 
@@ -153,96 +127,113 @@ public class PartitionMoreSimpleListFragment extends RxLazyFragment
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-
-        getBangumiMoreList(tid, "1");
-    }
-
-    public void getBangumiMoreList(String tid, String pagenum)
-    {
-
-        String url = PartitionMoreApi.getListUrl(tid, pagenum, "10", PartitionMoreApi.ORDER_DEFAULT);
-        OkHttpUtils.get().url(url).build().execute(new StringCallback()
+        mSwipeRefreshLayout.postDelayed(new Runnable()
         {
 
             @Override
-            public void onError(Call call, Exception e)
+            public void run()
             {
 
+                mSwipeRefreshLayout.setRefreshing(true);
+                getPartitionMore(tid);
             }
-
-            @Override
-            public void onResponse(String response)
-            {
-
-                PartitionMoreList bangumiMoreList = PartitionMoreList.createFromJson(response);
-                if (bangumiMoreList.lists != null && bangumiMoreList.lists.size() > 0)
-                {
-                    items.clear();
-                    items.addAll(bangumiMoreList.lists);
-                }
-
-                finishGetBangumiMoreTask();
-            }
-        });
+        }, 500);
     }
 
-    private void finishGetBangumiMoreTask()
+    public void getPartitionMore(final String tid)
     {
 
-        mRecyclerView.setVisibility(View.GONE);
-        mProgressView.setVisibility(View.VISIBLE);
-        mProgressView.spin();
-
-        mHandler.sendEmptyMessageDelayed(0, 1000);
-    }
-
-
-    public void LoadMoreBangumiMoreList(String tid, String pagenum)
-    {
-
-        String url = PartitionMoreApi.getListUrl(tid, pagenum, "10", PartitionMoreApi.ORDER_DEFAULT);
-        OkHttpUtils.get().url(url).build().execute(new StringCallback()
-        {
-
-            @Override
-            public void onError(Call call, Exception e)
-            {
-
-            }
-
-            @Override
-            public void onResponse(String response)
-            {
-
-                if (!TextUtils.isEmpty(response))
+        RetrofitHelper.getPartitionMoreApi()
+                .getPartitionMore(tid, pageNum,
+                        pageSize, 0, Secret.APP_KEY,
+                        Long.toString(System.currentTimeMillis() / 1000))
+                .compose(this.<ResponseBody> bindToLifecycle())
+                .map(new Func1<ResponseBody,PartitionMoreList>()
                 {
-                    PartitionMoreList bangumiMoreList = PartitionMoreList.createFromJson(response);
-                    List<PartitionMoreVideoItem> lists = bangumiMoreList.lists;
-                    int size = lists.size();
-                    for (int i = 0; i < size; i++)
+
+                    @Override
+                    public PartitionMoreList call(ResponseBody responseBody)
                     {
-                        items.add(lists.get(i));
+
+                        try
+                        {
+                            return PartitionMoreList.createFromJson(responseBody.string());
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
+                            return null;
+                        }
                     }
-                    if (lists.size() < 10)
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<PartitionMoreList>()
+                {
+
+                    @Override
+                    public void call(PartitionMoreList partitionMoreList)
                     {
-                        mRecyclerAdapter.notifyDataSetChanged();
+
+                        if (partitionMoreList.lists.size() < pageSize)
+                            loadMoreView.setVisibility(View.GONE);
+
+                        items.addAll(partitionMoreList.lists);
+                        finishTask();
+                    }
+                }, new Action1<Throwable>()
+                {
+
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        LogUtil.all("分区数据获取失败" + throwable.getMessage());
                         loadMoreView.setVisibility(View.GONE);
+                        mSwipeRefreshLayout.post(new Runnable()
+                        {
+
+                            @Override
+                            public void run()
+                            {
+
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                     }
-                    mRecyclerAdapter.notifyDataSetChanged();
-                } else
-                {
-                    mRecyclerAdapter.notifyDataSetChanged();
-                    loadMoreView.setVisibility(View.GONE);
-                }
+                });
+    }
+
+    private void finishTask()
+    {
+
+        if (pageNum * pageSize - pageSize - 1 > 0)
+            mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
+        else
+            mAdapter.notifyDataSetChanged();
+
+        if (mSwipeRefreshLayout.isRefreshing())
+        {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+
+        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
+        {
+
+            @Override
+            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
+            {
+
+                PartitionMoreVideoItem bangumiMoreVideoItem = items.get(position);
+                VideoDetailsActivity.launch(getSupportActivity(), bangumiMoreVideoItem.aid);
             }
         });
     }
-
 
     private void createLoadMoreView()
     {
 
         loadMoreView = LayoutInflater.from(getActivity()).inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
         mRecyclerAdapter.addFooterView(loadMoreView);
+        loadMoreView.setVisibility(View.GONE);
     }
 }

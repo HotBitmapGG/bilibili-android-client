@@ -6,6 +6,7 @@ import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BiliBiliLiveService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveUrlService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.PartitionMoreService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.TwoDimensionalService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.VideoDetailsService;
@@ -38,6 +39,8 @@ public class RetrofitHelper
     private static final String APP_BASE_URL = "http://app.bilibili.com/";
 
     private static final String LIVE_BASE_URL = "http://live.bilibili.com/";
+
+    private static final String HOST_API_BASE_URL = "http://api.bilibili.cn/";
 
     static
     {
@@ -175,6 +178,24 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(LiveUrlService.class);
+    }
+
+
+    /**
+     * 获取分区数据列表详情
+     *
+     * @return
+     */
+    public static PartitionMoreService getPartitionMoreApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        return retrofit.create(PartitionMoreService.class);
     }
 
 

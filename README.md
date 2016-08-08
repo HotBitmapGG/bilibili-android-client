@@ -1,4 +1,4 @@
-# OhMyBiliBili
+# 高仿哔哩哔哩
 
 <a href="bilibiliPic/bilibili_bg.jpg"><img src="bilibiliPic/bilibili_bg.jpg" width="100%"/></a>
 
