@@ -6,8 +6,13 @@
 ## Tips
 
  * 目前项目还在进行大修改,主界面模块大多已完成,调用接口大部分已更换,现在播放视频可以不要AppKey了.
- * 由于Vitamio编译的So库暂时只支持在6.0以下的手机上进行播放视频.
+ * 由于Vitamio编译的so库暂时只支持在6.0以下的手机上进行播放视频.
  * 首页数据跟官方同步,番剧详情界面暂时没有做,后期会加上.
+
+
+## v2.0新版Apk
+
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/qrcode.png?raw=true)
 
 
 ## 截图
