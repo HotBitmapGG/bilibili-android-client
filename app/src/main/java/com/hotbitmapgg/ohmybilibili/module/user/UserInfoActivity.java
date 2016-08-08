@@ -371,7 +371,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
             case R.id.tv_follow_users:
                 //关注的人
-                UserAttentionActivity.launch(UserInfoActivity.this, new ArrayList<>(userInfo.attentions), name);
+
                 break;
 
             case R.id.tv_fans:
