@@ -5,10 +5,12 @@ import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BiliBiliLiveService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.Html5VideoUrlService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveUrlService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.PartitionMoreService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.TwoDimensionalService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.UserUpVideoService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.VideoDetailsService;
 
 import java.io.File;
@@ -196,6 +198,40 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(PartitionMoreService.class);
+    }
+
+    /**
+     * 获取用户上传的视频
+     *
+     * @return
+     */
+    public static UserUpVideoService getUserUpVideoListApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        return retrofit.create(UserUpVideoService.class);
+    }
+
+
+    /**
+     * 获取HTML5视频播放地址
+     *
+     * @return
+     */
+    public static Html5VideoUrlService getHtml5VideoPlayerUrlApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MAIN_BASE_URL)
+                .client(mOkHttpClient)
+                .build();
+
+        return retrofit.create(Html5VideoUrlService.class);
     }
 
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/bacground"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bacground"
+    android:orientation="vertical">
 
 
     <android.support.design.widget.AppBarLayout
@@ -20,7 +20,7 @@
             android:background="@color/top_bar_bg"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
     </android.support.design.widget.AppBarLayout>
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
-            android:scrollbars="none"/>
+            android:scrollbars="none" />
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
             android:id="@+id/circle_progress"
@@ -42,7 +42,7 @@
             android:layout_height="@dimen/circle_progress_view_default_size"
             android:layout_gravity="center"
             app:matProg_barColor="?attr/colorPrimary"
-            app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
+            app:matProg_barWidth="@dimen/circle_progress_view_default_border_width" />
 
 
     </FrameLayout>

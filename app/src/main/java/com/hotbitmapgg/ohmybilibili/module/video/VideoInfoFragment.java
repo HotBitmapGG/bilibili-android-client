@@ -18,15 +18,14 @@ import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoList;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
-import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.UserTagView;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +33,11 @@ import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import okhttp3.Call;
+import okhttp3.ResponseBody;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -101,7 +104,7 @@ public class VideoInfoFragment extends RxLazyFragment
 
     private static final String EXTRA_INFO = "extra_info";
 
-    private List<UserVideoItem> userVideoList = new ArrayList<>();
+    private List<UserVideoItem> mUserVideos = new ArrayList<>();
 
     private VideoAlikeListAdapter mVideoAlikeListAdapter;
 
@@ -210,38 +213,61 @@ public class VideoInfoFragment extends RxLazyFragment
 
         Random random = new Random();
         int anInt = random.nextInt(50);
-        String url = ApiHelper.getVideoListPartsByTid(tid, anInt + "", "10", "default");
-        LogUtil.all(url);
-        OkHttpUtils.get().url(url).build().execute(new StringCallback()
-        {
 
-            @Override
-            public void onError(Call call, Exception e)
-            {
 
-            }
-
-            @Override
-            public void onResponse(String response)
-            {
-
-                UserVideoList partsList = UserVideoList.createFromJson(response);
-                if (partsList != null)
+        RetrofitHelper.getPartitionMoreApi()
+                .getPartitionMore(tid, anInt,
+                        10, 0, Secret.APP_KEY,
+                        Long.toString(System.currentTimeMillis() / 1000))
+                .compose(this.<ResponseBody> bindToLifecycle())
+                .map(new Func1<ResponseBody,UserVideoList>()
                 {
-                    List<UserVideoItem> datas = partsList.lists;
-                    userVideoList.addAll(datas);
 
-                    finishPartsGetTask();
-                }
-            }
-        });
+                    @Override
+                    public UserVideoList call(ResponseBody responseBody)
+                    {
+
+                        try
+                        {
+                            return UserVideoList.createFromJson(responseBody.string());
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<UserVideoList>()
+                {
+
+                    @Override
+                    public void call(UserVideoList userVideoList)
+                    {
+
+                        List<UserVideoItem> datas = userVideoList.lists;
+                        mUserVideos.addAll(datas);
+
+                        finishPartsGetTask();
+                    }
+                }, new Action1<Throwable>()
+                {
+
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        LogUtil.all("根据类型查询相关视频失败" + throwable.getMessage());
+                    }
+                });
     }
 
 
     private void finishPartsGetTask()
     {
 
-        mVideoAlikeListAdapter = new VideoAlikeListAdapter(mVideoPartList, userVideoList);
+        mVideoAlikeListAdapter = new VideoAlikeListAdapter(mVideoPartList, mUserVideos);
         mVideoPartList.setHasFixedSize(false);
         mVideoPartList.setNestedScrollingEnabled(false);
         mVideoPartList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
@@ -254,7 +280,7 @@ public class VideoInfoFragment extends RxLazyFragment
             {
 
                 getActivity().finish();
-                UserVideoItem userVideoItem = userVideoList.get(position);
+                UserVideoItem userVideoItem = mUserVideos.get(position);
                 int aid = userVideoItem.aid;
                 VideoDetailsActivity.launch(getActivity(), aid);
             }

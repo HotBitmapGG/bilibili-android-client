@@ -36,6 +36,7 @@ import com.google.gson.Gson;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.video.VP;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoSrc;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.service.MediaController;
 import com.hotbitmapgg.ohmybilibili.service.PlayerService;
 import com.hotbitmapgg.ohmybilibili.utils.ApplicationUtils;
@@ -49,7 +50,6 @@ import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.VideoView;
 import com.yixia.zi.utils.FileUtils;
 import com.yixia.zi.utils.StringUtils;
-import com.zhy.http.okhttp.OkHttpUtils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.helper.HttpConnection;
@@ -74,7 +74,7 @@ import master.flame.danmaku.danmaku.model.android.Danmakus;
 import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 import master.flame.danmaku.danmaku.parser.IDataSource;
 import master.flame.danmaku.danmaku.parser.android.BiliDanmukuParser;
-import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -1449,10 +1449,11 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
 
         try
         {
-            String url = "http://www.bilibili.com/m/html5?aid=" + av + "&page=" + page;
-            Response response = OkHttpUtils.get().url(url).build().execute();
+            retrofit2.Response<ResponseBody> bodyResponse = RetrofitHelper.getHtml5VideoPlayerUrlApi()
+                    .getHtml5VideoPlayerUrl(av, page)
+                    .execute();
 
-            return response.body().string();
+            return bodyResponse.body().string();
         } catch (IOException e)
         {
             e.printStackTrace();

@@ -45,7 +45,6 @@ dependencies {
     //Okhttp3
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-    compile 'com.zhy:okhttputils:2.3.9'
     //Gson
     compile 'com.google.code.gson:gson:2.6.2'
     //Rxjava Retrofit2

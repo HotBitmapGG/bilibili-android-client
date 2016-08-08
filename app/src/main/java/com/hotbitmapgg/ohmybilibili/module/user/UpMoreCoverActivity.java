@@ -12,20 +12,24 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UpMoreCoverAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoList;
-import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import okhttp3.Call;
+import okhttp3.ResponseBody;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -59,7 +63,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    private UpMoreCoverAdapter upMoreCoverAdapter;
+    private UpMoreCoverAdapter mAdapter;
 
     private View loadMoreView;
 
@@ -85,6 +89,30 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
         mCircleProgressView.setVisibility(View.VISIBLE);
         mCircleProgressView.spin();
         getUserVideoList();
+        initRecyclerView();
+    }
+
+    private void initRecyclerView()
+    {
+        mRecycleView.setHasFixedSize(true);
+        mAdapter = new UpMoreCoverAdapter(mRecycleView, userVideoList);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
+        mRecycleView.setLayoutManager(mLinearLayoutManager);
+        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        mRecycleView.setAdapter(mHeaderViewRecyclerAdapter);
+        createLoadMoreView();
+        mRecycleView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager)
+        {
+
+            @Override
+            public void onLoadMore(int i)
+            {
+
+                pageNum++;
+                getUserVideoList();
+                loadMoreView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -100,7 +128,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
             public void onClick(View v)
             {
 
-                finish();
+                onBackPressed();
             }
         });
     }
@@ -120,104 +148,58 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
     private void getUserVideoList()
     {
 
-        String url = ApiHelper.getUserVideoListUrl(mid, pageNum, pageSize);
-        OkHttpUtils.get().url(url).build().execute(new StringCallback()
-        {
-
-            @Override
-            public void onError(Call call, Exception e)
-            {
-
-            }
-
-            @Override
-            public void onResponse(String response)
-            {
-
-                UserVideoList videoList = UserVideoList.createFromJson(response);
-                if (videoList != null)
+        RetrofitHelper.getUserUpVideoListApi()
+                .getUserUpVideoList(mid,pageNum,pageSize,
+                        Secret.APP_KEY,Long.toString(System.currentTimeMillis() / 1000))
+                .compose(this.<ResponseBody>bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>()
                 {
-                    List<UserVideoItem> datas = videoList.lists;
-                    userVideoList.addAll(datas);
 
-                    finishUserVideoListGetTask();
-                }
-            }
-        });
+                    @Override
+                    public void call(ResponseBody responseBody)
+                    {
+
+                        try
+                        {
+                            UserVideoList videoList = UserVideoList.
+                                    createFromJson(responseBody.string());
+                            if(videoList.lists.size() < pageSize)
+                                loadMoreView.setVisibility(View.GONE);
+
+                            userVideoList.addAll(videoList.lists);
+                            finishTask();
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Action1<Throwable>()
+                {
+
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        LogUtil.all("用户上传更多视频获取失败" +  throwable.getMessage());
+                        loadMoreView.setVisibility(View.GONE);
+                        mCircleProgressView.stopSpinning();
+                        mCircleProgressView.setVisibility(View.GONE);
+                    }
+                });
     }
 
-    private void finishUserVideoListGetTask()
+    private void finishTask()
     {
 
         mCircleProgressView.stopSpinning();
         mCircleProgressView.setVisibility(View.GONE);
-        mRecycleView.setHasFixedSize(true);
 
-        upMoreCoverAdapter = new UpMoreCoverAdapter(mRecycleView, userVideoList);
-        mRecycleView.setHasFixedSize(true);
-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
-        mRecycleView.setLayoutManager(mLinearLayoutManager);
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(upMoreCoverAdapter);
-        mRecycleView.setAdapter(mHeaderViewRecyclerAdapter);
-        createLoadMoreView();
-        mRecycleView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager)
-        {
-
-            @Override
-            public void onLoadMore(int i)
-            {
-
-                pageNum++;
-                loadMoreData();
-            }
-        });
-    }
-
-    private void loadMoreData()
-    {
-
-        String url = ApiHelper.getUserVideoListUrl(mid, pageNum, pageSize);
-        OkHttpUtils.get().url(url).build().execute(new StringCallback()
-        {
-
-            @Override
-            public void onError(Call call, Exception e)
-            {
-
-            }
-
-            @Override
-            public void onResponse(String response)
-            {
-
-                UserVideoList videoList = UserVideoList.createFromJson(response);
-                if (videoList != null)
-                {
-                    List<UserVideoItem> datas = videoList.lists;
-                    if (datas != null && datas.size() > 0)
-                    {
-                        int size = datas.size();
-                        for (int i = 0; i < size; i++)
-                        {
-                            upMoreCoverAdapter.addData(datas.get(i));
-                        }
-                        if (size < pageSize)
-                        {
-                            mHeaderViewRecyclerAdapter.notifyDataSetChanged();
-                        }
-                        loadMoreView.setVisibility(View.VISIBLE);
-                        mHeaderViewRecyclerAdapter.notifyDataSetChanged();
-                    } else
-                    {
-                        mHeaderViewRecyclerAdapter.notifyDataSetChanged();
-                        loadMoreView.setVisibility(View.GONE);
-                    }
-                } else
-                {
-                    mHeaderViewRecyclerAdapter.notifyDataSetChanged();
-                }
-            }
-        });
+        if (pageNum * pageSize - pageSize - 1 > 0)
+            mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
+        else
+            mAdapter.notifyDataSetChanged();
     }
 
     private void createLoadMoreView()
@@ -225,5 +207,6 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
 
         loadMoreView = LayoutInflater.from(UpMoreCoverActivity.this).inflate(R.layout.recycle_view_foot_layout, mRecycleView, false);
         mHeaderViewRecyclerAdapter.addFooterView(loadMoreView);
+        loadMoreView.setVisibility(View.GONE);
     }
 }

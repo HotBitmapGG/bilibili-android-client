@@ -17,30 +17,32 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserUpVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoList;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 import com.hotbitmapgg.ohmybilibili.network.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoApi;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.squareup.picasso.Picasso;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
 import butterknife.Bind;
-import okhttp3.Call;
+import okhttp3.ResponseBody;
 import rx.Single;
 import rx.SingleSubscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -271,35 +273,47 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
     private void getUserVideoList()
     {
 
-        String url = ApiHelper.getUserVideoListUrl(userInfo.mid, 1, 10);
-        OkHttpUtils.get().url(url).build().execute(new StringCallback()
-        {
 
-            @Override
-            public void onError(Call call, Exception e)
-            {
-
-            }
-
-            @Override
-            public void onResponse(String response)
-            {
-
-                if(TextUtils.isEmpty(response))
+        RetrofitHelper.getUserUpVideoListApi()
+                .getUserUpVideoList(mid, 1, 10,
+                        Secret.APP_KEY, Long.toString(System.currentTimeMillis() / 1000))
+                .compose(this.<ResponseBody> bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ResponseBody>()
                 {
-                    UserVideoList videoList = UserVideoList.createFromJson(response);
-                    if (videoList != null)
+
+                    @Override
+                    public void call(ResponseBody responseBody)
                     {
-                        List<UserVideoItem> datas = videoList.lists;
-                        userVideoList.addAll(datas);
-                        int results = videoList.results;
 
-                        finishUserVideoListGetTask(results);
+                        try
+                        {
+                            UserVideoList videoList = UserVideoList.
+                                    createFromJson(responseBody.string());
+                            if (videoList != null)
+                            {
+                                List<UserVideoItem> datas = videoList.lists;
+                                userVideoList.addAll(datas);
+                                int results = videoList.results;
+
+                                finishUserVideoListGetTask(results);
+                            }
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
+                        }
                     }
-                }
+                }, new Action1<Throwable>()
+                {
 
-            }
-        });
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        LogUtil.all("用户上传更多视频获取失败" + throwable.getMessage());
+                    }
+                });
     }
 
 
