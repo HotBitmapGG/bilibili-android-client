@@ -9,41 +9,24 @@
  * 由于Vitamio编译的So库暂时只支持在6.0以下的手机上进行播放视频.
  * 首页数据跟官方同步,番剧详情界面暂时没有做,后期会加上.
 
-<a href="bilibiliPic/01.jpg"><img src="bilibiliPic/01.jpg" width="40%"/></a> <a href="bilibiliPic/02.jpg"><img src="bilibiliPic/02.jpg" width="40%"/></a>
 
 ## 截图
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/01.jpg?raw=true)
+<a href="bilibiliPic/01.jpg"><img src="bilibiliPic/01.jpg" width="40%"/></a> <a href="bilibiliPic/02.jpg"><img src="bilibiliPic/02.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/02.jpg?raw=true)
+<a href="bilibiliPic/03.jpg"><img src="bilibiliPic/03.jpg" width="40%"/></a> <a href="bilibiliPic/04.jpg"><img src="bilibiliPic/04.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/03.jpg?raw=true)
+<a href="bilibiliPic/05.jpg"><img src="bilibiliPic/05.jpg" width="40%"/></a> <a href="bilibiliPic/06.jpg"><img src="bilibiliPic/06.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/04.jpg?raw=true)
+<a href="bilibiliPic/07.jpg"><img src="bilibiliPic/07.jpg" width="40%"/></a> <a href="bilibiliPic/08.jpg"><img src="bilibiliPic/08.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/05.jpg?raw=true)
+<a href="bilibiliPic/09.jpg"><img src="bilibiliPic/09.jpg" width="40%"/></a> <a href="bilibiliPic/10.jpg"><img src="bilibiliPic/10.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/06.jpg?raw=true)
+<a href="bilibiliPic/11.jpg"><img src="bilibiliPic/11.jpg" width="40%"/></a> <a href="bilibiliPic/12.jpg"><img src="bilibiliPic/12.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/07.jpg?raw=true)
+<a href="bilibiliPic/13.jpg"><img src="bilibiliPic/13.jpg" width="40%"/></a> <a href="bilibiliPic/14.jpg"><img src="bilibiliPic/14.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/08.jpg?raw=true)
-
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/09.jpg?raw=true)
-
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/10.jpg?raw=true)
-
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/11.jpg?raw=true)
-
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/12.jpg?raw=true)
-
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/13.jpg?raw=true)
-
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/14.jpg?raw=true)
-
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/15.jpg?raw=true)
-
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/16.jpg?raw=true)
+<a href="bilibiliPic/15.jpg"><img src="bilibiliPic/15.jpg" width="40%"/></a> <a href="bilibiliPic/16.jpg"><img src="bilibiliPic/16.jpg" width="40%"/></a>
 
  ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/17.jpg?raw=true)
 
