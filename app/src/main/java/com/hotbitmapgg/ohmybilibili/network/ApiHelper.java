@@ -93,31 +93,31 @@ public class ApiHelper
 //        return builder.toString();
 //    }
 
-    /**
-     * 根据userName获取用户信息
-     *
-     * @param user
-     * @return
-     */
-    public static String getUserInfoUrl(String user)
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.USERINFO);
-        return builder.addParams("user", user).toString();
-    }
-
-    /**
-     * 根据userId获取用户信息
-     *
-     * @param uid
-     * @return
-     */
-    public static String getUserInfoUrl(int uid)
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.USERINFO);
-        return builder.addParams("uid", uid).toString();
-    }
+//    /**
+//     * 根据userName获取用户信息
+//     *
+//     * @param user
+//     * @return
+//     */
+//    public static String getUserInfoUrl(String user)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.USERINFO);
+//        return builder.addParams("user", user).toString();
+//    }
+//
+//    /**
+//     * 根据userId获取用户信息
+//     *
+//     * @param uid
+//     * @return
+//     */
+//    public static String getUserInfoUrl(int uid)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.USERINFO);
+//        return builder.addParams("uid", uid).toString();
+//    }
 
 //    /**
 //     * 获取该用户上传的所有视频

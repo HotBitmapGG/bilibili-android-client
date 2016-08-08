@@ -18,13 +18,11 @@ import com.hotbitmapgg.ohmybilibili.adapter.UserUpVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
-import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoList;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.UrlHelper;
-import com.hotbitmapgg.ohmybilibili.network.api.UserInfoApi;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
@@ -34,16 +32,11 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import butterknife.Bind;
 import okhttp3.ResponseBody;
-import rx.Single;
-import rx.SingleSubscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -110,7 +103,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
     private String avatar_url;
 
-    private UserInfo userInfo;
+    private UserInfo mUserInfo;
 
     private ArrayList<Integer> uids = new ArrayList<Integer>();
 
@@ -190,29 +183,29 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
         mNumberBar.setVisibility(View.VISIBLE);
 
-        mUserNameText.setText(userInfo.name);
-        mFollowNumText.setText(String.format(getString(R.string.info_following_format), userInfo.attention));
-        mFansNumText.setText(String.format(getString(R.string.info_fans_format), userInfo.fans));
+        mUserNameText.setText(mUserInfo.name);
+        mFollowNumText.setText(String.format(getString(R.string.info_following_format), mUserInfo.attention));
+        mFansNumText.setText(String.format(getString(R.string.info_fans_format), mUserInfo.fans));
 
         mToolbar.setTitle("");
 
-        Picasso.with(this).load(UrlHelper.getFaceUrl(userInfo)).placeholder(R.drawable.ico_user_default).into(mAvatarImage);
-        setUserLevel(userInfo.rank);
-        if (userInfo.sex.equals("男"))
+        Picasso.with(this).load(UrlHelper.getFaceUrl(mUserInfo)).placeholder(R.drawable.ico_user_default).into(mAvatarImage);
+        setUserLevel(mUserInfo.rank);
+        if (mUserInfo.sex.equals("男"))
         {
             mUserSex.setImageResource(R.drawable.ic_user_male_border);
         } else
         {
             mUserSex.setImageResource(R.drawable.ic_user_female_border);
         }
-        if (userInfo.approve)
+        if (mUserInfo.approve)
         {
             //认证用户 显示认证资料
             mAuthorVerifiedLayout.setVisibility(View.VISIBLE);
             mDescriptionText.setVisibility(View.GONE);
-            if (!TextUtils.isEmpty(userInfo.description))
+            if (!TextUtils.isEmpty(mUserInfo.description))
             {
-                mAuthorVerifiedText.setText(userInfo.description);
+                mAuthorVerifiedText.setText(mUserInfo.description);
             } else
             {
                 mAuthorVerifiedText.setText("这个家伙太懒,什么都没有填写");
@@ -222,16 +215,16 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
             //普通用户
             mAuthorVerifiedLayout.setVisibility(View.GONE);
             mDescriptionText.setVisibility(View.VISIBLE);
-            if (!TextUtils.isEmpty(userInfo.sign))
+            if (!TextUtils.isEmpty(mUserInfo.sign))
             {
-                mDescriptionText.setText(userInfo.sign);
+                mDescriptionText.setText(mUserInfo.sign);
             } else
             {
                 mDescriptionText.setText("这个家伙太懒,什么都没有填写");
             }
         }
 
-        List<Integer> attentions = userInfo.attentions;
+        List<Integer> attentions = mUserInfo.attentions;
         uids.addAll(attentions);
 
         startGetListTask();
@@ -366,7 +359,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         {
             case R.id.btn_go_more:
                 //查看Up主所有视频
-                UpMoreCoverActivity.launch(UserInfoActivity.this, userInfo.name, userInfo.mid);
+                UpMoreCoverActivity.launch(UserInfoActivity.this, mUserInfo.name, mUserInfo.mid);
                 break;
 
             case R.id.tv_follow_users:
@@ -384,47 +377,30 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
     public void getUserInfo()
     {
 
-        Single<BasicMessage<UserInfo>> single = Single.fromCallable(new Callable<BasicMessage<UserInfo>>()
-        {
-
-            @Override
-            public BasicMessage<UserInfo> call() throws Exception
-            {
-
-                return UserInfoApi.getUserInfoByName(name);
-            }
-        });
-
-        Subscription subscribe = single.map(new Func1<BasicMessage<UserInfo>,UserInfo>()
-        {
-
-            @Override
-            public UserInfo call(BasicMessage<UserInfo> userInfoBasicMessage)
-            {
-
-                return userInfoBasicMessage.getObject();
-            }
-        })
+        RetrofitHelper.getUserInfoApi()
+                .getUserInfoByName(name)
+                .compose(this.<UserInfo> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<UserInfo>()
+                .subscribe(new Action1<UserInfo>()
                 {
 
                     @Override
-                    public void onSuccess(UserInfo value)
+                    public void call(UserInfo userInfo)
                     {
 
-                        userInfo = value;
+                        mUserInfo = userInfo;
                         finishBasicInfoGetTask();
                     }
+                }, new Action1<Throwable>()
+                {
 
                     @Override
-                    public void onError(Throwable error)
+                    public void call(Throwable throwable)
                     {
 
+                        LogUtil.all("用户详情数据获取失败" + throwable.getMessage());
                     }
                 });
-
-        compositeSubscription.add(subscribe);
     }
 }
