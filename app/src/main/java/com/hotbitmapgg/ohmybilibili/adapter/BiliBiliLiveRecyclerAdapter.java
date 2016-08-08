@@ -1,7 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +58,7 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 
         this.context = context;
     }
+
     private List<Integer> liveSizes = new ArrayList<>();
 
     private int tempSize;
@@ -163,14 +164,14 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
                     public void onClick(View v)
                     {
 
-                        Intent intent = new Intent(context, BiliBiliLivePlayerActivity.class);
-                        intent.putExtra("cid", item.room_id);
-                        intent.putExtra("title", item.title);
-                        intent.putExtra("online", item.online);
-                        intent.putExtra("face", item.owner.face);
-                        intent.putExtra("name", item.owner.name);
-                        intent.putExtra("mid", item.owner.mid);
-                        context.startActivity(intent);
+                        BiliBiliLivePlayerActivity.launch(
+                                (Activity) context,
+                                item.room_id,
+                                item.title,
+                                item.online,
+                                item.owner.face,
+                                item.owner.name,
+                                item.owner.mid);
                     }
                 });
             } catch (Exception e)

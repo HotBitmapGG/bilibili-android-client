@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Body;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Result;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.AllHotRankActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.BiliBiliLivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
@@ -133,18 +134,23 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
                 int aid = Integer.valueOf(body.get(position).getParam());
                 if (pos == 1)
                 {
-                    //直播item点击事件
-                    Intent intent = new Intent(getContext(), BiliBiliLivePlayerActivity.class);
-                    intent.putExtra("cid", Integer.valueOf(body.get(position).getParam()));
-                    intent.putExtra("title", body.get(position).getTitle());
-                    intent.putExtra("online", body.get(position).getOnline());
-                    intent.putExtra("face", body.get(position).getUpFace());
-                    intent.putExtra("name", body.get(position).getUp());
-                    intent.putExtra("mid", "");
-                    getContext().startActivity(intent);
+
+                    BiliBiliLivePlayerActivity.launch((Activity) getContext(),
+                            Integer.valueOf(body.get(position).getParam()),
+                            body.get(position).getTitle(),
+                            body.get(position).getOnline(),
+                            body.get(position).getUpFace(),
+                            body.get(position).getUp(),0);
+
                 } else if (pos == 2)
                 {
                     //番剧item点击事件,暂时没有实现
+                } else if (pos == 9)
+                {
+                    //活动中心item点击事件
+                    BrowserActivity.launch((Activity) getContext(),
+                            body.get(position).getParam(),
+                            body.get(position).getTitle());
                 } else
                 {
                     //视频点击事件

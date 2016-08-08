@@ -46,7 +46,9 @@ public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity
 
         super.onDestroy();
         ButterKnife.unbind(this);
-        compositeSubscription.unsubscribe();
+        if (compositeSubscription != null
+                && !compositeSubscription.isUnsubscribed())
+            compositeSubscription.unsubscribe();
     }
 
     public abstract int getLayoutId();

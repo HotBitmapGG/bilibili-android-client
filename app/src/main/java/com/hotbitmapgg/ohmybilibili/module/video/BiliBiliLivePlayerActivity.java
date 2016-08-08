@@ -1,10 +1,13 @@
 package com.hotbitmapgg.ohmybilibili.module.video;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -75,12 +78,21 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
     @Bind(R.id.live_num)
     TextView mLiveNum;
 
+    private static final String EXTRA_CID = "cid";
+
+    private static final String EXTRA_TITLE = "title";
+
+    private static final String EXTRA_ONLINE = "online";
+
+    private static final String EXTRA_FACE = "face";
+
+    private static final String EXTRA_NAME = "name";
+
+    private static final String EXTRA_MID = "mid";
 
     private IjkMediaPlayer ijkMediaPlayer;
 
     private SurfaceHolder holder;
-
-    //private OkHttpClient client;
 
     private int flag = 0;
 
@@ -100,27 +112,6 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
 
     private int mid;
 
-//    private Handler mHandler = new Handler()
-//    {
-//
-//        @Override
-//        public void handleMessage(Message msg)
-//        {
-//
-//            if (msg.what == 0)
-//            {
-//
-//                stopAnim();
-//                isPlay = true;
-//                videoView.setVisibility(View.VISIBLE);
-//                mRightPlayBtn.setImageResource(R.drawable.ic_tv_stop);
-//                mBottomPlayBtn.setImageResource(R.drawable.ic_portrait_stop);
-//            }
-//            super.handleMessage(msg);
-//        }
-//    };
-
-
     @Override
     public int getLayoutId()
     {
@@ -135,12 +126,12 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            cid = intent.getIntExtra("cid", 0);
-            title = intent.getStringExtra("title");
-            online = intent.getIntExtra("online", 0);
-            face = intent.getStringExtra("face");
-            name = intent.getStringExtra("name");
-            mid = intent.getIntExtra("mid", 0);
+            cid = intent.getIntExtra(EXTRA_CID, 0);
+            title = intent.getStringExtra(EXTRA_TITLE);
+            online = intent.getIntExtra(EXTRA_ONLINE, 0);
+            face = intent.getStringExtra(EXTRA_FACE);
+            name = intent.getStringExtra(EXTRA_NAME);
+            mid = intent.getIntExtra(EXTRA_MID, 0);
         }
 
 
@@ -149,12 +140,18 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
         startAnim();
     }
 
+    /**
+     * 设置用户信息
+     */
     private void initUserInfo()
     {
 
-        Picasso.with(this).load(face).placeholder(R.drawable.ico_user_default).into(mUserPic);
+        Picasso.with(this)
+                .load(face)
+                .placeholder(R.drawable.ico_user_default)
+                .into(mUserPic);
         mUserName.setText(name);
-        mLiveNum.setText(online + "");
+        mLiveNum.setText(String.valueOf(online));
     }
 
     private void startAnim()
@@ -177,66 +174,27 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
     {
 
         mToolbar.setTitle(title);
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                onBackPressed();
-            }
-        });
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
 
     private void initVideo()
     {
 
-        // client = new OkHttpClient();
         holder = videoView.getHolder();
         ijkMediaPlayer = new IjkMediaPlayer();
         getLiveUrl();
-
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Action1<String>()
-//                {
-//
-//                    @Override
-//                    public void call(String s)
-//                    {
-//                        playVideo(s);
-//                    }
-//                }, new Action1<Throwable>()
-//                {
-//
-//                    @Override
-//                    public void call(Throwable throwable)
-//                    {
-//
-//                        LogUtil.all("直播地址url获取失败" + throwable.getMessage());
-//                    }
-//                });
-
-
-//        new Thread(new Runnable()
-//        {
-//
-//            @Override
-//            public void run()
-//            {
-//
-//                try
-//                {
-//                    execute();
-//                } catch (Exception e)
-//                {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
     }
 
     private void getLiveUrl()
@@ -255,7 +213,8 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
                         try
                         {
                             String str = responseBody.string();
-                            String result = str.substring(str.lastIndexOf("[") + 1, str.lastIndexOf("]") - 1);
+                            String result = str.substring(str.lastIndexOf("[") + 1,
+                                    str.lastIndexOf("]") - 1);
                             return result;
                         } catch (IOException e)
                         {
@@ -302,26 +261,6 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
                     }
                 });
     }
-
-//    public void execute() throws Exception
-//    {
-//
-//        ijkMediaPlayer.stop();
-//
-//        String url = "http://live.bilibili.com/api/playurl?player=1&quality=0&cid=" + cid;
-//        Request request = new Request.Builder().url(url).build();
-//        Response response = client.newCall(request).execute();
-//
-//        if (response.isSuccessful())
-//        {
-//            String str = response.body().string();
-//            String result = str.substring(str.lastIndexOf("[") + 1, str.lastIndexOf("]") - 1);
-//            playVideo(result);
-//
-//           // mHandler.sendEmptyMessageDelayed(0, 2000);
-//        }
-//    }
-
 
     private void playVideo(String uri)
     {
@@ -377,31 +316,38 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
     }
 
 
-    @OnClick(R.id.right_play)
-    void rightPlay()
+    public static void launch(Activity activity, int cid, String title, int online, String face, String name, int mid)
     {
 
+        Intent mIntent = new Intent(activity, BiliBiliLivePlayerActivity.class);
+        mIntent.putExtra(EXTRA_CID, cid);
+        mIntent.putExtra(EXTRA_TITLE, title);
+        mIntent.putExtra(EXTRA_ONLINE, online);
+        mIntent.putExtra(EXTRA_FACE, face);
+        mIntent.putExtra(EXTRA_NAME, name);
+        mIntent.putExtra(EXTRA_MID, mid);
+        activity.startActivity(mIntent);
+    }
+
+
+    @OnClick(R.id.right_play) void rightPlay()
+    {
         ControlVideo();
     }
 
-    @OnClick(R.id.bottom_play)
-    void bottomPlay()
+    @OnClick(R.id.bottom_play) void bottomPlay()
     {
-
         ControlVideo();
     }
 
-    @OnClick(R.id.bottom_fullscreen)
-    void fullScreen()
+    @OnClick(R.id.bottom_fullscreen) void fullScreen()
     {
 
     }
 
 
-    @OnClick(R.id.video_view)
-    void showBottomLayout()
+    @OnClick(R.id.video_view) void showBottomLayout()
     {
-
         if (flag == 0)
         {
             startBottomShowAnim();
@@ -413,8 +359,7 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
         }
     }
 
-    @OnClick(R.id.user_pic)
-    void startUserInfo()
+    @OnClick(R.id.user_pic) void startUserInfo()
     {
 
         UserInfoActivity.launch(BiliBiliLivePlayerActivity.this, name, mid, face);

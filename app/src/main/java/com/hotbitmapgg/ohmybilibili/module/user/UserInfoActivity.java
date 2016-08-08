@@ -285,15 +285,19 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
             public void onResponse(String response)
             {
 
-                UserVideoList videoList = UserVideoList.createFromJson(response);
-                if (videoList != null)
+                if(TextUtils.isEmpty(response))
                 {
-                    List<UserVideoItem> datas = videoList.lists;
-                    userVideoList.addAll(datas);
-                    int results = videoList.results;
+                    UserVideoList videoList = UserVideoList.createFromJson(response);
+                    if (videoList != null)
+                    {
+                        List<UserVideoItem> datas = videoList.lists;
+                        userVideoList.addAll(datas);
+                        int results = videoList.results;
 
-                    finishUserVideoListGetTask(results);
+                        finishUserVideoListGetTask(results);
+                    }
                 }
+
             }
         });
     }
