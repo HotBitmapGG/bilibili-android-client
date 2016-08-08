@@ -41,6 +41,7 @@ public class HotBitmapGGInfoActivity extends RxAppCompatBaseActivity
     {
 
         mToolbar.setTitle("关于我");
+        setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
             actionBar.setDisplayHomeAsUpEnabled(true);
