@@ -154,32 +154,32 @@ public class ApiHelper
         return builder.toString();
     }
 
-    public static String getSlideshowUrl()
-    {
+//    public static String getSlideshowUrl()
+//    {
+//
+//        return BILIBILI_SITE + "/" + ApiUrl.SLIDESHOW;
+//    }
 
-        return BILIBILI_SITE + "/" + ApiUrl.SLIDESHOW;
-    }
-
-    /**
-     * 获取每日更新专题
-     *
-     * @param btype
-     * @param weekday
-     * @return
-     */
-    public static String getBangumiUrl(int btype, int weekday)
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.BANGUMI);
-
-        if (btype != -1)
-            builder.addParams("btype", btype);
-        if (weekday != -1)
-            builder.addParams("weekday", weekday);
-        addAPIParmasAndComplete(builder);
-
-        return builder.toString();
-    }
+//    /**
+//     * 获取每日更新专题
+//     *
+//     * @param btype
+//     * @param weekday
+//     * @return
+//     */
+//    public static String getBangumiUrl(int btype, int weekday)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.BANGUMI);
+//
+//        if (btype != -1)
+//            builder.addParams("btype", btype);
+//        if (weekday != -1)
+//            builder.addParams("weekday", weekday);
+//        addAPIParmasAndComplete(builder);
+//
+//        return builder.toString();
+//    }
 
     /**
      * 获取专题详情

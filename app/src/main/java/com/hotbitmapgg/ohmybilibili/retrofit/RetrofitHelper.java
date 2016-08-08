@@ -13,6 +13,7 @@ import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.TwoDimensionalService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.UserUpVideoService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.VideoDetailsService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.WeekDayBangumiService;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -252,6 +253,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(AuthorRecommendedService.class);
+    }
+
+
+    /**
+     * 获取番剧放送表数据
+     *
+     * @return
+     */
+    public static WeekDayBangumiService getWeekDayBangumiApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(WeekDayBangumiService.class);
     }
 
 

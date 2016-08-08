@@ -9,22 +9,22 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiTimeLineRecycleAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.module.video.SpecialDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.network.api.BangumiApi;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.Bangumi;
-import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.config.Secret;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumi;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumiResult;
+import com.hotbitmapgg.ohmybilibili.module.video.SpecialDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.EmptyView;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
+import java.util.List;
 
 import butterknife.Bind;
-import rx.Single;
-import rx.SingleSubscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -46,7 +46,7 @@ public class WeekDayBangumiFragment extends RxLazyFragment
     @Bind(R.id.empty_layout)
     EmptyView mEmptyView;
 
-    private ArrayList<Bangumi> mBangumis = new ArrayList<>();
+    private ArrayList<WeekDayBangumi> mWeekDayBangumis = new ArrayList<>();
 
     private BangumiTimeLineRecycleAdapter mAdapter;
 
@@ -99,62 +99,51 @@ public class WeekDayBangumiFragment extends RxLazyFragment
     public void getBangumi()
     {
 
-        Single<BasicMessage<ArrayList<Bangumi>>> single = Single.fromCallable(new Callable<BasicMessage<ArrayList<Bangumi>>>()
-        {
-
-            @Override
-            public BasicMessage<ArrayList<Bangumi>> call() throws Exception
-            {
-
-                return BangumiApi.getBangumi(BangumiApi.BTYPE_2D, weekDay);
-            }
-        });
-
-        Subscription subscribe = single.map(new Func1<BasicMessage<ArrayList<Bangumi>>,ArrayList<Bangumi>>()
-        {
-
-            @Override
-            public ArrayList<Bangumi> call(BasicMessage<ArrayList<Bangumi>> arrayListBasicMessage)
-            {
-
-                return arrayListBasicMessage.getObject();
-            }
-        })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ArrayList<Bangumi>>()
+        RetrofitHelper.getWeekDayBangumiApi()
+                .getWeekDayBangumi(2, weekDay, Secret.APP_KEY, Long.toString(System.currentTimeMillis() / 1000))
+                .compose(this.<WeekDayBangumiResult> bindToLifecycle())
+                .map(new Func1<WeekDayBangumiResult,List<WeekDayBangumi>>()
                 {
 
                     @Override
-                    public void onSuccess(ArrayList<Bangumi> value)
+                    public List<WeekDayBangumi> call(WeekDayBangumiResult weekDayBangumiResult)
                     {
 
-                        if (value != null && value.size() > 0)
-                        {
-                            mBangumis.clear();
-                            mBangumis.addAll(value);
-                        }
-
-                        finishGetTask();
+                        return weekDayBangumiResult.list;
                     }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<WeekDayBangumi>>()
+                {
 
                     @Override
-                    public void onError(Throwable error)
+                    public void call(List<WeekDayBangumi> weekDayBangumis)
                     {
+
+                        mWeekDayBangumis.addAll(weekDayBangumis);
+                        finishGetTask();
+                    }
+                }, new Action1<Throwable>()
+                {
+
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        LogUtil.all("番剧放送表加载失败" + throwable.getMessage());
                         mCircleProgressView.setVisibility(View.GONE);
                         mCircleProgressView.stopSpinning();
                         mEmptyView.setVisibility(View.VISIBLE);
                         mEmptyView.setEmptyImage(R.drawable.loading_failed);
                     }
                 });
-
-        compositeSubscription.add(subscribe);
     }
 
     private void finishGetTask()
     {
 
-        mAdapter = new BangumiTimeLineRecycleAdapter(mRecyclerView, mBangumis);
+        mAdapter = new BangumiTimeLineRecycleAdapter(mRecyclerView, mWeekDayBangumis);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
         {
@@ -163,10 +152,10 @@ public class WeekDayBangumiFragment extends RxLazyFragment
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                Bangumi mBangumi = mAdapter.getItem(position);
-                String spid = mBangumi.spid;
-                String title = mBangumi.title;
-                int season_id = mBangumi.season_id;
+                WeekDayBangumi mWeekDayBangumi = mAdapter.getItem(position);
+                String spid = mWeekDayBangumi.spid;
+                String title = mWeekDayBangumi.title;
+                int season_id = mWeekDayBangumi.season_id;
 
                 Intent mIntent = new Intent(getActivity(), SpecialDetailsActivity.class);
                 mIntent.putExtra("spid", spid);

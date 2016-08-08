@@ -29,7 +29,7 @@
             app:tl_indicator_corner_radius="1.5dp"
             app:tl_textsize="16sp"
             app:tl_indicator_height="3dp"
-            app:tl_indicator_width="15dp"/>
+            app:tl_indicator_width="35dp"/>
 
 
     </android.support.design.widget.AppBarLayout>

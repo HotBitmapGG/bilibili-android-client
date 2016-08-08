@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.Bangumi;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumi;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -26,9 +26,9 @@ public class BangumiTimeLineRecycleAdapter extends AbsRecyclerViewAdapter
 {
 
 
-    private ArrayList<Bangumi> mList;
+    private ArrayList<WeekDayBangumi> mList;
 
-    public BangumiTimeLineRecycleAdapter(RecyclerView recyclerView, ArrayList<Bangumi> list)
+    public BangumiTimeLineRecycleAdapter(RecyclerView recyclerView, ArrayList<WeekDayBangumi> list)
     {
 
         super(recyclerView);
@@ -67,7 +67,7 @@ public class BangumiTimeLineRecycleAdapter extends AbsRecyclerViewAdapter
         }
     }
 
-    public Bangumi getItem(int pos)
+    public WeekDayBangumi getItem(int pos)
     {
 
         return mList.get(pos);

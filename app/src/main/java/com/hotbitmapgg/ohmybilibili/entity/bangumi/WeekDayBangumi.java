@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * <p/>
  * 番剧放送表
  */
-public class Bangumi
+public class WeekDayBangumi
 {
 
     // 标题
