@@ -12,7 +12,7 @@ import rx.Observable;
  * <p/>
  * 9个热门视频排行数据
  */
-public interface RecommendedIndexService
+public interface IndexService
 {
 
     @GET("index")
