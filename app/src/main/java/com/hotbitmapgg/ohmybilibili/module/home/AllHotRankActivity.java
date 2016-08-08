@@ -10,21 +10,16 @@ import android.view.MenuItem;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.AllRankRecyclerAdapter;
-import com.hotbitmapgg.ohmybilibili.network.api.IndexApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.entity.index.Index;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import butterknife.Bind;
-import rx.Single;
-import rx.SingleSubscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -119,42 +114,26 @@ public class AllHotRankActivity extends RxAppCompatBaseActivity
     public void getIndex()
     {
 
-        Single<BasicMessage<Index>> single = Single.fromCallable(new Callable<BasicMessage<Index>>()
-        {
-
-            @Override
-            public BasicMessage<Index> call() throws Exception
-            {
-
-                return IndexApi.getIndex();
-            }
-        });
-
-        Subscription subscribe = single.map(new Func1<BasicMessage<Index>,Index>()
-        {
-
-            @Override
-            public Index call(BasicMessage<Index> indexBasicMessage)
-            {
-
-                return indexBasicMessage.getObject();
-            }
-        })
+        RetrofitHelper.getIndexApi()
+                .getIndex("android")
+                .compose(this.<Index> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<Index>()
+                .subscribe(new Action1<Index>()
                 {
 
                     @Override
-                    public void onSuccess(Index value)
+                    public void call(Index index)
                     {
 
-                        mTypeIndex = value;
+                        mTypeIndex = index;
                         finishGetTask();
                     }
+                }, new Action1<Throwable>()
+                {
 
                     @Override
-                    public void onError(Throwable error)
+                    public void call(Throwable throwable)
                     {
 
                         mSwipeRefreshLayout.post(new Runnable()
@@ -169,8 +148,6 @@ public class AllHotRankActivity extends RxAppCompatBaseActivity
                         });
                     }
                 });
-
-        compositeSubscription.add(subscribe);
     }
 
 
@@ -205,7 +182,8 @@ public class AllHotRankActivity extends RxAppCompatBaseActivity
 
             mRecyclerView.setHasFixedSize(true);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(AllHotRankActivity.this));
-            AllRankRecyclerAdapter allRankRecyclerAdapter = new AllRankRecyclerAdapter(mRecyclerView, indexs, AllHotRankActivity.this);
+            AllRankRecyclerAdapter allRankRecyclerAdapter = new AllRankRecyclerAdapter(mRecyclerView,
+                    indexs, AllHotRankActivity.this);
             mRecyclerView.setAdapter(allRankRecyclerAdapter);
         }
     }

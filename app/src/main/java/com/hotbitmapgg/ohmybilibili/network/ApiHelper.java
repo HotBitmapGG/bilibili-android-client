@@ -139,20 +139,20 @@ public class ApiHelper
 //        return builder.toString();
 //    }
 
-    /**
-     * 获取分区类型推荐视频
-     *
-     * @return
-     */
-    public static String getIndexUrl()
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.INDEX);
-
-        builder.addParams("platform", "android");
-
-        return builder.toString();
-    }
+//    /**
+//     * 获取分区类型推荐视频
+//     *
+//     * @return
+//     */
+//    public static String getIndexUrl()
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.INDEX);
+//
+//        builder.addParams("platform", "android");
+//
+//        return builder.toString();
+//    }
 
 //    public static String getSlideshowUrl()
 //    {

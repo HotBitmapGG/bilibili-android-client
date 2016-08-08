@@ -10,6 +10,7 @@ import com.hotbitmapgg.ohmybilibili.retrofit.api.FansService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.Html5VideoUrlService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveUrlService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.PartitionMoreService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedIndexService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.TwoDimensionalService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.UserInfoService;
@@ -311,6 +312,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(UserInfoService.class);
+    }
+
+
+    /**
+     * 获取9个热门视频排行
+     *
+     * @return
+     */
+    public static RecommendedIndexService getIndexApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(RecommendedIndexService.class);
     }
 
 
