@@ -1,5 +1,4 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -39,8 +38,8 @@
                         android:id="@+id/video_preview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/bili_default_image_tv"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bili_default_image_tv" />
 
 
                 </LinearLayout>
@@ -52,7 +51,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:minHeight="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -60,20 +59,20 @@
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@color/white_80"
                 android:layout_gravity="center_horizontal"
-                app:tl_indicator_corner_radius="1.5dp"
-                app:tl_indicator_color="@color/pink_300"
-                app:tl_textSelectColor="@color/pink_300"
-                app:tl_textUnselectColor="@color/font_normal"
+                android:background="@color/white_80"
                 android:elevation="2dp"
+                app:tl_indicator_color="@color/pink_300"
+                app:tl_indicator_corner_radius="1.5dp"
                 app:tl_indicator_height="3dp"
-                app:tl_indicator_width="25dp"/>
+                app:tl_indicator_width="25dp"
+                app:tl_textSelectColor="@color/pink_300"
+                app:tl_textUnselectColor="@color/font_normal" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/white_80"/>
+                android:background="@color/white_80" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -83,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
     </android.support.design.widget.CoordinatorLayout>
@@ -99,7 +98,7 @@
         app:backgroundTint="@color/pink_300"
         app:elevation="4dp"
         app:pressedTranslationZ="4dp"
-        app:rippleColor="@color/pink_500"/>
+        app:rippleColor="@color/pink_500" />
 
 </FrameLayout>
 

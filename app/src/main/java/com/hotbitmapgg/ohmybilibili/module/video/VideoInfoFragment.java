@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -13,10 +14,12 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoAlikeListAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
+import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoList;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoViewInfo;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.UserTagView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -102,17 +105,19 @@ public class VideoInfoFragment extends RxLazyFragment
 
     private VideoAlikeListAdapter mVideoAlikeListAdapter;
 
-    private VideoViewInfo viewInfo;
+    //private VideoViewInfo viewInfo;
+
+    private VideoDetails mVideoDetails;
 
     private int av;
 
-    public static VideoInfoFragment newInstance(VideoViewInfo info, int aid)
+    public static VideoInfoFragment newInstance(VideoDetails info, int aid)
     {
 
         VideoInfoFragment fragment = new VideoInfoFragment();
         Bundle args = new Bundle();
         args.putInt(AID, aid);
-        args.putSerializable(EXTRA_INFO, info);
+        args.putParcelable(EXTRA_INFO, info);
         fragment.setArguments(args);
         return fragment;
     }
@@ -133,7 +138,7 @@ public class VideoInfoFragment extends RxLazyFragment
         if (bundle != null)
         {
             av = bundle.getInt(AID);
-            viewInfo = (VideoViewInfo) bundle.getSerializable(EXTRA_INFO);
+            mVideoDetails = bundle.getParcelable(EXTRA_INFO);
         }
 
 
@@ -144,16 +149,16 @@ public class VideoInfoFragment extends RxLazyFragment
     private void setVideoInfo()
     {
 
-        mTitleText.setText(viewInfo.title);
-        mPlayTimeText.setText(String.format(getString(R.string.info_play_times_format), viewInfo.play));
-        mReviewCountText.setText(String.format(getString(R.string.info_reviews_format), viewInfo.video_review));
-        mDescText.setText(viewInfo.description);
-        mCreatedAtText.setText(viewInfo.created_at);
-        mAuthorTagView.setUpWithInfo(getActivity(), viewInfo.author, viewInfo.mid, viewInfo.face);
+        mTitleText.setText(mVideoDetails.getTitle());
+        mPlayTimeText.setText(String.format(getString(R.string.info_play_times_format), Integer.valueOf(mVideoDetails.getPlay())));
+        mReviewCountText.setText(String.format(getString(R.string.info_reviews_format), Integer.valueOf(mVideoDetails.getVideo_review())));
+        mDescText.setText(mVideoDetails.getDescription());
+        mCreatedAtText.setText(mVideoDetails.getCreated_at());
+        mAuthorTagView.setUpWithInfo(getActivity(), mVideoDetails.getAuthor(), Integer.valueOf(mVideoDetails.getMid()), mVideoDetails.getFace());
 
-        mShareNum.setText(viewInfo.credit + "");
-        mFavNum.setText(viewInfo.favorites + "");
-        mCoinNum.setText(viewInfo.coins + "");
+        mShareNum.setText(mVideoDetails.getReview());
+        mFavNum.setText(mVideoDetails.getFavorites());
+        mCoinNum.setText(mVideoDetails.getCoins());
 
         mMoreVideo.setOnClickListener(new View.OnClickListener()
         {
@@ -171,13 +176,13 @@ public class VideoInfoFragment extends RxLazyFragment
         setVideoTags();
 
         //获取该用户推荐的视频列表
-        getVideoListPartsByTid(viewInfo.tid + "");
+        getVideoListPartsByTid(mVideoDetails.getTid() + "");
     }
 
     private void setVideoTags()
     {
 
-        String tag = viewInfo.tag;
+        String tag = mVideoDetails.getTag();
         String[] tagsArray = tag.split(",");
         List<String> tags = Arrays.asList(tagsArray);
 
@@ -200,9 +205,13 @@ public class VideoInfoFragment extends RxLazyFragment
     public void getVideoListPartsByTid(String tid)
     {
 
+        if (TextUtils.isEmpty(Secret.APP_KEY))
+            return;
+
         Random random = new Random();
         int anInt = random.nextInt(50);
         String url = ApiHelper.getVideoListPartsByTid(tid, anInt + "", "10", "default");
+        LogUtil.all(url);
         OkHttpUtils.get().url(url).build().execute(new StringCallback()
         {
 
@@ -259,7 +268,7 @@ public class VideoInfoFragment extends RxLazyFragment
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
-        intent.putExtra(Intent.EXTRA_TEXT, "来自「哔哩哔哩」的分享:" + viewInfo.offsite);
-        startActivity(Intent.createChooser(intent, viewInfo.title));
+        intent.putExtra(Intent.EXTRA_TEXT, "来自「哔哩哔哩」的分享:" + mVideoDetails.describeContents());
+        startActivity(Intent.createChooser(intent, mVideoDetails.getTitle()));
     }
 }

@@ -22,23 +22,19 @@ import android.widget.ImageView;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoViewInfo;
 import com.hotbitmapgg.ohmybilibili.network.UrlHelper;
-import com.hotbitmapgg.ohmybilibili.network.api.VideoApi;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import butterknife.Bind;
-import rx.Single;
-import rx.SingleSubscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -84,9 +80,11 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     private int av;
 
-    private VideoViewInfo viewInfo;
+    //private VideoViewInfo viewInfo;
 
     private VideoDetailsPagerAdapter mAdapter;
+
+    private VideoDetails mVideoDetails;
 
 
     @Override
@@ -234,68 +232,96 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     public void getVideoInfo()
     {
-
-        Single<BasicMessage<VideoViewInfo>> single = Single.fromCallable(new Callable<BasicMessage<VideoViewInfo>>()
-        {
-
-            @Override
-            public BasicMessage<VideoViewInfo> call() throws Exception
-            {
-
-                return VideoApi.getVideoViewInfo(itemInfo != null ? itemInfo.aid : av, 0, false);
-            }
-        });
-
-
-        Subscription subscribe = single.map(new Func1<BasicMessage<VideoViewInfo>,VideoViewInfo>()
-        {
-
-            @Override
-            public VideoViewInfo call(BasicMessage<VideoViewInfo> videoViewInfoBasicMessage)
-            {
-
-                return videoViewInfoBasicMessage.getObject();
-            }
-        })
+        RetrofitHelper.getVideoDetailsApi()
+                .getVideoDetails(av)
+                .compose(this.<VideoDetails> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<VideoViewInfo>()
+                .subscribe(new Action1<VideoDetails>()
                 {
 
                     @Override
-                    public void onSuccess(VideoViewInfo value)
+                    public void call(VideoDetails videoDetails)
                     {
 
-                        viewInfo = value;
+                        mVideoDetails = videoDetails;
                         finishGetTask();
                     }
+                }, new Action1<Throwable>()
+                {
 
                     @Override
-                    public void onError(Throwable error)
+                    public void call(Throwable throwable)
                     {
 
+                        LogUtil.all("获取视频详情失败" + throwable.getMessage());
                     }
                 });
 
-        compositeSubscription.add(subscribe);
+        //下边的请求需要Appkey才能获取到视频详情数据
+
+//
+//        Single<BasicMessage<VideoViewInfo>> single = Single.fromCallable(new Callable<BasicMessage<VideoViewInfo>>()
+//        {
+//
+//            @Override
+//            public BasicMessage<VideoViewInfo> call() throws Exception
+//            {
+//
+//                return VideoApi.getVideoViewInfo(itemInfo != null ? itemInfo.aid : av, 0, false);
+//            }
+//        });
+//
+//
+//        Subscription subscribe = single.map(new Func1<BasicMessage<VideoViewInfo>,VideoViewInfo>()
+//        {
+//
+//            @Override
+//            public VideoViewInfo call(BasicMessage<VideoViewInfo> videoViewInfoBasicMessage)
+//            {
+//
+//                return videoViewInfoBasicMessage.getObject();
+//            }
+//        })
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new SingleSubscriber<VideoViewInfo>()
+//                {
+//
+//                    @Override
+//                    public void onSuccess(VideoViewInfo value)
+//                    {
+//
+//                        viewInfo = value;
+//                        finishGetTask();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable error)
+//                    {
+//
+//                    }
+//                });
+//
+//        compositeSubscription.add(subscribe);
     }
 
     private void finishGetTask()
     {
 
-        mCollapsingToolbarLayout.setTitle(viewInfo.title);
-        Picasso.with(this).load(UrlHelper.getClearVideoPreviewUrl(viewInfo.pic)).into(mVideoPreview);
+        mCollapsingToolbarLayout.setTitle(mVideoDetails.getTitle());
+        Picasso.with(this).load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic())).into(mVideoPreview);
 
-        VideoInfoFragment mVideoInfoFragment = VideoInfoFragment.newInstance(viewInfo, itemInfo != null ? itemInfo.aid : av);
+        VideoInfoFragment mVideoInfoFragment = VideoInfoFragment.newInstance(mVideoDetails, itemInfo != null ? itemInfo.aid : av);
         VideoCommentFragment mVideoCommentFragment = VideoCommentFragment.newInstance(itemInfo != null ? itemInfo.aid : av);
 
         fragments.add(mVideoInfoFragment);
         fragments.add(mVideoCommentFragment);
 
-        setPagerTitle(viewInfo.review);
+        setPagerTitle(mVideoDetails.getVideo_review());
     }
 
-    private void setPagerTitle(int num)
+    private void setPagerTitle(String num)
     {
 
         titles.add("简介");

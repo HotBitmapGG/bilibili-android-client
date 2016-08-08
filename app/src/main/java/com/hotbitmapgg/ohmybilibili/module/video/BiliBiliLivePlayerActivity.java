@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -17,16 +15,22 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.ResponseBody;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
@@ -76,7 +80,7 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
 
     private SurfaceHolder holder;
 
-    private OkHttpClient client;
+    //private OkHttpClient client;
 
     private int flag = 0;
 
@@ -96,25 +100,25 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
 
     private int mid;
 
-    private Handler mHandler = new Handler()
-    {
-
-        @Override
-        public void handleMessage(Message msg)
-        {
-
-            if (msg.what == 0)
-            {
-
-                stopAnim();
-                isPlay = true;
-                videoView.setVisibility(View.VISIBLE);
-                mRightPlayBtn.setImageResource(R.drawable.ic_tv_stop);
-                mBottomPlayBtn.setImageResource(R.drawable.ic_portrait_stop);
-            }
-            super.handleMessage(msg);
-        }
-    };
+//    private Handler mHandler = new Handler()
+//    {
+//
+//        @Override
+//        public void handleMessage(Message msg)
+//        {
+//
+//            if (msg.what == 0)
+//            {
+//
+//                stopAnim();
+//                isPlay = true;
+//                videoView.setVisibility(View.VISIBLE);
+//                mRightPlayBtn.setImageResource(R.drawable.ic_tv_stop);
+//                mBottomPlayBtn.setImageResource(R.drawable.ic_portrait_stop);
+//            }
+//            super.handleMessage(msg);
+//        }
+//    };
 
 
     @Override
@@ -181,7 +185,7 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
             public void onClick(View v)
             {
 
-                finish();
+                onBackPressed();
             }
         });
     }
@@ -190,46 +194,133 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
     private void initVideo()
     {
 
-        client = new OkHttpClient();
+        // client = new OkHttpClient();
         holder = videoView.getHolder();
         ijkMediaPlayer = new IjkMediaPlayer();
+        getLiveUrl();
 
-        new Thread(new Runnable()
-        {
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<String>()
+//                {
+//
+//                    @Override
+//                    public void call(String s)
+//                    {
+//                        playVideo(s);
+//                    }
+//                }, new Action1<Throwable>()
+//                {
+//
+//                    @Override
+//                    public void call(Throwable throwable)
+//                    {
+//
+//                        LogUtil.all("直播地址url获取失败" + throwable.getMessage());
+//                    }
+//                });
 
-            @Override
-            public void run()
-            {
 
-                try
-                {
-                    execute();
-                } catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//        new Thread(new Runnable()
+//        {
+//
+//            @Override
+//            public void run()
+//            {
+//
+//                try
+//                {
+//                    execute();
+//                } catch (Exception e)
+//                {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
     }
 
-    public void execute() throws Exception
+    private void getLiveUrl()
     {
 
-        ijkMediaPlayer.stop();
+        RetrofitHelper.getLiveUrlApi()
+                .getLiveUrl(cid)
+                .compose(this.<ResponseBody> bindToLifecycle())
+                .map(new Func1<ResponseBody,String>()
+                {
 
-        String url = "http://live.bilibili.com/api/playurl?player=1&quality=0&cid=" + cid;
-        Request request = new Request.Builder().url(url).build();
-        Response response = client.newCall(request).execute();
+                    @Override
+                    public String call(ResponseBody responseBody)
+                    {
 
-        if (response.isSuccessful())
-        {
-            String str = response.body().string();
-            String result = str.substring(str.lastIndexOf("[") + 1, str.lastIndexOf("]") - 1);
-            playVideo(result);
+                        try
+                        {
+                            String str = responseBody.string();
+                            String result = str.substring(str.lastIndexOf("[") + 1, str.lastIndexOf("]") - 1);
+                            return result;
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(new Func1<String,Observable<Long>>()
+                {
 
-            mHandler.sendEmptyMessageDelayed(0, 2000);
-        }
+                    @Override
+                    public Observable<Long> call(String s)
+                    {
+
+                        playVideo(s);
+                        return Observable.timer(2000, TimeUnit.MILLISECONDS);
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Long>()
+                {
+
+                    @Override
+                    public void call(Long aLong)
+                    {
+
+                        stopAnim();
+                        isPlay = true;
+                        videoView.setVisibility(View.VISIBLE);
+                        mRightPlayBtn.setImageResource(R.drawable.ic_tv_stop);
+                        mBottomPlayBtn.setImageResource(R.drawable.ic_portrait_stop);
+                    }
+                }, new Action1<Throwable>()
+                {
+
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        LogUtil.all("直播地址url获取失败" + throwable.getMessage());
+                    }
+                });
     }
+
+//    public void execute() throws Exception
+//    {
+//
+//        ijkMediaPlayer.stop();
+//
+//        String url = "http://live.bilibili.com/api/playurl?player=1&quality=0&cid=" + cid;
+//        Request request = new Request.Builder().url(url).build();
+//        Response response = client.newCall(request).execute();
+//
+//        if (response.isSuccessful())
+//        {
+//            String str = response.body().string();
+//            String result = str.substring(str.lastIndexOf("[") + 1, str.lastIndexOf("]") - 1);
+//            playVideo(result);
+//
+//           // mHandler.sendEmptyMessageDelayed(0, 2000);
+//        }
+//    }
 
 
     private void playVideo(String uri)

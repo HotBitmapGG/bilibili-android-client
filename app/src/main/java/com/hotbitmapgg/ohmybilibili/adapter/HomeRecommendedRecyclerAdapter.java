@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Body;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Result;
 import com.hotbitmapgg.ohmybilibili.module.home.AllHotRankActivity;
+import com.hotbitmapgg.ohmybilibili.module.video.BiliBiliLivePlayerActivity;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,10 +114,10 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
         });
     }
 
-    private void initGrid(ItemViewHolder itemViewHolder, Result result, int pos)
+    private void initGrid(ItemViewHolder itemViewHolder, Result result, final int pos)
     {
 
-        ArrayList<Body> body = result.getBody();
+        final ArrayList<Body> body = result.getBody();
         itemViewHolder.mItemRecycle.setHasFixedSize(true);
         itemViewHolder.mItemRecycle.setNestedScrollingEnabled(false);
         itemViewHolder.mItemRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -127,6 +130,26 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
             public void onItemClick(int position, ClickableViewHolder holder)
             {
 
+                int aid = Integer.valueOf(body.get(position).getParam());
+                if (pos == 1)
+                {
+                    //直播item点击事件
+                    Intent intent = new Intent(getContext(), BiliBiliLivePlayerActivity.class);
+                    intent.putExtra("cid", Integer.valueOf(body.get(position).getParam()));
+                    intent.putExtra("title", body.get(position).getTitle());
+                    intent.putExtra("online", body.get(position).getOnline());
+                    intent.putExtra("face", body.get(position).getUpFace());
+                    intent.putExtra("name", body.get(position).getUp());
+                    intent.putExtra("mid", "");
+                    getContext().startActivity(intent);
+                } else if (pos == 2)
+                {
+                    //番剧item点击事件,暂时没有实现
+                } else
+                {
+                    //视频点击事件
+                    VideoDetailsActivity.launch((Activity) getContext(), aid);
+                }
             }
         });
     }

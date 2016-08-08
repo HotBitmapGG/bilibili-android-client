@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.module.common;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -48,7 +49,9 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
 
     private WebViewClientBase webViewClient = new WebViewClientBase();
 
-    private String iconUrl;
+    private static final String EXTRA_URL = "url";
+
+    private static final String EXTRA_TITLE = "title";
 
 
     @Override
@@ -65,9 +68,8 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
         Intent intent = getIntent();
         if (intent != null)
         {
-            url = intent.getStringExtra("url");
-            mTitle = intent.getStringExtra("title");
-            iconUrl = intent.getStringExtra("picUrl");
+            url = intent.getStringExtra(EXTRA_URL);
+            mTitle = intent.getStringExtra(EXTRA_TITLE);
         }
 
 
@@ -87,9 +89,19 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
             public void onClick(View v)
             {
 
-                finish();
+                onBackPressed();
             }
         });
+    }
+
+
+    public static void launch(Activity activity, String url, String title)
+    {
+
+        Intent intent = new Intent(activity, BrowserActivity.class);
+        intent.putExtra(EXTRA_URL, url);
+        intent.putExtra(EXTRA_TITLE, title);
+        activity.startActivity(intent);
     }
 
 

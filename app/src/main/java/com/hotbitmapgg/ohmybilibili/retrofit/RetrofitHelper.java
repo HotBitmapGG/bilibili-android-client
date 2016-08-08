@@ -5,8 +5,10 @@ import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BiliBiliLiveService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveUrlService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.TwoDimensionalService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.VideoDetailsService;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -136,6 +138,43 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(TwoDimensionalService.class);
+    }
+
+
+    /**
+     * 获取视频详情
+     *
+     * @return
+     */
+    public static VideoDetailsService getVideoDetailsApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(VideoDetailsService.class);
+    }
+
+
+    /**
+     * 获取直播数据Url
+     *
+     * @return
+     */
+    public static LiveUrlService getLiveUrlApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(LIVE_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        return retrofit.create(LiveUrlService.class);
     }
 
 
