@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BiliBiliLiveRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.model.base.Result;
-import com.hotbitmapgg.ohmybilibili.model.live.LiveIndex;
+import com.hotbitmapgg.ohmybilibili.entity.base.Result;
+import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
 
 import butterknife.Bind;

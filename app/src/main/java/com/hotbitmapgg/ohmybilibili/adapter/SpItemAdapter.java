@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.video.Sp;
+import com.hotbitmapgg.ohmybilibili.entity.video.Sp;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

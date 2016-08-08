@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.model.recommended.Body;
+import com.hotbitmapgg.ohmybilibili.entity.recommended.Body;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

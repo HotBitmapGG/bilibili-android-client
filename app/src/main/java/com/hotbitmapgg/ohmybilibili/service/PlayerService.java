@@ -11,7 +11,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.view.SurfaceHolder;
 
-import com.hotbitmapgg.ohmybilibili.model.video.VP;
+import com.hotbitmapgg.ohmybilibili.entity.video.VP;
 import com.yixia.zi.utils.FileUtils;
 
 import java.io.File;
@@ -36,7 +36,13 @@ import io.vov.vitamio.Vitamio;
  * <p/>
  * 视频播放服务
  */
-public class PlayerService extends Service implements OnBufferingUpdateListener, OnCompletionListener, OnPreparedListener, OnVideoSizeChangedListener, OnErrorListener, OnInfoListener, OnSeekCompleteListener, OnTimedTextListener
+public class PlayerService extends Service implements OnBufferingUpdateListener,
+        OnCompletionListener,
+        OnPreparedListener,
+        OnVideoSizeChangedListener,
+        OnErrorListener, OnInfoListener,
+        OnSeekCompleteListener,
+        OnTimedTextListener
 {
 
     private MediaPlayer mPlayer;

@@ -12,8 +12,8 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.AllRankRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.network.api.IndexApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
-import com.hotbitmapgg.ohmybilibili.model.index.Index;
+import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.entity.index.Index;
 
 import java.util.ArrayList;
 import java.util.List;

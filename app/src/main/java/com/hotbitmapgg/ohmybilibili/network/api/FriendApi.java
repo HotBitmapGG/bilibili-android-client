@@ -1,7 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
-import com.hotbitmapgg.ohmybilibili.model.user.UserInfo;
+import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
 
 import java.util.ArrayList;
 

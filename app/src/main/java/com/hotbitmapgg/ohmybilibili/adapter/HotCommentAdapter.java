@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.model.video.VideoComment;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
 import com.hotbitmapgg.ohmybilibili.network.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.squareup.picasso.Picasso;

@@ -1,7 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.model.bangumi.Bangumi;
-import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.Bangumi;
+import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.network.ApiHelper;
 
 import java.util.ArrayList;

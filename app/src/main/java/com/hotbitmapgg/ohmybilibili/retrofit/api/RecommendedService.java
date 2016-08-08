@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.retrofit.api;
 
-import com.hotbitmapgg.ohmybilibili.model.recommended.Recommend;
+import com.hotbitmapgg.ohmybilibili.entity.recommended.Recommend;
 
 import retrofit2.http.GET;
 import rx.Observable;

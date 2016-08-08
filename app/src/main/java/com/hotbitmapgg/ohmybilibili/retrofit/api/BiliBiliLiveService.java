@@ -1,8 +1,8 @@
 package com.hotbitmapgg.ohmybilibili.retrofit.api;
 
 
-import com.hotbitmapgg.ohmybilibili.model.base.Result;
-import com.hotbitmapgg.ohmybilibili.model.live.LiveIndex;
+import com.hotbitmapgg.ohmybilibili.entity.base.Result;
+import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
 
 import retrofit2.http.GET;
 import rx.Observable;

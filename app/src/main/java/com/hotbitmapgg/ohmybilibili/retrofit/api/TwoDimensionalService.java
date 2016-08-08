@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.retrofit.api;
 
-import com.hotbitmapgg.ohmybilibili.model.bangumi.TwoDimensional;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.TwoDimensional;
 
 import retrofit2.http.GET;
 import rx.Observable;

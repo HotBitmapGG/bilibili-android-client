@@ -2,7 +2,7 @@ package com.hotbitmapgg.ohmybilibili.network;
 
 import android.util.Log;
 
-import com.hotbitmapgg.ohmybilibili.model.user.UserInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
 
 /**
  * Created by hcc on 16/8/4 21:18

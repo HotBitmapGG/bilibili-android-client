@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.model.game.GameItem;
+import com.hotbitmapgg.ohmybilibili.entity.game.GameItem;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.squareup.picasso.Picasso;
 

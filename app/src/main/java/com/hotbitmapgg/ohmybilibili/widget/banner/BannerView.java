@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.live.Banner;
+import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.squareup.picasso.Picasso;
 

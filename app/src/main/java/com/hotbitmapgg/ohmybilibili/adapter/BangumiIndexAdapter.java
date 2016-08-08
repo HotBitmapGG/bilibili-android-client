@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.model.bangumi.BangumiIndex;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndex;
 import com.hotbitmapgg.ohmybilibili.widget.rounded_imageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 

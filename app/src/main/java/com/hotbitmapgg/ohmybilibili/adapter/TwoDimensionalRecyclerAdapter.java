@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.model.bangumi.TwoDimensional;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.TwoDimensional;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -11,8 +11,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.CommentAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.HotCommentAdapter;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentApi;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.model.base.BasicMessage;
-import com.hotbitmapgg.ohmybilibili.model.video.VideoComment;
+import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
 

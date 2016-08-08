@@ -34,8 +34,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.video.VP;
-import com.hotbitmapgg.ohmybilibili.model.video.VideoSrc;
+import com.hotbitmapgg.ohmybilibili.entity.video.VP;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoSrc;
 import com.hotbitmapgg.ohmybilibili.service.MediaController;
 import com.hotbitmapgg.ohmybilibili.service.PlayerService;
 import com.hotbitmapgg.ohmybilibili.utils.ApplicationUtils;

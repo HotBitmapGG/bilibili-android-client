@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.model.bangumi.Bangumi;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.Bangumi;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

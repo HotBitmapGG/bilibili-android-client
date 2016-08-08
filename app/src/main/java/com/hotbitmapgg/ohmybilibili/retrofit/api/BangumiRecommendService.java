@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.retrofit.api;
 
-import com.hotbitmapgg.ohmybilibili.model.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
 
 import retrofit2.http.GET;
 import rx.Observable;

@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.retrofit.api;
 
-import com.hotbitmapgg.ohmybilibili.model.bangumi.BangumiIndex;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndex;
 
 import java.util.List;
 
