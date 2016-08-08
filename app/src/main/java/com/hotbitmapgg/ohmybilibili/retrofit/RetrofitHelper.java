@@ -6,6 +6,7 @@ import com.hotbitmapgg.ohmybilibili.retrofit.api.AuthorRecommendedService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BiliBiliLiveService;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.FansService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.Html5VideoUrlService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveUrlService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.PartitionMoreService;
@@ -272,6 +273,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(WeekDayBangumiService.class);
+    }
+
+
+    /**
+     * 获取用户粉丝列表
+     *
+     * @return
+     */
+    public static FansService getUserFansApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(FansService.class);
     }
 
 

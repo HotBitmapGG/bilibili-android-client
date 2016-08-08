@@ -11,23 +11,20 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserFansAdapter;
-import com.hotbitmapgg.ohmybilibili.network.api.FansApi;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserFans;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.DividerItemDecoration;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 import butterknife.Bind;
-import rx.Single;
-import rx.SingleSubscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -94,6 +91,32 @@ public class UserFansActivity extends RxAppCompatBaseActivity
         mCircleProgressView.spin();
 
         getFans();
+        initRecyclerView();
+    }
+
+    private void initRecyclerView()
+    {
+
+        mRecyclerAdapter = new UserFansAdapter(mRecyclerView, userfansList);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(UserFansActivity.this, DividerItemDecoration.VERTICAL_LIST));
+        mRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mAdapter = new HeaderViewRecyclerAdapter(mRecyclerAdapter);
+        mRecyclerView.setAdapter(mAdapter);
+        createLoadMoreView();
+        mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager)
+        {
+
+            @Override
+            public void onLoadMore(int i)
+            {
+
+                pageNum++;
+                getFans();
+                loadMoreView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -117,27 +140,9 @@ public class UserFansActivity extends RxAppCompatBaseActivity
     public void getFans()
     {
 
-        Single<BasicMessage<UserFans>> observable = Single.fromCallable(new Callable<BasicMessage<UserFans>>()
-        {
-
-            @Override
-            public BasicMessage<UserFans> call() throws Exception
-            {
-
-                return FansApi.getUserFans(mid, pageNum, pageSize);
-            }
-        });
-
-        Subscription subscribe = observable.map(new Func1<BasicMessage<UserFans>,UserFans>()
-        {
-
-            @Override
-            public UserFans call(BasicMessage<UserFans> userFansBasicMessage)
-            {
-
-                return userFansBasicMessage.getObject();
-            }
-        })
+        RetrofitHelper.getUserFansApi()
+                .getUserFans(mid, pageNum, pageSize)
+                .compose(this.<UserFans> bindToLifecycle())
                 .map(new Func1<UserFans,ArrayList<UserFans.FansInfo>>()
                 {
 
@@ -150,104 +155,30 @@ public class UserFansActivity extends RxAppCompatBaseActivity
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ArrayList<UserFans.FansInfo>>()
+                .subscribe(new Action1<ArrayList<UserFans.FansInfo>>()
                 {
 
                     @Override
-                    public void onSuccess(ArrayList<UserFans.FansInfo> value)
+                    public void call(ArrayList<UserFans.FansInfo> fansInfos)
                     {
 
-                        if (value != null && value.size() > 0)
-                        {
-                            userfansList.addAll(value);
-
-                            finishTask();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable error)
-                    {
-
-                    }
-                });
-
-        compositeSubscription.add(subscribe);
-    }
-
-    public void loadMoreFans()
-    {
-
-        Single<BasicMessage<UserFans>> single = Single.fromCallable(new Callable<BasicMessage<UserFans>>()
-        {
-
-            @Override
-            public BasicMessage<UserFans> call() throws Exception
-            {
-
-                return FansApi.getUserFans(mid, pageNum, pageSize);
-            }
-        });
-
-        Subscription subscribe = single.map(new Func1<BasicMessage<UserFans>,UserFans>()
-        {
-
-            @Override
-            public UserFans call(BasicMessage<UserFans> userFansBasicMessage)
-            {
-
-                return userFansBasicMessage.getObject();
-            }
-        })
-                .map(new Func1<UserFans,ArrayList<UserFans.FansInfo>>()
-                {
-
-                    @Override
-                    public ArrayList<UserFans.FansInfo> call(UserFans userFans)
-                    {
-
-                        return userFans.list;
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ArrayList<UserFans.FansInfo>>()
-                {
-
-                    @Override
-                    public void onSuccess(ArrayList<UserFans.FansInfo> value)
-                    {
-
-                        if (value != null && value.size() > 0)
-                        {
-                            int size = value.size();
-                            for (int i = 0; i < size; i++)
-                            {
-                                userfansList.add(value.get(i));
-                            }
-                            if (size < pageSize)
-                            {
-                                mAdapter.notifyDataSetChanged();
-                                loadMoreView.setVisibility(View.GONE);
-                            }
-                            mAdapter.notifyDataSetChanged();
-                        } else
-                        {
+                        if (fansInfos.size() < pageSize)
                             loadMoreView.setVisibility(View.GONE);
-                            mAdapter.notifyDataSetChanged();
-                        }
+
+                        userfansList.addAll(fansInfos);
+                        finishTask();
                     }
+                }, new Action1<Throwable>()
+                {
 
                     @Override
-                    public void onError(Throwable error)
+                    public void call(Throwable throwable)
                     {
 
-                        mAdapter.notifyDataSetChanged();
+                        LogUtil.all("获取用户粉丝失败" + throwable.getMessage());
                         loadMoreView.setVisibility(View.GONE);
                     }
                 });
-
-        compositeSubscription.add(subscribe);
     }
 
     private void finishTask()
@@ -256,25 +187,10 @@ public class UserFansActivity extends RxAppCompatBaseActivity
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
 
-        mRecyclerAdapter = new UserFansAdapter(mRecyclerView, userfansList);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(UserFansActivity.this, DividerItemDecoration.VERTICAL_LIST));
-        mRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mAdapter = new HeaderViewRecyclerAdapter(mRecyclerAdapter);
-        mRecyclerView.setAdapter(mAdapter);
-        createLoadMoreView();
-        mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager)
-        {
-
-            @Override
-            public void onLoadMore(int i)
-            {
-
-                pageNum++;
-                loadMoreFans();
-            }
-        });
+        if (pageNum * pageSize - pageSize - 1 > 0)
+            mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
+        else
+            mAdapter.notifyDataSetChanged();
     }
 
     private void createLoadMoreView()
@@ -282,6 +198,7 @@ public class UserFansActivity extends RxAppCompatBaseActivity
 
         loadMoreView = LayoutInflater.from(UserFansActivity.this).inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
         mAdapter.addFooterView(loadMoreView);
+        loadMoreView.setVisibility(View.GONE);
     }
 
 

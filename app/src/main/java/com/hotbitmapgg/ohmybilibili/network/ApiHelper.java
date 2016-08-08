@@ -294,24 +294,24 @@ public class ApiHelper
 //        return builder.toString();
 //    }
 
-    /**
-     * 获取用户粉丝列表
-     *
-     * @param mid
-     * @param page
-     * @param pagesize
-     * @return
-     */
-    public static String getUserFansList(String mid, int page, int pagesize)
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.FANS);
-        if (mid != null)
-            builder.addParams("mid", mid);
-        builder.addParams("page", page);
-        builder.addParams("pagesize", pagesize);
-        return builder.toString();
-    }
+//    /**
+//     * 获取用户粉丝列表
+//     *
+//     * @param mid
+//     * @param page
+//     * @param pagesize
+//     * @return
+//     */
+//    public static String getUserFansList(String mid, int page, int pagesize)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.FANS);
+//        if (mid != null)
+//            builder.addParams("mid", mid);
+//        builder.addParams("page", page);
+//        builder.addParams("pagesize", pagesize);
+//        return builder.toString();
+//    }
 
     /**
      * 获取视频评论列表
