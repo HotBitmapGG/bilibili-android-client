@@ -1,6 +1,6 @@
 # OhMyBiliBili
 
-<a href="bilibiliPic/bilibili_bg.jpg"><img src="bilibiliPic/bilibili_bg.jpg" width="80%"/></a>
+<a href="bilibiliPic/bilibili_bg.jpg"><img src="bilibiliPic/bilibili_bg.jpg" width="100%"/></a>
 
 
 ## Tips
