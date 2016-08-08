@@ -11,20 +11,17 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoPartListAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.entity.user.AuthorRecommend;
-import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendApi;
+import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import butterknife.Bind;
-import rx.Single;
-import rx.SingleSubscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -45,7 +42,6 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
-
 
     private List<AuthorRecommend.AuthorData> authorRecommendList = new ArrayList<>();
 
@@ -80,7 +76,7 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setTitle("up主推荐视频");
+        mToolbar.setTitle("Up主推荐视频");
         mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener()
         {
@@ -89,7 +85,7 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
             public void onClick(View v)
             {
 
-                finish();
+                onBackPressed();
             }
         });
     }
@@ -107,27 +103,9 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
     public void getAuthorRecommendVideoList()
     {
 
-        Single<BasicMessage<AuthorRecommend>> single = Single.fromCallable(new Callable<BasicMessage<AuthorRecommend>>()
-        {
-
-            @Override
-            public BasicMessage<AuthorRecommend> call() throws Exception
-            {
-
-                return AuthorRecommendApi.getAuthorRecommendList(aid);
-            }
-        });
-
-        Subscription subscribe = single.map(new Func1<BasicMessage<AuthorRecommend>,AuthorRecommend>()
-        {
-
-            @Override
-            public AuthorRecommend call(BasicMessage<AuthorRecommend> authorRecommendBasicMessage)
-            {
-
-                return authorRecommendBasicMessage.getObject();
-            }
-        })
+        RetrofitHelper.getAuthorRecommendedApi()
+                .getAuthorRecommended(aid)
+                .compose(this.<AuthorRecommend> bindToLifecycle())
                 .map(new Func1<AuthorRecommend,List<AuthorRecommend.AuthorData>>()
                 {
 
@@ -140,26 +118,28 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<List<AuthorRecommend.AuthorData>>()
+                .subscribe(new Action1<List<AuthorRecommend.AuthorData>>()
                 {
 
                     @Override
-                    public void onSuccess(List<AuthorRecommend.AuthorData> value)
+                    public void call(List<AuthorRecommend.AuthorData> authorDatas)
                     {
 
-                        authorRecommendList.addAll(value);
-
+                        authorRecommendList.addAll(authorDatas);
                         finishGetAuthorRecommendListTask();
                     }
+                }, new Action1<Throwable>()
+                {
 
                     @Override
-                    public void onError(Throwable error)
+                    public void call(Throwable throwable)
                     {
 
+                        LogUtil.all("获取Up主推荐的更多视频失败" + throwable.getMessage());
+                        mCircleProgressView.setVisibility(View.GONE);
+                        mCircleProgressView.stopSpinning();
                     }
                 });
-
-        compositeSubscription.add(subscribe);
     }
 
 

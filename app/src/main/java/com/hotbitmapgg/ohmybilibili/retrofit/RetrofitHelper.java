@@ -2,6 +2,7 @@ package com.hotbitmapgg.ohmybilibili.retrofit;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
+import com.hotbitmapgg.ohmybilibili.retrofit.api.AuthorRecommendedService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.retrofit.api.BiliBiliLiveService;
@@ -232,6 +233,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(Html5VideoUrlService.class);
+    }
+
+
+    /**
+     * 获取Up主推荐的更多视频
+     *
+     * @return
+     */
+    public static AuthorRecommendedService getAuthorRecommendedApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(AuthorRecommendedService.class);
     }
 
 

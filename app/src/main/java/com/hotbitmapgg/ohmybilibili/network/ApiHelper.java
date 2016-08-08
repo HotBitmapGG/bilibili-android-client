@@ -72,26 +72,26 @@ public class ApiHelper
         return builder.toString();
     }
 
-    /**
-     * 获取视频详情
-     *
-     * @param av
-     * @param page
-     * @param needFav
-     * @return
-     */
-    public static String getVideoInfoUrl(int av, int page, boolean needFav)
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.VIEW);
-
-        builder.addParams("id", av);
-        builder.addParams("page", page);
-        builder.addParams("fav", needFav ? "1" : "0");
-        addAPIParmasAndComplete(builder);
-
-        return builder.toString();
-    }
+//    /**
+//     * 获取视频详情
+//     *
+//     * @param av
+//     * @param page
+//     * @param needFav
+//     * @return
+//     */
+//    public static String getVideoInfoUrl(int av, int page, boolean needFav)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.VIEW);
+//
+//        builder.addParams("id", av);
+//        builder.addParams("page", page);
+//        builder.addParams("fav", needFav ? "1" : "0");
+//        addAPIParmasAndComplete(builder);
+//
+//        return builder.toString();
+//    }
 
     /**
      * 根据userName获取用户信息
@@ -119,25 +119,25 @@ public class ApiHelper
         return builder.addParams("uid", uid).toString();
     }
 
-    /**
-     * 获取该用户上传的所有视频
-     *
-     * @param mid
-     * @param page
-     * @return
-     */
-    public static String getUserVideoListUrl(int mid, int page, int pagesize)
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.LIST);
-
-        builder.addParams("mid", mid);
-        builder.addParams("page", page);
-        builder.addParams("pagesize", pagesize);
-        addAPIParmasAndComplete(builder);
-
-        return builder.toString();
-    }
+//    /**
+//     * 获取该用户上传的所有视频
+//     *
+//     * @param mid
+//     * @param page
+//     * @return
+//     */
+//    public static String getUserVideoListUrl(int mid, int page, int pagesize)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.LIST);
+//
+//        builder.addParams("mid", mid);
+//        builder.addParams("page", page);
+//        builder.addParams("pagesize", pagesize);
+//        addAPIParmasAndComplete(builder);
+//
+//        return builder.toString();
+//    }
 
     /**
      * 获取分区类型推荐视频
@@ -252,47 +252,47 @@ public class ApiHelper
 //        return builder.toString();
 //    }
 
-    /**
-     * 根据类型id查询相关的视频列表
-     *
-     * @param tid
-     * @param pagenum
-     * @param pagesize
-     * @param order
-     * @return
-     */
-    public static String getVideoListPartsByTid(String tid, String pagenum, String pagesize, String order)
-    {
+//    /**
+//     * 根据类型id查询相关的视频列表
+//     *
+//     * @param tid
+//     * @param pagenum
+//     * @param pagesize
+//     * @param order
+//     * @return
+//     */
+//    public static String getVideoListPartsByTid(String tid, String pagenum, String pagesize, String order)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.LIST);
+//
+//        if (tid != null)
+//            builder.addParams("tid", tid);
+//        if (pagenum != null)
+//            builder.addParams("page", pagenum);
+//        if (pagesize != null)
+//            builder.addParams("pagesize", pagesize);
+//        if (order != null)
+//            builder.addParams("order", order);
+//
+//        addAPIParmasAndComplete(builder);
+//        return builder.toString();
+//    }
 
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.LIST);
-
-        if (tid != null)
-            builder.addParams("tid", tid);
-        if (pagenum != null)
-            builder.addParams("page", pagenum);
-        if (pagesize != null)
-            builder.addParams("pagesize", pagesize);
-        if (order != null)
-            builder.addParams("order", order);
-
-        addAPIParmasAndComplete(builder);
-        return builder.toString();
-    }
-
-    /**
-     * 获取用户推荐视频列表
-     *
-     * @param aid
-     * @return
-     */
-    public static String getAuthorRecommendVideo(String aid)
-    {
-
-        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.AUTHOR_RECOMMEND);
-        if (aid != null)
-            builder.addParams("aid", aid);
-        return builder.toString();
-    }
+//    /**
+//     * 获取用户推荐视频列表
+//     *
+//     * @param aid
+//     * @return
+//     */
+//    public static String getAuthorRecommendVideo(String aid)
+//    {
+//
+//        UrlBuilder builder = new UrlBuilder(API_HOST + "/" + ApiUrl.AUTHOR_RECOMMEND);
+//        if (aid != null)
+//            builder.addParams("aid", aid);
+//        return builder.toString();
+//    }
 
     /**
      * 获取用户粉丝列表
