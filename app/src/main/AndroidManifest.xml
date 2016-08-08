@@ -86,7 +86,7 @@
 
         <!-- 专题详情界面 -->
         <activity
-            android:name=".module.topic.SpecialDetailsActivity"
+            android:name=".module.video.SpecialDetailsActivity"
             android:screenOrientation="portrait"/>
 
 

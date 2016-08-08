@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.topic;
+package com.hotbitmapgg.ohmybilibili.module.video;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import com.hotbitmapgg.ohmybilibili.adapter.SpItemAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.entity.video.Sp;
-import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.api.SpApi;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
