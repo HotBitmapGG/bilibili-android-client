@@ -9,6 +9,7 @@
  * 由于Vitamio编译的So库暂时只支持在6.0以下的手机上进行播放视频.
  * 首页数据跟官方同步,番剧详情界面暂时没有做,后期会加上.
 
+<a href="bilibiliPic/01.jpg"><img src="bilibiliPic/01.jpg" width="40%"/></a> <a href="bilibiliPic/02.jpg"><img src="bilibiliPic/02.jpg" width="40%"/></a>
 
 ## 截图
 
