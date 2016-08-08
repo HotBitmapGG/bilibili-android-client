@@ -1,6 +1,6 @@
 # OhMyBiliBili
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/bilibili_bg.jpg?raw=true)
+<a href="bilibiliPic/bilibili_bg.jpg"><img src="bilibiliPic/bilibili_bg.jpg" width="80%"/></a>
 
 
 ## Tips
