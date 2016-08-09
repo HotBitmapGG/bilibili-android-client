@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.base;
+package com.hotbitmapgg.ohmybilibili.entity.live;
 
 /**
  * 定义返回请求结构

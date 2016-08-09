@@ -36,7 +36,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 分区对应类型列表详情界面
  */
-public class PartitionMoreSimpleListFragment extends RxLazyFragment
+public class PartitionListFragment extends RxLazyFragment
 {
 
     @Bind(R.id.recycle)
@@ -62,11 +62,11 @@ public class PartitionMoreSimpleListFragment extends RxLazyFragment
     private View loadMoreView;
 
 
-    public static PartitionMoreSimpleListFragment newInstance(String tid)
+    public static PartitionListFragment newInstance(String tid)
     {
 
-        PartitionMoreSimpleListFragment fragment =
-                new PartitionMoreSimpleListFragment();
+        PartitionListFragment fragment =
+                new PartitionListFragment();
         Bundle bundle = new Bundle();
         bundle.putString(EXTRA_TID, tid);
         fragment.setArguments(bundle);

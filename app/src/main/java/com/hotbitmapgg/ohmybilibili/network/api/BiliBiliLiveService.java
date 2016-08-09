@@ -1,7 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
 
-import com.hotbitmapgg.ohmybilibili.entity.base.Result;
+import com.hotbitmapgg.ohmybilibili.entity.live.Result;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
 
 import retrofit2.http.GET;
