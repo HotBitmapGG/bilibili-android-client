@@ -15,22 +15,19 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.SpItemAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.base.BasicMessage;
 import com.hotbitmapgg.ohmybilibili.entity.video.Sp;
-import com.hotbitmapgg.ohmybilibili.network.api.SpApi;
+import com.hotbitmapgg.ohmybilibili.entity.video.SpItemResult;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 import butterknife.Bind;
-import rx.Single;
-import rx.SingleSubscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -85,7 +82,7 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
     private String title;
 
-    private Sp sp;
+    private Sp mSp;
 
     private int season_id;
 
@@ -148,48 +145,31 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
     public void getSpInfo()
     {
 
-        Single<BasicMessage<Sp>> observable = Single.fromCallable(new Callable<BasicMessage<Sp>>()
-        {
-
-            @Override
-            public BasicMessage<Sp> call() throws Exception
-            {
-
-                return SpApi.getSpInfo(spid, title);
-            }
-        });
-
-        Subscription subscribe = observable.map(new Func1<BasicMessage<Sp>,Sp>()
-        {
-
-            @Override
-            public Sp call(BasicMessage<Sp> spBasicMessage)
-            {
-
-                return spBasicMessage.getObject();
-            }
-        })
+        RetrofitHelper.getSpInfoApi()
+                .getSpInfo(spid, title)
+                .compose(this.<Sp> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<Sp>()
+                .subscribe(new Action1<Sp>()
                 {
 
                     @Override
-                    public void onSuccess(Sp value)
+                    public void call(Sp sp)
                     {
 
-                        sp = value;
+                        mSp = sp;
                         finishGetSpInfo();
                     }
+                }, new Action1<Throwable>()
+                {
 
                     @Override
-                    public void onError(Throwable error)
+                    public void call(Throwable throwable)
                     {
 
+                        LogUtil.all("专题数据获取失败" + throwable.getMessage());
                     }
                 });
-
-        compositeSubscription.add(subscribe);
     }
 
 
@@ -201,72 +181,51 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
     private void getSpVideo()
     {
 
-        Single<BasicMessage<ArrayList<Sp.Item>>> observable = Single.fromCallable(new Callable<BasicMessage<ArrayList<Sp.Item>>>()
-        {
-
-            @Override
-            public BasicMessage<ArrayList<Sp.Item>> call() throws Exception
-            {
-
-                return SpApi.getSpItem(spid, season_id, 1);
-            }
-        });
-
-        Subscription subscribe = observable
-                .map(new Func1<BasicMessage<ArrayList<Sp.Item>>,ArrayList<Sp.Item>>()
-                {
-
-                    @Override
-                    public ArrayList<Sp.Item> call(BasicMessage<ArrayList<Sp.Item>> arrayListBasicMessage)
-                    {
-
-                        return arrayListBasicMessage.getObject();
-                    }
-                })
+        RetrofitHelper.getSpItemApi()
+                .getSpItemList(spid, season_id, 1)
+                .compose(this.<SpItemResult> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ArrayList<Sp.Item>>()
+                .subscribe(new Action1<SpItemResult>()
                 {
 
                     @Override
-                    public void onSuccess(ArrayList<Sp.Item> value)
+                    public void call(SpItemResult spItemResult)
                     {
 
-                        if (value != null && value.size() > 0)
-                        {
-                            spList.addAll(value);
-                            finishGetSpVideoListTask();
-                        }
+                        spList.addAll(spItemResult.list);
+                        finishGetSpVideoListTask();
                     }
+                }, new Action1<Throwable>()
+                {
 
                     @Override
-                    public void onError(Throwable error)
+                    public void call(Throwable throwable)
                     {
 
+                        LogUtil.all("获取专题视频列表失败" + throwable.getMessage());
                     }
                 });
-
-        compositeSubscription.add(subscribe);
     }
 
     public void finishGetSpInfo()
     {
         // 专题名称
-        String spTitle = sp.title;
+        String spTitle = mSp.title;
         // 最后更新日期
-        String lastupdate_at = sp.lastupdate_at;
+        String lastupdate_at = mSp.lastupdate_at;
         // 专题简介
-        String description = sp.description;
+        String description = mSp.description;
         // 播放次数
-        int playCount = sp.view;
+        int playCount = mSp.view;
         // 专题列表数量
-        int count = sp.count;
+        int count = mSp.count;
         // 专题封面
-        String cover = sp.cover;
+        String cover = mSp.cover;
         //收藏数量
-        int favourite = sp.favourite;
+        int favourite = mSp.favourite;
         //关注数量
-        int attention = sp.attention;
+        int attention = mSp.attention;
 
         // 初始化界面数据
         Picasso.with(this).load(cover).placeholder(R.drawable.bili_default_image_tv).into(mPreviewImage);

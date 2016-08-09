@@ -1,23 +1,25 @@
-package com.hotbitmapgg.ohmybilibili.retrofit;
+package com.hotbitmapgg.ohmybilibili.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.AuthorRecommendedService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiIndexService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.BangumiRecommendService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.BiliBiliLiveService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.FansService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.Html5VideoUrlService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.LiveUrlService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.PartitionMoreService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.IndexService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.RecommendedService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.TwoDimensionalService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.UserInfoService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.UserUpVideoService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.VideoCommentService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.VideoDetailsService;
-import com.hotbitmapgg.ohmybilibili.retrofit.api.WeekDayBangumiService;
+import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
+import com.hotbitmapgg.ohmybilibili.network.api.BiliBiliLiveService;
+import com.hotbitmapgg.ohmybilibili.network.api.FansService;
+import com.hotbitmapgg.ohmybilibili.network.api.Html5VideoUrlService;
+import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
+import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
+import com.hotbitmapgg.ohmybilibili.network.api.IndexService;
+import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
+import com.hotbitmapgg.ohmybilibili.network.api.SpInfoService;
+import com.hotbitmapgg.ohmybilibili.network.api.SpItemService;
+import com.hotbitmapgg.ohmybilibili.network.api.TwoDimensionalService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
+import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
+import com.hotbitmapgg.ohmybilibili.network.api.VideoDetailsService;
+import com.hotbitmapgg.ohmybilibili.network.api.WeekDayBangumiService;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -49,6 +51,8 @@ public class RetrofitHelper
     private static final String LIVE_BASE_URL = "http://live.bilibili.com/";
 
     private static final String HOST_API_BASE_URL = "http://api.bilibili.cn/";
+
+    public static final String HDSLB_HOST = "http://i2.hdslb.com";
 
     static
     {
@@ -351,6 +355,43 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(VideoCommentService.class);
+    }
+
+    /**
+     * 获取专题详情数据
+     *
+     * @return
+     */
+    public static SpInfoService getSpInfoApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(SpInfoService.class);
+    }
+
+
+    /**
+     * 获取专题下的视频列表数据
+     *
+     * @return
+     */
+    public static SpItemService getSpItemApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(SpItemService.class);
     }
 
 

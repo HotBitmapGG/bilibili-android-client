@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.retrofit.api;
+package com.hotbitmapgg.ohmybilibili.network.api;
 
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
 

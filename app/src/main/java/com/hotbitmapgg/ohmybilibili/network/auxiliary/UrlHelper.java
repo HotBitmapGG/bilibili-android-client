@@ -1,8 +1,9 @@
-package com.hotbitmapgg.ohmybilibili.network;
+package com.hotbitmapgg.ohmybilibili.network.auxiliary;
 
 import android.util.Log;
 
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -46,7 +47,7 @@ public class UrlHelper
         {
             return info.face;
         }
-        String face = ApiHelper.HDSLB_HOST + info.face;
+        String face = RetrofitHelper.HDSLB_HOST + info.face;
         if (face.contains("{SIZE}"))
         {
             face = face.replace("{SIZE}", "");

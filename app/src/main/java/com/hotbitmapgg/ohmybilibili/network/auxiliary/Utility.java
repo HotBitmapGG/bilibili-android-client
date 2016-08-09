@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.network;
+package com.hotbitmapgg.ohmybilibili.network.auxiliary;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

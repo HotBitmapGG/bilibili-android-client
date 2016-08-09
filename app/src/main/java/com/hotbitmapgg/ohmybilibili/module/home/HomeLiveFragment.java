@@ -11,7 +11,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.BiliBiliLiveRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.base.Result;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
-import com.hotbitmapgg.ohmybilibili.retrofit.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 
 import butterknife.Bind;
 import rx.Observable;
