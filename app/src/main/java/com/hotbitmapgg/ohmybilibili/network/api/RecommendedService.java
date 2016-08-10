@@ -10,6 +10,9 @@ import rx.Observable;
  * 100332338@qq.com
  * <p/>
  * 首页推荐模块数据请求
+ * http://app.bilibili.com/x/show/old?appkey=1d8b6e7d45233436&
+ * build=422000&channel=xiaomi&mobi_app=android&platform=android&
+ * screen=xxhdpi&ts=1469672526000&sign=8adc1eb85b3ad24700867b3dc9702655
  */
 public interface RecommendedService
 {

@@ -66,7 +66,6 @@ public class HomeLiveFragment extends RxLazyFragment
         mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
         mBiliBiliLiveRecyclerAdapter = new BiliBiliLiveRecyclerAdapter(getActivity());
         mRecyclerView.setAdapter(mBiliBiliLiveRecyclerAdapter);
-
         GridLayoutManager layout = new GridLayoutManager(getActivity(), 12);
         layout.setOrientation(LinearLayoutManager.VERTICAL);
         layout.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
