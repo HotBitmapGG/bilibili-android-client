@@ -131,7 +131,6 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
             public void onItemClick(int position, ClickableViewHolder holder)
             {
 
-                int aid = Integer.valueOf(body.get(position).getParam());
                 if (pos == 1)
                 {
 
@@ -154,6 +153,7 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
                 } else
                 {
                     //视频点击事件
+                    int aid = Integer.valueOf(body.get(position).getParam());
                     VideoDetailsActivity.launch((Activity) getContext(), aid);
                 }
             }
