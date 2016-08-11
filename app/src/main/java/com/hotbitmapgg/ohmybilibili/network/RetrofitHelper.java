@@ -8,9 +8,9 @@ import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BiliBiliLiveService;
 import com.hotbitmapgg.ohmybilibili.network.api.FansService;
 import com.hotbitmapgg.ohmybilibili.network.api.Html5VideoUrlService;
+import com.hotbitmapgg.ohmybilibili.network.api.IndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
 import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
-import com.hotbitmapgg.ohmybilibili.network.api.IndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpItemService;
@@ -22,10 +22,14 @@ import com.hotbitmapgg.ohmybilibili.network.api.VideoDetailsService;
 import com.hotbitmapgg.ohmybilibili.network.api.WeekDayBangumiService;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -53,6 +57,8 @@ public class RetrofitHelper
     private static final String HOST_API_BASE_URL = "http://api.bilibili.cn/";
 
     public static final String HDSLB_HOST = "http://i2.hdslb.com";
+
+    public static final String COMMON_UA_STR = "OhMyBiliBili Android Client/2.1 (100332338@qq.com)";
 
     static
     {
@@ -400,6 +406,7 @@ public class RetrofitHelper
      * 设置缓存
      * 设置超时时间
      * 设置打印日志
+     * 设置UA拦截器
      */
     private static void initOkHttpClient()
     {
@@ -422,9 +429,33 @@ public class RetrofitHelper
                             .addNetworkInterceptor(new StethoInterceptor())
                             .retryOnConnectionFailure(true)
                             .connectTimeout(30, TimeUnit.SECONDS)
+                            .writeTimeout(20, TimeUnit.SECONDS)
+                            .readTimeout(20, TimeUnit.SECONDS)
+                            .addInterceptor(new UserAgentInterceptor())
                             .build();
                 }
             }
+        }
+    }
+
+
+    /**
+     * 添加UA拦截器
+     * B站请求API文档需要加上UA
+     */
+    static class UserAgentInterceptor implements Interceptor
+    {
+
+        @Override
+        public Response intercept(Chain chain) throws IOException
+        {
+
+            Request originalRequest = chain.request();
+            Request requestWithUserAgent = originalRequest.newBuilder()
+                    .removeHeader("User-Agent")
+                    .addHeader("User-Agent", COMMON_UA_STR)
+                    .build();
+            return chain.proceed(requestWithUserAgent);
         }
     }
 }

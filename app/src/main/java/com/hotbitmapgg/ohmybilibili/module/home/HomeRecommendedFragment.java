@@ -15,6 +15,7 @@ import com.hotbitmapgg.ohmybilibili.entity.recommended.Body;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Recommend;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Result;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
 
@@ -92,6 +93,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
             public void onRefresh()
             {
 
+                mSwipeRefreshLayout.setRefreshing(true);
                 getHomeRecommendedData();
             }
         });
@@ -146,6 +148,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
                     public void call(Throwable throwable)
                     {
 
+                        LogUtil.all("首页推荐界面加载失败" + throwable.getMessage());
                         mSwipeRefreshLayout.post(new Runnable()
                         {
 

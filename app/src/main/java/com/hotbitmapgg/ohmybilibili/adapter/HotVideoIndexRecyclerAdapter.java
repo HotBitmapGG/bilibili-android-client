@@ -20,14 +20,14 @@ import java.util.List;
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
  * <p/>
- * 9个分区热门视频查看GridAdapter
+ * 9个分区热门视频查看Adapter
  */
-public class AllRankGridAdapter extends AbsRecyclerViewAdapter
+public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 {
 
     List<VideoItemInfo> videoItemInfos = new ArrayList<>();
 
-    public AllRankGridAdapter(RecyclerView recyclerView, List<VideoItemInfo> videoItemInfos)
+    public HotVideoIndexRecyclerAdapter(RecyclerView recyclerView, List<VideoItemInfo> videoItemInfos)
     {
 
         super(recyclerView);
@@ -39,7 +39,7 @@ public class AllRankGridAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_all_rank_grid, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_hot_video_index, parent, false));
     }
 
     @Override

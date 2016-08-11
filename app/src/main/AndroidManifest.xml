@@ -51,9 +51,6 @@
             android:name=".module.common.LoginActivity"
             android:screenOrientation="portrait"/>
 
-
-        <!-- 我的二维码 -->
-
         <!-- APP简介界面 -->
         <activity
             android:name=".module.common.AppIntroduceActivity"
@@ -77,11 +74,6 @@
             android:name=".module.user.UserInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ColorTranslucentTheme"/>
-
-        <!-- bilibili用户关注界面 -->
-        <activity
-            android:name=".module.user.UserAttentionActivity"
-            android:screenOrientation="portrait"/>
 
 
         <!-- 专题详情界面 -->
@@ -136,13 +128,13 @@
             android:name=".module.common.HotBitmapGGInfoActivity"
             android:screenOrientation="portrait" />
 
-        <!--AllRank界面-->
+        <!--热门视频排行榜界面-->
         <activity
-            android:name=".module.home.AllHotRankActivity"
+            android:name=".module.home.HotVideoIndexActivity"
             android:screenOrientation="portrait" />
 
 
-        <!-- 初始化界面 -->
+        <!-- Vitamio播放器初始化界面 -->
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
@@ -150,7 +142,7 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
 
-        <!--U主推荐视频界面-->
+        <!--UP主推荐视频界面-->
         <activity
             android:name=".module.user.UpMoreCoverActivity"
             android:screenOrientation="portrait" />

@@ -15,7 +15,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Body;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Result;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
-import com.hotbitmapgg.ohmybilibili.module.home.AllHotRankActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.HotVideoIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.BiliBiliLivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 
@@ -110,7 +110,7 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
             public void onClick(View v)
             {
 
-                getContext().startActivity(new Intent(getContext(), AllHotRankActivity.class));
+                getContext().startActivity(new Intent(getContext(), HotVideoIndexActivity.class));
             }
         });
     }
