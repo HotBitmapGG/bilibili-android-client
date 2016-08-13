@@ -33,7 +33,7 @@ import com.hotbitmapgg.ohmybilibili.utils.DeviceUtils;
 import com.hotbitmapgg.ohmybilibili.utils.StringUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CommonGestures;
-import com.hotbitmapgg.ohmybilibili.widget.VideoView;
+import com.hotbitmapgg.ohmybilibili.widget.VideoPlayerView;
 import com.yixia.zi.utils.FractionalTouchDelegate;
 
 import java.lang.ref.WeakReference;
@@ -474,33 +474,33 @@ public class MediaController extends FrameLayout
 
         if (larger)
         {
-            if (mVideoMode < VideoView.VIDEO_LAYOUT_ZOOM)
+            if (mVideoMode < VideoPlayerView.VIDEO_LAYOUT_ZOOM)
                 mVideoMode++;
             else if (recycle)
-                mVideoMode = VideoView.VIDEO_LAYOUT_ORIGIN;
+                mVideoMode = VideoPlayerView.VIDEO_LAYOUT_ORIGIN;
         } else
         {
-            if (mVideoMode > VideoView.VIDEO_LAYOUT_ORIGIN)
+            if (mVideoMode > VideoPlayerView.VIDEO_LAYOUT_ORIGIN)
                 mVideoMode--;
             else if (recycle)
-                mVideoMode = VideoView.VIDEO_LAYOUT_ZOOM;
+                mVideoMode = VideoPlayerView.VIDEO_LAYOUT_ZOOM;
         }
 
         switch (mVideoMode)
         {
-            case VideoView.VIDEO_LAYOUT_ORIGIN:
+            case VideoPlayerView.VIDEO_LAYOUT_ORIGIN:
                 setOperationInfo(mContext.getString(R.string.video_original), 500);
                 mScreenToggle.setImageResource(R.drawable.mediacontroller_sreen_size_100);
                 break;
-            case VideoView.VIDEO_LAYOUT_SCALE:
+            case VideoPlayerView.VIDEO_LAYOUT_SCALE:
                 setOperationInfo(mContext.getString(R.string.video_fit_screen), 500);
                 mScreenToggle.setImageResource(R.drawable.mediacontroller_screen_fit);
                 break;
-            case VideoView.VIDEO_LAYOUT_STRETCH:
+            case VideoPlayerView.VIDEO_LAYOUT_STRETCH:
                 setOperationInfo(mContext.getString(R.string.video_stretch), 500);
                 mScreenToggle.setImageResource(R.drawable.mediacontroller_screen_size);
                 break;
-            case VideoView.VIDEO_LAYOUT_ZOOM:
+            case VideoPlayerView.VIDEO_LAYOUT_ZOOM:
                 setOperationInfo(mContext.getString(R.string.video_crop), 500);
                 mScreenToggle.setImageResource(R.drawable.mediacontroller_sreen_size_crop);
                 break;
@@ -711,7 +711,7 @@ public class MediaController extends FrameLayout
             switch (state)
             {
                 case CommonGestures.SCALE_STATE_BEGIN:
-                    mVideoMode = VideoView.VIDEO_LAYOUT_SCALE_ZOOM;
+                    mVideoMode = VideoPlayerView.VIDEO_LAYOUT_SCALE_ZOOM;
                     mScreenToggle.setImageResource(R.drawable.mediacontroller_sreen_size_100);
                     mPlayer.toggleVideoMode(mVideoMode);
                     break;

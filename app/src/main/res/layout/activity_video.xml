@@ -7,7 +7,7 @@
     android:background="@android:color/black"
     android:orientation="horizontal" >
 
-    <com.hotbitmapgg.ohmybilibili.widget.VideoView
+    <com.hotbitmapgg.ohmybilibili.widget.VideoPlayerView
         android:id="@+id/video"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

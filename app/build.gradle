@@ -28,7 +28,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:design:23.4.0'
-    //html解析
+    //html解析库
     compile 'org.jsoup:jsoup:1.8.3'
     //烈焰弹幕库
     compile 'com.github.ctiao:dfm:0.4.1'

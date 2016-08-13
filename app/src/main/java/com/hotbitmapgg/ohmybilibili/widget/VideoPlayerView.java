@@ -16,7 +16,7 @@ import com.hotbitmapgg.ohmybilibili.utils.DeviceUtils;
  * <p/>
  * 自定义VideoView
  */
-public class VideoView extends SurfaceView
+public class VideoPlayerView extends SurfaceView
 {
 
     private Activity mActivity;
@@ -39,7 +39,7 @@ public class VideoView extends SurfaceView
 
     public int mVideoHeight;
 
-    public VideoView(Context context, AttributeSet attrs)
+    public VideoPlayerView(Context context, AttributeSet attrs)
     {
 
         super(context, attrs);

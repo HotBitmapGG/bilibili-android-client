@@ -47,7 +47,7 @@ import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.utils.VideoDeviceUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.hotbitmapgg.ohmybilibili.widget.VideoView;
+import com.hotbitmapgg.ohmybilibili.widget.VideoPlayerView;
 import com.yixia.zi.utils.FileUtils;
 import com.yixia.zi.utils.StringUtils;
 
@@ -83,7 +83,7 @@ import okhttp3.ResponseBody;
  * 视频播放界面
  */
 @SuppressLint("HandlerLeak")
-public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements MediaController.MediaPlayerControl, VideoView.SurfaceCallback
+public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements MediaController.MediaPlayerControl, VideoPlayerView.SurfaceCallback
 {
 
     public static final int RESULT_FAILED = -7;
@@ -147,7 +147,7 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
 
     private View mViewRoot;
 
-    private VideoView mVideoView;
+    private VideoPlayerView mVideoPlayerView;
 
     private View mVideoLoadingLayout;
 
@@ -335,7 +335,7 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
         }
         mMediaController = new MediaController(this, mNeedLock);
         mMediaController.setMediaPlayer(this);
-        mMediaController.setAnchorView(mVideoView.getRootView());
+        mMediaController.setAnchorView(mVideoPlayerView.getRootView());
         setFileName();
         setBatteryLevel();
     }
@@ -474,8 +474,8 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
         setContentView(id);
         getWindow().setBackgroundDrawable(null);
         mViewRoot = findViewById(R.id.video_root);
-        mVideoView = (VideoView) findViewById(R.id.video);
-        mVideoView.initialize(this, this, mIsHWCodec);
+        mVideoPlayerView = (VideoPlayerView) findViewById(R.id.video);
+        mVideoPlayerView.initialize(this, this, mIsHWCodec);
         mSubtitleContainer = findViewById(R.id.subtitle_container);
         mSubtitleText = (OutlineTextView) findViewById(R.id.subtitle_text);
         mSubtitleImage = (ImageView) findViewById(R.id.subtitle_image);
@@ -775,7 +775,7 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
         setTextViewStyle(mSubtitleText);
         if (!TextUtils.isEmpty(mSubPath))
             vPlayer.setSubPath(mSubPath);
-        if (mVideoView != null && isInitialized())
+        if (mVideoPlayerView != null && isInitialized())
             setVideoLayout();
     }
 
@@ -900,8 +900,8 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
                             if (vPlayer.isInitialized())
                                 mUri = vPlayer.getUri();
 
-                            if (mVideoView != null)
-                                vPlayer.setDisplay(mVideoView.getHolder());
+                            if (mVideoPlayerView != null)
+                                vPlayer.setDisplay(mVideoPlayerView.getHolder());
                             if (mUri != null)
                                 vPlayer.initialize(mUri, mDisplayName, mSaveUri, getStartPosition(), vPlayerListener, mParentId, mIsHWCodec);
                         }
@@ -952,11 +952,11 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
                     mCloseComplete = true;
                     break;
                 case HW_FAILED:
-                    if (mVideoView != null)
+                    if (mVideoPlayerView != null)
                     {
-                        mVideoView.setVisibility(View.GONE);
-                        mVideoView.setVisibility(View.VISIBLE);
-                        mVideoView.initialize(BiliBiliPlayerVideoActivity.this, BiliBiliPlayerVideoActivity.this, false);
+                        mVideoPlayerView.setVisibility(View.GONE);
+                        mVideoPlayerView.setVisibility(View.VISIBLE);
+                        mVideoPlayerView.initialize(BiliBiliPlayerVideoActivity.this, BiliBiliPlayerVideoActivity.this, false);
                     }
                     break;
                 case LOAD_PREFS:
@@ -1098,7 +1098,7 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
         public void onVideoSizeChanged(int width, int height)
         {
 
-            if (mVideoView != null)
+            if (mVideoPlayerView != null)
             {
                 setVideoLayout();
             }
@@ -1115,12 +1115,12 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
         }
     };
 
-    private int mVideoMode = VideoView.VIDEO_LAYOUT_SCALE;
+    private int mVideoMode = VideoPlayerView.VIDEO_LAYOUT_SCALE;
 
     private void setVideoLayout()
     {
 
-        mVideoView.setVideoLayout(mVideoMode, VP.DEFAULT_ASPECT_RATIO, vPlayer.getVideoWidth(), vPlayer.getVideoHeight(), vPlayer.getVideoAspectRatio());
+        mVideoPlayerView.setVideoLayout(mVideoMode, VP.DEFAULT_ASPECT_RATIO, vPlayer.getVideoWidth(), vPlayer.getVideoHeight(), vPlayer.getVideoAspectRatio());
     }
 
     private void savePosition()
@@ -1237,7 +1237,7 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
         int videoWidth = vPlayer.getVideoWidth();
         int videoHeight = vPlayer.getVideoHeight();
         float videoRatio = vPlayer.getVideoAspectRatio();
-        float currentRatio = mVideoView.mVideoHeight / (float) videoHeight;
+        float currentRatio = mVideoPlayerView.mVideoHeight / (float) videoHeight;
 
         currentRatio += (scaleFactor - 1);
         if (videoWidth * currentRatio >= VIDEO_MAXIMUM_WIDTH)
@@ -1249,8 +1249,8 @@ public class BiliBiliPlayerVideoActivity extends AppCompatActivity implements Me
         if (currentRatio < 0.5f)
             currentRatio = 0.5f;
 
-        mVideoView.mVideoHeight = (int) (videoHeight * currentRatio);
-        mVideoView.setVideoLayout(mVideoMode, userRatio, videoWidth, videoHeight, videoRatio);
+        mVideoPlayerView.mVideoHeight = (int) (videoHeight * currentRatio);
+        mVideoPlayerView.setVideoLayout(mVideoMode, userRatio, videoWidth, videoHeight, videoRatio);
         return currentRatio;
     }
 
