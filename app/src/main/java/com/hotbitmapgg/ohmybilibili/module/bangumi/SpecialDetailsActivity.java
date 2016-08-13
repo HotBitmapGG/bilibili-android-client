@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.video;
+package com.hotbitmapgg.ohmybilibili.module.bangumi;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.SpItemAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.Sp;
 import com.hotbitmapgg.ohmybilibili.entity.video.SpItemResult;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;

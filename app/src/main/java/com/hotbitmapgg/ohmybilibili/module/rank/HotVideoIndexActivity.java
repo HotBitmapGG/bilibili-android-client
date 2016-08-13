@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home;
+package com.hotbitmapgg.ohmybilibili.module.rank;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

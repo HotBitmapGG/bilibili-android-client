@@ -6,7 +6,6 @@ import com.hotbitmapgg.ohmybilibili.utils.StatusBarCompat;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by hcc on 16/8/7 21:18
@@ -17,8 +16,6 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity
 {
 
-    protected CompositeSubscription compositeSubscription;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -28,8 +25,6 @@ public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity
         setContentView(getLayoutId());
         //初始化黄油刀控件绑定框架
         ButterKnife.bind(this);
-        //初始化全局Rx订阅者
-        compositeSubscription = new CompositeSubscription();
         //适配4.4系统状态栏
         StatusBarCompat.compat(this);
         //初始化控件
@@ -46,9 +41,6 @@ public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity
 
         super.onDestroy();
         ButterKnife.unbind(this);
-        if (compositeSubscription != null
-                && !compositeSubscription.isUnsubscribed())
-            compositeSubscription.unsubscribe();
     }
 
     public abstract int getLayoutId();

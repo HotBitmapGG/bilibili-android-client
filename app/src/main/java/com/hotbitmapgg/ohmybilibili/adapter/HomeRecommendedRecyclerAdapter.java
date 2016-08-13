@@ -15,7 +15,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Body;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.Result;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
-import com.hotbitmapgg.ohmybilibili.module.home.HotVideoIndexActivity;
+import com.hotbitmapgg.ohmybilibili.module.rank.HotVideoIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.BiliBiliLivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 

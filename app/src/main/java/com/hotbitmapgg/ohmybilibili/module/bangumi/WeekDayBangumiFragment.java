@@ -13,7 +13,6 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumiResult;
-import com.hotbitmapgg.ohmybilibili.module.video.SpecialDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;

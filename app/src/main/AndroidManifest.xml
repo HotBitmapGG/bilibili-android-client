@@ -78,7 +78,7 @@
 
         <!-- 专题详情界面 -->
         <activity
-            android:name=".module.video.SpecialDetailsActivity"
+            android:name=".module.bangumi.SpecialDetailsActivity"
             android:screenOrientation="portrait"/>
 
 
@@ -130,7 +130,7 @@
 
         <!--热门视频排行榜界面-->
         <activity
-            android:name=".module.home.HotVideoIndexActivity"
+            android:name=".module.rank.HotVideoIndexActivity"
             android:screenOrientation="portrait" />
 
 

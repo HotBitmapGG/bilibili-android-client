@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import butterknife.ButterKnife;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by hcc on 16/8/7 21:18
@@ -28,8 +27,6 @@ public abstract class RxLazyFragment extends RxFragment
     private FragmentActivity activity;
 
     private LayoutInflater inflater;
-
-    protected CompositeSubscription compositeSubscription;
 
     public abstract
     @LayoutRes
@@ -52,7 +49,6 @@ public abstract class RxLazyFragment extends RxFragment
 
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        compositeSubscription = new CompositeSubscription();
         finishCreateView(savedInstanceState);
     }
 
@@ -70,7 +66,6 @@ public abstract class RxLazyFragment extends RxFragment
     {
 
         super.onDestroyView();
-        compositeSubscription.unsubscribe();
     }
 
     @Override
@@ -104,7 +99,8 @@ public abstract class RxLazyFragment extends RxFragment
     public Context getApplicationContext()
     {
 
-        return this.activity == null ? (getActivity() == null ? null : getActivity().getApplicationContext()) : this.activity.getApplicationContext();
+        return this.activity == null ? (getActivity() == null ? null :
+                getActivity().getApplicationContext()) : this.activity.getApplicationContext();
     }
 
     protected LayoutInflater getLayoutInflater()
