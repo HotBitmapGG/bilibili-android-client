@@ -39,7 +39,8 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.list_item_up_more_video, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext())
+                .inflate(R.layout.item_up_more_video, parent, false));
     }
 
     @Override
@@ -50,17 +51,15 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             UserVideoItem videoItem = userVideoList.get(position);
-            String author = videoItem.author;
-            String pic = videoItem.pic;
-            String play = videoItem.play;
-            int video_review = videoItem.video_review;
-            String title = videoItem.title;
+            Picasso.with(getContext())
+                    .load(UrlHelper.getClearVideoPreviewUrl(videoItem.pic))
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(itemViewHolder.mVideoPic);
 
-            Picasso.with(getContext()).load(UrlHelper.getClearVideoPreviewUrl(pic)).placeholder(R.drawable.bili_default_image_tv).into(itemViewHolder.mVideoPic);
-            itemViewHolder.mVideoTitle.setText(title);
-            itemViewHolder.mVideoUserInfo.setText(author);
-            itemViewHolder.mVideoPlayNum.setText(play);
-            itemViewHolder.mVideoReviewNum.setText(video_review + "");
+            itemViewHolder.mVideoTitle.setText(videoItem.title);
+            itemViewHolder.mVideoUserInfo.setText(videoItem.author);
+            itemViewHolder.mVideoPlayNum.setText(videoItem.play);
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(videoItem.video_review));
         }
         super.onBindViewHolder(holder, position);
     }
@@ -71,13 +70,6 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 
         return userVideoList.size();
     }
-
-    public void addData(UserVideoItem item)
-    {
-
-        userVideoList.add(item);
-    }
-
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
@@ -97,15 +89,11 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 
             super(itemView);
 
-            mVideoPic = $(R.id.user_video_pic);
-
-            mVideoTitle = $(R.id.user_video_title);
-
-            mVideoUserInfo = $(R.id.user_video_info);
-
-            mVideoPlayNum = $(R.id.user_play_num);
-
-            mVideoReviewNum = $(R.id.user_review_count);
+            mVideoPic = $(R.id.item_img);
+            mVideoTitle = $(R.id.item_title);
+            mVideoUserInfo = $(R.id.item_user_name);
+            mVideoPlayNum = $(R.id.item_play);
+            mVideoReviewNum = $(R.id.item_review);
         }
     }
 }

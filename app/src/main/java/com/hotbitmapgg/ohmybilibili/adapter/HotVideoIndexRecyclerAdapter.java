@@ -39,7 +39,8 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_hot_video_index, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext())
+                .inflate(R.layout.item_hot_video_index, parent, false));
     }
 
     @Override
@@ -85,10 +86,10 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
         {
 
             super(itemView);
-            mVideoImg = $(R.id.video_preview);
-            mVideoTitle = $(R.id.video_title);
-            mVideoPlayNum = $(R.id.video_play_num);
-            mVideoReviewCount = $(R.id.video_review_count);
+            mVideoImg = $(R.id.item_img);
+            mVideoTitle = $(R.id.item_title);
+            mVideoPlayNum = $(R.id.item_play);
+            mVideoReviewCount = $(R.id.item_review);
         }
     }
 }

@@ -73,7 +73,7 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
         }
 
 
-        mAdapter = new PartitionMorePagerAdapter(getSupportFragmentManager(), getApplicationContext(), titles);
+        mAdapter = new PartitionMorePagerAdapter(getSupportFragmentManager(), titles);
         mTabPager.setAdapter(mAdapter);
         mSlidingTab.setViewPager(mTabPager);
     }

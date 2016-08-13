@@ -16,16 +16,38 @@ import com.hotbitmapgg.ohmybilibili.R;
  * <p/>
  * 首页分区Adapter
  */
-public class MoreLayoutAdapter extends BaseAdapter
+public class HomeMoreLayoutAdapter extends BaseAdapter
 {
 
-    private String[] itemNames = new String[]{"番剧", "动画", "音乐", "舞蹈", "游戏", "科技", "娱乐", "鬼畜", "电影", "电视剧",};
+    private String[] itemNames = new String[]{
+            "番剧",
+            "动画",
+            "音乐",
+            "舞蹈",
+            "游戏",
+            "科技",
+            "娱乐",
+            "鬼畜",
+            "电影",
+            "电视剧",
+            };
 
-    private int[] itemIcons = new int[]{R.drawable.ic_category_t13, R.drawable.ic_category_t1, R.drawable.ic_category_t3, R.drawable.ic_category_t129, R.drawable.ic_category_t4, R.drawable.ic_category_t36, R.drawable.ic_category_t5, R.drawable.ic_category_t119, R.drawable.ic_category_t23, R.drawable.ic_category_t11};
+    private int[] itemIcons = new int[]{
+            R.drawable.ic_category_t13,
+            R.drawable.ic_category_t1,
+            R.drawable.ic_category_t3,
+            R.drawable.ic_category_t129,
+            R.drawable.ic_category_t4,
+            R.drawable.ic_category_t36,
+            R.drawable.ic_category_t5,
+            R.drawable.ic_category_t119,
+            R.drawable.ic_category_t23,
+            R.drawable.ic_category_t11
+    };
 
     private Context context;
 
-    public MoreLayoutAdapter(Context context)
+    public HomeMoreLayoutAdapter(Context context)
     {
 
         this.context = context;

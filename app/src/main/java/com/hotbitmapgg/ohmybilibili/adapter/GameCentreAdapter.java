@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +52,11 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder mHolder = (ItemViewHolder) holder;
             final GameItem gameItem = games.get(position);
-            Picasso.with(getContext()).load(gameItem.imageRes).error(R.drawable.bili_default_image_tv).into(mHolder.mImageView);
+            Picasso.with(getContext())
+                    .load(gameItem.imageRes)
+                    .error(R.drawable.bili_default_image_tv)
+                    .into(mHolder.mImageView);
+
             mHolder.mTitle.setText(gameItem.name);
             mHolder.mButton.setOnClickListener(new View.OnClickListener()
             {
@@ -61,10 +65,9 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
                 public void onClick(View v)
                 {
 
-                    Intent mIntent = new Intent(getContext(), BrowserActivity.class);
-                    mIntent.putExtra("url", gameItem.path);
-                    mIntent.putExtra("title", gameItem.name);
-                    getContext().startActivity(mIntent);
+                    BrowserActivity.
+                            launch((Activity) getContext(),
+                                    gameItem.path, gameItem.name);
                 }
             });
         }
@@ -92,9 +95,9 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
         {
 
             super(itemView);
-            mImageView = $(R.id.game_img);
-            mTitle = $(R.id.game_title);
-            mButton = $(R.id.btn_download_game);
+            mImageView = $(R.id.item_img);
+            mTitle = $(R.id.item_title);
+            mButton = $(R.id.item_btn);
         }
     }
 }

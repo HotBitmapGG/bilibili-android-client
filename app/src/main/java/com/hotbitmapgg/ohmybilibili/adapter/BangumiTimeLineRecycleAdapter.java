@@ -40,7 +40,7 @@ public class BangumiTimeLineRecycleAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.card_item_bangumi_horizontal, parent, false);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.item_bangumi_time_line, parent, false);
         return new CardHolder(v);
     }
 
@@ -54,12 +54,17 @@ public class BangumiTimeLineRecycleAdapter extends AbsRecyclerViewAdapter
             CardHolder holder = (CardHolder) cvh;
 
             holder.mTitleView.setText(getItem(position).title);
-            holder.mWeekdayView.setText(String.format(getContext().getString(R.string.weekday_update), getContext().getResources().getStringArray(R.array.weekdays)[getItem(position).weekday])
+            holder.mWeekdayView.setText(String.format(getContext().getString(R.string.weekday_update),
+                    getContext().getResources().getStringArray(R.array.weekdays)[getItem(position).weekday])
             );
 
             if (!TextUtils.isEmpty(getItem(position).cover))
             {
-                Picasso.with(getContext()).load(Uri.parse(getItem(position).cover)).placeholder(R.drawable.bili_default_image_tv).error(R.drawable.bili_default_image_tv).into(holder.mPreviewImage);
+                Picasso.with(getContext())
+                        .load(Uri.parse(getItem(position).cover))
+                        .placeholder(R.drawable.bili_default_image_tv)
+                        .error(R.drawable.bili_default_image_tv)
+                        .into(holder.mPreviewImage);
             } else
             {
                 holder.mPreviewImage.setImageResource(R.drawable.bili_default_image_tv);
@@ -91,9 +96,9 @@ public class BangumiTimeLineRecycleAdapter extends AbsRecyclerViewAdapter
         {
 
             super(itemView);
-            mPreviewImage = $(R.id.bangumi_preview);
-            mTitleView = $(R.id.bangumi_title);
-            mWeekdayView = $(R.id.bangumi_weekday);
+            mPreviewImage = $(R.id.item_img);
+            mTitleView = $(R.id.item_title);
+            mWeekdayView = $(R.id.item_weekday);
         }
     }
 }

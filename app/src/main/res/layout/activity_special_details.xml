@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bacground"
     android:fitsSystemWindows="true"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
         android:id="@+id/sp_circle_progress"
@@ -30,52 +30,52 @@
             android:background="@color/top_bar_bg"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:id="@+id/sp_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/sp_top_rl"
         android:fillViewport="true"
         android:overScrollMode="never"
-        android:scrollbars="none" >
+        android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/sp_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/navigation_view_bg"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/sp_preview"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_margin="@dimen/sp_preview_padding"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:paddingTop="5dp" >
+                        android:paddingTop="5dp">
 
                         <TextView
                             android:id="@+id/sp_title"
@@ -110,7 +110,7 @@
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             android:paddingEnd="@dimen/title_margin_small"
-                            android:paddingStart="@dimen/title_margin_small" >
+                            android:paddingStart="@dimen/title_margin_small">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             android:paddingEnd="@dimen/title_margin_small"
-                            android:paddingStart="@dimen/title_margin_small" >
+                            android:paddingStart="@dimen/title_margin_small">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -239,22 +239,31 @@
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
 
-            <com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView
+
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/sp_video_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:clipToPadding="true"
-                android:columnWidth="60dp"
-                android:gravity="center"
-                android:horizontalSpacing="10dp"
-                android:numColumns="2"
                 android:overScrollMode="never"
-                android:padding="10dp"
-                android:scrollbars="none"
-                android:verticalSpacing="10dp" >
-            </com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView>>
+                android:paddingTop="@dimen/activity_horizontal_margin"
+                android:scrollbars="none" />
+
+            <!--<com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView-->
+            <!--android:id="@+id/sp_video_list"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:clipToPadding="true"-->
+            <!--android:columnWidth="60dp"-->
+            <!--android:gravity="center"-->
+            <!--android:horizontalSpacing="10dp"-->
+            <!--android:numColumns="2"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:padding="10dp"-->
+            <!--android:scrollbars="none"-->
+            <!--android:verticalSpacing="10dp" >-->
+            <!--</com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView>-->
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>

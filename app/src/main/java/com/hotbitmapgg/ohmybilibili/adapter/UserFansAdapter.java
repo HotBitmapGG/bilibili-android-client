@@ -51,15 +51,12 @@ public class UserFansAdapter extends AbsRecyclerViewAdapter
         {
             itemViewHolder mHolder = (itemViewHolder) holder;
             UserFans.FansInfo fansInfo = infos.get(position);
-            Picasso.with(getContext()).load(fansInfo.face).into(mHolder.mUserAvatar);
+            Picasso.with(getContext())
+                    .load(fansInfo.face)
+                    .placeholder(R.drawable.ico_user_default)
+                    .into(mHolder.mUserAvatar);
             mHolder.mUserName.setText(fansInfo.uname);
         }
-    }
-
-    public void addData(UserFans.FansInfo fansInfo)
-    {
-
-        infos.add(fansInfo);
     }
 
     @Override
@@ -82,8 +79,8 @@ public class UserFansAdapter extends AbsRecyclerViewAdapter
 
             super(itemView);
 
-            mUserAvatar = $(R.id.user_avatar_view);
-            mUserName = $(R.id.user_name);
+            mUserAvatar = $(R.id.item_user_avatar);
+            mUserName = $(R.id.item_user_name);
         }
     }
 }

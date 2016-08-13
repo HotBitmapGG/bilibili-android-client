@@ -26,7 +26,8 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
 
     private List<BangumiRecommend.RecommendsBean> recommends = new ArrayList<>();
 
-    public BangumiRecommendRecyclerAdapter(RecyclerView recyclerView, List<BangumiRecommend.RecommendsBean> recommends)
+    public BangumiRecommendRecyclerAdapter(RecyclerView recyclerView,
+                                           List<BangumiRecommend.RecommendsBean> recommends)
     {
 
         super(recyclerView);

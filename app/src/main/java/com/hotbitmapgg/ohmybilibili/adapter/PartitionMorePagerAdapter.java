@@ -1,9 +1,8 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreType;
 import com.hotbitmapgg.ohmybilibili.module.partition.PartitionListFragment;
@@ -17,14 +16,14 @@ import java.util.List;
  * <p/>
  * 分区界面PagerAdapter
  */
-public class PartitionMorePagerAdapter extends FragmentPagerAdapter
+public class PartitionMorePagerAdapter extends FragmentStatePagerAdapter
 {
 
     private List<PartitionMoreType> titles;
 
     private List<Fragment> fragments = new ArrayList<>();
 
-    public PartitionMorePagerAdapter(FragmentManager fm, Context context, List<PartitionMoreType> titles)
+    public PartitionMorePagerAdapter(FragmentManager fm, List<PartitionMoreType> titles)
     {
 
         super(fm);

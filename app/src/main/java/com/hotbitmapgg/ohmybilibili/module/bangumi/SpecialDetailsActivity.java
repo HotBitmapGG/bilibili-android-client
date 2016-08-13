@@ -2,26 +2,24 @@ package com.hotbitmapgg.ohmybilibili.module.bangumi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.SpItemAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.SpecialVideoRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.Sp;
 import com.hotbitmapgg.ohmybilibili.entity.video.SpItemResult;
-import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -62,7 +60,8 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
     TextView mVideoCountText;
 
     @Bind(R.id.sp_video_list)
-    ExpandableHeightGridView mSpVideoList;
+    //ExpandableHeightGridView mSpVideoList;
+            RecyclerView mRecyclerView;
 
     @Bind(R.id.tv_desc_more)
     TextView mDescMore;
@@ -89,7 +88,7 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
     private ArrayList<Sp.Item> spList = new ArrayList<Sp.Item>();
 
-    private SpItemAdapter mItemAdapter;
+    private SpecialVideoRecyclerAdapter mItemAdapter;
 
 
     @Override
@@ -270,20 +269,11 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
         mSpMainLayout.setVisibility(View.VISIBLE);
-        mItemAdapter = new SpItemAdapter(SpecialDetailsActivity.this, spList);
-        mSpVideoList.setAdapter(mItemAdapter);
-        mSpVideoList.setExpanded(true);
-        mSpVideoList.setOnItemClickListener(new OnItemClickListener()
-        {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-
-                Sp.Item mItem = (Sp.Item) mItemAdapter.getItem(position);
-                int aid = mItem.aid;
-                VideoDetailsActivity.launch(SpecialDetailsActivity.this, aid);
-            }
-        });
+        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(SpecialDetailsActivity.this, 2));
+        SpecialVideoRecyclerAdapter mAdapter = new SpecialVideoRecyclerAdapter(mRecyclerView, spList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }

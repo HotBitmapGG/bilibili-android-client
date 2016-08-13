@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.MoreLayoutAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.HomeMoreLayoutAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreTitle;
@@ -54,7 +54,7 @@ public class HomeMoreFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        MoreLayoutAdapter mAdapter = new MoreLayoutAdapter(getActivity());
+        HomeMoreLayoutAdapter mAdapter = new HomeMoreLayoutAdapter(getActivity());
         mMoreLayout.setAdapter(mAdapter);
         mMoreLayout.setExpanded(true);
         mMoreLayout.setOnItemClickListener(new OnItemClickListener()

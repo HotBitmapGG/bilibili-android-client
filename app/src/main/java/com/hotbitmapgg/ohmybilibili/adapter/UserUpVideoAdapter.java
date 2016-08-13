@@ -15,11 +15,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by hcc on 16/8/7 21:18
  * 100332338@qq.com
  * <p/>
- * Fragment基类
+ * UP主上传视频查看Adapter
  */
 public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 {
@@ -54,10 +55,14 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
             int video_review = item.video_review;
             String title = item.title;
 
-            Picasso.with(getContext()).load(UrlHelper.getClearVideoPreviewUrl(pic)).placeholder(R.drawable.bili_default_image_tv).into(itemViewHolder.mVideoPic);
+            Picasso.with(getContext())
+                    .load(UrlHelper.getClearVideoPreviewUrl(pic))
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(itemViewHolder.mVideoPic);
+
             itemViewHolder.mVideoTitle.setText(title);
             itemViewHolder.mVideoPlayNum.setText(play);
-            itemViewHolder.mVideoReviewNum.setText(video_review + "");
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(video_review));
         }
 
         super.onBindViewHolder(holder, position);
@@ -86,10 +91,10 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 
             super(itemView);
 
-            mVideoPic = $(R.id.user_video_pic);
-            mVideoTitle = $(R.id.user_video_title);
-            mVideoPlayNum = $(R.id.user_play_num);
-            mVideoReviewNum = $(R.id.user_review_count);
+            mVideoPic = $(R.id.item_img);
+            mVideoTitle = $(R.id.item_title);
+            mVideoPlayNum = $(R.id.item_play);
+            mVideoReviewNum = $(R.id.item_review);
         }
     }
 }

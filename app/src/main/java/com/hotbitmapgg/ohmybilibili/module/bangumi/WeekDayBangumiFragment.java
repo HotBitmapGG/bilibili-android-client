@@ -79,9 +79,6 @@ public class WeekDayBangumiFragment extends RxLazyFragment
         if (arguments != null)
             weekDay = arguments.getInt(EXTRA_WEEK);
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-
         startGetBangumiTask();
     }
 
@@ -143,6 +140,9 @@ public class WeekDayBangumiFragment extends RxLazyFragment
     {
 
         mAdapter = new BangumiTimeLineRecycleAdapter(mRecyclerView, mWeekDayBangumis);
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
         {

@@ -22,12 +22,12 @@ import java.util.ArrayList;
  * <p/>
  * 视频评论Adapter
  */
-public class CommentAdapter extends AbsRecyclerViewAdapter
+public class VideoCommentAdapter extends AbsRecyclerViewAdapter
 {
 
     private ArrayList<VideoComment.List> comments = new ArrayList<>();
 
-    public CommentAdapter(RecyclerView recyclerView, ArrayList<VideoComment.List> comments)
+    public VideoCommentAdapter(RecyclerView recyclerView, ArrayList<VideoComment.List> comments)
     {
 
         super(recyclerView);
@@ -46,8 +46,6 @@ public class CommentAdapter extends AbsRecyclerViewAdapter
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
 
-        super.onBindViewHolder(holder, position);
-
         if (holder instanceof ItemViewHolder)
         {
             try
@@ -55,7 +53,11 @@ public class CommentAdapter extends AbsRecyclerViewAdapter
                 ItemViewHolder mHolder = (ItemViewHolder) holder;
                 VideoComment.List list = comments.get(position);
                 mHolder.mUserName.setText(list.nick);
-                Picasso.with(getContext()).load(UrlHelper.getFaceUrlByUrl(list.face)).placeholder(R.drawable.ico_user_default).error(R.drawable.ico_user_default).into(mHolder.mUserAvatar);
+                Picasso.with(getContext())
+                        .load(UrlHelper.getFaceUrlByUrl(list.face))
+                        .placeholder(R.drawable.ico_user_default)
+                        .error(R.drawable.ico_user_default)
+                        .into(mHolder.mUserAvatar);
                 int currentLevel = list.level_info.current_level;
                 checkLevel(currentLevel, mHolder);
                 String sex = list.sex;
@@ -76,6 +78,8 @@ public class CommentAdapter extends AbsRecyclerViewAdapter
                 e.printStackTrace();
             }
         }
+
+        super.onBindViewHolder(holder, position);
     }
 
     private void checkLevel(int currentLevel, ItemViewHolder mHolder)
@@ -112,14 +116,6 @@ public class CommentAdapter extends AbsRecyclerViewAdapter
         return comments.size();
     }
 
-
-    public void addData(VideoComment.List info)
-    {
-
-        comments.add(info);
-    }
-
-
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
@@ -145,15 +141,15 @@ public class CommentAdapter extends AbsRecyclerViewAdapter
         {
 
             super(itemView);
-            mUserAvatar = $(R.id.comment_user_avatar);
-            mUserName = $(R.id.comment_user_name);
-            mUserLv = $(R.id.comment_user_lever);
-            mUserSex = $(R.id.comment_user_sex);
-            mFloor = $(R.id.comment_floor);
-            mCommentTime = $(R.id.comment_time);
-            mCommentNum = $(R.id.comment_num);
-            mSpot = $(R.id.comment_spot);
-            mCotent = $(R.id.comment_content);
+            mUserAvatar = $(R.id.item_user_avatar);
+            mUserName = $(R.id.item_user_name);
+            mUserLv = $(R.id.item_user_lever);
+            mUserSex = $(R.id.item_user_sex);
+            mFloor = $(R.id.item_comment_floor);
+            mCommentTime = $(R.id.item_comment_time);
+            mCommentNum = $(R.id.item_comment_num);
+            mSpot = $(R.id.item_comment_spot);
+            mCotent = $(R.id.item_comment_content);
         }
     }
 }

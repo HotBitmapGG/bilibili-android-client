@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
     <LinearLayout
-        android:id="@+id/user_avatar_layout"
+        android:id="@+id/item_user_avatar_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -17,16 +17,16 @@
         android:paddingLeft="10dp">
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
-            android:id="@+id/comment_user_avatar"
+            android:id="@+id/item_user_avatar"
             android:layout_width="@dimen/list_item_avatar_size"
             android:layout_height="@dimen/list_item_avatar_size"
             android:layout_marginBottom="@dimen/list_item_vertical_margin_small"
-            android:layout_marginTop="@dimen/list_item_vertical_margin_small"/>
+            android:layout_marginTop="@dimen/list_item_vertical_margin_small" />
 
         <ImageView
-            android:id="@+id/comment_user_lever"
+            android:id="@+id/item_user_lever"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>
@@ -34,58 +34,58 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/user_avatar_layout"
+        android:layout_toRightOf="@+id/item_user_avatar_layout"
+        android:paddingBottom="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="20dp">
+        android:paddingTop="10dp">
 
         <TextView
-            android:id="@+id/comment_user_name"
+            android:id="@+id/item_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/font_normal"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <ImageView
-            android:id="@+id/comment_user_sex"
+            android:id="@+id/item_user_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/comment_user_name"
-            android:paddingLeft="3dp"/>
+            android:layout_toRightOf="@+id/item_user_name"
+            android:paddingLeft="3dp" />
 
         <TextView
-            android:id="@+id/comment_floor"
+            android:id="@+id/item_comment_floor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/comment_user_name"
+            android:layout_below="@+id/item_user_name"
             android:textColor="@color/black_alpha"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/comment_time"
+            android:id="@+id/item_comment_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/comment_user_name"
-            android:layout_toRightOf="@+id/comment_floor"
+            android:layout_below="@+id/item_user_name"
+            android:layout_toRightOf="@+id/item_comment_floor"
             android:paddingLeft="5dp"
             android:textColor="@color/black_alpha"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/comment_num"
+            android:id="@+id/item_comment_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/comment_spot"
+            android:layout_toLeftOf="@+id/item_comment_spot"
             android:drawableLeft="@drawable/ic_feedback_grey"
             android:drawablePadding="5dp"
             android:paddingRight="5dp"
             android:textColor="@color/black_alpha"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
 
         <TextView
-            android:id="@+id/comment_spot"
+            android:id="@+id/item_comment_spot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -93,19 +93,19 @@
             android:drawablePadding="5dp"
             android:paddingRight="10dp"
             android:textColor="@color/black_alpha"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
 
         <TextView
-            android:id="@+id/comment_content"
+            android:id="@+id/item_comment_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/comment_floor"
+            android:layout_below="@+id/item_comment_floor"
             android:ellipsize="end"
             android:maxLines="3"
             android:paddingTop="5dp"
             android:textColor="@color/font_gray"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
 
     </RelativeLayout>
@@ -113,8 +113,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/line_bg"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:background="@color/line_bg" />
 
 
 </RelativeLayout>

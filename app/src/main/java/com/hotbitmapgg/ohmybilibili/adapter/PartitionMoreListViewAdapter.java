@@ -50,18 +50,16 @@ public class PartitionMoreListViewAdapter extends AbsRecyclerViewAdapter
 
                 mHolder.mTitleView.setText(videoItemInfo.title == null ? "" : videoItemInfo.title);
 
-                Picasso.with(getContext()).load(Uri.parse(videoItemInfo.pic)).placeholder(R.drawable.bili_default_image_tv).into(mHolder.mPreviewImage);
+                Picasso.with(getContext())
+                        .load(Uri.parse(videoItemInfo.pic))
+                        .placeholder(R.drawable.bili_default_image_tv)
+                        .into(mHolder.mPreviewImage);
 
                 String play = videoItemInfo.play;
-
                 int video_review = videoItemInfo.video_review;
-
                 mHolder.mPlayNum.setText(play);
-
                 mHolder.mReviewNum.setText(video_review + "");
-
                 String author = videoItemInfo.author;
-
                 mHolder.mUploadUser.setText(author);
             } catch (Exception e)
             {
@@ -75,7 +73,8 @@ public class PartitionMoreListViewAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_partition_more_list, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext())
+                .inflate(R.layout.item_partition_more_list, parent, false));
     }
 
 
@@ -106,11 +105,11 @@ public class PartitionMoreListViewAdapter extends AbsRecyclerViewAdapter
 
             super(itemView);
 
-            mPreviewImage = $(R.id.bangumi_more_list_video_pic);
-            mTitleView = $(R.id.bangumi_more_list_video_title);
-            mPlayNum = $(R.id.bangumi_more_list_play_num);
-            mReviewNum = $(R.id.bangumi_more_list_review_count);
-            mUploadUser = $(R.id.bangumi_more_list_video_info);
+            mPreviewImage = $(R.id.item_img);
+            mTitleView = $(R.id.item_title);
+            mPlayNum = $(R.id.item_play);
+            mReviewNum = $(R.id.item_review);
+            mUploadUser = $(R.id.item_user_name);
         }
     }
 }

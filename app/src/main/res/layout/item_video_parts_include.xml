@@ -7,7 +7,7 @@
               android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/user_video_pic"
+        android:id="@+id/item_img"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:adjustViewBounds="true"
@@ -20,7 +20,7 @@
         android:padding="@dimen/card_title_margin">
 
         <TextView
-            android:id="@+id/user_video_title"
+            android:id="@+id/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -43,7 +43,7 @@
             android:src="@drawable/ic_play_circle_outline_black_24dp"/>
 
         <TextView
-            android:id="@+id/user_play_num"
+            android:id="@+id/item_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/video_info_count_text_margin_start"
@@ -61,7 +61,7 @@
             android:src="@drawable/ic_subtitles_black_24dp"/>
 
         <TextView
-            android:id="@+id/user_review_count"
+            android:id="@+id/item_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/video_info_count_text_margin_start"
@@ -83,7 +83,7 @@
             android:src="@drawable/ic_feedback_support_grey"/>
 
         <TextView
-            android:id="@+id/user_video_fav"
+            android:id="@+id/item_fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/video_info_count_text_margin_start"
@@ -103,7 +103,7 @@
             android:src="@drawable/ic_feedback_grey"/>
 
         <TextView
-            android:id="@+id/user_video_commend"
+            android:id="@+id/item_commend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/video_info_count_text_margin_start"

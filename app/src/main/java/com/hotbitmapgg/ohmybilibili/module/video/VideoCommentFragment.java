@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.CommentAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.VideoCommentAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -45,7 +45,7 @@ public class VideoCommentFragment extends RxLazyFragment
 
     private int ver = 3;
 
-    private CommentAdapter mRecyclerAdapter;
+    private VideoCommentAdapter mRecyclerAdapter;
 
     private static final String AID = "aid";
 
@@ -81,7 +81,7 @@ public class VideoCommentFragment extends RxLazyFragment
 
     private void initRecyclerView()
     {
-        mRecyclerAdapter = new CommentAdapter(mRecyclerView, comments);
+        mRecyclerAdapter = new VideoCommentAdapter(mRecyclerView, comments);
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);

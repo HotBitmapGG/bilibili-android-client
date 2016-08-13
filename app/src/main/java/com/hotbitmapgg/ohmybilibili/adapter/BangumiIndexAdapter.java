@@ -73,8 +73,8 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
         {
 
             super(itemView);
-            mRoundedImageView = $(R.id.index_img);
-            mTextView = $(R.id.index_tv);
+            mRoundedImageView = $(R.id.item_img);
+            mTextView = $(R.id.item_title);
         }
     }
 }

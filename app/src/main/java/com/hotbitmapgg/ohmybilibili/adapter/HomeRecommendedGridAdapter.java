@@ -44,7 +44,8 @@ public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_home_recommended_grid, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext())
+                .inflate(R.layout.item_home_recommended_grid, parent, false));
     }
 
     @Override
