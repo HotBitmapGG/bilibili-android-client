@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout android:id="@+id/header_container"
-             xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:layout_width="match_parent"
-             android:layout_height="@dimen/navigation_header_height"
-             android:clickable="true"
-             android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/navigation_header_height"
+    android:clickable="true"
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_gravity="center|right|bottom"
             android:clickable="true"
             android:src="@drawable/home_menu_bg_click"
-            android:tint="@color/pink_500"/>
+            android:tint="@color/pink_500" />
     </FrameLayout>
 
     <RelativeLayout
@@ -35,7 +35,7 @@
             android:layout_margin="@dimen/navigation_avatar_margin"
             android:src="@drawable/ico_user_default"
             app:border_color="@android:color/white"
-            app:border_width="1dp"/>
+            app:border_width="1dp" />
 
 
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:id="@+id/iv_head_noftiy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_navigation_header_notification"/>
+                android:src="@drawable/ic_navigation_header_notification" />
 
 
             <ImageView
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:src="@drawable/ic_switch_night"/>
+                android:src="@drawable/ic_switch_night" />
 
 
         </LinearLayout>
@@ -91,7 +91,7 @@
                 android:paddingTop="@dimen/navigation_subtitle_text_padding_vertical"
                 android:text="HotBitmapGG"
                 android:textColor="@color/navigation_subtitle_primary_text"
-                android:textSize="@dimen/navigation_subtitle_primary_text_size"/>
+                android:textSize="@dimen/navigation_subtitle_primary_text_size" />
 
             <TextView
                 android:id="@+id/user_other_info"
@@ -102,7 +102,7 @@
                 android:paddingStart="@dimen/navigation_subtitle_text_padding_horizontal"
                 android:text="100332338@qq.com"
                 android:textColor="@color/navigation_subtitle_secondary_text"
-                android:textSize="@dimen/navigation_subtitle_secondary_text_size"/>
+                android:textSize="@dimen/navigation_subtitle_secondary_text_size" />
         </LinearLayout>
     </LinearLayout>
 

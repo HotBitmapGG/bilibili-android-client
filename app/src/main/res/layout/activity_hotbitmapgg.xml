@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_layout" />
+    <include layout="@layout/layout_toolbar" />
 
     <com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
         android:layout_width="match_parent"

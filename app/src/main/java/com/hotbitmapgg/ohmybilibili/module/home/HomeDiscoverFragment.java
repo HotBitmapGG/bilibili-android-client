@@ -67,7 +67,7 @@ public class HomeDiscoverFragment extends RxLazyFragment
             {
 
                 TextView mTags = (TextView) LayoutInflater.from(getActivity())
-                        .inflate(R.layout.tags_layout, parent, false);
+                        .inflate(R.layout.layout_tags_item, parent, false);
                 mTags.setText(s);
 
                 return mTags;

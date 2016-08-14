@@ -206,7 +206,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
     {
 
         loadMoreView = LayoutInflater.from(UpMoreCoverActivity.this)
-                .inflate(R.layout.recycle_view_foot_layout, mRecycleView, false);
+                .inflate(R.layout.layout_load_more, mRecycleView, false);
         mHeaderViewRecyclerAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
     }

@@ -271,7 +271,7 @@ public class MediaController extends FrameLayout
     private View inflateLayout()
     {
 
-        return ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.mediacontroller, this);
+        return ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.layout_media_controller, this);
     }
 
     private void findViewItems(View v)

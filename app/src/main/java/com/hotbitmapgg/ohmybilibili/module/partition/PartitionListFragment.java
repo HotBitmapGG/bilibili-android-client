@@ -233,7 +233,7 @@ public class PartitionListFragment extends RxLazyFragment
     {
 
         loadMoreView = LayoutInflater.from(getActivity())
-                .inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
+                .inflate(R.layout.layout_load_more, mRecyclerView, false);
         mRecyclerAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
     }

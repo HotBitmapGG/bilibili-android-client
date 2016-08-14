@@ -179,7 +179,7 @@ public class VideoInfoFragment extends RxLazyFragment
             public View getView(FlowLayout parent, int position, String s)
             {
 
-                TextView mTags = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.tags_layout, parent, false);
+                TextView mTags = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.layout_tags_item, parent, false);
                 mTags.setText(s);
 
                 return mTags;

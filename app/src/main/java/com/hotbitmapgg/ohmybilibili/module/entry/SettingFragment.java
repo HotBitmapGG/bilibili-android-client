@@ -74,17 +74,17 @@ public class SettingFragment extends RxLazyFragment implements View.OnClickListe
         switch (v.getId())
         {
 
-            case R.id.rl_about_me:
+            case R.id.layout_about_me:
                 //关于我
                 startActivity(new Intent(getActivity(), HotBitmapGGInfoActivity.class));
                 break;
 
-            case R.id.rl_about:
+            case R.id.layout_about_app:
                 //关于哔哩哔哩
                 startActivity(new Intent(getActivity(), AppIntroduceActivity.class));
                 break;
 
-            case R.id.rl_update:
+            case R.id.layout_update:
                 //版本更新
 
                 break;

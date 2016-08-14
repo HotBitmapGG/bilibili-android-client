@@ -197,7 +197,7 @@ public class UserFansActivity extends RxAppCompatBaseActivity
     {
 
         loadMoreView = LayoutInflater.from(UserFansActivity.this)
-                .inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
+                .inflate(R.layout.layout_load_more, mRecyclerView, false);
         mAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
     }
