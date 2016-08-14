@@ -202,26 +202,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="3dp"
-                    android:ellipsize="end"
-                    android:maxLines="3"
                     android:paddingEnd="@dimen/title_margin_small"
-                    android:paddingStart="@dimen/title_margin_small"
-                    tools:text="Bilibilibilibilibilibili~" />
+                    android:paddingStart="@dimen/title_margin_small" />
 
-                <TextView
-                    android:id="@+id/tv_desc_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="3dp"
-                    android:clickable="true"
-                    android:drawablePadding="2dp"
-                    android:drawableRight="@drawable/ico_arrow_d"
-                    android:gravity="center"
-                    android:paddingBottom="5dp"
-                    android:text="更多"
-                    android:textColor="@color/black_alpha_45"
-                    android:textSize="14sp" />
             </LinearLayout>
 
             <View

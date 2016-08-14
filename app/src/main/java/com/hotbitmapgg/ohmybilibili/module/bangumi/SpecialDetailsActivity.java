@@ -10,16 +10,17 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.SpecialVideoRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.Sp;
 import com.hotbitmapgg.ohmybilibili.entity.video.SpItemResult;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -64,9 +65,6 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
-
-    @Bind(R.id.tv_desc_more)
-    TextView mDescMore;
 
     @Bind(R.id.tv_favourite)
     TextView mFavourite;
@@ -211,6 +209,8 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
                     {
 
                         LogUtil.all("获取专题视频列表失败" + throwable.getMessage());
+                        mCircleProgressView.setVisibility(View.GONE);
+                        mCircleProgressView.stopSpinning();
                     }
                 });
     }
@@ -244,27 +244,13 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         } else
         {
             mDescText.setText("该专题没有任何介绍~");
-            mDescMore.setVisibility(View.GONE);
         }
 
-        mPlayTimeText.setText(playCount + "");
+        mPlayTimeText.setText(String.valueOf(playCount));
         mVideoCountText.setText(count + "话");
         mToolbar.setTitle(spTitle);
-        mFavourite.setText(favourite + "");
-        mAttention.setText(attention + "");
-
-        mDescMore.setOnClickListener(new OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                mDescText.setEllipsize(null);
-                mDescText.setSingleLine(false);
-                mDescMore.setVisibility(View.GONE);
-            }
-        });
+        mFavourite.setText(String.valueOf(favourite));
+        mAttention.setText(String.valueOf(attention));
 
         getSpVideo();
     }
@@ -282,6 +268,17 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         mRecyclerView.setLayoutManager(new GridLayoutManager(SpecialDetailsActivity.this, 2));
         SpecialVideoRecyclerAdapter mAdapter = new SpecialVideoRecyclerAdapter(mRecyclerView, spList);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
+        {
+
+            @Override
+            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
+            {
+
+                Sp.Item item = spList.get(position);
+                VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid);
+            }
+        });
     }
 
 
