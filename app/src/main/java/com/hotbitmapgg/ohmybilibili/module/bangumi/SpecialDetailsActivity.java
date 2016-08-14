@@ -173,6 +173,8 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
                     {
 
                         LogUtil.all("专题数据获取失败" + throwable.getMessage());
+                        mCircleProgressView.setVisibility(View.GONE);
+                        mCircleProgressView.stopSpinning();
                     }
                 });
     }
