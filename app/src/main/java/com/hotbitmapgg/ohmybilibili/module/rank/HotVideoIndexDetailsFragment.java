@@ -73,7 +73,7 @@ public class HotVideoIndexDetailsFragment extends RxLazyFragment
     private void initRefreshLayout()
     {
 
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.postDelayed(new Runnable()
         {
 

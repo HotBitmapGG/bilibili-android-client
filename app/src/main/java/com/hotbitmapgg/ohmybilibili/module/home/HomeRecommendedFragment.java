@@ -73,7 +73,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
     private void showProgressBar()
     {
 
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.postDelayed(new Runnable()
         {
 

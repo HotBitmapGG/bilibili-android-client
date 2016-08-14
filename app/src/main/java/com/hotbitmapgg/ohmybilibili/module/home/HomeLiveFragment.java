@@ -63,7 +63,7 @@ public class HomeLiveFragment extends RxLazyFragment
     private void showProgressBar()
     {
 
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mBiliBiliLiveRecyclerAdapter = new BiliBiliLiveRecyclerAdapter(getActivity());
         mRecyclerView.setAdapter(mBiliBiliLiveRecyclerAdapter);
         GridLayoutManager layout = new GridLayoutManager(getActivity(), 12);

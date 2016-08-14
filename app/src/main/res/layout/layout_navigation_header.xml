@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/top_bar_bg">
+        android:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/background_image_view"

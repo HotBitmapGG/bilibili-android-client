@@ -10,7 +10,7 @@
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/top_bar_bg"
+        android:background="@color/colorPrimary"
         android:elevation="3dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"

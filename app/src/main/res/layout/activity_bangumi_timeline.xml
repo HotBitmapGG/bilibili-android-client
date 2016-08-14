@@ -24,7 +24,7 @@
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/top_bar_bg"
+            android:background="@color/colorPrimary"
             app:tl_tab_space_equal="true"
             app:tl_indicator_corner_radius="1.5dp"
             app:tl_textsize="16sp"

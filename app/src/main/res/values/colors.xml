@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--主题配色-->
-    <color name="primary">#FA7198</color>
-    <color name="primary_dark">#96435B</color>
-    <color name="status_bar_color">@color/primary_dark</color>
-    <color name="bacground">#F1F1F1</color>
-    <color name="top_bar_bg">@color/primary</color>
+    <color name="colorPrimary">#FA7198</color>
+    <color name="colorPrimaryDark">#96435B</color>
+    <color name="colorAccent">#99f0486c</color>
     <color name="yellow">#FFD11B</color>
     <color name="yellow_30">#FEA501</color>
     <color name="pink">#FD7071</color>

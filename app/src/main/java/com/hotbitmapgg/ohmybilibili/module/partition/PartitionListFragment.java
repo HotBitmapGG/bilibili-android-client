@@ -116,7 +116,7 @@ public class PartitionListFragment extends RxLazyFragment
     private void showProgressBar()
     {
 
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.primary);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
 
