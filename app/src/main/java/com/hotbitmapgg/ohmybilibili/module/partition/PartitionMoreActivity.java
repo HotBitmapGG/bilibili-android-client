@@ -1,12 +1,12 @@
 package com.hotbitmapgg.ohmybilibili.module.partition;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
+import android.view.MenuItem;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
@@ -28,13 +28,13 @@ import butterknife.Bind;
 public class PartitionMoreActivity extends RxAppCompatBaseActivity
 {
 
-    @Bind(R.id.more_toolbar)
+    @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.bangumi_more_tab_pager)
-    ViewPager mTabPager;
+    @Bind(R.id.view_pager)
+    ViewPager mViewPager;
 
-    @Bind(R.id.bangumi_more_sliding_tabs)
+    @Bind(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTab;
 
     private PartitionMorePagerAdapter mAdapter;
@@ -43,7 +43,9 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
 
     private String typeTitle;
 
-    protected ActionBar mActionBar;
+    private static final String EXTRA_TITLES = "titles";
+
+    private static final String EXTRA_TYPE_TITLE = "typeTitle";
 
 
     @Override
@@ -56,59 +58,50 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
     @Override
     public void initViews(Bundle savedInstanceState)
     {
-
-        Intent intent = getIntent();
-        if (intent != null)
-        {
-            Bundle bundle = intent.getExtras();
-            if (bundle != null)
-            {
-                PartitionMoreTitle mTitle = (PartitionMoreTitle) bundle.getSerializable("titles");
-                typeTitle = bundle.getString("typeTitle");
-                if (mTitle != null)
-                {
-                    titles = mTitle.titles;
-                }
-            }
-        }
+        Bundle mBundle = getIntent().getExtras();
+        PartitionMoreTitle mPartitionMoreTitle = mBundle.getParcelable(EXTRA_TITLES);
+        if(mPartitionMoreTitle != null)
+        titles = mPartitionMoreTitle.titles;
+        typeTitle = mBundle.getString(EXTRA_TYPE_TITLE);
 
 
-        mAdapter = new PartitionMorePagerAdapter(getSupportFragmentManager(), titles);
-        mTabPager.setAdapter(mAdapter);
-        mSlidingTab.setViewPager(mTabPager);
+        mAdapter = new PartitionMorePagerAdapter(getSupportFragmentManager(), this.titles);
+        mViewPager.setAdapter(mAdapter);
+        mSlidingTab.setViewPager(mViewPager);
     }
 
     @Override
     public void initToolBar()
     {
 
-        try
-        {
-            setSupportActionBar(mToolbar);
-        } catch (Exception e)
-        {
-            Log.e("setContentView", "Cannot find toolbar.");
-        }
-        mActionBar = getSupportActionBar();
-        if (mActionBar != null)
-        {
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setDisplayUseLogoEnabled(true);
-            mActionBar.setDisplayShowTitleEnabled(false);
-        }
-
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
         mToolbar.setTitle(typeTitle);
-        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
         {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
+    }
 
-            @Override
-            public void onClick(View v)
-            {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
 
-                finish();
-            }
-        });
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
+
+    public static void launch(Activity activity, PartitionMoreTitle titles, String typeTitle)
+    {
+
+        Intent mIntent = new Intent(activity, PartitionMoreActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(EXTRA_TITLES, titles);
+        bundle.putString(EXTRA_TYPE_TITLE, typeTitle);
+        mIntent.putExtras(bundle);
+        activity.startActivity(mIntent);
     }
 }

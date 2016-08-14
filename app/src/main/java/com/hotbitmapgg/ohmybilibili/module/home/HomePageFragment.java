@@ -20,8 +20,8 @@ import butterknife.Bind;
 public class HomePageFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.tab_pager)
-    ViewPager mTabPager;
+    @Bind(R.id.view_pager)
+    ViewPager mViewPager;
 
     @Bind(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTab;
@@ -48,16 +48,8 @@ public class HomePageFragment extends RxLazyFragment
     {
 
         mHomeAdapter = new HomePagerAdapter(getChildFragmentManager(), getApplicationContext());
-        mTabPager.setOffscreenPageLimit(4);
-        mTabPager.setAdapter(mHomeAdapter);
-        mSlidingTab.setViewPager(mTabPager);
-    }
-
-
-    @Override
-    public void onDestroy()
-    {
-        // TODO Auto-generated method stub
-        super.onDestroy();
+        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setAdapter(mHomeAdapter);
+        mSlidingTab.setViewPager(mViewPager);
     }
 }

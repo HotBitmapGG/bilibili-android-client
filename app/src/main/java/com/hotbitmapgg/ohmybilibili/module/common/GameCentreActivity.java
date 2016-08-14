@@ -40,16 +40,29 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
     CircleProgressView mCircleProgressView;
 
     private int[] gameimages = new int[]{
-            R.drawable.hxzj_gamecenter_smallbanner, R.drawable.wcat_list,
-            R.drawable.xwy_list, R.drawable.mlk, R.drawable.img_bh2,
+            R.drawable.hxzj_gamecenter_smallbanner,
+            R.drawable.wcat_list,
+            R.drawable.xwy_list,
+            R.drawable.mlk,
+            R.drawable.img_bh2,
             R.drawable.w
     };
 
-    private String[] gametexts = new String[]{"幻想战姬", "白猫计划", "侠物语", "梅露可物语", "崩坏学院2", "世界2"};
+    private String[] gametexts = new String[]{
+            "幻想战姬",
+            "白猫计划",
+            "侠物语",
+            "梅露可物语",
+            "崩坏学院2",
+            "世界2"
+    };
 
     private String[] gamepaths = new String[]{
-            "http://hxzj.biligame.com/", "http://bmjh.biligame.com/",
-            "http://xwy.biligame.com/", "http://mlk.biligame.com/", "http://teos2.biligame.com/",
+            "http://hxzj.biligame.com/",
+            "http://bmjh.biligame.com/",
+            "http://xwy.biligame.com/",
+            "http://mlk.biligame.com/",
+            "http://teos2.biligame.com/",
             "http://sj2.biligame.com/"
     };
 

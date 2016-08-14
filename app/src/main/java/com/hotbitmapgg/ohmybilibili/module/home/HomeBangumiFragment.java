@@ -194,9 +194,12 @@ public class HomeBangumiFragment extends RxLazyFragment
     private void createHead()
     {
 
-        headView_banner = LayoutInflater.from(getActivity()).inflate(R.layout.layout_head_home_recommended, mRecyclerView, false);
-        headView_item = LayoutInflater.from(getActivity()).inflate(R.layout.layout_head_bangumi_item, mRecyclerView, false);
-        headView_list = LayoutInflater.from(getActivity()).inflate(R.layout.layout_head_recommend_bangumi, mRecyclerView, false);
+        headView_banner = LayoutInflater.from(getActivity())
+                .inflate(R.layout.layout_head_home_recommended, mRecyclerView, false);
+        headView_item = LayoutInflater.from(getActivity())
+                .inflate(R.layout.layout_head_bangumi_item, mRecyclerView, false);
+        headView_list = LayoutInflater.from(getActivity())
+                .inflate(R.layout.layout_head_recommend_bangumi, mRecyclerView, false);
         //处理头部数据
         processHeadView();
     }

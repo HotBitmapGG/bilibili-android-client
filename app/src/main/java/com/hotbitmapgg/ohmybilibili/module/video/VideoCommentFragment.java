@@ -32,7 +32,7 @@ import rx.schedulers.Schedulers;
 public class VideoCommentFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.comment_list_recycle)
+    @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
     private ArrayList<VideoComment.List> comments = new ArrayList<>();
@@ -81,6 +81,7 @@ public class VideoCommentFragment extends RxLazyFragment
 
     private void initRecyclerView()
     {
+
         mRecyclerAdapter = new VideoCommentAdapter(mRecyclerView, comments);
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
@@ -139,6 +140,7 @@ public class VideoCommentFragment extends RxLazyFragment
 
     private void finishTask()
     {
+
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
         else
@@ -148,7 +150,8 @@ public class VideoCommentFragment extends RxLazyFragment
     private void createLoadMoreView()
     {
 
-        loadMoreView = LayoutInflater.from(getActivity()).inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
+        loadMoreView = LayoutInflater.from(getActivity())
+                .inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
         mAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
     }

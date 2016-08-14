@@ -1,11 +1,14 @@
 package com.hotbitmapgg.ohmybilibili.module.bangumi;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -33,7 +36,7 @@ import rx.schedulers.Schedulers;
  * Created by hcc on 16/8/4 21:18
  * 100332338@qq.com
  * <p/>
- * 专题详情界面
+ * 专题详情界面(番剧界面)
  */
 public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 {
@@ -59,9 +62,8 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
     @Bind(R.id.tv_video_count)
     TextView mVideoCountText;
 
-    @Bind(R.id.sp_video_list)
-    //ExpandableHeightGridView mSpVideoList;
-            RecyclerView mRecyclerView;
+    @Bind(R.id.recycle)
+    RecyclerView mRecyclerView;
 
     @Bind(R.id.tv_desc_more)
     TextView mDescMore;
@@ -72,11 +74,11 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
     @Bind(R.id.tv_attention)
     TextView mAttention;
 
-    @Bind(R.id.sp_circle_progress)
+    @Bind(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    @Bind(R.id.sp_main)
-    LinearLayout mSpMainLayout;
+    @Bind(R.id.root_layout)
+    LinearLayout mRootLayout;
 
     private int spid;
 
@@ -86,9 +88,13 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
     private int season_id;
 
-    private ArrayList<Sp.Item> spList = new ArrayList<Sp.Item>();
+    private static final String EXTRA_SPID = "spid";
 
-    private SpecialVideoRecyclerAdapter mItemAdapter;
+    private static final String EXTRA_TITLE = "title";
+
+    private static final String EXTRA_SEASON_ID = "season_id";
+
+    private ArrayList<Sp.Item> spList = new ArrayList<Sp.Item>();
 
 
     @Override
@@ -105,10 +111,9 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            String spidStr = intent.getStringExtra("spid");
-            spid = Integer.parseInt(spidStr);
-            title = intent.getStringExtra("title");
-            season_id = intent.getIntExtra("season_id", 0);
+            spid = Integer.parseInt(intent.getStringExtra(EXTRA_SPID));
+            title = intent.getStringExtra(EXTRA_TITLE);
+            season_id = intent.getIntExtra(EXTRA_SEASON_ID, 0);
         }
 
 
@@ -119,19 +124,21 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                finish();
-            }
-        });
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+
+        return super.onOptionsItemSelected(item);
+    }
 
     private void startGetSpInfoTask()
     {
@@ -268,12 +275,23 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
-        mSpMainLayout.setVisibility(View.VISIBLE);
+        mRootLayout.setVisibility(View.VISIBLE);
 
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setLayoutManager(new GridLayoutManager(SpecialDetailsActivity.this, 2));
         SpecialVideoRecyclerAdapter mAdapter = new SpecialVideoRecyclerAdapter(mRecyclerView, spList);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+
+    public static void launch(Activity activity, String spid, String title, int seasonId)
+    {
+
+        Intent mIntent = new Intent(activity, SpecialDetailsActivity.class);
+        mIntent.putExtra(EXTRA_SPID, spid);
+        mIntent.putExtra(EXTRA_TITLE, title);
+        mIntent.putExtra(EXTRA_SEASON_ID, seasonId);
+        activity.startActivity(mIntent);
     }
 }

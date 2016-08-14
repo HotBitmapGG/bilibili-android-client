@@ -37,10 +37,10 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.banner_loading_circle)
+    @Bind(R.id.circle_progress)
     CircleProgressView progressBar;
 
-    @Bind(R.id.webView1)
+    @Bind(R.id.webView)
     WebView mWebView;
 
     private final Handler mHandler = new Handler();
@@ -131,16 +131,20 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
             public boolean onJsAlert(WebView view, String url, String message, final JsResult result)
             {
 
-                AlertDialog.Builder b2 = new AlertDialog.Builder(BrowserActivity.this).setTitle(R.string.app_name).setMessage(message).setPositiveButton("确定", new AlertDialog.OnClickListener()
-                {
+                AlertDialog.Builder b2 = new AlertDialog
+                        .Builder(BrowserActivity.this)
+                        .setTitle(R.string.app_name)
+                        .setMessage(message)
+                        .setPositiveButton("确定", new AlertDialog.OnClickListener()
+                        {
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
 
-                        result.confirm();
-                    }
-                });
+                                result.confirm();
+                            }
+                        });
 
                 b2.setCancelable(false);
                 b2.create();

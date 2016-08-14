@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
-        android:id="@+id/sp_circle_progress"
+        android:id="@+id/circle_progress"
         android:layout_width="@dimen/circle_progress_view_default_size"
         android:layout_height="@dimen/circle_progress_view_default_size"
         android:layout_centerInParent="true"
@@ -17,7 +17,7 @@
         app:matProg_barWidth="@dimen/circle_progress_view_default_border_width" />
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/sp_top_rl"
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -36,16 +36,16 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/sp_scroll"
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/sp_top_rl"
+        android:layout_below="@+id/app_bar_layout"
         android:fillViewport="true"
         android:overScrollMode="never"
         android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/sp_main"
+            android:id="@+id/root_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -241,28 +241,12 @@
 
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/sp_video_list"
+                android:id="@+id/recycle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:overScrollMode="never"
                 android:paddingTop="@dimen/activity_horizontal_margin"
                 android:scrollbars="none" />
-
-            <!--<com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView-->
-            <!--android:id="@+id/sp_video_list"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:clipToPadding="true"-->
-            <!--android:columnWidth="60dp"-->
-            <!--android:gravity="center"-->
-            <!--android:horizontalSpacing="10dp"-->
-            <!--android:numColumns="2"-->
-            <!--android:overScrollMode="never"-->
-            <!--android:padding="10dp"-->
-            <!--android:scrollbars="none"-->
-            <!--android:verticalSpacing="10dp" >-->
-            <!--</com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView>-->
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

@@ -34,7 +34,7 @@ import rx.schedulers.Schedulers;
 public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
 {
 
-    @Bind(R.id.video_parts_recycle)
+    @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
     @Bind(R.id.circle_progress)

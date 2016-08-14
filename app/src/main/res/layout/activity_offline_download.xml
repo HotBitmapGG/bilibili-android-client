@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/bacground"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -19,7 +18,7 @@
             android:background="@color/top_bar_bg"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
     </android.support.design.widget.AppBarLayout>
@@ -38,18 +37,17 @@
                 android:layout_height="match_parent"
                 android:fillViewport="true"
                 android:overScrollMode="never"
-                android:scrollbars="none"/>
+                android:scrollbars="none" />
 
 
             <com.hotbitmapgg.ohmybilibili.widget.EmptyView
                 android:id="@+id/empty_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" />
 
 
         </FrameLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,15 +66,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:progress_max="100"
-                    app:progress_text_visibility="invisible"
-                    />
+                    app:progress_text_visibility="invisible" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/cache_size_text"
@@ -86,15 +82,9 @@
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
                         android:textColor="@color/font_normal"
-                        android:textSize="12sp"
-                        />
-
-
+                        android:textSize="12sp" />
                 </LinearLayout>
-
-
             </FrameLayout>
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -111,7 +101,7 @@
                     android:layout_centerInParent="true"
                     android:text="全部开始"
                     android:textColor="@color/font_normal"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <View
                     android:id="@+id/line"
@@ -120,7 +110,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/btn_start_all"
-                    android:background="@color/font_normal"/>
+                    android:background="@color/font_normal" />
 
                 <TextView
                     android:id="@+id/btn_download_edit"
@@ -131,7 +121,7 @@
                     android:layout_toRightOf="@+id/line"
                     android:text="编辑"
                     android:textColor="@color/font_normal"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
 
                 <ImageView
@@ -141,15 +131,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
                     android:padding="10dp"
-                    android:src="@drawable/ic_action_download_refresh"/>
+                    android:src="@drawable/ic_action_download_refresh" />
 
             </RelativeLayout>
-
-
         </LinearLayout>
-
-
     </FrameLayout>
-
-
 </LinearLayout>

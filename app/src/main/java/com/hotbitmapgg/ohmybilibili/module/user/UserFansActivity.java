@@ -37,7 +37,7 @@ import rx.schedulers.Schedulers;
 public class UserFansActivity extends RxAppCompatBaseActivity
 {
 
-    @Bind(R.id.user_fans_recycle)
+    @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
     @Bind(R.id.circle_progress)
@@ -196,7 +196,8 @@ public class UserFansActivity extends RxAppCompatBaseActivity
     private void createLoadMoreView()
     {
 
-        loadMoreView = LayoutInflater.from(UserFansActivity.this).inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
+        loadMoreView = LayoutInflater.from(UserFansActivity.this)
+                .inflate(R.layout.recycle_view_foot_layout, mRecyclerView, false);
         mAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
     }

@@ -180,7 +180,8 @@ public class HomeRecommendedFragment extends RxLazyFragment
     private void createHead()
     {
 
-        View headView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_head_home_recommended, mRecyclerView, false);
+        View headView = LayoutInflater.from(getActivity())
+                .inflate(R.layout.layout_head_home_recommended, mRecyclerView, false);
         BannerView bannerView = (BannerView) headView.findViewById(R.id.home_recommended_banner);
         bannerView.delayTime(5).build(banners);
         mHeaderViewRecyclerAdapter.addHeaderView(headView);

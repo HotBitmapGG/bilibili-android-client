@@ -28,21 +28,12 @@ import butterknife.ButterKnife;
 public class SplashActivity extends Activity
 {
 
-    /**
-     * 随机切换欢迎页图片资源
-     * , R.drawable.ic_splash_happybirthday  R.drawable.ic_splash_default_smail ,
-     */
-
     @Bind(R.id.splash_iv)
     ImageView mSplashImage;
-
-
-    private static final int[] SPLASH_PIC = new int[]{R.drawable.ic_splash_default};
 
     private static final int GO_HOME = 100;
 
     private static final int GO_LOGIN = 200;
-
 
     // 动画执行时间
     private static final int ANIMATION_DURATION = 2000;
@@ -57,8 +48,6 @@ public class SplashActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-        //Random random = new Random(SystemClock.elapsedRealtime());
-        //mSplashImage.setImageResource(SPLASH_PIC[random.nextInt(SPLASH_PIC.length)]);
     }
 
 
@@ -131,6 +120,13 @@ public class SplashActivity extends Activity
         }
     };
 
+    @Override
+    public void onBackPressed()
+    {
+
+        super.onBackPressed();
+        mHandler.removeCallbacksAndMessages(null);
+    }
 
     @Override
     protected void onDestroy()

@@ -73,7 +73,8 @@ public class AppIntroduceActivity extends RxAppCompatBaseActivity
 
         try
         {
-            PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), 0);
+            PackageInfo pi = getPackageManager()
+                    .getPackageInfo(getPackageName(), 0);
             return pi.versionName;
         } catch (PackageManager.NameNotFoundException e)
         {

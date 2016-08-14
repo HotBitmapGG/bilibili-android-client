@@ -25,13 +25,13 @@ import butterknife.Bind;
 public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
 {
 
-    @Bind(R.id.bangumi_tab_pager)
-    ViewPager mTabPager;
+    @Bind(R.id.view_pager)
+    ViewPager mViewPager;
 
-    @Bind(R.id.bangumi_sliding_tabs)
-    SlidingTabLayout mSlidingTab;
+    @Bind(R.id.sliding_tabs)
+    SlidingTabLayout mTabLayout;
 
-    @Bind(R.id.sp_toolbar)
+    @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
     private BangumiFragmentAdapter mAdapter;
@@ -52,8 +52,8 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
     {
 
         mAdapter = new BangumiFragmentAdapter(getSupportFragmentManager());
-        mTabPager.setAdapter(mAdapter);
-        mSlidingTab.setViewPager(mTabPager);
+        mViewPager.setAdapter(mAdapter);
+        mTabLayout.setViewPager(mViewPager);
     }
 
     @Override

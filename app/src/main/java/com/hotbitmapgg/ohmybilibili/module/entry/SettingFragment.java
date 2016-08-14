@@ -27,13 +27,13 @@ import butterknife.Bind;
 public class SettingFragment extends RxLazyFragment implements View.OnClickListener
 {
 
-    @Bind(R.id.rl_about_me)
+    @Bind(R.id.layout_about_me)
     RelativeLayout mAboutMe;
 
-    @Bind(R.id.rl_about)
+    @Bind(R.id.layout_about_app)
     RelativeLayout mAboutApp;
 
-    @Bind(R.id.rl_update)
+    @Bind(R.id.layout_update)
     RelativeLayout mUpdateApp;
 
     @Bind(R.id.btn_logout)
@@ -64,7 +64,7 @@ public class SettingFragment extends RxLazyFragment implements View.OnClickListe
         mUpdateApp.setOnClickListener(this);
         mLogout.setOnClickListener(this);
 
-        mVersionCode.setText("V" + getVersionCode());
+        mVersionCode.setText("v" + getVersionCode());
     }
 
     @Override
@@ -105,7 +105,8 @@ public class SettingFragment extends RxLazyFragment implements View.OnClickListe
         PackageInfo packageInfo = null;
         try
         {
-            packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            packageInfo = getActivity().getPackageManager()
+                    .getPackageInfo(getActivity().getPackageName(), 0);
         } catch (PackageManager.NameNotFoundException e)
         {
             e.printStackTrace();

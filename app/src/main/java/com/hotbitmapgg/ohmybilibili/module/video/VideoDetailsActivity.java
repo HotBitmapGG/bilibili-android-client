@@ -80,8 +80,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     private int av;
 
-    //private VideoViewInfo viewInfo;
-
     private VideoDetailsPagerAdapter mAdapter;
 
     private VideoDetails mVideoDetails;
@@ -258,52 +256,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                     }
                 });
 
-        //下边的请求需要Appkey才能获取到视频详情数据
-
-//
-//        Single<BasicMessage<VideoViewInfo>> single = Single.fromCallable(new Callable<BasicMessage<VideoViewInfo>>()
-//        {
-//
-//            @Override
-//            public BasicMessage<VideoViewInfo> call() throws Exception
-//            {
-//
-//                return VideoApi.getVideoViewInfo(itemInfo != null ? itemInfo.aid : av, 0, false);
-//            }
-//        });
-//
-//
-//        Subscription subscribe = single.map(new Func1<BasicMessage<VideoViewInfo>,VideoViewInfo>()
-//        {
-//
-//            @Override
-//            public VideoViewInfo call(BasicMessage<VideoViewInfo> videoViewInfoBasicMessage)
-//            {
-//
-//                return videoViewInfoBasicMessage.getObject();
-//            }
-//        })
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new SingleSubscriber<VideoViewInfo>()
-//                {
-//
-//                    @Override
-//                    public void onSuccess(VideoViewInfo value)
-//                    {
-//
-//                        viewInfo = value;
-//                        finishGetTask();
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable error)
-//                    {
-//
-//                    }
-//                });
-//
-//        compositeSubscription.add(subscribe);
     }
 
     private void finishGetTask()

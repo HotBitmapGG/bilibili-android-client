@@ -12,7 +12,7 @@
         android:fitsSystemWindows="true">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/sp_toolbar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
@@ -21,7 +21,7 @@
 
 
         <com.flyco.tablayout.SlidingTabLayout
-            android:id="@+id/bangumi_sliding_tabs"
+            android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/top_bar_bg"
@@ -35,7 +35,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/bangumi_tab_pager"
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"

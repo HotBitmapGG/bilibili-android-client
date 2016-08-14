@@ -1,6 +1,5 @@
 package com.hotbitmapgg.ohmybilibili.module.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
@@ -37,8 +36,7 @@ public class HomeMoreFragment extends RxLazyFragment
     public static HomeMoreFragment newInstance()
     {
 
-        HomeMoreFragment mFragment = new HomeMoreFragment();
-        return mFragment;
+        return new HomeMoreFragment();
     }
 
     @Override
@@ -316,11 +314,6 @@ public class HomeMoreFragment extends RxLazyFragment
     protected void launchTypeDetailsActivity(PartitionMoreTitle mTitle, String typeTitle)
     {
 
-        Intent mIntent = new Intent(getActivity(), PartitionMoreActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("titles", mTitle);
-        bundle.putString("typeTitle", typeTitle);
-        mIntent.putExtras(bundle);
-        startActivity(mIntent);
+        PartitionMoreActivity.launch(getActivity(), mTitle, typeTitle);
     }
 }

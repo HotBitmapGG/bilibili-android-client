@@ -63,7 +63,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
     @Bind(R.id.tv_fans)
     TextView mFansNumText;
 
-    @Bind(R.id.user_video_list)
+    @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
     @Bind(R.id.collapsing_toolbar)
@@ -90,7 +90,6 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
-
     @Bind(R.id.btn_go_more)
     TextView mMoreTextView;
 
@@ -111,7 +110,8 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
     private UserUpVideoAdapter mPartListAdapter;
 
-    private static final String EXTRA_USER_NAME = "extra_user_name", EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
+    private static final String EXTRA_USER_NAME = "extra_user_name",
+            EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
 
 
     @Override

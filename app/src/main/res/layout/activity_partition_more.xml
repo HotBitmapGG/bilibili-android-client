@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/more_appbar_layout"
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/more_toolbar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat"
-            app:theme="@style/ThemeOverlay.AppCompat"/>
+            app:theme="@style/ThemeOverlay.AppCompat" />
 
 
         <com.flyco.tablayout.SlidingTabLayout
-            android:id="@+id/bangumi_more_sliding_tabs"
+            android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/top_bar_bg"
             app:tl_indicator_corner_radius="1.5dp"
             app:tl_indicator_height="3dp"
-            app:tl_indicator_width="25dp"/>
+            app:tl_indicator_width="25dp" />
 
 
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/bangumi_more_tab_pager"
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </android.support.design.widget.CoordinatorLayout>
 

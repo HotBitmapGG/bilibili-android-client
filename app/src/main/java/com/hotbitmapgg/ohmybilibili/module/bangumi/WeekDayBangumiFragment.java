@@ -1,6 +1,5 @@
 package com.hotbitmapgg.ohmybilibili.module.bangumi;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -152,15 +151,10 @@ public class WeekDayBangumiFragment extends RxLazyFragment
             {
 
                 WeekDayBangumi mWeekDayBangumi = mAdapter.getItem(position);
-                String spid = mWeekDayBangumi.spid;
-                String title = mWeekDayBangumi.title;
-                int season_id = mWeekDayBangumi.season_id;
-
-                Intent mIntent = new Intent(getActivity(), SpecialDetailsActivity.class);
-                mIntent.putExtra("spid", spid);
-                mIntent.putExtra("title", title);
-                mIntent.putExtra("season_id", season_id);
-                startActivity(mIntent);
+                SpecialDetailsActivity.launch(getActivity(),
+                        mWeekDayBangumi.spid,
+                        mWeekDayBangumi.title,
+                        mWeekDayBangumi.season_id);
             }
         });
 

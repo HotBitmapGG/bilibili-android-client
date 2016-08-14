@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -48,10 +47,6 @@ import rx.schedulers.Schedulers;
 public class VideoInfoFragment extends RxLazyFragment
 {
 
-
-    @Bind(R.id.container_view)
-    LinearLayout mContainer;
-
     @Bind(R.id.tv_title)
     TextView mTitleText;
 
@@ -82,23 +77,11 @@ public class VideoInfoFragment extends RxLazyFragment
     @Bind(R.id.tags_layout)
     TagFlowLayout mTagFlowLayout;
 
-    @Bind(R.id.video_part_list)
+    @Bind(R.id.recycle)
     RecyclerView mVideoPartList;
 
     @Bind(R.id.btn_more_video)
     TextView mMoreVideo;
-
-    @Bind(R.id.btn_share)
-    LinearLayout mShare;
-
-    @Bind(R.id.btn_coin)
-    LinearLayout mCoin;
-
-    @Bind(R.id.btn_fav)
-    LinearLayout mFav;
-
-    @Bind(R.id.btn_download)
-    LinearLayout mDownload;
 
     private static final String AID = "aid";
 
@@ -107,8 +90,6 @@ public class VideoInfoFragment extends RxLazyFragment
     private List<UserVideoItem> mUserVideos = new ArrayList<>();
 
     private VideoAlikeListAdapter mVideoAlikeListAdapter;
-
-    //private VideoViewInfo viewInfo;
 
     private VideoDetails mVideoDetails;
 
@@ -157,7 +138,9 @@ public class VideoInfoFragment extends RxLazyFragment
         mReviewCountText.setText(String.format(getString(R.string.info_reviews_format), Integer.valueOf(mVideoDetails.getVideo_review())));
         mDescText.setText(mVideoDetails.getDescription());
         mCreatedAtText.setText(mVideoDetails.getCreated_at());
-        mAuthorTagView.setUpWithInfo(getActivity(), mVideoDetails.getAuthor(), Integer.valueOf(mVideoDetails.getMid()), mVideoDetails.getFace());
+        mAuthorTagView.setUpWithInfo(getActivity(),
+                mVideoDetails.getAuthor(),
+                Integer.valueOf(mVideoDetails.getMid()), mVideoDetails.getFace());
 
         mShareNum.setText(mVideoDetails.getReview());
         mFavNum.setText(mVideoDetails.getFavorites());

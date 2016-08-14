@@ -29,10 +29,10 @@ import rx.schedulers.Schedulers;
 public class HomeLiveFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.frag_live_recycler)
+    @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.frag_live_refresh)
+    @Bind(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private BiliBiliLiveRecyclerAdapter mBiliBiliLiveRecyclerAdapter;
@@ -108,7 +108,7 @@ public class HomeLiveFragment extends RxLazyFragment
     {
 
         RetrofitHelper.getBiliBiliLiveApi()
-                .getIndexRx()
+                .getLiveIndex()
                 .compose(this.<Result<LiveIndex>> bindToLifecycle())
                 .flatMap(new Func1<Result<LiveIndex>,Observable<LiveIndex>>()
                 {

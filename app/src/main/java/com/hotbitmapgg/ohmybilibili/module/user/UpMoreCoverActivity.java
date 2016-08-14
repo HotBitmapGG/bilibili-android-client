@@ -40,7 +40,7 @@ import rx.schedulers.Schedulers;
 public class UpMoreCoverActivity extends RxAppCompatBaseActivity
 {
 
-    @Bind(R.id.up_more_recycle)
+    @Bind(R.id.recycle)
     RecyclerView mRecycleView;
 
     @Bind(R.id.circle_progress)
@@ -205,7 +205,8 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
     private void createLoadMoreView()
     {
 
-        loadMoreView = LayoutInflater.from(UpMoreCoverActivity.this).inflate(R.layout.recycle_view_foot_layout, mRecycleView, false);
+        loadMoreView = LayoutInflater.from(UpMoreCoverActivity.this)
+                .inflate(R.layout.recycle_view_foot_layout, mRecycleView, false);
         mHeaderViewRecyclerAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
     }
