@@ -26,7 +26,7 @@
         <item name="android:maxHeight">3dp</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
-        <item name="android:progressDrawable">@color/pink_300</item>
+        <item name="android:progressDrawable">@color/colorPrimary</item>
         <item name="android:thumb">@drawable/videoplayer_erect_icon_round</item>
     </style>
 
@@ -36,11 +36,11 @@
     </style>
 
     <style name="InfoPanel_Container">
-        <item name="android:background">@color/mediacontroller_bg</item>
+        <item name="android:background">@color/media_controller_bg</item>
     </style>
 
     <style name="MediaController_Container">
-        <item name="android:background">@color/mediacontroller_bg</item>
+        <item name="android:background">@color/media_controller_bg</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:paddingLeft">8dp</item>
@@ -55,7 +55,7 @@
         <item name="progress_max">100</item>
         <item name="progress_current">0</item>
         <item name="progress_unreached_color">@color/gray_light</item>
-        <item name="progress_reached_color">@color/pink_300</item>
+        <item name="progress_reached_color">@color/colorPrimary</item>
         <item name="progress_text_size">10sp</item>
         <item name="progress_text_color">#FF3D7F</item>
         <item name="progress_reached_bar_height">20dp</item>

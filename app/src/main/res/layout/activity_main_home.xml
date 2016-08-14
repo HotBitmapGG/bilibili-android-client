@@ -43,7 +43,7 @@
         android:layout_width="@dimen/navigation_max_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/navigation_view_bg"
+        android:background="@color/navigation_background_light"
         android:overScrollMode="never"
         app:headerLayout="@layout/layout_navigation_header"
         app:itemIconTint="@color/navigation_view_item_icon_color"

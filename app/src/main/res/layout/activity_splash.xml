@@ -30,7 +30,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="55dp"
         android:text="copyright © 2015-2016 HotBitmapGG"
-        android:textColor="@color/black_alpha"
+        android:textColor="@color/black_alpha_45"
         android:textSize="12sp" />
 
 </RelativeLayout>

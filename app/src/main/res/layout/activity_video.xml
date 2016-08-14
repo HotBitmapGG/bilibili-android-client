@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:background="@color/bilibg"
+            android:background="@color/white_30"
             android:visibility="gone" >
 
             <ImageView

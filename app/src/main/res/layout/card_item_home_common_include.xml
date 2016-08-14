@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/video_info_count_text_margin_start"
             android:gravity="center"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="14sp" />
 
         <Space
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="14sp" />
     </LinearLayout>
 

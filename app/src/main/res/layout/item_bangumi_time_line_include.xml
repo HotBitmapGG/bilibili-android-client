@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/item_black_alpha"
+            android:background="@color/black_alpha_60"
             android:padding="5dp" >
 
             <TextView

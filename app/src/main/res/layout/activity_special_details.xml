@@ -58,7 +58,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/navigation_view_bg"
+                    android:background="@color/navigation_background_light"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -220,7 +220,7 @@
                     android:gravity="center"
                     android:paddingBottom="5dp"
                     android:text="更多"
-                    android:textColor="@color/black_alpha"
+                    android:textColor="@color/black_alpha_45"
                     android:textSize="14sp" />
             </LinearLayout>
 

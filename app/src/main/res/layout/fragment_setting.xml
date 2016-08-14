@@ -102,7 +102,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/update_arrow"
                 android:text="V1.0"
-                android:textColor="@color/black_alpha"
+                android:textColor="@color/black_alpha_45"
                 android:textSize="16sp" />
 
             <ImageView

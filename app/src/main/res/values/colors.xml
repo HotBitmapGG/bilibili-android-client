@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--主题配色-->
     <color name="colorPrimary">#FA7198</color>
     <color name="colorPrimaryDark">#96435B</color>
     <color name="colorAccent">#99f0486c</color>
@@ -8,79 +7,33 @@
     <color name="yellow_30">#FEA501</color>
     <color name="pink">#FD7071</color>
     <color name="blue">#20C1FD</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_30">#F2F2F2</color>
+    <color name="white_80">#FAFAFA</color>
     <color name="white_90">#E9EAEA</color>
-
-    <!-- 播放器使用颜色 -->
-    <color name="bilibg">#f2f2f2</color>
-    <color name="mediacontroller_bg">#99000000</color>
-
-    <!-- 主界面背景颜色 -->
-    <color name="toolbar_default_background_dark">#212121</color>
-    <color name="toolbar_default_background_dark_darker">#1A1A1A</color>
-    <color name="purple_300">#BA68C8</color>
-    <color name="deep_purple_500">#673AB7</color>
-    <color name="pink_300">#F06292</color>
-    <color name="pink_500">#E91E63</color>
-    <color name="pink_700">#C2185B</color>
-    <color name="pink_800">#AD1457</color>
-    <color name="indigo_500">#3F51B5</color>
-    <color name="blue_500">#2196F3</color>
-    <color name="teal_500">#009688</color>
-    <color name="green_500">#4CAF50</color>
-    <color name="green_300">#81C784</color>
     <color name="orange_500">#FF9800</color>
-    <color name="brown_500">#795548</color>
+    <color name="green_300">#81C784</color>
+    <color name="gray">#B8B8B8</color>
+    <color name="gray_20">#B3B3B3</color>
+    <color name="gray_80">#BEBBB4</color>
+    <color name="gray_100">#F0F0F0</color>
+    <color name="gray_light">#E5E5E5</color>
+    <color name="black_80">#222222</color>
+    <color name="black_alpha_45">#71000000</color>
+    <color name="black_alpha_30">#48000000</color>
+    <color name="black_alpha_60">#4f000000</color>
+    <color name="background_dark">#212121</color>
+    <color name="media_controller_bg">#99000000</color>
+    <color name="font_normal">#555555</color>
+    <color name="font_gray">#656565</color>
+    <color name="line_bg">#e6e6e6</color>
+    <color name="navigation_background_light">#FFF8F8F8</color>
     <color name="navigation_background_dark">#424242</color>
     <color name="navigation_item_text_color_normal">#E7E7E7</color>
-    <color name="navigation_item_text_color_highlight">@color/pink_300</color>
+    <color name="navigation_item_text_color_highlight">@color/colorPrimary</color>
     <color name="navigation_item_icon_color_normal">#AEAEAE</color>
-    <color name="navigation_item_icon_color_highlight">@color/pink_300</color>
+    <color name="navigation_item_icon_color_highlight">@color/colorPrimary</color>
     <color name="navigation_subtitle_primary_text">#FFFFFFFF</color>
     <color name="navigation_subtitle_secondary_text">#BFFFFFFF</color>
     <color name="card_view_background_dark">#424242</color>
-    <color name="gray_80">#bebbb4</color>
-
-
-    <!-- 常用色 -->
-    <color name="transparent">#00000000</color>
-    <color name="white_80">#FAFAFA</color>
-    <color name="global_color">#34343c</color>
-    <!-- 白色 -->
-    <color name="white">#ffffff</color>
-    <!-- 45%透明黑 -->
-    <color name="black_alpha">#71000000</color>
-    <!-- 30%透明黑 -->
-    <color name="black_alpha_30">#48000000</color>
-    <!-- 灰色 -->
-    <color name="gray">#b8b8b8</color>
-    <color name="gray_bg">#f0f0f0</color>
-    <color name="gray_light">#e5e5e5</color>
-    <!-- hint色 -->
-    <color name="text_hint">#b3b3b3</color>
-    <!-- 输入边框 -->
-    <color name="login_text_color">#222222</color>
-    <color name="input_border">#a5a5a5</color>
-    <!-- 字体颜色 -->
-    <color name="font_normal">#555555</color>
-    <color name="font_deep">#222222</color>
-    <color name="font_light">#888888</color>
-    <color name="font_gray">#656565</color>
-    <!-- 分割线 -->
-    <color name="line">#e5e5e5</color>
-    <color name="line_bg">#e6e6e6</color>
-    <color name="listview_divier">#dedede</color>
-    <!-- 按钮默认灰色背景 -->
-    <color name="button_normal_bg">#f5f7f7</color>
-    <!-- 主页灰白色 -->
-    <color name="white_50">#e8e8e8</color>
-    <!-- 描边线 -->
-    <color name="button_divider">#dbd9d9</color>
-    <!-- 亮白色 -->
-    <color name="light_white">#aaffffff</color>
-    <!-- 灰色背景色 -->
-    <color name="navigation_view_bg">#fff8f8f8</color>
-    <!-- item黑色背景透明色 -->
-    <color name="item_black_alpha">#4f000000</color>
-
-
 </resources>

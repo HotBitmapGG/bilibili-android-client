@@ -19,7 +19,7 @@
             android:layout_gravity="center|right|bottom"
             android:clickable="true"
             android:src="@drawable/home_menu_bg_click"
-            android:tint="@color/pink_500" />
+            android:tint="@color/colorPrimaryDark" />
     </FrameLayout>
 
     <RelativeLayout

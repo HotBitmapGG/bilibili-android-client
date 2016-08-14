@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="大家都在搜"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="14sp" />
 
         <com.zhy.view.flowlayout.TagFlowLayout

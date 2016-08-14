@@ -10,7 +10,7 @@
         android:id="@+id/item_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@color/transparent"
+        android:background="@android:color/transparent"
         android:scaleType="fitXY"
         app:riv_corner_radius="4dp"
         app:riv_oval="false" />

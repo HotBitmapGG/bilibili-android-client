@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_user_name"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="12sp" />
 
         <TextView
@@ -68,7 +68,7 @@
             android:layout_below="@+id/item_user_name"
             android:layout_toRightOf="@+id/item_comment_floor"
             android:paddingLeft="5dp"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="12sp" />
 
         <TextView
@@ -79,7 +79,7 @@
             android:drawableLeft="@drawable/ic_feedback_grey"
             android:drawablePadding="5dp"
             android:paddingRight="5dp"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="12sp" />
 
 
@@ -91,7 +91,7 @@
             android:drawableLeft="@drawable/ic_feedback_support_grey"
             android:drawablePadding="5dp"
             android:paddingRight="10dp"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="12sp" />
 
 

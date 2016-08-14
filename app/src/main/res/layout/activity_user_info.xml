@@ -26,7 +26,7 @@
                 android:id="@+id/user_appbar_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/appbar_parallax_max_height"
-                android:background="@color/toolbar_default_background_dark"
+                android:background="@color/background_dark"
                 android:fitsSystemWindows="true">
 
                 <ImageView

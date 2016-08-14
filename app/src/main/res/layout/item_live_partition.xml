@@ -73,9 +73,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                    android:background="@color/gray_bg"
+                    android:background="@color/gray_100"
                     android:padding="2dp"
-                    android:textColor="@color/black_alpha"
+                    android:textColor="@color/black_alpha_45"
                     android:textSize="12sp"/>
 
                 <TextView
@@ -83,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                    android:textColor="@color/black_alpha"
+                    android:textColor="@color/black_alpha_45"
                     android:textSize="12sp"/>
             </LinearLayout>
 

@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_title"
             android:padding="10dp"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="14sp" />
 
 
