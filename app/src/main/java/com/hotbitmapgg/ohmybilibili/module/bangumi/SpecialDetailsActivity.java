@@ -36,7 +36,7 @@ import rx.schedulers.Schedulers;
  * Created by hcc on 16/8/4 21:18
  * 100332338@qq.com
  * <p/>
- * 专题详情界面(番剧界面)
+ * 专题详情界面(二三次元番剧进入)
  */
 public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 {

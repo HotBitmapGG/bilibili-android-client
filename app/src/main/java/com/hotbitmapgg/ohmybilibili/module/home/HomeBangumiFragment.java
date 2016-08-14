@@ -228,8 +228,18 @@ public class HomeBangumiFragment extends RxLazyFragment
         }
 
         //设置Item
+        TextView mNewBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_new);
         TextView mWeekBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_week);
         TextView mIndexBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_index);
+        mNewBangumiItem.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                WeekDayBangumiActivity.launch(getActivity(), "三次元新番", 3);
+            }
+        });
         mWeekBangumiItem.setOnClickListener(new View.OnClickListener()
         {
 
@@ -237,7 +247,7 @@ public class HomeBangumiFragment extends RxLazyFragment
             public void onClick(View v)
             {
 
-                startActivity(new Intent(getActivity(), WeekDayBangumiActivity.class));
+                WeekDayBangumiActivity.launch(getActivity(), "二次元新番", 2);
             }
         });
         mIndexBangumiItem.setOnClickListener(new View.OnClickListener()
@@ -260,5 +270,4 @@ public class HomeBangumiFragment extends RxLazyFragment
         mHeadRecommendList.setAdapter(new BangumiRecommendRecyclerAdapter(mHeadRecommendList, recommends));
         mHeaderViewRecyclerAdapter.addHeaderView(headView_list);
     }
-
 }

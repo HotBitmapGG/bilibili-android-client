@@ -1,6 +1,8 @@
 package com.hotbitmapgg.ohmybilibili.module.bangumi;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -34,11 +36,19 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
+    private static final String EXTRA_TITLE = "extra_title";
+
+    private static final String EXTRA_TYPE = "extra_type";
+
     private BangumiFragmentAdapter mAdapter;
 
-    private String[] titles = new String[]{"周一", "周二", "周三", "周四", "周五", "周六", "周日"};
+    private String[] titles = new String[]{"一", "二", "三", "四", "五", "六", "日"};
 
     private int[] wids = new int[]{1, 2, 3, 4, 5, 6, 0};
+
+    private String title;
+
+    private int type;
 
     @Override
     public int getLayoutId()
@@ -51,6 +61,10 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
+        Intent intent = getIntent();
+        title = intent.getStringExtra(EXTRA_TITLE);
+        type = intent.getIntExtra(EXTRA_TYPE, 0);
+
         mAdapter = new BangumiFragmentAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setViewPager(mViewPager);
@@ -60,7 +74,7 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setTitle("新番放送表");
+        mToolbar.setTitle(title);
         setSupportActionBar(mToolbar);
         ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)
@@ -75,7 +89,18 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
 
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
+
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public static void launch(Activity activity, String title, int type)
+    {
+
+        Intent mIntent = new Intent(activity, WeekDayBangumiActivity.class);
+        mIntent.putExtra(EXTRA_TITLE, title);
+        mIntent.putExtra(EXTRA_TYPE, type);
+        activity.startActivity(mIntent);
     }
 
     private class BangumiFragmentAdapter extends FragmentStatePagerAdapter
@@ -92,7 +117,7 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
         public Fragment getItem(int position)
         {
 
-            return WeekDayBangumiFragment.newInstance(wids[position]);
+            return WeekDayBangumiFragment.newInstance(wids[position], type);
         }
 
         @Override
@@ -107,6 +132,13 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
         {
 
             return titles[position];
+        }
+
+        @Override
+        public int getItemPosition(Object object)
+        {
+
+            return POSITION_NONE;
         }
     }
 }

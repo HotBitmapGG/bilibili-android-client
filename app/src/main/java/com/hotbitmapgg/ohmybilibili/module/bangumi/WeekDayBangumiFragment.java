@@ -50,14 +50,19 @@ public class WeekDayBangumiFragment extends RxLazyFragment
 
     private static final String EXTRA_WEEK = "extra_week";
 
+    private static final String EXTRA_TYPE = "extra_type";
+
     private int weekDay;
 
-    public static WeekDayBangumiFragment newInstance(int weekDay)
+    private int type;
+
+    public static WeekDayBangumiFragment newInstance(int weekDay, int type)
     {
 
         WeekDayBangumiFragment weekDayBangumiFragment = new WeekDayBangumiFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(EXTRA_WEEK, weekDay);
+        bundle.putInt(EXTRA_TYPE, type);
         weekDayBangumiFragment.setArguments(bundle);
 
         return weekDayBangumiFragment;
@@ -76,7 +81,10 @@ public class WeekDayBangumiFragment extends RxLazyFragment
 
         Bundle arguments = getArguments();
         if (arguments != null)
+        {
             weekDay = arguments.getInt(EXTRA_WEEK);
+            type = arguments.getInt(EXTRA_TYPE);
+        }
 
         startGetBangumiTask();
     }
@@ -95,7 +103,8 @@ public class WeekDayBangumiFragment extends RxLazyFragment
     {
 
         RetrofitHelper.getWeekDayBangumiApi()
-                .getWeekDayBangumi(2, weekDay, Secret.APP_KEY, Long.toString(System.currentTimeMillis() / 1000))
+                .getWeekDayBangumi(type, weekDay, Secret.APP_KEY,
+                        Long.toString(System.currentTimeMillis() / 1000))
                 .compose(this.<WeekDayBangumiResult> bindToLifecycle())
                 .map(new Func1<WeekDayBangumiResult,List<WeekDayBangumi>>()
                 {

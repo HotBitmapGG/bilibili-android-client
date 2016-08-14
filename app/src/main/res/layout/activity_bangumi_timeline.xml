@@ -17,6 +17,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
             app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
 
@@ -26,10 +27,10 @@
             android:layout_height="48dp"
             android:background="@color/colorPrimary"
             app:tl_tab_space_equal="true"
-            app:tl_indicator_corner_radius="1.5dp"
+            app:tl_indicator_corner_radius="1dp"
             app:tl_textsize="16sp"
             app:tl_indicator_height="3dp"
-            app:tl_indicator_width="35dp"/>
+            app:tl_indicator_width="15dp"/>
 
 
     </android.support.design.widget.AppBarLayout>
