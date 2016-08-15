@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.user.AuthorRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommend;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.squareup.picasso.Picasso;
 
@@ -25,9 +25,9 @@ import java.util.List;
 public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<AuthorRecommend.AuthorData> datas = new ArrayList<>();
+    private List<UserRecommend.AuthorData> datas = new ArrayList<>();
 
-    public VideoPartListAdapter(RecyclerView recyclerView, List<AuthorRecommend.AuthorData> datas)
+    public VideoPartListAdapter(RecyclerView recyclerView, List<UserRecommend.AuthorData> datas)
     {
 
         super(recyclerView);
@@ -49,7 +49,7 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder mHolder = (ItemViewHolder) holder;
-            AuthorRecommend.AuthorData authorData = datas.get(position);
+            UserRecommend.AuthorData authorData = datas.get(position);
 
             int click = authorData.click;
             String cover = authorData.cover;

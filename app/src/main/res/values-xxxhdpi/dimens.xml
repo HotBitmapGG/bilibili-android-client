@@ -124,7 +124,7 @@
 
     <dimen name="main_banner_height">150dp</dimen>
 
-    <dimen name="user_info_padding">15dp</dimen>
+    <dimen name="user_info_padding">10dp</dimen>
 
     <dimen name="main_tab_padding">28dp</dimen>
     <dimen name="other_tab_padding">70dp</dimen>

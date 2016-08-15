@@ -12,6 +12,9 @@ import rx.Observable;
  * 100332338@qq.com
  * <p/>
  * 首页直播模块数据请求
+ * <p/>
+ * 备用API
+ * http://bilibili-service.daoapp.io/appindex
  */
 public interface BiliBiliLiveService
 {

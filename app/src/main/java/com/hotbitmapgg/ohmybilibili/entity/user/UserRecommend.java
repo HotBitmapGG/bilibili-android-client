@@ -2,7 +2,7 @@ package com.hotbitmapgg.ohmybilibili.entity.user;
 
 import java.util.List;
 
-public class AuthorRecommend
+public class UserRecommend
 {
 
     public int code;

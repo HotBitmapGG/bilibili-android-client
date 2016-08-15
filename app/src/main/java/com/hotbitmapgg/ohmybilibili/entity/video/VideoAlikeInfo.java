@@ -1,6 +1,6 @@
-package com.hotbitmapgg.ohmybilibili.entity.user;
+package com.hotbitmapgg.ohmybilibili.entity.video;
 
-public class UserVideoItem
+public class VideoAlikeInfo
 {
 
     public String pic; /* 封面图片地址 */

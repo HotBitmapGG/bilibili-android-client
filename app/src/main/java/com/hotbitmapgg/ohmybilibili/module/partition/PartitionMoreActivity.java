@@ -58,10 +58,11 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
     @Override
     public void initViews(Bundle savedInstanceState)
     {
+
         Bundle mBundle = getIntent().getExtras();
         PartitionMoreTitle mPartitionMoreTitle = mBundle.getParcelable(EXTRA_TITLES);
-        if(mPartitionMoreTitle != null)
-        titles = mPartitionMoreTitle.titles;
+        if (mPartitionMoreTitle != null)
+            titles = mPartitionMoreTitle.titles;
         typeTitle = mBundle.getString(EXTRA_TYPE_TITLE);
 
 
@@ -78,11 +79,7 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
-        {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
     }
 
     @Override

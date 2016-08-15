@@ -12,21 +12,17 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UpMoreCoverAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.config.Secret;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoList;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -55,7 +51,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
 
     private int mid;
 
-    private List<UserVideoItem> userVideoList = new ArrayList<>();
+    private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
 
     private int pageNum = 1;
 
@@ -94,6 +90,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
 
     private void initRecyclerView()
     {
+
         mRecycleView.setHasFixedSize(true);
         mAdapter = new UpMoreCoverAdapter(mRecycleView, userVideoList);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
@@ -149,31 +146,24 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
     {
 
         RetrofitHelper.getUserUpVideoListApi()
-                .getUserUpVideoList(mid,pageNum,pageSize,
-                        Secret.APP_KEY,Long.toString(System.currentTimeMillis() / 1000))
-                .compose(this.<ResponseBody>bindToLifecycle())
+                .getUserUpVideos(mid, pageNum, pageSize)
+                .compose(this.<UserUpVideoInfo> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResponseBody>()
+                .subscribe(new Action1<UserUpVideoInfo>()
                 {
 
                     @Override
-                    public void call(ResponseBody responseBody)
+                    public void call(UserUpVideoInfo userUpVideoInfo)
                     {
 
-                        try
-                        {
-                            UserVideoList videoList = UserVideoList.
-                                    createFromJson(responseBody.string());
-                            if(videoList.lists.size() < pageSize)
-                                loadMoreView.setVisibility(View.GONE);
+                        List<UserUpVideoInfo.VlistBean> vlist =
+                                userUpVideoInfo.getVlist();
+                        if (vlist.size() < pageSize)
+                            loadMoreView.setVisibility(View.GONE);
 
-                            userVideoList.addAll(videoList.lists);
-                            finishTask();
-                        } catch (IOException e)
-                        {
-                            e.printStackTrace();
-                        }
+                        userVideoList.addAll(vlist);
+                        finishTask();
                     }
                 }, new Action1<Throwable>()
                 {
@@ -182,7 +172,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("用户上传更多视频获取失败" +  throwable.getMessage());
+                        LogUtil.all("用户上传更多视频获取失败" + throwable.getMessage());
                         loadMoreView.setVisibility(View.GONE);
                         mCircleProgressView.stopSpinning();
                         mCircleProgressView.setVisibility(View.GONE);

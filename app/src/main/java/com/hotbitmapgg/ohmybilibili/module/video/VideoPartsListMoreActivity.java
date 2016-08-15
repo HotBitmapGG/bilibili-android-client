@@ -11,7 +11,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoPartListAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.user.AuthorRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommend;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -43,7 +43,7 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
-    private List<AuthorRecommend.AuthorData> authorRecommendList = new ArrayList<>();
+    private List<UserRecommend.AuthorData> authorRecommendList = new ArrayList<>();
 
     private VideoPartListAdapter mPartListAdapter;
 
@@ -105,24 +105,24 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getAuthorRecommendedApi()
                 .getAuthorRecommended(aid)
-                .compose(this.<AuthorRecommend> bindToLifecycle())
-                .map(new Func1<AuthorRecommend,List<AuthorRecommend.AuthorData>>()
+                .compose(this.<UserRecommend> bindToLifecycle())
+                .map(new Func1<UserRecommend,List<UserRecommend.AuthorData>>()
                 {
 
                     @Override
-                    public List<AuthorRecommend.AuthorData> call(AuthorRecommend authorRecommend)
+                    public List<UserRecommend.AuthorData> call(UserRecommend userRecommend)
                     {
 
-                        return authorRecommend.list;
+                        return userRecommend.list;
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<AuthorRecommend.AuthorData>>()
+                .subscribe(new Action1<List<UserRecommend.AuthorData>>()
                 {
 
                     @Override
-                    public void call(List<AuthorRecommend.AuthorData> authorDatas)
+                    public void call(List<UserRecommend.AuthorData> authorDatas)
                     {
 
                         authorRecommendList.addAll(authorDatas);
@@ -157,7 +157,7 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                AuthorRecommend.AuthorData authorData = authorRecommendList.get(position);
+                UserRecommend.AuthorData authorData = authorRecommendList.get(position);
                 int aid = authorData.aid;
                 Intent mIntent = new Intent(VideoPartsListMoreActivity.this, VideoDetailsActivity.class);
                 mIntent.putExtra(EXTRA_AV, aid);

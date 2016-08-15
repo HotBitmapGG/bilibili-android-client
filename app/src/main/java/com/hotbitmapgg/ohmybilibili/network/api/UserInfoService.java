@@ -11,6 +11,9 @@ import rx.Observable;
  * 100332338@qq.com
  * <p/>
  * 查询用户详情数据
+ * <p/>
+ * 备用API
+ * http://bilibili-service.daoapp.io/user/{mid}
  */
 public interface UserInfoService
 {

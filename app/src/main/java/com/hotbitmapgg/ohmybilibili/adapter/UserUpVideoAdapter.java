@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.squareup.picasso.Picasso;
 
@@ -25,9 +25,9 @@ import java.util.List;
 public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<UserVideoItem> parts = new ArrayList<>();
+    private List<UserUpVideoInfo.VlistBean> parts = new ArrayList<>();
 
-    public UserUpVideoAdapter(RecyclerView recyclerView, List<UserVideoItem> parts)
+    public UserUpVideoAdapter(RecyclerView recyclerView, List<UserUpVideoInfo.VlistBean> parts)
     {
 
         super(recyclerView);
@@ -39,7 +39,8 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.card_item_user_up_video, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext())
+                .inflate(R.layout.card_item_user_up_video, parent, false));
     }
 
     @Override
@@ -49,20 +50,16 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            UserVideoItem item = parts.get(position);
-            String pic = item.pic;
-            String play = item.play;
-            int video_review = item.video_review;
-            String title = item.title;
+            UserUpVideoInfo.VlistBean vlistBean = parts.get(position);
 
             Picasso.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(pic))
+                    .load(UrlHelper.getClearVideoPreviewUrl(vlistBean.getPic()))
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoPic);
 
-            itemViewHolder.mVideoTitle.setText(title);
-            itemViewHolder.mVideoPlayNum.setText(play);
-            itemViewHolder.mVideoReviewNum.setText(String.valueOf(video_review));
+            itemViewHolder.mVideoTitle.setText(vlistBean.getTitle());
+            itemViewHolder.mVideoPlayNum.setText(String.valueOf(vlistBean.getPlay()));
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(vlistBean.getVideo_review()));
         }
 
         super.onBindViewHolder(holder, position);

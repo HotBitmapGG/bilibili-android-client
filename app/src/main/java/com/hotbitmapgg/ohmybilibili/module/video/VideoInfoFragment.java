@@ -14,8 +14,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.VideoAlikeListAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoList;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoAlikeInfo;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoAlikeResult;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
@@ -87,7 +87,7 @@ public class VideoInfoFragment extends RxLazyFragment
 
     private static final String EXTRA_INFO = "extra_info";
 
-    private List<UserVideoItem> mUserVideos = new ArrayList<>();
+    private List<VideoAlikeInfo> mUserVideos = new ArrayList<>();
 
     private VideoAlikeListAdapter mVideoAlikeListAdapter;
 
@@ -203,16 +203,16 @@ public class VideoInfoFragment extends RxLazyFragment
                         10, 0, Secret.APP_KEY,
                         Long.toString(System.currentTimeMillis() / 1000))
                 .compose(this.<ResponseBody> bindToLifecycle())
-                .map(new Func1<ResponseBody,UserVideoList>()
+                .map(new Func1<ResponseBody,VideoAlikeResult>()
                 {
 
                     @Override
-                    public UserVideoList call(ResponseBody responseBody)
+                    public VideoAlikeResult call(ResponseBody responseBody)
                     {
 
                         try
                         {
-                            return UserVideoList.createFromJson(responseBody.string());
+                            return VideoAlikeResult.createFromJson(responseBody.string());
                         } catch (IOException e)
                         {
                             e.printStackTrace();
@@ -222,14 +222,14 @@ public class VideoInfoFragment extends RxLazyFragment
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<UserVideoList>()
+                .subscribe(new Action1<VideoAlikeResult>()
                 {
 
                     @Override
-                    public void call(UserVideoList userVideoList)
+                    public void call(VideoAlikeResult videoAlikeResult)
                     {
 
-                        List<UserVideoItem> datas = userVideoList.lists;
+                        List<VideoAlikeInfo> datas = videoAlikeResult.lists;
                         mUserVideos.addAll(datas);
 
                         finishPartsGetTask();
@@ -263,8 +263,8 @@ public class VideoInfoFragment extends RxLazyFragment
             {
 
                 getActivity().finish();
-                UserVideoItem userVideoItem = mUserVideos.get(position);
-                int aid = userVideoItem.aid;
+                VideoAlikeInfo videoAlikeInfo = mUserVideos.get(position);
+                int aid = videoAlikeInfo.aid;
                 VideoDetailsActivity.launch(getActivity(), aid);
             }
         });

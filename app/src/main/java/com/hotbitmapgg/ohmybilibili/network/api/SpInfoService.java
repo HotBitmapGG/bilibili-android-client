@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.video.Sp;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.Sp;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

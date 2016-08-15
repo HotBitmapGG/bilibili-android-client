@@ -93,7 +93,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
             public void onRefresh()
             {
 
-                mSwipeRefreshLayout.setRefreshing(true);
                 getHomeRecommendedData();
             }
         });

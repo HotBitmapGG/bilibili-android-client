@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.user;
+package com.hotbitmapgg.ohmybilibili.entity.video;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class UserVideoList
+public class VideoAlikeResult
 {
 
     public int pages;
@@ -18,14 +18,14 @@ public class UserVideoList
 
     public int results;
 
-    public List<UserVideoItem> lists;
+    public List<VideoAlikeInfo> lists;
 
     private JsonObject list;
 
-    public static UserVideoList createFromJson(String json)
+    public static VideoAlikeResult createFromJson(String json)
     {
 
-        UserVideoList result = new Gson().fromJson(json, UserVideoList.class);
+        VideoAlikeResult result = new Gson().fromJson(json, VideoAlikeResult.class);
         Iterator<Map.Entry<String,JsonElement>> iterator = result.list.entrySet().iterator();
         if (result.lists == null)
         {
@@ -36,7 +36,7 @@ public class UserVideoList
             Map.Entry<String,JsonElement> element = iterator.next();
             try
             {
-                result.lists.add(new Gson().fromJson(element.getValue(), UserVideoItem.class));
+                result.lists.add(new Gson().fromJson(element.getValue(), VideoAlikeInfo.class));
             } catch (Exception e)
             {
 

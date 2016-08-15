@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.squareup.picasso.Picasso;
 
@@ -25,9 +25,9 @@ import java.util.List;
 public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<UserVideoItem> userVideoList = new ArrayList<>();
+    private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
 
-    public UpMoreCoverAdapter(RecyclerView recyclerView, List<UserVideoItem> userVideoList)
+    public UpMoreCoverAdapter(RecyclerView recyclerView, List<UserUpVideoInfo.VlistBean> userVideoList)
     {
 
         super(recyclerView);
@@ -50,16 +50,17 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            UserVideoItem videoItem = userVideoList.get(position);
+            UserUpVideoInfo.VlistBean vlistBean = userVideoList.get(position);
+
             Picasso.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(videoItem.pic))
+                    .load(UrlHelper.getClearVideoPreviewUrl(vlistBean.getPic()))
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoPic);
 
-            itemViewHolder.mVideoTitle.setText(videoItem.title);
-            itemViewHolder.mVideoUserInfo.setText(videoItem.author);
-            itemViewHolder.mVideoPlayNum.setText(videoItem.play);
-            itemViewHolder.mVideoReviewNum.setText(String.valueOf(videoItem.video_review));
+            itemViewHolder.mVideoTitle.setText(vlistBean.getTitle());
+            itemViewHolder.mVideoUserInfo.setText(vlistBean.getAuthor());
+            itemViewHolder.mVideoPlayNum.setText(String.valueOf(vlistBean.getPlay()));
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(vlistBean.getVideo_review()));
         }
         super.onBindViewHolder(holder, position);
     }

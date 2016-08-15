@@ -17,24 +17,20 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserUpVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoItem;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserVideoList;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -106,9 +102,9 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
     private ArrayList<Integer> uids = new ArrayList<Integer>();
 
-    private List<UserVideoItem> userVideoList = new ArrayList<>();
+    private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
 
-    private UserUpVideoAdapter mPartListAdapter;
+    private UserUpVideoAdapter mAdapter;
 
     private static final String EXTRA_USER_NAME = "extra_user_name",
             EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
@@ -139,7 +135,10 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         }
         if (avatar_url != null)
         {
-            Picasso.with(this).load(avatar_url).placeholder(R.drawable.ico_user_default).into(mAvatarImage);
+            Picasso.with(this)
+                    .load(avatar_url)
+                    .placeholder(R.drawable.ico_user_default)
+                    .into(mAvatarImage);
         }
 
 
@@ -268,34 +267,20 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
 
         RetrofitHelper.getUserUpVideoListApi()
-                .getUserUpVideoList(mid, 1, 10,
-                        Secret.APP_KEY, Long.toString(System.currentTimeMillis() / 1000))
-                .compose(this.<ResponseBody> bindToLifecycle())
+                .getUserUpVideos(mid, 1, 10)
+                .compose(this.<UserUpVideoInfo> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ResponseBody>()
+                .subscribe(new Action1<UserUpVideoInfo>()
                 {
 
                     @Override
-                    public void call(ResponseBody responseBody)
+                    public void call(UserUpVideoInfo userUpVideoInfo)
                     {
 
-                        try
-                        {
-                            UserVideoList videoList = UserVideoList.
-                                    createFromJson(responseBody.string());
-                            if (videoList != null)
-                            {
-                                List<UserVideoItem> datas = videoList.lists;
-                                userVideoList.addAll(datas);
-                                int results = videoList.results;
-
-                                finishUserVideoListGetTask(results);
-                            }
-                        } catch (IOException e)
-                        {
-                            e.printStackTrace();
-                        }
+                        List<UserUpVideoInfo.VlistBean> vlist = userUpVideoInfo.getVlist();
+                        userVideoList.addAll(vlist);
+                        finishTask(vlist.size());
                     }
                 }, new Action1<Throwable>()
                 {
@@ -304,35 +289,35 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("用户上传更多视频获取失败" + throwable.getMessage());
+                        LogUtil.all("获取用户上传视频失败" + throwable.getMessage());
+                        mCircleProgressView.setVisibility(View.GONE);
+                        mCircleProgressView.stopSpinning();
                     }
                 });
     }
 
 
-    private void finishUserVideoListGetTask(int results)
+    private void finishTask(int count)
     {
 
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setLayoutManager(new GridLayoutManager(UserInfoActivity.this, 2));
-        mPartListAdapter = new UserUpVideoAdapter(mRecyclerView, userVideoList);
-        mRecyclerView.setAdapter(mPartListAdapter);
-        mPartListAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
+        mAdapter = new UserUpVideoAdapter(mRecyclerView, userVideoList);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
         {
 
             @Override
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                UserVideoItem videoItem = userVideoList.get(position);
-                int aid = videoItem.aid;
-                VideoDetailsActivity.launch(UserInfoActivity.this, aid);
+                VideoDetailsActivity.launch(UserInfoActivity.this, userVideoList.get(position).getAid());
             }
         });
 
         mUpTip.setVisibility(View.VISIBLE);
-        mUpTip.setText("Up主的投稿" + " " + "(" + results + ")");
+        mUpTip.setText("Up主的投稿" + " " + "(" + count + ")");
         mRecyclerView.setVisibility(View.VISIBLE);
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
@@ -400,6 +385,8 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
                     {
 
                         LogUtil.all("用户详情数据获取失败" + throwable.getMessage());
+                        mCircleProgressView.setVisibility(View.GONE);
+                        mCircleProgressView.stopSpinning();
                     }
                 });
     }

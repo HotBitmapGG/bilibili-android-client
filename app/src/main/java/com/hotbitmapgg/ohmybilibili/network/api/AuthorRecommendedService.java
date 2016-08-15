@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.user.AuthorRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommend;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -16,5 +16,5 @@ public interface AuthorRecommendedService
 {
 
     @GET("author_recommend")
-    Observable<AuthorRecommend> getAuthorRecommended(@Query("aid") String aid);
+    Observable<UserRecommend> getAuthorRecommended(@Query("aid") String aid);
 }
