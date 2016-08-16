@@ -1,10 +1,11 @@
 # 高仿哔哩哔哩
 
-<a href="bilibiliPic/bilibili_bg.jpg"><img src="bilibiliPic/bilibili_bg.jpg" width="100%"/></a>
+<a href="art/bilibili_bg.jpg"><img src="art/icon_bg.jpg" width="100%"/></a>
 
 
 ## Tips
 
+ * 项目已重构大部分,目前还在完善功能,修改代码不规范的地方,整理res资源等.
  * 目前项目还在进行大修改,主界面模块大多已完成,调用接口大部分已更换,现在播放视频可以不要AppKey了.
  * 由于Vitamio编译的so库暂时只支持在6.0以下的手机上进行播放视频.
  * 首页数据跟官方同步,番剧详情界面暂时没有做,后期会加上.
@@ -12,30 +13,30 @@
 
 ## v2.0新版Apk
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/qrcode.png?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/qrcode.png?raw=true)
 
 
 ## 截图
 
-<a href="bilibiliPic/01.jpg"><img src="bilibiliPic/01.jpg" width="40%"/></a> <a href="bilibiliPic/02.jpg"><img src="bilibiliPic/02.jpg" width="40%"/></a>
+<a href="art/01.jpg"><img src="art/01.jpg" width="40%"/></a> <a href="art/02.jpg"><img src="art/02.jpg" width="40%"/></a>
 
-<a href="bilibiliPic/03.jpg"><img src="bilibiliPic/03.jpg" width="40%"/></a> <a href="bilibiliPic/04.jpg"><img src="bilibiliPic/04.jpg" width="40%"/></a>
+<a href="art/03.jpg"><img src="art/03.jpg" width="40%"/></a> <a href="art/04.jpg"><img src="art/04.jpg" width="40%"/></a>
 
-<a href="bilibiliPic/05.jpg"><img src="bilibiliPic/05.jpg" width="40%"/></a> <a href="bilibiliPic/06.jpg"><img src="bilibiliPic/06.jpg" width="40%"/></a>
+<a href="art/05.jpg"><img src="art/05.jpg" width="40%"/></a> <a href="art/06.jpg"><img src="art/06.jpg" width="40%"/></a>
 
-<a href="bilibiliPic/07.jpg"><img src="bilibiliPic/07.jpg" width="40%"/></a> <a href="bilibiliPic/08.jpg"><img src="bilibiliPic/08.jpg" width="40%"/></a>
+<a href="art/07.jpg"><img src="art/07.jpg" width="40%"/></a> <a href="art/08.jpg"><img src="art/08.jpg" width="40%"/></a>
 
-<a href="bilibiliPic/09.jpg"><img src="bilibiliPic/09.jpg" width="40%"/></a> <a href="bilibiliPic/10.jpg"><img src="bilibiliPic/10.jpg" width="40%"/></a>
+<a href="art/09.jpg"><img src="art/09.jpg" width="40%"/></a> <a href="art/10.jpg"><img src="art/10.jpg" width="40%"/></a>
 
-<a href="bilibiliPic/11.jpg"><img src="bilibiliPic/11.jpg" width="40%"/></a> <a href="bilibiliPic/12.jpg"><img src="bilibiliPic/12.jpg" width="40%"/></a>
+<a href="art/11.jpg"><img src="art/11.jpg" width="40%"/></a> <a href="art/12.jpg"><img src="art/12.jpg" width="40%"/></a>
 
-<a href="bilibiliPic/13.jpg"><img src="bilibiliPic/13.jpg" width="40%"/></a> <a href="bilibiliPic/14.jpg"><img src="bilibiliPic/14.jpg" width="40%"/></a>
+<a href="art/13.jpg"><img src="art/13.jpg" width="40%"/></a> <a href="art/14.jpg"><img src="art/14.jpg" width="40%"/></a>
 
-<a href="bilibiliPic/15.jpg"><img src="bilibiliPic/15.jpg" width="40%"/></a> <a href="bilibiliPic/16.jpg"><img src="bilibiliPic/16.jpg" width="40%"/></a>
+<a href="art/15.jpg"><img src="art/15.jpg" width="40%"/></a> <a href="art/16.jpg"><img src="art/16.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/17.jpg?raw=true)
+ ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/17.jpg?raw=true)
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/bilibiliPic/18.jpg?raw=true)
+ ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/18.jpg?raw=true)
 
 
 
