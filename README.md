@@ -1,6 +1,6 @@
 # 高仿哔哩哔哩
 
-<a href="art/icon_bg.jpg"><img src="art/icon_bg.jpg" width="100%"/></a>
+<a href="art/icon_bg.jpg"><img src="art/icon_bg.jpg" width="100%" height="50%"/></a>
 
 
 ## Tips
