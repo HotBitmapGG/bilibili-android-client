@@ -100,7 +100,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
     private UserInfo mUserInfo;
 
-    private ArrayList<Integer> uids = new ArrayList<Integer>();
+    private ArrayList<Integer> uids = new ArrayList<>();
 
     private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
 

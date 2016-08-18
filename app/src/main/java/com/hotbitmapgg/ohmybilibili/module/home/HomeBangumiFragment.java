@@ -20,6 +20,7 @@ import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
 import com.hotbitmapgg.ohmybilibili.module.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.bangumi.WeekDayBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
 
@@ -163,6 +164,8 @@ public class HomeBangumiFragment extends RxLazyFragment
                     public void call(Throwable throwable)
                     {
 
+                        LogUtil.all("获取番剧界面数据失败" + throwable.getMessage());
+
                         mSwipeRefreshLayout.post(new Runnable()
                         {
 
@@ -237,6 +240,7 @@ public class HomeBangumiFragment extends RxLazyFragment
             @Override
             public void onClick(View v)
             {
+
                 WeekDayBangumiActivity.launch(getActivity(), "三次元新番", 3);
             }
         });

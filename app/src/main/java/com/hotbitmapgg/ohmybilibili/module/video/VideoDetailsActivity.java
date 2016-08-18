@@ -24,8 +24,8 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
-import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.squareup.picasso.Picasso;
 
@@ -145,7 +145,9 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
         if (itemInfo != null)
         {
-            Picasso.with(this).load(UrlHelper.getClearVideoPreviewUrl(itemInfo.pic)).into(mVideoPreview);
+            Picasso.with(this)
+                    .load(UrlHelper.getClearVideoPreviewUrl(itemInfo.pic))
+                    .into(mVideoPreview);
         }
     }
 
@@ -218,18 +220,27 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
     private void showFAB()
     {
 
-        mFAB.animate().scaleX(1f).scaleY(1f).setInterpolator(new OvershootInterpolator()).start();
+        mFAB.animate()
+                .scaleX(1f)
+                .scaleY(1f)
+                .setInterpolator(new OvershootInterpolator())
+                .start();
     }
 
     private void hideFAB()
     {
 
-        mFAB.animate().scaleX(0f).scaleY(0f).setInterpolator(new AccelerateInterpolator()).start();
+        mFAB.animate()
+                .scaleX(0f)
+                .scaleY(0f)
+                .setInterpolator(new AccelerateInterpolator())
+                .start();
     }
 
 
     public void getVideoInfo()
     {
+
         RetrofitHelper.getVideoDetailsApi()
                 .getVideoDetails(av)
                 .compose(this.<VideoDetails> bindToLifecycle())
@@ -252,20 +263,25 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                     public void call(Throwable throwable)
                     {
 
+                        mFAB.setClickable(false);
+                        mFAB.setBackgroundResource(R.color.gray_20);
                         LogUtil.all("获取视频详情失败" + throwable.getMessage());
                     }
                 });
-
     }
 
     private void finishGetTask()
     {
 
         mCollapsingToolbarLayout.setTitle(mVideoDetails.getTitle());
-        Picasso.with(this).load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic())).into(mVideoPreview);
+        Picasso.with(this)
+                .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
+                .into(mVideoPreview);
 
-        VideoInfoFragment mVideoInfoFragment = VideoInfoFragment.newInstance(mVideoDetails, itemInfo != null ? itemInfo.aid : av);
-        VideoCommentFragment mVideoCommentFragment = VideoCommentFragment.newInstance(itemInfo != null ? itemInfo.aid : av);
+        VideoInfoFragment mVideoInfoFragment = VideoInfoFragment
+                .newInstance(mVideoDetails, itemInfo != null ? itemInfo.aid : av);
+        VideoCommentFragment mVideoCommentFragment = VideoCommentFragment
+                .newInstance(itemInfo != null ? itemInfo.aid : av);
 
         fragments.add(mVideoInfoFragment);
         fragments.add(mVideoCommentFragment);
