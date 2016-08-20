@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.recommended.Recommend;
+import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 
 import retrofit2.http.GET;
 import rx.Observable;
@@ -18,5 +18,5 @@ public interface RecommendedService
 {
 
     @GET("x/show/old?platform=android&device=&build=412001")
-    Observable<Recommend> getRecommended();
+    Observable<RecommendInfo> getRecommendedInfo();
 }

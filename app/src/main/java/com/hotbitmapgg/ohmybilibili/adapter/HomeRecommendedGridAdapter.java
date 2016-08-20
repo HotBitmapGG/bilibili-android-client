@@ -1,6 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
 import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,8 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.Body;
+import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -27,11 +29,12 @@ import java.util.List;
 public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<Body> bodys = new ArrayList<>();
+    private List<RecommendInfo.ResultBean.BodyBean> bodys = new ArrayList<>();
 
     private int pos;
 
-    public HomeRecommendedGridAdapter(RecyclerView recyclerView, List<Body> bodys, int pos)
+    public HomeRecommendedGridAdapter(RecyclerView recyclerView,
+                                      List<RecommendInfo.ResultBean.BodyBean> bodys, int pos)
     {
 
         super(recyclerView);
@@ -55,7 +58,7 @@ public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            Body body = bodys.get(position);
+            RecommendInfo.ResultBean.BodyBean body = bodys.get(position);
             Picasso.with(getContext())
                     .load(Uri.parse(body.getCover()))
                     .placeholder(R.drawable.bili_default_image_tv)
@@ -76,6 +79,9 @@ public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
                 itemViewHolder.mLiveUp.setText(body.getDesc1());
             } else if (pos == 9)
             {
+                ViewGroup.LayoutParams layoutParams = itemViewHolder.mCardView.getLayoutParams();
+                layoutParams.width = DisplayUtil.dip2px(getContext(),250f);
+                itemViewHolder.mCardView.setLayoutParams(layoutParams);
                 itemViewHolder.mLiveLayout.setVisibility(View.GONE);
                 itemViewHolder.mVideoLayout.setVisibility(View.GONE);
             } else
@@ -115,10 +121,13 @@ public class HomeRecommendedGridAdapter extends AbsRecyclerViewAdapter
 
         public TextView mLiveOnline;
 
+        public CardView mCardView;
+
         public ItemViewHolder(View itemView)
         {
 
             super(itemView);
+            mCardView = $(R.id.card_view);
             mVideoImg = $(R.id.video_preview);
             mVideoTitle = $(R.id.video_title);
             mVideoPlayNum = $(R.id.video_play_num);

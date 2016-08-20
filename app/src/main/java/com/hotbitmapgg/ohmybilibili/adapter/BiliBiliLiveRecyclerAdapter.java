@@ -35,6 +35,8 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 
     private LiveIndex liveIndex;
 
+    private PartitionSub partition;
+
     private int entranceSize;
 
     private int partitionSize;
@@ -124,7 +126,6 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
         return null;
     }
 
-    private PartitionSub partition;
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)

@@ -3,6 +3,7 @@ package com.hotbitmapgg.ohmybilibili.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.Body;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.Result;
+import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.module.rank.HotVideoIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.BiliBiliLivePlayerActivity;
@@ -31,7 +31,7 @@ import java.util.List;
 public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<Result> results = new ArrayList<>();
+    private List<RecommendInfo.ResultBean> results = new ArrayList<>();
 
     private int[] icons = new int[]{
             R.drawable.ic_header_hot,
@@ -51,7 +51,7 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
             R.drawable.ic_category_t23
     };
 
-    public HomeRecommendedRecyclerAdapter(RecyclerView recyclerView, List<Result> results)
+    public HomeRecommendedRecyclerAdapter(RecyclerView recyclerView, List<RecommendInfo.ResultBean> results)
     {
 
         super(recyclerView);
@@ -63,7 +63,8 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_home_recommended, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext())
+                .inflate(R.layout.item_home_recommended, parent, false));
     }
 
     @Override
@@ -72,7 +73,7 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
 
         if (holder instanceof ItemViewHolder)
         {
-            Result result = results.get(position);
+            RecommendInfo.ResultBean result = results.get(position);
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.mTypeImg.setImageResource(icons[position]);
             itemViewHolder.mTypeTv.setText(result.getHead().getTitle());
@@ -115,14 +116,23 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
         });
     }
 
-    private void initGrid(ItemViewHolder itemViewHolder, Result result, final int pos)
+    private void initGrid(ItemViewHolder itemViewHolder, RecommendInfo.ResultBean result, final int pos)
     {
 
-        final ArrayList<Body> body = result.getBody();
-        itemViewHolder.mItemRecycle.setHasFixedSize(true);
+        final List<RecommendInfo.ResultBean.BodyBean> body = result.getBody();
+        itemViewHolder.mItemRecycle.setHasFixedSize(false);
         itemViewHolder.mItemRecycle.setNestedScrollingEnabled(false);
-        itemViewHolder.mItemRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        HomeRecommendedGridAdapter mGridAdapter = new HomeRecommendedGridAdapter(itemViewHolder.mItemRecycle, body, pos);
+        if (pos == 9)
+        {
+            itemViewHolder.mItemRecycle.setLayoutManager(new LinearLayoutManager(getContext(),
+                    LinearLayoutManager.HORIZONTAL, false));
+        } else
+        {
+            itemViewHolder.mItemRecycle.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        }
+
+        HomeRecommendedGridAdapter mGridAdapter =
+                new HomeRecommendedGridAdapter(itemViewHolder.mItemRecycle, body, pos);
         itemViewHolder.mItemRecycle.setAdapter(mGridAdapter);
         mGridAdapter.setOnItemClickListener(new OnItemClickListener()
         {
@@ -139,8 +149,7 @@ public class HomeRecommendedRecyclerAdapter extends AbsRecyclerViewAdapter
                             body.get(position).getTitle(),
                             body.get(position).getOnline(),
                             body.get(position).getUpFace(),
-                            body.get(position).getUp(),0);
-
+                            body.get(position).getUp(), 0);
                 } else if (pos == 2)
                 {
                     //番剧item点击事件,暂时没有实现

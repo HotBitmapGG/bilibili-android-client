@@ -11,9 +11,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendedRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.Body;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.Recommend;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.Result;
+import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
@@ -23,8 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -42,13 +43,15 @@ public class HomeRecommendedFragment extends RxLazyFragment
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private List<Result> results = new ArrayList<>();
+    private List<RecommendInfo.ResultBean> results = new ArrayList<>();
 
     private List<Banner> banners = new ArrayList<>();
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
     private HomeRecommendedRecyclerAdapter mAdapter;
+
+    private static final String BANNER_TYPE = "weblink";
 
     public static HomeRecommendedFragment newInstance()
     {
@@ -103,29 +106,26 @@ public class HomeRecommendedFragment extends RxLazyFragment
     {
 
         RetrofitHelper.getHomeRecommendedApi()
-                .getRecommended()
-                .compose(this.<Recommend> bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Recommend>()
+                .getRecommendedInfo()
+                .compose(this.<RecommendInfo> bindToLifecycle())
+                .flatMap(new Func1<RecommendInfo,Observable<Void>>()
                 {
 
                     @Override
-                    public void call(Recommend recommend)
+                    public Observable<Void> call(RecommendInfo recommendInfo)
                     {
 
-
-                        int size = recommend.getResult().size();
+                        int size = recommendInfo.getResult().size();
                         for (int i = 0; i < size; i++)
                         {
-                            Result result = recommend.getResult().get(i);
+                            RecommendInfo.ResultBean result = recommendInfo.getResult().get(i);
                             Banner banner;
                             if (result.getType() != null)
                             {
-                                if (result.getType().equals("weblink"))
+                                if (result.getType().equals(BANNER_TYPE))
                                 {
-                                    ArrayList<Body> bodys = result.getBody();
-                                    Body body = bodys.get(0);
+                                    List<RecommendInfo.ResultBean.BodyBean> bodys = result.getBody();
+                                    RecommendInfo.ResultBean.BodyBean body = bodys.get(0);
                                     banner = new Banner();
                                     banner.img = body.getCover();
                                     banner.title = body.getTitle();
@@ -138,7 +138,18 @@ public class HomeRecommendedFragment extends RxLazyFragment
                             }
                         }
 
-                        finishTask();
+                        return Observable.empty();
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Void>()
+                {
+
+                    @Override
+                    public void call(Void aVoid)
+                    {
+
                     }
                 }, new Action1<Throwable>()
                 {
@@ -158,6 +169,15 @@ public class HomeRecommendedFragment extends RxLazyFragment
                                 mSwipeRefreshLayout.setRefreshing(false);
                             }
                         });
+                    }
+                }, new Action0()
+                {
+
+                    @Override
+                    public void call()
+                    {
+
+                        finishTask();
                     }
                 });
     }
