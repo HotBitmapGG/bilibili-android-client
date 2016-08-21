@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.widget.EmptyView;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import butterknife.Bind;
 
@@ -18,7 +18,7 @@ public class AttentionPeopleFragment extends RxLazyFragment
 {
 
     @Bind(R.id.empty_view)
-    EmptyView mEmptyView;
+    CustomEmptyView mCustomEmptyView;
 
     public static AttentionPeopleFragment newInstance()
     {
@@ -37,7 +37,7 @@ public class AttentionPeopleFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        mEmptyView.setEmptyImage(R.drawable.img_tips_error_no_following_person);
-        mEmptyView.setEmptyText("你还没有关注的人哟");
+        mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_no_following_person);
+        mCustomEmptyView.setEmptyText("你还没有关注的人哟");
     }
 }

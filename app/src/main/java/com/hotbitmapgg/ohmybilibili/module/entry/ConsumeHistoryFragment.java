@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.widget.EmptyView;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import butterknife.Bind;
 
@@ -18,7 +18,7 @@ public class ConsumeHistoryFragment extends RxLazyFragment
 {
 
     @Bind(R.id.empty_view)
-    EmptyView mEmptyView;
+    CustomEmptyView mCustomEmptyView;
 
     public static ConsumeHistoryFragment newInstance()
     {
@@ -37,7 +37,7 @@ public class ConsumeHistoryFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        mEmptyView.setEmptyImage(R.drawable.ic_movie_pay_area_limit);
-        mEmptyView.setEmptyText("你还没有消费记录哟");
+        mCustomEmptyView.setEmptyImage(R.drawable.ic_movie_pay_area_limit);
+        mCustomEmptyView.setEmptyText("你还没有消费记录哟");
     }
 }

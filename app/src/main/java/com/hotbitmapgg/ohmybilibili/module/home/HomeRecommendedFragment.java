@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -14,6 +15,7 @@ import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
 
@@ -43,6 +45,9 @@ public class HomeRecommendedFragment extends RxLazyFragment
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
+    @Bind(R.id.empty_layout)
+    CustomEmptyView mCustomEmptyView;
+
     private List<RecommendInfo.ResultBean> results = new ArrayList<>();
 
     private List<Banner> banners = new ArrayList<>();
@@ -52,6 +57,9 @@ public class HomeRecommendedFragment extends RxLazyFragment
     private HomeRecommendedRecyclerAdapter mAdapter;
 
     private static final String BANNER_TYPE = "weblink";
+
+    //RecycleView是否正在刷新
+    private boolean mIsRefreshing = false;
 
     public static HomeRecommendedFragment newInstance()
     {
@@ -71,6 +79,18 @@ public class HomeRecommendedFragment extends RxLazyFragment
     {
 
         showProgressBar();
+        initRecyclerView();
+    }
+
+    private void initRecyclerView()
+    {
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setNestedScrollingEnabled(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAdapter = new HomeRecommendedRecyclerAdapter(mRecyclerView, results);
+        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        setRecycleNoScroll();
     }
 
     private void showProgressBar()
@@ -85,6 +105,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
             {
 
                 mSwipeRefreshLayout.setRefreshing(true);
+                mIsRefreshing = true;
                 getHomeRecommendedData();
             }
         }, 500);
@@ -96,6 +117,10 @@ public class HomeRecommendedFragment extends RxLazyFragment
             public void onRefresh()
             {
 
+                banners.clear();
+                results.clear();
+                mIsRefreshing = true;
+                mHeaderViewRecyclerAdapter.removeHeadView();
                 getHomeRecommendedData();
             }
         });
@@ -158,17 +183,8 @@ public class HomeRecommendedFragment extends RxLazyFragment
                     public void call(Throwable throwable)
                     {
 
+                        initEmptyView();
                         LogUtil.all("首页推荐界面加载失败" + throwable.getMessage());
-                        mSwipeRefreshLayout.post(new Runnable()
-                        {
-
-                            @Override
-                            public void run()
-                            {
-
-                                mSwipeRefreshLayout.setRefreshing(false);
-                            }
-                        });
                     }
                 }, new Action0()
                 {
@@ -187,13 +203,11 @@ public class HomeRecommendedFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setRefreshing(false);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setNestedScrollingEnabled(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new HomeRecommendedRecyclerAdapter(mRecyclerView, results);
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        mIsRefreshing = false;
+        hideEmptyView();
         createHead();
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
     private void createHead()
@@ -204,5 +218,43 @@ public class HomeRecommendedFragment extends RxLazyFragment
         BannerView bannerView = (BannerView) headView.findViewById(R.id.home_recommended_banner);
         bannerView.delayTime(5).build(banners);
         mHeaderViewRecyclerAdapter.addHeaderView(headView);
+    }
+
+    public void initEmptyView()
+    {
+
+        LogUtil.all("加载空View");
+        mSwipeRefreshLayout.setRefreshing(false);
+        mCustomEmptyView.setVisibility(View.VISIBLE);
+        mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
+        mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+    }
+
+    public void hideEmptyView()
+    {
+        mCustomEmptyView.setVisibility(View.GONE);
+    }
+
+
+    private void setRecycleNoScroll()
+    {
+
+        mRecyclerView.setOnTouchListener(new View.OnTouchListener()
+        {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+
+
+                if (mIsRefreshing)
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            }
+        });
     }
 }

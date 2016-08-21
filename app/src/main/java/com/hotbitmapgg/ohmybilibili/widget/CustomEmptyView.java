@@ -16,32 +16,30 @@ import com.hotbitmapgg.ohmybilibili.R;
  * <p/>
  * 自定义EmptyView
  */
-public class EmptyView extends FrameLayout
+public class CustomEmptyView extends FrameLayout
 {
 
     private ImageView mEmptyImg;
 
     private TextView mEmptyText;
 
-    public EmptyView(Context context, AttributeSet attrs, int defStyleAttr)
+    public CustomEmptyView(Context context, AttributeSet attrs, int defStyleAttr)
     {
 
         super(context, attrs, defStyleAttr);
         init();
     }
 
-    public EmptyView(Context context)
+    public CustomEmptyView(Context context)
     {
 
-        super(context);
-        init();
+        this(context, null);
     }
 
-    public EmptyView(Context context, AttributeSet attrs)
+    public CustomEmptyView(Context context, AttributeSet attrs)
     {
 
-        super(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
 

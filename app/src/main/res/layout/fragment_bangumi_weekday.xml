@@ -25,7 +25,7 @@
         app:matProg_barColor="?attr/colorPrimary"
         app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
 
-    <com.hotbitmapgg.ohmybilibili.widget.EmptyView
+    <com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView
         android:id="@+id/empty_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

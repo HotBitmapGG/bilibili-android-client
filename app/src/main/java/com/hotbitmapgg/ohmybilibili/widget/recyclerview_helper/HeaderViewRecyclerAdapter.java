@@ -103,6 +103,13 @@ public class HeaderViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         mFooterViews.add(view);
     }
 
+
+    public void removeHeadView()
+    {
+
+        mHeaderViews.clear();
+    }
+
     @Override
     public int getItemCount()
     {

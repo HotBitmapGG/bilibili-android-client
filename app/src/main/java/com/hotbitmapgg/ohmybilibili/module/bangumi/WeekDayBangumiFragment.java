@@ -15,7 +15,7 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumiResult;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.hotbitmapgg.ohmybilibili.widget.EmptyView;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class WeekDayBangumiFragment extends RxLazyFragment
     CircleProgressView mCircleProgressView;
 
     @Bind(R.id.empty_layout)
-    EmptyView mEmptyView;
+    CustomEmptyView mCustomEmptyView;
 
     private ArrayList<WeekDayBangumi> mWeekDayBangumis = new ArrayList<>();
 
@@ -138,8 +138,8 @@ public class WeekDayBangumiFragment extends RxLazyFragment
                         LogUtil.all("番剧放送表加载失败" + throwable.getMessage());
                         mCircleProgressView.setVisibility(View.GONE);
                         mCircleProgressView.stopSpinning();
-                        mEmptyView.setVisibility(View.VISIBLE);
-                        mEmptyView.setEmptyImage(R.drawable.loading_failed);
+                        mCustomEmptyView.setVisibility(View.VISIBLE);
+                        mCustomEmptyView.setEmptyImage(R.drawable.loading_failed);
                     }
                 });
     }

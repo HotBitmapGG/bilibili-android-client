@@ -12,7 +12,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.CommonUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
-import com.hotbitmapgg.ohmybilibili.widget.EmptyView;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.NumberProgressBar;
 
 import butterknife.Bind;
@@ -57,7 +57,7 @@ public class OffLineDownloadActivity extends RxAppCompatBaseActivity
         mProgressBar.setProgress(progress);
         mCacheSize.setText("主存储:" + totalSizeStr + "/" + "可用:" + availabSizeStr);
 
-        EmptyView mEmptyLayout = (EmptyView) findViewById(R.id.empty_layout);
+        CustomEmptyView mEmptyLayout = (CustomEmptyView) findViewById(R.id.empty_layout);
         mEmptyLayout.setEmptyImage(R.drawable.img_tips_error_no_downloads);
         mEmptyLayout.setEmptyText("没有找到你的缓存哟");
     }
