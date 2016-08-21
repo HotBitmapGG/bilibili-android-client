@@ -15,6 +15,7 @@ import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
@@ -239,16 +240,17 @@ public class HomeRecommendedFragment extends RxLazyFragment
         mCustomEmptyView.setVisibility(View.VISIBLE);
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
         mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+        SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,请重新加载或者检查网络是否链接");
         mCustomEmptyView.reload(new CustomEmptyView.ReloadOnClickListener()
         {
 
             @Override
             public void reloadClick()
             {
+
                 showProgressBar();
             }
         });
-
     }
 
     public void hideEmptyView()

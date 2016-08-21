@@ -13,6 +13,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.live.Result;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import butterknife.Bind;
@@ -172,6 +173,7 @@ public class HomeLiveFragment extends RxLazyFragment
         mCustomEmptyView.setVisibility(View.VISIBLE);
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
         mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+        SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,请重新加载或者检查网络是否链接");
         mCustomEmptyView.reload(new CustomEmptyView.ReloadOnClickListener()
         {
 
