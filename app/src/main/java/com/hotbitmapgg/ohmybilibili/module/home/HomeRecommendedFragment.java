@@ -239,6 +239,16 @@ public class HomeRecommendedFragment extends RxLazyFragment
         mCustomEmptyView.setVisibility(View.VISIBLE);
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
         mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+        mCustomEmptyView.reload(new CustomEmptyView.ReloadOnClickListener()
+        {
+
+            @Override
+            public void reloadClick()
+            {
+                showProgressBar();
+            }
+        });
+
     }
 
     public void hideEmptyView()

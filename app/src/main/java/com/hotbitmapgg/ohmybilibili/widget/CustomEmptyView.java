@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +23,16 @@ public class CustomEmptyView extends FrameLayout
     private ImageView mEmptyImg;
 
     private TextView mEmptyText;
+
+    private Button mReloadBtn;
+
+    private ReloadOnClickListener OnReloadOnClickListener;
+
+//    public void setOnReloadOnClickListener(ReloadOnClickListener onReloadOnClickListener)
+//    {
+//
+//        OnReloadOnClickListener = onReloadOnClickListener;
+//    }
 
     public CustomEmptyView(Context context, AttributeSet attrs, int defStyleAttr)
     {
@@ -49,6 +60,7 @@ public class CustomEmptyView extends FrameLayout
         View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_empty, this);
         mEmptyImg = (ImageView) view.findViewById(R.id.empty_img);
         mEmptyText = (TextView) view.findViewById(R.id.empty_text);
+        mReloadBtn = (Button) view.findViewById(R.id.btn_reload);
     }
 
     public void setEmptyImage(int imgRes)
@@ -61,5 +73,33 @@ public class CustomEmptyView extends FrameLayout
     {
 
         mEmptyText.setText(text);
+    }
+
+
+    public void reload(ReloadOnClickListener onReloadOnClickListener)
+    {
+
+        this.OnReloadOnClickListener = onReloadOnClickListener;
+
+        mReloadBtn.setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                if (OnReloadOnClickListener != null)
+                {
+                    OnReloadOnClickListener.reloadClick();
+                }
+            }
+        });
+    }
+
+
+    public interface ReloadOnClickListener
+    {
+
+        void reloadClick();
     }
 }
