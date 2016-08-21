@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,7 +21,7 @@ import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
 import com.hotbitmapgg.ohmybilibili.module.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.bangumi.WeekDayBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
 
@@ -49,11 +50,14 @@ public class HomeBangumiFragment extends RxLazyFragment
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private List<BangumiRecommend.RecommendsBean> recommends;
+    @Bind(R.id.empty_layout)
+    CustomEmptyView mCustomEmptyView;
 
-    private List<BangumiRecommend.BannersBean> banners;
+    private List<BangumiRecommend.RecommendsBean> recommends = new ArrayList<>();
 
-    private List<TwoDimensional.ListBean> twoDimensionals;
+    private List<BangumiRecommend.BannersBean> banners = new ArrayList<>();
+
+    private List<TwoDimensional.ListBean> twoDimensionals = new ArrayList<>();
 
     private TwoDimensionalRecyclerAdapter mAdapter;
 
@@ -68,6 +72,9 @@ public class HomeBangumiFragment extends RxLazyFragment
     private View headView_list;
 
     private RecyclerView mHeadRecommendList;
+
+    //RecycleView是否正在刷新
+    private boolean mIsRefreshing = false;
 
 
     public static HomeBangumiFragment newInstance()
@@ -88,6 +95,18 @@ public class HomeBangumiFragment extends RxLazyFragment
     {
 
         showProgressBar();
+        initRecyclerView();
+    }
+
+    private void initRecyclerView()
+    {
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setNestedScrollingEnabled(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAdapter = new TwoDimensionalRecyclerAdapter(mRecyclerView, twoDimensionals);
+        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        setRecycleNoScroll();
     }
 
     private void showProgressBar()
@@ -102,6 +121,7 @@ public class HomeBangumiFragment extends RxLazyFragment
             {
 
                 mSwipeRefreshLayout.setRefreshing(true);
+                mIsRefreshing = true;
                 getBangumiRecommends();
             }
         }, 500);
@@ -113,7 +133,12 @@ public class HomeBangumiFragment extends RxLazyFragment
             public void onRefresh()
             {
 
-                mSwipeRefreshLayout.setRefreshing(false);
+                mIsRefreshing = true;
+                banners.clear();
+                recommends.clear();
+                twoDimensionals.clear();
+                mHeaderViewRecyclerAdapter.removeHeadView();
+                getBangumiRecommends();
             }
         });
     }
@@ -137,8 +162,8 @@ public class HomeBangumiFragment extends RxLazyFragment
                     public Observable<TwoDimensional> call(BangumiRecommend bangumiRecommend)
                     {
 
-                        banners = bangumiRecommend.getBanners();
-                        recommends = bangumiRecommend.getRecommends();
+                        banners.addAll(bangumiRecommend.getBanners());
+                        recommends.addAll(bangumiRecommend.getRecommends());
 
                         return RetrofitHelper.getTwoDimensionalApi()
                                 .getTwoDimensional();
@@ -154,7 +179,7 @@ public class HomeBangumiFragment extends RxLazyFragment
                     public void call(TwoDimensional twoDimensional)
                     {
 
-                        twoDimensionals = twoDimensional.getList();
+                        twoDimensionals.addAll(twoDimensional.getList());
                         finishTask();
                     }
                 }, new Action1<Throwable>()
@@ -164,18 +189,7 @@ public class HomeBangumiFragment extends RxLazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("获取番剧界面数据失败" + throwable.getMessage());
-
-                        mSwipeRefreshLayout.post(new Runnable()
-                        {
-
-                            @Override
-                            public void run()
-                            {
-
-                                mSwipeRefreshLayout.setRefreshing(false);
-                            }
-                        });
+                        initEmptyView();
                     }
                 });
     }
@@ -184,13 +198,11 @@ public class HomeBangumiFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setRefreshing(false);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setNestedScrollingEnabled(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new TwoDimensionalRecyclerAdapter(mRecyclerView, twoDimensionals);
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        mIsRefreshing = false;
+        hideEmptyView();
         createHead();
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
 
@@ -273,5 +285,43 @@ public class HomeBangumiFragment extends RxLazyFragment
         mHeadRecommendList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mHeadRecommendList.setAdapter(new BangumiRecommendRecyclerAdapter(mHeadRecommendList, recommends));
         mHeaderViewRecyclerAdapter.addHeaderView(headView_list);
+    }
+
+
+    public void initEmptyView()
+    {
+
+        mSwipeRefreshLayout.setRefreshing(false);
+        mCustomEmptyView.setVisibility(View.VISIBLE);
+        mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
+        mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+    }
+
+    public void hideEmptyView()
+    {
+
+        mCustomEmptyView.setVisibility(View.GONE);
+    }
+
+    private void setRecycleNoScroll()
+    {
+
+        mRecyclerView.setOnTouchListener(new View.OnTouchListener()
+        {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+
+
+                if (mIsRefreshing)
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            }
+        });
     }
 }

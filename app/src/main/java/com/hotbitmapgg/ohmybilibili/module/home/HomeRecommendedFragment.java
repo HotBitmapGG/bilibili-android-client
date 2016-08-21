@@ -222,8 +222,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     public void initEmptyView()
     {
-
-        LogUtil.all("加载空View");
         mSwipeRefreshLayout.setRefreshing(false);
         mCustomEmptyView.setVisibility(View.VISIBLE);
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
