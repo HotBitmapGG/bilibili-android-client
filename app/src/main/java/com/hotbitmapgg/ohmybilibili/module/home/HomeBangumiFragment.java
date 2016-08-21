@@ -94,8 +94,20 @@ public class HomeBangumiFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
+        isPrepared = true;
+        lazyLoad();
+    }
+
+    @Override
+    protected void lazyLoad()
+    {
+
+        if (!isPrepared || !isVisible)
+
+            return;
         showProgressBar();
         initRecyclerView();
+        isPrepared = false;
     }
 
     private void initRecyclerView()

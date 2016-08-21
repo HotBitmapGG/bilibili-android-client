@@ -129,6 +129,12 @@ public class VideoInfoFragment extends RxLazyFragment
         setVideoInfo();
     }
 
+    @Override
+    protected void lazyLoad()
+    {
+
+    }
+
 
     private void setVideoInfo()
     {

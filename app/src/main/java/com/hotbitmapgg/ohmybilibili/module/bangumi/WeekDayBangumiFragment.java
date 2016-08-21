@@ -89,6 +89,12 @@ public class WeekDayBangumiFragment extends RxLazyFragment
         startGetBangumiTask();
     }
 
+    @Override
+    protected void lazyLoad()
+    {
+
+    }
+
 
     private void startGetBangumiTask()
     {

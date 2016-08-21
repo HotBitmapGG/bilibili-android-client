@@ -40,4 +40,10 @@ public class HistoryFragment extends RxLazyFragment
         mCustomEmptyView.setEmptyImage(R.drawable.ic_movie_pay_order_error);
         mCustomEmptyView.setEmptyText("暂时还没有观看记录哟");
     }
+
+    @Override
+    protected void lazyLoad()
+    {
+
+    }
 }

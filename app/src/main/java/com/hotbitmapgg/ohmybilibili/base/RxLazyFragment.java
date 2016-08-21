@@ -28,6 +28,12 @@ public abstract class RxLazyFragment extends RxFragment
 
     private LayoutInflater inflater;
 
+    // 标志位 标志已经初始化完成。
+    protected boolean isPrepared;
+
+    //标志位 fragment是否可见
+    protected boolean isVisible;
+
     public abstract
     @LayoutRes
     int getLayoutResId();
@@ -87,7 +93,7 @@ public abstract class RxLazyFragment extends RxFragment
     public FragmentActivity getSupportActivity()
     {
 
-        return (FragmentActivity) super.getActivity();
+        return super.getActivity();
     }
 
     public android.app.ActionBar getSupportActionBar()
@@ -113,6 +119,41 @@ public abstract class RxLazyFragment extends RxFragment
     {
 
         return parentView;
+    }
+
+
+    /**
+     * Fragment数据的懒加载
+     *
+     * @param isVisibleToUser
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser)
+    {
+
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint())
+        {
+            isVisible = true;
+            onVisible();
+        } else
+        {
+            isVisible = false;
+            onInvisible();
+        }
+    }
+
+    protected void onVisible()
+    {
+
+        lazyLoad();
+    }
+
+    protected abstract void lazyLoad();
+
+    protected void onInvisible()
+    {
+
     }
 
     public <T extends View> T $(int id)

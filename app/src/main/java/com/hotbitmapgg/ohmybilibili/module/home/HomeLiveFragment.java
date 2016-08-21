@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BiliBiliLiveRecyclerAdapter;
@@ -12,6 +13,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.live.Result;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import butterknife.Bind;
 import rx.Observable;
@@ -35,6 +37,9 @@ public class HomeLiveFragment extends RxLazyFragment
     @Bind(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+    @Bind(R.id.empty_layout)
+    CustomEmptyView mCustomEmptyView;
+
     private BiliBiliLiveRecyclerAdapter mBiliBiliLiveRecyclerAdapter;
 
 
@@ -57,7 +62,19 @@ public class HomeLiveFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
+        isPrepared = true;
+        lazyLoad();
+    }
+
+    @Override
+    protected void lazyLoad()
+    {
+
+        if (!isPrepared || !isVisible)
+            return;
+
         showProgressBar();
+        isPrepared = false;
     }
 
     private void showProgressBar()
@@ -98,6 +115,7 @@ public class HomeLiveFragment extends RxLazyFragment
             public void run()
             {
 
+                mSwipeRefreshLayout.setRefreshing(true);
                 getBiliBiliLive();
             }
         }, 500);
@@ -133,10 +151,7 @@ public class HomeLiveFragment extends RxLazyFragment
                     public void call(LiveIndex liveIndex)
                     {
 
-                        mSwipeRefreshLayout.setRefreshing(false);
-                        mBiliBiliLiveRecyclerAdapter.setLiveIndex(liveIndex);
-                        mBiliBiliLiveRecyclerAdapter.notifyDataSetChanged();
-                        mRecyclerView.scrollToPosition(0);
+                        finishTask(liveIndex);
                     }
                 }, new Action1<Throwable>()
                 {
@@ -145,17 +160,34 @@ public class HomeLiveFragment extends RxLazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        mSwipeRefreshLayout.post(new Runnable()
-                        {
-
-                            @Override
-                            public void run()
-                            {
-
-                                mSwipeRefreshLayout.setRefreshing(false);
-                            }
-                        });
+                        initEmptyView();
                     }
                 });
+    }
+
+    private void initEmptyView()
+    {
+
+        mSwipeRefreshLayout.setRefreshing(false);
+        mCustomEmptyView.setVisibility(View.VISIBLE);
+        mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
+        mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+    }
+
+    public void hideEmptyView()
+    {
+
+        mCustomEmptyView.setVisibility(View.GONE);
+    }
+
+
+    private void finishTask(LiveIndex liveIndex)
+    {
+
+        hideEmptyView();
+        mSwipeRefreshLayout.setRefreshing(false);
+        mBiliBiliLiveRecyclerAdapter.setLiveIndex(liveIndex);
+        mBiliBiliLiveRecyclerAdapter.notifyDataSetChanged();
+        mRecyclerView.scrollToPosition(0);
     }
 }

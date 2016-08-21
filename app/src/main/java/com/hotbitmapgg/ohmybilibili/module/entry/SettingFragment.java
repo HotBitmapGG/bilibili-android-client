@@ -68,6 +68,12 @@ public class SettingFragment extends RxLazyFragment implements View.OnClickListe
     }
 
     @Override
+    protected void lazyLoad()
+    {
+
+    }
+
+    @Override
     public void onClick(View v)
     {
 

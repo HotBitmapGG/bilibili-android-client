@@ -79,6 +79,12 @@ public class VideoCommentFragment extends RxLazyFragment
         getCommentList();
     }
 
+    @Override
+    protected void lazyLoad()
+    {
+
+    }
+
     private void initRecyclerView()
     {
 

@@ -70,6 +70,12 @@ public class HotVideoIndexDetailsFragment extends RxLazyFragment
         initRefreshLayout();
     }
 
+    @Override
+    protected void lazyLoad()
+    {
+
+    }
+
     private void initRefreshLayout()
     {
 

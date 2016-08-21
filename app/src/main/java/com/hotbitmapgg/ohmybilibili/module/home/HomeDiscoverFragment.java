@@ -56,6 +56,12 @@ public class HomeDiscoverFragment extends RxLazyFragment
         initTagLayout();
     }
 
+    @Override
+    protected void lazyLoad()
+    {
+
+    }
+
     private void initTagLayout()
     {
 

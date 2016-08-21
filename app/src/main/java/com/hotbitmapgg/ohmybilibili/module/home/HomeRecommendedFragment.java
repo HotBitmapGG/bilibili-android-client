@@ -78,8 +78,20 @@ public class HomeRecommendedFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
+        isPrepared = true;
+        lazyLoad();
+    }
+
+    @Override
+    protected void lazyLoad()
+    {
+
+        if (!isPrepared || !isVisible)
+            return;
+
         showProgressBar();
         initRecyclerView();
+        isPrepared = false;
     }
 
     private void initRecyclerView()
@@ -222,6 +234,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     public void initEmptyView()
     {
+
         mSwipeRefreshLayout.setRefreshing(false);
         mCustomEmptyView.setVisibility(View.VISIBLE);
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
@@ -230,6 +243,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     public void hideEmptyView()
     {
+
         mCustomEmptyView.setVisibility(View.GONE);
     }
 

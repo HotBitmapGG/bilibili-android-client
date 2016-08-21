@@ -5,7 +5,6 @@ import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeMoreLayoutAdapter;
@@ -49,13 +48,25 @@ public class HomeMoreFragment extends RxLazyFragment
     }
 
     @Override
+    protected void lazyLoad()
+    {
+
+    }
+
+    @Override
     public void finishCreateView(Bundle state)
+    {
+
+        initMoreData();
+    }
+
+    public void initMoreData()
     {
 
         HomeMoreLayoutAdapter mAdapter = new HomeMoreLayoutAdapter(getActivity());
         mMoreLayout.setAdapter(mAdapter);
         mMoreLayout.setExpanded(true);
-        mMoreLayout.setOnItemClickListener(new OnItemClickListener()
+        mMoreLayout.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
 
             @Override
@@ -304,6 +315,7 @@ public class HomeMoreFragment extends RxLazyFragment
             }
         });
     }
+
 
     /**
      * 根据分区类型进入界面

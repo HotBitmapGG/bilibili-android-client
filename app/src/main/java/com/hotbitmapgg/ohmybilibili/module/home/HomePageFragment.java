@@ -52,4 +52,10 @@ public class HomePageFragment extends RxLazyFragment
         mViewPager.setAdapter(mHomeAdapter);
         mSlidingTab.setViewPager(mViewPager);
     }
+
+    @Override
+    protected void lazyLoad()
+    {
+
+    }
 }

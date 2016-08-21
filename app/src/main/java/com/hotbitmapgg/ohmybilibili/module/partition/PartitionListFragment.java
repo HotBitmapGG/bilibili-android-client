@@ -89,6 +89,12 @@ public class PartitionListFragment extends RxLazyFragment
         initRecyclerView();
     }
 
+    @Override
+    protected void lazyLoad()
+    {
+
+    }
+
     private void initRecyclerView()
     {
 
