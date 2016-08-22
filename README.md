@@ -1,7 +1,14 @@
-![minSdkVersion-21](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
-![Version-2.1.1](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
-![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
+### 高仿哔哩哔哩动画
+
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon.png?raw=true)
+
+[![minSdkVersion 21](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
+
+[![version 2.1.1](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
+
+[![gradle 2.1.3](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
+
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
 
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg?raw=true)
