@@ -1,25 +1,11 @@
-### 高仿哔哩哔哩动画
-
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon.png?raw=true)
-
-[![minSdkVersion 21](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
-
-[![version 2.1.1](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
-
-[![gradle 2.1.3](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
-
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
-
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg?raw=true)
 
 
 ## Tips
 
- * 项目已重构大部分,目前还在完善功能,修改代码不规范的地方,整理res资源等.
- * 目前项目还在进行大修改,主界面模块大多已完成,调用接口大部分已更换,现在播放视频可以不要AppKey了.
- * 由于Vitamio编译的so库暂时只支持在6.0以下的手机上进行播放视频.
- * 首页数据跟官方同步,番剧详情界面暂时没有做,后期会加上.
+  * 该项目正在持续开发中.
 
 
 ## v2.0新版Apk
