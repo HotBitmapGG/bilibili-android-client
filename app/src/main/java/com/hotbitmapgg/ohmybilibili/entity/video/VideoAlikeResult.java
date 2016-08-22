@@ -9,6 +9,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by hcc on 16/8/22 20:48
+ * 100332338@qq.com
+ * <p/>
+ * 相关视频数据Result
+ */
 public class VideoAlikeResult
 {
 

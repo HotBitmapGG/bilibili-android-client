@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.video;
+package com.hotbitmapgg.ohmybilibili.config;
 
 import android.graphics.Typeface;
 

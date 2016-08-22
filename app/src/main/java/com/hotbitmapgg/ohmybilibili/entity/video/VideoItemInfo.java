@@ -6,58 +6,87 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Created by hcc on 16/8/22 20:48
+ * 100332338@qq.com
+ * <p/>
+ * 视频Item数据
+ */
 public class VideoItemInfo implements Serializable
 {
 
-    public String duration; /* 视频时长 */
+    //视频时长
+    public String duration;
 
-    public int coins; /* 推荐数量 */
+    //推荐数量
+    public int coins;
 
-    public int credit; /* 评分数量 */
+    //评分数量
+    public int credit;
 
-    public String pic; /* 封面图片地址 */
+    //封面图片地址
+    public String pic;
 
-    public String create; /* 视频创建日期 */
+    //视频创建日期
+    public String create;
 
-    public String description; /* 视频简介 */
+    //视频简介
+    public String description;
 
-    public String author; /* 视频作者 */
+    //视频作者
+    public String author;
 
-    public int mid; /* 视频作者ID */
+    //视频作者ID
+    public int mid;
 
-    public int favorites; /* 收藏数 */
+    //收藏数
+    public int favorites;
 
-    public int video_review; /* 弹幕数 */
+    //弹幕数
+    public int video_review;
 
-    public int review; /* 评论数 */
+    //评论数
+    public int review;
 
-    public String play; /* 播放次数 */
+    //播放次数
+    public String play;
 
-    public String subtitle; /* 视频副标题 */
+    //视频副标题
+    public String subtitle;
 
-    public String title; /* 视频标题 */
+    //视频标题
+    public String title;
 
-    public String typename; /* 视频分类名称 */
+    //视频分类名称
+    public String typename;
 
-    public int typeid; /* 视频分类ID */
+    //视频分类ID
+    public int typeid;
 
-    public int aid; /* 视频编号 */
+    //视频编号
+    public int aid;
 
+    //最后推荐信息
     @SerializedName("last_recommend")
-    public List<LastRecommend> lastRecommends; /* 最后推荐信息 */
+    public List<LastRecommend> lastRecommends;
 
     public class LastRecommend
     {
 
-        public String uname; /* 推荐人名字 */
+        //推荐人名字
+        public String uname;
 
-        public int mid; /* 推荐人ID */
+        //推荐人ID
+        public int mid;
 
-        public long time; /* 推荐时间 */
+        //推荐时间
+        public long time;
 
-        public String msg; /* 推荐信息 */
+        //推荐信息
+        public String msg;
 
-        public String face; /* 推荐人头像地址 */
+        //推荐人头像地址
+        public String face;
     }
 
     public String toJsonString()

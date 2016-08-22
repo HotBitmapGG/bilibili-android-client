@@ -1,10 +1,10 @@
 package com.hotbitmapgg.ohmybilibili.entity.live;
 
 /**
- * 定义返回请求结构
- * code message result形式
- *
- * @HotbitmapGG
+ * Created by hcc on 16/8/22 20:48
+ * 100332338@qq.com
+ * <p/>
+ * 直播数据模型基础类
  */
 public class Result<T>
 {

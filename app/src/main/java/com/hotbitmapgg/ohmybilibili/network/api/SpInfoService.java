@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.Sp;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -16,5 +16,5 @@ public interface SpInfoService
 {
 
     @GET("sp")
-    Observable<Sp> getSpInfo(@Query("spid") int spid, @Query("title") String title);
+    Observable<SpecialTopic> getSpInfo(@Query("spid") int spid, @Query("title") String title);
 }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.Sp;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,9 +25,9 @@ import java.util.List;
 public class SpecialVideoRecyclerAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<Sp.Item> spItems = new ArrayList<>();
+    private List<SpecialTopic.Item> spItems = new ArrayList<>();
 
-    public SpecialVideoRecyclerAdapter(RecyclerView recyclerView, List<Sp.Item> spItems)
+    public SpecialVideoRecyclerAdapter(RecyclerView recyclerView, List<SpecialTopic.Item> spItems)
     {
 
         super(recyclerView);
@@ -49,7 +49,7 @@ public class SpecialVideoRecyclerAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            Sp.Item item = spItems.get(position);
+            SpecialTopic.Item item = spItems.get(position);
             itemViewHolder.mSpNum.setText("第" + item.episode + "话");
             String cover = item.cover;
             Picasso.with(getContext())

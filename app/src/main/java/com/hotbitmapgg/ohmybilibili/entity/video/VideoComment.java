@@ -3,6 +3,8 @@ package com.hotbitmapgg.ohmybilibili.entity.video;
 import java.util.ArrayList;
 
 /**
+ * Created by hcc on 16/8/22 20:48
+ * 100332338@qq.com
  * <p/>
  * 视频评论
  * <p/>
@@ -103,8 +105,10 @@ public class VideoComment
 
     public int results;
 
+    //热门评论
     public ArrayList<HotList> hotList;
 
+    //普通评论
     public ArrayList<List> list;
 
     public int page;

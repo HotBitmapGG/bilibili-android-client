@@ -2,48 +2,73 @@ package com.hotbitmapgg.ohmybilibili.entity.user;
 
 import java.util.List;
 
+/**
+ * Created by hcc on 16/8/22 20:48
+ * 100332338@qq.com
+ * <p/>
+ * 用户详情数据
+ */
 public class UserInfo
 {
 
-    public int mid; // 用户ID
+    public static final int CODE_NOT_EXIST = -626;
 
-    public String name; // 用户名
+    // 用户ID
+    public int mid;
 
-    public String uname; // 查询 UID 返回的用户名
+    // 用户名
+    public String name;
 
-    public String userid; // 查询 UID 返回的真实用户名
+    // 查询 UID 返回的用户名
+    public String uname;
 
-    public boolean approve; // 是否为认证用户
+    // 查询 UID 返回的真实用户名
+    public String userid;
 
-    public String sex; // 性别
+    // 是否为认证用户
+    public boolean approve;
 
-    public int rank; // 用户等级数
+    // 性别
+    public String sex;
 
-    public String face; // 用户头像
+    // 用户等级数
+    public int rank;
 
-    public String DisplayRank; // 用户等级数显示
+    // 用户头像
+    public String face;
 
-    public int regtime; // 注册时间
+    // 用户等级数显示
+    public String DisplayRank;
 
-    public String birthday; // 出生日期
+    // 注册时间
+    public int regtime;
 
-    public String place; // 居住地
+    // 出生日期
+    public String birthday;
 
-    public String description; // 用户描述/认证信息
+    // 居住地
+    public String place;
 
-    public int article; // 投稿数
+    // 用户描述 认证信息
+    public String description;
 
-    public List<Integer> attentions; // 已关注的用户ID
+    // 投稿数
+    public int article;
 
-    public int fans; // 粉丝数
+    // 已关注的用户ID
+    public List<Integer> attentions;
 
-    public int friend; // 朋友数
+    // 粉丝数
+    public int fans;
 
-    public int attention; // 关注数
+    // 朋友数
+    public int friend;
 
-    public String sign; // 签名
+    // 关注数
+    public int attention;
+
+    // 签名
+    public String sign;
 
     public int code;
-
-    public static final int CODE_NOT_EXIST = -626;
 }

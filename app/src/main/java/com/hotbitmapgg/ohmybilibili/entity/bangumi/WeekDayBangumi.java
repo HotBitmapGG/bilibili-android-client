@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by hcc on 16/8/6 11:08
  * 100332338@qq.com
  * <p/>
- * 番剧放送表
+ * 番剧放送表(专题视频)
  */
 public class WeekDayBangumi
 {

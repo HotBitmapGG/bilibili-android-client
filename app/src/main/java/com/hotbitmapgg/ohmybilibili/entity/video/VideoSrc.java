@@ -1,11 +1,20 @@
 package com.hotbitmapgg.ohmybilibili.entity.video;
 
+/**
+ * Created by hcc on 16/8/22 20:48
+ * 100332338@qq.com
+ * <p/>
+ * 视频地址数据
+ */
 public class VideoSrc
 {
 
-    public String img; // 视频预览
+    // 视频预览
+    public String img;
 
-    public String cid; // 弹幕文件
+    // 弹幕文件
+    public String cid;
 
-    public String src; // 视频源地址
+    // 视频源地址
+    public String src;
 }

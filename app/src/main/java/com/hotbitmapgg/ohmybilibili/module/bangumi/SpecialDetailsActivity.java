@@ -18,8 +18,8 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.SpecialVideoRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.Sp;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpItemResult;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopicIResult;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
@@ -82,7 +82,7 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
     private String title;
 
-    private Sp mSp;
+    private SpecialTopic mSpecialTopic;
 
     private int season_id;
 
@@ -92,7 +92,7 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
     private static final String EXTRA_SEASON_ID = "season_id";
 
-    private ArrayList<Sp.Item> spList = new ArrayList<Sp.Item>();
+    private ArrayList<SpecialTopic.Item> spList = new ArrayList<SpecialTopic.Item>();
 
 
     @Override
@@ -152,17 +152,17 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getSpInfoApi()
                 .getSpInfo(spid, title)
-                .compose(this.<Sp> bindToLifecycle())
+                .compose(this.<SpecialTopic> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Sp>()
+                .subscribe(new Action1<SpecialTopic>()
                 {
 
                     @Override
-                    public void call(Sp sp)
+                    public void call(SpecialTopic specialTopic)
                     {
 
-                        mSp = sp;
+                        mSpecialTopic = specialTopic;
                         finishGetSpInfo();
                     }
                 }, new Action1<Throwable>()
@@ -190,17 +190,17 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getSpItemApi()
                 .getSpItemList(spid, season_id, 1)
-                .compose(this.<SpItemResult> bindToLifecycle())
+                .compose(this.<SpecialTopicIResult> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<SpItemResult>()
+                .subscribe(new Action1<SpecialTopicIResult>()
                 {
 
                     @Override
-                    public void call(SpItemResult spItemResult)
+                    public void call(SpecialTopicIResult specialTopicIResult)
                     {
 
-                        spList.addAll(spItemResult.list);
+                        spList.addAll(specialTopicIResult.list);
                         finishGetSpVideoListTask();
                     }
                 }, new Action1<Throwable>()
@@ -220,21 +220,21 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
     public void finishGetSpInfo()
     {
         // 专题名称
-        String spTitle = mSp.title;
+        String spTitle = mSpecialTopic.title;
         // 最后更新日期
-        String lastupdate_at = mSp.lastupdate_at;
+        String lastupdate_at = mSpecialTopic.lastupdate_at;
         // 专题简介
-        String description = mSp.description;
+        String description = mSpecialTopic.description;
         // 播放次数
-        int playCount = mSp.view;
+        int playCount = mSpecialTopic.view;
         // 专题列表数量
-        int count = mSp.count;
+        int count = mSpecialTopic.count;
         // 专题封面
-        String cover = mSp.cover;
+        String cover = mSpecialTopic.cover;
         //收藏数量
-        int favourite = mSp.favourite;
+        int favourite = mSpecialTopic.favourite;
         //关注数量
-        int attention = mSp.attention;
+        int attention = mSpecialTopic.attention;
 
         // 初始化界面数据
         Picasso.with(this).load(cover).placeholder(R.drawable.bili_default_image_tv).into(mPreviewImage);
@@ -277,7 +277,7 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                Sp.Item item = spList.get(position);
+                SpecialTopic.Item item = spList.get(position);
                 VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid);
             }
         });

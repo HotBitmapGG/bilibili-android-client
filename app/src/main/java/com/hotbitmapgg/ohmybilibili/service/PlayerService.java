@@ -11,7 +11,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.view.SurfaceHolder;
 
-import com.hotbitmapgg.ohmybilibili.entity.video.VP;
+import com.hotbitmapgg.ohmybilibili.config.VP;
 import com.yixia.zi.utils.FileUtils;
 
 import java.io.File;

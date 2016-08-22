@@ -34,7 +34,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.video.VP;
+import com.hotbitmapgg.ohmybilibili.config.VP;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoSrc;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.service.MediaController;

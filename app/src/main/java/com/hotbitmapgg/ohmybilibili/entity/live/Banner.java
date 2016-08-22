@@ -1,13 +1,23 @@
 package com.hotbitmapgg.ohmybilibili.entity.live;
 
+/**
+ * Created by hcc on 16/8/22 20:48
+ * 100332338@qq.com
+ * <p/>
+ * 直播列表Banner
+ */
 public class Banner
 {
 
-    public String title;    //名称
+    //名称
+    public String title;
 
-    public String img;      //图片
+    //图片
+    public String img;
 
+    //备注
     public String remark;
 
-    public String link;     //Scheme跳转
+    //链接
+    public String link;
 }

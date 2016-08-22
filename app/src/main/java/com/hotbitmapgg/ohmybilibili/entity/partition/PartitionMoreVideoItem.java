@@ -1,17 +1,29 @@
 package com.hotbitmapgg.ohmybilibili.entity.partition;
 
+/**
+ * Created by hcc on 16/8/22 20:48
+ * 100332338@qq.com
+ * <p/>
+ * 分区模块视频数据
+ */
 public class PartitionMoreVideoItem
 {
 
-    public String pic; /* 封面图片地址 */
+    //封面图片地址
+    public String pic;
 
-    public String author; /* 视频作者 */
+    //视频作者
+    public String author;
 
-    public int video_review; /* 弹幕数 */
+    //弹幕数
+    public int video_review;
 
-    public String play; /* 播放次数 */
+    //播放次数
+    public String play;
 
-    public String title; /* 视频标题 */
+    //视频标题
+    public String title;
 
-    public int aid; /* 视频编号 */
+    //视频编号
+    public int aid;
 }

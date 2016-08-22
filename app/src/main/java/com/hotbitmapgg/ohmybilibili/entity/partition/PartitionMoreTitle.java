@@ -6,6 +6,12 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by hcc on 16/8/22 20:48
+ * 100332338@qq.com
+ * <p/>
+ * 分区模块标题
+ */
 public class PartitionMoreTitle implements Parcelable
 {
 
