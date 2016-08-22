@@ -12,7 +12,7 @@ import rx.Observable;
  * <p/>
  * 获取专题详情数据
  */
-public interface SpInfoService
+public interface SpecialTopicInfoService
 {
 
     @GET("sp")

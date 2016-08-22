@@ -12,8 +12,8 @@ import com.hotbitmapgg.ohmybilibili.network.api.IndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
 import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
 import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
-import com.hotbitmapgg.ohmybilibili.network.api.SpInfoService;
-import com.hotbitmapgg.ohmybilibili.network.api.SpItemService;
+import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
+import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
 import com.hotbitmapgg.ohmybilibili.network.api.TwoDimensionalService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
@@ -369,7 +369,7 @@ public class RetrofitHelper
      *
      * @return
      */
-    public static SpInfoService getSpInfoApi()
+    public static SpecialTopicInfoService getSpInfoApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -379,7 +379,7 @@ public class RetrofitHelper
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        return retrofit.create(SpInfoService.class);
+        return retrofit.create(SpecialTopicInfoService.class);
     }
 
 
@@ -388,7 +388,7 @@ public class RetrofitHelper
      *
      * @return
      */
-    public static SpItemService getSpItemApi()
+    public static SpecialTopicItemService getSpItemApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -398,7 +398,7 @@ public class RetrofitHelper
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        return retrofit.create(SpItemService.class);
+        return retrofit.create(SpecialTopicItemService.class);
     }
 
 

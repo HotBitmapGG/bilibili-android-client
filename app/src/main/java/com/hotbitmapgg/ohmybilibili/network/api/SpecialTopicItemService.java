@@ -12,7 +12,7 @@ import rx.Observable;
  * <p/>
  * 获取专题视频列表
  */
-public interface SpItemService
+public interface SpecialTopicItemService
 {
 
     @GET("spview")
