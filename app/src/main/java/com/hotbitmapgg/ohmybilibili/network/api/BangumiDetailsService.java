@@ -11,6 +11,7 @@ import rx.Observable;
  * 100332338@qq.com
  * <p/>
  * 获取番剧详情数据
+ * http://bilibili-service.daoapp.io/spinfo/56749
  */
 public interface BangumiDetailsService
 {
