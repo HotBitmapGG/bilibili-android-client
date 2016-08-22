@@ -1,11 +1,15 @@
+<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg" width="100%" height="50%" />
+
+
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg?raw=true)
 
 
 ## Tips
 
   * 该项目正在持续开发中.
+
+
 
 
 ## v2.0新版Apk
