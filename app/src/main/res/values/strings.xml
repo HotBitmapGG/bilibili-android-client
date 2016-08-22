@@ -10,6 +10,7 @@
         <item>@string/section_recommend</item>
         <item>@string/section_list</item>
         <item>@string/section_live</item>
+        <item>@string/section_live</item>
         <item>@string/section_more</item>
         <item>@string/section_discover</item>
     </string-array>
@@ -98,9 +99,9 @@
     <string name="home_tab_recommend_title">最新推荐</string>
     <string name="home_tab_recent_bangumi">专题推荐</string>
     <string name="home_tab_more">更多</string>
-
     <string name="section_recommend">推荐</string>
     <string name="section_live">直播</string>
+    <string name="section_focus">关注</string>
     <string name="section_anime">番剧</string>
     <string name="section_cartoon">动画</string>
     <string name="section_music">音乐</string>
