@@ -1,6 +1,7 @@
-# 高仿哔哩哔哩
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg?raw=true)
 
-<a href="art/icon_bg.jpg"><img src="art/icon_bg.jpg" width="100%"/></a>
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
+![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
 
 
 ## Tips
