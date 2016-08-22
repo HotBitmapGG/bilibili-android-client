@@ -1,4 +1,4 @@
-<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg" width="100%" height="50%" />
+<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg" width="1000" height="500" />
 
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
