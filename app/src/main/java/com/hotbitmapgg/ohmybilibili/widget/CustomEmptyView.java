@@ -28,12 +28,6 @@ public class CustomEmptyView extends FrameLayout
 
     private ReloadOnClickListener OnReloadOnClickListener;
 
-//    public void setOnReloadOnClickListener(ReloadOnClickListener onReloadOnClickListener)
-//    {
-//
-//        OnReloadOnClickListener = onReloadOnClickListener;
-//    }
-
     public CustomEmptyView(Context context, AttributeSet attrs, int defStyleAttr)
     {
 
@@ -73,6 +67,12 @@ public class CustomEmptyView extends FrameLayout
     {
 
         mEmptyText.setText(text);
+    }
+
+    public void hideReloadButton()
+    {
+
+        mReloadBtn.setVisibility(GONE);
     }
 
 

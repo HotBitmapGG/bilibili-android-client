@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeBangumiFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeDiscoverFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeFocusFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeLiveFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeMoreFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomeRecommendedFragment;
@@ -51,9 +52,12 @@ public class HomePagerAdapter extends FragmentPagerAdapter
                     fragments[position] = HomeLiveFragment.newIntance();
                     break;
                 case 3:
-                    fragments[position] = HomeMoreFragment.newInstance();
+                    fragments[position] = HomeFocusFragment.newIntance();
                     break;
                 case 4:
+                    fragments[position] = HomeMoreFragment.newInstance();
+                    break;
+                case 5:
                     fragments[position] = HomeDiscoverFragment.newInstance();
                     break;
                 default:

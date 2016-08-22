@@ -8,9 +8,9 @@
     <!-- 主界面 -->
     <string-array name="sections">
         <item>@string/section_recommend</item>
-        <item>@string/section_list</item>
+        <item>@string/section_bangumi</item>
         <item>@string/section_live</item>
-        <item>@string/section_live</item>
+        <item>@string/section_focus</item>
         <item>@string/section_more</item>
         <item>@string/section_discover</item>
     </string-array>
@@ -113,7 +113,7 @@
     <string name="section_movie">电影</string>
     <string name="section_tv_series">电视剧</string>
     <string name="section_more">分区</string>
-    <string name="section_list">番剧</string>
+    <string name="section_bangumi">番剧</string>
     <string name="section_discover">发现</string>
 
     <string name="weekday_sun">周日</string>
