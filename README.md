@@ -1,7 +1,10 @@
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg?raw=true)
-
+![minSdkVersion-21](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
+![Version-2.1.1](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/drakeet/MultiType/blob/master/LICENSE)
 ![maven-central](https://img.shields.io/maven-central/v/me.drakeet.multitype/multitype.svg)
+
+
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg?raw=true)
 
 
 ## Tips
