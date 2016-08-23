@@ -14,25 +14,31 @@
 
 ## 截图
 
-<a href="art/01.jpg"><img src="art/01.jpg" width="40%"/></a> <a href="art/02.jpg"><img src="art/02.jpg" width="40%"/></a>
+<a href="art/01.png"><img src="art/01.png" width="40%"/></a> <a href="art/02.png"><img src="art/02.png" width="40%"/></a>
 
-<a href="art/03.jpg"><img src="art/03.jpg" width="40%"/></a> <a href="art/04.jpg"><img src="art/04.jpg" width="40%"/></a>
+<a href="art/03.png"><img src="art/03.png" width="40%"/></a> <a href="art/04.png"><img src="art/04.png" width="40%"/></a>
 
-<a href="art/05.jpg"><img src="art/05.jpg" width="40%"/></a> <a href="art/06.jpg"><img src="art/06.jpg" width="40%"/></a>
+<a href="art/05.png"><img src="art/05.png" width="40%"/></a> <a href="art/06.png"><img src="art/06.png" width="40%"/></a>
 
-<a href="art/07.jpg"><img src="art/07.jpg" width="40%"/></a> <a href="art/08.jpg"><img src="art/08.jpg" width="40%"/></a>
+<a href="art/07.png"><img src="art/07.png" width="40%"/></a> <a href="art/08.png"><img src="art/08.png" width="40%"/></a>
 
-<a href="art/09.jpg"><img src="art/09.jpg" width="40%"/></a> <a href="art/10.jpg"><img src="art/10.jpg" width="40%"/></a>
+<a href="art/09.png"><img src="art/09.png" width="40%"/></a> <a href="art/10.png"><img src="art/10.png" width="40%"/></a>
 
-<a href="art/11.jpg"><img src="art/11.jpg" width="40%"/></a> <a href="art/12.jpg"><img src="art/12.jpg" width="40%"/></a>
+<a href="art/11.png"><img src="art/11.png" width="40%"/></a> <a href="art/12.png"><img src="art/12.png" width="40%"/></a>
 
-<a href="art/13.jpg"><img src="art/13.jpg" width="40%"/></a> <a href="art/14.jpg"><img src="art/14.jpg" width="40%"/></a>
+<a href="art/13.png"><img src="art/13.png" width="40%"/></a> <a href="art/14.png"><img src="art/14.png" width="40%"/></a>
 
-<a href="art/15.jpg"><img src="art/15.jpg" width="40%"/></a> <a href="art/16.jpg"><img src="art/16.jpg" width="40%"/></a>
+<a href="art/15.png"><img src="art/15.png" width="40%"/></a> <a href="art/16.png"><img src="art/16.png" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/17.jpg?raw=true)
+<a href="art/17.png"><img src="art/17.png" width="40%"/></a> <a href="art/18.png"><img src="art/18.png" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/18.jpg?raw=true)
+<a href="art/19.png"><img src="art/19.png" width="40%"/></a> <a href="art/20.png"><img src="art/20.png" width="40%"/></a>
+
+<a href="art/21.png"><img src="art/21.png" width="50%"/>
+
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/17.jpg?raw=true)
+
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/18.jpg?raw=true)
 
 
 

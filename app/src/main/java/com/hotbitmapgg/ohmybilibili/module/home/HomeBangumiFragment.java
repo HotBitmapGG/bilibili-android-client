@@ -126,7 +126,7 @@ public class HomeBangumiFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.postDelayed(new Runnable()
+        mSwipeRefreshLayout.post(new Runnable()
         {
 
             @Override
@@ -137,7 +137,7 @@ public class HomeBangumiFragment extends RxLazyFragment
                 mIsRefreshing = true;
                 getBangumiRecommends();
             }
-        }, 500);
+        });
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {

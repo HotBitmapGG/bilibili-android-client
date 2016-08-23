@@ -109,7 +109,7 @@ public class HomeLiveFragment extends RxLazyFragment
             }
         });
 
-        mSwipeRefreshLayout.postDelayed(new Runnable()
+        mSwipeRefreshLayout.post(new Runnable()
         {
 
             @Override
@@ -119,7 +119,7 @@ public class HomeLiveFragment extends RxLazyFragment
                 mSwipeRefreshLayout.setRefreshing(true);
                 getBiliBiliLive();
             }
-        }, 500);
+        });
     }
 
 
