@@ -110,7 +110,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.postDelayed(new Runnable()
+        mSwipeRefreshLayout.post(new Runnable()
         {
 
             @Override
@@ -121,7 +121,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
                 mIsRefreshing = true;
                 getHomeRecommendedData();
             }
-        }, 500);
+        });
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {

@@ -1,13 +1,17 @@
-<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg" width="2000" height="500" />
+## 高仿哔哩哔哩安卓客户端 - ( ゜- ゜)つロ 乾杯~ - bilibili
+
+<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_bg.jpg" width="100%" height="100%" />
+
+
 
 ## Tips
 
-  * 该项目正在持续开发中.
+  * 该项目正在持续开发中,喜欢的请给个star支持下,3Q啦.
 
 
 
 
-## v2.0新版Apk
+## v2.1.2Apk
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/qrcode.png?raw=true)
 
@@ -30,9 +34,11 @@
 
 <a href="art/15.jpg"><img src="art/15.jpg" width="40%"/></a> <a href="art/16.jpg"><img src="art/16.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/17.jpg?raw=true)
+<a href="art/17.jpg"><img src="art/17.jpg" width="40%"/></a> <a href="art/18.jpg"><img src="art/18.jpg" width="40%"/></a>
 
- ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/18.jpg?raw=true)
+<a href="art/19.jpg"><img src="art/19.jpg" width="40%"/></a> <a href="art/20.jpg"><img src="art/20.jpg" width="40%"/></a>
+
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/21.jpg?raw=true)
 
 
 
