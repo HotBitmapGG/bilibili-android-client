@@ -34,9 +34,7 @@
 
 <a href="art/19.jpg"><img src="art/19.jpg" width="40%"/></a> <a href="art/20.jpg"><img src="art/20.jpg" width="40%"/></a>
 
-<a href="art/21.jpg"><img src="art/21.jpg" width="50%"/>
-
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/22.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/21.jpg?raw=true)
 
 
 
