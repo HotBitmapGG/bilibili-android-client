@@ -1,4 +1,4 @@
-<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg" width="2000" height="500" />
+<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_bg.jpg" width="100%" height="100%" />
 
 ## Tips
 
