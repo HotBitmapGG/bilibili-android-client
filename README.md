@@ -2,12 +2,12 @@
 
 ## Tips
 
-  * 该项目正在持续开发中.
+  * 该项目正在持续开发中,喜欢的请给个star支持下,3Q啦.
 
 
 
 
-## v2.0新版Apk
+## v2.1.2Apk
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/qrcode.png?raw=true)
 
