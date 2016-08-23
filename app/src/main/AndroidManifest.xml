@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.hotbitmapgg.ohmybilibili"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <supports-screens
@@ -9,20 +9,18 @@
         android:largeScreens="true"
         android:normalScreens="false"
         android:resizeable="true"
-        android:smallScreens="true"/>
+        android:smallScreens="true" />
 
     <!-- 用户权限设置 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 
     <application
-        android:name=".config.OhMyBiliBiliApp"
+        android:name=".OhMyBiliBiliApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -30,175 +28,140 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon, android:theme, android:label">
         <activity
-            android:name=".activity.SplashActivity"
-            android:theme="@style/ColorTranslucentTheme"
-            >
+            android:name=".module.common.SplashActivity"
+            android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
 
         <!--主界面 -->
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".module.common.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
 
 
         <!-- 登录界面 -->
         <activity
-            android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
-
-        <!-- 我的二维码 -->
-        <activity
-            android:name=".activity.IQrCodeActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".module.common.LoginActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- APP简介界面 -->
         <activity
-            android:name=".activity.AppIntroduceActivity"
+            android:name=".module.common.AppIntroduceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme">
-        </activity>
-
-
-        <!-- 意见反馈界面 -->
-        <activity
-            android:name=".activity.FeedBackActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:theme="@style/ColorTranslucentTheme"/>
 
 
         <!-- home跳转webView界面 -->
         <activity
-            android:name=".activity.BrowserActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".module.common.BrowserActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- 视频详情界面 -->
         <activity
-            android:name=".activity.VideoDetailsActivity"
+            android:name=".module.video.VideoDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme"/>
+            android:theme="@style/ColorTranslucentTheme" />
 
         <!-- bilibili用户界面 -->
         <activity
-            android:name=".activity.UserInfoActivity"
+            android:name=".module.user.UserInfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme">
-        </activity>
-
-        <!-- bilibili用户关注界面 -->
-        <activity
-            android:name=".activity.UserAttentionActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:theme="@style/ColorTranslucentTheme"/>
 
 
         <!-- 专题详情界面 -->
         <activity
-            android:name=".activity.SpecialDetailsActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".module.bangumi.SpecialDetailsActivity"
+            android:screenOrientation="portrait"/>
 
-        <!-- 热门推荐更多界面 -->
-        <activity
-            android:name=".activity.RecommendMoreActivity"
-            android:screenOrientation="portrait">
-        </activity>
 
         <!-- 分区界面 根据传递的标题集合完成界面 -->
         <activity
-            android:name=".activity.PartitionMoreActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:name=".module.partition.PartitionMoreActivity"
+            android:screenOrientation="portrait"/>
 
         <!--用户粉丝界面-->
         <activity
-            android:name=".activity.UserFansActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".module.user.UserFansActivity"
+            android:screenOrientation="portrait" />
 
 
         <!--番剧专题界面-->
         <activity
-            android:name=".activity.BangumiTimeLineActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".module.bangumi.WeekDayBangumiActivity"
+            android:screenOrientation="portrait" />
 
         <!--游戏中心界面-->
         <activity
-            android:name=".activity.GameCentreActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".module.common.GameCentreActivity"
+            android:screenOrientation="portrait" />
 
         <!--视频相关推荐界面-->
         <activity
-            android:name=".activity.VideoPartsListMoreActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".module.video.VideoPartsListMoreActivity"
+            android:screenOrientation="portrait" />
 
         <!--离线缓存界面-->
         <activity
-            android:name=".activity.OffLineDownloadActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".module.entry.OffLineDownloadActivity"
+            android:screenOrientation="portrait" />
 
         <!--直播详情界面-->
         <activity
-            android:name=".activity.BiliBiliLivePlayerActivity"
-            android:screenOrientation="portrait"/>
-
-        <!-- 推荐列表更多界面-->
-        <activity
-            android:name=".activity.ListMoreDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".module.video.BiliBiliLivePlayerActivity"
+            android:screenOrientation="portrait" />
 
         <!--番剧索引界面-->
         <activity
-            android:name=".activity.BangumiIndexActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".module.bangumi.BangumiIndexActivity"
+            android:screenOrientation="portrait" />
 
         <!--关于我详情界面-->
         <activity
-            android:name=".activity.HotBitmapGGInfoActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".module.common.HotBitmapGGInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <!--热门视频排行榜界面-->
+        <activity
+            android:name=".module.rank.HotVideoIndexActivity"
+            android:screenOrientation="portrait" />
 
 
-        <!-- 初始化界面 -->
+        <!-- Vitamio播放器初始化界面 -->
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateAlwaysHidden">
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
-        <!--U主推荐视频界面-->
+        <!--UP主推荐视频界面-->
         <activity
-            android:name=".activity.UpMoreCoverActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".module.user.UpMoreCoverActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 播放器播放界面 -->
         <activity
-            android:name=".activity.BiliBiliPlayerVideoActivity"
+            android:name=".module.video.BiliBiliPlayerVideoActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:process=":vitamio"
             android:screenOrientation="landscape"
             android:theme="@style/ColorTranslucentTheme"
-            android:windowSoftInputMode="stateAlwaysHidden">
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <!-- 视频后台播放Service -->
         <service
             android:name=".service.PlayerService"
-            android:process=":vitamio"/>
+            android:process=":vitamio" />
 
 
     </application>

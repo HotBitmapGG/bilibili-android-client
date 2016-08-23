@@ -7,12 +7,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.UserFans;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserFans;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 用户粉丝Adapter
+ */
 public class UserFansAdapter extends AbsRecyclerViewAdapter
 {
 
@@ -40,18 +47,16 @@ public class UserFansAdapter extends AbsRecyclerViewAdapter
 
         super.onBindViewHolder(holder, position);
 
-        if(holder instanceof  itemViewHolder)
+        if (holder instanceof itemViewHolder)
         {
-            itemViewHolder mHolder =  (itemViewHolder) holder;
+            itemViewHolder mHolder = (itemViewHolder) holder;
             UserFans.FansInfo fansInfo = infos.get(position);
-            Picasso.with(getContext()).load(fansInfo.face).into(mHolder.mUserAvatar);
+            Picasso.with(getContext())
+                    .load(fansInfo.face)
+                    .placeholder(R.drawable.ico_user_default)
+                    .into(mHolder.mUserAvatar);
             mHolder.mUserName.setText(fansInfo.uname);
         }
-    }
-
-    public void addData(UserFans.FansInfo fansInfo)
-    {
-        infos.add(fansInfo);
     }
 
     @Override
@@ -74,8 +79,8 @@ public class UserFansAdapter extends AbsRecyclerViewAdapter
 
             super(itemView);
 
-            mUserAvatar = $(R.id.user_avatar_view);
-            mUserName = $(R.id.user_name);
+            mUserAvatar = $(R.id.item_user_avatar);
+            mUserName = $(R.id.item_user_name);
         }
     }
 }

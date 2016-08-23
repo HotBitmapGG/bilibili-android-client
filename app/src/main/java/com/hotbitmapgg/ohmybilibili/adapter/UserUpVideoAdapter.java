@@ -8,19 +8,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.UserVideoItem;
-import com.hotbitmapgg.ohmybilibili.network.UrlHelper;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
+import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * UP主上传视频查看Adapter
+ */
 public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<UserVideoItem> parts = new ArrayList<>();
+    private List<UserUpVideoInfo.VlistBean> parts = new ArrayList<>();
 
-    public UserUpVideoAdapter(RecyclerView recyclerView, List<UserVideoItem> parts)
+    public UserUpVideoAdapter(RecyclerView recyclerView, List<UserUpVideoInfo.VlistBean> parts)
     {
 
         super(recyclerView);
@@ -32,7 +39,8 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.card_item_user_up_video, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext())
+                .inflate(R.layout.card_item_user_up_video, parent, false));
     }
 
     @Override
@@ -42,16 +50,16 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            UserVideoItem item = parts.get(position);
-            String pic = item.pic;
-            String play = item.play;
-            int video_review = item.video_review;
-            String title = item.title;
+            UserUpVideoInfo.VlistBean vlistBean = parts.get(position);
 
-            Picasso.with(getContext()).load(UrlHelper.getClearVideoPreviewUrl(pic)).placeholder(R.drawable.bili_default_image_tv).into(itemViewHolder.mVideoPic);
-            itemViewHolder.mVideoTitle.setText(title);
-            itemViewHolder.mVideoPlayNum.setText(play);
-            itemViewHolder.mVideoReviewNum.setText(video_review + "");
+            Picasso.with(getContext())
+                    .load(UrlHelper.getClearVideoPreviewUrl(vlistBean.getPic()))
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(itemViewHolder.mVideoPic);
+
+            itemViewHolder.mVideoTitle.setText(vlistBean.getTitle());
+            itemViewHolder.mVideoPlayNum.setText(String.valueOf(vlistBean.getPlay()));
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(vlistBean.getVideo_review()));
         }
 
         super.onBindViewHolder(holder, position);
@@ -80,10 +88,10 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 
             super(itemView);
 
-            mVideoPic = $(R.id.user_video_pic);
-            mVideoTitle = $(R.id.user_video_title);
-            mVideoPlayNum = $(R.id.user_play_num);
-            mVideoReviewNum = $(R.id.user_review_count);
+            mVideoPic = $(R.id.item_img);
+            mVideoTitle = $(R.id.item_title);
+            mVideoPlayNum = $(R.id.item_play);
+            mVideoReviewNum = $(R.id.item_review);
         }
     }
 }

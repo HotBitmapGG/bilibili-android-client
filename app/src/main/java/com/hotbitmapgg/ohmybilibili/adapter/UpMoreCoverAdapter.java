@@ -8,19 +8,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.UserVideoItem;
-import com.hotbitmapgg.ohmybilibili.network.UrlHelper;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
+import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 用户上传更多视频查看Adapter
+ */
 public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<UserVideoItem> userVideoList = new ArrayList<>();
+    private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
 
-    public UpMoreCoverAdapter(RecyclerView recyclerView, List<UserVideoItem> userVideoList)
+    public UpMoreCoverAdapter(RecyclerView recyclerView, List<UserUpVideoInfo.VlistBean> userVideoList)
     {
 
         super(recyclerView);
@@ -32,7 +39,8 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.list_item_up_more_video, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext())
+                .inflate(R.layout.item_up_more_video, parent, false));
     }
 
     @Override
@@ -42,18 +50,17 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            UserVideoItem videoItem = userVideoList.get(position);
-            String author = videoItem.author;
-            String pic = videoItem.pic;
-            String play = videoItem.play;
-            int video_review = videoItem.video_review;
-            String title = videoItem.title;
+            UserUpVideoInfo.VlistBean vlistBean = userVideoList.get(position);
 
-            Picasso.with(getContext()).load(UrlHelper.getClearVideoPreviewUrl(pic)).placeholder(R.drawable.bili_default_image_tv).into(itemViewHolder.mVideoPic);
-            itemViewHolder.mVideoTitle.setText(title);
-            itemViewHolder.mVideoUserInfo.setText(author);
-            itemViewHolder.mVideoPlayNum.setText(play);
-            itemViewHolder.mVideoReviewNum.setText(video_review + "");
+            Picasso.with(getContext())
+                    .load(UrlHelper.getClearVideoPreviewUrl(vlistBean.getPic()))
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(itemViewHolder.mVideoPic);
+
+            itemViewHolder.mVideoTitle.setText(vlistBean.getTitle());
+            itemViewHolder.mVideoUserInfo.setText(vlistBean.getAuthor());
+            itemViewHolder.mVideoPlayNum.setText(String.valueOf(vlistBean.getPlay()));
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(vlistBean.getVideo_review()));
         }
         super.onBindViewHolder(holder, position);
     }
@@ -64,12 +71,6 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 
         return userVideoList.size();
     }
-
-    public void addData(UserVideoItem item)
-    {
-        userVideoList.add(item);
-    }
-
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
@@ -89,15 +90,11 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 
             super(itemView);
 
-            mVideoPic = $(R.id.user_video_pic);
-
-            mVideoTitle = $(R.id.user_video_title);
-
-            mVideoUserInfo = $(R.id.user_video_info);
-
-            mVideoPlayNum = $(R.id.user_play_num);
-
-            mVideoReviewNum = $(R.id.user_review_count);
+            mVideoPic = $(R.id.item_img);
+            mVideoTitle = $(R.id.item_title);
+            mVideoUserInfo = $(R.id.item_user_name);
+            mVideoPlayNum = $(R.id.item_play);
+            mVideoReviewNum = $(R.id.item_review);
         }
     }
 }

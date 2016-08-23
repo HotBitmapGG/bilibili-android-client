@@ -5,12 +5,13 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
-import com.hotbitmapgg.ohmybilibili.config.OhMyBiliBiliApp;
+import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 
 /**
- * 缓存相关工具类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * SP缓存工具类
  */
 public final class PreferenceUtils
 {

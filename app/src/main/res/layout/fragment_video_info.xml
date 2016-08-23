@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:overScrollMode="never">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never">
 
 
     <LinearLayout
-        android:id="@+id/container_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -22,11 +21,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/font_normal"/>
+            android:textColor="@color/font_normal" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="8dp"/>
+            android:layout_height="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,49 +49,49 @@
                     <ImageView
                         android:layout_width="@dimen/video_info_mini_icons_size"
                         android:layout_height="@dimen/video_info_mini_icons_size"
-                        android:src="@drawable/ic_info_views_gray"/>
+                        android:src="@drawable/ic_info_views_gray" />
 
                     <TextView
                         android:id="@+id/tv_play_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                        android:textColor="@color/black_alpha"
-                        android:textSize="@dimen/video_info_mini_icons_size"/>
+                        android:textColor="@color/black_alpha_45"
+                        android:textSize="@dimen/video_info_mini_icons_size" />
 
                     <Space
                         android:layout_width="16dp"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
 
                     <ImageView
                         android:layout_width="@dimen/video_info_mini_icons_size"
                         android:layout_height="@dimen/video_info_mini_icons_size"
-                        android:src="@drawable/ic_answer_danmaku"/>
+                        android:src="@drawable/ic_answer_danmaku" />
 
                     <TextView
                         android:id="@+id/tv_review_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                        android:textColor="@color/black_alpha"
-                        android:textSize="@dimen/video_info_mini_icons_size"/>
+                        android:textColor="@color/black_alpha_45"
+                        android:textSize="@dimen/video_info_mini_icons_size" />
                 </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="4dp"/>
+                    android:layout_height="4dp" />
 
                 <TextView
                     android:id="@+id/tv_created_at"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="8dp"/>
+            android:layout_height="8dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -100,11 +99,11 @@
             android:paddingEnd="@dimen/title_margin_small"
             android:paddingStart="@dimen/title_margin_small"
             android:text="简介"
-            android:textColor="@color/font_normal"/>
+            android:textColor="@color/font_normal" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="4dp"/>
+            android:layout_height="4dp" />
 
         <TextView
             android:id="@+id/tv_description"
@@ -112,7 +111,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/title_margin_small"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@color/black_alpha"/>
+            android:textColor="@color/black_alpha_45" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,21 +132,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:textColor="@color/green_300"/>
+                    android:textColor="@color/green_300" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
                     android:background="@drawable/daily_video_action_bg"
-                    android:src="@drawable/ic_share_green"/>
+                    android:clickable="false"
+                    android:src="@drawable/ic_share_green" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="分享"
-                    android:textColor="@color/font_normal"/>
+                    android:textColor="@color/font_normal" />
 
 
             </LinearLayout>
@@ -166,20 +165,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:textColor="@color/orange_500"/>
+                    android:textColor="@color/orange_500" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
-                    android:src="@drawable/ic_coin"/>
+                    android:src="@drawable/ic_coin" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="投硬币"
-                    android:textColor="@color/font_normal"/>
+                    android:textColor="@color/font_normal" />
 
 
             </LinearLayout>
@@ -198,20 +197,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:textColor="@color/pink_300"/>
+                    android:textColor="@color/colorPrimary" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
-                    android:src="@drawable/ic_collect"/>
+                    android:src="@drawable/ic_collect" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="收藏"
-                    android:textColor="@color/font_normal"/>
+                    android:textColor="@color/font_normal" />
 
 
             </LinearLayout>
@@ -228,20 +227,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:textColor="@color/pink_300"/>
+                    android:textColor="@color/colorPrimary" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
-                    android:src="@drawable/ic_download"/>
+                    android:src="@drawable/ic_download" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="缓存"
-                    android:textColor="@color/font_normal"/>
+                    android:textColor="@color/font_normal" />
 
 
             </LinearLayout>
@@ -251,7 +250,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/line_bg"/>
+            android:background="@color/line_bg" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -263,7 +262,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -273,7 +272,7 @@
                 android:background="@drawable/btn_pin_bg"
                 android:gravity="center"
                 android:text="+关注"
-                android:textColor="@color/pink_300"/>
+                android:textColor="@color/colorPrimary" />
 
         </RelativeLayout>
 
@@ -292,7 +291,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/ic_charge_power"/>
+                android:src="@drawable/ic_charge_power" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -302,8 +301,8 @@
                 android:layout_marginLeft="90dp"
                 android:padding="10dp"
                 android:text="请赐予我电量吧 !"
-                android:textColor="@color/pink_300"
-                android:textSize="18sp"/>
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
 
             <TextView
@@ -316,7 +315,7 @@
                 android:gravity="center"
                 android:text="充电"
                 android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -329,7 +328,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_gravity="top"
-                    android:background="@color/line_bg"/>
+                    android:background="@color/line_bg" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -337,9 +336,8 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:text="更多电量,更多灵感哟  o(*≧▽≦)ツ"
-                    android:textColor="@color/pink_300"
-                    android:textSize="14sp"
-                    />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -350,7 +348,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/line_bg"/>
+            android:background="@color/line_bg" />
 
 
         <RelativeLayout
@@ -364,7 +362,7 @@
                 android:padding="10dp"
                 android:text="视频相关"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/btn_more_video"
@@ -377,7 +375,7 @@
                 android:clickable="true"
                 android:text="更多"
                 android:textColor="@color/white"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
         </RelativeLayout>
 
 
@@ -386,17 +384,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            app:max_select="-1"/>
+            app:max_select="-1" />
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/video_part_list"
+            android:id="@+id/recycle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:overScrollMode="never"
             android:paddingTop="16dp"
-            android:scrollbars="none"/>
+            android:scrollbars="none" />
 
 
     </LinearLayout>

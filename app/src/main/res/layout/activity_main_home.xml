@@ -1,13 +1,12 @@
 <android.support.v4.widget.DrawerLayout android:id="@+id/drawer_layout"
-                                        xmlns:android="http://schemas.android.com/apk/res/android"
-                                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/more_appbar_layout"
@@ -20,11 +19,11 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/top_bar_bg"
+                android:background="@color/colorPrimary"
                 android:elevation="0dp"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
         </android.support.design.widget.AppBarLayout>
@@ -34,21 +33,21 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 
 
-    <com.hotbitmapgg.ohmybilibili.widget.navigation.NavigationView
+    <com.hotbitmapgg.ohmybilibili.widget.navigation_view.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="@dimen/navigation_max_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/navigation_view_bg"
+        android:background="@color/navigation_background_light"
         android:overScrollMode="never"
-        app:headerLayout="@layout/main_navigation_header"
+        app:headerLayout="@layout/layout_navigation_header"
         app:itemIconTint="@color/navigation_view_item_icon_color"
         app:itemTextColor="@color/navigation_view_item_text_color"
-        app:menu="@menu/navigation_main"/>
+        app:menu="@menu/navigation_main" />
 
 </android.support.v4.widget.DrawerLayout>

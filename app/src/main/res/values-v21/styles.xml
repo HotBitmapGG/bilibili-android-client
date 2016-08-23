@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@style/BaseAppTheme">
 
-        <item name="android:statusBarColor">@color/status_bar_color</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
 
     </style>
 

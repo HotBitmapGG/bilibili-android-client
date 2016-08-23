@@ -1,12 +1,11 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bacground">
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/toolbar_layout"
-        layout="@layout/toolbar_layout"/>
+        layout="@layout/layout_toolbar"/>
 
     <FrameLayout
         android:id="@+id/live_layout"
@@ -107,7 +106,7 @@
             android:layout_toRightOf="@+id/user_pic"
             android:padding="5dp"
             android:text="用户名"
-            android:textColor="@color/pink_300"
+            android:textColor="@color/colorPrimary"
             android:textSize="12sp"/>
 
 
@@ -134,7 +133,7 @@
             android:background="@drawable/btn_pin_bg"
             android:gravity="center"
             android:text="+关注"
-            android:textColor="@color/pink_300"/>
+            android:textColor="@color/colorPrimary"/>
 
     </RelativeLayout>
 

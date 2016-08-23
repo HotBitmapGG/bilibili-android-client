@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * 使用鸿洋大神的状态栏工具类
- * 适配android4.4状态栏样式
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 沉浸式状态栏适配工具类
  */
 public class StatusBarCompat
 {

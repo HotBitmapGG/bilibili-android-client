@@ -1,32 +1,37 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.fragment.BaseHomeFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeDiscoverFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeMoreFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeLiveFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeListFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.PlaceholderFragment;
-import com.hotbitmapgg.ohmybilibili.fragment.HomeRecommendFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeBangumiFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeDiscoverFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeFocusFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeLiveFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeMoreFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.HomeRecommendedFragment;
 
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 主界面Fragment模块Adapter
+ */
 public class HomePagerAdapter extends FragmentPagerAdapter
 {
 
     private final String[] TITLES;
 
-    private BaseHomeFragment[] fragments;
+    private Fragment[] fragments;
 
     public HomePagerAdapter(FragmentManager fm, Context context)
     {
 
         super(fm);
         TITLES = context.getResources().getStringArray(R.array.sections);
-        fragments = new BaseHomeFragment[TITLES.length];
+        fragments = new Fragment[TITLES.length];
     }
 
     @Override
@@ -38,22 +43,25 @@ public class HomePagerAdapter extends FragmentPagerAdapter
             switch (position)
             {
                 case 0:
-                    fragments[position] = HomeRecommendFragment.newInstance();
+                    fragments[position] = HomeRecommendedFragment.newInstance();
                     break;
                 case 1:
-                    fragments[position] = HomeListFragment.newInstance();
+                    fragments[position] = HomeBangumiFragment.newInstance();
                     break;
                 case 2:
                     fragments[position] = HomeLiveFragment.newIntance();
                     break;
                 case 3:
-                    fragments[position] = HomeMoreFragment.newInstance();
+                    fragments[position] = HomeFocusFragment.newIntance();
                     break;
                 case 4:
+                    fragments[position] = HomeMoreFragment.newInstance();
+                    break;
+                case 5:
                     fragments[position] = HomeDiscoverFragment.newInstance();
                     break;
                 default:
-                    fragments[position] = PlaceholderFragment.newInstance();
+                    break;
             }
         }
         return fragments[position];
@@ -71,20 +79,5 @@ public class HomePagerAdapter extends FragmentPagerAdapter
     {
 
         return TITLES[position];
-    }
-
-    public void scrollToTop(int pos)
-    {
-
-        if (fragments[pos] != null)
-        {
-            fragments[pos].scrollToTop();
-        }
-    }
-
-    public boolean canScrollVertically(int position, int direction)
-    {
-
-        return fragments[position] != null && fragments[position].canScrollVertically(direction);
     }
 }

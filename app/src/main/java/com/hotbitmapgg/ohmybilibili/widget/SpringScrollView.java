@@ -9,9 +9,10 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
 /**
- * 有弹性的ScrollView 实现下拉弹回和上拉弹回
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 带弹性滑动的ScrollView
  */
 public class SpringScrollView extends ScrollView
 {

@@ -9,7 +9,12 @@ import android.view.ScaleGestureDetector;
 
 import com.yixia.zi.utils.DeviceUtils;
 
-
+/**
+ * Created by hcc on 16/8/7 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 通用的手势帮助类
+ */
 public class CommonGestures
 {
 

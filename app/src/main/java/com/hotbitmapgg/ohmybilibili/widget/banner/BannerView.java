@@ -1,9 +1,9 @@
 package com.hotbitmapgg.ohmybilibili.widget.banner;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,7 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.Banner;
+import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.squareup.picasso.Picasso;
 
@@ -28,7 +29,13 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-public class BannerView extends RelativeLayout
+/**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 自定义Banner无限轮播控件
+ */
+public class BannerView extends RelativeLayout implements BannerAdapter.ViewPagerOnItemClickListener
 {
 
     @Bind(R.id.widget_banner_viewpager)
@@ -39,7 +46,8 @@ public class BannerView extends RelativeLayout
 
     private CompositeSubscription compositeSubscription;
 
-    private int delayTime = 10;     //默认轮播时间，10s
+    //默认轮播时间，10s
+    private int delayTime = 10;
 
     private List<ImageView> imageViewList;
 
@@ -49,9 +57,11 @@ public class BannerView extends RelativeLayout
 
     private List<Banner> bannerList;
 
-    private int selectRes = R.color.white;      //选中显示Indicator
+    //选中显示Indicator
+    private int selectRes = R.drawable.shape_dots_select;
 
-    private int unSelcetRes = R.color.black_alpha;    //非选中显示Indicator
+    //非选中显示Indicator
+    private int unSelcetRes = R.drawable.shape_dots_default;
 
     public BannerView(Context context)
     {
@@ -138,8 +148,8 @@ public class BannerView extends RelativeLayout
             View dot = new View(context);
             dot.setBackgroundResource(unSelcetRes);
             params = new LinearLayout.LayoutParams(
-                    DisplayUtil.dip2px(context, 10),
-                    DisplayUtil.dip2px(context, 10));
+                    DisplayUtil.dip2px(context, 5),
+                    DisplayUtil.dip2px(context, 5));
             params.leftMargin = 10;
             dot.setLayoutParams(params);
             dot.setEnabled(false);
@@ -151,8 +161,9 @@ public class BannerView extends RelativeLayout
         for (int i = 0; i < bannerList.size(); i++)
         {
             ImageView hImageView = new ImageView(context);
-            Picasso.with(context).load(bannerList.get(i).img).into(hImageView);
-            //hImageView.setUrl(bannerList.get(i).img);
+            Picasso.with(context)
+                    .load(bannerList.get(i).img)
+                    .into(hImageView);
             imageViewList.add(hImageView);
         }
 
@@ -202,6 +213,7 @@ public class BannerView extends RelativeLayout
         bannerAdapter = new BannerAdapter(imageViewList);
         viewPager.setAdapter(bannerAdapter);
         bannerAdapter.notifyDataSetChanged();
+        bannerAdapter.setmViewPagerOnItemClickListener(this);
 
         //图片开始轮播
         startScroll();
@@ -216,8 +228,6 @@ public class BannerView extends RelativeLayout
     {
 
         compositeSubscription = new CompositeSubscription();
-        Log.d("start Scroll", "start");
-        Log.d("Subscription sub", compositeSubscription.toString());
         isStopScroll = false;
         Subscription subscription = Observable.timer(delayTime, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
@@ -235,7 +245,7 @@ public class BannerView extends RelativeLayout
                     public void onError(Throwable e)
                     {
 
-                        Log.e("rxjava error", e.getCause().toString());
+
                     }
 
                     @Override
@@ -248,7 +258,6 @@ public class BannerView extends RelativeLayout
                         }
                         isStopScroll = true;
                         viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                        Log.d("banner scroll", "第" + viewPager.getCurrentItem() + "页");
                     }
                 });
         compositeSubscription.add(subscription);
@@ -259,8 +268,6 @@ public class BannerView extends RelativeLayout
      */
     private void stopScroll()
     {
-
-        Log.d("stop Scroll", "stop");
         isStopScroll = true;
     }
 
@@ -269,8 +276,26 @@ public class BannerView extends RelativeLayout
 
         if (compositeSubscription != null)
         {
-            Log.d("Subscription unsub", compositeSubscription.toString());
             compositeSubscription.unsubscribe();
         }
+    }
+
+    /**
+     * 设置ViewPager的Item点击回调事件
+     *
+     * @param position
+     */
+    @Override
+    public void onItemClick(int position)
+    {
+
+        if (position == 0)
+        {
+            position = bannerList.size() - 1;
+        } else
+        {
+            position -= 1;
+        }
+        BrowserActivity.launch((Activity) context, bannerList.get(position).link, bannerList.get(position).title);
     }
 }

@@ -3,7 +3,7 @@
     android:shape="oval" >
 
 
-    <solid android:color="@color/top_bar_bg" />
+    <solid android:color="@color/colorPrimary" />
     
     <corners android:radius="5dp"/>
 

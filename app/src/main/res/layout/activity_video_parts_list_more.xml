@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bacground"
     android:orientation="vertical">
 
 
@@ -38,7 +37,7 @@
             app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/video_parts_recycle"
+            android:id="@+id/recycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"

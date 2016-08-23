@@ -9,9 +9,10 @@ import android.os.StatFs;
 import java.io.File;
 
 /**
- * 个人自用小工具类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 通用工具类
  */
 public class CommonUtils
 {

@@ -6,6 +6,12 @@ import java.util.zip.DataFormatException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+/**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 压缩工具类
+ */
 public class CompressionTools
 {
 

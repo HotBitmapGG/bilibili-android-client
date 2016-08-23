@@ -58,7 +58,7 @@
     <dimen name="list_item_avatar_size">48dp</dimen>
     <dimen name="list_item_user_name_size">14sp</dimen>
 
-    <!-- Bangumi -->
+    <!-- WeekDayBangumi -->
     <dimen name="bangumi_horizontal_list_height">220dp</dimen>
     <dimen name="bangumi_horizontal_single_item_width">120dp</dimen>
     <dimen name="bangumi_horizontal_title_frame_max_height">48sp</dimen>
@@ -124,7 +124,7 @@
 
     <dimen name="main_banner_height">150dp</dimen>
 
-    <dimen name="user_info_padding">15dp</dimen>
+    <dimen name="user_info_padding">10dp</dimen>
 
     <dimen name="main_tab_padding">28dp</dimen>
     <dimen name="other_tab_padding">70dp</dimen>

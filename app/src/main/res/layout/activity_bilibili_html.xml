@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bacground"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -16,25 +15,25 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/top_bar_bg"
+            android:background="@color/colorPrimary"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <WebView
-            android:id="@+id/webView1"
+            android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
-            android:id="@+id/banner_loading_circle"
+            android:id="@+id/circle_progress"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="center"

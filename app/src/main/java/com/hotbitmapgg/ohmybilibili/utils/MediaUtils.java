@@ -5,6 +5,12 @@ import android.net.Uri;
 import java.io.File;
 import java.util.regex.Pattern;
 
+/**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * 媒体工具类
+ */
 public final class MediaUtils
 {
 
@@ -18,7 +24,7 @@ public final class MediaUtils
             "\\.tvs", "\\.vc1", "\\.vcr", "\\.vcv", "\\.vdo", "\\.vdr", "\\.veg", "\\.vem", "\\.vf", "\\.vfw", "\\.vfz", "\\.vgz", "\\.vid", "\\.viewlet", "\\.viv", "\\.vivo", "\\.vlab", "\\.vob", "\\.vp3", "\\.vp6", "\\.vp7", "\\.vpj", "\\.vro", "\\.vsp", "\\.w32", "\\.wcp", "\\.webm", "\\.wm", "\\.wmd", "\\.wmmp", "\\.wmv", "\\.wmx", "\\.wp3", "\\.wpl", "\\.wtv", "\\.wvx", "\\.xfl", "\\.xvid", "\\.yuv", "\\.zm1", "\\.zm2", "\\.zm3", "\\.zmv"
     };
 
-  
+
     public static final String[] AUDIO_EXTENSIONS = {
             "\\.4mp", "\\.669", "\\.6cm", "\\.8cm", "\\.8med", "\\.8svx", "\\.a2m", "\\.aa", "\\.aa3", "\\.aac", "\\.aax", "\\.abc", "\\.abm", "\\.ac3", "\\.acd", "\\.acd-bak", "\\.acd-zip", "\\.acm", "\\.act", "\\.adg", "\\.afc", "\\.agm", "\\.ahx", "\\.aif", "\\.aifc", "\\.aiff", "\\.ais", "\\.akp", "\\.al", "\\.alaw", "\\.all", "\\.amf", "\\.amr", "\\.ams", "\\.ams", "\\.aob", "\\.ape", "\\.apf", "\\.apl", "\\.ase", "\\.at3", "\\.atrac", "\\.au", "\\.aud", "\\.aup", "\\.avr", "\\.awb", "\\.band", "\\.bap", "\\.bdd", "\\.box", "\\.bun", "\\.bwf", "\\.c01", "\\.caf", "\\.cda", "\\.cdda", "\\.cdr", "\\.cel", "\\.cfa", "\\.cidb", "\\.cmf", "\\.copy", "\\.cpr", "\\.cpt", "\\.csh", "\\.cwp", "\\.d00", "\\.d01", "\\.dcf", "\\.dcm", "\\.dct", "\\.ddt",
             "\\.dewf", "\\.df2", "\\.dfc", "\\.dig", "\\.dig", "\\.dls", "\\.dm", "\\.dmf", "\\.dmsa", "\\.dmse", "\\.drg", "\\.dsf", "\\.dsm", "\\.dsp", "\\.dss", "\\.dtm", "\\.dts", "\\.dtshd", "\\.dvf", "\\.dwd", "\\.ear", "\\.efa", "\\.efe", "\\.efk", "\\.efq", "\\.efs", "\\.efv", "\\.emd", "\\.emp", "\\.emx", "\\.esps", "\\.f2r", "\\.f32", "\\.f3r", "\\.f4a", "\\.f64", "\\.far", "\\.fff", "\\.flac", "\\.flp", "\\.fls", "\\.frg", "\\.fsm", "\\.fzb", "\\.fzf", "\\.fzv", "\\.g721", "\\.g723", "\\.g726", "\\.gig", "\\.gp5", "\\.gpk", "\\.gsm", "\\.gsm", "\\.h0", "\\.hdp", "\\.hma", "\\.hsb", "\\.ics", "\\.iff", "\\.imf", "\\.imp", "\\.ins", "\\.ins", "\\.it", "\\.iti", "\\.its", "\\.jam", "\\.k25", "\\.k26", "\\.kar", "\\.kin", "\\.kit", "\\.kmp", "\\.koz", "\\.koz", "\\.kpl", "\\.krz",

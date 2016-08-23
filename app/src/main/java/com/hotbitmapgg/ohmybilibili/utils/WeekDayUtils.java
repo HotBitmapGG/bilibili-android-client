@@ -4,9 +4,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
  * 时间相关工具类
- *
- * @HotBitmapGG
  */
 public class WeekDayUtils
 {

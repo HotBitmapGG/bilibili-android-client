@@ -3,7 +3,6 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/bacground"
               android:orientation="vertical">
 
 
@@ -17,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/top_bar_bg"
+            android:background="@color/colorPrimary"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>

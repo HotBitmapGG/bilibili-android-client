@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:id="@+id/tv_tags"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/white_tags_bg"
+    android:gravity="center"
+    android:padding="5dp"
+    android:text="标签"
+    android:textColor="@color/font_normal">
+
+
+</TextView>

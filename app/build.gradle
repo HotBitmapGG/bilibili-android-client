@@ -2,21 +2,20 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
-
-    useLibrary 'org.apache.http.legacy'
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "com.hotbitmapgg.ohmybilibili"
-        minSdkVersion 22
+        minSdkVersion 21
         targetSdkVersion 23
-        versionCode 1
-        versionName "2.0"
+        versionCode 4
+        versionName "2.1.2"
 
     }
     buildTypes {
         release {
             minifyEnabled false
+            //shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -25,20 +24,17 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.github.ctiao:dfm:0.4.1'
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:support-v13:23.4.0'
     compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:design:23.4.0'
-    //androidL动画库
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.github.ozodrukh:CircularReveal:1.1.0@aar'
+    //html解析库
+    compile 'org.jsoup:jsoup:1.8.3'
+    //烈焰弹幕库
+    compile 'com.github.ctiao:dfm:0.4.1'
     //Picasso图片加载库
     compile 'com.squareup.picasso:picasso:2.5.2'
-    //Bmob后端云
-    compile 'cn.bmob.android:bmob-sdk:3.4.6'
     //tabLayout
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.0@aar'
     //标签布局
@@ -48,16 +44,14 @@ dependencies {
     //Okhttp3
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-    compile 'com.zhy:okhttputils:2.3.9'
-    //Gson jsoup
-    compile 'org.jsoup:jsoup:1.8.3'
+    //Gson
     compile 'com.google.code.gson:gson:2.6.2'
     //Rxjava Retrofit2
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
-    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta1'
-    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta1'
-    compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     //vitamio视频播放器
     compile(name: 'Vitamio-release', ext: 'aar')
     compile(name: 'zImaster-release', ext: 'aar')
@@ -65,6 +59,15 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.4.5.1'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.4.5.1'
     compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.4.5.1'
+    //RxLifecycle 内存泄露
+    compile 'com.trello:rxlifecycle-components:0.6.1'
+    //RxBinding系列
+    compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
+    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.3.0'
+    compile 'com.jakewharton.rxbinding:rxbinding-design:0.3.0'
+    // 调试工具
+    compile 'com.facebook.stetho:stetho:1.3.1'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.3.1'
 }
 
 repositories {

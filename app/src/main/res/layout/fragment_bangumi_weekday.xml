@@ -2,8 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/bacground">
+             android:layout_height="match_parent">
 
 
     <android.support.v7.widget.RecyclerView
@@ -26,7 +25,7 @@
         app:matProg_barColor="?attr/colorPrimary"
         app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
 
-    <com.hotbitmapgg.ohmybilibili.widget.EmptyView
+    <com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView
         android:id="@+id/empty_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/bacground"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <android.support.design.widget.AppBarLayout
@@ -17,28 +16,27 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/top_bar_bg"
+            android:background="@color/colorPrimary"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/user_fans_recycle"
+            android:id="@+id/recycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:clipToPadding="false"
             android:overScrollMode="never"
             android:paddingTop="10dp"
-            android:scrollbars="none"/>
+            android:scrollbars="none" />
 
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
@@ -47,7 +45,7 @@
             android:layout_height="@dimen/circle_progress_view_default_size"
             android:layout_gravity="center"
             app:matProg_barColor="?attr/colorPrimary"
-            app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
+            app:matProg_barWidth="@dimen/circle_progress_view_default_border_width" />
 
 
     </FrameLayout>

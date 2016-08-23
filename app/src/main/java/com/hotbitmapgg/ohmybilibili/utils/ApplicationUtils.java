@@ -16,9 +16,10 @@ import android.os.Environment;
 import android.widget.Toast;
 
 /**
- * App相关工具类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * App工具类
  */
 public class ApplicationUtils
 {

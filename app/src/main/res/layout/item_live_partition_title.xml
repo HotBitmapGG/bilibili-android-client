@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
@@ -15,8 +14,7 @@
         <ImageView
             android:id="@+id/item_live_partition_icon"
             android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="0dp"/>
+            android:layout_height="20dp" />
 
         <TextView
             android:id="@+id/item_live_partition_title"
@@ -24,14 +22,34 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/item_live_partition_icon"
-            tools:text="直播分类名称"/>
+            android:gravity="center"
+            android:textColor="@color/font_normal"
+            android:textSize="14sp"
+            tools:text="直播分类名称" />
 
         <TextView
             android:id="@+id/item_live_partition_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/item_live_partition_more"
+            android:gravity="center"
+            android:textColor="@color/font_normal"
+            android:textSize="14sp"
+            tools:text="当前直播人数" />
+
+        <TextView
+            android:id="@+id/item_live_partition_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            tools:text="当前直播人数"/>
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_more_bg"
+            android:gravity="center"
+            android:text="进去看看"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+
     </RelativeLayout>
 </LinearLayout>

@@ -5,12 +5,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.hotbitmapgg.ohmybilibili.config.OhMyBiliBiliApp;
+import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 
 /**
- * Toast相关工具类
- *
- * @HotBitmapGG
+ * Created by hcc on 16/8/4 21:18
+ * 100332338@qq.com
+ * <p/>
+ * Toast工具类
  */
 public class ToastUtil
 {

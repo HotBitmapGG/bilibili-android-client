@@ -7,13 +7,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.BangumiIndex;
-import com.hotbitmapgg.ohmybilibili.widget.roundedimageview.RoundedImageView;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndex;
+import com.hotbitmapgg.ohmybilibili.widget.rounded_imageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 番剧索引Adapter
+ */
 public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
 {
 
@@ -66,8 +73,8 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
         {
 
             super(itemView);
-            mRoundedImageView = $(R.id.index_img);
-            mTextView = $(R.id.index_tv);
+            mRoundedImageView = $(R.id.item_img);
+            mTextView = $(R.id.item_title);
         }
     }
 }

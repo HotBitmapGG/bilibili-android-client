@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout android:id="@+id/main_content"
-                                                 xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
-                                                 android:fitsSystemWindows="true">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -26,26 +26,26 @@
                 android:id="@+id/user_appbar_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/appbar_parallax_max_height"
-                android:background="@color/toolbar_default_background_dark"
+                android:background="@color/background_dark"
                 android:fitsSystemWindows="true">
 
                 <ImageView
                     android:id="@+id/user_pic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/icon_bili_background"/>
+                    android:background="@drawable/icon_bili_background" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:layout_gravity="top"
-                    android:background="@drawable/shadow_gradient"/>
+                    android:background="@drawable/shadow_gradient" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:layout_gravity="bottom"
-                    android:background="@drawable/shadow_normal_reserve"/>
+                    android:background="@drawable/shadow_normal_reserve" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -72,14 +72,14 @@
                             android:layout_height="@dimen/user_info_avatar_size"
                             app:border_color="@android:color/white"
                             app:border_width="1dp"
-                            tools:src="@drawable/ico_user_default"/>
+                            tools:src="@drawable/ico_user_default" />
 
                         <ImageView
                             android:id="@+id/user_lv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:paddingTop="10dp"/>
+                            android:paddingTop="10dp" />
 
                     </LinearLayout>
 
@@ -106,21 +106,21 @@
                                 android:layout_height="wrap_content"
                                 android:singleLine="true"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                android:textColor="@color/white"/>
+                                android:textColor="@color/white" />
 
                             <Space
                                 android:layout_width="4dp"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content" />
 
                             <ImageView
                                 android:id="@+id/user_sex"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content" />
                         </LinearLayout>
 
                         <Space
                             android:layout_width="match_parent"
-                            android:layout_height="4dp"/>
+                            android:layout_height="4dp" />
 
                         <TextView
                             android:id="@+id/user_desc"
@@ -130,7 +130,7 @@
                             android:maxLines="3"
                             android:paddingEnd="@dimen/title_margin_small"
                             android:paddingStart="@dimen/title_margin_small"
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/white" />
 
                         <LinearLayout
                             android:id="@+id/author_verified_layout"
@@ -144,7 +144,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_author_verified"/>
+                                android:src="@drawable/ic_author_verified" />
 
                             <TextView
                                 android:id="@+id/author_verified_text"
@@ -154,7 +154,7 @@
                                 android:maxLines="3"
                                 android:paddingEnd="@dimen/title_margin_small"
                                 android:paddingStart="@dimen/title_margin_small"
-                                android:textColor="@color/orange_500"/>
+                                android:textColor="@color/orange_500" />
 
                         </LinearLayout>
 
@@ -177,13 +177,13 @@
                                 android:paddingEnd="@dimen/user_info_details_number_padding"
                                 android:paddingStart="@dimen/user_info_details_number_padding"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                                android:textColor="@color/white"/>
+                                android:textColor="@color/white" />
 
                             <View
                                 android:layout_width="@dimen/user_info_details_number_divider_size"
                                 android:layout_height="10dp"
                                 android:layout_marginTop="@dimen/user_info_details_number_divider_margin"
-                                android:background="@color/white"/>
+                                android:background="@color/white" />
 
                             <TextView
                                 android:id="@+id/tv_fans"
@@ -196,7 +196,7 @@
                                 android:paddingEnd="@dimen/user_info_details_number_padding"
                                 android:paddingStart="@dimen/user_info_details_number_padding"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                                android:textColor="@color/white"/>
+                                android:textColor="@color/white" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -209,7 +209,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:minHeight="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -220,14 +220,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        android:background="@color/bacground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="3dp">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -240,7 +239,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="80dp"
                     app:matProg_barColor="?attr/colorPrimary"
-                    app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
+                    app:matProg_barWidth="@dimen/circle_progress_view_default_border_width" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -266,7 +265,7 @@
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textColor="@color/font_normal"
                             android:textSize="18sp"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
 
                         <TextView
@@ -279,29 +278,19 @@
                             android:text="进去看看"
                             android:textColor="@color/white"
                             android:textSize="12sp"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
 
                     </RelativeLayout>
 
-                    <!--                    <com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView
-                        android:id="@+id/user_video_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:divider="@null"
-                        android:horizontalSpacing="@dimen/user_info_padding"
-                        android:numColumns="2"
-                        android:padding="@dimen/user_info_padding"
-                        android:verticalSpacing="@dimen/user_info_padding"/>-->
-
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/user_video_list"
+                        android:id="@+id/recycle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clipToPadding="false"
                         android:overScrollMode="never"
                         android:paddingTop="16dp"
-                        android:scrollbars="none"/>
+                        android:scrollbars="none" />
 
 
                 </LinearLayout>

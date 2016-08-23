@@ -9,102 +9,107 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.model.PartitionMoreVideoItem;
+import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreVideoItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 分区列表查看Adapter
+ */
 public class PartitionMoreListViewAdapter extends AbsRecyclerViewAdapter
 {
 
 
+    private ArrayList<PartitionMoreVideoItem> mList;
 
-	private ArrayList<PartitionMoreVideoItem> mList;
+    public PartitionMoreListViewAdapter(RecyclerView recyclerView, ArrayList<PartitionMoreVideoItem> list)
+    {
 
-	public PartitionMoreListViewAdapter(RecyclerView recyclerView , ArrayList<PartitionMoreVideoItem> list)
-	{
-
-		super(recyclerView);
-		this.mList = list;
-	}
-
-
-	@Override
-	public void onBindViewHolder(AbsRecyclerViewAdapter.ClickableViewHolder holder, int position)
-	{
-
-		super.onBindViewHolder(holder, position);
-		if(holder instanceof  ItemViewHolder)
-		{
-			try
-			{
-				ItemViewHolder mHolder = (ItemViewHolder) holder;
-
-				PartitionMoreVideoItem videoItemInfo = mList.get(position);
-
-				mHolder.mTitleView.setText(videoItemInfo.title == null ? "" : videoItemInfo.title);
-
-				Picasso.with(getContext()).load(Uri.parse(videoItemInfo.pic)).placeholder(R.drawable.bili_default_image_tv).into(mHolder.mPreviewImage);
-
-				String play = videoItemInfo.play;
-
-				int video_review = videoItemInfo.video_review;
-
-				mHolder.mPlayNum.setText(play);
-
-				mHolder.mReviewNum.setText(video_review + "");
-
-				String author = videoItemInfo.author;
-
-				mHolder.mUploadUser.setText(author);
-			} catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-	}
-
-	@Override
-	public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-	{
-
-		bindContext(parent.getContext());
-		return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_partition_more_list, parent , false));
-	}
+        super(recyclerView);
+        this.mList = list;
+    }
 
 
-	@Override
-	public int getItemCount()
-	{
+    @Override
+    public void onBindViewHolder(AbsRecyclerViewAdapter.ClickableViewHolder holder, int position)
+    {
 
-		return mList.size();
-	}
+        super.onBindViewHolder(holder, position);
+        if (holder instanceof ItemViewHolder)
+        {
+            try
+            {
+                ItemViewHolder mHolder = (ItemViewHolder) holder;
+
+                PartitionMoreVideoItem videoItemInfo = mList.get(position);
+
+                mHolder.mTitleView.setText(videoItemInfo.title == null ? "" : videoItemInfo.title);
+
+                Picasso.with(getContext())
+                        .load(Uri.parse(videoItemInfo.pic))
+                        .placeholder(R.drawable.bili_default_image_tv)
+                        .into(mHolder.mPreviewImage);
+
+                String play = videoItemInfo.play;
+                int video_review = videoItemInfo.video_review;
+                mHolder.mPlayNum.setText(play);
+                mHolder.mReviewNum.setText(video_review + "");
+                String author = videoItemInfo.author;
+                mHolder.mUploadUser.setText(author);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
+
+        bindContext(parent.getContext());
+        return new ItemViewHolder(LayoutInflater.from(getContext())
+                .inflate(R.layout.item_partition_more_list, parent, false));
+    }
 
 
-	private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
-	{
-		public ImageView mPreviewImage;
+    @Override
+    public int getItemCount()
+    {
 
-		public TextView mTitleView;
-
-		public TextView mPlayNum;
-
-		public TextView mReviewNum;
-
-		public TextView mUploadUser;
+        return mList.size();
+    }
 
 
-		public ItemViewHolder(View itemView)
-		{
+    private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
+    {
 
-			super(itemView);
+        public ImageView mPreviewImage;
 
-			mPreviewImage = $(R.id.bangumi_more_list_video_pic);
-			mTitleView =  $(R.id.bangumi_more_list_video_title);
-			mPlayNum =  $(R.id.bangumi_more_list_play_num);
-			mReviewNum =  $(R.id.bangumi_more_list_review_count);
-			mUploadUser =  $(R.id.bangumi_more_list_video_info);
+        public TextView mTitleView;
 
-		}
-	}
+        public TextView mPlayNum;
+
+        public TextView mReviewNum;
+
+        public TextView mUploadUser;
+
+
+        public ItemViewHolder(View itemView)
+        {
+
+            super(itemView);
+
+            mPreviewImage = $(R.id.item_img);
+            mTitleView = $(R.id.item_title);
+            mPlayNum = $(R.id.item_play);
+            mReviewNum = $(R.id.item_review);
+            mUploadUser = $(R.id.item_user_name);
+        }
+    }
 }

@@ -1,24 +1,29 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.Context;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.hotbitmapgg.ohmybilibili.fragment.PartitionMoreSimpleListFragment;
-import com.hotbitmapgg.ohmybilibili.model.PartitionMoreType;
+import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreType;
+import com.hotbitmapgg.ohmybilibili.module.partition.PartitionListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartitionMorePagerAdapter extends FragmentPagerAdapter
+/**
+ * Created by hcc on 16/8/4 14:12
+ * 100332338@qq.com
+ * <p/>
+ * 分区界面PagerAdapter
+ */
+public class PartitionMorePagerAdapter extends FragmentStatePagerAdapter
 {
 
     private List<PartitionMoreType> titles;
 
     private List<Fragment> fragments = new ArrayList<>();
 
-    public PartitionMorePagerAdapter(FragmentManager fm, Context context, List<PartitionMoreType> titles)
+    public PartitionMorePagerAdapter(FragmentManager fm, List<PartitionMoreType> titles)
     {
 
         super(fm);
@@ -31,7 +36,7 @@ public class PartitionMorePagerAdapter extends FragmentPagerAdapter
 
         for (int i = 0; i < titles.size(); i++)
         {
-            fragments.add(PartitionMoreSimpleListFragment.newInstance(titles.get(i).getTitleType() + ""));
+            fragments.add(PartitionListFragment.newInstance(titles.get(i).getTitleType() + ""));
         }
     }
 

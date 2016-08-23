@@ -43,12 +43,12 @@
             android:src="@drawable/ic_play_circle_outline_black_24dp" />
 
         <TextView
-            android:id="@+id/recommend__play_num"
+            android:id="@+id/recommend_play_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/video_info_count_text_margin_start"
             android:gravity="center"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="14sp" />
 
         <Space
@@ -62,12 +62,12 @@
             android:src="@drawable/ic_subtitles_black_24dp" />
 
         <TextView
-            android:id="@+id/recommend__review_count"
+            android:id="@+id/recommend_review_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black_alpha_45"
             android:textSize="14sp" />
     </LinearLayout>
 
