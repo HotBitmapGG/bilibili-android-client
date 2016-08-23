@@ -1,6 +1,6 @@
-<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_long_bg.png" width="100%" height="100%" />
-
 ## 高仿哔哩哔哩安卓客户端 - ( ゜- ゜)つロ 乾杯~ - bilibili
+
+<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_long_bg.png" width="100%" height="100%" />
 
 <img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_bg.jpg" width="100%" height="100%" />
 
