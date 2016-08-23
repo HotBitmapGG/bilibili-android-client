@@ -2,7 +2,6 @@
 
 <img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_long_bg.png" width="100%" height="100%" />
 
-<img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_bg.jpg" width="100%" height="100%" />
 
 
 ## Tips
