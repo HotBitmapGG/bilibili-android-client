@@ -1,10 +1,5 @@
 <img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/icon_bg.jpg" width="2000" height="500" />
 
-
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/README.md)
-
-
-
 ## Tips
 
   * 该项目正在持续开发中.

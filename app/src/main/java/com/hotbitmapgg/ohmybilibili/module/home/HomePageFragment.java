@@ -48,7 +48,7 @@ public class HomePageFragment extends RxLazyFragment
     {
 
         mHomeAdapter = new HomePagerAdapter(getChildFragmentManager(), getApplicationContext());
-        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(5);
         mViewPager.setAdapter(mHomeAdapter);
         mSlidingTab.setViewPager(mViewPager);
     }

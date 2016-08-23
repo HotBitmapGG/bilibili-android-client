@@ -39,6 +39,7 @@ public class IFavoritesFragment extends RxLazyFragment
 
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_fav_no_data);
         mCustomEmptyView.setEmptyText("没有找到你的收藏哟");
+        mCustomEmptyView.hideReloadButton();
     }
 
     @Override

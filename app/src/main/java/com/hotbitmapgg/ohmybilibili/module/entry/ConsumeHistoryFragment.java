@@ -39,6 +39,7 @@ public class ConsumeHistoryFragment extends RxLazyFragment
 
         mCustomEmptyView.setEmptyImage(R.drawable.ic_movie_pay_area_limit);
         mCustomEmptyView.setEmptyText("你还没有消费记录哟");
+        mCustomEmptyView.hideReloadButton();
     }
 
     @Override
