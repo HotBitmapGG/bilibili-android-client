@@ -21,6 +21,7 @@ import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
+import com.hotbitmapgg.ohmybilibili.widget.LoveLikeLayout;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -77,6 +78,12 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.live_num)
     TextView mLiveNum;
+
+    @Bind(R.id.love_layout)
+    LoveLikeLayout mLoveLikeLayout;
+
+    @Bind(R.id.bottom_love)
+    ImageView mlove;
 
     private static final String EXTRA_CID = "cid";
 
@@ -330,24 +337,31 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
     }
 
 
-    @OnClick(R.id.right_play) void rightPlay()
+    @OnClick(R.id.right_play)
+    void rightPlay()
     {
+
         ControlVideo();
     }
 
-    @OnClick(R.id.bottom_play) void bottomPlay()
+    @OnClick(R.id.bottom_play)
+    void bottomPlay()
     {
+
         ControlVideo();
     }
 
-    @OnClick(R.id.bottom_fullscreen) void fullScreen()
+    @OnClick(R.id.bottom_fullscreen)
+    void fullScreen()
     {
 
     }
 
 
-    @OnClick(R.id.video_view) void showBottomLayout()
+    @OnClick(R.id.video_view)
+    void showBottomLayout()
     {
+
         if (flag == 0)
         {
             startBottomShowAnim();
@@ -359,13 +373,22 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
         }
     }
 
-    @OnClick(R.id.user_pic) void startUserInfo()
+    @OnClick(R.id.user_pic)
+    void startUserInfo()
     {
 
         UserInfoActivity.launch(BiliBiliLivePlayerActivity.this, name, mid, face);
         ControlVideo();
         mRightPlayBtn.setVisibility(View.VISIBLE);
     }
+
+    @OnClick(R.id.bottom_love)
+    void clickLove()
+    {
+
+        mLoveLikeLayout.addLove();
+    }
+
 
     private void ControlVideo()
     {

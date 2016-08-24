@@ -1,16 +1,15 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include
         android:id="@+id/toolbar_layout"
-        layout="@layout/layout_toolbar"/>
+        layout="@layout/layout_toolbar" />
 
     <FrameLayout
         android:id="@+id/live_layout"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="350dp"
         android:layout_below="@+id/toolbar_layout"
         android:background="@drawable/shadow_gradient_reserve">
 
@@ -18,7 +17,7 @@
             android:id="@+id/video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -32,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
-                android:background="@drawable/bili_anim"/>
+                android:background="@drawable/bili_anim" />
 
             <TextView
                 android:id="@+id/video_start_info"
@@ -42,7 +41,7 @@
                 android:layout_marginTop="10dp"
                 android:text="初始化播放器..."
                 android:textColor="@android:color/black"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
         </RelativeLayout>
 
         <ImageView
@@ -50,16 +49,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="60dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_tv_play"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@drawable/shadow_normal_reserve"
             android:visibility="gone">
 
             <ImageView
@@ -68,7 +68,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:padding="10dp"
-                android:src="@drawable/ic_portrait_play"/>
+                android:src="@drawable/ic_portrait_play" />
+
+            <ImageView
+                android:id="@+id/bottom_love"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/bottom_fullscreen"
+                android:padding="10dp"
+                android:src="@drawable/ic_live_player_send_gift" />
+
 
             <ImageView
                 android:id="@+id/bottom_fullscreen"
@@ -76,8 +85,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:padding="10dp"
-                android:src="@drawable/ic_portrait_fullscreen"/>
+                android:src="@drawable/ic_live_palyer_zoom_in" />
         </RelativeLayout>
+
+        <com.hotbitmapgg.ohmybilibili.widget.LoveLikeLayout
+            android:id="@+id/love_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </FrameLayout>
 
     <RelativeLayout
@@ -95,7 +110,7 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="10dp"
             android:padding="5dp"
-            android:src="@drawable/ico_user_default"/>
+            android:src="@drawable/ico_user_default" />
 
         <TextView
             android:id="@+id/user_name"
@@ -107,7 +122,7 @@
             android:padding="5dp"
             android:text="用户名"
             android:textColor="@color/colorPrimary"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
 
         <TextView
@@ -122,7 +137,7 @@
             android:padding="5dp"
             android:text="1192"
             android:textColor="@color/gray"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -133,7 +148,7 @@
             android:background="@drawable/btn_pin_bg"
             android:gravity="center"
             android:text="+关注"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary" />
 
     </RelativeLayout>
 
@@ -141,7 +156,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/user_info_layout"
-        android:background="@color/line_bg"/>
+        android:background="@color/line_bg" />
 
 
 </RelativeLayout>
