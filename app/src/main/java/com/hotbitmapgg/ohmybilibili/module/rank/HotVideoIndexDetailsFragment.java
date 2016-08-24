@@ -2,7 +2,7 @@ package com.hotbitmapgg.ohmybilibili.module.rank;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -137,7 +137,7 @@ public class HotVideoIndexDetailsFragment extends RxLazyFragment
         mSwipeRefreshLayout.setRefreshing(false);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         HotVideoIndexRecyclerAdapter mAdapter = new HotVideoIndexRecyclerAdapter(mRecyclerView, videoItemInfos);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
