@@ -15,9 +15,9 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiRecommendRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.TwoDimensionalRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
+import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.TwoDimensional;
-import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
 import com.hotbitmapgg.ohmybilibili.module.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.bangumi.WeekDayBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -241,11 +241,11 @@ public class HomeBangumiFragment extends RxLazyFragment
         if (banners != null && banners.size() > 0)
         {
             int size = banners.size();
-            List<Banner> bannerList = new ArrayList<>();
-            Banner banner;
+            List<BaseBanner> bannerList = new ArrayList<>();
+            BaseBanner banner;
             for (int i = 0; i < size; i++)
             {
-                banner = new Banner();
+                banner = new BaseBanner();
                 BangumiRecommend.BannersBean bannersBean = banners.get(i);
                 banner.img = bannersBean.getImg();
                 banner.link = bannersBean.getLink();

@@ -11,7 +11,7 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendedRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
+import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
@@ -51,7 +51,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private List<RecommendInfo.ResultBean> results = new ArrayList<>();
 
-    private List<Banner> banners = new ArrayList<>();
+    private List<BaseBanner> banners = new ArrayList<>();
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
@@ -157,14 +157,14 @@ public class HomeRecommendedFragment extends RxLazyFragment
                         for (int i = 0; i < size; i++)
                         {
                             RecommendInfo.ResultBean result = recommendInfo.getResult().get(i);
-                            Banner banner;
+                            BaseBanner banner;
                             if (result.getType() != null)
                             {
                                 if (result.getType().equals(BANNER_TYPE))
                                 {
                                     List<RecommendInfo.ResultBean.BodyBean> bodys = result.getBody();
                                     RecommendInfo.ResultBean.BodyBean body = bodys.get(0);
-                                    banner = new Banner();
+                                    banner = new BaseBanner();
                                     banner.img = body.getCover();
                                     banner.title = body.getTitle();
                                     banner.link = body.getParam();

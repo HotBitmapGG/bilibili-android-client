@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
+import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.squareup.picasso.Picasso;
@@ -55,7 +55,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
 
     private Context context;
 
-    private List<Banner> bannerList;
+    private List<BaseBanner> bannerList;
 
     //选中显示Indicator
     private int selectRes = R.drawable.shape_dots_select;
@@ -116,7 +116,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
     /**
      * 图片轮播需要传入参数
      */
-    public void build(List<Banner> list)
+    public void build(List<BaseBanner> list)
     {
 
         destory();

@@ -12,7 +12,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveBannerViewHolder;
 import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveEntranceViewHolder;
 import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveItemViewHolder;
 import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LivePartitionViewHolder;
-import com.hotbitmapgg.ohmybilibili.entity.live.Banner;
+import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.entity.live.Live;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.entity.live.PartitionSub;
@@ -41,7 +41,7 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 
     private int partitionSize;
 
-    private List<Banner> banner;
+    private List<BaseBanner> banner;
 
     //快速入口
     private static final int TYPE_ENTRANCE = 0;
