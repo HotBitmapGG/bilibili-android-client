@@ -123,7 +123,7 @@ public class WeekDayBangumiAdapter extends StatelessSection
         headerViewHolder.mWeekDay.setText(title);
     }
 
-    class HeaderViewHolder extends RecyclerView.ViewHolder
+    static class HeaderViewHolder extends RecyclerView.ViewHolder
     {
 
         @Bind(R.id.item_weekday)
@@ -137,7 +137,7 @@ public class WeekDayBangumiAdapter extends StatelessSection
         }
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder
+    static class ItemViewHolder extends RecyclerView.ViewHolder
     {
 
         @Bind(R.id.item_img)
