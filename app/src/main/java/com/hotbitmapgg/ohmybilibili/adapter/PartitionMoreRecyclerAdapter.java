@@ -21,13 +21,13 @@ import java.util.ArrayList;
  * <p/>
  * 分区列表查看Adapter
  */
-public class PartitionMoreListViewAdapter extends AbsRecyclerViewAdapter
+public class PartitionMoreRecyclerAdapter extends AbsRecyclerViewAdapter
 {
 
 
     private ArrayList<PartitionMoreVideoItem> mList;
 
-    public PartitionMoreListViewAdapter(RecyclerView recyclerView, ArrayList<PartitionMoreVideoItem> list)
+    public PartitionMoreRecyclerAdapter(RecyclerView recyclerView, ArrayList<PartitionMoreVideoItem> list)
     {
 
         super(recyclerView);

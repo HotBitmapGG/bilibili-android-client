@@ -8,10 +8,10 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendActivityCenterSection;
-import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendBannerSection;
-import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendTopicSection;
-import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendedSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendActivityCenterSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendBannerSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendTopicSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendedSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;

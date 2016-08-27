@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.adapter;
+package com.hotbitmapgg.ohmybilibili.adapter.section;
 
 import android.app.Activity;
 import android.content.Context;

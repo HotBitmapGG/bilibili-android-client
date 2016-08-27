@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.WeekDayBangumiSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.WeekDayBangumiSection;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumi;

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.adapter;
+package com.hotbitmapgg.ohmybilibili.adapter.section;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

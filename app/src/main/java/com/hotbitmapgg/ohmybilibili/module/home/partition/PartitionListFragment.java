@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.PartitionMoreListViewAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.PartitionMoreRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
@@ -45,7 +45,7 @@ public class PartitionListFragment extends RxLazyFragment
     @Bind(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private PartitionMoreListViewAdapter mAdapter;
+    private PartitionMoreRecyclerAdapter mAdapter;
 
     private ArrayList<PartitionMoreVideoItem> items = new ArrayList<>();
 
@@ -101,7 +101,7 @@ public class PartitionListFragment extends RxLazyFragment
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mAdapter = new PartitionMoreListViewAdapter(mRecyclerView, items);
+        mAdapter = new PartitionMoreRecyclerAdapter(mRecyclerView, items);
         mRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         mRecyclerView.setAdapter(mRecyclerAdapter);
         createLoadMoreView();

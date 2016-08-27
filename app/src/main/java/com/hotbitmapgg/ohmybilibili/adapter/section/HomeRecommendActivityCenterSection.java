@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.adapter;
+package com.hotbitmapgg.ohmybilibili.adapter.section;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.adapter.ActivityCenterRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
