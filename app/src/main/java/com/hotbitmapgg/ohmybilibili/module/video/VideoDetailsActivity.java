@@ -3,6 +3,7 @@ package com.hotbitmapgg.ohmybilibili.module.video;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,7 +12,8 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -107,7 +109,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
         getVideoInfo();
 
-
+        mFAB.setClickable(false);
+        mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
         mFAB.setTranslationY(-getResources().getDimension(R.dimen.floating_action_button_size_half));
         mFAB.setOnClickListener(new View.OnClickListener()
         {
@@ -264,7 +267,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                     {
 
                         mFAB.setClickable(false);
-                        mFAB.setBackgroundResource(R.color.gray_20);
+                        mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
                         LogUtil.all("获取视频详情失败" + throwable.getMessage());
                     }
                 });
@@ -273,6 +276,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
     private void finishGetTask()
     {
 
+        mFAB.setClickable(true);
+        mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
         mCollapsingToolbarLayout.setTitle(mVideoDetails.getTitle());
         Picasso.with(this)
                 .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
@@ -295,20 +300,28 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         titles.add("简介");
         titles.add("评论" + "(" + num + ")");
 
-        mAdapter = new VideoDetailsPagerAdapter(getSupportFragmentManager());
+        mAdapter = new VideoDetailsPagerAdapter(getSupportFragmentManager(), fragments, titles);
 
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(2);
         mSlidingTabLayout.setViewPager(mViewPager);
     }
 
-    public class VideoDetailsPagerAdapter extends FragmentPagerAdapter
+    public static class VideoDetailsPagerAdapter extends FragmentStatePagerAdapter
     {
 
-        public VideoDetailsPagerAdapter(android.support.v4.app.FragmentManager fm)
+        private List<Fragment> fragments;
+
+        private List<String> titles;
+
+        public VideoDetailsPagerAdapter(FragmentManager fm,
+                                        List<Fragment> fragments,
+                                        List<String> titles)
         {
 
             super(fm);
+            this.fragments = fragments;
+            this.titles = titles;
         }
 
         @Override
