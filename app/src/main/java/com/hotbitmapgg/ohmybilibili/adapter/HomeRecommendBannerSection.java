@@ -28,7 +28,7 @@ public class HomeRecommendBannerSection extends StatelessSection
     public HomeRecommendBannerSection(List<BaseBanner> banners)
     {
 
-        super(R.layout.layout_home_recommended_banner, R.layout.layout_home_recommend_empty);
+        super(R.layout.layout_banner, R.layout.layout_home_recommend_empty);
         this.banners = banners;
     }
 

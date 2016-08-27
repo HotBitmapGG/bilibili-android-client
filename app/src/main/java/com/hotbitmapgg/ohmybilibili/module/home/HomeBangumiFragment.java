@@ -223,7 +223,7 @@ public class HomeBangumiFragment extends RxLazyFragment
     {
 
         headView_banner = LayoutInflater.from(getActivity())
-                .inflate(R.layout.layout_home_recommended_banner, mRecyclerView, false);
+                .inflate(R.layout.layout_banner, mRecyclerView, false);
         headView_item = LayoutInflater.from(getActivity())
                 .inflate(R.layout.layout_head_bangumi_item, mRecyclerView, false);
         headView_list = LayoutInflater.from(getActivity())
