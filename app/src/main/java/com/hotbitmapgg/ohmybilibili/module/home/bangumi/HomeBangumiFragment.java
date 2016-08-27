@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home;
+package com.hotbitmapgg.ohmybilibili.module.home.bangumi;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,8 +18,6 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.TwoDimensional;
-import com.hotbitmapgg.ohmybilibili.module.bangumi.BangumiIndexActivity;
-import com.hotbitmapgg.ohmybilibili.module.bangumi.WeekDayBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;

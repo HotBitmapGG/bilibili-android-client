@@ -344,7 +344,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         {
             case R.id.btn_go_more:
                 //查看Up主所有视频
-                UpMoreCoverActivity.launch(UserInfoActivity.this, mUserInfo.name, mUserInfo.mid);
+                UserUpMoreCoverActivity.launch(UserInfoActivity.this, mUserInfo.name, mUserInfo.mid);
                 break;
 
             case R.id.tv_follow_users:

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.video;
+package com.hotbitmapgg.ohmybilibili.module.home.live;
 
 import android.app.Activity;
 import android.content.Intent;

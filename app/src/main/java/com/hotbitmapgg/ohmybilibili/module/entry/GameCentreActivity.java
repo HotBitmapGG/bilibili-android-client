@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.common;
+package com.hotbitmapgg.ohmybilibili.module.entry;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;

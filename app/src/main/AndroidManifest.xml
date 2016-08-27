@@ -78,13 +78,13 @@
 
         <!-- 专题详情界面 -->
         <activity
-            android:name=".module.bangumi.SpecialDetailsActivity"
+            android:name=".module.home.bangumi.SpecialDetailsActivity"
             android:screenOrientation="portrait"/>
 
 
         <!-- 分区界面 根据传递的标题集合完成界面 -->
         <activity
-            android:name=".module.partition.PartitionMoreActivity"
+            android:name=".module.home.partition.PartitionMoreActivity"
             android:screenOrientation="portrait"/>
 
         <!--用户粉丝界面-->
@@ -95,12 +95,12 @@
 
         <!--番剧专题界面-->
         <activity
-            android:name=".module.bangumi.WeekDayBangumiActivity"
+            android:name=".module.home.bangumi.WeekDayBangumiActivity"
             android:screenOrientation="portrait" />
 
         <!--游戏中心界面-->
         <activity
-            android:name=".module.common.GameCentreActivity"
+            android:name=".module.entry.GameCentreActivity"
             android:screenOrientation="portrait" />
 
         <!--视频相关推荐界面-->
@@ -115,12 +115,12 @@
 
         <!--直播详情界面-->
         <activity
-            android:name=".module.video.BiliBiliLivePlayerActivity"
+            android:name=".module.home.live.BiliBiliLivePlayerActivity"
             android:screenOrientation="portrait" />
 
         <!--番剧索引界面-->
         <activity
-            android:name=".module.bangumi.BangumiIndexActivity"
+            android:name=".module.home.bangumi.BangumiIndexActivity"
             android:screenOrientation="portrait" />
 
         <!--关于我详情界面-->
@@ -130,7 +130,7 @@
 
         <!--热门视频排行榜界面-->
         <activity
-            android:name=".module.rank.HotVideoIndexActivity"
+            android:name=".module.home.discover.HotVideoIndexActivity"
             android:screenOrientation="portrait" />
 
 
@@ -144,7 +144,7 @@
 
         <!--UP主推荐视频界面-->
         <activity
-            android:name=".module.user.UpMoreCoverActivity"
+            android:name=".module.user.UserUpMoreCoverActivity"
             android:screenOrientation="portrait" />
 
         <!-- 播放器播放界面 -->

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.bangumi;
+package com.hotbitmapgg.ohmybilibili.module.home.bangumi;
 
 
 import android.app.Activity;

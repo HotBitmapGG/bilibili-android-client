@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home;
+package com.hotbitmapgg.ohmybilibili.module.home.partition;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -12,7 +12,6 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreTitle;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreType;
-import com.hotbitmapgg.ohmybilibili.module.partition.PartitionMoreActivity;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
 

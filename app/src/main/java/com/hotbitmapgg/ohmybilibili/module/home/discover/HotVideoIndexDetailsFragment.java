@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.rank;
+package com.hotbitmapgg.ohmybilibili.module.home.discover;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;

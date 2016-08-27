@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumi;
-import com.hotbitmapgg.ohmybilibili.module.bangumi.SpecialDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.bangumi.SpecialDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 import com.squareup.picasso.Picasso;
 

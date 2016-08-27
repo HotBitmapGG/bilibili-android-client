@@ -33,7 +33,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * UP主上传视频更多界面
  */
-public class UpMoreCoverActivity extends RxAppCompatBaseActivity
+public class UserUpMoreCoverActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.recycle)
@@ -134,7 +134,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
     public static void launch(Activity activity, String name, int mid)
     {
 
-        Intent intent = new Intent(activity, UpMoreCoverActivity.class);
+        Intent intent = new Intent(activity, UserUpMoreCoverActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(EXTRA_USER_NAME, name);
         intent.putExtra(EXTRA_MID, mid);
@@ -195,7 +195,7 @@ public class UpMoreCoverActivity extends RxAppCompatBaseActivity
     private void createLoadMoreView()
     {
 
-        loadMoreView = LayoutInflater.from(UpMoreCoverActivity.this)
+        loadMoreView = LayoutInflater.from(UserUpMoreCoverActivity.this)
                 .inflate(R.layout.layout_load_more, mRecycleView, false);
         mHeaderViewRecyclerAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);

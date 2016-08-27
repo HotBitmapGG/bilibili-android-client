@@ -6,12 +6,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.home.HomeBangumiFragment;
-import com.hotbitmapgg.ohmybilibili.module.home.HomeDiscoverFragment;
-import com.hotbitmapgg.ohmybilibili.module.home.HomeFocusFragment;
-import com.hotbitmapgg.ohmybilibili.module.home.HomeLiveFragment;
-import com.hotbitmapgg.ohmybilibili.module.home.HomeMoreFragment;
-import com.hotbitmapgg.ohmybilibili.module.home.HomeRecommendedFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.bangumi.HomeBangumiFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.discover.HomeDiscoverFragment;
+import com.hotbitmapgg.ohmybilibili.module.entry.HomeFocusFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.live.HomeLiveFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.partition.HomeMoreFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.recommend.HomeRecommendedFragment;
 
 /**
  * Created by hcc on 16/8/4 14:12

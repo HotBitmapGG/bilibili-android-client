@@ -20,6 +20,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.AttentionPeopleFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.ConsumeHistoryFragment;
+import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.HistoryFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.IFavoritesFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.OffLineDownloadActivity;

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home;
+package com.hotbitmapgg.ohmybilibili.module.home.recommend;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.partition;
+package com.hotbitmapgg.ohmybilibili.module.home.partition;
 
 import android.app.Activity;
 import android.content.Intent;
