@@ -150,6 +150,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         {
             Picasso.with(this)
                     .load(UrlHelper.getClearVideoPreviewUrl(itemInfo.pic))
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .error(R.drawable.bili_default_image_tv)
                     .into(mVideoPreview);
         }
     }
@@ -281,6 +283,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         mCollapsingToolbarLayout.setTitle(mVideoDetails.getTitle());
         Picasso.with(this)
                 .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
+                .placeholder(R.drawable.bili_default_image_tv)
+                .error(R.drawable.bili_default_image_tv)
                 .into(mVideoPreview);
 
         VideoInfoFragment mVideoInfoFragment = VideoInfoFragment

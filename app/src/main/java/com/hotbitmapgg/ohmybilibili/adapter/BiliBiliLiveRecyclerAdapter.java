@@ -3,6 +3,9 @@ package com.hotbitmapgg.ohmybilibili.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +44,8 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 
     private int partitionSize;
 
+    private int tempSize;
+
     private List<BaseBanner> banner;
 
     //快速入口
@@ -55,6 +60,20 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
     //直播页Banner
     private static final int TYPE_BANNER = 3;
 
+    private int[] entranceIconRes = new int[]{
+            R.drawable.live_home_follow_anchor,
+            R.drawable.live_home_live_center,
+            R.drawable.live_home_search_room,
+            R.drawable.live_home_all_category
+    };
+
+    private String[] entranceTitles = new String[]{
+            "关注主播",
+            "直播中心",
+            "搜索直播",
+            "全部分类"
+    };
+
     public BiliBiliLiveRecyclerAdapter(Context context)
     {
 
@@ -63,13 +82,12 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 
     private List<Integer> liveSizes = new ArrayList<>();
 
-    private int tempSize;
-
     public void setLiveIndex(LiveIndex data)
     {
 
         this.liveIndex = data;
-        entranceSize = data.entranceIcons.size();
+        //data.entranceIcons.size();
+        entranceSize = 4;
         partitionSize = data.partitions.size();
 
         banner = new ArrayList<>();
@@ -135,9 +153,11 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
         final Live item;
         if (holder instanceof LiveEntranceViewHolder)
         {
-            ((LiveEntranceViewHolder) holder).title.setText(liveIndex.entranceIcons.get(position).name);
+            //liveIndex.entranceIcons.get(position).name
+            //liveIndex.entranceIcons.get(position).entrance_icon.src
+            ((LiveEntranceViewHolder) holder).title.setText(entranceTitles[position]);
             Picasso.with(context)
-                    .load(liveIndex.entranceIcons.get(position).entrance_icon.src)
+                    .load(entranceIconRes[position])
                     .into(((LiveEntranceViewHolder) holder).image);
         } else if (holder instanceof LiveItemViewHolder)
         {
@@ -187,7 +207,10 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
                     .into(((LivePartitionViewHolder) holder).itemIcon);
 
             ((LivePartitionViewHolder) holder).itemTitle.setText(partition.name);
-            ((LivePartitionViewHolder) holder).itemCount.setText("当前" + partition.count + "个直播");
+            SpannableStringBuilder stringBuilder = new SpannableStringBuilder("当前" + partition.count + "个直播");
+            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(context.getResources().getColor(R.color.colorPrimary));
+            stringBuilder.setSpan(foregroundColorSpan, 2, stringBuilder.length() - 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ((LivePartitionViewHolder) holder).itemCount.setText(stringBuilder);
         } else if (holder instanceof LiveBannerViewHolder)
         {
             ((LiveBannerViewHolder) holder).banner.delayTime(5).build(banner);
@@ -200,7 +223,7 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 
         if (liveIndex != null)
         {
-            return 1 + liveIndex.entranceIcons.size()
+            return 1 + entranceIconRes.length
                     + liveIndex.partitions.size() * 5;
         } else
         {

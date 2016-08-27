@@ -13,15 +13,16 @@
 
         <ImageView
             android:id="@+id/item_live_partition_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
 
         <TextView
             android:id="@+id/item_live_partition_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/item_live_partition_icon"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/item_live_partition_icon"
             android:gravity="center"
             android:textColor="@color/font_normal"
             android:textSize="14sp"
@@ -31,25 +32,14 @@
             android:id="@+id/item_live_partition_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/item_live_partition_more"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
             android:gravity="center"
             android:textColor="@color/font_normal"
             android:textSize="14sp"
-            tools:text="当前直播人数" />
-
-        <TextView
-            android:id="@+id/item_live_partition_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/btn_more_bg"
-            android:gravity="center"
-            android:text="进去看看"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-
+            tools:text="当前直播人数"
+            android:drawablePadding="3dp"
+            android:drawableEnd="@drawable/ic_light_gray_arrow_right" />
 
     </RelativeLayout>
 </LinearLayout>

@@ -53,8 +53,8 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     //vitamio视频播放器
-    compile(name: 'Vitamio-release', ext: 'aar')
-    compile(name: 'zImaster-release', ext: 'aar')
+    compile(name: 'Vitamio', ext: 'aar')
+    compile(name: 'VitamioHelper', ext: 'aar')
     //ijkplayer播放器
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.4.5.1'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.4.5.1'
