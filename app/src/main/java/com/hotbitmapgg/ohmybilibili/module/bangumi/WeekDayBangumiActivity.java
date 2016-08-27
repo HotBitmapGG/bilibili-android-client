@@ -117,6 +117,11 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
         loadWeekDayBangumis();
     }
 
+    /**
+     * 这里因为接口是传日期的id查询对应的番剧数据
+     * 并没有一起返回一个星期的数据
+     * 所以只能一天一天的查询后在进行适配数据
+     */
     private void loadWeekDayBangumis()
     {
 
