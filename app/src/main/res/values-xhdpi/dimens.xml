@@ -27,7 +27,7 @@
     <dimen name="circle_indicator_default_height">20dp</dimen>
     <!-- Common resources -->
     <dimen name="toolbar_elevation">5dp</dimen>
-    <dimen name="appbar_parallax_max_height">256dp</dimen>
+    <dimen name="appbar_parallax_max_height">206dp</dimen>
     <dimen name="appbar_height">80dp</dimen>
     <dimen name="appbar_banner_title_size">18sp</dimen>
     <dimen name="appbar_tab_height">48dp</dimen>
