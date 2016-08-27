@@ -3,11 +3,13 @@ package com.hotbitmapgg.ohmybilibili.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,6 +18,9 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.bangumi.WeekDayBangumiActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.discover.HotVideoIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
@@ -166,6 +171,16 @@ public class HomeRecommendedSection extends StatelessSection
         HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
         headerViewHolder.mTypeImg.setImageResource(iconRes);
         headerViewHolder.mTypeTv.setText(title);
+        headerViewHolder.mTypeRankBtn.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                mContext.startActivity(new Intent(mContext, HotVideoIndexActivity.class));
+            }
+        });
 
         if (type.equals(TYPE_RECOMMENDED))
         {
@@ -199,8 +214,57 @@ public class HomeRecommendedSection extends StatelessSection
     public void onBindFooterViewHolder(RecyclerView.ViewHolder holder)
     {
 
-        FootViewHolder footViewHolder = (FootViewHolder) holder;
+        final FootViewHolder footViewHolder = (FootViewHolder) holder;
         footViewHolder.mDynamic.setText(String.valueOf(mRandom.nextInt(200)) + "条新动态,点这里刷新");
+        footViewHolder.mRefreshBtn.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                footViewHolder.mRefreshBtn
+                        .animate()
+                        .rotation(360)
+                        .setInterpolator(new LinearInterpolator())
+                        .setDuration(1000).start();
+            }
+        });
+
+        footViewHolder.mRecommendRefresh.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                footViewHolder.mRecommendRefresh
+                        .animate()
+                        .rotation(360)
+                        .setInterpolator(new LinearInterpolator())
+                        .setDuration(1000).start();
+            }
+        });
+        footViewHolder.mBangumiIndexBtn.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                mContext.startActivity(new Intent(mContext, BangumiIndexActivity.class));
+            }
+        });
+        footViewHolder.mBangumiTimelineBtn.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                mContext.startActivity(new Intent(mContext, WeekDayBangumiActivity.class));
+            }
+        });
 
         if (type.equals(TYPE_RECOMMENDED))
         {
