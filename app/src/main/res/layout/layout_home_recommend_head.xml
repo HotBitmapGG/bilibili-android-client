@@ -12,19 +12,17 @@
         android:id="@+id/item_type_img"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ic_category_t1" />
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true" />
 
     <TextView
         android:id="@+id/item_type_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/item_type_img"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/item_type_img"
         android:gravity="center"
-        android:text="动画区"
         android:textColor="@color/font_normal"
         android:textSize="16sp" />
 

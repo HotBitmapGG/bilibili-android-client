@@ -8,7 +8,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendActivityCenterSection;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendBannerSection;
+import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendTopicSection;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendedSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
@@ -112,6 +114,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private void initRecyclerView()
     {
+
         mSectionedAdapter = new SectionedRecyclerViewAdapter();
         GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
@@ -253,15 +256,36 @@ public class HomeRecommendedFragment extends RxLazyFragment
         hideEmptyView();
 
         mSectionedAdapter.addSection(new HomeRecommendBannerSection(banners));
-        for (int i = 0, size = results.size(); i < size; i++)
+        for (int i = 0, size = results.size() + 2; i < size; i++)
         {
-            mSectionedAdapter.addSection(new HomeRecommendedSection(
-                    getActivity(),
-                    icons[i],
-                    results.get(i).getHead().getTitle(),
-                    results.get(i).getType(),
-                    results.get(1).getHead().getCount(),
-                    results.get(i).getBody()));
+
+            if (i == 9)
+            {
+                mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
+                        getActivity(),
+                        results.get(9).getBody()));
+            } else if (i == size - 2)
+            {
+                mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
+                        banners.get(banners.size() - 2).img,
+                        banners.get(banners.size() - 2).title));
+            }
+            else if(i == size - 1)
+            {
+                mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
+                        banners.get(banners.size() - 1).img,
+                        banners.get(banners.size() - 1).title));
+            }
+            else
+            {
+                mSectionedAdapter.addSection(new HomeRecommendedSection(
+                        getActivity(),
+                        icons[i],
+                        results.get(i).getHead().getTitle(),
+                        results.get(i).getType(),
+                        results.get(1).getHead().getCount(),
+                        results.get(i).getBody()));
+            }
         }
         mSectionedAdapter.notifyDataSetChanged();
     }
