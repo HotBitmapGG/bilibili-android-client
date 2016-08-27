@@ -1,6 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 import com.squareup.picasso.Picasso;
@@ -101,13 +103,23 @@ public class HomeRecommendedSection extends StatelessSection
     {
 
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        RecommendInfo.ResultBean.BodyBean bodyBean = datas.get(position);
+        final RecommendInfo.ResultBean.BodyBean bodyBean = datas.get(position);
         Picasso.with(mContext)
                 .load(Uri.parse(bodyBean.getCover()))
                 .placeholder(R.drawable.bili_default_image_tv)
                 .into(itemViewHolder.mVideoImg);
 
         itemViewHolder.mVideoTitle.setText(bodyBean.getTitle());
+        itemViewHolder.mCardView.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                VideoDetailsActivity.launch((Activity) mContext, Integer.parseInt(bodyBean.getParam()));
+            }
+        });
 
         if (type.equals(TYPE_LIVE))
         {
@@ -202,15 +214,13 @@ public class HomeRecommendedSection extends StatelessSection
             footViewHolder.mRefreshLayout.setVisibility(View.GONE);
             footViewHolder.mRecommendRefreshLayout.setVisibility(View.GONE);
             footViewHolder.mBangumiLayout.setVisibility(View.VISIBLE);
-        }
-        else if(type.equals(TYPE_ACTIVITY))
+        } else if (type.equals(TYPE_ACTIVITY))
         {
             footViewHolder.mRecommendRefreshLayout.setVisibility(View.GONE);
             footViewHolder.mBangumiLayout.setVisibility(View.GONE);
             footViewHolder.mMoreBtn.setVisibility(View.GONE);
             footViewHolder.mRefreshLayout.setVisibility(View.GONE);
-        }
-        else
+        } else
         {
             footViewHolder.mRecommendRefreshLayout.setVisibility(View.GONE);
             footViewHolder.mBangumiLayout.setVisibility(View.GONE);
