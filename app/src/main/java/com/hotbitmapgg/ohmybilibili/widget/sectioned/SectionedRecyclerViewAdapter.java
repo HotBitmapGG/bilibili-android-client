@@ -11,10 +11,11 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * Created by hcc on 16/8/27 11:51
+ * 100332338@qq.com
+ * <p/>
  * A custom RecyclerView with Sections with custom Titles.
  * Sections are displayed in the same order they were added.
- *
- * @author Gustavo Pagani
  */
 public class SectionedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
