@@ -188,7 +188,11 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
         mToolbar.setTitle("");
 
-        Picasso.with(this).load(UrlHelper.getFaceUrl(mUserInfo)).placeholder(R.drawable.ico_user_default).into(mAvatarImage);
+        Picasso.with(this)
+                .load(UrlHelper.getFaceUrl(mUserInfo))
+                .placeholder(R.drawable.ico_user_default)
+                .into(mAvatarImage);
+
         setUserLevel(mUserInfo.rank);
         if (mUserInfo.sex.equals("男"))
         {
@@ -317,7 +321,9 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         });
 
         mUpTip.setVisibility(View.VISIBLE);
-        mUpTip.setText("Up主的投稿" + " " + "(" + count + ")");
+        String str = "Up主的投稿" + "(" +
+                String.valueOf(mUserInfo.article) + ")";
+        mUpTip.setText(str);
         mRecyclerView.setVisibility(View.VISIBLE);
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
