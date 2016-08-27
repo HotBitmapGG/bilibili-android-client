@@ -2,14 +2,14 @@ package com.hotbitmapgg.ohmybilibili.module.home;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendedRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendBannerSection;
+import com.hotbitmapgg.ohmybilibili.adapter.HomeRecommendedSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
@@ -17,8 +17,7 @@ import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
-import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
-import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,14 +52,30 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private List<BaseBanner> banners = new ArrayList<>();
 
-    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
-
-    private HomeRecommendedRecyclerAdapter mAdapter;
-
     private static final String BANNER_TYPE = "weblink";
 
     //RecycleView是否正在刷新
     private boolean mIsRefreshing = false;
+
+    private SectionedRecyclerViewAdapter mSectionedAdapter;
+
+    private int[] icons = new int[]{
+            R.drawable.ic_header_hot,
+            R.drawable.ic_head_live,
+            R.drawable.ic_category_t13,
+            R.drawable.ic_category_t1,
+            R.drawable.ic_category_t3,
+            R.drawable.ic_category_t129,
+            R.drawable.ic_category_t4,
+            R.drawable.ic_category_t119,
+            R.drawable.ic_category_t36,
+            R.drawable.ic_header_activity_center,
+            R.drawable.ic_category_t160,
+            R.drawable.ic_category_t155,
+            R.drawable.ic_category_t5,
+            R.drawable.ic_category_t11,
+            R.drawable.ic_category_t23
+    };
 
     public static HomeRecommendedFragment newInstance()
     {
@@ -97,12 +112,30 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private void initRecyclerView()
     {
+        mSectionedAdapter = new SectionedRecyclerViewAdapter();
+        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
+        {
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setNestedScrollingEnabled(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new HomeRecommendedRecyclerAdapter(mRecyclerView, results);
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+            @Override
+            public int getSpanSize(int position)
+            {
+
+                switch (mSectionedAdapter.getSectionItemViewType(position))
+                {
+                    case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
+                        return 2;
+
+                    case SectionedRecyclerViewAdapter.VIEW_TYPE_FOOTER:
+                        return 2;
+
+                    default:
+                        return 1;
+                }
+            }
+        });
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mSectionedAdapter);
         setRecycleNoScroll();
     }
 
@@ -133,7 +166,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
                 banners.clear();
                 results.clear();
                 mIsRefreshing = true;
-                mHeaderViewRecyclerAdapter.removeHeadView();
+                mSectionedAdapter.removeAllSections();
                 getHomeRecommendedData();
             }
         });
@@ -218,19 +251,19 @@ public class HomeRecommendedFragment extends RxLazyFragment
         mSwipeRefreshLayout.setRefreshing(false);
         mIsRefreshing = false;
         hideEmptyView();
-        createHead();
-        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
-        mAdapter.notifyDataSetChanged();
-    }
 
-    private void createHead()
-    {
-
-        View headView = LayoutInflater.from(getActivity())
-                .inflate(R.layout.layout_head_home_recommended, mRecyclerView, false);
-        BannerView bannerView = (BannerView) headView.findViewById(R.id.home_recommended_banner);
-        bannerView.delayTime(5).build(banners);
-        mHeaderViewRecyclerAdapter.addHeaderView(headView);
+        mSectionedAdapter.addSection(new HomeRecommendBannerSection(banners));
+        for (int i = 0, size = results.size(); i < size; i++)
+        {
+            mSectionedAdapter.addSection(new HomeRecommendedSection(
+                    getActivity(),
+                    icons[i],
+                    results.get(i).getHead().getTitle(),
+                    results.get(i).getType(),
+                    results.get(1).getHead().getCount(),
+                    results.get(i).getBody()));
+        }
+        mSectionedAdapter.notifyDataSetChanged();
     }
 
     public void initEmptyView()

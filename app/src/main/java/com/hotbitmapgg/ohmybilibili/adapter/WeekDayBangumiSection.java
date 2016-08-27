@@ -26,9 +26,9 @@ import butterknife.ButterKnife;
  * Created by hcc on 16/8/25 20:52
  * 100332338@qq.com
  * <p/>
- * 二三次元番剧专题Adapter
+ * 二三次元番剧专题Section
  */
-public class WeekDayBangumiAdapter extends StatelessSection
+public class WeekDayBangumiSection extends StatelessSection
 {
 
 
@@ -41,7 +41,7 @@ public class WeekDayBangumiAdapter extends StatelessSection
     private List<WeekDayBangumi> weekDayBangumis;
 
 
-    public WeekDayBangumiAdapter(Context context, List<WeekDayBangumi> weekDayBangumis, int iconRes, String title)
+    public WeekDayBangumiSection(Context context, List<WeekDayBangumi> weekDayBangumis, int iconRes, String title)
     {
 
         super(R.layout.layout_weekday_bangumi_head, R.layout.layout_weekday_bangumi_boby);

@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.WeekDayBangumiAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.WeekDayBangumiSection;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumi;
@@ -137,7 +137,7 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
                     {
 
                         mOneWeekDayBangumis.addAll(weekDayBangumiResult.list);
-                        mSectionedAdapter.addSection(new WeekDayBangumiAdapter(
+                        mSectionedAdapter.addSection(new WeekDayBangumiSection(
                                 WeekDayBangumiActivity.this,
                                 mOneWeekDayBangumis,
                                 weekDayIcons[0],
@@ -156,7 +156,7 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
                     {
 
                         mTwoWeekDayBangumis.addAll(weekDayBangumiResult.list);
-                        mSectionedAdapter.addSection(new WeekDayBangumiAdapter(
+                        mSectionedAdapter.addSection(new WeekDayBangumiSection(
                                 WeekDayBangumiActivity.this,
                                 mTwoWeekDayBangumis,
                                 weekDayIcons[1],
@@ -175,7 +175,7 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
                     {
 
                         mThreeWeekDayBangumis.addAll(weekDayBangumiResult.list);
-                        mSectionedAdapter.addSection(new WeekDayBangumiAdapter(
+                        mSectionedAdapter.addSection(new WeekDayBangumiSection(
                                 WeekDayBangumiActivity.this,
                                 mThreeWeekDayBangumis,
                                 weekDayIcons[2],
@@ -194,7 +194,7 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
                     {
 
                         mFourWeekDayBangumis.addAll(weekDayBangumiResult.list);
-                        mSectionedAdapter.addSection(new WeekDayBangumiAdapter(
+                        mSectionedAdapter.addSection(new WeekDayBangumiSection(
                                 WeekDayBangumiActivity.this,
                                 mFourWeekDayBangumis,
                                 weekDayIcons[3],
@@ -213,7 +213,7 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
                     {
 
                         mFiveWeekDayBangumis.addAll(weekDayBangumiResult.list);
-                        mSectionedAdapter.addSection(new WeekDayBangumiAdapter(
+                        mSectionedAdapter.addSection(new WeekDayBangumiSection(
                                 WeekDayBangumiActivity.this,
                                 mFiveWeekDayBangumis,
                                 weekDayIcons[4],
@@ -232,7 +232,7 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
                     {
 
                         mSixWeekDayBangumis.addAll(weekDayBangumiResult.list);
-                        mSectionedAdapter.addSection(new WeekDayBangumiAdapter(
+                        mSectionedAdapter.addSection(new WeekDayBangumiSection(
                                 WeekDayBangumiActivity.this,
                                 mSixWeekDayBangumis,
                                 weekDayIcons[5],
@@ -251,7 +251,7 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
                     {
 
                         mSevenWeekDayBangumis.addAll(weekDayBangumiResult.list);
-                        mSectionedAdapter.addSection(new WeekDayBangumiAdapter(
+                        mSectionedAdapter.addSection(new WeekDayBangumiSection(
                                 WeekDayBangumiActivity.this,
                                 mSevenWeekDayBangumis,
                                 weekDayIcons[6],
