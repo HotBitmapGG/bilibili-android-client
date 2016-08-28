@@ -17,7 +17,7 @@ import butterknife.Bind;
 public class HomeFocusFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.empty_layout)
+    @Bind(R.id.empty_view)
     CustomEmptyView mCustomEmptyView;
 
     public static HomeFocusFragment newIntance()

@@ -39,7 +39,8 @@ import butterknife.Bind;
  * <p/>
  * 主界面
  */
-public class MainActivity extends RxAppCompatBaseActivity implements NavigationView.OnNavigationItemSelectedListener
+public class MainActivity extends RxAppCompatBaseActivity implements
+        NavigationView.OnNavigationItemSelectedListener
 {
 
 
@@ -73,12 +74,14 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
 
     private Random random;
 
-
     //随机头像设置数组
     private static final int[] avatars = new int[]{
-            R.drawable.ic_avatar1, R.drawable.ic_avatar2, R.drawable.ic_avatar3, R.drawable.ic_avatar4,
-            R.drawable.ic_avatar5, R.drawable.ic_avatar6, R.drawable.ic_avatar7, R.drawable.ic_avatar8,
-            R.drawable.ic_avatar9, R.drawable.ic_avatar10, R.drawable.ic_avatar11,
+            R.drawable.ic_avatar1, R.drawable.ic_avatar2,
+            R.drawable.ic_avatar3, R.drawable.ic_avatar4,
+            R.drawable.ic_avatar5, R.drawable.ic_avatar6,
+            R.drawable.ic_avatar7, R.drawable.ic_avatar8,
+            R.drawable.ic_avatar9, R.drawable.ic_avatar10,
+            R.drawable.ic_avatar11,
             };
 
 
@@ -124,20 +127,20 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
     {
 
         HomePageFragment mHomePageFragment = HomePageFragment.newInstance();
-        SettingFragment mSettingFragment = SettingFragment.newInstance();
         IFavoritesFragment mFavoritesFragment = IFavoritesFragment.newInstance();
         HistoryFragment mHistoryFragment = HistoryFragment.newInstance();
         AttentionPeopleFragment mAttentionPeopleFragment = AttentionPeopleFragment.newInstance();
         ConsumeHistoryFragment mConsumeHistoryFragment = ConsumeHistoryFragment.newInstance();
+        SettingFragment mSettingFragment = SettingFragment.newInstance();
 
 
         fragments = new Fragment[]{
                 mHomePageFragment,
-                mSettingFragment,
                 mFavoritesFragment,
                 mHistoryFragment,
                 mAttentionPeopleFragment,
-                mConsumeHistoryFragment
+                mConsumeHistoryFragment,
+                mSettingFragment
         };
 
         // 添加显示第一个fragment
@@ -160,7 +163,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
             mActionBar.setDisplayUseLogoEnabled(true);
             mActionBar.setDisplayShowTitleEnabled(false);
         }
-
 
         mDrawerToggle = new ActionBarDrawerToggle(this,
                 mDrawerLayout,
@@ -196,7 +198,8 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
     public boolean onOptionsItemSelected(MenuItem item)
     {
 
-        if (mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item))
+        if (mDrawerToggle != null &&
+                mDrawerToggle.onOptionsItemSelected(item))
         {
             return true;
         }
@@ -234,13 +237,9 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
     {
 
         if (isShowMenu)
-        {
             menu.findItem(R.id.id_action_game).setVisible(false);
-        } else
-        {
+        else
             menu.findItem(R.id.id_action_game).setVisible(true);
-        }
-
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -255,7 +254,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
             case R.id.item_home:
                 // 主页
                 index = 0;
-                setShowingFragment(fragments[0]);
+                switchFragment(fragments[0]);
                 item.setChecked(true);
                 mToolbar.setLogo(R.drawable.ic_bili_logo_white);
                 mToolbar.setTitle("");
@@ -264,13 +263,14 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
 
             case R.id.item_download:
                 // 离线缓存
-                startActivity(new Intent(MainActivity.this, OffLineDownloadActivity.class));
+                startActivity(new Intent(MainActivity.this,
+                        OffLineDownloadActivity.class));
                 return true;
 
             case R.id.item_favourite:
                 // 我的收藏
-                index = 2;
-                setShowingFragment(fragments[2]);
+                index = 1;
+                switchFragment(fragments[1]);
                 item.setChecked(true);
                 mToolbar.setTitle("我的收藏");
                 mToolbar.setLogo(null);
@@ -279,8 +279,8 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
 
             case R.id.item_history:
                 // 历史记录
-                index = 3;
-                setShowingFragment(fragments[3]);
+                index = 2;
+                switchFragment(fragments[2]);
                 item.setChecked(true);
                 mToolbar.setTitle("历史记录");
                 mToolbar.setLogo(null);
@@ -289,8 +289,8 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
 
             case R.id.item_group:
                 // 关注的人
-                index = 4;
-                setShowingFragment(fragments[4]);
+                index = 3;
+                switchFragment(fragments[3]);
                 item.setChecked(true);
                 mToolbar.setTitle("关注的人");
                 mToolbar.setLogo(null);
@@ -299,8 +299,8 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
 
             case R.id.item_tracker:
                 // 消费记录
-                index = 5;
-                setShowingFragment(fragments[5]);
+                index = 4;
+                switchFragment(fragments[4]);
                 item.setChecked(true);
                 mToolbar.setTitle("消费记录");
                 mToolbar.setLogo(null);
@@ -319,8 +319,8 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
 
             case R.id.item_settings:
                 // 设置中心
-                index = 1;
-                setShowingFragment(fragments[1]);
+                index = 5;
+                switchFragment(fragments[5]);
                 item.setChecked(true);
                 mToolbar.setTitle("设置与帮助");
                 mToolbar.setLogo(null);
@@ -337,7 +337,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
      *
      * @param fragment
      */
-    private void setShowingFragment(Fragment fragment)
+    private void switchFragment(Fragment fragment)
     {
 
         FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
@@ -349,6 +349,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
         trx.show(fragments[index]).commit();
         currentTabIndex = index;
     }
+
 
     private class DrawerListener implements DrawerLayout.DrawerListener
     {
