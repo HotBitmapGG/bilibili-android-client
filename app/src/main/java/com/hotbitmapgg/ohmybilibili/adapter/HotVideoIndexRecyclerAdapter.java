@@ -41,7 +41,7 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_hot_video_index, parent, false));
+                .inflate(R.layout.item_video_card, parent, false));
     }
 
     @Override

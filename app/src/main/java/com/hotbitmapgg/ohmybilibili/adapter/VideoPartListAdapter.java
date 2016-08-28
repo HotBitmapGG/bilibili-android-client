@@ -41,7 +41,7 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext()).
-                inflate(R.layout.item_video_parts, parent, false));
+                inflate(R.layout.item_video_card, parent, false));
     }
 
     @Override
@@ -53,22 +53,15 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
             ItemViewHolder mHolder = (ItemViewHolder) holder;
             UserRecommend.AuthorData authorData = datas.get(position);
 
-            int click = authorData.click;
-            String cover = authorData.cover;
-            int favorites = authorData.favorites;
-            int review = authorData.review;
-            int video_review = authorData.video_review;
-            String title = authorData.title;
-
             Picasso.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(cover))
+                    .load(UrlHelper.getClearVideoPreviewUrl(authorData.cover))
                     .placeholder(R.drawable.bili_default_image_tv)
                     .error(R.drawable.bili_default_image_tv)
                     .into(mHolder.mVideoPic);
 
-            mHolder.mVideoTitle.setText(title);
-            mHolder.mVideoPlayNum.setText(String.valueOf(click));
-            mHolder.mVideoReviewNum.setText(String.valueOf(video_review));
+            mHolder.mVideoTitle.setText(authorData.title);
+            mHolder.mVideoPlayNum.setText(String.valueOf(authorData.click));
+            mHolder.mVideoReviewNum.setText(String.valueOf(authorData.video_review));
         }
 
         super.onBindViewHolder(holder, position);

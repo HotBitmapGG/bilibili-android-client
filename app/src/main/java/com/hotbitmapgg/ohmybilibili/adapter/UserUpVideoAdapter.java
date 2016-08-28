@@ -40,7 +40,7 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_user_up_video, parent, false));
+                .inflate(R.layout.item_video_card, parent, false));
     }
 
     @Override
