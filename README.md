@@ -18,25 +18,25 @@
 
 ## 截图
 
-<a href="art/01.jpg"><img src="art/01.jpg" width="50%"/></a> <a href="art/02.jpg"><img src="art/02.jpg" width="50%"/></a>
+<a href="art/01.jpg"><img src="art/01.jpg" width="40%"/></a> <a href="art/02.jpg"><img src="art/02.jpg" width="40%"/></a>
 
-<a href="art/03.jpg"><img src="art/03.jpg" width="50%"/></a> <a href="art/04.jpg"><img src="art/04.jpg" width="50%"/></a>
+<a href="art/03.jpg"><img src="art/03.jpg" width="40%"/></a> <a href="art/04.jpg"><img src="art/04.jpg" width="40%"/></a>
 
-<a href="art/05.jpg"><img src="art/05.jpg" width="50%"/></a> <a href="art/06.jpg"><img src="art/06.jpg" width="50%"/></a>
+<a href="art/05.jpg"><img src="art/05.jpg" width="40%"/></a> <a href="art/06.jpg"><img src="art/06.jpg" width="40%"/></a>
 
-<a href="art/07.jpg"><img src="art/07.jpg" width="50%"/></a> <a href="art/08.jpg"><img src="art/08.jpg" width="50%"/></a>
+<a href="art/07.jpg"><img src="art/07.jpg" width="40%"/></a> <a href="art/08.jpg"><img src="art/08.jpg" width="40%"/></a>
 
-<a href="art/09.jpg"><img src="art/09.jpg" width="50%"/></a> <a href="art/10.jpg"><img src="art/10.jpg" width="50%"/></a>
+<a href="art/09.jpg"><img src="art/09.jpg" width="40%"/></a> <a href="art/10.jpg"><img src="art/10.jpg" width="40%"/></a>
 
-<a href="art/11.jpg"><img src="art/11.jpg" width="50%"/></a> <a href="art/12.jpg"><img src="art/12.jpg" width="50%"/></a>
+<a href="art/11.jpg"><img src="art/11.jpg" width="40%"/></a> <a href="art/12.jpg"><img src="art/12.jpg" width="40%"/></a>
 
-<a href="art/13.jpg"><img src="art/13.jpg" width="50%"/></a> <a href="art/14.jpg"><img src="art/14.jpg" width="50%"/></a>
+<a href="art/13.jpg"><img src="art/13.jpg" width="40%"/></a> <a href="art/14.jpg"><img src="art/14.jpg" width="40%"/></a>
 
-<a href="art/15.jpg"><img src="art/15.jpg" width="50%"/></a> <a href="art/16.jpg"><img src="art/16.jpg" width="50%"/></a>
+<a href="art/15.jpg"><img src="art/15.jpg" width="40%"/></a> <a href="art/16.jpg"><img src="art/16.jpg" width="40%"/></a>
 
-<a href="art/17.jpg"><img src="art/17.jpg" width="50%"/></a> <a href="art/18.jpg"><img src="art/18.jpg" width="50%"/></a>
+<a href="art/17.jpg"><img src="art/17.jpg" width="40%"/></a> <a href="art/18.jpg"><img src="art/18.jpg" width="40%"/></a>
 
-<a href="art/19.jpg"><img src="art/19.jpg" width="50%"/></a>
+<a href="art/19.jpg"><img src="art/19.jpg" width="40%"/></a>
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/21.jpg?raw=true)
 
