@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,7 +28,8 @@ public class SpecialVideoRecyclerAdapter extends AbsRecyclerViewAdapter
 
     private List<SpecialTopic.Item> spItems = new ArrayList<>();
 
-    public SpecialVideoRecyclerAdapter(RecyclerView recyclerView, List<SpecialTopic.Item> spItems)
+    public SpecialVideoRecyclerAdapter(RecyclerView recyclerView,
+                                       List<SpecialTopic.Item> spItems)
     {
 
         super(recyclerView);
@@ -39,9 +41,11 @@ public class SpecialVideoRecyclerAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_sp_video, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).
+                inflate(R.layout.item_sp_video, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {

@@ -36,7 +36,8 @@ public class PartitionMorePagerAdapter extends FragmentStatePagerAdapter
 
         for (int i = 0; i < titles.size(); i++)
         {
-            fragments.add(PartitionListFragment.newInstance(titles.get(i).getTitleType() + ""));
+            fragments.add(PartitionListFragment.
+                    newInstance(titles.get(i).getTitleType() + ""));
         }
     }
 

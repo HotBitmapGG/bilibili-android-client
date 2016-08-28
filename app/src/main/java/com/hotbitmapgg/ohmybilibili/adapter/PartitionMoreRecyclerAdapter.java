@@ -13,7 +13,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreVideoItem;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hcc on 16/8/4 14:12
@@ -25,9 +25,10 @@ public class PartitionMoreRecyclerAdapter extends AbsRecyclerViewAdapter
 {
 
 
-    private ArrayList<PartitionMoreVideoItem> mList;
+    private List<PartitionMoreVideoItem> mList;
 
-    public PartitionMoreRecyclerAdapter(RecyclerView recyclerView, ArrayList<PartitionMoreVideoItem> list)
+    public PartitionMoreRecyclerAdapter(RecyclerView recyclerView,
+                                        List<PartitionMoreVideoItem> list)
     {
 
         super(recyclerView);
@@ -53,12 +54,13 @@ public class PartitionMoreRecyclerAdapter extends AbsRecyclerViewAdapter
                 Picasso.with(getContext())
                         .load(Uri.parse(videoItemInfo.pic))
                         .placeholder(R.drawable.bili_default_image_tv)
+                        .error(R.drawable.bili_default_image_tv)
                         .into(mHolder.mPreviewImage);
 
                 String play = videoItemInfo.play;
                 int video_review = videoItemInfo.video_review;
                 mHolder.mPlayNum.setText(play);
-                mHolder.mReviewNum.setText(video_review + "");
+                mHolder.mReviewNum.setText(String.valueOf(video_review));
                 String author = videoItemInfo.author;
                 mHolder.mUploadUser.setText(author);
             } catch (Exception e)

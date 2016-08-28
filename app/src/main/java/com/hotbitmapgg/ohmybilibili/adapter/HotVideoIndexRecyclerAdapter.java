@@ -27,7 +27,8 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 
     List<VideoItemInfo> videoItemInfos = new ArrayList<>();
 
-    public HotVideoIndexRecyclerAdapter(RecyclerView recyclerView, List<VideoItemInfo> videoItemInfos)
+    public HotVideoIndexRecyclerAdapter(RecyclerView recyclerView,
+                                        List<VideoItemInfo> videoItemInfos)
     {
 
         super(recyclerView);
@@ -53,11 +54,12 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
             VideoItemInfo videoItemInfo = videoItemInfos.get(position);
             itemViewHolder.mVideoTitle.setText(videoItemInfo.title);
             itemViewHolder.mVideoPlayNum.setText(videoItemInfo.play);
-            itemViewHolder.mVideoReviewCount.setText((videoItemInfo.video_review) + "");
+            itemViewHolder.mVideoReviewCount.setText(String.valueOf(videoItemInfo.video_review));
 
             Picasso.with(getContext())
                     .load(Uri.parse(videoItemInfo.pic))
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .error(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoImg);
         }
         super.onBindViewHolder(holder, position);

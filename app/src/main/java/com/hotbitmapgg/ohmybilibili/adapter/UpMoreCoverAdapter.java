@@ -27,7 +27,8 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 
     private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
 
-    public UpMoreCoverAdapter(RecyclerView recyclerView, List<UserUpVideoInfo.VlistBean> userVideoList)
+    public UpMoreCoverAdapter(RecyclerView recyclerView,
+                              List<UserUpVideoInfo.VlistBean> userVideoList)
     {
 
         super(recyclerView);
@@ -55,6 +56,7 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
             Picasso.with(getContext())
                     .load(UrlHelper.getClearVideoPreviewUrl(vlistBean.getPic()))
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .error(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoPic);
 
             itemViewHolder.mVideoTitle.setText(vlistBean.getTitle());

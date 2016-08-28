@@ -8,9 +8,9 @@
         android:id="@+id/item_img"
         android:layout_width="100dp"
         android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginStart="10dp" />
 
 
     <TextView
@@ -18,8 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/item_img"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/item_img"
         android:textColor="@color/font_normal"
         android:textSize="16sp" />
 
@@ -27,9 +27,9 @@
         android:id="@+id/item_btn"
         android:layout_width="70dp"
         android:layout_height="35dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/corner_btn"
         android:text="下载"
         android:textColor="@color/white"

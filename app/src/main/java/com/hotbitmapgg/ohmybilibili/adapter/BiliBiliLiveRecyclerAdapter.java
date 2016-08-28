@@ -129,16 +129,20 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
         switch (viewType)
         {
             case TYPE_ENTRANCE:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_live_entrance, null);
+                view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.item_live_entrance, null);
                 return new LiveEntranceViewHolder(view);
             case TYPE_LIVE_ITEM:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_live_partition, null);
+                view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.item_live_partition, null);
                 return new LiveItemViewHolder(view);
             case TYPE_PARTITION:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_live_partition_title, null);
+                view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.item_live_partition_title, null);
                 return new LivePartitionViewHolder(view);
             case TYPE_BANNER:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_live_banner, null);
+                view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.item_live_banner, null);
                 return new LiveBannerViewHolder(view);
         }
         return null;
@@ -208,8 +212,10 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 
             ((LivePartitionViewHolder) holder).itemTitle.setText(partition.name);
             SpannableStringBuilder stringBuilder = new SpannableStringBuilder("当前" + partition.count + "个直播");
-            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(context.getResources().getColor(R.color.colorPrimary));
-            stringBuilder.setSpan(foregroundColorSpan, 2, stringBuilder.length() - 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(
+                    context.getResources().getColor(R.color.colorPrimary));
+            stringBuilder.setSpan(foregroundColorSpan, 2,
+                    stringBuilder.length() - 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             ((LivePartitionViewHolder) holder).itemCount.setText(stringBuilder);
         } else if (holder instanceof LiveBannerViewHolder)
         {

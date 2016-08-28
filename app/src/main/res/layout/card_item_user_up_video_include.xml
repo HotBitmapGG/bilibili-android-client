@@ -38,7 +38,7 @@
         <ImageView
             android:layout_width="@dimen/video_info_mini_icons_size"
             android:layout_height="@dimen/video_info_mini_icons_size"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:src="@drawable/ic_play_circle_outline_black_24dp" />
 
         <TextView
@@ -56,7 +56,7 @@
         <ImageView
             android:layout_width="@dimen/video_info_mini_icons_size"
             android:layout_height="@dimen/video_info_mini_icons_size"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:src="@drawable/ic_subtitles_black_24dp" />
 
         <TextView

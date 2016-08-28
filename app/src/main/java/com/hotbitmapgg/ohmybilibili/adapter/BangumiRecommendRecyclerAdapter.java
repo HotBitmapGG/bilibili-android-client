@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
                 .inflate(R.layout.item_recommend_bangumi, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
@@ -54,6 +56,7 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
             Picasso.with(getContext())
                     .load(recommendsBean.getPic())
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .error(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mImage);
 
             itemViewHolder.mTitle.setText(recommendsBean.getTitle());

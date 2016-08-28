@@ -26,7 +26,8 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
 
     private List<TwoDimensional.ListBean> twoDimensionals = new ArrayList<>();
 
-    public TwoDimensionalRecyclerAdapter(RecyclerView recyclerView, List<TwoDimensional.ListBean> twoDimensionals)
+    public TwoDimensionalRecyclerAdapter(RecyclerView recyclerView,
+                                         List<TwoDimensional.ListBean> twoDimensionals)
     {
 
         super(recyclerView);
@@ -53,6 +54,7 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
             Picasso.with(getContext())
                     .load(listBean.getCover())
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .error(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mImage);
 
             itemViewHolder.mTitle.setText(listBean.getTitle());

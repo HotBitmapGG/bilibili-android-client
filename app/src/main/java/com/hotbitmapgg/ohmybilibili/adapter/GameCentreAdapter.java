@@ -54,6 +54,7 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
             final GameItem gameItem = games.get(position);
             Picasso.with(getContext())
                     .load(gameItem.imageRes)
+                    .placeholder(R.drawable.bili_default_image_tv)
                     .error(R.drawable.bili_default_image_tv)
                     .into(mHolder.mImageView);
 
