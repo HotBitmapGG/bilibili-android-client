@@ -20,7 +20,7 @@ import java.util.List;
  * Created by hcc on 16/8/7 21:18
  * 100332338@qq.com
  * <p/>
- * 相关视频更多adapter
+ * 视频详情界面相关视频Adapter
  */
 public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 {
@@ -62,7 +62,8 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 
             itemViewHolder.mVideoTitle.setText(title);
             itemViewHolder.mVideoPlayNum.setText(play);
-            itemViewHolder.mVideoReviewNum.setText(video_review + "");
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(video_review));
+            itemViewHolder.mUserName.setText(videoAlikeInfo.author);
         }
 
         super.onBindViewHolder(holder, position);
@@ -86,6 +87,8 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 
         public TextView mVideoReviewNum;
 
+        public TextView mUserName;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -95,6 +98,7 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
             mVideoTitle = $(R.id.item_title);
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewNum = $(R.id.item_review);
+            mUserName = $(R.id.item_user_name);
         }
     }
 }

@@ -2,7 +2,7 @@ package com.hotbitmapgg.ohmybilibili.module.video;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -129,13 +129,6 @@ public class VideoInfoFragment extends RxLazyFragment
         setVideoInfo();
     }
 
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
-
-
     private void setVideoInfo()
     {
 
@@ -259,7 +252,7 @@ public class VideoInfoFragment extends RxLazyFragment
         mVideoAlikeListAdapter = new VideoAlikeListAdapter(mVideoPartList, mUserVideos);
         mVideoPartList.setHasFixedSize(false);
         mVideoPartList.setNestedScrollingEnabled(false);
-        mVideoPartList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mVideoPartList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mVideoPartList.setAdapter(mVideoAlikeListAdapter);
         mVideoAlikeListAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
         {
@@ -270,8 +263,7 @@ public class VideoInfoFragment extends RxLazyFragment
 
                 getActivity().finish();
                 VideoAlikeInfo videoAlikeInfo = mUserVideos.get(position);
-                int aid = videoAlikeInfo.aid;
-                VideoDetailsActivity.launch(getActivity(), aid);
+                VideoDetailsActivity.launch(getActivity(), videoAlikeInfo.aid);
             }
         });
     }
@@ -286,4 +278,12 @@ public class VideoInfoFragment extends RxLazyFragment
         intent.putExtra(Intent.EXTRA_TEXT, "来自「哔哩哔哩」的分享:" + mVideoDetails.describeContents());
         startActivity(Intent.createChooser(intent, mVideoDetails.getTitle()));
     }
+
+
+    @Override
+    protected void lazyLoad()
+    {
+
+    }
+
 }
