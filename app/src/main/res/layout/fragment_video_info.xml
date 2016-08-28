@@ -50,7 +50,7 @@
                     <ImageView
                         android:layout_width="@dimen/video_info_mini_icons_size"
                         android:layout_height="@dimen/video_info_mini_icons_size"
-                        android:src="@drawable/ic_info_views_gray" />
+                        android:src="@drawable/ic_info_views" />
 
                     <TextView
                         android:id="@+id/tv_play_time"
@@ -67,7 +67,7 @@
                     <ImageView
                         android:layout_width="@dimen/video_info_mini_icons_size"
                         android:layout_height="@dimen/video_info_mini_icons_size"
-                        android:src="@drawable/ic_answer_danmaku" />
+                        android:src="@drawable/ic_info_danmakus" />
 
                     <TextView
                         android:id="@+id/tv_review_count"
