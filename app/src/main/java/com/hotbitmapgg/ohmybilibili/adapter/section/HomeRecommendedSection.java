@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
@@ -24,7 +26,6 @@ import com.hotbitmapgg.ohmybilibili.module.home.discover.HotVideoIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,8 +110,11 @@ public class HomeRecommendedSection extends StatelessSection
 
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         final RecommendInfo.ResultBean.BodyBean bodyBean = datas.get(position);
-        Picasso.with(mContext)
+
+        Glide.with(mContext)
                 .load(Uri.parse(bodyBean.getCover()))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .centerCrop()
                 .placeholder(R.drawable.bili_default_image_tv)
                 .into(itemViewHolder.mVideoImg);
 

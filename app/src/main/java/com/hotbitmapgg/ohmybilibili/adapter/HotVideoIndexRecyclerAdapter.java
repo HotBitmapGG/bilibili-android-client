@@ -8,10 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,10 +57,11 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
             itemViewHolder.mVideoPlayNum.setText(videoItemInfo.play);
             itemViewHolder.mVideoReviewCount.setText(String.valueOf(videoItemInfo.video_review));
 
-            Picasso.with(getContext())
+            Glide.with(getContext())
                     .load(Uri.parse(videoItemInfo.pic))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
-                    .error(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoImg);
         }
         super.onBindViewHolder(holder, position);

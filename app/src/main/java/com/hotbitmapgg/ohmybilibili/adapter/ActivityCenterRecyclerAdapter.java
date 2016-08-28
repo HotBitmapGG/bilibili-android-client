@@ -7,10 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -49,8 +50,11 @@ public class ActivityCenterRecyclerAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            Picasso.with(getContext())
+
+            Glide.with(getContext())
                     .load(activitys.get(position).getCover())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoImg);
             itemViewHolder.mVideoTitle.setText(activitys.get(position).getTitle());

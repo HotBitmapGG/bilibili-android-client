@@ -8,10 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreVideoItem;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -49,10 +50,11 @@ public class PartitionMoreRecyclerAdapter extends AbsRecyclerViewAdapter
                 PartitionMoreVideoItem videoItemInfo = mList.get(position);
                 mHolder.mTitleView.setText(videoItemInfo.title == null ? "" : videoItemInfo.title);
 
-                Picasso.with(getContext())
+                Glide.with(getContext())
                         .load(Uri.parse(videoItemInfo.pic))
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .centerCrop()
                         .placeholder(R.drawable.bili_default_image_tv)
-                        .error(R.drawable.bili_default_image_tv)
                         .into(mHolder.mPreviewImage);
 
                 String play = videoItemInfo.play;

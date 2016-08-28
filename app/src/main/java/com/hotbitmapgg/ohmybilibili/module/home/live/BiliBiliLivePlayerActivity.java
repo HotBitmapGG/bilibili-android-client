@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
@@ -22,7 +24,6 @@ import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.LoveLikeLayout;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -152,11 +153,15 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
      */
     private void initUserInfo()
     {
-
-        Picasso.with(this)
+        Glide.with(BiliBiliLivePlayerActivity.this)
                 .load(face)
+                .centerCrop()
+                .dontAnimate()
                 .placeholder(R.drawable.ico_user_default)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mUserPic);
+
+
         mUserName.setText(name);
         mLiveNum.setText(String.valueOf(online));
     }

@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveBannerViewHolder;
 import com.hotbitmapgg.ohmybilibili.adapter.liveholder.LiveEntranceViewHolder;
@@ -20,7 +22,6 @@ import com.hotbitmapgg.ohmybilibili.entity.live.Live;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.entity.live.PartitionSub;
 import com.hotbitmapgg.ohmybilibili.module.home.live.BiliBiliLivePlayerActivity;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -160,9 +161,12 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
             //liveIndex.entranceIcons.get(position).name
             //liveIndex.entranceIcons.get(position).entrance_icon.src
             ((LiveEntranceViewHolder) holder).title.setText(entranceTitles[position]);
-            Picasso.with(context)
+
+            Glide.with(context)
                     .load(entranceIconRes[position])
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(((LiveEntranceViewHolder) holder).image);
+
         } else if (holder instanceof LiveItemViewHolder)
         {
             try
@@ -170,18 +174,25 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
                 item = liveIndex.partitions.get(partitionCol(position))
                         .lives.get(position - 1 - entranceSize - partitionCol(position) * 5);
 
-                Picasso.with(context)
+                Glide.with(context)
                         .load(item.cover.src)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .placeholder(R.drawable.bili_default_image_tv)
                         .into(((LiveItemViewHolder) holder).itemLiveCover);
 
                 ((LiveItemViewHolder) holder).itemLiveTitle.setText(item.title);
                 ((LiveItemViewHolder) holder).itemLiveUser.setText(item.owner.name);
 
-                Picasso.with(context)
+                Glide.with(context)
                         .load(item.owner.face)
+                        .centerCrop()
+                        .dontAnimate()
+                        .placeholder(R.drawable.ico_user_default)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(((LiveItemViewHolder) holder).itemLiveUserCover);
-                ((LiveItemViewHolder) holder).itemLiveCount.setText(item.online + "");
+
+
+                ((LiveItemViewHolder) holder).itemLiveCount.setText(String.valueOf(item.online));
                 ((LiveItemViewHolder) holder).itemLiveLayout.setOnClickListener(new View.OnClickListener()
                 {
 
@@ -206,8 +217,10 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
         } else if (holder instanceof LivePartitionViewHolder)
         {
             partition = liveIndex.partitions.get(partitionCol(position)).partition;
-            Picasso.with(context)
+
+            Glide.with(context)
                     .load(partition.sub_icon.src)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(((LivePartitionViewHolder) holder).itemIcon);
 
             ((LivePartitionViewHolder) holder).itemTitle.setText(partition.name);

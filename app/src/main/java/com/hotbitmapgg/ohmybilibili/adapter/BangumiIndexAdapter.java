@@ -7,10 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndex;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,13 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             BangumiIndex bangumiIndex = bangumiIndexList.get(position);
-            Picasso.with(getContext()).load(bangumiIndex.cover).into(itemViewHolder.mImageView);
+
+            Glide.with(getContext())
+                    .load(bangumiIndex.cover)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(itemViewHolder.mImageView);
             itemViewHolder.mTextView.setText(bangumiIndex.title);
         }
         super.onBindViewHolder(holder, position);

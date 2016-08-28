@@ -6,11 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserFans;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,11 +56,15 @@ public class UserFansAdapter extends AbsRecyclerViewAdapter
             itemViewHolder mHolder = (itemViewHolder) holder;
             UserFans.FansInfo fansInfo = infos.get(position);
 
-            Picasso.with(getContext())
+            Glide.with(getContext())
                     .load(fansInfo.face)
+                    .centerCrop()
+                    .dontAnimate()
                     .placeholder(R.drawable.ico_user_default)
-                    .error(R.drawable.bili_default_image_tv)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(mHolder.mUserAvatar);
+
+
             mHolder.mUserName.setText(fansInfo.uname);
         }
     }

@@ -10,11 +10,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -160,11 +161,13 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
 
         for (int i = 0; i < bannerList.size(); i++)
         {
-            ImageView hImageView = new ImageView(context);
-            Picasso.with(context)
+            ImageView mImageView = new ImageView(context);
+            Glide.with(context)
                     .load(bannerList.get(i).img)
-                    .into(hImageView);
-            imageViewList.add(hImageView);
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(mImageView);
+            imageViewList.add(mImageView);
         }
 
         //监听图片轮播，改变指示器状态

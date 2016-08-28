@@ -9,11 +9,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.game.GameItem;
 import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,10 +54,12 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder mHolder = (ItemViewHolder) holder;
             final GameItem gameItem = games.get(position);
-            Picasso.with(getContext())
+
+            Glide.with(getContext())
                     .load(gameItem.imageRes)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
-                    .error(R.drawable.bili_default_image_tv)
                     .into(mHolder.mImageView);
 
             mHolder.mTitle.setText(gameItem.name);

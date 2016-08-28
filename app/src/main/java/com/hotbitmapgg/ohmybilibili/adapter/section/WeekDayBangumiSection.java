@@ -11,11 +11,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumi;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.SpecialDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -78,10 +79,11 @@ public class WeekDayBangumiSection extends StatelessSection
 
         if (!TextUtils.isEmpty(weekDayBangumi.cover))
         {
-            Picasso.with(mContext)
+            Glide.with(mContext)
                     .load(Uri.parse(weekDayBangumi.cover))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
-                    .error(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mImageView);
         } else
         {

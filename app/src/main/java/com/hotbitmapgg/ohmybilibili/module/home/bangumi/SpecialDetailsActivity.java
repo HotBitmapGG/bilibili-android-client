@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.SpecialVideoRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
@@ -24,7 +26,6 @@ import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -237,7 +238,12 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         int attention = mSpecialTopic.attention;
 
         // 初始化界面数据
-        Picasso.with(this).load(cover).placeholder(R.drawable.bili_default_image_tv).into(mPreviewImage);
+        Glide.with(SpecialDetailsActivity.this)
+                .load(cover)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.bili_default_image_tv)
+                .into(mPreviewImage);
+
         mTitleText.setText(spTitle);
         mLastUpdateText.setText("最后更新日期:" + lastupdate_at);
         if (!TextUtils.isEmpty(description))

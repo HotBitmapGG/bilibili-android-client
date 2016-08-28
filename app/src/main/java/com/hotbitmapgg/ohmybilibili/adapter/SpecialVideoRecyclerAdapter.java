@@ -9,10 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +56,10 @@ public class SpecialVideoRecyclerAdapter extends AbsRecyclerViewAdapter
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             SpecialTopic.Item item = spItems.get(position);
             itemViewHolder.mSpNum.setText("第" + item.episode + "话");
-            String cover = item.cover;
-            Picasso.with(getContext())
-                    .load(Uri.parse(cover))
+
+            Glide.with(getContext())
+                    .load(Uri.parse(item.cover))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mPreviewImage);
         }

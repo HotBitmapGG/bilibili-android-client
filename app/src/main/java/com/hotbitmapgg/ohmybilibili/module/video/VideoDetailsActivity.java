@@ -21,6 +21,8 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
@@ -29,7 +31,6 @@ import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,10 +149,10 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
         if (itemInfo != null)
         {
-            Picasso.with(this)
+            Glide.with(VideoDetailsActivity.this)
                     .load(UrlHelper.getClearVideoPreviewUrl(itemInfo.pic))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
-                    .error(R.drawable.bili_default_image_tv)
                     .into(mVideoPreview);
         }
     }
@@ -281,10 +282,11 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         mFAB.setClickable(true);
         mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
         mCollapsingToolbarLayout.setTitle(mVideoDetails.getTitle());
-        Picasso.with(this)
+
+        Glide.with(VideoDetailsActivity.this)
                 .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.bili_default_image_tv)
-                .error(R.drawable.bili_default_image_tv)
                 .into(mVideoPreview);
 
         VideoInfoFragment mVideoInfoFragment = VideoInfoFragment

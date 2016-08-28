@@ -14,9 +14,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by hcc on 16/8/7 21:18
@@ -129,7 +130,13 @@ public class UserTagView extends FrameLayout
         this.avatarUrl = avatarUrl;
         this.setUserName(name);
 
-        Picasso.with(getContext()).load(this.avatarUrl).placeholder(R.drawable.ico_user_default).into(avatarView);
+        Glide.with(getContext())
+                .load(this.avatarUrl)
+                .centerCrop()
+                .dontAnimate()
+                .placeholder(R.drawable.ico_user_default)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(avatarView);
     }
 
     @Override
