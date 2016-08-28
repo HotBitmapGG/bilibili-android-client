@@ -86,7 +86,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements NavigationV
     public int getLayoutId()
     {
 
-        return R.layout.activity_main_home;
+        return R.layout.activity_main;
     }
 
     @Override

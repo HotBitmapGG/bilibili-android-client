@@ -46,7 +46,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/bangumi_horizontal_title_frame_max_height"
+            android:layout_height="48dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal"

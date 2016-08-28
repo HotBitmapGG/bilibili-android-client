@@ -9,7 +9,7 @@
     <FrameLayout
         android:id="@+id/live_layout"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:layout_below="@+id/toolbar_layout"
         android:background="@drawable/shadow_gradient_reserve">
 
@@ -48,9 +48,9 @@
             android:id="@+id/right_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
             android:layout_marginBottom="60dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_tv_play"
             android:visibility="gone" />
 
@@ -66,7 +66,7 @@
                 android:id="@+id/bottom_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:padding="10dp"
                 android:src="@drawable/ic_portrait_play" />
 
@@ -74,7 +74,7 @@
                 android:id="@+id/bottom_love"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/bottom_fullscreen"
+                android:layout_toStartOf="@+id/bottom_fullscreen"
                 android:padding="10dp"
                 android:src="@drawable/ic_live_player_send_gift" />
 
@@ -83,7 +83,7 @@
                 android:id="@+id/bottom_fullscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:padding="10dp"
                 android:src="@drawable/ic_live_palyer_zoom_in" />
         </RelativeLayout>
@@ -106,9 +106,9 @@
             android:id="@+id/user_pic"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:padding="5dp"
             android:src="@drawable/ico_user_default" />
 
@@ -117,8 +117,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/user_pic"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/user_pic"
             android:padding="5dp"
             android:text="用户名"
             android:textColor="@color/colorPrimary"
@@ -130,21 +130,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/user_name"
-            android:drawableLeft="@drawable/ic_muti_people"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/user_name"
+            android:drawableStart="@drawable/ic_muti_people"
             android:drawablePadding="5dp"
             android:padding="5dp"
-            android:text="1192"
             android:textColor="@color/gray"
             android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/btn_pin_bg"
             android:gravity="center"
             android:text="+关注"

@@ -36,7 +36,7 @@
             android:id="@+id/iv_icon_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:src="@drawable/ic_22" />
 
         <ImageView
@@ -51,7 +51,7 @@
             android:id="@+id/iv_icon_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/ic_33" />
     </RelativeLayout>
 
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
-            android:paddingRight="10dp">
+            android:paddingEnd="10dp">
 
             <EditText
                 android:id="@+id/et_username"
@@ -91,12 +91,12 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1.0"
                 android:background="@android:color/transparent"
-                android:drawableLeft="@drawable/ic_login_username_default"
+                android:drawableStart="@drawable/ic_login_username_default"
                 android:drawablePadding="10dp"
                 android:ellipsize="start"
                 android:hint="请输入您的哔哩哔哩账号"
                 android:inputType="textVisiblePassword"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:singleLine="true"
                 android:textColor="@color/black_80"
                 android:textColorHint="@color/gray_20"
@@ -107,8 +107,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:paddingLeft="20dp"
-                android:paddingRight="8dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="8dp"
                 android:src="@drawable/ic_edittext_clear"
                 android:visibility="gone" />
         </LinearLayout>
@@ -116,7 +116,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#dadada" />
+            android:background="@color/line_bg" />
 
         <EditText
             android:id="@+id/et_password"
@@ -124,11 +124,11 @@
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_login_password_default"
+            android:drawableStart="@drawable/ic_login_password_default"
             android:drawablePadding="10dp"
             android:hint="请输入您的密码"
             android:inputType="textPassword"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:singleLine="true"
             android:textColor="@color/black_80"
             android:textColorHint="@color/gray_20"

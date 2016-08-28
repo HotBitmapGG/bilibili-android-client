@@ -8,13 +8,12 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="256dp"
+            android:layout_height="@dimen/appbar_parallax_max_height"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentScrim="?attr/colorPrimary"
@@ -126,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/tv_avator_blog"
-                    android:layout_toRightOf="@id/tv_avator_blog"
+                    android:layout_toEndOf="@id/tv_avator_blog"
                     android:autoLink="web"
                     android:textColor="@color/font_normal"
                     android:visibility="gone" />
@@ -135,7 +134,7 @@
                     android:id="@+id/tv_avator_github"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/tv_avator_blog"
+                    android:layout_alignStart="@id/tv_avator_blog"
                     android:layout_below="@id/tv_avator_blog"
                     android:text="GitHub: "
                     android:textColor="@color/font_normal" />
@@ -144,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@id/tv_avator_github"
-                    android:layout_toRightOf="@id/tv_avator_github"
+                    android:layout_toEndOf="@id/tv_avator_github"
                     android:autoLink="web"
                     android:text="https://github.com/HotBitmapGG"
                     android:textColor="@color/font_normal" />

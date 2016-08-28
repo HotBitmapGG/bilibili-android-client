@@ -2,9 +2,6 @@
 <resources>
 
     <string name="app_name">哔哩哔哩</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
     <!-- 主界面 -->
     <string-array name="sections">
         <item>@string/section_recommend</item>
@@ -15,47 +12,33 @@
         <item>@string/section_discover</item>
     </string-array>
 
-    <!-- 番剧 -->
-    <string-array name="bangumis">
-        <item>完结动画</item>
-        <item>连载动画</item>
-    </string-array>
-
     <!-- 视频 -->
     <string name="info_play_times_format">%d</string>
     <string name="info_reviews_format">%d</string>
 
     <!-- 用户界面相关 -->
-    <string name="title_user_info">User information</string>
-    <string name="type_no_watching_unknown">Watch it</string>
-    <string name="type_no_watching_male">Watch him</string>
-    <string name="type_no_watching_female">Watch her</string>
-    <string name="type_watching">Watching</string>
-    <string name="type_following_you">Following you</string>
-    <string name="type_friend">Friend</string>
     <string name="info_following_format">关注 %d</string>
     <string name="info_fans_format">粉丝 %d</string>
 
     <!-- 播放器使用 -->
-    <string name="title_file">本地视频</string>
-    <string name="title_online">在线视频</string>
-    <string name="init_decoders">初始化播放器...</string>
-    <string name="loadinfo">载入中，请稍后...</string>
-    <string name="file_oper">文件操作</string>
-    <string name="file_rename">重命名</string>
-    <string name="file_rename_failed">重命名失败</string>
-    <string name="file_rename_exists">文件已存在</string>
-    <string name="file_delete">删除</string>
-    <string name="file_delete_confirm">确定删除 (%s) ？</string>
+    <!--<string name="title_file">本地视频</string>-->
+    <!--<string name="title_online">在线视频</string>-->
+    <!--<string name="init_decoders">初始化播放器...</string>-->
+    <!--<string name="loadinfo">载入中，请稍后...</string>-->
+    <!--<string name="file_oper">文件操作</string>-->
+    <!--<string name="file_rename">重命名</string>-->
+    <!--<string name="file_rename_failed">重命名失败</string>-->
+    <!--<string name="file_rename_exists">文件已存在</string>-->
+    <!--<string name="file_delete">删除</string>-->
+    <!--<string name="file_delete_confirm">确定删除 (%s) ？</string>-->
     <string name="video_layout_loading">正在缓冲...</string>
-    <string name="vitamio_theme_app_name">VPlayer codec</string>
+    <!--<string name="vitamio_theme_app_name">VPlayer codec</string>-->
     <string name="VideoView_error_title">Cannot play video</string>
     <string name="VideoView_error_text_invalid_progressive_playback">Sorry, this video is not valid for streaming to this device.</string>
     <string name="VideoView_error_text_unknown">对不起,这个视频不能播放。</string>
     <string name="VideoView_error_button">OK</string>
     <string name="mediacontroller_play_pause">Play/Pause</string>
-    <string name="imageview_content_description"></string>
-    <string name="content_desc_lock">锁定</string>
+    <!--<string name="content_desc_lock">锁定</string>-->
     <string name="video_original">100%</string>
     <string name="video_fit_screen">全屏</string>
     <string name="video_stretch">拉伸</string>
@@ -96,13 +79,10 @@
 
 
     <!--哔哩哔哩-->
-    <string name="home_tab_recommend_title">最新推荐</string>
-    <string name="home_tab_recent_bangumi">专题推荐</string>
     <string name="home_tab_more">更多</string>
     <string name="section_recommend">推荐</string>
     <string name="section_live">直播</string>
     <string name="section_focus">关注</string>
-    <string name="section_anime">番剧</string>
     <string name="section_cartoon">动画</string>
     <string name="section_music">音乐</string>
     <string name="section_dance">舞蹈</string>

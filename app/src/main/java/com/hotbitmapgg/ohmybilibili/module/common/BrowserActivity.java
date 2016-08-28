@@ -58,7 +58,7 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
     public int getLayoutId()
     {
 
-        return R.layout.activity_bilibili_html;
+        return R.layout.activity_web;
     }
 
     @Override

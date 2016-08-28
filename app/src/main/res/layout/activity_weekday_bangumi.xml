@@ -4,13 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <include layout="@layout/layout_toolbar" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycle"
@@ -21,11 +19,8 @@
             android:paddingTop="@dimen/activity_horizontal_margin"
             android:scrollbars="none" />
 
-
         <include layout="@layout/layout_loading" />
-
     </FrameLayout>
-
 
 </LinearLayout>
 
