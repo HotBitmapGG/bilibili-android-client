@@ -41,7 +41,7 @@ public class UpMoreCoverAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_up_more_video, parent, false));
+                .inflate(R.layout.item_video_strip, parent, false));
     }
 
     @Override

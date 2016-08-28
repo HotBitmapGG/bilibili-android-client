@@ -42,7 +42,7 @@ public class SpecialVideoRecyclerAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext()).
-                inflate(R.layout.item_sp_video, parent, false));
+                inflate(R.layout.item_special_videos, parent, false));
     }
 
     @SuppressLint("SetTextI18n")

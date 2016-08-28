@@ -67,9 +67,7 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
                     .into(mHolder.mVideoPic);
 
             mHolder.mVideoTitle.setText(title);
-            mHolder.mVideoUserFav.setText(String.valueOf(favorites));
             mHolder.mVideoPlayNum.setText(String.valueOf(click));
-            mHolder.mVideoUserCommend.setText(String.valueOf(review));
             mHolder.mVideoReviewNum.setText(String.valueOf(video_review));
         }
 
@@ -91,10 +89,6 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 
         public TextView mVideoTitle;
 
-        public TextView mVideoUserFav;
-
-        public TextView mVideoUserCommend;
-
         public TextView mVideoPlayNum;
 
         public TextView mVideoReviewNum;
@@ -106,8 +100,6 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 
             mVideoPic = $(R.id.item_img);
             mVideoTitle = $(R.id.item_title);
-            mVideoUserFav = $(R.id.item_fav);
-            mVideoUserCommend = $(R.id.item_commend);
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewNum = $(R.id.item_review);
         }

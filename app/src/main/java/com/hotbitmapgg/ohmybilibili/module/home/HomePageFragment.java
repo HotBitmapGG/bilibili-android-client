@@ -39,7 +39,7 @@ public class HomePageFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_home_sprout;
+        return R.layout.fragment_home_pager;
     }
 
     @SuppressLint({"NewApi", "ClickableViewAccessibility"})

@@ -76,7 +76,7 @@ public class PartitionMoreRecyclerAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_partition_more_list, parent, false));
+                .inflate(R.layout.item_video_strip, parent, false));
     }
 
 
