@@ -9,8 +9,4 @@
     android:background="@drawable/white_tags_bg"
     android:gravity="center"
     android:padding="5dp"
-    android:text="标签"
-    android:textColor="@color/font_normal">
-
-
-</TextView>
+    android:textColor="@color/font_normal" />

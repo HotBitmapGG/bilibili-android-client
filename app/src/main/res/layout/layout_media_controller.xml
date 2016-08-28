@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/mediacontroller"
@@ -23,9 +23,9 @@
                 android:id="@+id/mediacontroller_lock"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:background="@null"
-                android:src="@drawable/mediacontroller_unlock"/>
+                android:src="@drawable/mediacontroller_unlock" />
 
 
             <TextView
@@ -33,43 +33,43 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="8dp"
+                android:paddingStart="8dp"
                 android:singleLine="true"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/download_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/video_download_rate"
                 android:drawablePadding="3dp"
-                android:paddingRight="12dp"
+                android:drawableStart="@drawable/video_download_rate"
+                android:paddingEnd="12dp"
                 android:textColor="@android:color/white"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/date_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="12dp"
-                android:textColor="@android:color/white"/>
+                android:paddingEnd="12dp"
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/battery_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="12dp"
-                android:drawableLeft="@drawable/player_battery_charging_icon"
                 android:drawablePadding="3dp"
-                android:textColor="@android:color/white"/>
+                android:drawableStart="@drawable/player_battery_charging_icon"
+                android:paddingEnd="12dp"
+                android:textColor="@android:color/white" />
 
             <ImageButton
                 android:id="@+id/video_menu"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="@null"
-                android:src="@drawable/video_more"/>
+                android:src="@drawable/video_more" />
         </LinearLayout>
 
         <LinearLayout
@@ -93,7 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="true"
-                    android:max="1000"/>
+                    android:max="1000" />
 
 
             </RelativeLayout>
@@ -103,20 +103,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/mediacontroller_buttons_bottom_margin"
-                android:layout_marginTop="@dimen/mediacontroller_buttons_top_margin"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
+                android:layout_marginTop="@dimen/mediacontroller_buttons_top_margin"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/mediacontroller_play_pause"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:background="@null"
                     android:gravity="center"
-                    android:src="@drawable/mediacontroller_pause"/>
+                    android:src="@drawable/mediacontroller_pause" />
 
 
                 <TextView
@@ -125,21 +125,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="22dp"
-                    android:layout_toRightOf="@+id/mediacontroller_play_pause"/>
+                    android:layout_marginStart="22dp"
+                    android:layout_toEndOf="@+id/mediacontroller_play_pause" />
 
                 <TextView
                     android:id="@+id/time_line"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_toRightOf="@+id/mediacontroller_time_current"
-                    android:text="/"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
-                    />
+                    android:layout_toEndOf="@+id/mediacontroller_time_current"
+                    android:text="/"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
 
 
                 <TextView
@@ -148,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/time_line"/>
+                    android:layout_toEndOf="@+id/time_line" />
 
                 <!--屏幕截图暂时屏蔽-->
                 <ImageButton
@@ -156,11 +155,11 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/mediacontroller_send_danmaku"
+                    android:layout_toStartOf="@+id/mediacontroller_send_danmaku"
                     android:background="@null"
                     android:gravity="center"
                     android:src="@drawable/mediacontroller_snapshot"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
 
                 <ImageButton
@@ -168,33 +167,33 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="22dp"
-                    android:layout_toLeftOf="@+id/mediacontroller_screen_size"
+                    android:layout_marginEnd="22dp"
+                    android:layout_toStartOf="@+id/mediacontroller_screen_size"
                     android:background="@null"
                     android:gravity="center"
-                    android:src="@drawable/ic_send_danmaku"/>
+                    android:src="@drawable/ic_send_danmaku" />
 
                 <ImageButton
                     android:id="@+id/mediacontroller_screen_size"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="22dp"
-                    android:layout_toLeftOf="@+id/mediacontroller_danmaku_switch"
+                    android:layout_marginEnd="22dp"
+                    android:layout_toStartOf="@+id/mediacontroller_danmaku_switch"
                     android:background="@null"
                     android:gravity="center"
                     android:src="@drawable/mediacontroller_screen_size"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
 
                 <ImageButton
                     android:id="@+id/mediacontroller_danmaku_switch"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:background="@null"
                     android:gravity="center"
-                    android:src="@drawable/bili_player_danmaku_is_open"/>
+                    android:src="@drawable/bili_player_danmaku_is_open" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -204,20 +203,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:textColor="@color/white"
         android:textSize="36sp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <include
         android:id="@+id/operation_volume_brightness"
-        layout="@layout/layout_brightness_volumn"
+        layout="@layout/layout_volumn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

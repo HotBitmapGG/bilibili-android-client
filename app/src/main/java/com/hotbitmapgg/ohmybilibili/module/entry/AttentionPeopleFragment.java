@@ -30,7 +30,7 @@ public class AttentionPeopleFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_attention;
+        return R.layout.fragment_empty;
     }
 
     @Override

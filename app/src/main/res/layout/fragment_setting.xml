@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hotbitmapgg.ohmybilibili.widget.SpringScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -22,9 +23,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:text="关于我"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
@@ -32,9 +33,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:src="@drawable/register_bottom_arrow" />
         </RelativeLayout>
 
@@ -55,9 +56,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:text="关于哔哩哔哩"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
@@ -65,9 +66,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:src="@drawable/register_bottom_arrow" />
         </RelativeLayout>
 
@@ -87,9 +88,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:text="检查更新"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
@@ -99,8 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/update_arrow"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/update_arrow"
                 android:text="V1.0"
                 android:textColor="@color/black_alpha_45"
                 android:textSize="16sp" />
@@ -109,9 +110,9 @@
                 android:id="@+id/update_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:src="@drawable/register_bottom_arrow" />
         </RelativeLayout>
 

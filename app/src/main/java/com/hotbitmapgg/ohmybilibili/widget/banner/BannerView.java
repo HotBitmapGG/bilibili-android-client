@@ -38,10 +38,10 @@ import rx.subscriptions.CompositeSubscription;
 public class BannerView extends RelativeLayout implements BannerAdapter.ViewPagerOnItemClickListener
 {
 
-    @Bind(R.id.widget_banner_viewpager)
+    @Bind(R.id.layout_banner_viewpager)
     ViewPager viewPager;
 
-    @Bind(R.id.widget_banner_points_group)
+    @Bind(R.id.layout_banner_points_group)
     LinearLayout points;
 
     private CompositeSubscription compositeSubscription;
@@ -80,7 +80,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
 
         super(context, attrs, defStyleAttr);
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.widget_banner_layout, this, true);
+        LayoutInflater.from(context).inflate(R.layout.layout_custom_banner, this, true);
         ButterKnife.bind(this);
 
         imageViewList = new ArrayList<>();

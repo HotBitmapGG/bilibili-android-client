@@ -30,7 +30,7 @@ public class HomeFocusFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_focus;
+        return R.layout.fragment_empty;
     }
 
     @Override

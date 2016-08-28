@@ -30,7 +30,7 @@ public class IFavoritesFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_ifav;
+        return R.layout.fragment_empty;
     }
 
     @Override

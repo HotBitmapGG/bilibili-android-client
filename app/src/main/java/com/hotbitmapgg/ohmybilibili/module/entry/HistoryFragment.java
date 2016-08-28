@@ -30,7 +30,7 @@ public class HistoryFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_history;
+        return R.layout.fragment_empty;
     }
 
     @Override
