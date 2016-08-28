@@ -50,7 +50,8 @@
                     <ImageView
                         android:layout_width="@dimen/video_info_mini_icons_size"
                         android:layout_height="@dimen/video_info_mini_icons_size"
-                        android:src="@drawable/ic_info_views" />
+                        android:src="@drawable/ic_info_views"
+                        android:tint="@color/black_alpha_45" />
 
                     <TextView
                         android:id="@+id/tv_play_time"
@@ -67,6 +68,7 @@
                     <ImageView
                         android:layout_width="@dimen/video_info_mini_icons_size"
                         android:layout_height="@dimen/video_info_mini_icons_size"
+                        android:tint="@color/black_alpha_45"
                         android:src="@drawable/ic_info_danmakus" />
 
                     <TextView

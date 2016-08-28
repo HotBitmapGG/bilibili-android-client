@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="170dp"
     android:layout_margin="@dimen/card_margin"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/card_view_background_dark"
+    app:cardBackgroundColor="@color/cardview_light_background"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation">
 
@@ -16,37 +16,18 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/item_img"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+                android:layout_height="120dp"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/black_alpha_60"
-                android:padding="5dp">
-
-                <TextView
-                    android:id="@+id/item_weekday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-            </FrameLayout>
-        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="58dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal"

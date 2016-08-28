@@ -73,16 +73,11 @@ public class WeekDayBangumiSection extends StatelessSection
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
         final WeekDayBangumi weekDayBangumi = weekDayBangumis.get(position);
         itemViewHolder.mTitle.setText(weekDayBangumi.title);
-        itemViewHolder.mWeekDayText.setText(String.format(mContext.getString(R.string.weekday_update),
-                mContext.getResources().getStringArray(R.array.weekdays)[weekDayBangumi.weekday])
-        );
-
         if (!TextUtils.isEmpty(weekDayBangumi.cover))
         {
             Glide.with(mContext)
                     .load(Uri.parse(weekDayBangumi.cover))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mImageView);
         } else
@@ -147,9 +142,6 @@ public class WeekDayBangumiSection extends StatelessSection
 
         @Bind(R.id.item_title)
         TextView mTitle;
-
-        @Bind(R.id.item_weekday)
-        TextView mWeekDayText;
 
         @Bind(R.id.card_view)
         CardView mCardView;
