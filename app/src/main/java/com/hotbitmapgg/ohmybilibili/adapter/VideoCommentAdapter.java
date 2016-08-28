@@ -65,18 +65,15 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
                         .into(mHolder.mUserAvatar);
                 int currentLevel = list.level_info.current_level;
                 checkLevel(currentLevel, mHolder);
-                String sex = list.sex;
-                if (sex.equals("女"))
-                {
+                if (list.sex.equals("女"))
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_female_border);
-                } else
-                {
+                else
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_male_border);
-                }
+
                 mHolder.mCommentNum.setText(String.valueOf(list.reply_count));
                 mHolder.mSpot.setText(String.valueOf(list.good));
                 mHolder.mCommentTime.setText(list.create_at);
-                mHolder.mCotent.setText(list.msg);
+                mHolder.mContent.setText(list.msg);
                 mHolder.mFloor.setText("#" + list.lv);
             } catch (Exception e)
             {
@@ -140,7 +137,7 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
 
         public TextView mSpot;
 
-        public TextView mCotent;
+        public TextView mContent;
 
         public ItemViewHolder(View itemView)
         {
@@ -154,7 +151,7 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
             mCommentTime = $(R.id.item_comment_time);
             mCommentNum = $(R.id.item_comment_num);
             mSpot = $(R.id.item_comment_spot);
-            mCotent = $(R.id.item_comment_content);
+            mContent = $(R.id.item_comment_content);
         }
     }
 }

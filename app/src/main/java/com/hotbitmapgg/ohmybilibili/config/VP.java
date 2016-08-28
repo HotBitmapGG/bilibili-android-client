@@ -4,6 +4,12 @@ import android.graphics.Typeface;
 
 import io.vov.vitamio.MediaPlayer;
 
+/**
+ * Created by hcc on 16/8/28 14:18
+ * 100332338@qq.com
+ * <p/>
+ * Vitamio播放器配置
+ */
 public class VP
 {
 

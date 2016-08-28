@@ -60,7 +60,7 @@
 
         <!-- home跳转webView界面 -->
         <activity
-            android:name=".module.common.BrowserActivity"
+            android:name=".module.common.WebActivity"
             android:screenOrientation="portrait"/>
 
         <!-- 视频详情界面 -->

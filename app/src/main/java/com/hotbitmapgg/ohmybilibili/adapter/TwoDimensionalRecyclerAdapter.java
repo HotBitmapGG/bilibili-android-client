@@ -51,6 +51,7 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             TwoDimensional.ListBean listBean = twoDimensionals.get(position);
+
             Picasso.with(getContext())
                     .load(listBean.getCover())
                     .placeholder(R.drawable.bili_default_image_tv)

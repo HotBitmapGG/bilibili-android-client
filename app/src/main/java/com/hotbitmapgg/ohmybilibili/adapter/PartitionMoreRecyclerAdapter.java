@@ -46,9 +46,7 @@ public class PartitionMoreRecyclerAdapter extends AbsRecyclerViewAdapter
             try
             {
                 ItemViewHolder mHolder = (ItemViewHolder) holder;
-
                 PartitionMoreVideoItem videoItemInfo = mList.get(position);
-
                 mHolder.mTitleView.setText(videoItemInfo.title == null ? "" : videoItemInfo.title);
 
                 Picasso.with(getContext())

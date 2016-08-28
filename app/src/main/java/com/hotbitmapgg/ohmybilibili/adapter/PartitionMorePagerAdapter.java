@@ -23,7 +23,8 @@ public class PartitionMorePagerAdapter extends FragmentStatePagerAdapter
 
     private List<Fragment> fragments = new ArrayList<>();
 
-    public PartitionMorePagerAdapter(FragmentManager fm, List<PartitionMoreType> titles)
+    public PartitionMorePagerAdapter(FragmentManager fm,
+                                     List<PartitionMoreType> titles)
     {
 
         super(fm);

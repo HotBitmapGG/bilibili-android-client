@@ -26,7 +26,8 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
 
     private List<BangumiIndex> bangumiIndexList = new ArrayList<>();
 
-    public BangumiIndexAdapter(RecyclerView recyclerView, List<BangumiIndex> bangumiIndexList)
+    public BangumiIndexAdapter(RecyclerView recyclerView,
+                               List<BangumiIndex> bangumiIndexList)
     {
 
         super(recyclerView);
@@ -38,7 +39,8 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_bangumi_index, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).
+                inflate(R.layout.item_bangumi_index, parent, false));
     }
 
     @Override

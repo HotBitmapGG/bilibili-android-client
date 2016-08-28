@@ -27,7 +27,8 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 
     private List<UserUpVideoInfo.VlistBean> parts = new ArrayList<>();
 
-    public UserUpVideoAdapter(RecyclerView recyclerView, List<UserUpVideoInfo.VlistBean> parts)
+    public UserUpVideoAdapter(RecyclerView recyclerView,
+                              List<UserUpVideoInfo.VlistBean> parts)
     {
 
         super(recyclerView);

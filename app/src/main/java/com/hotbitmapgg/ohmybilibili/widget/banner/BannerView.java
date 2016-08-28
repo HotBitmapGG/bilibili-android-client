@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
-import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
+import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.squareup.picasso.Picasso;
 
@@ -296,6 +296,6 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
         {
             position -= 1;
         }
-        BrowserActivity.launch((Activity) context, bannerList.get(position).link, bannerList.get(position).title);
+        WebActivity.launch((Activity) context, bannerList.get(position).link, bannerList.get(position).title);
     }
 }

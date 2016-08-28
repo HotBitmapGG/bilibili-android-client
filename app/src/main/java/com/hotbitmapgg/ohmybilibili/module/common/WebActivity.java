@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.module.common;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -31,7 +32,7 @@ import butterknife.Bind;
  * <p/>
  * 浏览器界面
  */
-public class BrowserActivity extends RxAppCompatBaseActivity implements DownloadListener
+public class WebActivity extends RxAppCompatBaseActivity implements DownloadListener
 {
 
     @Bind(R.id.toolbar)
@@ -98,13 +99,14 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
     public static void launch(Activity activity, String url, String title)
     {
 
-        Intent intent = new Intent(activity, BrowserActivity.class);
+        Intent intent = new Intent(activity, WebActivity.class);
         intent.putExtra(EXTRA_URL, url);
         intent.putExtra(EXTRA_TITLE, title);
         activity.startActivity(intent);
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void setupWebView()
     {
 
@@ -132,7 +134,7 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
             {
 
                 AlertDialog.Builder b2 = new AlertDialog
-                        .Builder(BrowserActivity.this)
+                        .Builder(WebActivity.this)
                         .setTitle(R.string.app_name)
                         .setMessage(message)
                         .setPositiveButton("确定", new AlertDialog.OnClickListener()
@@ -186,7 +188,8 @@ public class BrowserActivity extends RxAppCompatBaseActivity implements Download
     }
 
     @Override
-    public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength)
+    public void onDownloadStart(String url, String userAgent,
+                                String contentDisposition, String mimetype, long contentLength)
     {
 
         Intent intent = new Intent(Intent.ACTION_VIEW);

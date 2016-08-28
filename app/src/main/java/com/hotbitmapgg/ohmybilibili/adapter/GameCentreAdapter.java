@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.game.GameItem;
-import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
+import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -41,7 +41,8 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_game_center, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).
+                inflate(R.layout.item_game_center, parent, false));
     }
 
     @Override
@@ -66,7 +67,7 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
                 public void onClick(View v)
                 {
 
-                    BrowserActivity.
+                    WebActivity.
                             launch((Activity) getContext(),
                                     gameItem.path, gameItem.name);
                 }

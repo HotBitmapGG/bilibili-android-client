@@ -51,19 +51,15 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             VideoAlikeInfo videoAlikeInfo = parts.get(position);
-            String pic = videoAlikeInfo.pic;
-            String play = videoAlikeInfo.play;
-            int video_review = videoAlikeInfo.video_review;
-            String title = videoAlikeInfo.title;
 
             Picasso.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(pic))
+                    .load(UrlHelper.getClearVideoPreviewUrl(videoAlikeInfo.pic))
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoPic);
 
-            itemViewHolder.mVideoTitle.setText(title);
-            itemViewHolder.mVideoPlayNum.setText(play);
-            itemViewHolder.mVideoReviewNum.setText(String.valueOf(video_review));
+            itemViewHolder.mVideoTitle.setText(videoAlikeInfo.title);
+            itemViewHolder.mVideoPlayNum.setText(videoAlikeInfo.play);
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(videoAlikeInfo.video_review));
             itemViewHolder.mUserName.setText(videoAlikeInfo.author);
         }
 
