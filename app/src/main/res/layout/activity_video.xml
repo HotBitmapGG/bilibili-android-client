@@ -48,7 +48,7 @@
                 android:layout_below="@+id/video_loading_progress"
                 android:layout_centerHorizontal="true"
                 android:paddingTop="7dp"
-                android:text="加载中..."
+                android:text="@string/video_loading"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="初始化播放器..."
+                android:text="@string/video_init"
                 android:textColor="@android:color/black"
                 android:textSize="12sp" />
         </RelativeLayout>

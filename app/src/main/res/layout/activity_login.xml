@@ -91,10 +91,10 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1.0"
                 android:background="@android:color/transparent"
-                android:drawableStart="@drawable/ic_login_username_default"
                 android:drawablePadding="10dp"
+                android:drawableStart="@drawable/ic_login_username_default"
                 android:ellipsize="start"
-                android:hint="请输入您的哔哩哔哩账号"
+                android:hint="@string/login_hint_account"
                 android:inputType="textVisiblePassword"
                 android:paddingStart="10dp"
                 android:singleLine="true"
@@ -107,8 +107,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:paddingStart="20dp"
                 android:paddingEnd="8dp"
+                android:paddingStart="20dp"
                 android:src="@drawable/ic_edittext_clear"
                 android:visibility="gone" />
         </LinearLayout>
@@ -124,9 +124,9 @@
             android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
-            android:drawableStart="@drawable/ic_login_password_default"
             android:drawablePadding="10dp"
-            android:hint="请输入您的密码"
+            android:drawableStart="@drawable/ic_login_password_default"
+            android:hint="@string/login_hint_password"
             android:inputType="textPassword"
             android:paddingStart="10dp"
             android:singleLine="true"
@@ -147,7 +147,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/corner_btn"
         android:gravity="center"
-        android:text="登录"
+        android:text="@string/login"
         android:textColor="@color/white"
         android:textSize="16sp" />
 

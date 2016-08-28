@@ -31,7 +31,7 @@
         android:layout_centerInParent="true"
         android:layout_marginEnd="10dp"
         android:background="@drawable/corner_btn"
-        android:text="下载"
+        android:text="@string/download"
         android:textColor="@color/white"
         android:textSize="14sp" />
 

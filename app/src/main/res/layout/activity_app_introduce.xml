@@ -1,5 +1,4 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -118,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="HotBitmapGG"
+                    android:text="@string/hotbitmapgg"
                     android:textColor="@color/font_normal" />
 
                 <TextView
@@ -136,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/tv_avator_blog"
                     android:layout_below="@id/tv_avator_blog"
-                    android:text="GitHub: "
+                    android:text="@string/github"
                     android:textColor="@color/font_normal" />
 
                 <TextView
@@ -145,7 +144,7 @@
                     android:layout_alignTop="@id/tv_avator_github"
                     android:layout_toEndOf="@id/tv_avator_github"
                     android:autoLink="web"
-                    android:text="https://github.com/HotBitmapGG"
+                    android:text="@string/github_link"
                     android:textColor="@color/font_normal" />
 
             </RelativeLayout>

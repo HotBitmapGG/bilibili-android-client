@@ -34,14 +34,14 @@
             android:id="@+id/operation_full"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:src="@drawable/video_num_bg" />
 
         <ImageView
             android:id="@+id/operation_percent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:scaleType="matrix"
             android:src="@drawable/video_num_front" />
     </FrameLayout>

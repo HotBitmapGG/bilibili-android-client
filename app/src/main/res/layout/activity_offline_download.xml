@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
-                    android:text="全部开始"
+                    android:text="@string/all_start"
                     android:textColor="@color/font_normal"
                     android:textSize="14sp" />
 
@@ -103,7 +103,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/line"
-                    android:text="编辑"
+                    android:text="@string/edit"
                     android:textColor="@color/font_normal"
                     android:textSize="14sp" />
 

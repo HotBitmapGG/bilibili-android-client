@@ -29,7 +29,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="55dp"
-        android:text="copyright © 2015-2016 HotBitmapGG"
+        android:text="@string/splash_title"
         android:textColor="@color/black_alpha_45"
         android:textSize="12sp" />
 

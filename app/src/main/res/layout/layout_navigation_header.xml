@@ -89,7 +89,6 @@
                 android:paddingEnd="@dimen/navigation_subtitle_text_padding_horizontal"
                 android:paddingStart="@dimen/navigation_subtitle_text_padding_horizontal"
                 android:paddingTop="@dimen/navigation_subtitle_text_padding_vertical"
-                android:text="HotBitmapGG"
                 android:textColor="@color/navigation_subtitle_primary_text"
                 android:textSize="@dimen/navigation_subtitle_primary_text_size" />
 
@@ -100,7 +99,6 @@
                 android:paddingBottom="@dimen/navigation_subtitle_text_padding_vertical"
                 android:paddingEnd="@dimen/navigation_subtitle_text_padding_horizontal"
                 android:paddingStart="@dimen/navigation_subtitle_text_padding_horizontal"
-                android:text="100332338@qq.com"
                 android:textColor="@color/navigation_subtitle_secondary_text"
                 android:textSize="@dimen/navigation_subtitle_secondary_text_size" />
         </LinearLayout>

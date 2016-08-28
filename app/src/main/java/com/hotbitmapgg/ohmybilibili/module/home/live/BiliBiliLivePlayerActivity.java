@@ -123,7 +123,7 @@ public class BiliBiliLivePlayerActivity extends RxAppCompatBaseActivity
     public int getLayoutId()
     {
 
-        return R.layout.activity_live_detail;
+        return R.layout.activity_live_details;
     }
 
     @Override

@@ -22,7 +22,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:padding="10dp"
-            android:text="追番"
+            android:text="@string/to_them"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -39,7 +39,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:padding="10dp"
-            android:text="放送表"
+            android:text="@string/time_line"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -56,7 +56,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:padding="10dp"
-            android:text="索引"
+            android:text="@string/index"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -71,7 +71,7 @@
         android:drawablePadding="10dp"
         android:gravity="center"
         android:padding="10dp"
-        android:text="番剧推荐"
+        android:text="@string/bangumi_recommend"
         android:textColor="@color/font_normal"
         android:textSize="14sp" />
 

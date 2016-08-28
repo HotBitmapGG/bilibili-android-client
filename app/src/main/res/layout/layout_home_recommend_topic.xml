@@ -29,7 +29,7 @@
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/topic_type_img"
             android:gravity="center"
-            android:text="话题"
+            android:text="@string/topic"
             android:textColor="@color/font_normal"
             android:textSize="16sp" />
 
@@ -42,7 +42,7 @@
             android:layout_centerInParent="true"
             android:background="@drawable/btn_more_bg"
             android:clickable="true"
-            android:text="进去看看"
+            android:text="@string/goto_look"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:visibility="visible" />

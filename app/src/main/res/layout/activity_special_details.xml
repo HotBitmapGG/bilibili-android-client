@@ -113,7 +113,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="播放:"
+                                android:text="@string/sp_play"
                                 android:textColor="@color/font_normal"
                                 android:textSize="14sp" />
 
@@ -131,7 +131,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="共:"
+                                android:text="@string/sp_total_of"
                                 android:textColor="@color/font_normal"
                                 android:textSize="14sp" />
 
@@ -155,7 +155,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="关注:"
+                                android:text="@string/sp_follow"
                                 android:textColor="@color/font_normal"
                                 android:textSize="14sp" />
 
@@ -173,7 +173,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="收藏:"
+                                android:text="@string/sp_collection"
                                 android:textColor="@color/font_normal"
                                 android:textSize="14sp" />
 
@@ -191,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="@dimen/title_margin_small"
-                    android:text="专题简介:"
+                    android:text="@string/sp_introduction"
                     android:textColor="@color/font_normal"
                     android:textSize="14sp" />
 
@@ -216,7 +216,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="专题剧集"
+                android:text="@string/sp_videos"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
 

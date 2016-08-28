@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:paddingEnd="@dimen/title_margin_small"
             android:paddingStart="@dimen/title_margin_small"
-            android:text="简介"
+            android:text="@string/introduction"
             android:textColor="@color/font_normal" />
 
         <Space
@@ -146,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="分享"
+                    android:text="@string/about_menu_action_share"
                     android:textColor="@color/font_normal" />
 
 
@@ -178,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="投硬币"
+                    android:text="@string/coin"
                     android:textColor="@color/font_normal" />
 
 
@@ -210,7 +210,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="收藏"
+                    android:text="@string/collection"
                     android:textColor="@color/font_normal" />
 
 
@@ -240,7 +240,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="缓存"
+                    android:text="@string/cache"
                     android:textColor="@color/font_normal" />
 
 
@@ -272,7 +272,7 @@
                 android:layout_centerInParent="true"
                 android:background="@drawable/btn_pin_bg"
                 android:gravity="center"
-                android:text="+关注"
+                android:text="@string/add_follow"
                 android:textColor="@color/colorPrimary" />
 
         </RelativeLayout>
@@ -301,7 +301,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="90dp"
                 android:padding="10dp"
-                android:text="请赐予我电量吧 !"
+                android:text="@string/charging"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp" />
 
@@ -314,7 +314,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/corner_btn"
                 android:gravity="center"
-                android:text="充电"
+                android:text="@string/charg"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -336,7 +336,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:text="更多电量,更多灵感哟  o(*≧▽≦)ツ"
+                    android:text="@string/more_charging"
                     android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
 
@@ -361,7 +361,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="视频相关"
+                android:text="@string/video_about"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
 
@@ -374,7 +374,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/btn_more_bg"
                 android:clickable="true"
-                android:text="更多"
+                android:text="@string/more"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </RelativeLayout>
