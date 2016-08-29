@@ -43,25 +43,25 @@
             android:name=".module.common.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
 
 
         <!-- 登录界面 -->
         <activity
             android:name=".module.common.LoginActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- APP简介界面 -->
         <activity
             android:name=".module.common.AppIntroduceActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme"/>
+            android:theme="@style/ColorTranslucentTheme" />
 
 
         <!-- home跳转webView界面 -->
         <activity
             android:name=".module.common.WebActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 视频详情界面 -->
         <activity
@@ -73,19 +73,19 @@
         <activity
             android:name=".module.user.UserInfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme"/>
+            android:theme="@style/ColorTranslucentTheme" />
 
 
         <!-- 专题详情界面 -->
         <activity
             android:name=".module.home.bangumi.SpecialDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
 
         <!-- 分区界面 根据传递的标题集合完成界面 -->
         <activity
             android:name=".module.home.partition.PartitionMoreActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--用户粉丝界面-->
         <activity
@@ -140,7 +140,7 @@
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!--UP主推荐视频界面-->
         <activity
@@ -156,7 +156,7 @@
             android:process=":vitamio"
             android:screenOrientation="landscape"
             android:theme="@style/ColorTranslucentTheme"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!-- 视频后台播放Service -->
         <service

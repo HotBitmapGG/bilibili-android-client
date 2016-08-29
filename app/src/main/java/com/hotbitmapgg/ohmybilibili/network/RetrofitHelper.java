@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
 import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
+import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
 import com.hotbitmapgg.ohmybilibili.network.api.TwoDimensionalService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
@@ -399,6 +400,24 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(SpecialTopicItemService.class);
+    }
+
+    /**
+     * 获取全站搜索结果
+     *
+     * @return
+     */
+    public static TotalStationSearchService getSearchApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(TotalStationSearchService.class);
     }
 
 
