@@ -66,13 +66,15 @@
     <string name="rank">排行榜</string>
     <string name="topic">话题</string>
     <string name="load_more">正在加载…</string>
+    <string name="search_hint">搜索视频,番剧,up主或av号</string>
 
 
     <!--Vitamio Strings-->
     <string name="video_init">初始化播放器…</string>
     <string name="video_layout_loading">正在缓冲…</string>
     <string name="VideoView_error_title">Cannot play video</string>
-    <string name="VideoView_error_text_invalid_progressive_playback">Sorry, this video is not valid for streaming to this device.</string>
+    <string name="VideoView_error_text_invalid_progressive_playback">Sorry,
+        this video is not valid for streaming to this device.</string>
     <string name="VideoView_error_text_unknown">对不起,这个视频不能播放。</string>
     <string name="VideoView_error_button">OK</string>
     <string name="mediacontroller_play_pause">Play/Pause</string>

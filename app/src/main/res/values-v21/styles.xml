@@ -15,4 +15,14 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <!--搜索界面Style-->
+    <style name="AppTheme.Search" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/gray_light</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+
 </resources>

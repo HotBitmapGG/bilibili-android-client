@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
-                android:background="@drawable/bili_anim" />
+                android:background="@drawable/anim_video_loading" />
 
             <TextView
                 android:id="@+id/video_start_info"

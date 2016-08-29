@@ -1,5 +1,9 @@
 package com.hotbitmapgg.ohmybilibili.entity.search;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -617,7 +621,7 @@ public class SearchResult
         }
     }
 
-    public static class ResultBean
+    public static class ResultBean implements Parcelable
     {
 
         /**
@@ -1207,5 +1211,52 @@ public class SearchResult
                 this.total_count = total_count;
             }
         }
+
+        @Override
+        public int describeContents()
+        {
+
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags)
+        {
+
+            dest.writeList(this.video);
+            dest.writeList(this.bangumi);
+        }
+
+        public ResultBean()
+        {
+
+        }
+
+        protected ResultBean(Parcel in)
+        {
+
+            this.video = new ArrayList<VideoBean>();
+            in.readList(this.video, VideoBean.class.getClassLoader());
+            this.bangumi = new ArrayList<BangumiBean>();
+            in.readList(this.bangumi, BangumiBean.class.getClassLoader());
+        }
+
+        public static final Parcelable.Creator<ResultBean> CREATOR = new Parcelable.Creator<ResultBean>()
+        {
+
+            @Override
+            public ResultBean createFromParcel(Parcel source)
+            {
+
+                return new ResultBean(source);
+            }
+
+            @Override
+            public ResultBean[] newArray(int size)
+            {
+
+                return new ResultBean[size];
+            }
+        };
     }
 }

@@ -133,6 +133,12 @@
             android:name=".module.home.discover.HotVideoIndexActivity"
             android:screenOrientation="portrait" />
 
+        <!--全站搜索界面-->
+        <activity
+            android:name=".module.search.SearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Search" />
+
 
         <!-- Vitamio播放器初始化界面 -->
         <activity

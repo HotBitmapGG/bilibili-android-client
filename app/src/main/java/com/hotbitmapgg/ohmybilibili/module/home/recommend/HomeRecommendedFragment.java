@@ -27,7 +27,6 @@ import java.util.List;
 import butterknife.Bind;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -182,11 +181,11 @@ public class HomeRecommendedFragment extends RxLazyFragment
         RetrofitHelper.getHomeRecommendedApi()
                 .getRecommendedInfo()
                 .compose(this.<RecommendInfo> bindToLifecycle())
-                .flatMap(new Func1<RecommendInfo,Observable<Void>>()
+                .flatMap(new Func1<RecommendInfo,Observable<String>>()
                 {
 
                     @Override
-                    public Observable<Void> call(RecommendInfo recommendInfo)
+                    public Observable<String> call(RecommendInfo recommendInfo)
                     {
 
                         int size = recommendInfo.getResult().size();
@@ -212,18 +211,19 @@ public class HomeRecommendedFragment extends RxLazyFragment
                             }
                         }
 
-                        return Observable.empty();
+                        return Observable.just("onNext");
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Void>()
+                .subscribe(new Action1<String>()
                 {
 
                     @Override
-                    public void call(Void aVoid)
+                    public void call(String s)
                     {
 
+                        finishTask();
                     }
                 }, new Action1<Throwable>()
                 {
@@ -234,15 +234,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
                         initEmptyView();
                         LogUtil.all("首页推荐界面加载失败" + throwable.getMessage());
-                    }
-                }, new Action0()
-                {
-
-                    @Override
-                    public void call()
-                    {
-
-                        finishTask();
                     }
                 });
     }

@@ -26,6 +26,7 @@ import com.hotbitmapgg.ohmybilibili.module.entry.IFavoritesFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.OffLineDownloadActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.SettingFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
+import com.hotbitmapgg.ohmybilibili.module.search.SearchActivity;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.navigation_view.NavigationView;
 
@@ -219,7 +220,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
 
             case R.id.id_action_search:
                 //搜索
-
+                SearchActivity.launch(MainActivity.this, "我是");
                 break;
         }
 

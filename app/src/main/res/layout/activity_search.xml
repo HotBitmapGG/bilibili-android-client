@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/gray_light"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_card_search" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/sliding_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/gray_light"
+                app:tl_indicator_corner_radius="1dp"
+                app:tl_indicator_color="@color/colorPrimary"
+                app:tl_indicator_height="3dp"
+                app:tl_indicator_width="30dp"
+                app:tl_textSelectColor="@color/colorPrimary"
+                app:tl_textUnselectColor="@color/font_normal" />
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black_alpha_60" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_search_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+
+    </FrameLayout>
+
+
+</LinearLayout>
+
+
+
