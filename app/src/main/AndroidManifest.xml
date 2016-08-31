@@ -115,7 +115,7 @@
 
         <!--直播详情界面-->
         <activity
-            android:name=".module.home.live.BiliBiliLivePlayerActivity"
+            android:name=".module.home.live.LivePlayerActivity"
             android:screenOrientation="portrait" />
 
         <!--番剧索引界面-->
@@ -126,6 +126,11 @@
         <!--关于我详情界面-->
         <activity
             android:name=".module.common.HotBitmapGGInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <!--UP主推荐视频界面-->
+        <activity
+            android:name=".module.user.UserUpMoreCoverActivity"
             android:screenOrientation="portrait" />
 
         <!--热门视频排行榜界面-->
@@ -139,35 +144,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Search" />
 
-
-        <!-- Vitamio播放器初始化界面 -->
+        <!--新的播放器界面-->
         <activity
-            android:name="io.vov.vitamio.activity.InitActivity"
+            android:name=".module.video.VideoPlayerActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <!--UP主推荐视频界面-->
-        <activity
-            android:name=".module.user.UserUpMoreCoverActivity"
-            android:screenOrientation="portrait" />
-
-        <!-- 播放器播放界面 -->
-        <activity
-            android:name=".module.video.BiliBiliPlayerVideoActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:exported="false"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:process=":vitamio"
             android:screenOrientation="landscape"
             android:theme="@style/ColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <!-- 视频后台播放Service -->
-        <service
-            android:name=".service.PlayerService"
-            android:process=":vitamio" />
 
 
     </application>

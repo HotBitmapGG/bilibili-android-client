@@ -21,7 +21,7 @@ import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.entity.live.Live;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.entity.live.PartitionSub;
-import com.hotbitmapgg.ohmybilibili.module.home.live.BiliBiliLivePlayerActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.live.LivePlayerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -200,7 +200,7 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
                     public void onClick(View v)
                     {
 
-                        BiliBiliLivePlayerActivity.launch(
+                        LivePlayerActivity.launch(
                                 (Activity) context,
                                 item.room_id,
                                 item.title,

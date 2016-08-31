@@ -23,6 +23,7 @@ import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.WeekDayBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.discover.HotVideoIndexActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.live.LivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
@@ -126,7 +127,15 @@ public class HomeRecommendedSection extends StatelessSection
             public void onClick(View v)
             {
 
-                VideoDetailsActivity.launch((Activity) mContext, Integer.parseInt(bodyBean.getParam()));
+                String gotoX = bodyBean.getGotoX();
+                if (gotoX.equals(TYPE_LIVE))
+                {
+                    LivePlayerActivity.launch((Activity) mContext, Integer.valueOf(bodyBean.getParam()), bodyBean.getTitle(),
+                            bodyBean.getOnline(), bodyBean.getUpFace(), bodyBean.getUp(), 0);
+                } else
+                {
+                    VideoDetailsActivity.launch((Activity) mContext, Integer.parseInt(bodyBean.getParam()));
+                }
             }
         });
 

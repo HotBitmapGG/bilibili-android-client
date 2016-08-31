@@ -1,10 +1,8 @@
 package com.hotbitmapgg.ohmybilibili;
 
 import android.app.Application;
-import android.os.Environment;
 
 import com.facebook.stetho.Stetho;
-import com.hotbitmapgg.ohmybilibili.utils.FileUtils;
 
 /**
  * Created by hcc on 16/8/7 21:18
@@ -15,18 +13,7 @@ import com.hotbitmapgg.ohmybilibili.utils.FileUtils;
 public class OhMyBiliBiliApp extends Application
 {
 
-
-    //全局应用上下文对象
     public static OhMyBiliBiliApp mInstance;
-
-    //OPlayer SD卡缓存路径
-    public static final String OPLAYER_CACHE_BASE = Environment.getExternalStorageDirectory() + "/oplayer";
-
-    //视频截图缓冲路径
-    public static final String OPLAYER_VIDEO_THUMB = OPLAYER_CACHE_BASE + "/thumb/";
-
-    //首次扫描
-    public static final String PREF_KEY_FIRST = "application_first";
 
 
     @Override
@@ -41,12 +28,6 @@ public class OhMyBiliBiliApp extends Application
 
     private void init()
     {
-
-
-        //创建缓存目录
-        FileUtils.createIfNoExists(OPLAYER_CACHE_BASE);
-        FileUtils.createIfNoExists(OPLAYER_VIDEO_THUMB);
-
         //初始化Stetho调试工具
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)

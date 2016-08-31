@@ -4,6 +4,8 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
+    useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         applicationId "com.hotbitmapgg.ohmybilibili"
         minSdkVersion 21
@@ -52,13 +54,11 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
-    //vitamio视频播放器
-    compile(name: 'Vitamio', ext: 'aar')
-    compile(name: 'VitamioHelper', ext: 'aar')
     //ijkplayer播放器
-    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.4.5.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.4.5.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.4.5.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
+
+
     //RxLifecycle 内存泄露
     compile 'com.trello:rxlifecycle-components:0.6.1'
     //RxBinding系列

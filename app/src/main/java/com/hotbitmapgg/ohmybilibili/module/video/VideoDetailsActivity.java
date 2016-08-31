@@ -120,18 +120,31 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
             public void onClick(View v)
             {
 
-                Intent mIntent = new Intent(VideoDetailsActivity.this, BiliBiliPlayerVideoActivity.class);
-                if (itemInfo != null)
+//                Intent mIntent = new Intent(VideoDetailsActivity.this, BiliBiliPlayerVideoActivity.class);
+//                if (itemInfo != null)
+//                {
+//                    int aid = itemInfo.aid;
+//                    mIntent.putExtra("av", aid + "");
+//                } else
+//                {
+//                    mIntent.putExtra("av", av + "");
+//                }
+//
+//                mIntent.putExtra("page", "1");
+//                startActivity(mIntent);
+
+                Intent intent1 = new Intent(VideoDetailsActivity.this , VideoPlayerActivity.class);
+                                if (itemInfo != null)
                 {
                     int aid = itemInfo.aid;
-                    mIntent.putExtra("av", aid + "");
+                    intent1.putExtra("AID", aid);
                 } else
                 {
-                    mIntent.putExtra("av", av + "");
+                    intent1.putExtra("AID", av);
                 }
 
-                mIntent.putExtra("page", "1");
-                startActivity(mIntent);
+                startActivity(intent1);
+
             }
         });
 
