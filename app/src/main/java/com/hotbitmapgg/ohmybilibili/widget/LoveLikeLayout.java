@@ -88,21 +88,16 @@ public class LoveLikeLayout extends RelativeLayout
     {
         //初始化爱心图片
         drawables = new Drawable[7];
-        Drawable one = getResources().getDrawable(R.drawable.ic_bangumi_calendar_1);
-        Drawable two = getResources().getDrawable(R.drawable.ic_bangumi_calendar_2);
-        Drawable three = getResources().getDrawable(R.drawable.ic_bangumi_calendar_3);
-        Drawable four = getResources().getDrawable(R.drawable.ic_bangumi_calendar_4);
-        Drawable five = getResources().getDrawable(R.drawable.ic_bangumi_calendar_5);
-        Drawable six = getResources().getDrawable(R.drawable.ic_bangumi_calendar_6);
-        Drawable seven = getResources().getDrawable(R.drawable.ic_bangumi_calendar_7);
+        Drawable one = getResources().getDrawable(R.drawable.ic_live_like_01);
+        Drawable two = getResources().getDrawable(R.drawable.ic_live_like_02);
+        Drawable three = getResources().getDrawable(R.drawable.ic_live_like_03);
+        Drawable four = getResources().getDrawable(R.drawable.ic_live_like_04);
+        Drawable five = getResources().getDrawable(R.drawable.ic_live_like_05);
         drawables[0] = one;
         drawables[1] = two;
         drawables[2] = three;
         drawables[3] = four;
         drawables[4] = five;
-        drawables[5] = six;
-        drawables[6] = seven;
-
         //获取爱心的宽高
         drawableHeight = one.getIntrinsicHeight();
         drawableWidth = one.getIntrinsicWidth();

@@ -3,8 +3,6 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- CircleIndicator -->
-    <dimen name="circle_indicator_default_height">20dp</dimen>
     <!-- Common resources -->
     <dimen name="appbar_parallax_max_height">226dp</dimen>
     <dimen name="floating_action_button_margin">16dp</dimen>

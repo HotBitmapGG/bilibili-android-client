@@ -41,24 +41,23 @@ dependencies {
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.0@aar'
     //标签布局
     compile 'com.zhy:flowlayout-lib:1.0.1'
-    // 黄油刀注解控件
+    //butterknife
     compile 'com.jakewharton:butterknife:7.0.1'
     //Okhttp3
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     //Gson
     compile 'com.google.code.gson:gson:2.6.2'
-    //Rxjava Retrofit2
+    //Rxjava
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
+    //Retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     //ijkplayer播放器
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
-
-
     //RxLifecycle 内存泄露
     compile 'com.trello:rxlifecycle-components:0.6.1'
     //RxBinding系列
