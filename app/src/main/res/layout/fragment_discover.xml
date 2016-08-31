@@ -26,8 +26,8 @@
                 android:id="@+id/search_scan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="10dp"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_hint_search" />
 
 
@@ -35,12 +35,12 @@
                 android:id="@+id/search_edit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center|right"
-                android:layout_marginLeft="40dp"
+                android:layout_gravity="center|end"
+                android:layout_marginStart="40dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:singleLine="true"
-                android:text="搜索视频 番剧 up主或av号"
+                android:text="@string/discover_search_hint"
                 android:textColor="@color/font_normal"
                 android:textSize="14sp" />
 
@@ -49,7 +49,7 @@
                 android:id="@+id/search_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
+                android:layout_gravity="center|end"
                 android:clickable="true"
                 android:padding="12dp"
                 android:src="@drawable/ic_scan" />
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="大家都在搜"
+            android:text="@string/everyone_in_the_search"
             android:textColor="@color/black_alpha_45"
             android:textSize="14sp" />
 
@@ -84,7 +84,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_weight="1"
                 android:background="@color/line_bg" />
 
@@ -93,14 +93,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="查看更多"
+                android:text="@string/look_more"
                 android:textColor="@color/font_normal"
                 android:textSize="12sp" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_weight="1"
                 android:background="@color/line_bg" />
 
@@ -119,9 +119,9 @@
                 android:id="@+id/ic_quanzi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_quanzi" />
 
 
@@ -129,9 +129,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/ic_quanzi"
-                android:text="兴趣圈"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/ic_quanzi"
+                android:text="@string/interest_in_circle"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
 
@@ -149,9 +149,9 @@
                 android:id="@+id/ic_original"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_btn_rank_original" />
 
 
@@ -159,9 +159,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/ic_original"
-                android:text="原创排行榜"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/ic_original"
+                android:text="@string/original_rank"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
 
@@ -183,9 +183,9 @@
                 android:id="@+id/ic_all_rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_btn_rank_all" />
 
 
@@ -193,9 +193,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/ic_all_rank"
-                android:text="全区排行榜"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/ic_all_rank"
+                android:text="@string/all_rank"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
 
@@ -213,9 +213,9 @@
                 android:id="@+id/ic_game"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_btn_game" />
 
 
@@ -223,9 +223,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/ic_game"
-                android:text="游戏中心"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/ic_game"
+                android:text="@string/game_center"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
 
@@ -233,10 +233,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="10dp"
-                android:text="萌系少女战舰养成!"
+                android:layout_marginEnd="10dp"
+                android:text="@string/discover_msg_1"
                 android:textColor="@color/black_alpha_30"
                 android:textSize="12sp" />
 
@@ -259,9 +259,9 @@
                 android:id="@+id/ic_tour"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_btn_biliyoo" />
 
 
@@ -269,9 +269,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/ic_tour"
-                android:text="海外游"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/ic_tour"
+                android:text="@string/overseas_travel"
                 android:textColor="@color/font_normal"
                 android:textSize="16sp" />
 
@@ -279,10 +279,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="10dp"
-                android:text="和漫游娘一起游遍日本!"
+                android:layout_marginEnd="10dp"
+                android:text="@string/discover_msg_2"
                 android:textColor="@color/black_alpha_30"
                 android:textSize="12sp" />
 

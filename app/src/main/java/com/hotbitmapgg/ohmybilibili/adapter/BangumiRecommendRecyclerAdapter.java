@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,7 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
                 .inflate(R.layout.item_recommend_bangumi, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
@@ -51,8 +54,11 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             BangumiRecommend.RecommendsBean recommendsBean = recommends.get(position);
-            Picasso.with(getContext())
+
+            Glide.with(getContext())
                     .load(recommendsBean.getPic())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mImage);
 

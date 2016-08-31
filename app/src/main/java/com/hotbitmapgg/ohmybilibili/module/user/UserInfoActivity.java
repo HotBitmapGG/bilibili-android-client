@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserUpVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
@@ -25,7 +27,6 @@ import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,9 +136,12 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         }
         if (avatar_url != null)
         {
-            Picasso.with(this)
+            Glide.with(UserInfoActivity.this)
                     .load(avatar_url)
+                    .centerCrop()
+                    .dontAnimate()
                     .placeholder(R.drawable.ico_user_default)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(mAvatarImage);
         }
 
@@ -181,14 +185,20 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
     {
 
         mNumberBar.setVisibility(View.VISIBLE);
-
         mUserNameText.setText(mUserInfo.name);
         mFollowNumText.setText(String.format(getString(R.string.info_following_format), mUserInfo.attention));
         mFansNumText.setText(String.format(getString(R.string.info_fans_format), mUserInfo.fans));
-
         mToolbar.setTitle("");
 
-        Picasso.with(this).load(UrlHelper.getFaceUrl(mUserInfo)).placeholder(R.drawable.ico_user_default).into(mAvatarImage);
+        Glide.with(UserInfoActivity.this)
+                .load(UrlHelper.getFaceUrl(mUserInfo))
+                .centerCrop()
+                .dontAnimate()
+                .placeholder(R.drawable.ico_user_default)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(mAvatarImage);
+
+
         setUserLevel(mUserInfo.rank);
         if (mUserInfo.sex.equals("男"))
         {
@@ -280,7 +290,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
                         List<UserUpVideoInfo.VlistBean> vlist = userUpVideoInfo.getVlist();
                         userVideoList.addAll(vlist);
-                        finishTask(vlist.size());
+                        finishTask();
                     }
                 }, new Action1<Throwable>()
                 {
@@ -297,7 +307,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
     }
 
 
-    private void finishTask(int count)
+    private void finishTask()
     {
 
         mRecyclerView.setHasFixedSize(false);
@@ -317,7 +327,9 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         });
 
         mUpTip.setVisibility(View.VISIBLE);
-        mUpTip.setText("Up主的投稿" + " " + "(" + count + ")");
+        String str = "Up主的投稿" + "(" +
+                String.valueOf(mUserInfo.article) + ")";
+        mUpTip.setText(str);
         mRecyclerView.setVisibility(View.VISIBLE);
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
@@ -344,7 +356,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         {
             case R.id.btn_go_more:
                 //查看Up主所有视频
-                UpMoreCoverActivity.launch(UserInfoActivity.this, mUserInfo.name, mUserInfo.mid);
+                UserUpMoreCoverActivity.launch(UserInfoActivity.this, mUserInfo.name, mUserInfo.mid);
                 break;
 
             case R.id.tv_follow_users:

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+
+    <ImageView
+        android:id="@+id/item_img"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp" />
+
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/item_img"
+        android:textColor="@color/font_normal"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/item_btn"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/corner_btn"
+        android:text="@string/download"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+</RelativeLayout>

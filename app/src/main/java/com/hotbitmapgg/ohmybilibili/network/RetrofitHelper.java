@@ -7,6 +7,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BiliBiliLiveService;
 import com.hotbitmapgg.ohmybilibili.network.api.FansService;
+import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.Html5VideoUrlService;
 import com.hotbitmapgg.ohmybilibili.network.api.IndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
@@ -14,6 +15,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
 import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
+import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
 import com.hotbitmapgg.ohmybilibili.network.api.TwoDimensionalService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
@@ -246,6 +248,8 @@ public class RetrofitHelper
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(MAIN_BASE_URL)
                 .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         return retrofit.create(Html5VideoUrlService.class);
@@ -399,6 +403,43 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(SpecialTopicItemService.class);
+    }
+
+    /**
+     * 获取全站搜索结果
+     *
+     * @return
+     */
+    public static TotalStationSearchService getSearchApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(TotalStationSearchService.class);
+    }
+
+
+    /**
+     * 获取B站高清视频地址数据
+     *
+     * @return
+     */
+    public static HDVideoService getHDVideoApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(HDVideoService.class);
     }
 
 

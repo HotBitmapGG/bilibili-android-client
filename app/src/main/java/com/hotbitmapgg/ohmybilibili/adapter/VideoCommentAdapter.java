@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,14 +8,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hcc on 16/8/4 14:12
@@ -25,9 +28,10 @@ import java.util.ArrayList;
 public class VideoCommentAdapter extends AbsRecyclerViewAdapter
 {
 
-    private ArrayList<VideoComment.List> comments = new ArrayList<>();
+    private List<VideoComment.List> comments = new ArrayList<>();
 
-    public VideoCommentAdapter(RecyclerView recyclerView, ArrayList<VideoComment.List> comments)
+    public VideoCommentAdapter(RecyclerView recyclerView,
+                               List<VideoComment.List> comments)
     {
 
         super(recyclerView);
@@ -39,9 +43,11 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_video_comment, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).
+                inflate(R.layout.item_video_comment, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
@@ -53,25 +59,26 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
                 ItemViewHolder mHolder = (ItemViewHolder) holder;
                 VideoComment.List list = comments.get(position);
                 mHolder.mUserName.setText(list.nick);
-                Picasso.with(getContext())
+
+                Glide.with(getContext())
                         .load(UrlHelper.getFaceUrlByUrl(list.face))
+                        .centerCrop()
+                        .dontAnimate()
                         .placeholder(R.drawable.ico_user_default)
-                        .error(R.drawable.ico_user_default)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(mHolder.mUserAvatar);
+
                 int currentLevel = list.level_info.current_level;
                 checkLevel(currentLevel, mHolder);
-                String sex = list.sex;
-                if (sex.equals("女"))
-                {
+                if (list.sex.equals("女"))
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_female_border);
-                } else
-                {
+                else
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_male_border);
-                }
-                mHolder.mCommentNum.setText(list.reply_count + "");
-                mHolder.mSpot.setText(list.good + "");
+
+                mHolder.mCommentNum.setText(String.valueOf(list.reply_count));
+                mHolder.mSpot.setText(String.valueOf(list.good));
                 mHolder.mCommentTime.setText(list.create_at);
-                mHolder.mCotent.setText(list.msg);
+                mHolder.mContent.setText(list.msg);
                 mHolder.mFloor.setText("#" + list.lv);
             } catch (Exception e)
             {
@@ -135,7 +142,7 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
 
         public TextView mSpot;
 
-        public TextView mCotent;
+        public TextView mContent;
 
         public ItemViewHolder(View itemView)
         {
@@ -149,7 +156,7 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
             mCommentTime = $(R.id.item_comment_time);
             mCommentNum = $(R.id.item_comment_num);
             mSpot = $(R.id.item_comment_spot);
-            mCotent = $(R.id.item_comment_content);
+            mContent = $(R.id.item_comment_content);
         }
     }
 }

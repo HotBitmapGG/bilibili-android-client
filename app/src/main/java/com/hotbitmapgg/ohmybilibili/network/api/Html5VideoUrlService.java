@@ -1,9 +1,10 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoSrc;
+
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import rx.Observable;
 
 /**
  * Created by hcc on 16/8/8 18:45
@@ -16,6 +17,6 @@ public interface Html5VideoUrlService
 {
 
     @GET("m/html5")
-    Call<ResponseBody> getHtml5VideoPlayerUrl(@Query("aid") String aid,
-                                              @Query("page") String page);
+    Observable<VideoSrc> getHtml5VideoPlayerUrl(@Query("aid") int aid,
+                                                @Query("page") int page);
 }

@@ -5,23 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        app:elevation="0dp">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="0dp"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-
-    </android.support.design.widget.AppBarLayout>
+    <include layout="@layout/layout_toolbar" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -79,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:gravity="center"
                         android:textColor="@color/font_normal"
                         android:textSize="12sp" />
@@ -90,16 +74,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp">
+                android:paddingEnd="10dp"
+                android:paddingStart="20dp">
 
                 <TextView
                     android:id="@+id/btn_start_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
-                    android:text="全部开始"
+                    android:text="@string/all_start"
                     android:textColor="@color/font_normal"
                     android:textSize="14sp" />
 
@@ -108,8 +92,8 @@
                     android:layout_width="1dp"
                     android:layout_height="10dp"
                     android:layout_centerInParent="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/btn_start_all"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/btn_start_all"
                     android:background="@color/font_normal" />
 
                 <TextView
@@ -117,9 +101,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/line"
-                    android:text="编辑"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/line"
+                    android:text="@string/edit"
                     android:textColor="@color/font_normal"
                     android:textSize="14sp" />
 
@@ -128,7 +112,7 @@
                     android:id="@+id/download_refresh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
                     android:padding="10dp"
                     android:src="@drawable/ic_action_download_refresh" />

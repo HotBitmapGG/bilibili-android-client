@@ -1,0 +1,161 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/layout_toolbar" />
+
+    <FrameLayout
+        android:id="@+id/live_layout"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_below="@+id/toolbar_layout"
+        android:background="@drawable/shadow_gradient_reserve">
+
+        <SurfaceView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/bili_anim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/anim_video_loading" />
+
+            <TextView
+                android:id="@+id/video_start_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bili_anim"
+                android:layout_marginTop="10dp"
+                android:text="@string/video_init"
+                android:textColor="@android:color/black"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/right_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="60dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_tv_play"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/shadow_normal_reserve"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/bottom_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_portrait_play" />
+
+            <ImageView
+                android:id="@+id/bottom_love"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/bottom_fullscreen"
+                android:padding="10dp"
+                android:src="@drawable/ic_live_player_send_gift" />
+
+
+            <ImageView
+                android:id="@+id/bottom_fullscreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_live_palyer_zoom_in" />
+        </RelativeLayout>
+
+        <com.hotbitmapgg.ohmybilibili.widget.LoveLikeLayout
+            android:id="@+id/love_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/user_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/live_layout">
+
+
+        <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+            android:id="@+id/user_pic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:src="@drawable/ico_user_default" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/user_pic"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/live_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/user_name"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_muti_people"
+            android:padding="5dp"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_pin_bg"
+            android:gravity="center"
+            android:text="@string/add_follow"
+            android:textColor="@color/colorPrimary" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/user_info_layout"
+        android:background="@color/line_bg" />
+
+
+
+</RelativeLayout>

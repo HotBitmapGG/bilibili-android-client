@@ -3,17 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <LinearLayout
         android:id="@+id/item_user_avatar_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="10dp">
+        android:paddingStart="10dp">
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
             android:id="@+id/item_user_avatar"
@@ -33,7 +32,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/item_user_avatar_layout"
+        android:layout_toEndOf="@+id/item_user_avatar_layout"
         android:paddingBottom="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -50,8 +49,8 @@
             android:id="@+id/item_user_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/item_user_name"
-            android:paddingLeft="3dp" />
+            android:layout_toEndOf="@+id/item_user_name"
+            android:paddingStart="3dp" />
 
         <TextView
             android:id="@+id/item_comment_floor"
@@ -66,8 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_user_name"
-            android:layout_toRightOf="@+id/item_comment_floor"
-            android:paddingLeft="5dp"
+            android:layout_toEndOf="@+id/item_comment_floor"
+            android:paddingStart="5dp"
             android:textColor="@color/black_alpha_45"
             android:textSize="12sp" />
 
@@ -75,10 +74,10 @@
             android:id="@+id/item_comment_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/item_comment_spot"
-            android:drawableLeft="@drawable/ic_feedback_grey"
+            android:layout_toStartOf="@+id/item_comment_spot"
+            android:drawableStart="@drawable/ic_feedback_grey"
             android:drawablePadding="5dp"
-            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
             android:textColor="@color/black_alpha_45"
             android:textSize="12sp" />
 
@@ -87,10 +86,10 @@
             android:id="@+id/item_comment_spot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:drawableLeft="@drawable/ic_feedback_support_grey"
+            android:layout_alignParentEnd="true"
+            android:drawableStart="@drawable/ic_feedback_support_grey"
             android:drawablePadding="5dp"
-            android:paddingRight="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@color/black_alpha_45"
             android:textSize="12sp" />
 

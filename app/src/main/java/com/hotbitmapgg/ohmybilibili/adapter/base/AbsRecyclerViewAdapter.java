@@ -14,7 +14,8 @@ import java.util.List;
  * <p/>
  * RecycleViewAdapter基类
  */
-public abstract class AbsRecyclerViewAdapter extends RecyclerView.Adapter<AbsRecyclerViewAdapter.ClickableViewHolder>
+public abstract class AbsRecyclerViewAdapter extends
+        RecyclerView.Adapter<AbsRecyclerViewAdapter.ClickableViewHolder>
 {
 
     private Context context;

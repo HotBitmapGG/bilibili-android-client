@@ -4,13 +4,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndex;
-import com.hotbitmapgg.ohmybilibili.widget.rounded_imageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,8 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
 
     private List<BangumiIndex> bangumiIndexList = new ArrayList<>();
 
-    public BangumiIndexAdapter(RecyclerView recyclerView, List<BangumiIndex> bangumiIndexList)
+    public BangumiIndexAdapter(RecyclerView recyclerView,
+                               List<BangumiIndex> bangumiIndexList)
     {
 
         super(recyclerView);
@@ -38,7 +40,8 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_bangumi_index, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).
+                inflate(R.layout.item_bangumi_index, parent, false));
     }
 
     @Override
@@ -49,7 +52,13 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             BangumiIndex bangumiIndex = bangumiIndexList.get(position);
-            Picasso.with(getContext()).load(bangumiIndex.cover).into(itemViewHolder.mRoundedImageView);
+
+            Glide.with(getContext())
+                    .load(bangumiIndex.cover)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(itemViewHolder.mImageView);
             itemViewHolder.mTextView.setText(bangumiIndex.title);
         }
         super.onBindViewHolder(holder, position);
@@ -65,7 +74,7 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public RoundedImageView mRoundedImageView;
+        public ImageView mImageView;
 
         public TextView mTextView;
 
@@ -73,7 +82,7 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
         {
 
             super(itemView);
-            mRoundedImageView = $(R.id.item_img);
+            mImageView = $(R.id.item_img);
             mTextView = $(R.id.item_title);
         }
     }

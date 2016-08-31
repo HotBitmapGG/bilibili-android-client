@@ -26,8 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/colorPrimary"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             app:tl_indicator_corner_radius="1dp"
             app:tl_indicator_height="2dp"
             app:tl_indicator_width="30dp"

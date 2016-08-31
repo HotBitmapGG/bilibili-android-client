@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoAlikeInfo;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  * Created by hcc on 16/8/7 21:18
  * 100332338@qq.com
  * <p/>
- * 相关视频更多adapter
+ * 视频详情界面相关视频Adapter
  */
 public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 {
@@ -39,7 +40,8 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_alike_video, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).
+                inflate(R.layout.item_video_strip, parent, false));
     }
 
     @Override
@@ -50,19 +52,18 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             VideoAlikeInfo videoAlikeInfo = parts.get(position);
-            String pic = videoAlikeInfo.pic;
-            String play = videoAlikeInfo.play;
-            int video_review = videoAlikeInfo.video_review;
-            String title = videoAlikeInfo.title;
 
-            Picasso.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(pic))
+            Glide.with(getContext())
+                    .load(UrlHelper.getClearVideoPreviewUrl(videoAlikeInfo.pic))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoPic);
 
-            itemViewHolder.mVideoTitle.setText(title);
-            itemViewHolder.mVideoPlayNum.setText(play);
-            itemViewHolder.mVideoReviewNum.setText(video_review + "");
+            itemViewHolder.mVideoTitle.setText(videoAlikeInfo.title);
+            itemViewHolder.mVideoPlayNum.setText(videoAlikeInfo.play);
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(videoAlikeInfo.video_review));
+            itemViewHolder.mUserName.setText(videoAlikeInfo.author);
         }
 
         super.onBindViewHolder(holder, position);
@@ -86,6 +87,8 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 
         public TextView mVideoReviewNum;
 
+        public TextView mUserName;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -95,6 +98,7 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
             mVideoTitle = $(R.id.item_title);
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewNum = $(R.id.item_review);
+            mUserName = $(R.id.item_user_name);
         }
     }
 }

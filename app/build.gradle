@@ -4,12 +4,14 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
+    useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         applicationId "com.hotbitmapgg.ohmybilibili"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 4
-        versionName "2.1.2"
+        versionCode 5
+        versionName "2.1.3"
 
     }
     buildTypes {
@@ -33,32 +35,29 @@ dependencies {
     compile 'org.jsoup:jsoup:1.8.3'
     //烈焰弹幕库
     compile 'com.github.ctiao:dfm:0.4.1'
-    //Picasso图片加载库
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    //Glide 图片加载库
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     //tabLayout
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.0@aar'
     //标签布局
     compile 'com.zhy:flowlayout-lib:1.0.1'
-    // 黄油刀注解控件
+    //butterknife
     compile 'com.jakewharton:butterknife:7.0.1'
     //Okhttp3
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     //Gson
     compile 'com.google.code.gson:gson:2.6.2'
-    //Rxjava Retrofit2
+    //Rxjava
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
+    //Retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
-    //vitamio视频播放器
-    compile(name: 'Vitamio-release', ext: 'aar')
-    compile(name: 'zImaster-release', ext: 'aar')
     //ijkplayer播放器
-    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.4.5.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.4.5.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.4.5.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
     //RxLifecycle 内存泄露
     compile 'com.trello:rxlifecycle-components:0.6.1'
     //RxBinding系列

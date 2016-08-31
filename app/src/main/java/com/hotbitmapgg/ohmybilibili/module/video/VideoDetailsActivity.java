@@ -3,6 +3,7 @@ package com.hotbitmapgg.ohmybilibili.module.video;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,7 +12,8 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,15 +21,15 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,9 +76,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     private List<String> titles = new ArrayList<>();
 
-    private static String EXTRA_ITEM_INFO = "extra_item_info", EXTRA_AV = "extra_av";
-
-    private VideoItemInfo itemInfo;
+    private static String EXTRA_AV = "extra_av";
 
     private int av;
 
@@ -97,17 +97,13 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
     {
 
         Intent intent = getIntent();
-        if (intent.hasExtra(EXTRA_ITEM_INFO))
-        {
-            itemInfo = VideoItemInfo.createFromJson(intent.getStringExtra(EXTRA_ITEM_INFO));
-        } else if (intent.hasExtra(EXTRA_AV))
-        {
+        if (intent != null)
             av = intent.getIntExtra(EXTRA_AV, -1);
-        }
 
         getVideoInfo();
 
-
+        mFAB.setClickable(false);
+        mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
         mFAB.setTranslationY(-getResources().getDimension(R.dimen.floating_action_button_size_half));
         mFAB.setOnClickListener(new View.OnClickListener()
         {
@@ -116,18 +112,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
             public void onClick(View v)
             {
 
-                Intent mIntent = new Intent(VideoDetailsActivity.this, BiliBiliPlayerVideoActivity.class);
-                if (itemInfo != null)
-                {
-                    int aid = itemInfo.aid;
-                    mIntent.putExtra("av", aid + "");
-                } else
-                {
-                    mIntent.putExtra("av", av + "");
-                }
-
-                mIntent.putExtra("page", "1");
-                startActivity(mIntent);
+                VideoPlayerActivity.launch(VideoDetailsActivity.this, av);
             }
         });
 
@@ -143,12 +128,14 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         });
 
 
-        if (itemInfo != null)
-        {
-            Picasso.with(this)
-                    .load(UrlHelper.getClearVideoPreviewUrl(itemInfo.pic))
-                    .into(mVideoPreview);
-        }
+//        if (itemInfo != null)
+//        {
+//            Glide.with(VideoDetailsActivity.this)
+//                    .load(UrlHelper.getClearVideoPreviewUrl(itemInfo.pic))
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .placeholder(R.drawable.bili_default_image_tv)
+//                    .into(mVideoPreview);
+//        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -197,15 +184,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         {
             hideFAB();
         }
-    }
-
-    public static void launch(Activity activity, VideoItemInfo itemInfo)
-    {
-
-        Intent intent = new Intent(activity, VideoDetailsActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(EXTRA_ITEM_INFO, itemInfo.toJsonString());
-        activity.startActivity(intent);
     }
 
     public static void launch(Activity activity, int aid)
@@ -264,7 +242,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                     {
 
                         mFAB.setClickable(false);
-                        mFAB.setBackgroundResource(R.color.gray_20);
+                        mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
                         LogUtil.all("获取视频详情失败" + throwable.getMessage());
                     }
                 });
@@ -273,15 +251,21 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
     private void finishGetTask()
     {
 
+        mFAB.setClickable(true);
+        mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().
+                getColor(R.color.colorPrimary)));
         mCollapsingToolbarLayout.setTitle(mVideoDetails.getTitle());
-        Picasso.with(this)
+
+        Glide.with(VideoDetailsActivity.this)
                 .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.bili_default_image_tv)
                 .into(mVideoPreview);
 
         VideoInfoFragment mVideoInfoFragment = VideoInfoFragment
-                .newInstance(mVideoDetails, itemInfo != null ? itemInfo.aid : av);
+                .newInstance(mVideoDetails, av);
         VideoCommentFragment mVideoCommentFragment = VideoCommentFragment
-                .newInstance(itemInfo != null ? itemInfo.aid : av);
+                .newInstance(av);
 
         fragments.add(mVideoInfoFragment);
         fragments.add(mVideoCommentFragment);
@@ -295,20 +279,26 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         titles.add("简介");
         titles.add("评论" + "(" + num + ")");
 
-        mAdapter = new VideoDetailsPagerAdapter(getSupportFragmentManager());
+        mAdapter = new VideoDetailsPagerAdapter(getSupportFragmentManager(), fragments, titles);
 
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(2);
         mSlidingTabLayout.setViewPager(mViewPager);
     }
 
-    public class VideoDetailsPagerAdapter extends FragmentPagerAdapter
+    public static class VideoDetailsPagerAdapter extends FragmentStatePagerAdapter
     {
 
-        public VideoDetailsPagerAdapter(android.support.v4.app.FragmentManager fm)
+        private List<Fragment> fragments;
+
+        private List<String> titles;
+
+        public VideoDetailsPagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles)
         {
 
             super(fm);
+            this.fragments = fragments;
+            this.titles = titles;
         }
 
         @Override

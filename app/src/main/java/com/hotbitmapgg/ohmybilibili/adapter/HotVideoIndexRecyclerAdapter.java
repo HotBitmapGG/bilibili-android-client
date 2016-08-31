@@ -8,10 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,8 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 
     List<VideoItemInfo> videoItemInfos = new ArrayList<>();
 
-    public HotVideoIndexRecyclerAdapter(RecyclerView recyclerView, List<VideoItemInfo> videoItemInfos)
+    public HotVideoIndexRecyclerAdapter(RecyclerView recyclerView,
+                                        List<VideoItemInfo> videoItemInfos)
     {
 
         super(recyclerView);
@@ -40,7 +42,7 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_hot_video_index, parent, false));
+                .inflate(R.layout.item_video_card, parent, false));
     }
 
     @Override
@@ -53,10 +55,12 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
             VideoItemInfo videoItemInfo = videoItemInfos.get(position);
             itemViewHolder.mVideoTitle.setText(videoItemInfo.title);
             itemViewHolder.mVideoPlayNum.setText(videoItemInfo.play);
-            itemViewHolder.mVideoReviewCount.setText((videoItemInfo.video_review) + "");
+            itemViewHolder.mVideoReviewCount.setText(String.valueOf(videoItemInfo.video_review));
 
-            Picasso.with(getContext())
+            Glide.with(getContext())
                     .load(Uri.parse(videoItemInfo.pic))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoImg);
         }

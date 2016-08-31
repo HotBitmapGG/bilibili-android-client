@@ -30,7 +30,7 @@ public class ConsumeHistoryFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_consume_history;
+        return R.layout.fragment_empty;
     }
 
     @Override

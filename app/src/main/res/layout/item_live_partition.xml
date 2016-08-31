@@ -54,29 +54,17 @@
                     android:id="@+id/item_live_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:textColor="@color/font_normal"
                     android:textSize="14sp"/>
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
                 android:padding="5dp">
-
-                <TextView
-                    android:id="@+id/item_live_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                    android:background="@color/gray_100"
-                    android:padding="2dp"
-                    android:textColor="@color/black_alpha_45"
-                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/item_live_user"
@@ -84,72 +72,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/video_info_count_text_margin_start"
                     android:textColor="@color/black_alpha_45"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
                     android:textSize="12sp"/>
-            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/item_live_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/video_info_count_text_margin_start"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:drawableStart="@drawable/ic_watching"
+                    android:padding="2dp"
+                    android:drawablePadding="3dp"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
 </LinearLayout>
-
-    <!--<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/item_live_layout"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp">
-
-            <ImageView
-                android:id="@+id/item_live_cover"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="150dp"
-                android:layout_height="150dp" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/item_live_user_cover"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
-                <TextView
-                    android:id="@+id/item_live_user"
-                    android:singleLine="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="主播昵称"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/item_live_count"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="观看人数"/>
-                <TextView
-                    android:id="@+id/item_live_title"
-                    android:singleLine="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="直播间名称"/>
-            </LinearLayout>
-
-        </LinearLayout>
-    </LinearLayout>-->

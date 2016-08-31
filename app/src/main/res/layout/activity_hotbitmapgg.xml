@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="HotBitmapGG"
+                android:text="@string/hotbitmapgg"
                 android:textColor="@color/font_normal"
                 android:textSize="18sp" />
 
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:autoLink="web"
-                android:text="GitHub:https://github.com/HotBitmapGG"
+                android:text="@string/github_link"
                 android:textSize="14sp" />
 
 
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:autoLink="web"
-                android:text="新浪微博:http://m.weibo.cn/users/3223089177/qq"
+                android:text="@string/sina_weibo_link"
                 android:textSize="14sp" />
 
 
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:autoLink="web"
-                android:text="简书:http://www.jianshu.com/notebooks/5181955/latest"
+                android:text="@string/jianshu_link"
                 android:textSize="14sp" />
 
 

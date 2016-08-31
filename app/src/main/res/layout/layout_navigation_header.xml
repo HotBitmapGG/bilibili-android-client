@@ -16,7 +16,7 @@
             android:id="@+id/background_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|right|bottom"
+            android:layout_gravity="center|end|bottom"
             android:clickable="true"
             android:src="@drawable/home_menu_bg_click"
             android:tint="@color/colorPrimaryDark" />
@@ -41,8 +41,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
@@ -57,7 +57,7 @@
                 android:id="@+id/iv_head_switch_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:src="@drawable/ic_switch_night" />
 
 
@@ -89,7 +89,6 @@
                 android:paddingEnd="@dimen/navigation_subtitle_text_padding_horizontal"
                 android:paddingStart="@dimen/navigation_subtitle_text_padding_horizontal"
                 android:paddingTop="@dimen/navigation_subtitle_text_padding_vertical"
-                android:text="HotBitmapGG"
                 android:textColor="@color/navigation_subtitle_primary_text"
                 android:textSize="@dimen/navigation_subtitle_primary_text_size" />
 
@@ -100,7 +99,6 @@
                 android:paddingBottom="@dimen/navigation_subtitle_text_padding_vertical"
                 android:paddingEnd="@dimen/navigation_subtitle_text_padding_horizontal"
                 android:paddingStart="@dimen/navigation_subtitle_text_padding_horizontal"
-                android:text="100332338@qq.com"
                 android:textColor="@color/navigation_subtitle_secondary_text"
                 android:textSize="@dimen/navigation_subtitle_secondary_text_size" />
         </LinearLayout>

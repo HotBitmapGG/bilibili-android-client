@@ -10,12 +10,6 @@
 
 
 
-
-## v2.1.2Apk
-
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/qrcode.png?raw=true)
-
-
 ## 截图
 
 <a href="art/01.jpg"><img src="art/01.jpg" width="40%"/></a> <a href="art/02.jpg"><img src="art/02.jpg" width="40%"/></a>
@@ -36,7 +30,7 @@
 
 <a href="art/17.jpg"><img src="art/17.jpg" width="40%"/></a> <a href="art/18.jpg"><img src="art/18.jpg" width="40%"/></a>
 
-<a href="art/19.jpg"><img src="art/19.jpg" width="40%"/></a> <a href="art/20.jpg"><img src="art/20.jpg" width="40%"/></a>
+<a href="art/19.jpg"><img src="art/19.jpg" width="40%"/></a>
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/21.jpg?raw=true)
 

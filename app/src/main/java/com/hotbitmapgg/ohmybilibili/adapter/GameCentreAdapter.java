@@ -9,11 +9,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.game.GameItem;
-import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
-import com.squareup.picasso.Picasso;
+import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,8 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_game, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).
+                inflate(R.layout.item_game_center, parent, false));
     }
 
     @Override
@@ -52,9 +54,12 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder mHolder = (ItemViewHolder) holder;
             final GameItem gameItem = games.get(position);
-            Picasso.with(getContext())
+
+            Glide.with(getContext())
                     .load(gameItem.imageRes)
-                    .error(R.drawable.bili_default_image_tv)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+                    .placeholder(R.drawable.bili_default_image_tv)
                     .into(mHolder.mImageView);
 
             mHolder.mTitle.setText(gameItem.name);
@@ -65,7 +70,7 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
                 public void onClick(View v)
                 {
 
-                    BrowserActivity.
+                    WebActivity.
                             launch((Activity) getContext(),
                                     gameItem.path, gameItem.name);
                 }

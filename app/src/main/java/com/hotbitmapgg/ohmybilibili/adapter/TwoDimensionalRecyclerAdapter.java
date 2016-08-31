@@ -7,10 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.TwoDimensional;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,8 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
 
     private List<TwoDimensional.ListBean> twoDimensionals = new ArrayList<>();
 
-    public TwoDimensionalRecyclerAdapter(RecyclerView recyclerView, List<TwoDimensional.ListBean> twoDimensionals)
+    public TwoDimensionalRecyclerAdapter(RecyclerView recyclerView,
+                                         List<TwoDimensional.ListBean> twoDimensionals)
     {
 
         super(recyclerView);
@@ -50,8 +52,10 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             TwoDimensional.ListBean listBean = twoDimensionals.get(position);
-            Picasso.with(getContext())
+
+            Glide.with(getContext())
                     .load(listBean.getCover())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mImage);
 

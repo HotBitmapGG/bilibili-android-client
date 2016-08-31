@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreType;
-import com.hotbitmapgg.ohmybilibili.module.partition.PartitionListFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.partition.PartitionListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,8 @@ public class PartitionMorePagerAdapter extends FragmentStatePagerAdapter
 
     private List<Fragment> fragments = new ArrayList<>();
 
-    public PartitionMorePagerAdapter(FragmentManager fm, List<PartitionMoreType> titles)
+    public PartitionMorePagerAdapter(FragmentManager fm,
+                                     List<PartitionMoreType> titles)
     {
 
         super(fm);
@@ -36,7 +37,8 @@ public class PartitionMorePagerAdapter extends FragmentStatePagerAdapter
 
         for (int i = 0; i < titles.size(); i++)
         {
-            fragments.add(PartitionListFragment.newInstance(titles.get(i).getTitleType() + ""));
+            fragments.add(PartitionListFragment.
+                    newInstance(titles.get(i).getTitleType() + ""));
         }
     }
 

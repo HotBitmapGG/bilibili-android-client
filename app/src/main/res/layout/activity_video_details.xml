@@ -18,7 +18,7 @@
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="256dp"
+                android:layout_height="@dimen/appbar_parallax_max_height"
                 android:fitsSystemWindows="true"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:contentScrim="?attr/colorPrimary"
@@ -93,7 +93,7 @@
         android:layout_height="60dp"
         android:layout_gravity="end"
         android:layout_marginEnd="@dimen/floating_action_button_margin"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="190dp"
         android:src="@drawable/ic_portrait_play"
         app:backgroundTint="@color/colorPrimary"
         app:elevation="4dp"

@@ -4,16 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="5dp">
 
-    <com.hotbitmapgg.ohmybilibili.widget.rounded_imageview.RoundedImageView
-        android:id="@+id/item_img"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        app:riv_corner_radius="4dp"
-        app:riv_oval="false" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="4dp">
+
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop" />
+
+    </android.support.v7.widget.CardView>
 
     <TextView
         android:id="@+id/item_title"

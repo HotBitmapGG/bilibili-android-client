@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommend;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,8 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 
     private List<UserRecommend.AuthorData> datas = new ArrayList<>();
 
-    public VideoPartListAdapter(RecyclerView recyclerView, List<UserRecommend.AuthorData> datas)
+    public VideoPartListAdapter(RecyclerView recyclerView,
+                                List<UserRecommend.AuthorData> datas)
     {
 
         super(recyclerView);
@@ -39,7 +41,8 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_video_parts, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).
+                inflate(R.layout.item_video_card, parent, false));
     }
 
     @Override
@@ -51,23 +54,16 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
             ItemViewHolder mHolder = (ItemViewHolder) holder;
             UserRecommend.AuthorData authorData = datas.get(position);
 
-            int click = authorData.click;
-            String cover = authorData.cover;
-            int favorites = authorData.favorites;
-            int review = authorData.review;
-            int video_review = authorData.video_review;
-            String title = authorData.title;
-
-            Picasso.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(cover))
+            Glide.with(getContext())
+                    .load(UrlHelper.getClearVideoPreviewUrl(authorData.cover))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(mHolder.mVideoPic);
 
-            mHolder.mVideoTitle.setText(title);
-            mHolder.mVideoUserFav.setText(String.valueOf(favorites));
-            mHolder.mVideoPlayNum.setText(String.valueOf(click));
-            mHolder.mVideoUserCommend.setText(String.valueOf(review));
-            mHolder.mVideoReviewNum.setText(String.valueOf(video_review));
+            mHolder.mVideoTitle.setText(authorData.title);
+            mHolder.mVideoPlayNum.setText(String.valueOf(authorData.click));
+            mHolder.mVideoReviewNum.setText(String.valueOf(authorData.video_review));
         }
 
         super.onBindViewHolder(holder, position);
@@ -88,10 +84,6 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 
         public TextView mVideoTitle;
 
-        public TextView mVideoUserFav;
-
-        public TextView mVideoUserCommend;
-
         public TextView mVideoPlayNum;
 
         public TextView mVideoReviewNum;
@@ -103,8 +95,6 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 
             mVideoPic = $(R.id.item_img);
             mVideoTitle = $(R.id.item_title);
-            mVideoUserFav = $(R.id.item_fav);
-            mVideoUserCommend = $(R.id.item_commend);
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewNum = $(R.id.item_review);
         }

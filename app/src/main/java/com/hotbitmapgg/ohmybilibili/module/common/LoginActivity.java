@@ -9,7 +9,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -20,6 +19,7 @@ import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by hcc on 16/8/7 14:12
@@ -27,7 +27,7 @@ import butterknife.Bind;
  * <p/>
  * 登录界面
  */
-public class LoginActivity extends RxAppCompatBaseActivity implements OnClickListener
+public class LoginActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -48,9 +48,6 @@ public class LoginActivity extends RxAppCompatBaseActivity implements OnClickLis
     @Bind(R.id.et_password)
     EditText et_password;
 
-    @Bind(R.id.btn_login)
-    Button btn_login;
-
     @Override
     public int getLayoutId()
     {
@@ -62,7 +59,6 @@ public class LoginActivity extends RxAppCompatBaseActivity implements OnClickLis
     public void initViews(Bundle savedInstanceState)
     {
 
-        btn_login.setOnClickListener(this);
         mDeleteUserName.setOnClickListener(new OnClickListener()
         {
 
@@ -167,28 +163,19 @@ public class LoginActivity extends RxAppCompatBaseActivity implements OnClickLis
     }
 
 
-    @Override
-    public void onClick(View v)
+    @OnClick(R.id.btn_login)
+    void startLogin()
     {
 
-        switch (v.getId())
+        boolean isNetConnected = CommonUtils.isNetworkAvailable(this);
+        if (!isNetConnected)
         {
-            case R.id.btn_login:
-
-                boolean isNetConnected = CommonUtils.isNetworkAvailable(this);
-                if (!isNetConnected)
-                {
-                    ToastUtil.ShortToast("当前网络不可用,请检查网络设置");
-                    return;
-                }
-                login();
-                break;
-
-
-            default:
-                break;
+            ToastUtil.ShortToast("当前网络不可用,请检查网络设置");
+            return;
         }
+        login();
     }
+
 
     private void login()
     {
@@ -212,12 +199,5 @@ public class LoginActivity extends RxAppCompatBaseActivity implements OnClickLis
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    protected void onDestroy()
-    {
-        // TODO Auto-generated method stub
-        super.onDestroy();
     }
 }

@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,8 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 
     private List<UserUpVideoInfo.VlistBean> parts = new ArrayList<>();
 
-    public UserUpVideoAdapter(RecyclerView recyclerView, List<UserUpVideoInfo.VlistBean> parts)
+    public UserUpVideoAdapter(RecyclerView recyclerView,
+                              List<UserUpVideoInfo.VlistBean> parts)
     {
 
         super(recyclerView);
@@ -40,7 +42,7 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.card_item_user_up_video, parent, false));
+                .inflate(R.layout.item_video_card, parent, false));
     }
 
     @Override
@@ -52,10 +54,13 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             UserUpVideoInfo.VlistBean vlistBean = parts.get(position);
 
-            Picasso.with(getContext())
+            Glide.with(getContext())
                     .load(UrlHelper.getClearVideoPreviewUrl(vlistBean.getPic()))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoPic);
+
 
             itemViewHolder.mVideoTitle.setText(vlistBean.getTitle());
             itemViewHolder.mVideoPlayNum.setText(String.valueOf(vlistBean.getPlay()));

@@ -83,7 +83,7 @@ public class HomeMoreLayoutAdapter extends BaseAdapter
         if (convertView == null)
         {
             mViewHolder = new MoreLayoutViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_grid_home_more, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_home_more_grid, parent, false);
             mViewHolder.mItemPic = (ImageView) convertView.findViewById(R.id.item_more_icon);
             mViewHolder.mItemText = (TextView) convertView.findViewById(R.id.item_more_text);
 
