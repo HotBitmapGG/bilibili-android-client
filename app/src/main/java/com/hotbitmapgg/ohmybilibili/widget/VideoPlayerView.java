@@ -17,7 +17,8 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.service.MediaController;
+import com.hotbitmapgg.ohmybilibili.event.MediaController;
+import com.hotbitmapgg.ohmybilibili.event.MediaPlayerControl;
 import com.hotbitmapgg.ohmybilibili.utils.ScreenResolution;
 
 import java.io.IOException;
@@ -34,8 +35,13 @@ import tv.danmaku.ijk.media.player.IMediaPlayer.OnVideoSizeChangedListener;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.player.pragma.DebugLog;
 
-
-public class VideoView extends SurfaceView implements MediaController.MediaPlayerControl
+/**
+ * Created by hcc on 16/8/31 19:50
+ * 100332338@qq.com
+ * <p/>
+ * 自定义VideoView
+ */
+public class VideoPlayerView extends SurfaceView implements MediaPlayerControl
 {
 
     public static final int VIDEO_LAYOUT_ORIGIN = 0;
@@ -46,7 +52,7 @@ public class VideoView extends SurfaceView implements MediaController.MediaPlaye
 
     public static final int VIDEO_LAYOUT_ZOOM = 3;
 
-    private static final String TAG = VideoView.class.getName();
+    private static final String TAG = VideoPlayerView.class.getName();
 
     private static final int STATE_ERROR = -1;
 
@@ -363,20 +369,20 @@ public class VideoView extends SurfaceView implements MediaController.MediaPlaye
         }
     };
 
-    public VideoView(Context context)
+    public VideoPlayerView(Context context)
     {
 
         super(context);
         initVideoView(context);
     }
 
-    public VideoView(Context context, AttributeSet attrs)
+    public VideoPlayerView(Context context, AttributeSet attrs)
     {
 
         this(context, attrs, 0);
     }
 
-    public VideoView(Context context, AttributeSet attrs, int defStyle)
+    public VideoPlayerView(Context context, AttributeSet attrs, int defStyle)
     {
 
         super(context, attrs, defStyle);

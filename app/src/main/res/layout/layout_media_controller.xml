@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:layout_margin="0dp"
         android:orientation="horizontal"
-        android:visibility="invisible">
+ >
 
         <LinearLayout
             android:id="@+id/info_panel"

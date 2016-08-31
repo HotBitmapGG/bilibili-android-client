@@ -26,7 +26,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 视频弹幕下载工具类
  */
-public class DanMuDownloadUtil
+public class DanmakuDownloadUtil
 {
 
     public Observable<BaseDanmakuParser> downloadXML(final String uri)
@@ -38,7 +38,6 @@ public class DanMuDownloadUtil
             @Override
             public void call(final Subscriber<? super BaseDanmakuParser> subscriber)
             {
-
 
                 InputStream stream = null;
                 if (uri == null)
@@ -56,19 +55,17 @@ public class DanMuDownloadUtil
                 }
                 try
                 {
-                    HttpConnection.Response rsp = (HttpConnection.Response) Jsoup.connect(uri).timeout(20000).execute();
-                    stream = new ByteArrayInputStream(CompressionTools.decompressXML(rsp.bodyAsBytes()));
-                } catch (IOException e1)
+                    HttpConnection.Response rsp = (HttpConnection.Response)
+                            Jsoup.connect(uri).timeout(20000).execute();
+                    stream = new ByteArrayInputStream(CompressionTools.
+                            decompressXML(rsp.bodyAsBytes()));
+                } catch (IOException | DataFormatException e1)
                 {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
-                } catch (DataFormatException e)
-                {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 }
 
-                ILoader loader = DanmakuLoaderFactory.create(DanmakuLoaderFactory.TAG_BILI);
+                ILoader loader = DanmakuLoaderFactory.
+                        create(DanmakuLoaderFactory.TAG_BILI);
 
                 try
                 {
@@ -81,6 +78,7 @@ public class DanMuDownloadUtil
                 IDataSource<?> dataSource = loader.getDataSource();
                 parser.load(dataSource);
                 subscriber.onNext(parser);
+
             }
         }).subscribeOn(Schedulers.io());
     }

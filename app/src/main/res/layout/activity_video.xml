@@ -5,7 +5,7 @@
     android:id="@+id/video_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+
     android:orientation="horizontal" >
 
     <com.hotbitmapgg.ohmybilibili.widget.VideoPlayerView
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="gone" >
+            android:visibility="visible" >
 
             <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
                 android:id="@+id/video_loading_progress"
@@ -59,7 +59,7 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:background="@color/white_30"
-            android:visibility="gone" >
+            android:visibility="visible" >
 
             <ImageView
                 android:id="@+id/bili_anim"
