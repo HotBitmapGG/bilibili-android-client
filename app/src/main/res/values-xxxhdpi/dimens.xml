@@ -21,10 +21,10 @@
 
     <!-- Card -->
     <dimen name="touch_raise">6dp</dimen>
-    <dimen name="card_margin">5dp</dimen>
+    <dimen name="card_margin">10dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="card_corner_radius">2dp</dimen>
-    <dimen name="card_title_margin">10dp</dimen>
+    <dimen name="card_title_margin">5dp</dimen>
     <dimen name="title_margin_small">8dp</dimen>
 
     <!-- List -->
@@ -45,16 +45,11 @@
 
     <!-- Android Design Support Library -->
     <dimen name="navigation_elevation">12dp</dimen>
-    <dimen name="navigation_icon_padding">32dp</dimen>
-    <dimen name="navigation_icon_size">24dp</dimen>
     <dimen name="navigation_max_width">300dp</dimen>
-    <dimen name="navigation_padding_bottom">8dp</dimen>
-    <dimen name="navigation_padding_top_default">0dp</dimen>
-    <dimen name="navigation_separator_vertical_padding">8dp</dimen>
 
     <!-- Layouts' special resources -->
     <!-- activity_video_view.xml -->
-    <dimen name="video_info_mini_icons_size">16dp</dimen>
+    <dimen name="video_info_mini_icons_size">12dp</dimen>
     <dimen name="video_info_count_text_margin_start">4dp</dimen>
 
     <!-- activity_user_info.xml -->
@@ -73,7 +68,6 @@
     <dimen name="action_bar_default_height">48dp</dimen>
     <dimen name="mediacontroller_buttons_top_margin">2dp</dimen>
     <dimen name="mediacontroller_buttons_bottom_margin">0dp</dimen>
-
     <dimen name="user_info_padding">10dp</dimen>
 
 

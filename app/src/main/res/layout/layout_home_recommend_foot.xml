@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:paddingEnd="5dp"
-    android:paddingStart="5dp">
+    android:paddingEnd="@dimen/card_margin"
+    android:paddingStart="@dimen/card_margin">
 
     <Button
         android:id="@+id/item_btn_more"

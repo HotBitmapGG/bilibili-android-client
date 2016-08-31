@@ -26,9 +26,6 @@
     <color name="font_gray">#656565</color>
     <color name="line_bg">#e6e6e6</color>
     <color name="navigation_background_light">#FFF8F8F8</color>
-    <color name="navigation_item_text_color_highlight">@color/colorPrimary</color>
-    <color name="navigation_item_icon_color_normal">#AEAEAE</color>
-    <color name="navigation_item_icon_color_highlight">@color/colorPrimary</color>
     <color name="navigation_subtitle_primary_text">#FFFFFFFF</color>
     <color name="navigation_subtitle_secondary_text">#BFFFFFFF</color>
     <color name="card_view_background_dark">#424242</color>

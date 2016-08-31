@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    android:id="@+id/card_view"
+<android.support.v7.widget.CardView android:id="@+id/card_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -12,23 +11,23 @@
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="190dp"
         android:background="@color/white"
-        android:minWidth="190dp"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/item_img"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="120dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/item_img"
             android:orientation="horizontal"
             android:padding="@dimen/card_title_margin">
 
@@ -45,10 +44,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
-            android:paddingStart="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="5dp">
 
             <ImageView
                 android:layout_width="@dimen/video_info_mini_icons_size"
@@ -63,7 +62,7 @@
                 android:layout_marginStart="@dimen/video_info_count_text_margin_start"
                 android:gravity="center"
                 android:textColor="@color/black_alpha_45"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <Space
                 android:layout_width="16dp"
@@ -82,9 +81,9 @@
                 android:layout_marginStart="@dimen/video_info_count_text_margin_start"
                 android:gravity="center"
                 android:textColor="@color/black_alpha_45"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>
 
 

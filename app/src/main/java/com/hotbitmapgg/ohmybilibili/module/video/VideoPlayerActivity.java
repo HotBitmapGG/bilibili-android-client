@@ -106,7 +106,7 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
     public int getLayoutId()
     {
 
-        return R.layout.activity_player;
+        return R.layout.activity_video_player;
     }
 
     @Override

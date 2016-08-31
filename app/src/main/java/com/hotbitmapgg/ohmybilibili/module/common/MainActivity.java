@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -28,7 +29,6 @@ import com.hotbitmapgg.ohmybilibili.module.entry.SettingFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
 import com.hotbitmapgg.ohmybilibili.module.search.SearchActivity;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
-import com.hotbitmapgg.ohmybilibili.widget.navigation_view.NavigationView;
 
 import java.util.Random;
 
@@ -54,14 +54,11 @@ public class MainActivity extends RxAppCompatBaseActivity implements
     @Bind(R.id.navigation_view)
     NavigationView mNavigationView;
 
-    @Bind(R.id.user_avatar_view)
-    CircleImageView mUserAcatarView;
+    private CircleImageView mUserAcatarView;
 
-    @Bind(R.id.user_name)
-    TextView mUserName;
+    private TextView mUserName;
 
-    @Bind(R.id.user_other_info)
-    TextView mUserSign;
+    private TextView mUserSign;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -102,11 +99,15 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         //设置侧滑菜单
         mDrawerLayout.addDrawerListener(new DrawerListener());
         mNavigationView.setNavigationItemSelectedListener(this);
+        View headerView = mNavigationView.getHeaderView(0);
+        mUserAcatarView = (CircleImageView) headerView.findViewById(R.id.user_avatar_view);
+        mUserName = (TextView) headerView.findViewById(R.id.user_name);
+        mUserSign = (TextView) headerView.findViewById(R.id.user_other_info);
         //进入应用随机设置头像
         random = new Random(SystemClock.elapsedRealtime());
         mUserAcatarView.setImageResource(avatars[random.nextInt(avatars.length)]);
         //设置用户名 签名
-        mUserName.setText("HotBitmapGG");
+        mUserName.setText(getResources().getText(R.string.hotbitmapgg));
         mUserSign.setText("哔哩哔哩 - ( ゜- ゜)つロ 乾杯~");
         //设置头像 随机设置
         mUserAcatarView.setOnClickListener(new View.OnClickListener()
