@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/info_panel"
+        style="@style/InfoPanel_Container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_default_height">
+
+
+        <ImageView
+            android:id="@+id/mediacontroller_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_arrow_back_white"
+            android:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/mediacontroller_file_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/mediacontroller_back"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/mediacontroller_controls"
+        style="@style/MediaController_Container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="0dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <SeekBar
+                android:id="@+id/mediacontroller_seekbar"
+                style="@style/MediaController_SeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:max="1000" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="2dp">
+
+
+            <RelativeLayout
+                android:id="@+id/mediacontroller_controls_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/mediacontroller_buttons_bottom_margin"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="@dimen/mediacontroller_buttons_top_margin"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/mediacontroller_play_pause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:src="@drawable/mediacontroller_pause" />
+
+
+                <TextView
+                    android:id="@+id/mediacontroller_time_current"
+                    style="@style/MediaController_Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="22dp"
+                    android:layout_toEndOf="@+id/mediacontroller_play_pause" />
+
+                <TextView
+                    android:id="@+id/time_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_toEndOf="@+id/mediacontroller_time_current"
+                    android:text="/"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/mediacontroller_time_total"
+                    style="@style/MediaController_Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/time_line" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/mediacontroller_danmaku_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/bili_player_danmaku_is_open" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:text="@string/danmaku_switch"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

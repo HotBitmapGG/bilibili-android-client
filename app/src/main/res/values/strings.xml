@@ -67,6 +67,7 @@
     <string name="topic">话题</string>
     <string name="load_more">正在加载…</string>
     <string name="search_hint">搜索视频,番剧,up主或av号</string>
+    <string name="danmaku_switch">弹幕开关</string>
 
 
     <!--Vitamio Strings-->

@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -85,15 +86,24 @@ public class MediaController extends FrameLayout
 
     private OnHiddenListener mHiddenListener;
 
-
     private boolean mDanmakuShow = true;
 
     private DanmakuSwitchEvent mDanmakuSwitchEvent;
+
+    private ImageView mBack;
+
+    private VideoBackEvent mVideoBackEvent;
 
     public void setDanmakuSwitchListener(DanmakuSwitchEvent danmakuSwitchEvent)
     {
 
         this.mDanmakuSwitchEvent = danmakuSwitchEvent;
+    }
+
+    public void setVideoBackEvent(VideoBackEvent videoBackEvent)
+    {
+
+        this.mVideoBackEvent = videoBackEvent;
     }
 
     @SuppressLint("HandlerLeak")
@@ -300,7 +310,7 @@ public class MediaController extends FrameLayout
 
         return ((LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
-                R.layout.view_media_controller, this);
+                R.layout.layout_media_controller, this);
     }
 
     private void initControllerView(View v)
@@ -354,8 +364,19 @@ public class MediaController extends FrameLayout
                 }
             }
         });
-    }
 
+        mBack = (ImageView) v.findViewById(R.id.mediacontroller_back);
+        mBack.setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                mVideoBackEvent.back();
+            }
+        });
+    }
 
     public void setMediaPlayer(MediaPlayerControl player)
     {

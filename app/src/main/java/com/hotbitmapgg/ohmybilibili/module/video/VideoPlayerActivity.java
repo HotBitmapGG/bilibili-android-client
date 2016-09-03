@@ -15,9 +15,10 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.HDVideoInfo;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoSrc;
-import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.event.DanmakuSwitchEvent;
 import com.hotbitmapgg.ohmybilibili.event.MediaController;
+import com.hotbitmapgg.ohmybilibili.event.VideoBackEvent;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.DanmakuDownloadUtil;
 import com.hotbitmapgg.ohmybilibili.widget.VideoPlayerView;
 
@@ -42,7 +43,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * <p/>
  * 视频播放界面
  */
-public class VideoPlayerActivity extends RxAppCompatBaseActivity implements DanmakuSwitchEvent
+public class VideoPlayerActivity extends RxAppCompatBaseActivity implements DanmakuSwitchEvent, VideoBackEvent
 {
 
 
@@ -81,6 +82,8 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
     private AnimationDrawable mLoadingAnim;
 
     private Observable<VideoSrc> observable;
+
+    private MediaController mMediaController;
 
 
     @Override
@@ -129,7 +132,7 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
     private void initData()
     {
         //配置播放器
-        MediaController mMediaController = new MediaController(this);
+        mMediaController = new MediaController(this);
         mDanmakuView.enableDanmakuDrawingCache(true);
         mPlayerView.setMediaController(mMediaController);
         mPlayerView.setMediaBufferingIndicator(mBufferingIndicator);
@@ -142,6 +145,8 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
 
         // 设置弹幕开关监听
         mMediaController.setDanmakuSwitchListener(this);
+        //设置返回键监听
+        mMediaController.setVideoBackEvent(this);
 
         // 获取Html5的视频数据
         observable = RetrofitHelper.getHtml5VideoPlayerUrlApi()
@@ -557,6 +562,7 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
     @Override
     public void setDanmakushow(boolean isShow)
     {
+
         if (mDanmakuView != null)
         {
             if (isShow)
@@ -569,30 +575,10 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
         }
     }
 
+    @Override
+    public void back()
+    {
 
-//    private String mBatteryLevel;
-//
-//    private void setBatteryLevel()
-//    {
-//
-//        if (mMediaController != null)
-//            mMediaController.setBatteryLevel(mBatteryLevel);
-//    }
-//
-//    private class BatteryReceiver extends BroadcastReceiver
-//    {
-//
-//        @Override
-//        public void onReceive(Context context, Intent intent)
-//        {
-//
-//            int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-//            int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 100);
-//            int percent = scale > 0 ? level * 100 / scale : 0;
-//            if (percent > 100)
-//                percent = 100;
-//            mBatteryLevel = String.valueOf(percent) + "%";
-//            setBatteryLevel();
-//        }
-//    }
+        onBackPressed();
+    }
 }

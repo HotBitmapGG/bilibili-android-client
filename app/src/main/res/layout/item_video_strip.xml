@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="90dp"
     android:layout_marginBottom="10dp">
 
     <ImageView
         android:id="@+id/item_img"
-        android:layout_width="130dp"
-        android:layout_height="100dp"
+        android:layout_width="140dp"
+        android:layout_height="90dp"
         android:layout_alignParentStart="true"
         android:layout_centerInParent="true"
         android:layout_marginStart="5dp"
         android:scaleType="centerCrop" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/item_img"
         android:orientation="vertical">
 
@@ -27,14 +26,16 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
+            android:layout_alignParentTop="true"
             android:textColor="@color/font_normal"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
             android:gravity="center"
+            android:layout_above="@+id/layout_play"
             android:orientation="horizontal">
 
             <ImageView
@@ -52,9 +53,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_play"
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -89,5 +93,5 @@
                 android:textColor="@color/black_alpha_45"
                 android:textSize="12sp" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>
