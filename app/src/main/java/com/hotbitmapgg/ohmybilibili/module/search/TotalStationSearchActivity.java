@@ -320,9 +320,12 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
 //        titles.add("专题" + "(" + checkNumResults(pageinfo.getSpecial().getNumResults()) + ")");
 
 
-        SearchTabAdapter mAdapter = new SearchTabAdapter(getSupportFragmentManager(), titles, fragments);
+        SearchTabAdapter mAdapter =  new SearchTabAdapter(getSupportFragmentManager(), titles, fragments);
         mViewPager.setAdapter(mAdapter);
         mSlidingTabLayout.setViewPager(mViewPager);
+        mSlidingTabLayout.setCurrentTab(0);
+        mAdapter.notifyDataSetChanged();
+        mSlidingTabLayout.notifyDataSetChanged();
     }
 
     public String checkNumResults(int numResult)

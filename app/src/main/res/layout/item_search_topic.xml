@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_title"
             android:textColor="@color/black_alpha_45"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:textSize="14sp" />
 
 
@@ -47,6 +47,7 @@
             android:layout_below="@+id/item_user_name"
             android:ellipsize="end"
             android:maxLines="2"
+            android:layout_marginTop="10dp"
             android:textColor="@color/black_alpha_45"
             android:textSize="14sp" />
 

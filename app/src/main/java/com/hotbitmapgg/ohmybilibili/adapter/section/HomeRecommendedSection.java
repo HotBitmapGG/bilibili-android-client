@@ -155,7 +155,7 @@ public class HomeRecommendedSection extends StatelessSection
         } else if (type.equals(TYPE_ACTIVITY))
         {
             ViewGroup.LayoutParams layoutParams = itemViewHolder.mCardView.getLayoutParams();
-            layoutParams.height = DisplayUtil.dip2px(mContext, 200f);
+            layoutParams.height = DisplayUtil.dp2px(mContext, 200f);
             itemViewHolder.mCardView.setLayoutParams(layoutParams);
             itemViewHolder.mLiveLayout.setVisibility(View.GONE);
             itemViewHolder.mVideoLayout.setVisibility(View.GONE);

@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by hcc on 16/8/29 19:32
@@ -647,7 +646,7 @@ public class SearchResult
          * badgepay : false
          */
 
-        private List<VideoBean> video;
+        private ArrayList<VideoBean> video;
 
         /**
          * season_id : 2984
@@ -674,7 +673,7 @@ public class SearchResult
          * total_count : 20
          */
 
-        private List<BangumiBean> bangumi;
+        private ArrayList<BangumiBean> bangumi;
 
 
         /**
@@ -698,48 +697,49 @@ public class SearchResult
          * @return
          */
 
-        private List<TopicBean> topic;
+        private ArrayList<TopicBean> topic;
 
 
-        public List<VideoBean> getVideo()
+        public ArrayList<VideoBean> getVideo()
         {
 
             return video;
         }
 
-        public void setVideo(List<VideoBean> video)
+        public void setVideo(ArrayList<VideoBean> video)
         {
 
             this.video = video;
         }
 
-        public List<BangumiBean> getBangumi()
+        public ArrayList<BangumiBean> getBangumi()
         {
 
             return bangumi;
         }
 
-        public void setBangumi(List<BangumiBean> bangumi)
+        public void setBangumi(ArrayList<BangumiBean> bangumi)
         {
 
             this.bangumi = bangumi;
         }
 
 
-        public List<TopicBean> getTopic()
+        public ArrayList<TopicBean> getTopic()
         {
 
             return topic;
         }
 
-        public void setTopic(List<TopicBean> topic)
+        public void setTopic(ArrayList<TopicBean> topic)
         {
 
             this.topic = topic;
         }
 
-        public static class VideoBean
+        public static class VideoBean implements Parcelable
         {
+
 
             private String aid;
 
@@ -1020,9 +1020,90 @@ public class SearchResult
 
                 this.badgepay = badgepay;
             }
+
+            @Override
+            public int describeContents()
+            {
+
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags)
+            {
+
+                dest.writeString(this.aid);
+                dest.writeInt(this.mid);
+                dest.writeString(this.copyright);
+                dest.writeInt(this.typeid);
+                dest.writeString(this.typename);
+                dest.writeString(this.title);
+                dest.writeString(this.subtitle);
+                dest.writeInt(this.play);
+                dest.writeInt(this.review);
+                dest.writeInt(this.video_review);
+                dest.writeInt(this.favorites);
+                dest.writeString(this.author);
+                dest.writeString(this.description);
+                dest.writeString(this.create);
+                dest.writeString(this.pic);
+                dest.writeInt(this.credit);
+                dest.writeInt(this.coins);
+                dest.writeString(this.duration);
+                dest.writeInt(this.comment);
+                dest.writeByte(this.badgepay ? (byte) 1 : (byte) 0);
+            }
+
+            public VideoBean()
+            {
+
+            }
+
+            protected VideoBean(Parcel in)
+            {
+
+                this.aid = in.readString();
+                this.mid = in.readInt();
+                this.copyright = in.readString();
+                this.typeid = in.readInt();
+                this.typename = in.readString();
+                this.title = in.readString();
+                this.subtitle = in.readString();
+                this.play = in.readInt();
+                this.review = in.readInt();
+                this.video_review = in.readInt();
+                this.favorites = in.readInt();
+                this.author = in.readString();
+                this.description = in.readString();
+                this.create = in.readString();
+                this.pic = in.readString();
+                this.credit = in.readInt();
+                this.coins = in.readInt();
+                this.duration = in.readString();
+                this.comment = in.readInt();
+                this.badgepay = in.readByte() != 0;
+            }
+
+            public static final Creator<VideoBean> CREATOR = new Creator<VideoBean>()
+            {
+
+                @Override
+                public VideoBean createFromParcel(Parcel source)
+                {
+
+                    return new VideoBean(source);
+                }
+
+                @Override
+                public VideoBean[] newArray(int size)
+                {
+
+                    return new VideoBean[size];
+                }
+            };
         }
 
-        public static class BangumiBean
+        public static class BangumiBean implements Parcelable
         {
 
             private int season_id;
@@ -1248,9 +1329,82 @@ public class SearchResult
 
                 this.total_count = total_count;
             }
+
+            @Override
+            public int describeContents()
+            {
+
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags)
+            {
+
+                dest.writeInt(this.season_id);
+                dest.writeInt(this.bangumi_id);
+                dest.writeInt(this.spid);
+                dest.writeString(this.title);
+                dest.writeString(this.brief);
+                dest.writeString(this.styles);
+                dest.writeString(this.cv);
+                dest.writeString(this.staff);
+                dest.writeString(this.evaluate);
+                dest.writeString(this.cover);
+                dest.writeString(this.typeurl);
+                dest.writeInt(this.favorites);
+                dest.writeInt(this.is_finish);
+                dest.writeInt(this.play_count);
+                dest.writeInt(this.danmaku_count);
+                dest.writeInt(this.total_count);
+            }
+
+            public BangumiBean()
+            {
+
+            }
+
+            protected BangumiBean(Parcel in)
+            {
+
+                this.season_id = in.readInt();
+                this.bangumi_id = in.readInt();
+                this.spid = in.readInt();
+                this.title = in.readString();
+                this.brief = in.readString();
+                this.styles = in.readString();
+                this.cv = in.readString();
+                this.staff = in.readString();
+                this.evaluate = in.readString();
+                this.cover = in.readString();
+                this.typeurl = in.readString();
+                this.favorites = in.readInt();
+                this.is_finish = in.readInt();
+                this.play_count = in.readInt();
+                this.danmaku_count = in.readInt();
+                this.total_count = in.readInt();
+            }
+
+            public static final Creator<BangumiBean> CREATOR = new Creator<BangumiBean>()
+            {
+
+                @Override
+                public BangumiBean createFromParcel(Parcel source)
+                {
+
+                    return new BangumiBean(source);
+                }
+
+                @Override
+                public BangumiBean[] newArray(int size)
+                {
+
+                    return new BangumiBean[size];
+                }
+            };
         }
 
-        public static class TopicBean
+        public static class TopicBean implements Parcelable
         {
 
             private int tp_id;
@@ -1420,6 +1574,71 @@ public class SearchResult
 
                 this.favourite = favourite;
             }
+
+            @Override
+            public int describeContents()
+            {
+
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags)
+            {
+
+                dest.writeInt(this.tp_id);
+                dest.writeInt(this.tp_type);
+                dest.writeInt(this.mid);
+                dest.writeString(this.author);
+                dest.writeString(this.title);
+                dest.writeString(this.keyword);
+                dest.writeString(this.arcurl);
+                dest.writeString(this.cover);
+                dest.writeString(this.description);
+                dest.writeInt(this.click);
+                dest.writeInt(this.review);
+                dest.writeInt(this.favourite);
+            }
+
+            public TopicBean()
+            {
+
+            }
+
+            protected TopicBean(Parcel in)
+            {
+
+                this.tp_id = in.readInt();
+                this.tp_type = in.readInt();
+                this.mid = in.readInt();
+                this.author = in.readString();
+                this.title = in.readString();
+                this.keyword = in.readString();
+                this.arcurl = in.readString();
+                this.cover = in.readString();
+                this.description = in.readString();
+                this.click = in.readInt();
+                this.review = in.readInt();
+                this.favourite = in.readInt();
+            }
+
+            public static final Creator<TopicBean> CREATOR = new Creator<TopicBean>()
+            {
+
+                @Override
+                public TopicBean createFromParcel(Parcel source)
+                {
+
+                    return new TopicBean(source);
+                }
+
+                @Override
+                public TopicBean[] newArray(int size)
+                {
+
+                    return new TopicBean[size];
+                }
+            };
         }
 
         @Override

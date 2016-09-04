@@ -149,8 +149,8 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
             View dot = new View(context);
             dot.setBackgroundResource(unSelcetRes);
             params = new LinearLayout.LayoutParams(
-                    DisplayUtil.dip2px(context, 5),
-                    DisplayUtil.dip2px(context, 5));
+                    DisplayUtil.dp2px(context, 5),
+                    DisplayUtil.dp2px(context, 5));
             params.leftMargin = 10;
             dot.setLayoutParams(params);
             dot.setEnabled(false);
