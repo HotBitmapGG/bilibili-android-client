@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.hotbitmapgg.ohmybilibili.module.entry.OffLineDownloadActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.SettingFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
 import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
+import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
@@ -78,6 +80,8 @@ public class MainActivity extends RxAppCompatBaseActivity implements
     private boolean isShowMenu = false;
 
     private Random random;
+
+    private long exitTime;
 
     //随机头像设置数组
     private static final int[] avatars = new int[]{
@@ -483,23 +487,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         getWindow().invalidatePanelMenu(Window.FEATURE_OPTIONS_PANEL);
     }
 
-
-    /**
-     * 设置返回键searchBar隐藏
-     */
-    @Override
-    public void onBackPressed()
-    {
-
-        if (mSearchView.isSearchOpen())
-        {
-            mSearchView.closeSearch();
-        } else
-        {
-            super.onBackPressed();
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -519,5 +506,43 @@ public class MainActivity extends RxAppCompatBaseActivity implements
             return;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            if (mSearchView != null)
+            {
+                if (mSearchView.isSearchOpen())
+                {
+                    mSearchView.closeSearch();
+                } else
+                {
+                    exitApp();
+                }
+            } else
+            {
+                exitApp();
+            }
+        }
+
+        return true;
+    }
+
+    private void exitApp()
+    {
+
+        if (System.currentTimeMillis() - exitTime > 2000)
+        {
+            ToastUtil.ShortToast("再按一次退出");
+            exitTime = System.currentTimeMillis();
+        } else
+        {
+            finish();
+        }
     }
 }

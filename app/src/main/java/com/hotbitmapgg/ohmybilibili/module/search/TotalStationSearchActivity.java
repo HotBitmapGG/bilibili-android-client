@@ -315,11 +315,6 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
         fragments.add(bangumiResultsFragment);
         fragments.add(topicResultsFragment);
 
-//        titles.add("UP主" + "(" + checkNumResults(pageinfo.getUpuser().getNumResults()) + ")");
-//        titles.add("影视" + "(" + checkNumResults(pageinfo.getUpuser().getNumResults()) + ")");
-//        titles.add("专题" + "(" + checkNumResults(pageinfo.getSpecial().getNumResults()) + ")");
-
-
         SearchTabAdapter mAdapter =  new SearchTabAdapter(getSupportFragmentManager(), titles, fragments);
         mViewPager.setAdapter(mAdapter);
         mSlidingTabLayout.setViewPager(mViewPager);
