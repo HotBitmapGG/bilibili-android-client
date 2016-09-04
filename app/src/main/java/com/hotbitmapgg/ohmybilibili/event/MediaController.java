@@ -279,10 +279,9 @@ public class MediaController extends FrameLayout
     }
 
     /**
-     * Set the view that acts as the anchor for the control view. This can for
-     * example be a VideoView, or your Activity's main view.
+     * 设置VideoView
      *
-     * @param view The view to which to anchor the controller when it is visible.
+     * @param view
      */
     public void setAnchorView(View view)
     {
@@ -300,10 +299,9 @@ public class MediaController extends FrameLayout
     }
 
     /**
-     * Create the view that holds the widgets that control playback. Derived
-     * classes can override this to create their own.
+     * 创建视图包含小部件,控制回放
      *
-     * @return The controller view.
+     * @return
      */
     protected View makeControllerView()
     {
@@ -386,9 +384,9 @@ public class MediaController extends FrameLayout
     }
 
     /**
-     * Control the action when the seekbar dragged by user
+     * 拖动seekBar时回调
      *
-     * @param seekWhenDragging True the media will seek periodically
+     * @param seekWhenDragging
      */
     public void setInstantSeeking(boolean seekWhenDragging)
     {
@@ -403,7 +401,7 @@ public class MediaController extends FrameLayout
     }
 
     /**
-     * Set the content of the file_name TextView
+     * 设置播放的文件名称
      *
      * @param name
      */
@@ -416,8 +414,7 @@ public class MediaController extends FrameLayout
     }
 
     /**
-     * Set the View to hold some information when interact with the
-     * MediaController
+     * 设置MediaController持有的View
      *
      * @param v
      */
@@ -440,18 +437,7 @@ public class MediaController extends FrameLayout
     }
 
     /**
-     * <p>
-     * Change the animation style resource for this controller.
-     * </p>
-     * <p/>
-     * <p>
-     * If the controller is showing, calling this method will take effect only
-     * the next time the controller is shown.
-     * </p>
-     *
-     * @param animationStyle animation style to use when the controller appears and
-     *                       disappears. Set to -1 for the default animation, 0 for no
-     *                       animation, or a resource identifier for an explicit animation.
+     * 改变控制器的动画风格的资源
      */
     public void setAnimationStyle(int animationStyle)
     {
@@ -460,11 +446,9 @@ public class MediaController extends FrameLayout
     }
 
     /**
-     * Show the controller on screen. It will go away automatically after
-     * 'timeout' milliseconds of inactivity.
+     * 在屏幕上显示控制器
      *
-     * @param timeout The timeout in milliseconds. Use 0 to show the controller
-     *                until hide() is called.
+     * @param timeout
      */
     @SuppressLint("InlinedApi")
     public void show(int timeout)
@@ -685,30 +669,4 @@ public class MediaController extends FrameLayout
 
         public void onHidden();
     }
-//
-//    public interface MediaPlayerControl
-//    {
-//
-//        void start();
-//
-//        void pause();
-//
-//        int getDuration();
-//
-//        int getCurrentPosition();
-//
-//        void seekTo(long pos);
-//
-//        boolean isPlaying();
-//
-//        int getBufferPercentage();
-//
-//        boolean canPause();
-//
-//        boolean canSeekBackward();
-//
-//        boolean canSeekForward();
-//
-//        void setDanmakushow(boolean isShow);
-//    }
 }
