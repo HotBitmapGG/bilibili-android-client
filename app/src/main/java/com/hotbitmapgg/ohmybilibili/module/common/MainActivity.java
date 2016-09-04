@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.speech.RecognizerIntent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +12,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,9 +29,11 @@ import com.hotbitmapgg.ohmybilibili.module.entry.IFavoritesFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.OffLineDownloadActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.SettingFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
-import com.hotbitmapgg.ohmybilibili.module.search.SearchActivity;
+import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import butterknife.Bind;
@@ -53,6 +57,9 @@ public class MainActivity extends RxAppCompatBaseActivity implements
 
     @Bind(R.id.navigation_view)
     NavigationView mNavigationView;
+
+    @Bind(R.id.search_view)
+    MaterialSearchView mSearchView;
 
     private CircleImageView mUserAcatarView;
 
@@ -185,6 +192,46 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         });
 
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+
+        //初始化SearchBar
+        mSearchView.setVoiceSearch(false);
+        mSearchView.setCursorDrawable(R.drawable.custom_cursor);
+        mSearchView.setEllipsize(true);
+        mSearchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
+        mSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener()
+        {
+
+            @Override
+            public boolean onQueryTextSubmit(String query)
+            {
+
+                TotalStationSearchActivity.launch(MainActivity.this, query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)
+            {
+                //Do some magic
+                return false;
+            }
+        });
+
+        mSearchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener()
+        {
+
+            @Override
+            public void onSearchViewShown()
+            {
+                //Do some magic
+            }
+
+            @Override
+            public void onSearchViewClosed()
+            {
+                //Do some magic
+            }
+        });
     }
 
 
@@ -193,6 +240,11 @@ public class MainActivity extends RxAppCompatBaseActivity implements
     {
 
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // 设置SearchViewItemMenu
+        MenuItem item = menu.findItem(R.id.id_action_search);
+        mSearchView.setMenuItem(item);
+
         return true;
     }
 
@@ -217,11 +269,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
             case R.id.id_action_download:
                 //离线缓存
                 startActivity(new Intent(MainActivity.this, OffLineDownloadActivity.class));
-                break;
-
-            case R.id.id_action_search:
-                //搜索
-                SearchActivity.launch(MainActivity.this, "我是");
                 break;
         }
 
@@ -434,5 +481,43 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         //切换fragment时改变menu的显示
         isShowMenu = isShow;
         getWindow().invalidatePanelMenu(Window.FEATURE_OPTIONS_PANEL);
+    }
+
+
+    /**
+     * 设置返回键searchBar隐藏
+     */
+    @Override
+    public void onBackPressed()
+    {
+
+        if (mSearchView.isSearchOpen())
+        {
+            mSearchView.closeSearch();
+        } else
+        {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+
+        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK)
+        {
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (matches != null && matches.size() > 0)
+            {
+                String searchWrd = matches.get(0);
+                if (!TextUtils.isEmpty(searchWrd))
+                {
+                    mSearchView.setQuery(searchWrd, false);
+                }
+            }
+
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

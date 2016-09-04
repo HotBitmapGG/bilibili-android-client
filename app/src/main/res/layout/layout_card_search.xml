@@ -29,7 +29,7 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:hint="@string/search_hint"
-        android:imeOptions="actionNone"
+        android:imeOptions="actionSearch"
         android:singleLine="true"
         android:textColor="@color/font_normal" />
 

@@ -17,22 +17,24 @@ import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import java.util.List;
 
 /**
- * Created by hcc on 16/8/29 21:18
+ * Created by hcc on 16/9/4 12:16
  * 100332338@qq.com
  * <p/>
- * 搜索列表数据Adapter
+ * 综合搜索结果Adapter
  */
-public class SearchResultRecyclerAdapter extends AbsRecyclerViewAdapter
+public class ComprehensiveResultsAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<SearchResult.ResultBean.BangumiBean> bangumis;
+    private List<SearchResult.ResultBean.VideoBean> videos;
 
-    public SearchResultRecyclerAdapter(RecyclerView recyclerView, List<SearchResult.ResultBean.BangumiBean> bangumis)
+    public ComprehensiveResultsAdapter(RecyclerView recyclerView,
+                                       List<SearchResult.ResultBean.VideoBean> videos)
     {
 
         super(recyclerView);
-        this.bangumis = bangumis;
+        this.videos = videos;
     }
+
 
     @Override
     public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
@@ -50,19 +52,19 @@ public class SearchResultRecyclerAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            SearchResult.ResultBean.BangumiBean bangumiBean = bangumis.get(position);
+            SearchResult.ResultBean.VideoBean videoBean = videos.get(position);
 
             Glide.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(bangumiBean.getCover()))
+                    .load(UrlHelper.getClearVideoPreviewUrl(videoBean.getPic()))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(itemViewHolder.mVideoPic);
 
-            itemViewHolder.mVideoTitle.setText(bangumiBean.getTitle());
-            itemViewHolder.mVideoPlayNum.setText(String.valueOf(bangumiBean.getPlay_count()));
-            itemViewHolder.mVideoReviewNum.setText(String.valueOf(bangumiBean.getDanmaku_count()));
-            itemViewHolder.mUserName.setText(bangumiBean.getStyles());
+            itemViewHolder.mVideoTitle.setText(videoBean.getTitle());
+            itemViewHolder.mVideoPlayNum.setText(String.valueOf(videoBean.getPlay()));
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(videoBean.getVideo_review()));
+            itemViewHolder.mUserName.setText(videoBean.getAuthor());
         }
 
         super.onBindViewHolder(holder, position);
@@ -72,7 +74,7 @@ public class SearchResultRecyclerAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return bangumis.size();
+        return videos.size();
     }
 
     public class ItemViewHolder extends ClickableViewHolder

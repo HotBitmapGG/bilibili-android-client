@@ -17,10 +17,10 @@ public final class PreferenceUtils
 {
 
 
-    public static void reset(final Context ctx)
+    public static void reset(final Context context)
     {
 
-        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(ctx).edit();
+        SharedPreferences.Editor edit = PreferenceManager.getDefaultSharedPreferences(context).edit();
         edit.clear();
         edit.apply();
     }
@@ -141,7 +141,7 @@ public final class PreferenceUtils
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
         Editor editor = sharedPreferences.edit();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public static void putInt(String key, int value)

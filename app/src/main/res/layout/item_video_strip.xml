@@ -24,18 +24,20 @@
             android:id="@+id/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:ellipsize="end"
             android:maxLines="2"
-            android:layout_alignParentTop="true"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
             android:textColor="@color/font_normal"
             android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/layout_play"
             android:layout_marginStart="5dp"
             android:gravity="center"
-            android:layout_above="@+id/layout_play"
             android:orientation="horizontal">
 
             <ImageView
@@ -54,11 +56,11 @@
 
         <LinearLayout
             android:id="@+id/layout_play"
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 

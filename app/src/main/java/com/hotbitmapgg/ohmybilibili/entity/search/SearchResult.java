@@ -676,6 +676,31 @@ public class SearchResult
 
         private List<BangumiBean> bangumi;
 
+
+        /**
+         * "topic": [
+         * {
+         * "tp_id": 1272,
+         * "tp_type": 0,
+         * "mid": 27948867,
+         * "author": "Fuyumine",
+         * "title": "鸡条CP不一样的打开方式，你get了吗？",
+         * "keyword": "",
+         * "arcurl": "http://www.bilibili.com/topic/1272.html",
+         * "cover": "http://i2.hdslb.com/320_200/topic/201605/1464697429-295c09fe2d08a9b8.jpg",
+         * "description": "极限挑战播出正酣，各对CP重现江湖，你是站红兴？猪羊？双黄？还是。。。我知道你有兴趣，还不快来看看各对CP另类的打开方式，保证给你不一样的体验！",
+         * "click": 185160,
+         * "review": 889,
+         * "favourite": 943
+         * }
+         * ]
+         *
+         * @return
+         */
+
+        private List<TopicBean> topic;
+
+
         public List<VideoBean> getVideo()
         {
 
@@ -698,6 +723,19 @@ public class SearchResult
         {
 
             this.bangumi = bangumi;
+        }
+
+
+        public List<TopicBean> getTopic()
+        {
+
+            return topic;
+        }
+
+        public void setTopic(List<TopicBean> topic)
+        {
+
+            this.topic = topic;
         }
 
         public static class VideoBean
@@ -1212,6 +1250,178 @@ public class SearchResult
             }
         }
 
+        public static class TopicBean
+        {
+
+            private int tp_id;
+
+            private int tp_type;
+
+            private int mid;
+
+            private String author;
+
+            private String title;
+
+            private String keyword;
+
+            private String arcurl;
+
+            private String cover;
+
+            private String description;
+
+            private int click;
+
+            private int review;
+
+            private int favourite;
+
+            public int getMid()
+            {
+
+                return mid;
+            }
+
+            public void setMid(int mid)
+            {
+
+                this.mid = mid;
+            }
+
+            public int getTp_id()
+            {
+
+                return tp_id;
+            }
+
+            public void setTp_id(int tp_id)
+            {
+
+                this.tp_id = tp_id;
+            }
+
+            public int getTp_type()
+            {
+
+                return tp_type;
+            }
+
+            public void setTp_type(int tp_type)
+            {
+
+                this.tp_type = tp_type;
+            }
+
+            public String getAuthor()
+            {
+
+                return author;
+            }
+
+            public void setAuthor(String author)
+            {
+
+                this.author = author;
+            }
+
+            public String getTitle()
+            {
+
+                return title;
+            }
+
+            public void setTitle(String title)
+            {
+
+                this.title = title;
+            }
+
+            public String getKeyword()
+            {
+
+                return keyword;
+            }
+
+            public void setKeyword(String keyword)
+            {
+
+                this.keyword = keyword;
+            }
+
+            public String getArcurl()
+            {
+
+                return arcurl;
+            }
+
+            public void setArcurl(String arcurl)
+            {
+
+                this.arcurl = arcurl;
+            }
+
+            public String getCover()
+            {
+
+                return cover;
+            }
+
+            public void setCover(String cover)
+            {
+
+                this.cover = cover;
+            }
+
+            public String getDescription()
+            {
+
+                return description;
+            }
+
+            public void setDescription(String description)
+            {
+
+                this.description = description;
+            }
+
+            public int getClick()
+            {
+
+                return click;
+            }
+
+            public void setClick(int click)
+            {
+
+                this.click = click;
+            }
+
+            public int getReview()
+            {
+
+                return review;
+            }
+
+            public void setReview(int review)
+            {
+
+                this.review = review;
+            }
+
+            public int getFavourite()
+            {
+
+                return favourite;
+            }
+
+            public void setFavourite(int favourite)
+            {
+
+                this.favourite = favourite;
+            }
+        }
+
         @Override
         public int describeContents()
         {
@@ -1225,6 +1435,7 @@ public class SearchResult
 
             dest.writeList(this.video);
             dest.writeList(this.bangumi);
+            dest.writeList(this.topic);
         }
 
         public ResultBean()
@@ -1239,6 +1450,8 @@ public class SearchResult
             in.readList(this.video, VideoBean.class.getClassLoader());
             this.bangumi = new ArrayList<BangumiBean>();
             in.readList(this.bangumi, BangumiBean.class.getClassLoader());
+            this.topic = new ArrayList<TopicBean>();
+            in.readList(this.topic, TopicBean.class.getClassLoader());
         }
 
         public static final Parcelable.Creator<ResultBean> CREATOR = new Parcelable.Creator<ResultBean>()

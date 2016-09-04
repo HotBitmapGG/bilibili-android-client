@@ -67,6 +67,8 @@ dependencies {
     // 调试工具
     compile 'com.facebook.stetho:stetho:1.3.1'
     compile 'com.facebook.stetho:stetho-okhttp3:1.3.1'
+    //searchBar
+    compile 'com.miguelcatalan:materialsearchview:1.4.0'
 }
 
 repositories {

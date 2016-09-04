@@ -5,20 +5,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.SearchResultRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.ComprehensiveResultsAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 import butterknife.Bind;
 
 /**
- * Created by hcc on 16/8/29 21:08
+ * Created by hcc on 16/9/4 12:10
  * 100332338@qq.com
  * <p/>
- * 全站搜索内容列表界面
+ * 综合搜索结果界面
  */
-public class SearchResultFragment extends RxLazyFragment
+public class ComprehensiveResultsFragment extends RxLazyFragment
 {
 
     @Bind(R.id.recycle)
@@ -28,10 +27,10 @@ public class SearchResultFragment extends RxLazyFragment
 
     private SearchResult.ResultBean resultBean;
 
-    public static SearchResultFragment newInstance(SearchResult.ResultBean result)
+    public static ComprehensiveResultsFragment newInstance(SearchResult.ResultBean result)
     {
 
-        SearchResultFragment fragment = new SearchResultFragment();
+        ComprehensiveResultsFragment fragment = new ComprehensiveResultsFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(EXTRA_DATA, result);
         fragment.setArguments(bundle);
@@ -51,7 +50,6 @@ public class SearchResultFragment extends RxLazyFragment
     {
 
         resultBean = getArguments().getParcelable(EXTRA_DATA);
-        LogUtil.all(resultBean.getBangumi().size() + "^^^^");
         initData();
     }
 
@@ -60,7 +58,7 @@ public class SearchResultFragment extends RxLazyFragment
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new SearchResultRecyclerAdapter(mRecyclerView, resultBean.getBangumi()));
+        mRecyclerView.setAdapter(new ComprehensiveResultsAdapter(mRecyclerView, resultBean.getVideo()));
     }
 
     @Override

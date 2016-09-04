@@ -138,7 +138,7 @@
 
         <!--全站搜索界面-->
         <activity
-            android:name=".module.search.SearchActivity"
+            android:name=".module.search.TotalStationSearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Search" />
 
