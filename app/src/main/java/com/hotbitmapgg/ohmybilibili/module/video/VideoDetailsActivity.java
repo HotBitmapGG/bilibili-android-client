@@ -126,16 +126,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                 setViewsTranslation(verticalOffset);
             }
         });
-
-
-//        if (itemInfo != null)
-//        {
-//            Glide.with(VideoDetailsActivity.this)
-//                    .load(UrlHelper.getClearVideoPreviewUrl(itemInfo.pic))
-//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                    .placeholder(R.drawable.bili_default_image_tv)
-//                    .into(mVideoPreview);
-//        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -256,6 +246,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                 getColor(R.color.colorPrimary)));
         mCollapsingToolbarLayout.setTitle(mVideoDetails.getTitle());
 
+        Glide.clear(mVideoPreview);
         Glide.with(VideoDetailsActivity.this)
                 .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
