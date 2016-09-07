@@ -1,7 +1,4 @@
-## 哔哩哔哩
-
 <img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_long_bg.png" width="100%" height="100%" />
-
 
 
 ## Tips
