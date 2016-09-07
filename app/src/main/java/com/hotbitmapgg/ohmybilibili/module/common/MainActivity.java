@@ -545,4 +545,15 @@ public class MainActivity extends RxAppCompatBaseActivity implements
             finish();
         }
     }
+
+    /**
+     * 解决App重启后导致Fragment重叠的问题
+     *
+     * @param outState
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState)
+    {
+        //super.onSaveInstanceState(outState);
+    }
 }
