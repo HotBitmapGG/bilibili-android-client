@@ -1,4 +1,4 @@
-## 高仿哔哩哔哩安卓客户端 - ( ゜- ゜)つロ 乾杯~ - bilibili
+## 哔哩哔哩
 
 <img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_long_bg.png" width="100%" height="100%" />
 
