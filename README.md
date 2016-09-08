@@ -44,6 +44,11 @@
 [fython](https://github.com/fython)/**[BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)**
 
 
+## AppKey
+
+关于Appkey的问题，如果你有AppKey,放置到Secret中即可，目前项目中有分区，番剧放送表等接口需要Appkey才能正常请求。
+
+
 
 ## 截图
 
