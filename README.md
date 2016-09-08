@@ -43,7 +43,7 @@
 
 <a href="art/21.png"><img src="art/21.png" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/21.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/22.png?raw=true)
 
 
 
