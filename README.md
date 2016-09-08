@@ -1,6 +1,10 @@
 <img src="https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bilibili_long_bg.png" width="100%" height="100%" />
 
 
+### OhMyBiliBili
+
+[![CocoaPods](https://img.shields.io/badge/Android%20Circular-OhMyBiliBili-brightgreen.svg)]() [![Shippable](https://img.shields.io/badge/version-V2.1.4-brightgreen.svg)]() [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?maxAge=2592000)]() [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)]()
+
 ## Tips
 
   * 该项目正在持续开发中,喜欢的请给个star支持下,3Q啦.
