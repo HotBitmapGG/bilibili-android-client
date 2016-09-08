@@ -4,17 +4,44 @@
 
 [![CocoaPods](https://img.shields.io/badge/Android%20Circular-OhMyBiliBili-brightgreen.svg)]() [![Shippable](https://img.shields.io/badge/version-V2.1.4-brightgreen.svg)]() [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?maxAge=2592000)]() [![Crates.io](https://img.shields.io/crates/l/rustc-serialize.svg?maxAge=2592000)]()
 
-## Tips
+## 介绍
 
-  * 该项目正在持续开发中,喜欢的请给个star支持下,3Q啦.
+### 使用到的开源库
+
+* 1.Rxjava，RxAndroid，Rxbinding，Rxlifecycle，RxBus。
+* 2.Okhttp,Retrofit。
+* 3.ijkplayer,烈焰弹幕库。
+* 4.butterknife,Glide。
+* 5.materialsearchview,FlycoTabLayout。
 
 
-## 更新日志
-  * 8月31号,去除了Vitamio,增加了ijkplayer,后续还有更多功能尽快完善中.
+### 目前完成的功能
 
-  * 9月4号,视频播放UI调整,增加全站搜索,支持视频,番剧,话题等搜索.
+* 1.首页六大模块，推荐，番剧，直播，关注，分区，发现的实现。
+* 2.热门视频排行榜，全区视频排行榜。
+* 3.视频详情界面，视频评论，使用ijkplayer完成的视频播放，烈焰弹幕库实现的弹幕功能。
+* 4.番剧，专题详情界面，番剧放送表，番剧索引。
+* 5.使用ijkplayer实现的直播视频的播放。(直播的弹幕没有实现，暂时还抓不到弹幕的数据)
+* 6.分区视频查看功能，目前只有基本的9大分区的实现，但是该接口需要Appkey才能获取到。
+* 7.游戏中心，离线缓存的界面实现。
+* 8.全区搜索的实现，目前支持综合视频，番剧，话题的搜索。
+* 9.仿B站登录的小彩蛋。(登录只是假登录，随意输入帐号密码即可)
+* 10.其他的一些仿官方的实现细节等，请自行发现。
 
-  * 9月5号,调整minSdkVersion为19,增加了ijkplayer的armv5和x86的支持.
+### 未完成的功能
+* 主题切换，准备使用B站自家的**[MagicaSakura](https://github.com/Bilibili/MagicaSakura)**
+* 离线缓存的功能实现，视频下载到本地。
+* 直播功能的完善，横竖屏切换。
+* 番剧详情界面优化，保持跟官方一致。
+
+
+## 接口文档
+
+* BiliBili API / REST service written in Go
+[WhiteBlue](https://github.com/WhiteBlue)/**[bilibili-go](https://github.com/WhiteBlue/bilibili-go)**
+
+* bilibili官方文档搬运(官方文档已不对外开放)
+[fython](https://github.com/fython)/**[BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)**
 
 
 
