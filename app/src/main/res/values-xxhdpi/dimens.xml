@@ -68,5 +68,7 @@
     <dimen name="action_bar_default_height">48dp</dimen>
     <dimen name="mediacontroller_buttons_top_margin">2dp</dimen>
     <dimen name="mediacontroller_buttons_bottom_margin">0dp</dimen>
+    <dimen name="user_info_padding">10dp</dimen>
+    <dimen name="fab_margin_height">190dp</dimen>
 
 </resources>

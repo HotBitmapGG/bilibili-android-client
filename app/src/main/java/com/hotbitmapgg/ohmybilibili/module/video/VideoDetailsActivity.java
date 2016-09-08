@@ -1,21 +1,20 @@
 package com.hotbitmapgg.ohmybilibili.module.video;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
@@ -53,9 +52,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
-
-    @Bind(R.id.main_content)
-    CoordinatorLayout mCoordinatorLayout;
 
     @Bind(R.id.video_preview)
     ImageView mVideoPreview;
@@ -128,38 +124,32 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         });
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void initToolBar()
     {
 
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
+        setSupportActionBar(mToolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null)
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
 
-            @Override
-            public void onClick(View v)
-            {
-
-                finish();
-            }
-        });
         //设置还没收缩时状态下字体颜色
         mCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         //设置收缩后Toolbar上字体的颜色
         mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
-        assert mCoordinatorLayout != null;
-        mCoordinatorLayout.setOnScrollChangeListener(new CoordinatorLayout.OnScrollChangeListener()
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if (item.getItemId() == android.R.id.home)
         {
-
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY)
-            {
-
-                setViewsTranslation(scrollY);
-            }
-        });
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
