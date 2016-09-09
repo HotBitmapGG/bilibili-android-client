@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        app:elevation="0dp">
+        app:elevation="@dimen/app_bar_default_elevation">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:elevation="0dp"
+            android:elevation="@dimen/app_bar_default_elevation"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_top"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_10_size"
         android:orientation="horizontal">
 
         <ImageView
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="@dimen/margin_5_size"
             android:src="@drawable/ic_bili_logo" />
 
         <ImageView
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo_ll"
         android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/margin_20_size"
         android:text="@string/app_name"
         android:textColor="@color/black_alpha_45"
         android:textSize="16sp"
@@ -72,84 +72,83 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_logo"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="@dimen/margin_10_size"
+        android:layout_marginEnd="@dimen/margin_10_size"
+        android:layout_marginTop="@dimen/margin_20_size"
         android:background="@drawable/login_input_rounded_bg"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:paddingEnd="10dp">
+            android:layout_height="@dimen/action_bar_default_height"
+            android:gravity="center_vertical">
 
             <EditText
                 android:id="@+id/et_username"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1.0"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:drawablePadding="10dp"
+                android:drawablePadding="@dimen/margin_10_size"
                 android:drawableStart="@drawable/ic_login_username_default"
                 android:ellipsize="start"
                 android:hint="@string/login_hint_account"
                 android:inputType="textVisiblePassword"
-                android:paddingStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:singleLine="true"
                 android:textColor="@color/black_80"
                 android:textColorHint="@color/gray_20"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
             <ImageButton
                 android:id="@+id/delete_username"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:paddingEnd="8dp"
-                android:paddingStart="20dp"
+                android:paddingEnd="@dimen/margin_10_size"
+                android:paddingStart="@dimen/margin_20_size"
                 android:src="@drawable/ic_edittext_clear"
                 android:visibility="gone" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="@dimen/line_height"
             android:background="@color/line_bg" />
 
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/action_bar_default_height"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/margin_10_size"
             android:drawableStart="@drawable/ic_login_password_default"
             android:hint="@string/login_hint_password"
             android:inputType="textPassword"
-            android:paddingStart="10dp"
+            android:layout_marginStart="@dimen/margin_10_size"
             android:singleLine="true"
             android:textColor="@color/black_80"
             android:textColorHint="@color/gray_20"
-            android:textSize="16sp" />
+            android:textSize="@dimen/default_medium_text_size" />
     </LinearLayout>
 
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="@dimen/login_button_height"
         android:layout_below="@+id/login_ll"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="@dimen/margin_10_size"
+        android:layout_marginLeft="@dimen/margin_10_size"
+        android:layout_marginRight="@dimen/margin_10_size"
+        android:layout_marginTop="@dimen/margin_30_size"
         android:background="@drawable/corner_btn"
         android:gravity="center"
         android:text="@string/login"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="@dimen/default_medium_text_size" />
 
 
 </RelativeLayout>

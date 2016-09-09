@@ -19,14 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        app:elevation="0dp">
+        app:elevation="@dimen/app_bar_default_elevation">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:elevation="0dp"
+            android:elevation="@dimen/app_bar_default_elevation"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
@@ -63,8 +63,8 @@
 
                     <ImageView
                         android:id="@+id/sp_preview"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="@dimen/sp_preview_size"
+                        android:layout_height="@dimen/sp_preview_size"
                         android:layout_margin="@dimen/sp_preview_padding"
                         android:scaleType="fitXY" />
 
@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:paddingTop="5dp">
+                        android:paddingTop="@dimen/margin_5_size">
 
                         <TextView
                             android:id="@+id/sp_title"
@@ -85,7 +85,7 @@
                             tools:text="Misaka Mikoto" />
 
                         <Space
-                            android:layout_width="8dp"
+                            android:layout_width="@dimen/title_margin_small"
                             android:layout_height="wrap_content" />
 
                         <TextView
@@ -100,7 +100,7 @@
 
                         <Space
                             android:layout_width="match_parent"
-                            android:layout_height="8dp" />
+                            android:layout_height="@dimen/title_margin_small" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -122,10 +122,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                                android:textSize="14sp" />
+                                android:textSize="@dimen/default_small_text_size" />
 
                             <Space
-                                android:layout_width="16dp"
+                                android:layout_width="@dimen/activity_vertical_margin"
                                 android:layout_height="match_parent" />
 
                             <TextView
@@ -133,20 +133,20 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/sp_total_of"
                                 android:textColor="@color/font_normal"
-                                android:textSize="14sp" />
+                                android:textSize="@dimen/default_small_text_size" />
 
                             <TextView
                                 android:id="@+id/tv_video_count"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                                android:textSize="14sp" />
+                                android:textSize="@dimen/default_small_text_size" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/margin_5_size"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             android:paddingEnd="@dimen/title_margin_small"
@@ -157,17 +157,17 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/sp_follow"
                                 android:textColor="@color/font_normal"
-                                android:textSize="14sp" />
+                                android:textSize="@dimen/default_small_text_size" />
 
                             <TextView
                                 android:id="@+id/tv_attention"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                                android:textSize="14sp" />
+                                android:textSize="@dimen/default_small_text_size" />
 
                             <Space
-                                android:layout_width="16dp"
+                                android:layout_width="@dimen/activity_vertical_margin"
                                 android:layout_height="match_parent" />
 
                             <TextView
@@ -175,14 +175,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/sp_collection"
                                 android:textColor="@color/font_normal"
-                                android:textSize="14sp" />
+                                android:textSize="@dimen/default_small_text_size" />
 
                             <TextView
                                 android:id="@+id/tv_favourite"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                                android:textSize="14sp" />
+                                android:textSize="@dimen/default_small_text_size" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -193,14 +193,14 @@
                     android:paddingStart="@dimen/title_margin_small"
                     android:text="@string/sp_introduction"
                     android:textColor="@color/font_normal"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/default_small_text_size" />
 
                 <TextView
                     android:id="@+id/sp_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="@dimen/margin_10_size"
+                    android:layout_marginTop="@dimen/margin_3_size"
                     android:paddingEnd="@dimen/title_margin_small"
                     android:paddingStart="@dimen/title_margin_small" />
 
@@ -208,17 +208,17 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_height"
                 android:background="@color/line_bg" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
+                android:layout_marginTop="@dimen/margin_10_size"
                 android:text="@string/sp_videos"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
 
             <android.support.v7.widget.RecyclerView

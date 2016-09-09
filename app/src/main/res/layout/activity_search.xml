@@ -23,18 +23,18 @@
             <com.flyco.tablayout.SlidingTabLayout
                 android:id="@+id/sliding_tabs"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/action_bar_default_height"
                 android:background="@color/gray_light"
                 app:tl_indicator_corner_radius="1dp"
                 app:tl_indicator_color="@color/colorPrimary"
-                app:tl_indicator_height="3dp"
-                app:tl_indicator_width="30dp"
+                app:tl_indicator_height="@dimen/tab_indicator_height_3"
+                app:tl_indicator_width="@dimen/tab_indicator_width_30"
                 app:tl_textSelectColor="@color/colorPrimary"
                 app:tl_textUnselectColor="@color/font_normal" />
             
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_height"
                 android:background="@color/black_alpha_60" />
 
             <android.support.v4.view.ViewPager
