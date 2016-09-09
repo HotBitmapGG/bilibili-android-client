@@ -7,7 +7,7 @@
     <!--Global configuration dimen-->
     <dimen name="action_bar_default_height">48dp</dimen>
     <dimen name="user_info_padding">10dp</dimen>
-    <dimen name="fab_margin_height">190dp</dimen>
+    <dimen name="fab_margin_height">215dp</dimen>
     <dimen name="app_bar_elevation">3dp</dimen>
     <dimen name="app_bar_default_elevation">0dp</dimen>
     <dimen name="margin_3_size">5dp</dimen>

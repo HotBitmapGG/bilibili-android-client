@@ -43,7 +43,7 @@
     <dimen name="circle_default_width">1dp</dimen>
 
     <!-- Common resources -->
-    <dimen name="appbar_parallax_max_height">226dp</dimen>
+    <dimen name="appbar_parallax_max_height">206dp</dimen>
     <dimen name="floating_action_button_margin">16dp</dimen>
     <dimen name="floating_action_button_size_half">32dp</dimen>
 
