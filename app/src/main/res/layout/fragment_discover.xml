@@ -14,12 +14,12 @@
         <android.support.v7.widget.CardView
             android:id="@+id/card_view"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/login_button_height"
+            android:layout_marginLeft="@dimen/margin_10_size"
+            android:layout_marginRight="@dimen/margin_10_size"
+            android:layout_marginTop="@dimen/margin_10_size"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="1dp">
+            app:cardCornerRadius="@dimen/line_height">
 
 
             <ImageView
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|start"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:src="@drawable/ic_hint_search" />
 
 
@@ -36,13 +36,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center|end"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="@dimen/margin_40_size"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:text="@string/discover_search_hint"
                 android:textColor="@color/font_normal"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_small_text_size" />
 
 
             <ImageView
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|end"
                 android:clickable="true"
-                android:padding="12dp"
+                android:padding="@dimen/margin_10_size"
                 android:src="@drawable/ic_scan" />
 
 
@@ -61,35 +61,35 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/margin_10_size"
             android:text="@string/everyone_in_the_search"
             android:textColor="@color/black_alpha_45"
-            android:textSize="14sp" />
+            android:textSize="@dimen/default_small_text_size" />
 
         <com.zhy.view.flowlayout.TagFlowLayout
             android:id="@+id/tags_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/margin_10_size"
             app:max_select="-1" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/margin_10_size"
             android:gravity="center"
             android:orientation="horizontal">
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="30dp"
+                android:layout_width="@dimen/app_bar_default_elevation"
+                android:layout_height="@dimen/line_height"
+                android:layout_marginStart="@dimen/margin_30_size"
                 android:layout_weight="1"
                 android:background="@color/line_bg" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="@dimen/app_bar_default_elevation"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -98,9 +98,9 @@
                 android:textSize="12sp" />
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginEnd="30dp"
+                android:layout_width="@dimen/app_bar_default_elevation"
+                android:layout_height="@dimen/line_height"
+                android:layout_marginEnd="@dimen/margin_30_size"
                 android:layout_weight="1"
                 android:background="@color/line_bg" />
 
@@ -110,8 +110,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="@dimen/circle_progress_view_default_size"
+            android:layout_marginTop="@dimen/margin_20_size"
             android:background="@color/white"
             android:clickable="true">
 
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:src="@drawable/ic_quanzi" />
 
 
@@ -129,11 +129,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:layout_toEndOf="@+id/ic_quanzi"
                 android:text="@string/interest_in_circle"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
 
         </RelativeLayout>
@@ -141,8 +141,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="@dimen/circle_progress_view_default_size"
+            android:layout_marginTop="@dimen/margin_20_size"
             android:background="@color/white">
 
             <ImageView
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:src="@drawable/ic_btn_rank_original" />
 
 
@@ -159,24 +159,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:layout_toEndOf="@+id/ic_original"
                 android:text="@string/original_rank"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
 
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/line_height"
             android:background="@color/line_bg" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/circle_progress_view_default_size"
             android:background="@color/white">
 
             <ImageView
@@ -185,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:src="@drawable/ic_btn_rank_all" />
 
 
@@ -193,11 +193,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:layout_toEndOf="@+id/ic_all_rank"
                 android:text="@string/all_rank"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
 
         </RelativeLayout>
@@ -205,17 +205,17 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="@dimen/circle_progress_view_default_size"
+            android:layout_marginTop="@dimen/margin_20_size"
             android:background="@color/white">
 
             <ImageView
                 android:id="@+id/ic_game"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:src="@drawable/ic_btn_game" />
 
 
@@ -223,11 +223,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/margin_10_size"
                 android:layout_toEndOf="@+id/ic_game"
                 android:text="@string/game_center"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
 
             <TextView
@@ -238,55 +238,9 @@
                 android:layout_marginEnd="10dp"
                 android:text="@string/discover_msg_1"
                 android:textColor="@color/black_alpha_30"
-                android:textSize="12sp" />
-
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/line_bg" />
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/white">
-
-            <ImageView
-                android:id="@+id/ic_tour"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_btn_biliyoo" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/ic_tour"
-                android:text="@string/overseas_travel"
-                android:textColor="@color/font_normal"
-                android:textSize="16sp" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/discover_msg_2"
-                android:textColor="@color/black_alpha_30"
-                android:textSize="12sp" />
-
+                android:textSize="@dimen/default_tiny_text_size" />
 
         </RelativeLayout>
+
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

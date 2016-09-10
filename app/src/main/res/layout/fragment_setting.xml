@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hotbitmapgg.ohmybilibili.widget.SpringScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -15,8 +14,8 @@
         <RelativeLayout
             android:id="@+id/layout_about_me"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="@dimen/circle_progress_view_default_size"
+            android:layout_marginTop="@dimen/margin_20_size"
             android:background="@drawable/btn_selector">
 
 
@@ -25,10 +24,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/margin_20_size"
                 android:text="@string/about_developers"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -39,17 +38,16 @@
                 android:src="@drawable/register_bottom_arrow" />
         </RelativeLayout>
 
-        <ImageView
+        <View
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/white"
-            android:src="@drawable/line_bg" />
+            android:layout_height="1dp"
+            android:background="@color/line_bg" />
 
 
         <RelativeLayout
             android:id="@+id/layout_about_app"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="@dimen/circle_progress_view_default_size"
             android:background="@drawable/btn_selector">
 
 
@@ -58,31 +56,26 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/margin_20_size"
                 android:text="@string/about"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="@dimen/margin_15_size"
                 android:src="@drawable/register_bottom_arrow" />
         </RelativeLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/white"
-            android:src="@drawable/line_bg" />
 
         <RelativeLayout
             android:id="@+id/layout_update"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="@dimen/circle_progress_view_default_size"
+            android:layout_marginTop="@dimen/margin_20_size"
             android:background="@drawable/btn_selector">
 
             <TextView
@@ -90,21 +83,21 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/margin_20_size"
                 android:text="@string/check_update"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
             <TextView
                 android:id="@+id/app_version_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/margin_10_size"
                 android:layout_toStartOf="@+id/update_arrow"
                 android:text="@string/about_version"
                 android:textColor="@color/black_alpha_45"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
             <ImageView
                 android:id="@+id/update_arrow"
@@ -112,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="@dimen/margin_15_size"
                 android:src="@drawable/register_bottom_arrow" />
         </RelativeLayout>
 
@@ -120,16 +113,16 @@
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="32dp"
+            android:layout_height="@dimen/login_button_height"
+            android:layout_marginBottom="@dimen/margin_10_size"
+            android:layout_marginLeft="@dimen/margin_10_size"
+            android:layout_marginRight="@dimen/margin_10_size"
+            android:layout_marginTop="@dimen/margin_30_size"
             android:background="@drawable/corner_btn"
             android:gravity="center"
             android:text="@string/logout"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/default_medium_text_size" />
     </LinearLayout>
 </com.hotbitmapgg.ohmybilibili.widget.SpringScrollView>
 
