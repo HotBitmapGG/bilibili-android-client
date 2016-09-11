@@ -25,11 +25,11 @@
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/action_bar_default_height"
+            android:layout_height="@dimen/tab_layout_default_height"
             android:background="@color/colorPrimary"
             app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_small_radius"
-            app:tl_indicator_height="@dimen/tab_indicator_height_3"
-            app:tl_indicator_width="@dimen/tab_indicator_width_25" />
+            app:tl_indicator_height="@dimen/tab_indicator_default_height"
+            app:tl_indicator_width="@dimen/tab_indicator_small_width" />
 
 
     </android.support.design.widget.AppBarLayout>

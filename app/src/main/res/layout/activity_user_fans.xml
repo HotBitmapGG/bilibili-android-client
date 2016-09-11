@@ -17,7 +17,7 @@
             android:layout_gravity="center"
             android:clipToPadding="false"
             android:overScrollMode="never"
-            android:paddingTop="10dp"
+            android:paddingTop="@dimen/activity_vertical_margin"
             android:scrollbars="none" />
 
         <include layout="@layout/layout_loading" />

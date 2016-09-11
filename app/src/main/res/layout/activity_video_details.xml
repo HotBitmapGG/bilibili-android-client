@@ -59,20 +59,20 @@
             <com.flyco.tablayout.SlidingTabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/tab_layout_small_height"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white_80"
-                android:elevation="2dp"
+                android:elevation="@dimen/app_bar_elevation"
                 app:tl_indicator_color="@color/colorPrimary"
-                app:tl_indicator_corner_radius="1.5dp"
-                app:tl_indicator_height="3dp"
-                app:tl_indicator_width="25dp"
+                app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_small_radius"
+                app:tl_indicator_height="@dimen/tab_indicator_default_height"
+                app:tl_indicator_width="@dimen/tab_indicator_small_width"
                 app:tl_textSelectColor="@color/colorPrimary"
                 app:tl_textUnselectColor="@color/font_normal" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_height"
                 android:background="@color/white_80" />
 
         </android.support.design.widget.AppBarLayout>
@@ -98,10 +98,10 @@
         android:layout_marginTop="@dimen/fab_margin_height"
         android:src="@drawable/ic_fab_play"
         app:backgroundTint="@color/colorPrimary"
-        app:elevation="4dp"
+        app:elevation="@dimen/fab_default_elevation"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|end"
-        app:pressedTranslationZ="4dp"
+        app:pressedTranslationZ="@dimen/fab_default_elevation"
         app:rippleColor="@color/colorPrimaryDark" />
 
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -71,19 +70,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="@dimen/default_small_padding">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/about_introduce_and_help"
                 android:textColor="@color/font_normal"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_small_text_size" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp">
+                android:padding="@dimen/default_small_padding">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,34 +91,34 @@
                     android:text="@string/about_introduce"
                     android:textColor="@color/font_normal"
                     android:textIsSelectable="true"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/default_small_text_size" />
 
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginTop="12dp"
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="@dimen/default_general_margin"
                 android:background="@color/line_bg" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/default_general_margin"
                 android:text="@string/about_developers"
                 android:textColor="@color/font_normal"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_small_text_size" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp">
+                android:padding="@dimen/default_small_padding">
 
                 <TextView
                     android:id="@+id/tv_avator_blog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/default_small_padding"
                     android:text="@string/hotbitmapgg"
                     android:textColor="@color/font_normal" />
 
@@ -154,58 +153,58 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginTop="12dp"
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="@dimen/default_general_margin"
                 android:background="@color/line_bg" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/default_general_margin"
                 android:text="@string/about_function"
                 android:textColor="@color/font_normal"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_small_text_size" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp">
+                android:padding="@dimen/default_small_padding">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/about_function_list"
                     android:textColor="@color/font_normal"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/default_tiny_text_size"
                     tools:ignore="HardcodedText" />
 
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginTop="12dp"
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="@dimen/default_general_margin"
                 android:background="@color/line_bg" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/card_margin"
                 android:text="@string/about_open_source_lis"
                 android:textColor="@color/font_normal"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_small_text_size" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp">
+                android:padding="@dimen/default_small_padding">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/about_open_source_libraries_list"
                     android:textColor="@color/font_normal"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/default_tiny_text_size"
                     tools:ignore="HardcodedText" />
 
             </RelativeLayout>

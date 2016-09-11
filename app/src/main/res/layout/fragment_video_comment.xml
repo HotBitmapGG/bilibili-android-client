@@ -6,6 +6,6 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:overScrollMode="never"
-    android:paddingTop="10dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
     android:scrollbars="none" />
 

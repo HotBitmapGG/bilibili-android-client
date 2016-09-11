@@ -14,8 +14,8 @@
         <RelativeLayout
             android:id="@+id/layout_about_me"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/circle_progress_view_default_size"
-            android:layout_marginTop="@dimen/margin_20_size"
+            android:layout_height="@dimen/discover_item_layout_height"
+            android:layout_marginTop="@dimen/default_grow_margin"
             android:background="@drawable/btn_selector">
 
 
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/margin_20_size"
+                android:layout_marginStart="@dimen/default_grow_margin"
                 android:text="@string/about_developers"
                 android:textColor="@color/font_normal"
                 android:textSize="@dimen/default_medium_text_size" />
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="@dimen/default_grow_margin"
                 android:src="@drawable/register_bottom_arrow" />
         </RelativeLayout>
 
@@ -47,7 +47,7 @@
         <RelativeLayout
             android:id="@+id/layout_about_app"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/circle_progress_view_default_size"
+            android:layout_height="@dimen/discover_item_layout_height"
             android:background="@drawable/btn_selector">
 
 
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/margin_20_size"
+                android:layout_marginStart="@dimen/default_grow_margin"
                 android:text="@string/about"
                 android:textColor="@color/font_normal"
                 android:textSize="@dimen/default_medium_text_size" />
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/margin_15_size"
+                android:layout_marginEnd="@dimen/default_grow_margin"
                 android:src="@drawable/register_bottom_arrow" />
         </RelativeLayout>
 
@@ -74,8 +74,8 @@
         <RelativeLayout
             android:id="@+id/layout_update"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/circle_progress_view_default_size"
-            android:layout_marginTop="@dimen/margin_20_size"
+            android:layout_height="@dimen/discover_item_layout_height"
+            android:layout_marginTop="@dimen/default_grow_margin"
             android:background="@drawable/btn_selector">
 
             <TextView
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/margin_20_size"
+                android:layout_marginStart="@dimen/default_grow_margin"
                 android:text="@string/check_update"
                 android:textColor="@color/font_normal"
                 android:textSize="@dimen/default_medium_text_size" />
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/margin_10_size"
+                android:layout_marginEnd="@dimen/default_general_margin"
                 android:layout_toStartOf="@+id/update_arrow"
                 android:text="@string/about_version"
                 android:textColor="@color/black_alpha_45"
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/margin_15_size"
+                android:layout_marginEnd="@dimen/default_grow_margin"
                 android:src="@drawable/register_bottom_arrow" />
         </RelativeLayout>
 
@@ -114,10 +114,10 @@
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_button_height"
-            android:layout_marginBottom="@dimen/margin_10_size"
-            android:layout_marginLeft="@dimen/margin_10_size"
-            android:layout_marginRight="@dimen/margin_10_size"
-            android:layout_marginTop="@dimen/margin_30_size"
+            android:layout_marginBottom="@dimen/default_general_margin"
+            android:layout_marginLeft="@dimen/default_general_margin"
+            android:layout_marginRight="@dimen/default_general_margin"
+            android:layout_marginTop="@dimen/default_long_margin"
             android:background="@drawable/corner_btn"
             android:gravity="center"
             android:text="@string/logout"

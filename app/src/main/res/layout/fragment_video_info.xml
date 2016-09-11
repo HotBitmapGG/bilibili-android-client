@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,10 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingBottom="70dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="26dp"
+        android:paddingEnd="@dimen/default_tiny_padding"
+        android:paddingStart="@dimen/default_tiny_padding"
+        android:paddingTop="@dimen/video_details_margin_top"
         android:visibility="visible">
 
         <TextView
@@ -26,14 +24,14 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="8dp" />
+            android:layout_height="@dimen/default_small_padding" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingStart="5dp">
+            android:paddingStart="@dimen/default_tiny_padding">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -59,17 +57,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/video_info_count_text_margin_start"
                         android:textColor="@color/black_alpha_45"
-                        android:textSize="@dimen/video_info_mini_icons_size" />
+                        android:textSize="@dimen/default_tiny_text_size" />
 
                     <Space
-                        android:layout_width="16dp"
+                        android:layout_width="@dimen/activity_vertical_margin"
                         android:layout_height="match_parent" />
 
                     <ImageView
                         android:layout_width="@dimen/video_info_mini_icons_size"
                         android:layout_height="@dimen/video_info_mini_icons_size"
-                        android:tint="@color/black_alpha_45"
-                        android:src="@drawable/ic_info_danmakus" />
+                        android:src="@drawable/ic_info_danmakus"
+                        android:tint="@color/black_alpha_45" />
 
                     <TextView
                         android:id="@+id/tv_review_count"
@@ -77,12 +75,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/video_info_count_text_margin_start"
                         android:textColor="@color/black_alpha_45"
-                        android:textSize="@dimen/video_info_mini_icons_size" />
+                        android:textSize="@dimen/default_tiny_text_size" />
                 </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="4dp" />
+                    android:layout_height="@dimen/default_tiny_padding" />
 
                 <TextView
                     android:id="@+id/tv_created_at"
@@ -120,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="@dimen/default_general_margin">
 
             <LinearLayout
                 android:id="@+id/btn_share"
@@ -134,7 +132,7 @@
                     android:id="@+id/share_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/default_tiny_padding"
                     android:textColor="@color/green_300" />
 
                 <ImageButton
@@ -147,7 +145,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/default_tiny_padding"
                     android:text="@string/about_menu_action_share"
                     android:textColor="@color/font_normal" />
 
@@ -167,7 +165,7 @@
                     android:id="@+id/coin_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/default_tiny_padding"
                     android:textColor="@color/orange_500" />
 
                 <ImageButton
@@ -179,7 +177,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/default_tiny_padding"
                     android:text="@string/coin"
                     android:textColor="@color/font_normal" />
 
@@ -199,7 +197,7 @@
                     android:id="@+id/fav_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/default_tiny_padding"
                     android:textColor="@color/colorPrimary" />
 
                 <ImageButton
@@ -211,7 +209,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/default_tiny_padding"
                     android:text="@string/collection"
                     android:textColor="@color/font_normal" />
 
@@ -229,7 +227,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/default_tiny_padding"
                     android:textColor="@color/colorPrimary" />
 
                 <ImageButton
@@ -241,7 +239,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    android:padding="@dimen/default_tiny_padding"
                     android:text="@string/cache"
                     android:textColor="@color/font_normal" />
 
@@ -252,13 +250,13 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/line_height"
             android:background="@color/line_bg" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="@dimen/default_general_margin">
 
             <com.hotbitmapgg.ohmybilibili.widget.UserTagView
                 android:id="@+id/author_tag"
@@ -281,19 +279,19 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/card_charging_width"
+            android:layout_marginBottom="@dimen/default_grow_margin"
+            android:layout_marginLeft="@dimen/default_general_margin"
+            android:layout_marginRight="@dimen/default_general_margin"
+            android:layout_marginTop="@dimen/default_general_margin"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp">
+            app:cardCornerRadius="@dimen/fab_default_elevation"
+            app:cardElevation="@dimen/card_elevation">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="@dimen/default_general_margin"
                 android:src="@drawable/ic_charge_power" />
 
             <TextView
@@ -302,34 +300,34 @@
                 android:layout_gravity="center|start"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="90dp"
-                android:padding="10dp"
+                android:padding="@dimen/default_general_margin"
                 android:text="@string/charging"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+                android:textSize="@dimen/default_big_text_size" />
 
 
             <TextView
-                android:layout_width="70dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/video_details_text_width"
+                android:layout_height="@dimen/video_details_text_height"
                 android:layout_gravity="end|center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="@dimen/default_general_margin"
+                android:layout_marginEnd="@dimen/default_general_margin"
                 android:background="@drawable/corner_btn"
                 android:gravity="center"
                 android:text="@string/charg"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="@dimen/default_general_margin">
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/line_height"
                     android:layout_gravity="top"
                     android:background="@color/line_bg" />
 
@@ -337,10 +335,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/default_general_margin"
                     android:text="@string/more_charging"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/default_small_text_size" />
 
             </LinearLayout>
 
@@ -350,7 +348,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/line_height"
             android:background="@color/line_bg" />
 
 
@@ -362,10 +360,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="@dimen/default_general_margin"
                 android:text="@string/video_about"
                 android:textColor="@color/font_normal"
-                android:textSize="16sp" />
+                android:textSize="@dimen/default_medium_text_size" />
 
             <TextView
                 android:id="@+id/btn_more_video"
@@ -373,12 +371,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/default_general_margin"
                 android:background="@drawable/btn_more_bg"
                 android:clickable="true"
                 android:text="@string/more"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_small_text_size" />
         </RelativeLayout>
 
 
@@ -386,7 +384,7 @@
             android:id="@+id/tags_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/default_general_margin"
             app:max_select="-1" />
 
 
@@ -396,7 +394,7 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:overScrollMode="never"
-            android:paddingTop="16dp"
+            android:paddingTop="@dimen/activity_vertical_margin"
             android:scrollbars="none" />
 
 

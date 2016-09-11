@@ -22,7 +22,7 @@
             <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
                 android:layout_width="@dimen/circle_default_size"
                 android:layout_height="@dimen/circle_default_size"
-                android:layout_marginTop="@dimen/margin_20_size"
+                android:layout_marginTop="@dimen/circle_margin_top"
                 android:src="@drawable/ic_bg"
                 app:border_color="@color/gray"
                 app:border_width="@dimen/circle_default_width" />
@@ -30,21 +30,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_40_size"
+                android:layout_marginTop="@dimen/text_margin_top"
                 android:text="@string/hotbitmapgg"
                 android:textColor="@color/font_normal"
                 android:textSize="@dimen/default_big_text_size" />
 
             <View
-                android:layout_width="@dimen/common_120_size"
+                android:layout_width="@dimen/line_width"
                 android:layout_height="@dimen/circle_default_width"
-                android:layout_marginTop="@dimen/margin_10_size"
+                android:layout_marginTop="@dimen/default_general_margin"
                 android:background="@android:color/darker_gray" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_30_size"
+                android:layout_marginTop="@dimen/text_margin_top"
                 android:autoLink="web"
                 android:text="@string/github_link"
                 android:textSize="@dimen/default_small_text_size" />
@@ -53,7 +53,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_30_size"
+                android:layout_marginTop="@dimen/text_margin_top"
                 android:autoLink="web"
                 android:text="@string/sina_weibo_link"
                 android:textSize="@dimen/default_small_text_size" />
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_30_size"
+                android:layout_marginTop="@dimen/text_margin_top"
                 android:autoLink="web"
                 android:text="@string/jianshu_link"
                 android:textSize="@dimen/default_small_text_size" />

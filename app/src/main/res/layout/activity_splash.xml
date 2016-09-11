@@ -15,11 +15,11 @@
 
     <ImageView
         android:id="@+id/splash_logo"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="@dimen/splash_logo_margin"
         android:src="@drawable/ic_share_logo_bilibili"
         android:tint="@color/colorPrimary" />
 
@@ -28,9 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="@dimen/splash_text_margin"
         android:text="@string/splash_title"
         android:textColor="@color/black_alpha_45"
-        android:textSize="12sp" />
+        android:textSize="@dimen/default_tiny_text_size" />
 
 </RelativeLayout>

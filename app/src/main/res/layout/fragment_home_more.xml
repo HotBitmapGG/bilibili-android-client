@@ -12,18 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:columnWidth="60dp"
+        android:columnWidth="@dimen/grid_column_width"
         android:fadingEdge="none"
         android:gravity="center"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="@dimen/grid_horizontal_spacing"
         android:listSelector="@android:color/transparent"
         android:numColumns="3"
         android:overScrollMode="never"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="30dp"
+        android:paddingBottom="@dimen/default_general_margin"
+        android:paddingLeft="@dimen/default_general_margin"
+        android:paddingRight="@dimen/default_general_margin"
+        android:paddingTop="@dimen/default_long_margin"
         android:scrollbars="none"
-        android:verticalSpacing="10dp" />
+        android:verticalSpacing="@dimen/grid_horizontal_spacing" />
 
 </android.support.v4.widget.NestedScrollView>

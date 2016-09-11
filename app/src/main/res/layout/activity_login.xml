@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/login_top"
@@ -17,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:elevation="@dimen/app_bar_default_elevation"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
@@ -27,10 +27,7 @@
     <RelativeLayout
         android:id="@+id/logo_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_top"
-        android:layout_marginTop="@dimen/margin_10_size"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_icon_left"
@@ -44,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="@dimen/margin_5_size"
+            android:layout_marginBottom="@dimen/default_tiny_padding"
             android:src="@drawable/ic_bili_logo" />
 
         <ImageView
@@ -55,26 +52,14 @@
             android:src="@drawable/ic_33" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logo_ll"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/margin_20_size"
-        android:text="@string/app_name"
-        android:textColor="@color/black_alpha_45"
-        android:textSize="16sp"
-        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/login_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_logo"
-        android:layout_marginStart="@dimen/margin_10_size"
-        android:layout_marginEnd="@dimen/margin_10_size"
-        android:layout_marginTop="@dimen/margin_20_size"
+        android:layout_marginEnd="@dimen/default_general_margin"
+        android:layout_marginStart="@dimen/default_general_margin"
+        android:layout_marginTop="@dimen/default_grow_margin"
         android:background="@drawable/login_input_rounded_bg"
         android:orientation="vertical">
 
@@ -88,14 +73,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/default_general_margin"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:drawablePadding="@dimen/margin_10_size"
+                android:drawablePadding="@dimen/default_general_margin"
                 android:drawableStart="@drawable/ic_login_username_default"
                 android:ellipsize="start"
                 android:hint="@string/login_hint_account"
                 android:inputType="textVisiblePassword"
-                android:layout_marginStart="@dimen/margin_10_size"
                 android:singleLine="true"
                 android:textColor="@color/black_80"
                 android:textColorHint="@color/gray_20"
@@ -106,8 +91,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:paddingEnd="@dimen/margin_10_size"
-                android:paddingStart="@dimen/margin_20_size"
+                android:paddingEnd="@dimen/default_general_margin"
+                android:paddingStart="@dimen/default_grow_margin"
                 android:src="@drawable/ic_edittext_clear"
                 android:visibility="gone" />
         </LinearLayout>
@@ -122,12 +107,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/action_bar_default_height"
             android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/default_general_margin"
             android:background="@android:color/transparent"
-            android:drawablePadding="@dimen/margin_10_size"
+            android:drawablePadding="@dimen/default_general_margin"
             android:drawableStart="@drawable/ic_login_password_default"
             android:hint="@string/login_hint_password"
             android:inputType="textPassword"
-            android:layout_marginStart="@dimen/margin_10_size"
             android:singleLine="true"
             android:textColor="@color/black_80"
             android:textColorHint="@color/gray_20"
@@ -139,11 +124,10 @@
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_button_height"
-        android:layout_below="@+id/login_ll"
-        android:layout_marginBottom="@dimen/margin_10_size"
-        android:layout_marginLeft="@dimen/margin_10_size"
-        android:layout_marginRight="@dimen/margin_10_size"
-        android:layout_marginTop="@dimen/margin_30_size"
+        android:layout_marginBottom="@dimen/default_general_margin"
+        android:layout_marginLeft="@dimen/default_general_margin"
+        android:layout_marginRight="@dimen/default_general_margin"
+        android:layout_marginTop="@dimen/default_long_margin"
         android:background="@drawable/corner_btn"
         android:gravity="center"
         android:text="@string/login"
@@ -151,4 +135,4 @@
         android:textSize="@dimen/default_medium_text_size" />
 
 
-</RelativeLayout>
+</LinearLayout>

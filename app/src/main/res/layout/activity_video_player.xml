@@ -6,8 +6,8 @@
 
     <com.hotbitmapgg.ohmybilibili.widget.VideoPlayerView
         android:id="@+id/playerView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center" />
 
     <master.flame.danmaku.ui.widget.DanmakuView
@@ -29,12 +29,12 @@
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
             android:id="@+id/video_loading_progress"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
+            android:layout_width="@dimen/circle_progress_view_small_size"
+            android:layout_height="@dimen/circle_progress_view_small_size"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             app:matProg_barColor="?attr/colorPrimary"
-            app:matProg_barWidth="4dp"
+            app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"
             app:matProg_progressIndeterminate="true" />
 
         <TextView
@@ -43,10 +43,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/video_loading_progress"
             android:layout_centerHorizontal="true"
-            android:paddingTop="7dp"
+            android:paddingTop="@dimen/default_general_margin"
             android:text="@string/video_loading"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/default_medium_text_size" />
 
 
     </RelativeLayout>
@@ -75,6 +75,6 @@
             android:layout_alignParentBottom="true"
             android:text="@string/video_init"
             android:textColor="@android:color/black"
-            android:textSize="12sp" />
+            android:textSize="@dimen/default_tiny_text_size" />
     </RelativeLayout>
 </FrameLayout>

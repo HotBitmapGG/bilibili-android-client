@@ -16,7 +16,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:elevation="@dimen/app_bar_default_elevation"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
@@ -24,11 +23,11 @@
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/action_bar_default_height"
             android:background="@color/colorPrimary"
-            app:tl_indicator_corner_radius="1dp"
-            app:tl_indicator_height="2dp"
-            app:tl_indicator_width="30dp"
+            app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_tiny_radius"
+            app:tl_indicator_height="@dimen/tab_indicator_small_height"
+            app:tl_indicator_width="@dimen/tab_indicator_center_width"
             app:tl_tab_space_equal="false" />
 
     </android.support.design.widget.AppBarLayout>

@@ -37,7 +37,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="90dp"
+                    android:layout_height="@dimen/shadow_gradient_height"
                     android:layout_gravity="top"
                     android:background="@drawable/shadow_gradient" />
 
@@ -62,7 +62,7 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginLeft="@dimen/user_info_avatar_padding"
                         android:layout_marginRight="@dimen/user_info_avatar_padding"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/default_general_margin"
                         android:orientation="vertical">
 
 
@@ -71,7 +71,7 @@
                             android:layout_width="@dimen/user_info_avatar_size"
                             android:layout_height="@dimen/user_info_avatar_size"
                             app:border_color="@android:color/white"
-                            app:border_width="1dp"
+                            app:border_width="@dimen/circle_default_width"
                             tools:src="@drawable/ico_user_default" />
 
                         <ImageView
@@ -79,7 +79,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:paddingTop="10dp" />
+                            android:paddingTop="@dimen/default_general_margin" />
 
                     </LinearLayout>
 
@@ -109,7 +109,7 @@
                                 android:textColor="@color/white" />
 
                             <Space
-                                android:layout_width="4dp"
+                                android:layout_width="@dimen/default_tiny_padding"
                                 android:layout_height="wrap_content" />
 
                             <ImageView
@@ -120,7 +120,7 @@
 
                         <Space
                             android:layout_width="match_parent"
-                            android:layout_height="4dp" />
+                            android:layout_height="@dimen/default_tiny_margin" />
 
                         <TextView
                             android:id="@+id/user_desc"
@@ -181,7 +181,7 @@
 
                             <View
                                 android:layout_width="@dimen/user_info_details_number_divider_size"
-                                android:layout_height="10dp"
+                                android:layout_height="@dimen/default_general_margin"
                                 android:layout_marginTop="@dimen/user_info_details_number_divider_margin"
                                 android:background="@color/white" />
 
@@ -226,7 +226,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="3dp">
+            android:padding="@dimen/default_tiny_margin">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -237,7 +237,7 @@
                     android:layout_width="@dimen/circle_progress_view_default_size"
                     android:layout_height="@dimen/circle_progress_view_default_size"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="@dimen/circle_progress_view_default_margin_top"
                     app:matProg_barColor="?attr/colorPrimary"
                     app:matProg_barWidth="@dimen/circle_progress_view_default_border_width" />
 
@@ -253,7 +253,7 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="@dimen/user_info_padding"
                         android:paddingRight="@dimen/user_info_padding"
-                        android:paddingTop="10dp">
+                        android:paddingTop="@dimen/user_info_padding">
 
                         <TextView
                             android:id="@+id/tv_up_contributor"
@@ -264,7 +264,7 @@
                             android:singleLine="true"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textColor="@color/font_normal"
-                            android:textSize="18sp"
+                            android:textSize="@dimen/default_big_text_size"
                             android:visibility="gone" />
 
 
@@ -277,7 +277,7 @@
                             android:background="@drawable/btn_more_bg"
                             android:text="@string/goto_look"
                             android:textColor="@color/white"
-                            android:textSize="12sp"
+                            android:textSize="@dimen/default_tiny_text_size"
                             android:visibility="gone" />
 
 
@@ -289,7 +289,7 @@
                         android:layout_height="wrap_content"
                         android:clipToPadding="false"
                         android:overScrollMode="never"
-                        android:paddingTop="16dp"
+                        android:paddingTop="@dimen/activity_vertical_margin"
                         android:scrollbars="none" />
 
 

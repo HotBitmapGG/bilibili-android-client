@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/bili_anim"
-                android:layout_marginTop="@dimen/margin_10_size"
+                android:layout_marginTop="@dimen/card_margin"
                 android:text="@string/video_init"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/default_tiny_text_size" />
@@ -49,8 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_marginBottom="@dimen/margin_60_size"
-            android:layout_marginEnd="@dimen/margin_10_size"
+            android:layout_marginBottom="@dimen/live_button_margin_bottom"
+            android:layout_marginEnd="@dimen/card_margin"
             android:src="@drawable/ic_tv_play"
             android:visibility="gone" />
 
@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:padding="@dimen/margin_10_size"
+                android:padding="@dimen/default_general_margin"
                 android:src="@drawable/ic_portrait_play" />
 
             <ImageView
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toStartOf="@+id/bottom_fullscreen"
-                android:padding="@dimen/margin_10_size"
+                android:padding="@dimen/default_general_margin"
                 android:src="@drawable/ic_live_player_send_gift" />
 
 
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:padding="@dimen/margin_10_size"
+                android:padding="@dimen/default_general_margin"
                 android:src="@drawable/ic_live_palyer_zoom_in" />
         </RelativeLayout>
 
@@ -108,8 +108,8 @@
             android:layout_height="@dimen/user_avatar_size"
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/margin_10_size"
-            android:padding="@dimen/margin_5_size"
+            android:layout_marginStart="@dimen/default_general_margin"
+            android:padding="@dimen/default_tiny_padding"
             android:src="@drawable/ico_user_default" />
 
         <TextView
@@ -117,9 +117,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/margin_10_size"
+            android:layout_marginStart="@dimen/default_general_margin"
             android:layout_toEndOf="@+id/user_pic"
-            android:padding="@dimen/margin_5_size"
+            android:padding="@dimen/default_tiny_padding"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/default_tiny_text_size" />
 
@@ -129,11 +129,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/margin_10_size"
+            android:layout_marginStart="@dimen/default_general_margin"
             android:layout_toEndOf="@+id/user_name"
-            android:drawablePadding="@dimen/margin_5_size"
+            android:drawablePadding="@dimen/default_tiny_padding"
             android:drawableStart="@drawable/ic_muti_people"
-            android:padding="@dimen/margin_5_size"
+            android:padding="@dimen/default_tiny_padding"
             android:textColor="@color/gray"
             android:textSize="@dimen/default_tiny_text_size" />
 
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:layout_marginEnd="@dimen/margin_10_size"
+            android:layout_marginEnd="@dimen/default_general_margin"
             android:background="@drawable/btn_pin_bg"
             android:gravity="center"
             android:text="@string/add_follow"
