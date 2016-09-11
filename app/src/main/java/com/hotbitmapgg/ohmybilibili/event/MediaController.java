@@ -318,14 +318,14 @@ public class MediaController extends FrameLayout
     {
 
         mPauseButton = (ImageButton) v
-                .findViewById(R.id.mediacontroller_play_pause);
+                .findViewById(R.id.media_controller_play_pause);
         if (mPauseButton != null)
         {
             mPauseButton.requestFocus();
             mPauseButton.setOnClickListener(mPauseListener);
         }
 
-        mProgress = (SeekBar) v.findViewById(R.id.mediacontroller_seekbar);
+        mProgress = (SeekBar) v.findViewById(R.id.media_controller_seekbar);
         if (mProgress != null)
         {
             if (mProgress instanceof SeekBar)
@@ -337,14 +337,15 @@ public class MediaController extends FrameLayout
             mProgress.setMax(1000);
         }
 
-        mEndTime = (TextView) v.findViewById(R.id.mediacontroller_time_total);
+        mEndTime = (TextView) v.findViewById(R.id.media_controller_time_total);
         mCurrentTime = (TextView) v
-                .findViewById(R.id.mediacontroller_time_current);
-        mFileName = (TextView) v.findViewById(R.id.mediacontroller_file_name);
+                .findViewById(R.id.media_controller_time_current);
+        mFileName = (TextView) v.findViewById(R.id.media_controller_file_name);
         if (mFileName != null)
             mFileName.setText(mTitle);
 
-        mDanmakuSwitch = (ImageButton) v.findViewById(R.id.mediacontroller_danmaku_switch);
+        mDanmakuSwitch = (ImageButton) v.
+                findViewById(R.id.media_controller_danmaku_switch);
         mDanmakuSwitch.setOnClickListener(new OnClickListener()
         {
 
@@ -366,7 +367,7 @@ public class MediaController extends FrameLayout
             }
         });
 
-        mBack = (ImageView) v.findViewById(R.id.mediacontroller_back);
+        mBack = (ImageView) v.findViewById(R.id.media_controller_back);
         mBack.setOnClickListener(new OnClickListener()
         {
 

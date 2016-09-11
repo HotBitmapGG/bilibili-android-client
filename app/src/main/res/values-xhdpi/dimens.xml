@@ -223,6 +223,8 @@
     <dimen name="mediacontroller_bottom_layout_big_margin">7dp</dimen>
     <dimen name="mediacontroller_bottom_layout_center_margin">12dp</dimen>
     <dimen name="mediacontroller_bottom_layout_danmaku_padding">3dp</dimen>
+    <dimen name="media_controller_bottom_layout_top_margin">4dp</dimen>
+    <dimen name="media_controller_bottom_layout_left_right_bottom_margin">8dp</dimen>
 
 
 </resources>

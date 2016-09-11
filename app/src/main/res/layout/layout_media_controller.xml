@@ -3,16 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <RelativeLayout
         android:id="@+id/info_panel"
-        style="@style/InfoPanel_Container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/action_bar_default_height">
+        android:layout_height="@dimen/action_bar_default_height"
+        android:background="@color/media_controller_bg">
 
 
         <ImageView
-            android:id="@+id/mediacontroller_back"
+            android:id="@+id/media_controller_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -23,27 +22,30 @@
             android:tint="@color/white" />
 
         <TextView
-            android:id="@+id/mediacontroller_file_name"
+            android:id="@+id/media_controller_file_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/default_general_margin"
-            android:layout_toEndOf="@+id/mediacontroller_back"
+            android:layout_toEndOf="@+id/media_controller_back"
             android:singleLine="true"
             android:textColor="@android:color/white"
             android:textSize="@dimen/default_medium_text_size" />
 
     </RelativeLayout>
 
-
     <LinearLayout
-        android:id="@+id/mediacontroller_controls"
-        style="@style/MediaController_Container"
+        android:id="@+id/media_controller_controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="0dp"
-        android:orientation="vertical">
+        android:background="@color/media_controller_bg"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/media_controller_bottom_layout_left_right_bottom_margin"
+        android:paddingLeft="@dimen/media_controller_bottom_layout_left_right_bottom_margin"
+        android:paddingRight="@dimen/media_controller_bottom_layout_left_right_bottom_margin"
+        android:paddingTop="@dimen/media_controller_bottom_layout_top_margin">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -52,12 +54,17 @@
 
 
             <SeekBar
-                android:id="@+id/mediacontroller_seekbar"
-                style="@style/MediaController_SeekBar"
+                android:id="@+id/media_controller_seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
-                android:max="1000" />
+                android:max="1000"
+                android:maxHeight="@dimen/default_tiny_margin"
+                android:minHeight="@dimen/default_tiny_margin"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"
+                android:progressDrawable="@color/colorPrimary"
+                android:thumb="@drawable/videoplayer_erect_icon_round" />
 
 
         </RelativeLayout>
@@ -72,7 +79,7 @@
 
 
             <RelativeLayout
-                android:id="@+id/mediacontroller_controls_buttons"
+                android:id="@+id/media_controller_controls_buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/mediacontroller_buttons_bottom_margin"
@@ -82,7 +89,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/mediacontroller_play_pause"
+                    android:id="@+id/media_controller_play_pause"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -93,13 +100,14 @@
 
 
                 <TextView
-                    android:id="@+id/mediacontroller_time_current"
-                    style="@style/MediaController_Text"
+                    android:id="@+id/media_controller_time_current"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="22dp"
-                    android:layout_toEndOf="@+id/mediacontroller_play_pause" />
+                    android:layout_toEndOf="@+id/media_controller_play_pause"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/default_small_text_size" />
 
                 <TextView
                     android:id="@+id/time_line"
@@ -108,19 +116,20 @@
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
-                    android:layout_toEndOf="@+id/mediacontroller_time_current"
+                    android:layout_toEndOf="@+id/media_controller_time_current"
                     android:text="/"
                     android:textColor="@color/white"
                     android:textSize="@dimen/default_small_text_size" />
 
 
                 <TextView
-                    android:id="@+id/mediacontroller_time_total"
-                    style="@style/MediaController_Text"
+                    android:id="@+id/media_controller_time_total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/time_line" />
+                    android:layout_toEndOf="@+id/time_line"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/default_small_text_size" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -130,7 +139,7 @@
                     android:orientation="vertical">
 
                     <ImageButton
-                        android:id="@+id/mediacontroller_danmaku_switch"
+                        android:id="@+id/media_controller_danmaku_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"

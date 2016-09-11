@@ -1,6 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light"/>
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light" />
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
@@ -17,35 +17,7 @@
     </style>
 
     <!-- 启动页 引导页设置StatusBar为透明色 -->
-    <style name="ColorTranslucentTheme" parent="@style/BaseAppTheme"/>
-
-
-    <!-- 播放器 -->
-    <style name="MediaController_SeekBar">
-        <item name="android:minHeight">3dp</item>
-        <item name="android:maxHeight">3dp</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-        <item name="android:progressDrawable">@color/colorPrimary</item>
-        <item name="android:thumb">@drawable/videoplayer_erect_icon_round</item>
-    </style>
-
-    <style name="MediaController_Text">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="InfoPanel_Container">
-        <item name="android:background">@color/media_controller_bg</item>
-    </style>
-
-    <style name="MediaController_Container">
-        <item name="android:background">@color/media_controller_bg</item>
-        <item name="android:paddingTop">4dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
-    </style>
+    <style name="ColorTranslucentTheme" parent="@style/BaseAppTheme" />
 
 
     <!--离线缓存进度条Style-->
@@ -64,18 +36,6 @@
 
     <style name="CollapsingToolbarTitleStyle.About" parent="@android:style/TextAppearance">
         <item name="android:textColor">@android:color/transparent</item>
-    </style>
-
-
-    <style name="Widget.Design.ScrimInsetsFrameLayout" parent="">
-        <item name="insetForeground">#4000</item>
-    </style>
-
-    <style name="Widget.Design.NavigationView" parent="">
-        <item name="elevation">@dimen/navigation_elevation</item>
-        <item name="android:background">?android:attr/windowBackground</item>
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:maxWidth">@dimen/navigation_max_width</item>
     </style>
 
 

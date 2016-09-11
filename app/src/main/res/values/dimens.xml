@@ -219,11 +219,13 @@
     <dimen name="sp_preview_size">100dp</dimen>
 
     <!-- video player -->
-    <dimen name="mediacontroller_buttons_top_margin">2dp</dimen>
-    <dimen name="mediacontroller_buttons_bottom_margin">0dp</dimen>
-    <dimen name="mediacontroller_bottom_layout_small_margin">2dp</dimen>
-    <dimen name="mediacontroller_bottom_layout_big_margin">7dp</dimen>
-    <dimen name="mediacontroller_bottom_layout_center_margin">12dp</dimen>
-    <dimen name="mediacontroller_bottom_layout_danmaku_padding">3dp</dimen>
+    <dimen name="media_controller_button_top_margin">2dp</dimen>
+    <dimen name="media_controller_button_bottom_margin">0dp</dimen>
+    <dimen name="media_controller_bottom_layout_small_margin">2dp</dimen>
+    <dimen name="media_controller_bottom_layout_big_margin">7dp</dimen>
+    <dimen name="media_controller_bottom_layout_center_margin">12dp</dimen>
+    <dimen name="media_controller_bottom_layout_danmaku_padding">3dp</dimen>
+    <dimen name="media_controller_bottom_layout_top_margin">4dp</dimen>
+    <dimen name="media_controller_bottom_layout_left_right_bottom_margin">8dp</dimen>
 
 </resources>
