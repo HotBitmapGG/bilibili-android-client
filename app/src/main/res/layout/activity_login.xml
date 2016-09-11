@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/action_bar_default_height"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/default_general_margin"
+            android:layout_marginStart="@dimen/default_small_padding"
             android:background="@android:color/transparent"
             android:drawablePadding="@dimen/default_general_margin"
             android:drawableStart="@drawable/ic_login_password_default"

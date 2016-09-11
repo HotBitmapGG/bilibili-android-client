@@ -84,7 +84,7 @@
                     android:padding="2dp"
                     android:drawablePadding="@dimen/default_tiny_margin"
                     android:textColor="@color/black_alpha_45"
-                    android:textSize="@dimen/default_small_text_size"/>
+                    android:textSize="@dimen/default_tiny_text_size"/>
 
 
             </RelativeLayout>

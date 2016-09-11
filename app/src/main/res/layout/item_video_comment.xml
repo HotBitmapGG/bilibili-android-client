@@ -9,15 +9,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingStart="@dimen/default_general_margin">
+        android:paddingStart="@dimen/default_general_margin"
+        android:paddingTop="@dimen/default_tiny_padding">
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
             android:id="@+id/item_user_avatar"
-            android:layout_width="@dimen/list_item_avatar_size"
-            android:layout_height="@dimen/list_item_avatar_size"
+            android:layout_width="@dimen/user_avatar_size"
+            android:layout_height="@dimen/user_avatar_size"
             android:layout_marginBottom="@dimen/list_item_vertical_margin_small"
             android:layout_marginTop="@dimen/list_item_vertical_margin_small" />
 
@@ -33,16 +33,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toEndOf="@+id/item_user_avatar_layout"
-        android:paddingBottom="@dimen/default_grow_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingEnd="@dimen/default_general_margin"
         android:paddingStart="@dimen/default_general_margin"
-        android:paddingTop="@dimen/default_general_margin">
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
             android:id="@+id/item_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/font_normal"
+            android:textColor="@color/black_alpha_60"
             android:textSize="@dimen/default_small_text_size" />
 
         <ImageView
@@ -57,7 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_user_name"
-            android:textColor="@color/black_alpha_45"
+            android:layout_marginTop="@dimen/default_tiny_margin"
+            android:textColor="@color/black_alpha_30"
             android:textSize="@dimen/default_tiny_text_size" />
 
         <TextView
@@ -65,10 +66,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_user_name"
+            android:layout_marginTop="@dimen/default_tiny_margin"
             android:layout_toEndOf="@+id/item_comment_floor"
-            android:paddingStart="5dp"
-            android:textColor="@color/black_alpha_45"
-            android:textSize="12sp" />
+            android:paddingStart="@dimen/default_tiny_padding"
+            android:textColor="@color/black_alpha_30"
+            android:textSize="@dimen/default_tiny_text_size" />
 
         <TextView
             android:id="@+id/item_comment_num"
@@ -91,7 +93,7 @@
             android:drawableStart="@drawable/ic_feedback_support_grey"
             android:paddingEnd="@dimen/default_general_margin"
             android:textColor="@color/black_alpha_45"
-            android:textSize="@dimen/default_small_text_size" />
+            android:textSize="@dimen/default_tiny_text_size" />
 
 
         <TextView
@@ -102,7 +104,7 @@
             android:ellipsize="end"
             android:maxLines="3"
             android:paddingTop="@dimen/default_tiny_padding"
-            android:textColor="@color/font_gray"
+            android:textColor="@color/font_normal"
             android:textSize="@dimen/default_small_text_size" />
 
 
