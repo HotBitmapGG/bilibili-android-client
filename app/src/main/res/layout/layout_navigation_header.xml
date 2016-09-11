@@ -42,8 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/default_grow_margin"
+            android:layout_marginTop="@dimen/default_grow_margin"
             android:orientation="horizontal">
 
             <ImageView
@@ -57,7 +57,7 @@
                 android:id="@+id/iv_head_switch_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/default_grow_margin"
                 android:src="@drawable/ic_switch_night" />
 
 

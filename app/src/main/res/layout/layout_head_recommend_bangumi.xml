@@ -16,23 +16,23 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/default_general_margin"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/default_general_margin">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/bangumi_recommend_image_size"
+            android:layout_height="@dimen/bangumi_recommend_image_size"
             android:src="@drawable/ic_category_t33" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingStart="10dp"
+            android:paddingStart="@dimen/default_general_margin"
             android:text="@string/two_bangumi"
             android:textColor="@color/font_normal"
-            android:textSize="14sp" />
+            android:textSize="@dimen/default_small_text_size" />
 
 
     </LinearLayout>

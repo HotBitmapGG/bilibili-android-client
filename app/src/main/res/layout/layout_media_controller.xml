@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="10dp"
-            android:padding="10dp"
+            android:layout_marginStart="@dimen/default_general_margin"
+            android:padding="@dimen/default_general_margin"
             android:src="@drawable/ic_arrow_back_white"
             android:tint="@color/white" />
 
@@ -27,11 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/default_general_margin"
             android:layout_toEndOf="@+id/mediacontroller_back"
             android:singleLine="true"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/default_medium_text_size" />
 
     </RelativeLayout>
 
@@ -65,10 +65,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:layout_marginTop="2dp">
+            android:layout_marginBottom="@dimen/mediacontroller_bottom_layout_small_margin"
+            android:layout_marginLeft="@dimen/mediacontroller_bottom_layout_big_margin"
+            android:layout_marginRight="@dimen/mediacontroller_bottom_layout_big_margin"
+            android:layout_marginTop="@dimen/mediacontroller_bottom_layout_small_margin">
 
 
             <RelativeLayout
@@ -76,8 +76,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/mediacontroller_buttons_bottom_margin"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginLeft="@dimen/mediacontroller_bottom_layout_center_margin"
+                android:layout_marginRight="@dimen/mediacontroller_bottom_layout_center_margin"
                 android:layout_marginTop="@dimen/mediacontroller_buttons_top_margin"
                 android:orientation="horizontal">
 
@@ -111,7 +111,7 @@
                     android:layout_toEndOf="@+id/mediacontroller_time_current"
                     android:text="/"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="@dimen/default_small_text_size" />
 
 
                 <TextView
@@ -139,10 +139,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="3dp"
+                        android:paddingTop="@dimen/mediacontroller_bottom_layout_danmaku_padding"
                         android:text="@string/danmaku_switch"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="@dimen/default_tiny_text_size" />
 
                 </LinearLayout>
 

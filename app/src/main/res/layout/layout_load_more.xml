@@ -3,18 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="@dimen/load_more_layout_height"
     android:gravity="center"
     android:orientation="horizontal">
 
     <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
         android:id="@+id/load_pro"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/load_more_layout_circle_progress_size"
+        android:layout_height="@dimen/load_more_layout_circle_progress_size"
         android:layout_gravity="center"
         android:visibility="visible"
         app:matProg_barColor="?attr/colorPrimary"
-        app:matProg_barWidth="2dp"
+        app:matProg_barWidth="@dimen/load_more_layout_circle_progress_width"
         app:matProg_progressIndeterminate="true" />
 
     <TextView
@@ -22,10 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/default_general_margin"
         android:gravity="center"
         android:text="@string/load_more"
         android:textColor="@color/font_normal"
-        android:textSize="14sp" />
+        android:textSize="@dimen/default_small_text_size" />
 </LinearLayout>
 

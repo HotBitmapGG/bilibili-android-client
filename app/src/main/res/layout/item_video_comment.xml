@@ -12,7 +12,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingStart="10dp">
+        android:paddingStart="@dimen/default_general_margin">
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
             android:id="@+id/item_user_avatar"
@@ -33,24 +33,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toEndOf="@+id/item_user_avatar_layout"
-        android:paddingBottom="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp">
+        android:paddingBottom="@dimen/default_grow_margin"
+        android:paddingEnd="@dimen/default_general_margin"
+        android:paddingStart="@dimen/default_general_margin"
+        android:paddingTop="@dimen/default_general_margin">
 
         <TextView
             android:id="@+id/item_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/font_normal"
-            android:textSize="14sp" />
+            android:textSize="@dimen/default_small_text_size" />
 
         <ImageView
             android:id="@+id/item_user_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/item_user_name"
-            android:paddingStart="3dp" />
+            android:paddingStart="@dimen/default_tiny_margin" />
 
         <TextView
             android:id="@+id/item_comment_floor"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_user_name"
             android:textColor="@color/black_alpha_45"
-            android:textSize="12sp" />
+            android:textSize="@dimen/default_tiny_text_size" />
 
         <TextView
             android:id="@+id/item_comment_time"
@@ -75,11 +75,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/item_comment_spot"
+            android:drawablePadding="@dimen/default_tiny_padding"
             android:drawableStart="@drawable/ic_feedback_grey"
-            android:drawablePadding="5dp"
-            android:paddingEnd="5dp"
+            android:paddingEnd="@dimen/default_tiny_padding"
             android:textColor="@color/black_alpha_45"
-            android:textSize="12sp" />
+            android:textSize="@dimen/default_tiny_text_size" />
 
 
         <TextView
@@ -87,11 +87,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:drawablePadding="@dimen/default_tiny_padding"
             android:drawableStart="@drawable/ic_feedback_support_grey"
-            android:drawablePadding="5dp"
-            android:paddingEnd="10dp"
+            android:paddingEnd="@dimen/default_general_margin"
             android:textColor="@color/black_alpha_45"
-            android:textSize="12sp" />
+            android:textSize="@dimen/default_small_text_size" />
 
 
         <TextView
@@ -101,16 +101,16 @@
             android:layout_below="@+id/item_comment_floor"
             android:ellipsize="end"
             android:maxLines="3"
-            android:paddingTop="5dp"
+            android:paddingTop="@dimen/default_tiny_padding"
             android:textColor="@color/font_gray"
-            android:textSize="14sp" />
+            android:textSize="@dimen/default_small_text_size" />
 
 
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/line_height"
         android:layout_alignParentBottom="true"
         android:background="@color/line_bg" />
 

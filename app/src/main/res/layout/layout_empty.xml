@@ -16,9 +16,9 @@
         android:id="@+id/empty_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="@dimen/default_general_margin"
         android:textColor="@color/font_normal"
-        android:textSize="16sp" />
+        android:textSize="@dimen/default_medium_text_size" />
 
     <Button
         android:id="@+id/btn_reload"
@@ -29,6 +29,6 @@
         android:gravity="center"
         android:text="@string/reload"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="@dimen/default_medium_text_size" />
 
 </LinearLayout>

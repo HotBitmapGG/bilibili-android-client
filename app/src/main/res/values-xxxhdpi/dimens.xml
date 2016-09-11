@@ -22,6 +22,83 @@
     <dimen name="default_grow_margin">20dp</dimen>
     <dimen name="default_long_margin">30dp</dimen>
 
+    <!--weekday bangumi layout size-->
+    <dimen name="weekday_bangumi_card_height">170dp</dimen>
+    <dimen name="weekday_bangumi_card_image_height">120dp</dimen>
+    <dimen name="weekday_bangumi_bottom_layout_height">58dp</dimen>
+    <dimen name="weekday_bangumi_head_height">60dp</dimen>
+
+    <!--load more layout size-->
+    <dimen name="load_more_layout_height">50dp</dimen>
+    <dimen name="load_more_layout_circle_progress_size">20dp</dimen>
+    <dimen name="load_more_layout_circle_progress_width">2dp</dimen>
+
+    <!--banner height size-->
+    <dimen name="general_banner_height">126dp</dimen>
+
+    <!--video item common strip size-->
+    <dimen name="video_item_layout_height">90dp</dimen>
+    <dimen name="video_item_image_width">140dp</dimen>
+
+
+    <!--video card size-->
+    <dimen name="card_default_height">190dp</dimen>
+    <dimen name="card_image_default_height">120dp</dimen>
+
+    <!--user fans size-->
+    <dimen name="user_fans_layout_height">70dp</dimen>
+
+
+    <!--search size-->
+    <dimen name="search_item_bangumi_image_height">150dp</dimen>
+    <dimen name="search_item_bangumi_image_width">120dp</dimen>
+    <dimen name="search_item_text_margin_top">15dp</dimen>
+    <dimen name="search_top_layout_height">60dp</dimen>
+    <dimen name="search_back_padding">12dp</dimen>
+    <dimen name="search_edit_margin_start">75dp</dimen>
+    <dimen name="search_edit_margin_end">40dp</dimen>
+    <dimen name="search_clear_button_margin_end">60dp</dimen>
+
+
+    <!--game center size-->
+    <dimen name="game_center_layout_height">100dp</dimen>
+    <dimen name="game_center_image_width">100dp</dimen>
+    <dimen name="game_center_image_height">80dp</dimen>
+    <dimen name="game_center_button_width">70dp</dimen>
+    <dimen name="game_center_button_height">35dp</dimen>
+
+
+    <!--home live size-->
+    <dimen name="live_video_player_height">280dp</dimen>
+    <dimen name="live_button_margin_bottom">60dp</dimen>
+    <dimen name="live_entrance_image_size">50dp</dimen>
+    <dimen name="live_item_layout_height">190dp</dimen>
+    <dimen name="live_item_image_height">120dp</dimen>
+    <dimen name="live_item_title_image_size">25dp</dimen>
+
+
+    <!--home recommend size-->
+    <dimen name="activity_center_card_width">200dp</dimen>
+    <dimen name="activity_center_card_height">180dp</dimen>
+    <dimen name="activity_center_image_height">14dp</dimen>
+    <dimen name="home_recommend_head_layout_height">60dp</dimen>
+    <dimen name="home_recommend_head_image_size">30dp</dimen>
+    <dimen name="home_recommend_foot_layout_height">60dp</dimen>
+    <dimen name="home_recommend_foot_button_width">120dp</dimen>
+    <dimen name="home_recommend_foot_button_height">35dp</dimen>
+    <dimen name="home_recommend_foot_refresh_margin">7dp</dimen>
+    <dimen name="home_recommend_foot_bangumi_layout_height">40dp</dimen>
+
+    <!--bangumi index size-->
+    <dimen name="bangumi_index_image_size">100dp</dimen>
+
+    <!--bangumi recomend size-->
+    <dimen name="bangumi_recommend_image_height">140dp</dimen>
+    <dimen name="bangumi_recommend_image_big_height">150dp</dimen>
+    <dimen name="bangumi_recommend_title_height">50dp</dimen>
+    <dimen name="bangumi_recommend_title_margin">5dp</dimen>
+    <dimen name="bangumi_recommend_image_size">30dp</dimen>
+
 
     <!--splash size-->
     <dimen name="splash_logo_margin">80dp</dimen>
@@ -43,12 +120,11 @@
     <!--more layout size-->
     <dimen name="grid_column_width">60dp</dimen>
     <dimen name="grid_horizontal_spacing">10dp</dimen>
+    <dimen name="more_item_image_size">50dp</dimen>
 
 
     <!--offline download size-->
     <dimen name="bottom_layout_height">60dp</dimen>
-
-
 
 
     <!--common text size-->
@@ -57,6 +133,7 @@
     <dimen name="default_medium_text_size">16sp</dimen>
     <dimen name="default_big_text_size">18sp</dimen>
     <dimen name="default_large_text_size">20sp</dimen>
+    <dimen name="default_big_large_text_size">22sp</dimen>
 
     <!--tab layout size-->
     <dimen name="tab_indicator_corner_tiny_radius">1dp</dimen>
@@ -92,6 +169,7 @@
     <dimen name="user_avatar_margin">4dp</dimen>
     <dimen name="user_tag_view_height">56dp</dimen>
     <dimen name="user_name_min_width">72dp</dimen>
+    <dimen name="user_avatar_small_size">30dp</dimen>
 
     <!-- Card -->
     <dimen name="touch_raise">6dp</dimen>
@@ -123,9 +201,9 @@
     <dimen name="navigation_max_width">300dp</dimen>
 
     <!-- Layouts' special resources -->
-    <!-- activity_video_view.xml -->
     <dimen name="video_info_mini_icons_size">12dp</dimen>
     <dimen name="video_info_count_text_margin_start">4dp</dimen>
+    <dimen name="video_info_sp_layout_height">150dp</dimen>
 
     <!-- activity_user_info.xml -->
     <dimen name="user_info_avatar_size">84dp</dimen>
@@ -142,9 +220,10 @@
     <!-- video player -->
     <dimen name="mediacontroller_buttons_top_margin">2dp</dimen>
     <dimen name="mediacontroller_buttons_bottom_margin">0dp</dimen>
-    <dimen name="live_video_player_height">280dp</dimen>
-    <dimen name="live_button_margin_bottom">60dp</dimen>
-
+    <dimen name="mediacontroller_bottom_layout_small_margin">2dp</dimen>
+    <dimen name="mediacontroller_bottom_layout_big_margin">7dp</dimen>
+    <dimen name="mediacontroller_bottom_layout_center_margin">12dp</dimen>
+    <dimen name="mediacontroller_bottom_layout_danmaku_padding">3dp</dimen>
 
 
 </resources>

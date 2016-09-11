@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:layout_margin="5dp">
+    android:layout_height="@dimen/video_info_sp_layout_height"
+    android:layout_margin="@dimen/default_tiny_padding">
 
     <ImageView
         android:id="@+id/item_img"
@@ -16,14 +16,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/black_alpha_60"
-        android:padding="5dp">
+        android:padding="@dimen/default_tiny_padding">
 
         <TextView
             android:id="@+id/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="@dimen/default_tiny_text_size" />
     </FrameLayout>
 </FrameLayout>
 

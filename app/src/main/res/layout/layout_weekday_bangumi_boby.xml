@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
+    android:layout_height="@dimen/weekday_bangumi_card_height"
     android:layout_margin="@dimen/card_margin"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground"
@@ -20,14 +20,14 @@
             <ImageView
                 android:id="@+id/item_img"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="@dimen/weekday_bangumi_card_image_height"
                 android:scaleType="fitXY"
                 android:adjustViewBounds="true" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="@dimen/weekday_bangumi_bottom_layout_height"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -41,7 +41,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/font_normal"
-                android:textSize="14sp" />
+                android:textSize="@dimen/default_small_text_size" />
         </LinearLayout>
 
     </LinearLayout>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="@dimen/home_recommend_foot_layout_height"
     android:paddingEnd="@dimen/card_margin"
     android:paddingStart="@dimen/card_margin">
 
     <Button
         android:id="@+id/item_btn_more"
-        android:layout_width="120dp"
-        android:layout_height="35dp"
+        android:layout_width="@dimen/home_recommend_foot_button_width"
+        android:layout_height="@dimen/home_recommend_foot_button_height"
         android:layout_alignParentStart="true"
         android:layout_centerInParent="true"
         android:background="@drawable/btn_more_white"
         android:text="@string/look_more"
         android:textColor="@color/font_normal"
-        android:textSize="14sp"
+        android:textSize="@dimen/default_small_text_size"
         android:visibility="visible" />
 
 
@@ -33,10 +33,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black_80"
-            android:textSize="12sp" />
+            android:textSize="@dimen/default_tiny_text_size" />
 
         <Space
-            android:layout_width="5dp"
+            android:layout_width="@dimen/default_tiny_padding"
             android:layout_height="wrap_content" />
 
         <ImageView
@@ -63,10 +63,10 @@
             android:layout_height="wrap_content"
             android:text="@string/change_recommend"
             android:textColor="@color/black_80"
-            android:textSize="12sp" />
+            android:textSize="@dimen/default_tiny_text_size" />
 
         <Space
-            android:layout_width="7dp"
+            android:layout_width="@dimen/home_recommend_foot_refresh_margin"
             android:layout_height="wrap_content" />
 
         <ImageView
@@ -84,29 +84,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:paddingEnd="5dp"
-        android:paddingStart="5dp"
+        android:paddingEnd="@dimen/default_tiny_padding"
+        android:paddingStart="@dimen/default_tiny_padding"
         android:visibility="gone">
 
 
         <ImageView
             android:id="@+id/item_btn_bangumi_index"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/home_recommend_foot_bangumi_layout_height"
             android:layout_weight="1"
             android:background="@drawable/bangumi_index_background"
             android:scaleType="center"
             android:src="@drawable/bangumi_index_text" />
 
         <Space
-            android:layout_width="10dp"
+            android:layout_width="@dimen/default_general_margin"
             android:layout_height="wrap_content" />
 
 
         <ImageView
             android:id="@+id/item_btn_bangumi_timeline"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/home_recommend_foot_bangumi_layout_height"
             android:layout_weight="1"
             android:background="@drawable/bangumi_timeline_background"
             android:scaleType="center"

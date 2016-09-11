@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="@dimen/weekday_bangumi_head_height">
 
     <TextView
         android:id="@+id/item_weekday"
@@ -9,9 +9,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerInParent="true"
-        android:drawablePadding="5dp"
-        android:padding="10dp"
+        android:drawablePadding="@dimen/default_tiny_padding"
+        android:padding="@dimen/default_general_margin"
         android:textColor="@color/gray_80"
-        android:textSize="22sp" />
+        android:textSize="@dimen/default_big_large_text_size" />
 
 </RelativeLayout>

@@ -6,17 +6,17 @@
 
     <ImageView
         android:id="@+id/item_img"
-        android:layout_width="120dp"
-        android:layout_height="150dp"
+        android:layout_width="@dimen/search_item_bangumi_image_width"
+        android:layout_height="@dimen/search_item_bangumi_image_height"
         android:layout_alignParentStart="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="@dimen/default_tiny_padding"
         android:scaleType="fitXY" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginStart="10dp"
+        android:layout_height="@dimen/search_item_bangumi_image_height"
+        android:layout_marginStart="@dimen/default_general_margin"
         android:layout_toEndOf="@+id/item_img"
         android:orientation="vertical">
 
@@ -28,16 +28,16 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@color/font_normal"
-            android:textSize="16sp" />
+            android:textSize="@dimen/default_medium_text_size" />
 
         <TextView
             android:id="@+id/item_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_title"
+            android:layout_marginTop="@dimen/search_item_text_margin_top"
             android:textColor="@color/black_alpha_45"
-            android:layout_marginTop="15dp"
-            android:textSize="14sp" />
+            android:textSize="@dimen/default_small_text_size" />
 
 
         <TextView
@@ -45,11 +45,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_user_name"
+            android:layout_marginTop="@dimen/default_general_margin"
             android:ellipsize="end"
             android:maxLines="2"
-            android:layout_marginTop="10dp"
             android:textColor="@color/black_alpha_45"
-            android:textSize="14sp" />
+            android:textSize="@dimen/default_small_text_size" />
 
     </RelativeLayout>
 </RelativeLayout>
