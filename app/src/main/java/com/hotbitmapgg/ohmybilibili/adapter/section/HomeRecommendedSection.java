@@ -69,11 +69,8 @@ public class HomeRecommendedSection extends StatelessSection
     private final Random mRandom;
 
 
-    public HomeRecommendedSection(Context context,
-                                  int iconRes,
-                                  String title,
-                                  String type,
-                                  int liveCount,
+    public HomeRecommendedSection(Context context, int iconRes, String title,
+                                  String type, int liveCount,
                                   List<RecommendInfo.ResultBean.BodyBean> datas)
     {
 
@@ -130,11 +127,13 @@ public class HomeRecommendedSection extends StatelessSection
                 String gotoX = bodyBean.getGotoX();
                 if (gotoX.equals(TYPE_LIVE))
                 {
-                    LivePlayerActivity.launch((Activity) mContext, Integer.valueOf(bodyBean.getParam()), bodyBean.getTitle(),
+                    LivePlayerActivity.launch((Activity) mContext,
+                            Integer.valueOf(bodyBean.getParam()), bodyBean.getTitle(),
                             bodyBean.getOnline(), bodyBean.getUpFace(), bodyBean.getUp(), 0);
                 } else
                 {
-                    VideoDetailsActivity.launch((Activity) mContext, Integer.parseInt(bodyBean.getParam()));
+                    VideoDetailsActivity.launch((Activity) mContext,
+                            Integer.parseInt(bodyBean.getParam()));
                 }
             }
         });
@@ -275,7 +274,7 @@ public class HomeRecommendedSection extends StatelessSection
             public void onClick(View v)
             {
 
-                mContext.startActivity(new Intent(mContext, WeekDayBangumiActivity.class));
+                WeekDayBangumiActivity.launch((Activity) mContext, "二次元新番", 2);
             }
         });
 
