@@ -133,7 +133,7 @@
 
         <!--热门视频排行榜界面-->
         <activity
-            android:name=".module.home.discover.HotVideoIndexActivity"
+            android:name=".module.home.recommend.HotVideoIndexActivity"
             android:screenOrientation="portrait" />
 
         <!--全站搜索界面-->
@@ -142,7 +142,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Search" />
 
-        <!--新的播放器界面-->
+
+        <!--全区排行榜界面-->
+        <activity
+            android:name=".module.home.discover.AllRankActivity"
+            android:screenOrientation="portrait" />
+
+        <!--播放器界面-->
         <activity
             android:name=".module.video.VideoPlayerActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"

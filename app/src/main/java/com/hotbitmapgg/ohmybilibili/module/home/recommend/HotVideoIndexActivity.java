@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home.discover;
+package com.hotbitmapgg.ohmybilibili.module.home.recommend;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
  * Created by hcc on 16/8/7 14:12
  * 100332338@qq.com
  * <p/>
- * 9个热门视频排行榜界面
+ * 9个热门视频排行榜界面 从首页排行榜按钮进入
  */
 public class HotVideoIndexActivity extends RxAppCompatBaseActivity
 {
@@ -127,6 +127,7 @@ public class HotVideoIndexActivity extends RxAppCompatBaseActivity
                     @Override
                     public void call(Throwable throwable)
                     {
+
                         mCircleProgressView.setVisibility(View.GONE);
                         mCircleProgressView.stopSpinning();
                     }

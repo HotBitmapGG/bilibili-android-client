@@ -22,7 +22,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.WeekDayBangumiActivity;
-import com.hotbitmapgg.ohmybilibili.module.home.discover.HotVideoIndexActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.recommend.HotVideoIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.live.LivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;

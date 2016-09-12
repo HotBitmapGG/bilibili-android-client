@@ -2,6 +2,7 @@ package com.hotbitmapgg.ohmybilibili.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
+import com.hotbitmapgg.ohmybilibili.network.api.AllRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
@@ -440,6 +441,26 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(HDVideoService.class);
+    }
+
+
+    /**
+     * 获取全区排行榜视频
+     *
+     * @return
+     */
+    public static AllRankService getAllRankApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        return retrofit.create(AllRankService.class);
     }
 
 

@@ -113,7 +113,7 @@
             android:layout_height="@dimen/discover_item_layout_height"
             android:layout_marginTop="@dimen/default_grow_margin"
             android:background="@color/white"
-            android:clickable="true">
+            android:foreground="?attr/selectableItemBackground">
 
             <ImageView
                 android:id="@+id/ic_quanzi"
@@ -140,10 +140,12 @@
 
 
         <RelativeLayout
+            android:id="@+id/layout_sort"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:layout_marginTop="@dimen/default_grow_margin"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:foreground="?attr/selectableItemBackground">
 
             <ImageView
                 android:id="@+id/ic_original"
@@ -175,9 +177,11 @@
 
 
         <RelativeLayout
+            android:id="@+id/layout_all_rank"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:foreground="?attr/selectableItemBackground">
 
             <ImageView
                 android:id="@+id/ic_all_rank"
@@ -204,10 +208,12 @@
 
 
         <RelativeLayout
+            android:id="@+id/layout_game_center"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:layout_marginTop="@dimen/default_grow_margin"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:foreground="?attr/selectableItemBackground">
 
             <ImageView
                 android:id="@+id/ic_game"

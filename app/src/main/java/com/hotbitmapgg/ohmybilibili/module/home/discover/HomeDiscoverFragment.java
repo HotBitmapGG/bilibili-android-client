@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.module.home.discover;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
+import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -15,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -79,5 +82,26 @@ public class HomeDiscoverFragment extends RxLazyFragment
                 return mTags;
             }
         });
+    }
+
+
+    @OnClick(R.id.layout_all_rank)
+    void startAllRankActivity()
+    {
+
+        startActivity(new Intent(getActivity(), AllRankActivity.class));
+    }
+
+    @OnClick(R.id.layout_sort)
+    void startSortRankActivity()
+    {
+
+    }
+
+    @OnClick(R.id.layout_game_center)
+    void startGameCenterActivity()
+    {
+
+        startActivity(new Intent(getActivity(), GameCentreActivity.class));
     }
 }

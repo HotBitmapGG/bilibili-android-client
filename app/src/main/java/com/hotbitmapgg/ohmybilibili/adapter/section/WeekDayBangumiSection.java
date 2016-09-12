@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -113,7 +114,7 @@ public class WeekDayBangumiSection extends StatelessSection
     {
 
         HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
-        Drawable drawable = mContext.getDrawable(iconRes);
+        Drawable drawable = ContextCompat.getDrawable(mContext, iconRes);
         if (drawable != null)
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         headerViewHolder.mWeekDay.setCompoundDrawables(drawable, null, null, null);
