@@ -63,6 +63,7 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
                     .into(mHolder.mImageView);
 
             mHolder.mTitle.setText(gameItem.name);
+            mHolder.mDesc.setText(gameItem.desc);
             mHolder.mButton.setOnClickListener(new View.OnClickListener()
             {
 
@@ -94,7 +95,10 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
 
         public TextView mTitle;
 
+        public TextView mDesc;
+
         public Button mButton;
+
 
         public ItemViewHolder(View itemView)
         {
@@ -102,6 +106,7 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
             super(itemView);
             mImageView = $(R.id.item_img);
             mTitle = $(R.id.item_title);
+            mDesc = $(R.id.item_desc);
             mButton = $(R.id.item_btn);
         }
     }

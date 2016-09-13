@@ -1,38 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView android:id="@+id/card_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/game_center_layout_height">
+    android:layout_height="@dimen/game_center_layout_height"
+    android:layout_marginBottom="@dimen/default_general_margin"
+    app:cardBackgroundColor="@color/cardview_light_background"
+    app:cardCornerRadius="@dimen/app_bar_default_elevation"
+    app:cardElevation="@dimen/card_elevation">
 
-    <ImageView
-        android:id="@+id/item_img"
-        android:layout_width="@dimen/game_center_image_width"
-        android:layout_height="@dimen/game_center_image_height"
-        android:layout_alignParentStart="true"
-        android:layout_centerInParent="true"
-        android:src="@drawable/w"
-        android:layout_marginStart="@dimen/default_general_margin" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/item_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/default_general_margin"
-        android:layout_toEndOf="@+id/item_img"
-        android:textColor="@color/font_normal"
-        android:textSize="@dimen/default_medium_text_size" />
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/game_center_image_height"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/game_1" />
 
-    <Button
-        android:id="@+id/item_btn"
-        android:layout_width="@dimen/game_center_button_width"
-        android:layout_height="@dimen/game_center_button_height"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_marginEnd="@dimen/default_general_margin"
-        android:background="@drawable/corner_btn"
-        android:text="@string/download"
-        android:textColor="@color/white"
-        android:textSize="@dimen/default_small_text_size" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/game_center_bottom_layout_height"
+            android:layout_below="@+id/item_img"
+            android:paddingStart="@dimen/default_general_margin">
 
-</RelativeLayout>
+
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_tiny_padding"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_medium_text_size" />
+
+
+            <TextView
+                android:id="@+id/item_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_title"
+                android:padding="@dimen/default_tiny_padding"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_small_text_size" />
+
+            <Button
+                android:id="@+id/item_btn"
+                android:layout_width="@dimen/game_center_button_width"
+                android:layout_height="@dimen/game_center_button_height"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/default_general_margin"
+                android:background="@drawable/btn_pin_bg"
+                android:text="@string/download"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/default_small_text_size" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

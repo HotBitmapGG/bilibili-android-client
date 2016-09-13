@@ -16,9 +16,7 @@
             android:id="@+id/recycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
             android:overScrollMode="never"
-            android:paddingTop="@dimen/activity_vertical_margin"
             android:scrollbars="none" />
 
         <include layout="@layout/layout_loading" />

@@ -5,7 +5,7 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular LiveApi-level can go here. -->
-        <item name="android:listDivider">@drawable/recycle_default_line</item>
+        <item name="android:listDivider">@drawable/default_line</item>
     </style>
 
     <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">

@@ -7,5 +7,7 @@ public class GameItem
 
     public String name;
 
+    public String desc;
+
     public String path;
 }

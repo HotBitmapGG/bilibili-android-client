@@ -13,12 +13,16 @@ import com.hotbitmapgg.ohmybilibili.adapter.GameCentreAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.game.GameItem;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
+import rx.functions.Action1;
 
 /**
  * Created by hcc on 16/8/7 14:12
@@ -40,31 +44,66 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
     CircleProgressView mCircleProgressView;
 
     private int[] gameimages = new int[]{
-            R.drawable.hxzj_gamecenter_smallbanner,
-            R.drawable.wcat_list,
-            R.drawable.xwy_list,
-            R.drawable.mlk,
-            R.drawable.img_bh2,
-            R.drawable.w
-    };
+            R.drawable.game_1,
+            R.drawable.game_2,
+            R.drawable.game_3,
+            R.drawable.game_4,
+            R.drawable.game_5,
+            R.drawable.game_6,
+            R.drawable.game_7,
+            R.drawable.game_8,
+            R.drawable.game_9,
+            R.drawable.game_10,
+            R.drawable.game_11,
+            R.drawable.game_12,
+            };
 
     private String[] gametexts = new String[]{
-            "幻想战姬",
-            "白猫计划",
-            "侠物语",
-            "梅露可物语",
-            "崩坏学院2",
-            "世界2"
-    };
+            "命运-冠位指定（Fate/GO）",
+            "少女前线",
+            "苍之骑士团",
+            "ICHU偶像进行曲",
+            "幻游猎人",
+            "阴阳师",
+            "神代梦华谭",
+            "少女咖啡枪",
+            "大航海之路",
+            "皇牌机娘",
+            "妖刀少女异闻录",
+            "螺旋境界线",
+            };
+
+
+    private String[] gameDetails = new String[]
+            {
+                    "Fate系列首款正版手游即将开启！",
+                    "战地誓约，守护羁绊",
+                    "王国的命运，就交到你手上了",
+                    "把我变成真正的偶像吧！",
+                    "即时冒险RPG手游《幻游猎人》预约开启！",
+                    "唯美如樱，百鬼物语",
+                    "想变成蝴蝶Σ(:0」∠)_",
+                    "少女×枪战",
+                    "目标是星辰大海",
+                    "二次元战机娘化游戏",
+                    "拔刀吧，少女！",
+                    "幻想之境，触手可及！",
+                    };
 
     private String[] gamepaths = new String[]{
-            "http://hxzj.biligame.com/",
-            "http://bmjh.biligame.com/",
-            "http://xwy.biligame.com/",
-            "http://mlk.biligame.com/",
-            "http://teos2.biligame.com/",
-            "http://sj2.biligame.com/"
-    };
+            "http://fgo.biligame.com/dy/",
+            "http://gf.biligame.com/",
+            "http://czqst.biligame.com/",
+            "http://ichu.biligame.com/",
+            "http://hylr.biligame.com/yuyue/",
+            "http://yys.biligame.com/",
+            "http://sdmht.biligame.com/yuyue.html",
+            "http://kfq.biligame.com/yuyue/",
+            "http://dhh.biligame.com/",
+            "http://hpjn.biligame.com/",
+            "http://ydsnywl.biligame.com/",
+            "http://lxjjx.biligame.com/yuyue/",
+            };
 
     private List<GameItem> games = new ArrayList<>();
 
@@ -81,6 +120,35 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
     {
 
         showProgress();
+        setGameFill();
+    }
+
+    private void setGameFill()
+    {
+
+        Observable.timer(2000, TimeUnit.MILLISECONDS)
+                .compose(this.<Long> bindToLifecycle())
+                .doOnSubscribe(new Action0()
+                {
+
+                    @Override
+                    public void call()
+                    {
+
+                        showProgress();
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Long>()
+                {
+
+                    @Override
+                    public void call(Long aLong)
+                    {
+
+                        initData();
+                    }
+                });
     }
 
     @Override
@@ -116,6 +184,7 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
             mGameItem = new GameItem();
             mGameItem.imageRes = gameimages[i];
             mGameItem.name = gametexts[i];
+            mGameItem.desc = gameDetails[i];
             mGameItem.path = gamepaths[i];
 
             games.add(mGameItem);
@@ -131,8 +200,6 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
         mCircleProgressView.setVisibility(View.VISIBLE);
         mCircleProgressView.spin();
         mRecycle.setVisibility(View.GONE);
-
-        initData();
     }
 
     public void hideProgress()
@@ -141,7 +208,6 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
         mRecycle.setVisibility(View.VISIBLE);
-
         initRecyclerView();
     }
 
@@ -150,7 +216,6 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
 
         mRecycle.setHasFixedSize(true);
         mRecycle.setLayoutManager(new LinearLayoutManager(GameCentreActivity.this));
-        mRecycle.addItemDecoration(new DividerItemDecoration(GameCentreActivity.this, DividerItemDecoration.VERTICAL_LIST));
         GameCentreAdapter mAdapter = new GameCentreAdapter(mRecycle, games);
         mRecycle.setAdapter(mAdapter);
     }
