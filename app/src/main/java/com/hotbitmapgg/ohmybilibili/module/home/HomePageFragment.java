@@ -1,6 +1,5 @@
 package com.hotbitmapgg.ohmybilibili.module.home;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
@@ -42,7 +41,6 @@ public class HomePageFragment extends RxLazyFragment
         return R.layout.fragment_home_pager;
     }
 
-    @SuppressLint({"NewApi", "ClickableViewAccessibility"})
     @Override
     public void finishCreateView(Bundle state)
     {

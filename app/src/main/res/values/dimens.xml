@@ -80,7 +80,7 @@
     <!--home recommend size-->
     <dimen name="activity_center_card_width">200dp</dimen>
     <dimen name="activity_center_card_height">180dp</dimen>
-    <dimen name="activity_center_image_height">14dp</dimen>
+    <dimen name="activity_center_image_height">140dp</dimen>
     <dimen name="home_recommend_head_layout_height">60dp</dimen>
     <dimen name="home_recommend_head_image_size">30dp</dimen>
     <dimen name="home_recommend_foot_layout_height">60dp</dimen>
