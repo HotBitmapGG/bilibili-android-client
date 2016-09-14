@@ -62,6 +62,7 @@
                 android:layout_height="@dimen/tab_layout_small_height"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white_80"
+                android:elevation="@dimen/app_bar_elevation"
                 app:tl_indicator_color="@color/colorPrimary"
                 app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_small_radius"
                 app:tl_indicator_height="@dimen/tab_indicator_default_height"

@@ -22,7 +22,12 @@ import com.hotbitmapgg.ohmybilibili.R;
 
 import java.util.Random;
 
-
+/**
+ * Created by hcc on 16/9/14 21:37
+ * 100332338@qq.com
+ * <p/>
+ * 直播送礼物特效自定义控件
+ */
 public class LoveLikeLayout extends RelativeLayout
 {
 
