@@ -15,8 +15,8 @@
         android:paddingLeft="@dimen/default_general_margin"
         android:paddingRight="@dimen/default_general_margin"
         app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_tiny_radius"
-        app:tl_indicator_height="@dimen/tab_indicator_default_height"
-        app:tl_indicator_width="@dimen/tab_indicator_center_width"
+        app:tl_indicator_height="@dimen/tab_indicator_small_height"
+        app:tl_indicator_width="@dimen/tab_indicator_long_width"
         app:tl_tab_space_equal="true" />
 
 

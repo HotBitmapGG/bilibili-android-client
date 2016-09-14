@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.module.home.partition;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreTitle;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreType;
+import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
 
@@ -74,7 +76,8 @@ public class HomeMoreFragment extends RxLazyFragment
 
                 switch (position)
                 {
-                    case 0:
+                    case 1:
+                        //番剧
                         PartitionMoreTitle mBangumi = new PartitionMoreTitle();
                         List<PartitionMoreType> mBangumiTitles = mBangumi.titles;
                         mBangumiTitles.add(new PartitionMoreType("完结动画", 32));
@@ -94,7 +97,8 @@ public class HomeMoreFragment extends RxLazyFragment
 
                         break;
 
-                    case 1:
+                    case 2:
+                        //动画
                         PartitionMoreTitle mAnimation = new PartitionMoreTitle();
                         List<PartitionMoreType> mAnimationTitles = mAnimation.titles;
                         mAnimationTitles.add(new PartitionMoreType("MAD·AMV", 24));
@@ -118,7 +122,8 @@ public class HomeMoreFragment extends RxLazyFragment
 
                         break;
 
-                    case 2:
+                    case 3:
+                        //音乐
                         PartitionMoreTitle mMuise = new PartitionMoreTitle();
                         List<PartitionMoreType> mMuiseTitles = mMuise.titles;
                         mMuiseTitles.add(new PartitionMoreType("音乐视频", 28));
@@ -144,7 +149,8 @@ public class HomeMoreFragment extends RxLazyFragment
 
                         break;
 
-                    case 3:
+                    case 4:
+                        //舞蹈
                         PartitionMoreTitle mDence = new PartitionMoreTitle();
                         List<PartitionMoreType> mDenceTitles = mDence.titles;
                         mDenceTitles.add(new PartitionMoreType("舞蹈", 20));
@@ -162,7 +168,8 @@ public class HomeMoreFragment extends RxLazyFragment
 
                         break;
 
-                    case 4:
+                    case 5:
+                        //游戏
                         PartitionMoreTitle mGame = new PartitionMoreTitle();
                         List<PartitionMoreType> mGameTitles = mGame.titles;
                         mGameTitles.add(new PartitionMoreType("游戏视频", 17));
@@ -190,7 +197,8 @@ public class HomeMoreFragment extends RxLazyFragment
 
                         break;
 
-                    case 5:
+                    case 6:
+                        //科技
                         PartitionMoreTitle mScience = new PartitionMoreTitle();
                         List<PartitionMoreType> mScienceTitles = mScience.titles;
                         mScienceTitles.add(new PartitionMoreType("纪录片", 37));
@@ -219,7 +227,27 @@ public class HomeMoreFragment extends RxLazyFragment
 
                         break;
 
-                    case 6:
+                    case 8:
+                        //鬼畜
+                        PartitionMoreTitle mKichiku = new PartitionMoreTitle();
+                        List<PartitionMoreType> mKichikuTitles = mKichiku.titles;
+                        mKichikuTitles.add(new PartitionMoreType("三次元鬼畜", 22));
+                        mKichikuTitles.add(new PartitionMoreType("二次元鬼畜", 26));
+                        mKichikuTitles.add(new PartitionMoreType("人力VOCALOID", 126));
+                        mKichikuTitles.add(new PartitionMoreType("教程演示", 127));
+
+                        if (TextUtils.isEmpty(Secret.APP_KEY))
+                        {
+                            ToastUtil.ShortToast("AppKey为空");
+                        } else
+                        {
+                            launchTypeDetailsActivity(mKichiku, "鬼畜");
+                        }
+
+                        break;
+
+                    case 11:
+                        //娱乐
                         PartitionMoreTitle mRecreation = new PartitionMoreTitle();
                         List<PartitionMoreType> mRecreationTitles = mRecreation.titles;
                         mRecreationTitles.add(new PartitionMoreType("生活娱乐", 21));
@@ -243,25 +271,9 @@ public class HomeMoreFragment extends RxLazyFragment
 
                         break;
 
-                    case 7:
-                        PartitionMoreTitle mKichiku = new PartitionMoreTitle();
-                        List<PartitionMoreType> mKichikuTitles = mKichiku.titles;
-                        mKichikuTitles.add(new PartitionMoreType("三次元鬼畜", 22));
-                        mKichikuTitles.add(new PartitionMoreType("二次元鬼畜", 26));
-                        mKichikuTitles.add(new PartitionMoreType("人力VOCALOID", 126));
-                        mKichikuTitles.add(new PartitionMoreType("教程演示", 127));
 
-                        if (TextUtils.isEmpty(Secret.APP_KEY))
-                        {
-                            ToastUtil.ShortToast("AppKey为空");
-                        } else
-                        {
-                            launchTypeDetailsActivity(mKichiku, "鬼畜");
-                        }
-
-                        break;
-
-                    case 8:
+                    case 12:
+                        //电影
                         PartitionMoreTitle mMovei = new PartitionMoreTitle();
                         List<PartitionMoreType> mMoveiTitles = mMovei.titles;
                         mMoveiTitles.add(new PartitionMoreType("预告·花絮", 82));
@@ -285,7 +297,8 @@ public class HomeMoreFragment extends RxLazyFragment
 
                         break;
 
-                    case 9:
+                    case 13:
+                        //电视剧
                         PartitionMoreTitle mTv = new PartitionMoreTitle();
                         List<PartitionMoreType> mTvTitles = mTv.titles;
                         mTvTitles.add(new PartitionMoreType("完结剧集", 34));
@@ -307,6 +320,11 @@ public class HomeMoreFragment extends RxLazyFragment
                         }
 
                         break;
+
+
+                    case 14:
+                        // 游戏中心
+                        startActivity(new Intent(getActivity(), GameCentreActivity.class));
 
                     default:
                         break;

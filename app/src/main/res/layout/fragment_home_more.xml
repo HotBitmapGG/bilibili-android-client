@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:overScrollMode="never"
@@ -15,7 +14,7 @@
         android:columnWidth="@dimen/grid_column_width"
         android:fadingEdge="none"
         android:gravity="center"
-        android:horizontalSpacing="@dimen/grid_horizontal_spacing"
+        android:horizontalSpacing="@dimen/default_grow_margin"
         android:listSelector="@android:color/transparent"
         android:numColumns="3"
         android:overScrollMode="never"
@@ -24,6 +23,6 @@
         android:paddingRight="@dimen/default_general_margin"
         android:paddingTop="@dimen/default_long_margin"
         android:scrollbars="none"
-        android:verticalSpacing="@dimen/grid_horizontal_spacing" />
+        android:verticalSpacing="@dimen/default_grow_margin" />
 
 </android.support.v4.widget.NestedScrollView>

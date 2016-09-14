@@ -142,6 +142,7 @@
     <dimen name="tab_indicator_default_height">3dp</dimen>
     <dimen name="tab_indicator_small_width">25dp</dimen>
     <dimen name="tab_indicator_center_width">30dp</dimen>
+    <dimen name="tab_indicator_long_width">40dp</dimen>
     <dimen name="tab_layout_small_height">40dp</dimen>
     <dimen name="tab_layout_default_height">48dp</dimen>
 
