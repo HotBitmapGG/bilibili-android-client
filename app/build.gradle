@@ -25,8 +25,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:cardview-v7:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:design:23.4.0'
     //html解析库
     compile 'org.jsoup:jsoup:1.8.3'
