@@ -107,21 +107,14 @@
 
 
 
+## About me
 
+[![Wercker](https://img.shields.io/badge/weibo-HotBitmapGG-blue.svg)](http://m.weibo.cn/users/3223089177/qq)
 
-## Other
+An android developer in Wuhan.
 
-  * 知了日报客户端: https://github.com/HotBitmapGG/RxZhiHu
+If you want to make friends with me, You can focus on my weibo.
 
-  * 高仿BiliBili客户端: https://github.com/HotBitmapGG/OhMyBiliBili
-
-  * Gank.io客户端: https://github.com/HotBitmapGG/StudyProject
-
-  * 妹子福利App: https://github.com/HotBitmapGG/MoeQuest
-
-  * 圆环进度条: https://github.com/HotBitmapGG/RingProgressBar
-
-  * 仿芝麻信用分仪表盘: https://github.com/HotBitmapGG/CreditSesameRingView
 
 ## License
 
