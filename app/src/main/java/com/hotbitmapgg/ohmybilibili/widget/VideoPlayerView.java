@@ -17,8 +17,8 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.event.MediaController;
-import com.hotbitmapgg.ohmybilibili.event.callback.MediaPlayerControl;
+import com.hotbitmapgg.ohmybilibili.media.MediaController;
+import com.hotbitmapgg.ohmybilibili.media.callback.MediaPlayerControl;
 import com.hotbitmapgg.ohmybilibili.utils.ScreenResolution;
 
 import java.io.IOException;

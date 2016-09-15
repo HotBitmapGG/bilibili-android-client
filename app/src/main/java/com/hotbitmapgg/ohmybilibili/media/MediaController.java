@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.event;
+package com.hotbitmapgg.ohmybilibili.media;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -23,9 +23,9 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.event.callback.DanmakuSwitchEvent;
-import com.hotbitmapgg.ohmybilibili.event.callback.MediaPlayerControl;
-import com.hotbitmapgg.ohmybilibili.event.callback.VideoBackEvent;
+import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchEvent;
+import com.hotbitmapgg.ohmybilibili.media.callback.MediaPlayerControl;
+import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackEvent;
 import com.hotbitmapgg.ohmybilibili.widget.OutlineTextView;
 
 import java.util.Locale;

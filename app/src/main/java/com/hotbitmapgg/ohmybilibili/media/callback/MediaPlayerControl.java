@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.event.callback;
+package com.hotbitmapgg.ohmybilibili.media.callback;
 
 /**
  * Created by hcc on 16/8/31 21:42
