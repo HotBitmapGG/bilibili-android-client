@@ -4,8 +4,6 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
-    useLibrary 'org.apache.http.legacy'
-
     defaultConfig {
         applicationId "com.hotbitmapgg.ohmybilibili"
         minSdkVersion 19
@@ -17,7 +15,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            //shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
