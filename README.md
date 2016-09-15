@@ -109,7 +109,7 @@
 
 ## About me
 
-[![Wercker](https://img.shields.io/badge/weibo-HotBitmapGG-blue.svg)](http://m.weibo.cn/users/3223089177/qq)
+[![Wercker](https://img.shields.io/badge/weibo-HotBitmapGG-blue.svg)](http://weibo.com/3223089177/profile?topnav=1&wvr=6&is_all=1)
 
 An android developer in Wuhan.
 
