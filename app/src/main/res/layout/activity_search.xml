@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/gray_light"
+    android:background="@color/gray_light_30"
     android:orientation="vertical">
 
     <include layout="@layout/layout_card_search" />
@@ -24,7 +24,7 @@
                 android:id="@+id/sliding_tabs"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/tab_layout_default_height"
-                android:background="@color/gray_light"
+                android:background="@color/gray_light_30"
                 app:tl_indicator_corner_radius="1dp"
                 app:tl_indicator_color="@color/colorPrimary"
                 app:tl_indicator_height="@dimen/tab_indicator_default_height"

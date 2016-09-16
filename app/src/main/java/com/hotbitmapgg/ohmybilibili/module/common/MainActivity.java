@@ -1,6 +1,5 @@
 package com.hotbitmapgg.ohmybilibili.module.common;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -11,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -33,6 +33,7 @@ import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
 import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
+import com.hotbitmapgg.ohmybilibili.widget.dialog.CardPickerDialog;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -68,8 +69,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
     private TextView mUserName;
 
     private TextView mUserSign;
-
-    private ActionBarDrawerToggle mDrawerToggle;
 
     private Fragment[] fragments;
 
@@ -108,7 +107,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         //初始化Fragment
         initFragments();
         //设置侧滑菜单
-        mDrawerLayout.addDrawerListener(new DrawerListener());
         mNavigationView.setNavigationItemSelectedListener(this);
         View headerView = mNavigationView.getHeaderView(0);
         mUserAcatarView = (CircleImageView) headerView.findViewById(R.id.user_avatar_view);
@@ -146,7 +144,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         ConsumeHistoryFragment mConsumeHistoryFragment = ConsumeHistoryFragment.newInstance();
         SettingFragment mSettingFragment = SettingFragment.newInstance();
 
-
         fragments = new Fragment[]{
                 mHomePageFragment,
                 mFavoritesFragment,
@@ -177,25 +174,16 @@ public class MainActivity extends RxAppCompatBaseActivity implements
             mActionBar.setDisplayShowTitleEnabled(false);
         }
 
-        mDrawerToggle = new ActionBarDrawerToggle(this,
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,
                 mDrawerLayout,
                 mToolbar,
                 R.string.app_name,
                 R.string.app_name
         );
 
-        mDrawerLayout.post(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-
-                mDrawerToggle.syncState();
-            }
-        });
-
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
+
 
         //初始化SearchBar
         mSearchView.setVoiceSearch(false);
@@ -216,24 +204,8 @@ public class MainActivity extends RxAppCompatBaseActivity implements
             @Override
             public boolean onQueryTextChange(String newText)
             {
-                //Do some magic
+
                 return false;
-            }
-        });
-
-        mSearchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener()
-        {
-
-            @Override
-            public void onSearchViewShown()
-            {
-                //Do some magic
-            }
-
-            @Override
-            public void onSearchViewClosed()
-            {
-                //Do some magic
             }
         });
     }
@@ -255,12 +227,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-
-        if (mDrawerToggle != null &&
-                mDrawerToggle.onOptionsItemSelected(item))
-        {
-            return true;
-        }
 
         int id = item.getItemId();
         switch (id)
@@ -362,7 +328,9 @@ public class MainActivity extends RxAppCompatBaseActivity implements
 
             case R.id.item_theme:
                 // 主题选择
-
+                CardPickerDialog dialog = new CardPickerDialog();
+                dialog.setClickListener(this);
+                dialog.show(getSupportFragmentManager(), CardPickerDialog.TAG);
                 return true;
 
             case R.id.item_app:
@@ -403,77 +371,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         currentTabIndex = index;
     }
 
-
-    private class DrawerListener implements DrawerLayout.DrawerListener
-    {
-
-        @Override
-        public void onDrawerOpened(View drawerView)
-        {
-
-            if (mDrawerToggle != null)
-            {
-                mDrawerToggle.onDrawerOpened(drawerView);
-            }
-        }
-
-        @Override
-        public void onDrawerClosed(View drawerView)
-        {
-
-            if (mDrawerToggle != null)
-            {
-                mDrawerToggle.onDrawerClosed(drawerView);
-            }
-        }
-
-        @Override
-        public void onDrawerSlide(View drawerView, float slideOffset)
-        {
-
-            if (mDrawerToggle != null)
-            {
-                mDrawerToggle.onDrawerSlide(drawerView, slideOffset);
-            }
-        }
-
-        @Override
-        public void onDrawerStateChanged(int newState)
-        {
-
-            if (mDrawerToggle != null)
-            {
-                mDrawerToggle.onDrawerStateChanged(newState);
-            }
-        }
-    }
-
-    private class ActionBarDrawerToggle extends android.support.v7.app.ActionBarDrawerToggle
-    {
-
-        public ActionBarDrawerToggle(Activity activity, DrawerLayout drawerLayout, Toolbar toolbar,
-                                     int openDrawerContentDescRes, int closeDrawerContentDescRes)
-        {
-
-            super(activity, drawerLayout, toolbar, openDrawerContentDescRes, closeDrawerContentDescRes);
-        }
-
-        @Override
-        public void onDrawerClosed(View drawerView)
-        {
-
-            super.onDrawerClosed(drawerView);
-            invalidateOptionsMenu();
-        }
-
-        @Override
-        public void onDrawerOpened(View drawerView)
-        {
-
-            super.onDrawerOpened(drawerView);
-            invalidateOptionsMenu();
-        }
-    }
 
     /**
      * flase 显示 true不显示

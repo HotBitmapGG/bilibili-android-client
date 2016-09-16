@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FA7198</color>
-    <color name="colorPrimaryDark">#96435B</color>
+    <color name="colorPrimary">#fb7299</color>
+    <color name="colorPrimaryDark">#b85671</color>
     <color name="colorAccent">@android:color/black</color>
-    <color name="yellow">#FFD11B</color>
+    <color name="yellow_50">#FFD11B</color>
     <color name="yellow_30">#FEA501</color>
-    <color name="pink">#FD7071</color>
-    <color name="blue">#20C1FD</color>
+    <color name="pink_30">#FD7071</color>
+    <color name="blue_30">#20C1FD</color>
     <color name="white">#FFFFFF</color>
     <color name="white_30">#F2F2F2</color>
     <color name="white_80">#FAFAFA</color>
@@ -15,7 +15,7 @@
     <color name="gray">#B8B8B8</color>
     <color name="gray_20">#B3B3B3</color>
     <color name="gray_80">#BEBBB4</color>
-    <color name="gray_light">#E5E5E5</color>
+    <color name="gray_light_30">#E5E5E5</color>
     <color name="black_80">#222222</color>
     <color name="black_alpha_45">#71000000</color>
     <color name="black_alpha_30">#48000000</color>
@@ -29,4 +29,50 @@
     <color name="navigation_subtitle_primary_text">#FFFFFFFF</color>
     <color name="navigation_subtitle_secondary_text">#BFFFFFFF</color>
     <color name="card_view_background_dark">#424242</color>
+    <color name="window_background">#eaeaea</color>
+
+
+
+    <color name="theme_color_primary">#fb7299</color>
+    <color name="theme_color_primary_dark">#b85671</color>
+    <color name="theme_color_primary_trans">#99f0486c</color>
+    <color name="theme_color_secondary">#fb7299</color>
+
+    <color name="gray_dark">#999999</color>
+    <color name="gray_trans">#44999999</color>
+    <color name="gray_light">#dcdcdc</color>
+
+    <!-- theme color -->
+    <color name="pink">#fb7299</color>
+    <color name="pink_dark">#b85671</color>
+    <color name="pink_trans">#99f0486c</color>
+
+    <color name="blue">#2196F3</color>
+    <color name="blue_dark">#1565C0</color>
+    <color name="blue_trans">#B41A78C3</color>
+
+    <color name="purple">#673AB7</color>
+    <color name="purple_dark">#311B92</color>
+    <color name="purple_trans">#99673AB7</color>
+
+    <color name="green">#4CAF50</color>
+    <color name="green_dark">#2E7D32</color>
+    <color name="green_trans">#994CAF50</color>
+
+    <color name="green_light">#8BC34A</color>
+    <color name="green_light_dark">#558B2F</color>
+    <color name="green_light_trans">#998BC34A</color>
+
+    <color name="yellow">#FDD835</color>
+    <color name="yellow_dark">#FBC02D</color>
+    <color name="yellow_trans">#99FDD835</color>
+
+    <color name="orange">#FF9800</color>
+    <color name="orange_dark">#EF6C00</color>
+    <color name="orange_trans">#99FF9800</color>
+
+    <color name="red">#F44336</color>
+    <color name="red_dark">#C62828</color>
+    <color name="red_trans">#99F44336</color>
+
 </resources>
