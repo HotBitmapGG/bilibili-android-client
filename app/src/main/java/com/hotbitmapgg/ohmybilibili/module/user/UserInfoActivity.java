@@ -322,7 +322,9 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                VideoDetailsActivity.launch(UserInfoActivity.this, userVideoList.get(position).getAid());
+                VideoDetailsActivity.launch(UserInfoActivity.this,
+                        userVideoList.get(position).getAid(),
+                        userVideoList.get(position).getPic());
             }
         });
 

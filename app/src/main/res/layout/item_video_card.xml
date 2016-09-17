@@ -7,15 +7,13 @@
     android:layout_margin="@dimen/card_margin"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/card_view_background_dark"
+    app:cardBackgroundColor="@color/card_view_background"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/card_default_height"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_height="@dimen/card_default_height">
 
         <ImageView
             android:id="@+id/item_img"

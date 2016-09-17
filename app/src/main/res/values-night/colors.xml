@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3b3b3b</color>
+    <color name="colorPrimaryDark">#222323</color>
+    <color name="colorAccent">@android:color/black</color>
+    <color name="yellow_50">#FFD11B</color>
+    <color name="yellow_30">#FEA501</color>
+    <color name="pink_30">#FD7071</color>
+    <color name="blue_30">#20C1FD</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_30">#F2F2F2</color>
+    <color name="white_80">#3b3b3b</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="green_300">#81C784</color>
+    <color name="gray">#B8B8B8</color>
+    <color name="gray_20">#B3B3B3</color>
+    <color name="gray_80">#484848</color>
+    <color name="gray_light_30">#E5E5E5</color>
+    <color name="black_80">#a6a6a6</color>
+    <color name="black_alpha_45">#a6a6a6</color>
+    <color name="black_alpha_30">#a6a6a6</color>
+    <color name="black_alpha_60">#a6a6a6</color>
+    <color name="background_dark">#212121</color>
+    <color name="media_controller_bg">#99000000</color>
+    <color name="font_normal">#a6a6a6</color>
+    <color name="font_gray">#656565</color>
+    <color name="line_bg">#3b3b3b</color>
+    <color name="navigation_background_light">#3b3b3b</color>
+    <color name="navigation_subtitle_primary_text">#FFFFFFFF</color>
+    <color name="navigation_subtitle_secondary_text">#BFFFFFFF</color>
+    <color name="card_view_background">#3a3a3a</color>
+    <color name="pink_text_color">#fb7299</color>
+    <color name="item_tag_background">#3a3a3a</color>
+    <color name="item_tag_stroke_background">#2b2b2b</color>
+    <color name="refresh_pink_background">#fb7299</color>
+    <color name="bili_logo_pink_color">#fb7299</color>
+    <color name="focus_text_color">#fb7299</color>
+    <color name="focus_bg_color">#3a3a3a</color>
+    <color name="window_background">#2b2b2b</color>
+
+
+</resources>

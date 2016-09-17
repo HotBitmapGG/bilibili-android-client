@@ -230,7 +230,7 @@ public class PartitionListFragment extends RxLazyFragment
             {
 
                 PartitionMoreVideoItem bangumiMoreVideoItem = items.get(position);
-                VideoDetailsActivity.launch(getSupportActivity(), bangumiMoreVideoItem.aid);
+                VideoDetailsActivity.launch(getSupportActivity(), bangumiMoreVideoItem.aid,bangumiMoreVideoItem.pic);
             }
         });
     }

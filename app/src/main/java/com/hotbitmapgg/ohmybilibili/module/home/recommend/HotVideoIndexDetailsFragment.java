@@ -147,7 +147,9 @@ public class HotVideoIndexDetailsFragment extends RxLazyFragment
             public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
             {
 
-                VideoDetailsActivity.launch(getActivity(), videoItemInfos.get(position).aid);
+                VideoDetailsActivity.launch(getActivity(),
+                        videoItemInfos.get(position).aid,
+                        videoItemInfos.get(position).pic);
             }
         });
     }

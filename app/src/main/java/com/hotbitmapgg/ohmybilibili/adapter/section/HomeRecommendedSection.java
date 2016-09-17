@@ -133,7 +133,7 @@ public class HomeRecommendedSection extends StatelessSection
                 } else
                 {
                     VideoDetailsActivity.launch((Activity) mContext,
-                            Integer.parseInt(bodyBean.getParam()));
+                            Integer.parseInt(bodyBean.getParam()),bodyBean.getCover());
                 }
             }
         });

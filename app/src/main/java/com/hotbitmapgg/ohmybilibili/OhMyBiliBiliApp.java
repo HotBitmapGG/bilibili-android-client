@@ -20,11 +20,9 @@ public class OhMyBiliBiliApp extends Application implements ThemeUtils.switchCol
 
     public static OhMyBiliBiliApp mInstance;
 
-
     @Override
     public void onCreate()
     {
-        // TODO Auto-generated method stub
         super.onCreate();
 
         mInstance = this;

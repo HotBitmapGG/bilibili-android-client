@@ -39,8 +39,7 @@
                         android:id="@+id/video_preview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/bili_default_image_tv" />
+                        android:scaleType="fitXY" />
 
 
                 </LinearLayout>
@@ -63,11 +62,11 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white_80"
                 android:elevation="@dimen/app_bar_elevation"
-                app:tl_indicator_color="@color/colorPrimary"
+                app:tl_indicator_color="@color/bili_logo_pink_color"
                 app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_small_radius"
                 app:tl_indicator_height="@dimen/tab_indicator_default_height"
                 app:tl_indicator_width="@dimen/tab_indicator_small_width"
-                app:tl_textSelectColor="@color/colorPrimary"
+                app:tl_textSelectColor="@color/pink_text_color"
                 app:tl_textUnselectColor="@color/font_normal" />
 
             <View

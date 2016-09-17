@@ -84,7 +84,8 @@ public class AllRankItemSection extends StatelessSection
             public void onClick(View v)
             {
 
-                VideoDetailsActivity.launch((Activity) mContext, Integer.valueOf(videos.getAid()));
+                VideoDetailsActivity.launch((Activity) mContext,
+                        Integer.valueOf(videos.getAid()),videos.getPic());
             }
         });
     }

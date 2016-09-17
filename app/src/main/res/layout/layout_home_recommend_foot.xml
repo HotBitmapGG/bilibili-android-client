@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_category_more_refresh"
-            android:tint="@color/colorPrimary" />
+            android:tint="@color/refresh_pink_background" />
 
     </LinearLayout>
 
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_category_more_refresh"
-            android:tint="@color/colorPrimary" />
+            android:tint="@color/refresh_pink_background" />
 
     </LinearLayout>
 

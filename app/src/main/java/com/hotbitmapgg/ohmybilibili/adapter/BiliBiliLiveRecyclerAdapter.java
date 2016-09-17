@@ -226,7 +226,7 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
             ((LivePartitionViewHolder) holder).itemTitle.setText(partition.name);
             SpannableStringBuilder stringBuilder = new SpannableStringBuilder("当前" + partition.count + "个直播");
             ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(
-                    context.getResources().getColor(R.color.colorPrimary));
+                    context.getResources().getColor(R.color.pink_text_color));
             stringBuilder.setSpan(foregroundColorSpan, 2,
                     stringBuilder.length() - 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             ((LivePartitionViewHolder) holder).itemCount.setText(stringBuilder);

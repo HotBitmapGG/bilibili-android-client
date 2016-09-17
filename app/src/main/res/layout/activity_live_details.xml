@@ -40,7 +40,7 @@
                 android:layout_below="@+id/bili_anim"
                 android:layout_marginTop="@dimen/card_margin"
                 android:text="@string/video_init"
-                android:textColor="@android:color/black"
+                android:textColor="@color/font_normal"
                 android:textSize="@dimen/default_tiny_text_size" />
         </RelativeLayout>
 
@@ -98,6 +98,7 @@
     <RelativeLayout
         android:id="@+id/user_info_layout"
         android:layout_width="match_parent"
+        android:background="@color/card_view_background"
         android:layout_height="@dimen/live_user_layout_height"
         android:layout_below="@+id/live_layout">
 
@@ -120,7 +121,7 @@
             android:layout_marginStart="@dimen/default_general_margin"
             android:layout_toEndOf="@+id/user_pic"
             android:padding="@dimen/default_tiny_padding"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/pink_text_color"
             android:textSize="@dimen/default_tiny_text_size" />
 
 
@@ -146,7 +147,7 @@
             android:background="@drawable/btn_pin_bg"
             android:gravity="center"
             android:text="@string/add_follow"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/focus_text_color" />
 
     </RelativeLayout>
 

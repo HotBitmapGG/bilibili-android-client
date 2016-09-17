@@ -87,7 +87,7 @@ public class ComprehensiveResultsFragment extends RxLazyFragment
             {
 
                 SearchResult.ResultBean.VideoBean videoBean = videos.get(position);
-                VideoDetailsActivity.launch(getActivity(), Integer.valueOf(videoBean.getAid()));
+                VideoDetailsActivity.launch(getActivity(), Integer.valueOf(videoBean.getAid()),videoBean.getPic());
             }
         });
     }

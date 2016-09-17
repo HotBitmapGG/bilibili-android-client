@@ -8,7 +8,7 @@
         <item name="android:listDivider">@drawable/default_line</item>
     </style>
 
-    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="BaseAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
 
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>

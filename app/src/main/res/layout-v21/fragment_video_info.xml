@@ -139,6 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
+                    android:backgroundTint="@color/card_view_background"
                     android:clickable="false"
                     android:src="@drawable/ic_share_green" />
 
@@ -172,6 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
+                    android:backgroundTint="@color/card_view_background"
                     android:src="@drawable/ic_coin" />
 
                 <TextView
@@ -204,6 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
+                    android:backgroundTint="@color/card_view_background"
                     android:src="@drawable/ic_collect" />
 
                 <TextView
@@ -234,6 +237,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
+                    android:backgroundTint="@color/card_view_background"
                     android:src="@drawable/ic_download" />
 
                 <TextView

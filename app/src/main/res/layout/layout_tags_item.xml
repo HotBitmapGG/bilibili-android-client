@@ -6,7 +6,7 @@
     android:layout_marginBottom="@dimen/default_general_margin"
     android:layout_marginLeft="@dimen/default_general_margin"
     android:layout_marginRight="@dimen/default_general_margin"
-    android:background="@drawable/white_tags_bg"
+    android:background="@drawable/tags_bg"
     android:gravity="center"
     android:padding="@dimen/default_tiny_padding"
     android:textColor="@color/font_normal" />

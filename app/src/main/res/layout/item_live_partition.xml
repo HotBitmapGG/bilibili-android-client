@@ -14,14 +14,13 @@
         android:layout_weight="1"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/card_view_background_dark"
+        app:cardBackgroundColor="@color/card_view_background"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/card_elevation">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/live_item_layout_height"
-            android:background="@color/white"
             android:orientation="vertical">
 
             <ImageView

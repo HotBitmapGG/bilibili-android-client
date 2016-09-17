@@ -264,7 +264,7 @@ public class VideoInfoFragment extends RxLazyFragment
 
                 getActivity().finish();
                 VideoAlikeInfo videoAlikeInfo = mUserVideos.get(position);
-                VideoDetailsActivity.launch(getActivity(), videoAlikeInfo.aid);
+                VideoDetailsActivity.launch(getActivity(), videoAlikeInfo.aid,videoAlikeInfo.pic);
             }
         });
     }

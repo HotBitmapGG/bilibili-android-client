@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -74,11 +75,15 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     private static String EXTRA_AV = "extra_av";
 
+    private static String EXTRA_IMG_URL = "extra_img_url";
+
     private int av;
 
     private VideoDetailsPagerAdapter mAdapter;
 
     private VideoDetails mVideoDetails;
+
+    private String imgUrl;
 
 
     @Override
@@ -94,7 +99,18 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
         Intent intent = getIntent();
         if (intent != null)
+        {
             av = intent.getIntExtra(EXTRA_AV, -1);
+            imgUrl = intent.getStringExtra(EXTRA_IMG_URL);
+        }
+
+        Glide.clear(mVideoPreview);
+        Glide.with(VideoDetailsActivity.this)
+                .load(UrlHelper.getClearVideoPreviewUrl(imgUrl))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.bili_default_image_tv)
+                .into(mVideoPreview);
+
 
         getVideoInfo();
 
@@ -137,7 +153,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         mCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         //设置收缩后Toolbar上字体的颜色
         mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
-
     }
 
 
@@ -166,12 +181,13 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         }
     }
 
-    public static void launch(Activity activity, int aid)
+    public static void launch(Activity activity, int aid, String imgUrl)
     {
 
         Intent intent = new Intent(activity, VideoDetailsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(EXTRA_AV, aid);
+        intent.putExtra(EXTRA_IMG_URL, imgUrl);
         activity.startActivity(intent);
     }
 
@@ -222,7 +238,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                     {
 
                         mFAB.setClickable(false);
-                        mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
+                        mFAB.setBackgroundTintList(ColorStateList.valueOf(
+                                getResources().getColor(R.color.gray_20)));
                         LogUtil.all("获取视频详情失败" + throwable.getMessage());
                     }
                 });
@@ -236,12 +253,15 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                 getColor(R.color.colorPrimary)));
         mCollapsingToolbarLayout.setTitle(mVideoDetails.getTitle());
 
-        Glide.clear(mVideoPreview);
-        Glide.with(VideoDetailsActivity.this)
-                .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.bili_default_image_tv)
-                .into(mVideoPreview);
+        if (TextUtils.isEmpty(imgUrl))
+        {
+            Glide.clear(mVideoPreview);
+            Glide.with(VideoDetailsActivity.this)
+                    .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .into(mVideoPreview);
+        }
 
         VideoInfoFragment mVideoInfoFragment = VideoInfoFragment
                 .newInstance(mVideoDetails, av);

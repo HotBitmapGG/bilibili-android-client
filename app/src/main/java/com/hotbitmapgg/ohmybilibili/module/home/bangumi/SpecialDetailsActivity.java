@@ -284,7 +284,7 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
             {
 
                 SpecialTopic.Item item = spList.get(position);
-                VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid);
+                VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid,item.cover);
             }
         });
     }

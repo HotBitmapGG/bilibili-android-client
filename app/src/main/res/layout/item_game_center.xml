@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/game_center_layout_height"
     android:layout_marginBottom="@dimen/default_general_margin"
-    app:cardBackgroundColor="@color/cardview_light_background"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/card_view_background"
     app:cardCornerRadius="@dimen/app_bar_default_elevation"
     app:cardElevation="@dimen/card_elevation">
 

@@ -11,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -31,9 +33,9 @@ import com.hotbitmapgg.ohmybilibili.module.entry.OffLineDownloadActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.SettingFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
 import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
+import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
-import com.hotbitmapgg.ohmybilibili.widget.dialog.CardPickerDialog;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -82,6 +84,10 @@ public class MainActivity extends RxAppCompatBaseActivity implements
 
     private long exitTime;
 
+    private ImageView mSwitchMode;
+
+    private static final String SWITCH_MODE_KEY = "mode_key";
+
     //随机头像设置数组
     private static final int[] avatars = new int[]{
             R.drawable.ic_avatar1, R.drawable.ic_avatar2,
@@ -106,12 +112,19 @@ public class MainActivity extends RxAppCompatBaseActivity implements
 
         //初始化Fragment
         initFragments();
-        //设置侧滑菜单
+        //初始化侧滑菜单
+        initNavigationView();
+    }
+
+    private void initNavigationView()
+    {
+
         mNavigationView.setNavigationItemSelectedListener(this);
         View headerView = mNavigationView.getHeaderView(0);
         mUserAcatarView = (CircleImageView) headerView.findViewById(R.id.user_avatar_view);
         mUserName = (TextView) headerView.findViewById(R.id.user_name);
         mUserSign = (TextView) headerView.findViewById(R.id.user_other_info);
+        mSwitchMode = (ImageView) headerView.findViewById(R.id.iv_head_switch_mode);
         //进入应用随机设置头像
         random = new Random(SystemClock.elapsedRealtime());
         mUserAcatarView.setImageResource(avatars[random.nextInt(avatars.length)]);
@@ -129,7 +142,49 @@ public class MainActivity extends RxAppCompatBaseActivity implements
                 mUserAcatarView.setImageResource(avatars[random.nextInt(avatars.length)]);
             }
         });
+        //设置日夜间模式切换
+        mSwitchMode.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                switchNightMode();
+            }
+        });
+
+
+        boolean flag = PreferenceUtils.getBoolean(SWITCH_MODE_KEY, false);
+        if (flag)
+        {
+            mSwitchMode.setImageResource(R.drawable.ic_switch_daily);
+        } else
+        {
+
+            mSwitchMode.setImageResource(R.drawable.ic_switch_night);
+        }
     }
+
+    private void switchNightMode()
+    {
+
+        boolean isNight = PreferenceUtils.getBoolean(SWITCH_MODE_KEY, false);
+        if (isNight)
+        {
+            // 日间模式
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            PreferenceUtils.putBoolean(SWITCH_MODE_KEY, false);
+        } else
+        {
+            // 夜间模式
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            PreferenceUtils.putBoolean(SWITCH_MODE_KEY, true);
+        }
+
+        recreate();
+    }
+
 
     /**
      * 初始化Fragments
@@ -328,9 +383,9 @@ public class MainActivity extends RxAppCompatBaseActivity implements
 
             case R.id.item_theme:
                 // 主题选择
-                CardPickerDialog dialog = new CardPickerDialog();
-                dialog.setClickListener(this);
-                dialog.show(getSupportFragmentManager(), CardPickerDialog.TAG);
+//                CardPickerDialog dialog = new CardPickerDialog();
+//                dialog.setClickListener(this);
+//                dialog.show(getSupportFragmentManager(), CardPickerDialog.TAG);
                 return true;
 
             case R.id.item_app:

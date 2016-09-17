@@ -18,7 +18,7 @@
             android:layout_marginLeft="@dimen/default_general_margin"
             android:layout_marginRight="@dimen/default_general_margin"
             android:layout_marginTop="@dimen/default_general_margin"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/card_view_background"
             app:cardCornerRadius="@dimen/line_height">
 
 
@@ -37,7 +37,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center|end"
                 android:layout_marginStart="@dimen/discover_text_margin"
-                android:background="@color/white"
+                android:background="@color/card_view_background"
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:text="@string/discover_search_hint"
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:layout_marginTop="@dimen/default_grow_margin"
-            android:background="@color/white"
+            android:background="@color/card_view_background"
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
@@ -144,7 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:layout_marginTop="@dimen/default_grow_margin"
-            android:background="@color/white"
+            android:background="@color/card_view_background"
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
@@ -173,14 +173,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/line_height"
-            android:background="@color/line_bg" />
+            android:background="@color/window_background" />
 
 
         <RelativeLayout
             android:id="@+id/layout_all_rank"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
-            android:background="@color/white"
+            android:background="@color/card_view_background"
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
@@ -212,7 +212,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:layout_marginTop="@dimen/default_grow_margin"
-            android:background="@color/white"
+            android:background="@color/card_view_background"
             android:foreground="?attr/selectableItemBackground">
 
             <ImageView
