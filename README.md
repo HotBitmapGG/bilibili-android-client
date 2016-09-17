@@ -1,10 +1,10 @@
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bg.png?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bg.jpg?raw=true)
 
 ## OhMyBiliBili
 
 [![Wercker](https://img.shields.io/badge/Android%20Client-OhMyBiliBili-brightgreen.svg)]() [![Wercker](https://img.shields.io/badge/Gradle-2.1.3-brightgreen.svg)]() [![Wercker](https://img.shields.io/badge/version-V2.1.5-brightgreen.svg)](https://github.com/HotBitmapGG/OhMyBiliBili) [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?maxAge=2592000)]() [![Crates.io](https://img.shields.io/crates/l/rustc-serialize.svg?maxAge=2592000)]()
 
-## 介绍
+## 简介
 
 ### 使用到的开源库
 
@@ -55,9 +55,21 @@
 由于该项目是业余时间开发，更新比较慢还请见谅，有任何意见，bug，问题可以提issuse，我会第一时间关注并解决。
 
 
+## 声明
+
+如果该项目有侵犯版权问题，或被告知需停止共享与使用，本人会及时删除此页面与整个项目。
+
+
 ## 更新日志
 
 >由于每个版本更新的东西较多，所以从现在开始每个版本都会贴上更新日志.
+
+### V2.1.6
+
+  * 1.增加了夜间模式切换
+  * 2.界面细节调整
+  * 3.增加主题切换，因时间关系，坑还未填完
+
 
 ### V2.1.5
 
@@ -76,6 +88,11 @@
   * 1.主页推荐界面优化
   * 2.增加主页界面错误处理
   * 3.增加直播送礼物特效动画
+
+
+## Download Apk
+
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/index.png?raw=true)
 
 
 ## 截图
@@ -100,7 +117,7 @@
 
 <a href="art/19.png"><img src="art/19.png" width="40%"/></a> <a href="art/20.png"><img src="art/20.png" width="40%"/></a>
 
-<a href="art/21.png"><img src="art/21.png" width="40%"/></a>
+<a href="art/21.png"><img src="art/21.png" width="40%"/></a><a href="art/23.png"><img src="art/23.png" width="40%"/></a>
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/22.png?raw=true)
 
