@@ -61,8 +61,8 @@
 
 
     <!--game center size-->
-    <dimen name="game_center_layout_height">250dp</dimen>
-    <dimen name="game_center_image_height">180dp</dimen>
+    <dimen name="game_center_layout_height">230dp</dimen>
+    <dimen name="game_center_image_height">160dp</dimen>
     <dimen name="game_center_bottom_layout_height">70dp</dimen>
     <dimen name="game_center_button_width">70dp</dimen>
     <dimen name="game_center_button_height">35dp</dimen>

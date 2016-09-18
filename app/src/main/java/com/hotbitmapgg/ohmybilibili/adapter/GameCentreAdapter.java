@@ -58,7 +58,6 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
             Glide.with(getContext())
                     .load(gameItem.imageRes)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .centerCrop()
                     .placeholder(R.drawable.bili_default_image_tv)
                     .into(mHolder.mImageView);
 

@@ -21,8 +21,7 @@
             android:layout_height="@dimen/game_center_image_height"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/game_1" />
+            android:scaleType="fitXY" />
 
         <RelativeLayout
             android:layout_width="match_parent"
