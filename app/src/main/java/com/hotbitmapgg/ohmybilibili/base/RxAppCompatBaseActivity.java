@@ -10,7 +10,6 @@ import android.view.WindowManager;
 
 import com.bilibili.magicasakura.utils.ThemeUtils;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.utils.StatusBarCompat;
 import com.hotbitmapgg.ohmybilibili.utils.ThemeHelper;
 import com.hotbitmapgg.ohmybilibili.widget.dialog.CardPickerDialog;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
@@ -35,14 +34,10 @@ public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity implem
         setContentView(getLayoutId());
         //初始化黄油刀控件绑定框架
         ButterKnife.bind(this);
-        //适配4.4系统状态栏
-        StatusBarCompat.compat(this);
         //初始化控件
         initViews(savedInstanceState);
         //初始化ToolBar
         initToolBar();
-        //设置全局状态栏颜色
-        StatusBarCompat.compat(this);
     }
 
     @Override

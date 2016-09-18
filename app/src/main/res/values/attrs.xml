@@ -4,35 +4,35 @@
 
     <!-- CircleIndicator -->
     <declare-styleable name="CircleIndicator">
-        <attr name="ci_width" format="dimension"/>
-        <attr name="ci_height" format="dimension"/>
-        <attr name="ci_margin" format="dimension"/>
-        <attr name="ci_animator" format="reference"/>
-        <attr name="ci_animator_reverse" format="reference"/>
-        <attr name="ci_drawable" format="reference"/>
-        <attr name="ci_drawable_unselected" format="reference"/>
+        <attr name="ci_width" format="dimension" />
+        <attr name="ci_height" format="dimension" />
+        <attr name="ci_margin" format="dimension" />
+        <attr name="ci_animator" format="reference" />
+        <attr name="ci_animator_reverse" format="reference" />
+        <attr name="ci_drawable" format="reference" />
+        <attr name="ci_drawable_unselected" format="reference" />
     </declare-styleable>
 
     <!-- CircleProgressView -->
     <declare-styleable name="CircleProgressView">
-        <attr name="matProg_progressIndeterminate" format="boolean"/>
-        <attr name="matProg_barColor" format="color"/>
-        <attr name="matProg_rimColor" format="color"/>
-        <attr name="matProg_rimWidth" format="dimension"/>
-        <attr name="matProg_spinSpeed" format="float"/>
-        <attr name="matProg_barSpinCycleTime" format="integer"/>
-        <attr name="matProg_circleRadius" format="dimension"/>
-        <attr name="matProg_fillRadius" format="boolean"/>
-        <attr name="matProg_barWidth" format="dimension"/>
-        <attr name="matProg_linearProgress" format="boolean"/>
+        <attr name="matProg_progressIndeterminate" format="boolean" />
+        <attr name="matProg_barColor" format="color" />
+        <attr name="matProg_rimColor" format="color" />
+        <attr name="matProg_rimWidth" format="dimension" />
+        <attr name="matProg_spinSpeed" format="float" />
+        <attr name="matProg_barSpinCycleTime" format="integer" />
+        <attr name="matProg_circleRadius" format="dimension" />
+        <attr name="matProg_fillRadius" format="boolean" />
+        <attr name="matProg_barWidth" format="dimension" />
+        <attr name="matProg_linearProgress" format="boolean" />
     </declare-styleable>
 
 
     <!-- CircleImageView -->
     <declare-styleable name="CircleImageView">
-        <attr name="border_width" format="dimension"/>
-        <attr name="border_color" format="color"/>
-        <attr name="border_overlay" format="boolean"/>
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="border_overlay" format="boolean" />
     </declare-styleable>
 
 </resources>

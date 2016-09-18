@@ -186,7 +186,7 @@
     <dimen name="list_item_avatar_size">48dp</dimen>
     <dimen name="list_item_user_name_size">14sp</dimen>
     <!-- Navigation -->
-    <dimen name="navigation_header_height">180dp</dimen>
+    <dimen name="navigation_header_height">200dp</dimen>
     <dimen name="navigation_avatar_size">84dp</dimen>
     <dimen name="navigation_avatar_margin">16dp</dimen>
     <dimen name="navigation_subtitle_height">56dp</dimen>

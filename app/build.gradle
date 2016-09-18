@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.hotbitmapgg.ohmybilibili"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 8
         versionName "2.1.6"
@@ -55,9 +55,9 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.1'
     compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.1'
-    //最小版本21 暂时屏蔽
-    //compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.6.1'
-    //compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.1'
+    //最小版本21
+    compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.6.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.1'
     //RxLifecycle
     compile 'com.trello:rxlifecycle-components:0.6.1'
     //RxBinding

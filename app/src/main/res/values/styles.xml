@@ -20,6 +20,9 @@
     <!-- 启动页 引导页设置StatusBar为透明色 -->
     <style name="ColorTranslucentTheme" parent="@style/BaseAppTheme" />
 
+    <!--主界面 设置Style-->
+    <style name="MainActivityColorTranslucentTheme" parent="@style/BaseAppTheme" />
+
 
     <!--离线缓存进度条Style-->
     <style name="NumberProgressBar_Beauty_Red">

@@ -161,7 +161,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
             mSwitchMode.setImageResource(R.drawable.ic_switch_daily);
         } else
         {
-
             mSwitchMode.setImageResource(R.drawable.ic_switch_night);
         }
     }
@@ -494,6 +493,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
             exitTime = System.currentTimeMillis();
         } else
         {
+            PreferenceUtils.remove(SWITCH_MODE_KEY);
             finish();
         }
     }

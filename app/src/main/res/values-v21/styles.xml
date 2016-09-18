@@ -15,6 +15,15 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <!--主界面 设置Style-->
+    <style name="MainActivityColorTranslucentTheme" parent="@style/BaseAppTheme">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+
     <!--搜索界面Style-->
     <style name="AppTheme.Search" parent="AppTheme">
         <item name="windowActionBar">false</item>
