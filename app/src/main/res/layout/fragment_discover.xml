@@ -86,7 +86,7 @@
                 android:layout_height="@dimen/line_height"
                 android:layout_marginStart="@dimen/default_long_margin"
                 android:layout_weight="1"
-                android:background="@color/line_bg" />
+                android:background="@color/gray_20" />
 
             <TextView
                 android:layout_width="@dimen/app_bar_default_elevation"
@@ -102,7 +102,7 @@
                 android:layout_height="@dimen/line_height"
                 android:layout_marginEnd="@dimen/default_long_margin"
                 android:layout_weight="1"
-                android:background="@color/line_bg" />
+                android:background="@color/gray_20" />
 
 
         </LinearLayout>
