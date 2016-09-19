@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.module.home.bangumi;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +25,6 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopicIResult;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;
@@ -93,7 +93,7 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
     private static final String EXTRA_SEASON_ID = "season_id";
 
-    private ArrayList<SpecialTopic.Item> spList = new ArrayList<SpecialTopic.Item>();
+    private ArrayList<SpecialTopic.Item> spList = new ArrayList<>();
 
 
     @Override
@@ -173,7 +173,6 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("专题数据获取失败" + throwable.getMessage());
                         mCircleProgressView.setVisibility(View.GONE);
                         mCircleProgressView.stopSpinning();
                     }
@@ -211,13 +210,13 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("获取专题视频列表失败" + throwable.getMessage());
                         mCircleProgressView.setVisibility(View.GONE);
                         mCircleProgressView.stopSpinning();
                     }
                 });
     }
 
+    @SuppressLint("SetTextI18n")
     public void finishGetSpInfo()
     {
         // 专题名称

@@ -193,7 +193,6 @@ public class PartitionListFragment extends RxLazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("分区数据获取失败" + throwable.getMessage());
                         loadMoreView.setVisibility(View.GONE);
                         mSwipeRefreshLayout.post(new Runnable()
                         {

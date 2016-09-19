@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,7 +26,6 @@ import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -42,7 +44,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 用户个人中心界面
  */
-public class UserInfoActivity extends RxAppCompatBaseActivity implements View.OnClickListener
+public class UserInfoActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.user_avatar_view)
@@ -101,11 +103,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
 
     private UserInfo mUserInfo;
 
-    private ArrayList<Integer> uids = new ArrayList<>();
-
     private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
-
-    private UserUpVideoAdapter mAdapter;
 
     private static final String EXTRA_USER_NAME = "extra_user_name",
             EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
@@ -145,43 +143,72 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
                     .into(mAvatarImage);
         }
 
-
-        mMoreTextView.setOnClickListener(this);
-        mFollowNumText.setOnClickListener(this);
-        mFansNumText.setOnClickListener(this);
-
-        startGetUserBasicInfo();
+        startGetUserInfoTask();
     }
+
 
     @Override
     public void initToolBar()
     {
 
         mCollapsingToolbarLayout.setTitle(name);
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                finish();
-            }
-        });
+        setSupportActionBar(mToolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null)
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void startGetUserBasicInfo()
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
     {
 
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
 
+    private void startGetUserInfoTask()
+    {
+
+
+        showProgressBar();
         getUserInfo();
     }
 
 
-    public void finishBasicInfoGetTask()
+    public void getUserInfo()
+    {
+
+        RetrofitHelper.getUserInfoApi()
+                .getUserInfoByName(name)
+                .compose(this.<UserInfo> bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<UserInfo>()
+                {
+
+                    @Override
+                    public void call(UserInfo userInfo)
+                    {
+
+                        mUserInfo = userInfo;
+                        finishUserInfoTask();
+                    }
+                }, new Action1<Throwable>()
+                {
+
+                    @Override
+                    public void call(Throwable throwable)
+                    {
+
+                        hideProgressBar();
+                    }
+                });
+    }
+
+
+    public void finishUserInfoTask()
     {
 
         mNumberBar.setVisibility(View.VISIBLE);
@@ -233,10 +260,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
             }
         }
 
-        List<Integer> attentions = mUserInfo.attentions;
-        uids.addAll(attentions);
-
-        startGetListTask();
+        getUserVideoList();
     }
 
     private void setUserLevel(int rank)
@@ -266,11 +290,6 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         }
     }
 
-    private void startGetListTask()
-    {
-
-        getUserVideoList();
-    }
 
     private void getUserVideoList()
     {
@@ -299,9 +318,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("获取用户上传视频失败" + throwable.getMessage());
-                        mCircleProgressView.setVisibility(View.GONE);
-                        mCircleProgressView.stopSpinning();
+                        hideProgressBar();
                     }
                 });
     }
@@ -313,7 +330,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setLayoutManager(new GridLayoutManager(UserInfoActivity.this, 2));
-        mAdapter = new UserUpVideoAdapter(mRecyclerView, userVideoList);
+        UserUpVideoAdapter mAdapter = new UserUpVideoAdapter(mRecyclerView, userVideoList);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
         {
@@ -333,9 +350,38 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
                 String.valueOf(mUserInfo.article) + ")";
         mUpTip.setText(str);
         mRecyclerView.setVisibility(View.VISIBLE);
+        mMoreTextView.setVisibility(View.VISIBLE);
+        hideProgressBar();
+    }
+
+
+    @OnClick(R.id.btn_go_more)
+    void startUpAllVideos()
+    {
+        //查看Up主所有视频
+        UserUpMoreCoverActivity.launch(UserInfoActivity.this, mUserInfo.name, mUserInfo.mid);
+    }
+
+    @OnClick(R.id.tv_fans)
+    void startUpFans()
+    {
+        //查看Up主的粉丝
+        UserFansActivity.launch(UserInfoActivity.this, String.valueOf(mid), name);
+    }
+
+
+    public void showProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.VISIBLE);
+        mCircleProgressView.spin();
+    }
+
+    public void hideProgressBar()
+    {
+
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
-        mMoreTextView.setVisibility(View.VISIBLE);
     }
 
 
@@ -348,60 +394,5 @@ public class UserInfoActivity extends RxAppCompatBaseActivity implements View.On
         intent.putExtra(EXTRA_MID, mid);
         intent.putExtra(EXTRA_AVATAR_URL, avatar_url);
         activity.startActivity(intent);
-    }
-
-    @Override
-    public void onClick(View v)
-    {
-
-        switch (v.getId())
-        {
-            case R.id.btn_go_more:
-                //查看Up主所有视频
-                UserUpMoreCoverActivity.launch(UserInfoActivity.this, mUserInfo.name, mUserInfo.mid);
-                break;
-
-            case R.id.tv_follow_users:
-                //关注的人
-
-                break;
-
-            case R.id.tv_fans:
-                //查看粉丝
-                UserFansActivity.launch(UserInfoActivity.this, mid + "", name);
-                break;
-        }
-    }
-
-    public void getUserInfo()
-    {
-
-        RetrofitHelper.getUserInfoApi()
-                .getUserInfoByName(name)
-                .compose(this.<UserInfo> bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<UserInfo>()
-                {
-
-                    @Override
-                    public void call(UserInfo userInfo)
-                    {
-
-                        mUserInfo = userInfo;
-                        finishBasicInfoGetTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        LogUtil.all("用户详情数据获取失败" + throwable.getMessage());
-                        mCircleProgressView.setVisibility(View.GONE);
-                        mCircleProgressView.stopSpinning();
-                    }
-                });
     }
 }

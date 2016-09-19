@@ -83,8 +83,6 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
 
     private Observable<VideoSrc> observable;
 
-    private MediaController mMediaController;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -132,7 +130,7 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
     private void initData()
     {
         //配置播放器
-        mMediaController = new MediaController(this);
+        MediaController mMediaController = new MediaController(this);
         mDanmakuView.enableDanmakuDrawingCache(true);
         mPlayerView.setMediaController(mMediaController);
         mPlayerView.setMediaBufferingIndicator(mBufferingIndicator);

@@ -31,7 +31,6 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -242,7 +241,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                         mFAB.setClickable(false);
                         mFAB.setBackgroundTintList(ColorStateList.valueOf(
                                 getResources().getColor(R.color.gray_20)));
-                        LogUtil.all("获取视频详情失败" + throwable.getMessage());
                     }
                 });
     }

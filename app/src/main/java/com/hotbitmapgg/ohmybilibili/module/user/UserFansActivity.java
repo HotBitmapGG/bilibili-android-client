@@ -3,10 +3,12 @@ package com.hotbitmapgg.ohmybilibili.module.user;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -14,7 +16,6 @@ import com.hotbitmapgg.ohmybilibili.adapter.UserFansAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserFans;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.DividerItemDecoration;
 import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.EndlessRecyclerOnScrollListener;
@@ -87,18 +88,17 @@ public class UserFansActivity extends RxAppCompatBaseActivity
         }
 
 
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
-
-        getFans();
+        showProgressBar();
         initRecyclerView();
+        getFans();
     }
 
     private void initRecyclerView()
     {
 
         mRecyclerAdapter = new UserFansAdapter(mRecyclerView, userfansList);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(UserFansActivity.this, DividerItemDecoration.VERTICAL_LIST));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(UserFansActivity.this,
+                DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -123,18 +123,21 @@ public class UserFansActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
         mToolbar.setTitle(userName + "的粉丝");
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
+        setSupportActionBar(mToolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null)
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+    }
 
-            @Override
-            public void onClick(View v)
-            {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
 
-                finish();
-            }
-        });
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void getFans()
@@ -175,8 +178,8 @@ public class UserFansActivity extends RxAppCompatBaseActivity
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("获取用户粉丝失败" + throwable.getMessage());
                         loadMoreView.setVisibility(View.GONE);
+                        hideProgressBar();
                     }
                 });
     }
@@ -184,8 +187,7 @@ public class UserFansActivity extends RxAppCompatBaseActivity
     private void finishTask()
     {
 
-        mCircleProgressView.setVisibility(View.GONE);
-        mCircleProgressView.stopSpinning();
+        hideProgressBar();
 
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
@@ -200,6 +202,21 @@ public class UserFansActivity extends RxAppCompatBaseActivity
                 .inflate(R.layout.layout_load_more, mRecyclerView, false);
         mAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
+    }
+
+
+    public void showProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.VISIBLE);
+        mCircleProgressView.spin();
+    }
+
+    public void hideProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.GONE);
+        mCircleProgressView.stopSpinning();
     }
 
 

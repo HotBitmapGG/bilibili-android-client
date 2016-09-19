@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
+import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -72,12 +73,21 @@ public class HomeDiscoverFragment extends RxLazyFragment
         {
 
             @Override
-            public View getView(FlowLayout parent, int position, String s)
+            public View getView(FlowLayout parent, int position, final String s)
             {
 
                 TextView mTags = (TextView) LayoutInflater.from(getActivity())
                         .inflate(R.layout.layout_tags_item, parent, false);
                 mTags.setText(s);
+                mTags.setOnClickListener(new View.OnClickListener()
+                {
+
+                    @Override
+                    public void onClick(View v)
+                    {
+                        TotalStationSearchActivity.launch(getActivity(),s);
+                    }
+                });
 
                 return mTags;
             }
@@ -103,5 +113,12 @@ public class HomeDiscoverFragment extends RxLazyFragment
     {
 
         startActivity(new Intent(getActivity(), GameCentreActivity.class));
+    }
+
+    @OnClick(R.id.card_view)
+    void startSearchActivity()
+    {
+
+        startActivity(new Intent(getActivity(), TotalStationSearchActivity.class));
     }
 }

@@ -23,6 +23,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.KeyBoardUtil;
+import com.hotbitmapgg.ohmybilibili.utils.StatusBarUtils;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
@@ -98,7 +99,10 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
     @Override
     public void initToolBar()
     {
-
+        //设置6.0以上StatusBar字体颜色
+        StatusBarUtils.from(this)
+                .setLightStatusBar(true)
+                .process();
     }
 
     @Override
@@ -112,6 +116,7 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
         mLoadingView.setImageResource(R.drawable.anim_search_loading);
         mAnimationDrawable = (AnimationDrawable) mLoadingView.getDrawable();
         showSearchAnim();
+        mSearchEdit.setText(content);
         getSearchData(content);
         search();
         setUpEditText();

@@ -2,9 +2,11 @@ package com.hotbitmapgg.ohmybilibili.module.video;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -13,7 +15,6 @@ import com.hotbitmapgg.ohmybilibili.adapter.base.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommend;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;
@@ -45,8 +46,6 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
 
     private List<UserRecommend.AuthorData> authorRecommendList = new ArrayList<>();
 
-    private VideoPartListAdapter mPartListAdapter;
-
     private String aid;
 
     private static final String EXTRA_AV = "extra_av";
@@ -65,9 +64,8 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
 
         Intent intent = getIntent();
         if (intent != null)
-        {
             aid = intent.getStringExtra("aid");
-        }
+
 
         startTask();
     }
@@ -77,26 +75,25 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
     {
 
         mToolbar.setTitle("Up主推荐视频");
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                onBackPressed();
-            }
-        });
+        setSupportActionBar(mToolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null)
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
 
     private void startTask()
     {
 
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
-
+        showProgressBar();
         getAuthorRecommendVideoList();
     }
 
@@ -135,9 +132,7 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("获取Up主推荐的更多视频失败" + throwable.getMessage());
-                        mCircleProgressView.setVisibility(View.GONE);
-                        mCircleProgressView.stopSpinning();
+                        hideProgressBar();
                     }
                 });
     }
@@ -146,7 +141,7 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
     private void finishGetAuthorRecommendListTask()
     {
 
-        mPartListAdapter = new VideoPartListAdapter(mRecyclerView, authorRecommendList);
+        VideoPartListAdapter mPartListAdapter = new VideoPartListAdapter(mRecyclerView, authorRecommendList);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(VideoPartsListMoreActivity.this, 2));
         mRecyclerView.setAdapter(mPartListAdapter);
@@ -165,6 +160,18 @@ public class VideoPartsListMoreActivity extends RxAppCompatBaseActivity
             }
         });
 
+        hideProgressBar();
+    }
+
+    public void showProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.VISIBLE);
+        mCircleProgressView.spin();
+    }
+
+    public void hideProgressBar()
+    {
 
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();

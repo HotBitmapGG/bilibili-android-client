@@ -45,8 +45,6 @@ public class VideoCommentFragment extends RxLazyFragment
 
     private int ver = 3;
 
-    private VideoCommentAdapter mRecyclerAdapter;
-
     private static final String AID = "aid";
 
     private View loadMoreView;
@@ -88,7 +86,7 @@ public class VideoCommentFragment extends RxLazyFragment
     private void initRecyclerView()
     {
 
-        mRecyclerAdapter = new VideoCommentAdapter(mRecyclerView, comments);
+        VideoCommentAdapter mRecyclerAdapter = new VideoCommentAdapter(mRecyclerView, comments);
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -138,7 +136,6 @@ public class VideoCommentFragment extends RxLazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("视频评论数据获取失败" + throwable.getMessage());
                         loadMoreView.setVisibility(View.GONE);
                     }
                 });

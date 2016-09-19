@@ -18,7 +18,6 @@ import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.WeekDayBangumiResult;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapter;
 
@@ -278,7 +277,6 @@ public class WeekDayBangumiActivity extends RxAppCompatBaseActivity
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("番剧放送表加载失败" + throwable.getMessage());
                         hideProgressBar();
                     }
                 });

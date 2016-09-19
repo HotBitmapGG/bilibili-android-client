@@ -18,7 +18,6 @@ import com.hotbitmapgg.ohmybilibili.entity.video.VideoAlikeInfo;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoAlikeResult;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.UserTagView;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -88,8 +87,6 @@ public class VideoInfoFragment extends RxLazyFragment
     private static final String EXTRA_INFO = "extra_info";
 
     private List<VideoAlikeInfo> mUserVideos = new ArrayList<>();
-
-    private VideoAlikeListAdapter mVideoAlikeListAdapter;
 
     private VideoDetails mVideoDetails;
 
@@ -161,7 +158,7 @@ public class VideoInfoFragment extends RxLazyFragment
         setVideoTags();
 
         //获取该用户推荐的视频列表
-        getVideoListPartsByTid(mVideoDetails.getTid() + "");
+        getVideoListPartsByTid(String.valueOf(mVideoDetails.getTid()));
     }
 
     private void setVideoTags()
@@ -241,7 +238,7 @@ public class VideoInfoFragment extends RxLazyFragment
                     public void call(Throwable throwable)
                     {
 
-                        LogUtil.all("根据类型查询相关视频失败" + throwable.getMessage());
+
                     }
                 });
     }
@@ -250,7 +247,7 @@ public class VideoInfoFragment extends RxLazyFragment
     private void finishPartsGetTask()
     {
 
-        mVideoAlikeListAdapter = new VideoAlikeListAdapter(mVideoPartList, mUserVideos);
+        VideoAlikeListAdapter mVideoAlikeListAdapter = new VideoAlikeListAdapter(mVideoPartList, mUserVideos);
         mVideoPartList.setHasFixedSize(false);
         mVideoPartList.setNestedScrollingEnabled(false);
         mVideoPartList.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -264,7 +261,7 @@ public class VideoInfoFragment extends RxLazyFragment
 
                 getActivity().finish();
                 VideoAlikeInfo videoAlikeInfo = mUserVideos.get(position);
-                VideoDetailsActivity.launch(getActivity(), videoAlikeInfo.aid,videoAlikeInfo.pic);
+                VideoDetailsActivity.launch(getActivity(), videoAlikeInfo.aid, videoAlikeInfo.pic);
             }
         });
     }
@@ -276,7 +273,7 @@ public class VideoInfoFragment extends RxLazyFragment
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
-        intent.putExtra(Intent.EXTRA_TEXT, "来自「哔哩哔哩」的分享:" + mVideoDetails.describeContents());
+        intent.putExtra(Intent.EXTRA_TEXT, "来自「哔哩哔哩」的分享:" + mVideoDetails.getDescription());
         startActivity(Intent.createChooser(intent, mVideoDetails.getTitle()));
     }
 
@@ -286,5 +283,4 @@ public class VideoInfoFragment extends RxLazyFragment
     {
 
     }
-
 }

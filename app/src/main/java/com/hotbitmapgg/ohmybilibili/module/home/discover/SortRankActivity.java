@@ -8,7 +8,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
  * Created by hcc on 16/9/12 20:20
  * 100332338@qq.com
  * <p/>
- * 分类排行榜 发现界面进入
+ * 原创排行榜(API来自各类型排行前10视频)
  */
 public class SortRankActivity extends RxAppCompatBaseActivity
 {
