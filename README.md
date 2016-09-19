@@ -116,6 +116,8 @@
 
 <a href="art/22.png"><img src="art/22.png" width="40%"/></a> <a href="art/25.png"><img src="art/25.png" width="40%"/></a>
 
+<a href="art/28.png"><img src="art/28.png" width="40%"/></a> <a href="art/29.png"><img src="art/29.png" width="40%"/></a>
+
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/26.png?raw=true)
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/27.png?raw=true)

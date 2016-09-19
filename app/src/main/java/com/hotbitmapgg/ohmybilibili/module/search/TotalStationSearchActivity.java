@@ -8,12 +8,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
@@ -315,18 +317,51 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
         fragments.add(bangumiResultsFragment);
         fragments.add(topicResultsFragment);
 
-        SearchTabAdapter mAdapter =  new SearchTabAdapter(getSupportFragmentManager(), titles, fragments);
+        SearchTabAdapter mAdapter = new SearchTabAdapter(getSupportFragmentManager(), titles, fragments);
         mViewPager.setAdapter(mAdapter);
         mSlidingTabLayout.setViewPager(mViewPager);
+        measureTabLayoutTextWidth(0);
         mSlidingTabLayout.setCurrentTab(0);
         mAdapter.notifyDataSetChanged();
         mSlidingTabLayout.notifyDataSetChanged();
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
+
+            }
+
+            @Override
+            public void onPageSelected(int position)
+            {
+
+                measureTabLayoutTextWidth(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state)
+            {
+
+            }
+        });
     }
 
     public String checkNumResults(int numResult)
     {
 
         return numResult > 100 ? "99+" : String.valueOf(numResult);
+    }
+
+    private void measureTabLayoutTextWidth(int position)
+    {
+
+        String title = titles.get(position);
+        TextView titleView = mSlidingTabLayout.getTitleView(position);
+        TextPaint paint = titleView.getPaint();
+        float textWidth = paint.measureText(title);
+        mSlidingTabLayout.setIndicatorWidth(textWidth / 3);
     }
 
 
@@ -355,7 +390,8 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
         mLoadingView.setImageResource(R.drawable.search_failed);
     }
 
-    @OnClick(R.id.search_back) void OnBack()
+    @OnClick(R.id.search_back)
+    void OnBack()
     {
 
         onBackPressed();

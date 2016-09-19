@@ -319,7 +319,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         TextView titleView = mSlidingTabLayout.getTitleView(position);
         TextPaint paint = titleView.getPaint();
         float textWidth = paint.measureText(title);
-        mSlidingTabLayout.setIndicatorWidth(textWidth);
+        mSlidingTabLayout.setIndicatorWidth(textWidth / 3);
     }
 
     public static class VideoDetailsPagerAdapter extends FragmentStatePagerAdapter
