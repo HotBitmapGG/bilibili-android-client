@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget;
+package com.hotbitmapgg.ohmybilibili.widget.livelike;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

@@ -17,9 +17,8 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserFans;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.DividerItemDecoration;
-import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.EndlessRecyclerOnScrollListener;
-import com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper.HeaderViewRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -58,8 +57,6 @@ public class UserFansActivity extends RxAppCompatBaseActivity
 
     private ArrayList<UserFans.FansInfo> userfansList = new ArrayList<>();
 
-    private UserFansAdapter mRecyclerAdapter;
-
     private HeaderViewRecyclerAdapter mAdapter;
 
     private int pageNum = 1;
@@ -96,9 +93,7 @@ public class UserFansActivity extends RxAppCompatBaseActivity
     private void initRecyclerView()
     {
 
-        mRecyclerAdapter = new UserFansAdapter(mRecyclerView, userfansList);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(UserFansActivity.this,
-                DividerItemDecoration.VERTICAL_LIST));
+        UserFansAdapter mRecyclerAdapter = new UserFansAdapter(mRecyclerView, userfansList);
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);

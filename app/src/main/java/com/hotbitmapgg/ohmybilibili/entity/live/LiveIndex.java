@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.entity.live;
 
-import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
+import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class LiveIndex
 {
 
-    public List<BaseBanner> banner;
+    public List<BannerEntity> banner;
 
     public List<Entrance> entranceIcons;
 

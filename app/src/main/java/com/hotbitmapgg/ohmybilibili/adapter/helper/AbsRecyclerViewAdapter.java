@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.adapter.base;
+package com.hotbitmapgg.ohmybilibili.adapter.helper;
 
 import android.content.Context;
 import android.support.annotation.IdRes;

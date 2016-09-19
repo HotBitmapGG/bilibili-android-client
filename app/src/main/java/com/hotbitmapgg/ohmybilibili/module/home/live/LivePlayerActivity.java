@@ -23,7 +23,7 @@ import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
-import com.hotbitmapgg.ohmybilibili.widget.LoveLikeLayout;
+import com.hotbitmapgg.ohmybilibili.widget.livelike.LoveLikeLayout;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

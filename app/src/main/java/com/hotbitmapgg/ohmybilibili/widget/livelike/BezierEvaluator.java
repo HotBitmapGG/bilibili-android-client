@@ -1,8 +1,14 @@
-package com.hotbitmapgg.ohmybilibili.widget;
+package com.hotbitmapgg.ohmybilibili.widget.livelike;
 
 import android.animation.TypeEvaluator;
 import android.graphics.PointF;
 
+/**
+ * Created by hcc on 16/9/14 21:37
+ * 100332338@qq.com
+ * <p/>
+ * 贝塞尔曲线运动轨迹估值器
+ */
 public class BezierEvaluator implements TypeEvaluator<PointF>
 {
 

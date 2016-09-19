@@ -13,7 +13,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendBannerSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendTopicSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendedSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
+import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
@@ -50,7 +50,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private List<RecommendInfo.ResultBean> results = new ArrayList<>();
 
-    private List<BaseBanner> banners = new ArrayList<>();
+    private List<BannerEntity> banners = new ArrayList<>();
 
     private static final String BANNER_TYPE = "weblink";
 
@@ -191,14 +191,14 @@ public class HomeRecommendedFragment extends RxLazyFragment
                         for (int i = 0; i < size; i++)
                         {
                             RecommendInfo.ResultBean result = recommendInfo.getResult().get(i);
-                            BaseBanner banner;
+                            BannerEntity banner;
                             if (result.getType() != null)
                             {
                                 if (result.getType().equals(BANNER_TYPE))
                                 {
                                     List<RecommendInfo.ResultBean.BodyBean> bodys = result.getBody();
                                     RecommendInfo.ResultBean.BodyBean body = bodys.get(0);
-                                    banner = new BaseBanner();
+                                    banner = new BannerEntity();
                                     banner.img = body.getCover();
                                     banner.title = body.getTitle();
                                     banner.link = body.getParam();

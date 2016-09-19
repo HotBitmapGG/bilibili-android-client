@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget;
+package com.hotbitmapgg.ohmybilibili.widget.progressbar;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -13,7 +13,6 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
 import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 
@@ -56,7 +55,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
 
     private Context context;
 
-    private List<BaseBanner> bannerList;
+    private List<BannerEntity> bannerList;
 
     //选中显示Indicator
     private int selectRes = R.drawable.shape_dots_select;
@@ -117,7 +116,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
     /**
      * 图片轮播需要传入参数
      */
-    public void build(List<BaseBanner> list)
+    public void build(List<BannerEntity> list)
     {
 
         destory();

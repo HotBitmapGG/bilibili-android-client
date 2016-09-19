@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.hotbitmapgg.ohmybilibili.widget.NumberProgressBar
+                <com.hotbitmapgg.ohmybilibili.widget.progressbar.NumberProgressBar
                     android:id="@+id/progress_bar"
                     style="@style/NumberProgressBar_Beauty_Red"
                     android:layout_width="match_parent"

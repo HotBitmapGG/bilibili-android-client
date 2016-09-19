@@ -41,7 +41,7 @@ public class ThemeHelper
 
         getSharePreference(context).edit()
                 .putInt(CURRENT_THEME, themeId)
-                .commit();
+                .apply();
     }
 
     public static int getTheme(Context context)

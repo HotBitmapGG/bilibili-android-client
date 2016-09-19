@@ -18,13 +18,15 @@ import java.lang.reflect.Method;
 /**
  * Created by hcc on 16/9/18 13:41
  * 100332338@qq.com
+ * <p>
+ * 沉浸式状态栏工具类
  */
 public class StatusBarUtils
 {
 
     private final boolean lightStatusBar;
 
-    //透明且背景不占用控件的statusbar，这里估且叫做沉浸
+    //透明且背景不占用控件的statusbar
     private final boolean transparentStatusBar;
 
     private final boolean transparentNavigationbar;

@@ -13,7 +13,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.CommonUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
-import com.hotbitmapgg.ohmybilibili.widget.NumberProgressBar;
+import com.hotbitmapgg.ohmybilibili.widget.progressbar.NumberProgressBar;
 
 import butterknife.Bind;
 

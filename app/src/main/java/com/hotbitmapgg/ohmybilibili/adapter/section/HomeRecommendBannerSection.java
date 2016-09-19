@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.BaseBanner;
+import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
@@ -23,9 +23,9 @@ import butterknife.ButterKnife;
 public class HomeRecommendBannerSection extends StatelessSection
 {
 
-    private List<BaseBanner> banners = new ArrayList<>();
+    private List<BannerEntity> banners = new ArrayList<>();
 
-    public HomeRecommendBannerSection(List<BaseBanner> banners)
+    public HomeRecommendBannerSection(List<BannerEntity> banners)
     {
 
         super(R.layout.layout_banner, R.layout.layout_home_recommend_empty);

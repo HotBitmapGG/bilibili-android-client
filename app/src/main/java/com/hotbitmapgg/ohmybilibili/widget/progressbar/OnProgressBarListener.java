@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget;
+package com.hotbitmapgg.ohmybilibili.widget.progressbar;
 
 public interface OnProgressBarListener
 {

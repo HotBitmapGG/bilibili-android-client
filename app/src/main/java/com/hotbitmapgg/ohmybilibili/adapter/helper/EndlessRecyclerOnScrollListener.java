@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget.recyclerview_helper;
+package com.hotbitmapgg.ohmybilibili.adapter.helper;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

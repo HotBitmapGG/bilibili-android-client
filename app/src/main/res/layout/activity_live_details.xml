@@ -88,7 +88,7 @@
                 android:src="@drawable/ic_live_palyer_zoom_in" />
         </RelativeLayout>
 
-        <com.hotbitmapgg.ohmybilibili.widget.LoveLikeLayout
+        <com.hotbitmapgg.ohmybilibili.widget.livelike.LoveLikeLayout
             android:id="@+id/love_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
