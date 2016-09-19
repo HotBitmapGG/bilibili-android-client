@@ -20,7 +20,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/splash_logo_margin"
-        android:src="@drawable/ic_share_logo_bilibili"
+        android:src="@drawable/ic_bili_logo"
         android:tint="@color/bili_logo_pink_color" />
 
     <TextView

@@ -1,35 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-
-    <com.flyco.tablayout.SlidingTabLayout
-        android:id="@+id/sliding_tabs"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tab_layout_default_height"
-        android:background="@color/colorPrimary"
-        android:paddingLeft="@dimen/default_general_margin"
-        android:paddingRight="@dimen/default_general_margin"
-        app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_tiny_radius"
-        app:tl_indicator_height="@dimen/tab_indicator_small_height"
-        app:tl_indicator_width="@dimen/tab_indicator_long_width"
-        app:tl_tab_space_equal="true" />
+        android:layout_height="match_parent">
 
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
+        <android.support.design.widget.AppBarLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:contentInsetStart="0dp"
+                app:contentInsetStart="0dp"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+
+                <LinearLayout
+                    android:id="@+id/navigation_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_drawer_home" />
+
+                    <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                        android:id="@+id/toolbar_user_avatar"
+                        android:layout_width="@dimen/circle_user_small_size"
+                        android:layout_height="@dimen/circle_user_small_size"
+                        android:layout_marginEnd="@dimen/default_tiny_margin"
+                        android:layout_marginStart="@dimen/activity_vertical_margin"
+                        android:src="@drawable/ic_bg"
+                        app:border_color="@color/white"
+                        app:border_width="@dimen/circle_default_width" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_general_margin"
+                        android:singleLine="true"
+                        android:text="@string/hotbitmapgg"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/default_medium_text_size" />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.Toolbar>
+
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/sliding_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tab_layout_default_height"
+                android:background="@color/colorPrimary"
+                android:paddingLeft="@dimen/default_general_margin"
+                android:paddingRight="@dimen/default_general_margin"
+                app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_tiny_radius"
+                app:tl_indicator_height="@dimen/tab_indicator_small_height"
+                app:tl_indicator_width="@dimen/tab_indicator_long_width"
+                app:tl_tab_space_equal="true" />
+
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <com.miguelcatalan.materialsearchview.MaterialSearchView
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="wrap_content" />
 
 
-</LinearLayout>
-
-
+</FrameLayout>
 
 
 

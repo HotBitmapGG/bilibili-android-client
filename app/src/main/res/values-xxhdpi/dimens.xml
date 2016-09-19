@@ -151,6 +151,7 @@
     <dimen name="circle_default_width">1dp</dimen>
     <dimen name="circle_margin_top">20dp</dimen>
     <dimen name="text_margin_top">40dp</dimen>
+    <dimen name="circle_user_small_size">34dp</dimen>
 
     <!-- Common resources -->
     <dimen name="appbar_parallax_max_height">236dp</dimen>

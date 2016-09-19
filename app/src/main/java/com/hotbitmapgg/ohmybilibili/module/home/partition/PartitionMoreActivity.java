@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
@@ -69,6 +71,30 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
         mAdapter = new PartitionMorePagerAdapter(getSupportFragmentManager(), this.titles);
         mViewPager.setAdapter(mAdapter);
         mSlidingTab.setViewPager(mViewPager);
+        //动态设置tabView的下划线宽度
+        measureTabLayoutTextWidth(0);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
+
+            }
+
+            @Override
+            public void onPageSelected(int position)
+            {
+
+                measureTabLayoutTextWidth(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state)
+            {
+
+            }
+        });
     }
 
     @Override
@@ -89,6 +115,17 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void measureTabLayoutTextWidth(int position)
+    {
+
+        String titleName = titles.get(position).getTitleName();
+        TextView titleView = mSlidingTab.getTitleView(position);
+        TextPaint paint = titleView.getPaint();
+        float v = paint.measureText(titleName);
+        mSlidingTab.setIndicatorWidth(v / 3);
     }
 
     public static void launch(Activity activity, PartitionMoreTitle titles, String typeTitle)
