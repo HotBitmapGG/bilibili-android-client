@@ -1,131 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hotbitmapgg.ohmybilibili.widget.SpringScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbars="none">
+    android:orientation="vertical">
 
-    <LinearLayout
+
+    <include layout="@layout/layout_toolbar" />
+
+    <com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
 
-        <RelativeLayout
-            android:id="@+id/layout_about_me"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/discover_item_layout_height"
-            android:layout_marginTop="@dimen/default_grow_margin"
-            android:background="@color/card_view_background"
-            android:foreground="?attr/selectableItemBackground">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/default_grow_margin"
-                android:text="@string/about_developers"
-                android:textColor="@color/font_normal"
+            <RelativeLayout
+                android:id="@+id/layout_about_me"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_item_layout_height"
+                android:layout_marginTop="@dimen/default_grow_margin"
+                android:background="@color/card_view_background"
+                android:foreground="?attr/selectableItemBackground">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/default_grow_margin"
+                    android:text="@string/about_developers"
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_medium_text_size" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/default_grow_margin"
+                    android:src="@drawable/register_bottom_arrow" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_bg" />
+
+
+            <RelativeLayout
+                android:id="@+id/layout_about_app"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_item_layout_height"
+                android:background="@color/card_view_background"
+                android:foreground="?attr/selectableItemBackground">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/default_grow_margin"
+                    android:text="@string/about"
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_medium_text_size" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/default_grow_margin"
+                    android:src="@drawable/register_bottom_arrow" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/layout_update"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/discover_item_layout_height"
+                android:layout_marginTop="@dimen/default_grow_margin"
+                android:background="@color/card_view_background"
+                android:foreground="?attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/default_grow_margin"
+                    android:text="@string/check_update"
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_medium_text_size" />
+
+                <TextView
+                    android:id="@+id/app_version_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/default_general_margin"
+                    android:layout_toStartOf="@+id/update_arrow"
+                    android:text="@string/about_version"
+                    android:textColor="@color/black_alpha_45"
+                    android:textSize="@dimen/default_medium_text_size" />
+
+                <ImageView
+                    android:id="@+id/update_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/default_grow_margin"
+                    android:src="@drawable/register_bottom_arrow" />
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/login_button_height"
+                android:layout_marginBottom="@dimen/default_general_margin"
+                android:layout_marginLeft="@dimen/default_general_margin"
+                android:layout_marginRight="@dimen/default_general_margin"
+                android:layout_marginTop="@dimen/default_long_margin"
+                android:background="@drawable/corner_btn"
+                android:gravity="center"
+                android:text="@string/logout"
+                android:textColor="@color/white"
                 android:textSize="@dimen/default_medium_text_size" />
+        </LinearLayout>
+    </com.hotbitmapgg.ohmybilibili.widget.SpringScrollView>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/default_grow_margin"
-                android:src="@drawable/register_bottom_arrow" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/line_bg" />
-
-
-        <RelativeLayout
-            android:id="@+id/layout_about_app"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/discover_item_layout_height"
-            android:background="@color/card_view_background"
-            android:foreground="?attr/selectableItemBackground">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/default_grow_margin"
-                android:text="@string/about"
-                android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_medium_text_size" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/default_grow_margin"
-                android:src="@drawable/register_bottom_arrow" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/layout_update"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/discover_item_layout_height"
-            android:layout_marginTop="@dimen/default_grow_margin"
-            android:background="@color/card_view_background"
-            android:foreground="?attr/selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/default_grow_margin"
-                android:text="@string/check_update"
-                android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_medium_text_size" />
-
-            <TextView
-                android:id="@+id/app_version_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/default_general_margin"
-                android:layout_toStartOf="@+id/update_arrow"
-                android:text="@string/about_version"
-                android:textColor="@color/black_alpha_45"
-                android:textSize="@dimen/default_medium_text_size" />
-
-            <ImageView
-                android:id="@+id/update_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="@dimen/default_grow_margin"
-                android:src="@drawable/register_bottom_arrow" />
-        </RelativeLayout>
-
-
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/login_button_height"
-            android:layout_marginBottom="@dimen/default_general_margin"
-            android:layout_marginLeft="@dimen/default_general_margin"
-            android:layout_marginRight="@dimen/default_general_margin"
-            android:layout_marginTop="@dimen/default_long_margin"
-            android:background="@drawable/corner_btn"
-            android:gravity="center"
-            android:text="@string/logout"
-            android:textColor="@color/white"
-            android:textSize="@dimen/default_medium_text_size" />
-    </LinearLayout>
-</com.hotbitmapgg.ohmybilibili.widget.SpringScrollView>
-
+</LinearLayout>

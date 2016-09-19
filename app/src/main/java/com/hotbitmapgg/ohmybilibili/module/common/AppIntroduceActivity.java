@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 
 import butterknife.Bind;
 
@@ -53,6 +54,10 @@ public class AppIntroduceActivity extends RxAppCompatBaseActivity
             actionBar.setDisplayHomeAsUpEnabled(true);
 
         mCollapsingToolbarLayout.setTitle(getString(R.string.about) + "v" + getVersion());
+
+        //设置StatusBar透明
+        SystemBarHelper.immersiveStatusBar(this);
+        SystemBarHelper.setHeightAndPadding(this, mToolbar);
     }
 
     @Override

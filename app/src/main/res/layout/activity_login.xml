@@ -27,7 +27,8 @@
     <RelativeLayout
         android:id="@+id/logo_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
 
         <ImageView
             android:id="@+id/iv_icon_left"
@@ -40,9 +41,10 @@
             android:id="@+id/iv_icon_centre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="@dimen/default_tiny_padding"
-            android:src="@drawable/ic_bili_logo" />
+            android:layout_marginTop="@dimen/default_tiny_padding"
+            android:src="@drawable/ic_bili_logo_2016" />
 
         <ImageView
             android:id="@+id/iv_icon_right"

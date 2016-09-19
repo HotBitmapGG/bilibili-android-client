@@ -26,6 +26,7 @@ import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
+import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
@@ -156,6 +157,11 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null)
             supportActionBar.setDisplayHomeAsUpEnabled(true);
+
+
+        //设置StatusBar透明
+        SystemBarHelper.immersiveStatusBar(this);
+        SystemBarHelper.setHeightAndPadding(this, mToolbar);
     }
 
 

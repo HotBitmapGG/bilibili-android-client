@@ -29,8 +29,10 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
+import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
+import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +71,9 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.app_bar_layout)
     AppBarLayout mAppBarLayout;
+
+    @Bind(R.id.tv_player)
+    TextView mTvPlayer;
 
     private List<Fragment> fragments = new ArrayList<>();
 
@@ -139,12 +144,36 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                 setViewsTranslation(verticalOffset);
             }
         });
+
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeEvent()
+        {
+
+
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset)
+            {
+
+                if (state == State.EXPANDED)
+                {
+                    //展开状态
+                    mTvPlayer.setVisibility(View.GONE);
+                } else if (state == State.COLLAPSED)
+                {
+                    //折叠状态
+                    mTvPlayer.setVisibility(View.VISIBLE);
+                } else
+                {
+                    mTvPlayer.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     @Override
     public void initToolBar()
     {
 
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null)
@@ -154,6 +183,10 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         mCollapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         //设置收缩后Toolbar上字体的颜色
         mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+
+        //设置StatusBar透明
+        SystemBarHelper.immersiveStatusBar(this);
+        SystemBarHelper.setHeightAndPadding(this, mToolbar);
     }
 
 
@@ -251,7 +284,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         mFAB.setClickable(true);
         mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().
                 getColor(R.color.colorPrimary)));
-        mCollapsingToolbarLayout.setTitle(mVideoDetails.getTitle());
+        mCollapsingToolbarLayout.setTitle("");
 
         if (TextUtils.isEmpty(imgUrl))
         {
