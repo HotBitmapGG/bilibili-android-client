@@ -12,7 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.flyco.tablayout.SlidingTabLayout;
-import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.HomePagerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
@@ -133,23 +132,6 @@ public class HomePageFragment extends RxLazyFragment
         mViewPager.setOffscreenPageLimit(5);
         mViewPager.setAdapter(mHomeAdapter);
         mSlidingTab.setViewPager(mViewPager);
-        mSlidingTab.setOnTabSelectListener(new OnTabSelectListener()
-        {
-
-            @Override
-            public void onTabSelect(int position)
-            {
-
-                mViewPager.setCurrentItem(position, false);
-                mSlidingTab.onPageSelected(position);
-            }
-
-            @Override
-            public void onTabReselect(int position)
-            {
-
-            }
-        });
     }
 
 
