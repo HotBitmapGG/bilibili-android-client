@@ -90,11 +90,6 @@
   * 3.增加直播送礼物特效动画
 
 
-## Download Apk
-
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/index.png?raw=true)
-
-
 ## 截图
 
 <a href="art/01.png"><img src="art/01.png" width="40%"/></a> <a href="art/02.png"><img src="art/02.png" width="40%"/></a>
