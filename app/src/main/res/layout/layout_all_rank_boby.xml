@@ -19,8 +19,7 @@
             android:id="@+id/item_img"
             android:layout_width="match_parent"
             android:layout_height="@dimen/card_image_default_height"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
+            android:scaleType="center" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -75,8 +75,10 @@ public class HomeRecommendTopicSection extends StatelessSection
 
         Glide.with(mContext)
                 .load(imgUrl)
+                .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.bili_default_image_tv)
+                .dontAnimate()
                 .into(topicViewHolder.mImageView);
 
         topicViewHolder.mTextView.setText(title);

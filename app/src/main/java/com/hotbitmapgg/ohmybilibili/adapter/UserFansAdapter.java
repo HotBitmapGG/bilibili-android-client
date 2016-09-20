@@ -28,8 +28,7 @@ public class UserFansAdapter extends AbsRecyclerViewAdapter
     private List<UserFans.FansInfo> infos = new ArrayList<>();
 
 
-    public UserFansAdapter(RecyclerView recyclerView,
-                           List<UserFans.FansInfo> infos)
+    public UserFansAdapter(RecyclerView recyclerView, List<UserFans.FansInfo> infos)
     {
 
         super(recyclerView);

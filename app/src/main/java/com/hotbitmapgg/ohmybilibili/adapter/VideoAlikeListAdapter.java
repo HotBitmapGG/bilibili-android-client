@@ -55,9 +55,10 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 
             Glide.with(getContext())
                     .load(UrlHelper.getClearVideoPreviewUrl(videoAlikeInfo.pic))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(itemViewHolder.mVideoPic);
 
             itemViewHolder.mVideoTitle.setText(videoAlikeInfo.title);

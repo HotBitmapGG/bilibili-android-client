@@ -111,9 +111,10 @@ public class HomeRecommendedSection extends StatelessSection
 
         Glide.with(mContext)
                 .load(Uri.parse(bodyBean.getCover()))
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.bili_default_image_tv)
+                .dontAnimate()
                 .into(itemViewHolder.mVideoImg);
 
         itemViewHolder.mVideoTitle.setText(bodyBean.getTitle());
@@ -133,7 +134,7 @@ public class HomeRecommendedSection extends StatelessSection
                 } else
                 {
                     VideoDetailsActivity.launch((Activity) mContext,
-                            Integer.parseInt(bodyBean.getParam()),bodyBean.getCover());
+                            Integer.parseInt(bodyBean.getParam()), bodyBean.getCover());
                 }
             }
         });

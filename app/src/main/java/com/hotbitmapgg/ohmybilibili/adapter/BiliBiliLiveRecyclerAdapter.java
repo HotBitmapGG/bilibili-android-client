@@ -170,8 +170,10 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 
                 Glide.with(context)
                         .load(item.cover.src)
+                        .centerCrop()
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .placeholder(R.drawable.bili_default_image_tv)
+                        .dontAnimate()
                         .into(((LiveItemViewHolder) holder).itemLiveCover);
 
                 ((LiveItemViewHolder) holder).itemLiveTitle.setText(item.title);

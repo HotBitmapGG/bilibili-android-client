@@ -29,8 +29,7 @@ public class SpecialVideoRecyclerAdapter extends AbsRecyclerViewAdapter
 
     private List<SpecialTopic.Item> spItems = new ArrayList<>();
 
-    public SpecialVideoRecyclerAdapter(RecyclerView recyclerView,
-                                       List<SpecialTopic.Item> spItems)
+    public SpecialVideoRecyclerAdapter(RecyclerView recyclerView, List<SpecialTopic.Item> spItems)
     {
 
         super(recyclerView);
@@ -59,8 +58,10 @@ public class SpecialVideoRecyclerAdapter extends AbsRecyclerViewAdapter
 
             Glide.with(getContext())
                     .load(Uri.parse(item.cover))
+                    .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(itemViewHolder.mPreviewImage);
         }
         super.onBindViewHolder(holder, position);

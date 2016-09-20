@@ -55,8 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/card_margin"
         app:cardBackgroundColor="@color/cardview_light_background"
-        app:cardElevation="@dimen/app_bar_default_elevation"
-        app:cardCornerRadius="@dimen/card_corner_radius">
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/app_bar_default_elevation">
 
 
         <LinearLayout
@@ -68,7 +68,7 @@
                 android:id="@+id/topic_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/card_image_default_height"
-                android:scaleType="centerCrop" />
+                android:scaleType="center" />
 
             <TextView
                 android:id="@+id/topic_title"

@@ -28,8 +28,7 @@ public class PartitionMoreRecyclerAdapter extends AbsRecyclerViewAdapter
 
     private List<PartitionMoreVideoItem> mList;
 
-    public PartitionMoreRecyclerAdapter(RecyclerView recyclerView,
-                                        List<PartitionMoreVideoItem> list)
+    public PartitionMoreRecyclerAdapter(RecyclerView recyclerView, List<PartitionMoreVideoItem> list)
     {
 
         super(recyclerView);
@@ -52,9 +51,10 @@ public class PartitionMoreRecyclerAdapter extends AbsRecyclerViewAdapter
 
                 Glide.with(getContext())
                         .load(Uri.parse(videoItemInfo.pic))
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .placeholder(R.drawable.bili_default_image_tv)
+                        .dontAnimate()
                         .into(mHolder.mPreviewImage);
 
                 String play = videoItemInfo.play;

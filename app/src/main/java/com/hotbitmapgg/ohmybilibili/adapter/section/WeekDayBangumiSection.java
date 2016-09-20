@@ -78,8 +78,10 @@ public class WeekDayBangumiSection extends StatelessSection
         {
             Glide.with(mContext)
                     .load(Uri.parse(weekDayBangumi.cover))
+                    .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(itemViewHolder.mImageView);
         } else
         {

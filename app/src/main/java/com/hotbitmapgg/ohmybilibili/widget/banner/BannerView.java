@@ -161,10 +161,11 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
         for (int i = 0; i < bannerList.size(); i++)
         {
             ImageView mImageView = new ImageView(context);
+
             Glide.with(context)
                     .load(bannerList.get(i).img)
+                    .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.bili_default_image_tv)
                     .into(mImageView);
             imageViewList.add(mImageView);
         }

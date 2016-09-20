@@ -28,8 +28,7 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
 
     private List<BangumiRecommend.RecommendsBean> recommends = new ArrayList<>();
 
-    public BangumiRecommendRecyclerAdapter(RecyclerView recyclerView,
-                                           List<BangumiRecommend.RecommendsBean> recommends)
+    public BangumiRecommendRecyclerAdapter(RecyclerView recyclerView, List<BangumiRecommend.RecommendsBean> recommends)
     {
 
         super(recyclerView);
@@ -57,9 +56,10 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
 
             Glide.with(getContext())
                     .load(recommendsBean.getPic())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(itemViewHolder.mImage);
 
             itemViewHolder.mTitle.setText(recommendsBean.getTitle());

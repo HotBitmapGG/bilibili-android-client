@@ -19,7 +19,7 @@
             android:id="@+id/item_img"
             android:layout_width="@dimen/bangumi_index_image_size"
             android:layout_height="@dimen/bangumi_index_image_size"
-            android:scaleType="centerCrop" />
+            android:scaleType="center" />
 
     </android.support.v7.widget.CardView>
 

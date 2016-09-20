@@ -20,7 +20,7 @@
             android:id="@+id/item_img"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bangumi_recommend_image_big_height"
-            android:scaleType="fitXY" />
+            android:scaleType="center" />
 
         <TextView
             android:id="@+id/item_play"

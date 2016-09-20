@@ -171,6 +171,7 @@ public class HomeLiveFragment extends RxLazyFragment
 
         mSwipeRefreshLayout.setRefreshing(false);
         mCustomEmptyView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
         mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
         SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,请重新加载或者检查网络是否链接");
@@ -180,6 +181,7 @@ public class HomeLiveFragment extends RxLazyFragment
             @Override
             public void reloadClick()
             {
+
                 showProgressBar();
             }
         });
@@ -189,6 +191,7 @@ public class HomeLiveFragment extends RxLazyFragment
     {
 
         mCustomEmptyView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
 

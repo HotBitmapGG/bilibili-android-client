@@ -17,12 +17,11 @@
         android:orientation="vertical">
 
 
-            <ImageView
-                android:id="@+id/item_img"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/weekday_bangumi_card_image_height"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true" />
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/weekday_bangumi_card_image_height"
+            android:scaleType="center" />
 
 
         <LinearLayout

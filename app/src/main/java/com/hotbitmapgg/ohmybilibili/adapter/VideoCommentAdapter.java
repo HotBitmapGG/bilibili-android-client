@@ -30,8 +30,7 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
 
     private List<VideoComment.List> comments = new ArrayList<>();
 
-    public VideoCommentAdapter(RecyclerView recyclerView,
-                               List<VideoComment.List> comments)
+    public VideoCommentAdapter(RecyclerView recyclerView, List<VideoComment.List> comments)
     {
 
         super(recyclerView);

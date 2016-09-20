@@ -28,8 +28,7 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 
     List<VideoItemInfo> videoItemInfos = new ArrayList<>();
 
-    public HotVideoIndexRecyclerAdapter(RecyclerView recyclerView,
-                                        List<VideoItemInfo> videoItemInfos)
+    public HotVideoIndexRecyclerAdapter(RecyclerView recyclerView, List<VideoItemInfo> videoItemInfos)
     {
 
         super(recyclerView);
@@ -59,9 +58,10 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 
             Glide.with(getContext())
                     .load(Uri.parse(videoItemInfo.pic))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(itemViewHolder.mVideoImg);
         }
         super.onBindViewHolder(holder, position);

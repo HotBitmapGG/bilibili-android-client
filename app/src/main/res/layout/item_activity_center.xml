@@ -20,8 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/activity_center_image_height"
             android:layout_alignParentTop="true"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
+            android:scaleType="center" />
 
 
         <TextView

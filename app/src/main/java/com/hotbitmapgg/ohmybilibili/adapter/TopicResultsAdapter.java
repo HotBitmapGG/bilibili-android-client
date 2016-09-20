@@ -54,9 +54,10 @@ public class TopicResultsAdapter extends AbsRecyclerViewAdapter
 
             Glide.with(getContext())
                     .load(UrlHelper.getClearVideoPreviewUrl(topicBean.getCover()))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(itemViewHolder.mTopicPic);
 
             itemViewHolder.mTopicTitle.setText(topicBean.getTitle());

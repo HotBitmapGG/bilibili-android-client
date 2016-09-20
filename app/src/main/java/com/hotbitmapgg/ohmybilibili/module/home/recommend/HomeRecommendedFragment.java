@@ -258,14 +258,12 @@ public class HomeRecommendedFragment extends RxLazyFragment
                 mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
                         banners.get(banners.size() - 2).img,
                         banners.get(banners.size() - 2).title));
-            }
-            else if(i == size - 1)
+            } else if (i == size - 1)
             {
                 mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
                         banners.get(banners.size() - 1).img,
                         banners.get(banners.size() - 1).title));
-            }
-            else
+            } else
             {
                 mSectionedAdapter.addSection(new HomeRecommendedSection(
                         getActivity(),
@@ -284,6 +282,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
         mSwipeRefreshLayout.setRefreshing(false);
         mCustomEmptyView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
         mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
         SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,请重新加载或者检查网络是否链接");
@@ -303,6 +302,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
     {
 
         mCustomEmptyView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
 

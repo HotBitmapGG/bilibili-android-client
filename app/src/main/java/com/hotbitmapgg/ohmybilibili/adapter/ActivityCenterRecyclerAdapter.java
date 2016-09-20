@@ -26,8 +26,7 @@ public class ActivityCenterRecyclerAdapter extends AbsRecyclerViewAdapter
 
     private List<RecommendInfo.ResultBean.BodyBean> activitys;
 
-    public ActivityCenterRecyclerAdapter(RecyclerView recyclerView,
-                                         List<RecommendInfo.ResultBean.BodyBean> activitys)
+    public ActivityCenterRecyclerAdapter(RecyclerView recyclerView, List<RecommendInfo.ResultBean.BodyBean> activitys)
     {
 
         super(recyclerView);
@@ -53,10 +52,12 @@ public class ActivityCenterRecyclerAdapter extends AbsRecyclerViewAdapter
 
             Glide.with(getContext())
                     .load(activitys.get(position).getCover())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(itemViewHolder.mVideoImg);
+
             itemViewHolder.mVideoTitle.setText(activitys.get(position).getTitle());
         }
     }

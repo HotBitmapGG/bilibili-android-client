@@ -56,6 +56,7 @@ public class BangumiResultsAdapter extends AbsRecyclerViewAdapter
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(itemViewHolder.mBangumiPic);
 
             itemViewHolder.mBangumiTitle.setText(bangumiBean.getTitle());
@@ -90,7 +91,7 @@ public class BangumiResultsAdapter extends AbsRecyclerViewAdapter
 
             mBangumiPic = $(R.id.item_img);
             mBangumiTitle = $(R.id.item_title);
-          //  mBangumiFrom = $(R.id.item_user_name);
+            //  mBangumiFrom = $(R.id.item_user_name);
             mBangumiDetails = $(R.id.item_details);
         }
     }

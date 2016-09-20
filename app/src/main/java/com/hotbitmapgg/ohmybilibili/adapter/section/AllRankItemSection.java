@@ -73,7 +73,9 @@ public class AllRankItemSection extends StatelessSection
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.bili_default_image_tv)
+                .dontAnimate()
                 .into(itemViewHolder.mImageView);
+
         itemViewHolder.mTitle.setText(videos.getTitle());
         itemViewHolder.mPlay.setText(String.valueOf(videos.getPlay()));
         itemViewHolder.mReview.setText(String.valueOf(videos.getReview()));
@@ -85,7 +87,7 @@ public class AllRankItemSection extends StatelessSection
             {
 
                 VideoDetailsActivity.launch((Activity) mContext,
-                        Integer.valueOf(videos.getAid()),videos.getPic());
+                        Integer.valueOf(videos.getAid()), videos.getPic());
             }
         });
     }

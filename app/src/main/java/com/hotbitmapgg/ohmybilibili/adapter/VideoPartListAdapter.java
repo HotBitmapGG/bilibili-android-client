@@ -28,8 +28,7 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 
     private List<UserRecommend.AuthorData> datas = new ArrayList<>();
 
-    public VideoPartListAdapter(RecyclerView recyclerView,
-                                List<UserRecommend.AuthorData> datas)
+    public VideoPartListAdapter(RecyclerView recyclerView, List<UserRecommend.AuthorData> datas)
     {
 
         super(recyclerView);
@@ -56,9 +55,10 @@ public class VideoPartListAdapter extends AbsRecyclerViewAdapter
 
             Glide.with(getContext())
                     .load(UrlHelper.getClearVideoPreviewUrl(authorData.cover))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(mHolder.mVideoPic);
 
             mHolder.mVideoTitle.setText(authorData.title);

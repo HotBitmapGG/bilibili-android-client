@@ -27,8 +27,7 @@ public class ComprehensiveResultsAdapter extends AbsRecyclerViewAdapter
 
     private List<SearchResult.ResultBean.VideoBean> videos;
 
-    public ComprehensiveResultsAdapter(RecyclerView recyclerView,
-                                       List<SearchResult.ResultBean.VideoBean> videos)
+    public ComprehensiveResultsAdapter(RecyclerView recyclerView, List<SearchResult.ResultBean.VideoBean> videos)
     {
 
         super(recyclerView);
@@ -56,9 +55,10 @@ public class ComprehensiveResultsAdapter extends AbsRecyclerViewAdapter
 
             Glide.with(getContext())
                     .load(UrlHelper.getClearVideoPreviewUrl(videoBean.getPic()))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(itemViewHolder.mVideoPic);
 
             itemViewHolder.mVideoTitle.setText(videoBean.getTitle());

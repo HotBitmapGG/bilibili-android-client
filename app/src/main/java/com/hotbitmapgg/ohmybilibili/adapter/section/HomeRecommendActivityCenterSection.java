@@ -28,8 +28,7 @@ public class HomeRecommendActivityCenterSection extends StatelessSection
 
     private List<RecommendInfo.ResultBean.BodyBean> activitys;
 
-    public HomeRecommendActivityCenterSection(Context context,
-                                              List<RecommendInfo.ResultBean.BodyBean> activitys)
+    public HomeRecommendActivityCenterSection(Context context, List<RecommendInfo.ResultBean.BodyBean> activitys)
     {
 
         super(R.layout.layout_home_recommend_activitycenter,
