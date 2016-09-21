@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.HomeBangumiFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.discover.HomeDiscoverFragment;
-import com.hotbitmapgg.ohmybilibili.module.entry.HomeFocusFragment;
+import com.hotbitmapgg.ohmybilibili.module.home.focus.HomeFocusFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.live.HomeLiveFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.partition.HomeMoreFragment;
 import com.hotbitmapgg.ohmybilibili.module.home.recommend.HomeRecommendedFragment;

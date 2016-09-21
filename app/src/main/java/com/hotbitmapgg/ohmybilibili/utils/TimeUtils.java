@@ -15,16 +15,13 @@ import java.util.Locale;
 public class TimeUtils
 {
 
-    public static SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd",
-            Locale.getDefault());
+    public static SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
     public static SimpleDateFormat formatDay = new SimpleDateFormat("d", Locale.getDefault());
 
-    public static SimpleDateFormat formatMonthDay = new SimpleDateFormat("M-d",
-            Locale.getDefault());
+    public static SimpleDateFormat formatMonthDay = new SimpleDateFormat("M-d", Locale.getDefault());
 
-    public static SimpleDateFormat formatDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
-            Locale.getDefault());
+    public static SimpleDateFormat formatDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
 
     /**

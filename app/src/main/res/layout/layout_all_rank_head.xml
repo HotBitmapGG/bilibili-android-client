@@ -27,5 +27,17 @@
         android:textSize="@dimen/default_medium_text_size" />
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:drawableEnd="@drawable/register_bottom_arrow"
+        android:drawablePadding="@dimen/default_tiny_padding"
+        android:text="@string/more"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/default_small_text_size" />
+
+
 </RelativeLayout>
 

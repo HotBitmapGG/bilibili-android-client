@@ -26,23 +26,21 @@
                 app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle.About"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-
-                <LinearLayout
-
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/appbar_parallax_max_height"
+                    android:background="@color/window_background"
                     android:fitsSystemWindows="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:gravity="center">
 
                     <ImageView
                         android:id="@+id/video_preview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY" />
+                        android:scaleType="center" />
 
 
-                </LinearLayout>
+                </FrameLayout>
 
 
                 <android.support.v7.widget.Toolbar

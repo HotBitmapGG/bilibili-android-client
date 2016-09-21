@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.entry;
+package com.hotbitmapgg.ohmybilibili.module.home.focus;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +15,8 @@ import butterknife.Bind;
  * 100332338@qq.com
  * <p/>
  * 主界面关注界面
+ * 该界面由于需要请求登录用户的关注数据
+ * 所以这里只能用假数据让界面好看点
  */
 public class HomeFocusFragment extends RxLazyFragment
 {

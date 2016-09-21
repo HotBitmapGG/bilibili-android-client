@@ -110,11 +110,12 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
             imgUrl = intent.getStringExtra(EXTRA_IMG_URL);
         }
 
-        Glide.clear(mVideoPreview);
         Glide.with(VideoDetailsActivity.this)
                 .load(UrlHelper.getClearVideoPreviewUrl(imgUrl))
+                .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.bili_default_image_tv)
+                .dontAnimate()
                 .into(mVideoPreview);
 
 
@@ -288,11 +289,12 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
         if (TextUtils.isEmpty(imgUrl))
         {
-            Glide.clear(mVideoPreview);
             Glide.with(VideoDetailsActivity.this)
                     .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
+                    .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(mVideoPreview);
         }
 

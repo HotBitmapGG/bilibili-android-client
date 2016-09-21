@@ -24,7 +24,7 @@
 
     <!--weekday bangumi layout size-->
     <dimen name="weekday_bangumi_card_height">170dp</dimen>
-    <dimen name="weekday_bangumi_card_image_height">120dp</dimen>
+    <dimen name="weekday_bangumi_card_image_height">116dp</dimen>
     <dimen name="weekday_bangumi_bottom_layout_height">58dp</dimen>
     <dimen name="weekday_bangumi_head_height">60dp</dimen>
 

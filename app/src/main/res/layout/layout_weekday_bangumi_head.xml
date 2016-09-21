@@ -14,4 +14,17 @@
         android:textColor="@color/gray_80"
         android:textSize="@dimen/default_big_large_text_size" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="@dimen/default_tiny_padding"
+        android:drawableEnd="@drawable/register_bottom_arrow"
+        android:drawablePadding="@dimen/default_tiny_margin"
+        android:text="@string/more"
+        android:textColor="@color/black_alpha_30"
+        android:textSize="@dimen/default_small_text_size" />
+
 </RelativeLayout>
