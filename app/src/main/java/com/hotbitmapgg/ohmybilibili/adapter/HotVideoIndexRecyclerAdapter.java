@@ -75,7 +75,7 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 
         if (position == 0)
         {
-            itemViewHolder.mSortNum.setTextSize(32);
+            itemViewHolder.mSortNum.setTextSize(28);
             itemViewHolder.mSortNum.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
         } else if (position == 1)
         {

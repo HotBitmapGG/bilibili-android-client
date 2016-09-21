@@ -35,7 +35,7 @@
         android:drawableEnd="@drawable/register_bottom_arrow"
         android:drawablePadding="@dimen/default_tiny_padding"
         android:text="@string/more"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black_alpha_30"
         android:textSize="@dimen/default_small_text_size" />
 
 

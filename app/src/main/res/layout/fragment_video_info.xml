@@ -20,7 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/font_normal" />
+            android:textColor="@color/font_normal"
+            android:textSize="@dimen/default_big_text_size" />
 
         <Space
             android:layout_width="match_parent"
@@ -29,88 +30,54 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_tiny_padding"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/default_tiny_padding">
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="0dp"
+
+            <ImageView
+                android:layout_width="@dimen/video_info_mini_icons_size"
+                android:layout_height="@dimen/video_info_mini_icons_size"
+                android:src="@drawable/ic_info_views"
+                android:tint="@color/black_alpha_45" />
+
+            <TextView
+                android:id="@+id/tv_play_time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_tiny_text_size" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+            <Space
+                android:layout_width="@dimen/activity_vertical_margin"
+                android:layout_height="match_parent" />
 
-                    <ImageView
-                        android:layout_width="@dimen/video_info_mini_icons_size"
-                        android:layout_height="@dimen/video_info_mini_icons_size"
-                        android:src="@drawable/ic_info_views"
-                        android:tint="@color/black_alpha_45" />
+            <ImageView
+                android:layout_width="@dimen/video_info_mini_icons_size"
+                android:layout_height="@dimen/video_info_mini_icons_size"
+                android:src="@drawable/ic_info_danmakus"
+                android:tint="@color/black_alpha_45" />
 
-                    <TextView
-                        android:id="@+id/tv_play_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                        android:textColor="@color/black_alpha_45"
-                        android:textSize="@dimen/default_tiny_text_size" />
-
-                    <Space
-                        android:layout_width="@dimen/activity_vertical_margin"
-                        android:layout_height="match_parent" />
-
-                    <ImageView
-                        android:layout_width="@dimen/video_info_mini_icons_size"
-                        android:layout_height="@dimen/video_info_mini_icons_size"
-                        android:src="@drawable/ic_info_danmakus"
-                        android:tint="@color/black_alpha_45" />
-
-                    <TextView
-                        android:id="@+id/tv_review_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                        android:textColor="@color/black_alpha_45"
-                        android:textSize="@dimen/default_tiny_text_size" />
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/default_tiny_padding" />
-
-                <TextView
-                    android:id="@+id/tv_created_at"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
+            <TextView
+                android:id="@+id/tv_review_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_tiny_text_size" />
         </LinearLayout>
+
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="8dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/title_margin_small"
-            android:paddingStart="@dimen/title_margin_small"
-            android:text="@string/introduction"
-            android:textColor="@color/font_normal" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="4dp" />
-
-        <TextView
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/title_margin_small"
+            android:layout_marginStart="@dimen/title_margin_small"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/black_alpha_45" />
 

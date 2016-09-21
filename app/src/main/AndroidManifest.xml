@@ -65,8 +65,7 @@
         <!-- 视频详情界面 -->
         <activity
             android:name=".module.video.VideoDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme" />
+            android:screenOrientation="portrait" />
 
         <!-- bilibili用户界面 -->
         <activity

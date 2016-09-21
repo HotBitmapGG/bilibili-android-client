@@ -103,8 +103,8 @@
 
 
     <!--splash size-->
-    <dimen name="splash_logo_margin">80dp</dimen>
-    <dimen name="splash_text_margin">55dp</dimen>
+    <dimen name="splash_logo_margin">40dp</dimen>
+    <dimen name="splash_text_margin">20dp</dimen>
 
 
     <!--video details size-->

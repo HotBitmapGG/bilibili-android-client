@@ -58,9 +58,6 @@ public class VideoInfoFragment extends RxLazyFragment
     @Bind(R.id.tv_description)
     TextView mDescText;
 
-    @Bind(R.id.tv_created_at)
-    TextView mCreatedAtText;
-
     @Bind(R.id.author_tag)
     UserTagView mAuthorTagView;
 
@@ -133,7 +130,6 @@ public class VideoInfoFragment extends RxLazyFragment
         mPlayTimeText.setText(String.format(getString(R.string.info_play_times_format), Integer.valueOf(mVideoDetails.getPlay())));
         mReviewCountText.setText(String.format(getString(R.string.info_reviews_format), Integer.valueOf(mVideoDetails.getVideo_review())));
         mDescText.setText(mVideoDetails.getDescription());
-        mCreatedAtText.setText(mVideoDetails.getCreated_at());
         mAuthorTagView.setUpWithInfo(getActivity(),
                 mVideoDetails.getAuthor(),
                 Integer.valueOf(mVideoDetails.getMid()), mVideoDetails.getFace());
