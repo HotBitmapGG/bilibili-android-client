@@ -41,7 +41,7 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_video_card, parent, false));
+                .inflate(R.layout.item_rank_video, parent, false));
     }
 
     @Override
@@ -55,6 +55,9 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
             itemViewHolder.mVideoTitle.setText(videoItemInfo.title);
             itemViewHolder.mVideoPlayNum.setText(videoItemInfo.play);
             itemViewHolder.mVideoReviewCount.setText(String.valueOf(videoItemInfo.video_review));
+            itemViewHolder.mUserName.setText(videoItemInfo.author);
+            itemViewHolder.mSortNum.setText(String.valueOf(position + 1));
+            setSortNumTextSize(itemViewHolder, position);
 
             Glide.with(getContext())
                     .load(Uri.parse(videoItemInfo.pic))
@@ -65,6 +68,28 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
                     .into(itemViewHolder.mVideoImg);
         }
         super.onBindViewHolder(holder, position);
+    }
+
+    private void setSortNumTextSize(ItemViewHolder itemViewHolder, int position)
+    {
+
+        if (position == 0)
+        {
+            itemViewHolder.mSortNum.setTextSize(32);
+            itemViewHolder.mSortNum.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+        } else if (position == 1)
+        {
+            itemViewHolder.mSortNum.setTextSize(24);
+            itemViewHolder.mSortNum.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+        } else if (position == 2)
+        {
+            itemViewHolder.mSortNum.setTextSize(18);
+            itemViewHolder.mSortNum.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+        } else
+        {
+            itemViewHolder.mSortNum.setTextSize(16);
+            itemViewHolder.mSortNum.setTextColor(getContext().getResources().getColor(R.color.black_alpha_30));
+        }
     }
 
     @Override
@@ -86,6 +111,10 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
 
         public TextView mVideoReviewCount;
 
+        public TextView mSortNum;
+
+        public TextView mUserName;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -94,6 +123,8 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
             mVideoTitle = $(R.id.item_title);
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewCount = $(R.id.item_review);
+            mSortNum = $(R.id.item_sort_num);
+            mUserName = $(R.id.item_user_name);
         }
     }
 }
