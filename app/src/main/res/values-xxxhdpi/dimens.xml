@@ -84,7 +84,7 @@
     <dimen name="activity_center_card_height">180dp</dimen>
     <dimen name="activity_center_image_height">140dp</dimen>
     <dimen name="home_recommend_head_layout_height">60dp</dimen>
-    <dimen name="home_recommend_head_image_size">30dp</dimen>
+    <dimen name="home_recommend_head_image_size">25dp</dimen>
     <dimen name="home_recommend_foot_layout_height">60dp</dimen>
     <dimen name="home_recommend_foot_button_width">120dp</dimen>
     <dimen name="home_recommend_foot_button_height">35dp</dimen>

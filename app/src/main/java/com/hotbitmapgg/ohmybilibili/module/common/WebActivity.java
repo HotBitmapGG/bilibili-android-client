@@ -3,16 +3,16 @@ package com.hotbitmapgg.ohmybilibili.module.common;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
-import android.webkit.DownloadListener;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -32,7 +32,7 @@ import butterknife.Bind;
  * <p/>
  * 浏览器界面
  */
-public class WebActivity extends RxAppCompatBaseActivity implements DownloadListener
+public class WebActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -81,20 +81,37 @@ public class WebActivity extends RxAppCompatBaseActivity implements DownloadList
     public void initToolBar()
     {
 
-        mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
-        mToolbar.setTitle(mTitle == null ? "详情" : mTitle);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                onBackPressed();
-            }
-        });
+        mToolbar.setTitle(TextUtils.isEmpty(mTitle) ? "详情" : mTitle);
+        setSupportActionBar(mToolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null)
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed()
+    {
+
+        if (mWebView.canGoBack() && mWebView.copyBackForwardList().getSize() > 0
+                && !mWebView.getUrl().equals(mWebView.copyBackForwardList()
+                .getItemAtIndex(0).getOriginalUrl()))
+        {
+            mWebView.goBack();
+        } else
+        {
+            finish();
+        }
+    }
 
     public static void launch(Activity activity, String url, String title)
     {
@@ -124,7 +141,6 @@ public class WebActivity extends RxAppCompatBaseActivity implements DownloadList
         mWebView.getSettings().setBlockNetworkImage(true);
         mWebView.setWebViewClient(webViewClient);
         mWebView.requestFocus(View.FOCUS_DOWN);
-        mWebView.setDownloadListener(this);
         mWebView.getSettings().setDefaultTextEncodingName("UTF-8");
         mWebView.setWebChromeClient(new WebChromeClient()
         {
@@ -187,22 +203,6 @@ public class WebActivity extends RxAppCompatBaseActivity implements DownloadList
         }
     }
 
-    @Override
-    public void onDownloadStart(String url, String userAgent,
-                                String contentDisposition, String mimetype, long contentLength)
-    {
-
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        try
-        {
-            startActivity(intent);
-            return;
-        } catch (ActivityNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-    }
 
     public void initialize()
     {

@@ -257,12 +257,14 @@ public class HomeRecommendedFragment extends RxLazyFragment
             {
                 mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
                         banners.get(banners.size() - 2).img,
-                        banners.get(banners.size() - 2).title));
+                        banners.get(banners.size() - 2).title,
+                        banners.get(banners.size() - 2).link));
             } else if (i == size - 1)
             {
                 mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
                         banners.get(banners.size() - 1).img,
-                        banners.get(banners.size() - 1).title));
+                        banners.get(banners.size() - 1).title,
+                        banners.get(banners.size() - 1).link));
             } else
             {
                 mSectionedAdapter.addSection(new HomeRecommendedSection(
