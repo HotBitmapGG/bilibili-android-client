@@ -64,15 +64,38 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/default_general_margin"
-        android:drawableStart="@drawable/ic_tuijian"
-        android:gravity="center"
-        android:padding="@dimen/default_general_margin"
-        android:text="@string/bangumi_recommend"
-        android:textColor="@color/font_normal"
-        android:textSize="@dimen/default_small_text_size" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:drawablePadding="@dimen/default_general_margin"
+            android:drawableStart="@drawable/ic_tuijian"
+            android:padding="@dimen/default_general_margin"
+            android:text="@string/bangumi_recommend"
+            android:textColor="@color/font_normal"
+            android:textSize="@dimen/default_small_text_size" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:drawableEnd="@drawable/register_bottom_arrow"
+            android:drawablePadding="@dimen/default_tiny_margin"
+            android:padding="@dimen/default_general_margin"
+            android:text="@string/more"
+            android:textColor="@color/black_alpha_30"
+            android:textSize="@dimen/default_small_text_size" />
+
+
+    </RelativeLayout>
+
 
 </LinearLayout>

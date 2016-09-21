@@ -13,29 +13,52 @@
         android:scrollbars="none" />
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_general_margin"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_general_margin">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="@dimen/bangumi_recommend_image_size"
-            android:layout_height="@dimen/bangumi_recommend_image_size"
-            android:src="@drawable/ic_category_t33" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/default_general_margin"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_general_margin">
+
+            <ImageView
+                android:layout_width="@dimen/bangumi_recommend_image_size"
+                android:layout_height="@dimen/bangumi_recommend_image_size"
+                android:src="@drawable/ic_category_t33" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/default_general_margin"
+                android:text="@string/two_bangumi"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingStart="@dimen/default_general_margin"
-            android:text="@string/two_bangumi"
-            android:textColor="@color/font_normal"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:drawableEnd="@drawable/register_bottom_arrow"
+            android:drawablePadding="@dimen/default_tiny_margin"
+            android:padding="@dimen/default_general_margin"
+            android:text="更多推荐"
+            android:textColor="@color/black_alpha_30"
             android:textSize="@dimen/default_small_text_size" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>

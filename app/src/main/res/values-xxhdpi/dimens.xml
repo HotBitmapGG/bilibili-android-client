@@ -99,7 +99,7 @@
     <dimen name="bangumi_recommend_image_big_height">150dp</dimen>
     <dimen name="bangumi_recommend_title_height">50dp</dimen>
     <dimen name="bangumi_recommend_title_margin">5dp</dimen>
-    <dimen name="bangumi_recommend_image_size">30dp</dimen>
+    <dimen name="bangumi_recommend_image_size">25dp</dimen>
 
 
     <!--splash size-->
