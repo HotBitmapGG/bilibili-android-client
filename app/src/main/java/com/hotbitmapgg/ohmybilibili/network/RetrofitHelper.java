@@ -12,6 +12,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.Html5VideoUrlService;
 import com.hotbitmapgg.ohmybilibili.network.api.IndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
+import com.hotbitmapgg.ohmybilibili.network.api.OriginalRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
 import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
@@ -461,6 +462,25 @@ public class RetrofitHelper
 
 
         return retrofit.create(AllRankService.class);
+    }
+
+
+    /**
+     * 获取原创排行榜数据
+     *
+     * @return
+     */
+    public static OriginalRankService getOriginalRankApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(OriginalRankService.class);
     }
 
 

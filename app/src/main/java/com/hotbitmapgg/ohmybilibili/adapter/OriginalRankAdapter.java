@@ -17,29 +17,29 @@ import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
 import java.util.List;
 
 /**
- * Created by hcc on 16/8/4 14:12
+ * Created by hcc on 2016/9/22 19:30
  * 100332338@qq.com
- * <p/>
- * 9个分区热门视频查看Adapter
  */
-public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
+
+public class OriginalRankAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<VideoItemInfo> videoItemInfos;
+    private List<VideoItemInfo> videos;
 
-    public HotVideoIndexRecyclerAdapter(RecyclerView recyclerView, List<VideoItemInfo> videoItemInfos)
+    public OriginalRankAdapter(RecyclerView recyclerView, List<VideoItemInfo> videos)
     {
 
         super(recyclerView);
-        this.videoItemInfos = videoItemInfos;
+        this.videos = videos;
     }
+
 
     @Override
     public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext())
+        return new OriginalRankAdapter.ItemViewHolder(LayoutInflater.from(getContext())
                 .inflate(R.layout.item_rank_video, parent, false));
     }
 
@@ -47,10 +47,10 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
 
-        if (holder instanceof ItemViewHolder)
+        if (holder instanceof OriginalRankAdapter.ItemViewHolder)
         {
-            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            VideoItemInfo videoItemInfo = videoItemInfos.get(position);
+            OriginalRankAdapter.ItemViewHolder itemViewHolder = (OriginalRankAdapter.ItemViewHolder) holder;
+            VideoItemInfo videoItemInfo = videos.get(position);
             itemViewHolder.mVideoTitle.setText(videoItemInfo.title);
             itemViewHolder.mVideoPlayNum.setText(videoItemInfo.play);
             itemViewHolder.mVideoReviewCount.setText(String.valueOf(videoItemInfo.video_review));
@@ -69,7 +69,7 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
         super.onBindViewHolder(holder, position);
     }
 
-    private void setSortNumTextSize(ItemViewHolder itemViewHolder, int position)
+    private void setSortNumTextSize(OriginalRankAdapter.ItemViewHolder itemViewHolder, int position)
     {
 
         if (position == 0)
@@ -95,7 +95,7 @@ public class HotVideoIndexRecyclerAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return videoItemInfos.size();
+        return videos.size();
     }
 
 

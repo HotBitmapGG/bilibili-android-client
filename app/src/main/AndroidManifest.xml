@@ -148,6 +148,11 @@
             android:name=".module.home.discover.AllRankActivity"
             android:screenOrientation="portrait" />
 
+        <!--原创排行榜界面-->
+        <activity
+            android:name=".module.home.discover.OriginalRankActivity"
+            android:screenOrientation="portrait" />
+
         <!--播放器界面-->
         <activity
             android:name=".module.video.VideoPlayerActivity"

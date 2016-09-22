@@ -85,7 +85,8 @@ public class HomeDiscoverFragment extends RxLazyFragment
                     @Override
                     public void onClick(View v)
                     {
-                        TotalStationSearchActivity.launch(getActivity(),s);
+
+                        TotalStationSearchActivity.launch(getActivity(), s);
                     }
                 });
 
@@ -102,10 +103,11 @@ public class HomeDiscoverFragment extends RxLazyFragment
         startActivity(new Intent(getActivity(), AllRankActivity.class));
     }
 
-    @OnClick(R.id.layout_sort)
-    void startSortRankActivity()
+    @OnClick(R.id.layout_original)
+    void startOriginalRankActivity()
     {
 
+        startActivity(new Intent(getActivity(), OriginalRankActivity.class));
     }
 
     @OnClick(R.id.layout_game_center)

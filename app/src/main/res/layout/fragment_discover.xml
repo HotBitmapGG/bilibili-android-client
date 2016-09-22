@@ -140,7 +140,7 @@
 
 
         <RelativeLayout
-            android:id="@+id/layout_sort"
+            android:id="@+id/layout_original"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:layout_marginTop="@dimen/default_grow_margin"

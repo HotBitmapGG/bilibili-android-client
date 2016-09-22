@@ -98,17 +98,16 @@
     <string name="about_open_source_lis">感谢开源贡献</string>
     <string name="about_introduce_and_help">介绍与帮助</string>
     <string name="about_open_source_libraries_list">
-        com.github.ozodrukh:CircularReveal:1.1.0@aar
-        \ncom.squareup.picasso:picasso:2.5.2
-        \ncn.bmob.android:bmob-sdk:3.4.6
-        \ncom.flyco.tablayout:FlycoTabLayout_Lib:2.0.0@aar
-        ncom.zhy:flowlayout-lib:1.0.1
-        \ncom.jakewharton:butterknife:7.0.1
-        \ncom.squareup.okhttp3:okhttp:3.2.0
-        \nio.reactivex:rxandroid:1.1.0
-        \nio.reactivex:rxjava:1.1.0
-        \ncom.squareup.retrofit:retrofit:2.0.0-beta1
-        \ntv.danmaku.ijk.media:ijkplayer-java:0.4.5.1</string>
+        com.flyco.tablayout:FlycoTabLayout_Lib:2.0.0@aar
+        \n\ncom.zhy:flowlayout-lib:1.0.1
+        \n\ncom.jakewharton:butterknife:7.0.1
+        \n\ncom.squareup.okhttp3:okhttp:3.2.0
+        \n\nio.reactivex:rxandroid:1.1.0
+        \n\nio.reactivex:rxjava:1.1.0
+        \n\ncom.squareup.retrofit:retrofit:2.0.0-beta1
+        \n\ntv.danmaku.ijk.media:ijkplayer-java:0.4.5.1
+        \n\ncom.github.bumptech.glide:glide:3.7.0
+        \n\ntv.danmaku.ijk.media:ijkplayer-java:0.6.0</string>
     <string name="about_function">实现功能</string>
     <string name="about_function_list">
         * 首页推荐\n* 首页番剧\n* 首页直播
