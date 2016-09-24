@@ -1,8 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/recycle"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:overScrollMode="never"
-    android:scrollbars="none" />
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_recommend_head_layout_height"
+        android:paddingBottom="@dimen/default_general_margin"
+        android:paddingEnd="@dimen/card_margin"
+        android:paddingStart="@dimen/card_margin">
+
+        <ImageView
+            android:id="@+id/activity_center_type_img"
+            android:layout_width="@dimen/home_recommend_head_image_size"
+            android:layout_height="@dimen/home_recommend_head_image_size"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_header_activity_center" />
+
+        <TextView
+            android:id="@+id/activity_center_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/default_tiny_padding"
+            android:layout_toEndOf="@+id/activity_center_type_img"
+            android:gravity="center"
+            android:text="@string/activity_center"
+            android:textColor="@color/font_normal"
+            android:textSize="@dimen/default_medium_text_size" />
+
+
+        <TextView
+            android:id="@+id/item_type_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/btn_more_bg"
+            android:clickable="true"
+            android:text="@string/goto_look"
+            android:textColor="@color/white"
+            android:textSize="@dimen/default_tiny_text_size"
+            android:visibility="visible" />
+
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>
+
+

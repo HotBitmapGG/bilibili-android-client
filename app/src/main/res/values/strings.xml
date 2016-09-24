@@ -67,6 +67,7 @@
     <string name="search_hint">搜索视频,番剧,up主或av号</string>
     <string name="danmaku_switch">弹幕开关</string>
     <string name="play_immediately">立即播放</string>
+    <string name="activity_center">活动中心</string>
 
 
     <!--Vitamio Strings-->

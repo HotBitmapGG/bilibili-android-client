@@ -13,11 +13,12 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendBannerSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendTopicSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendedSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
+import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
+import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private List<BannerEntity> banners = new ArrayList<>();
 
-    private static final String BANNER_TYPE = "weblink";
+    private List<RecommendBannerInfo.DataBean> recommendBanners = new ArrayList<>();
 
     //RecycleView是否正在刷新
     private boolean mIsRefreshing = false;
@@ -65,13 +66,16 @@ public class HomeRecommendedFragment extends RxLazyFragment
             R.drawable.ic_category_t13,
             R.drawable.ic_category_t1,
             R.drawable.ic_category_t3,
+            R.drawable.ic_header_topic,
             R.drawable.ic_category_t129,
+            R.drawable.ic_header_topic,
             R.drawable.ic_category_t4,
             R.drawable.ic_category_t119,
             R.drawable.ic_category_t36,
             R.drawable.ic_header_activity_center,
             R.drawable.ic_category_t160,
             R.drawable.ic_category_t155,
+            R.drawable.ic_header_topic,
             R.drawable.ic_category_t5,
             R.drawable.ic_category_t11,
             R.drawable.ic_category_t23
@@ -164,10 +168,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
             public void onRefresh()
             {
 
-                banners.clear();
-                results.clear();
-                mIsRefreshing = true;
-                mSectionedAdapter.removeAllSections();
+                clearData();
                 getHomeRecommendedData();
             }
         });
@@ -178,50 +179,32 @@ public class HomeRecommendedFragment extends RxLazyFragment
     {
 
         RetrofitHelper.getHomeRecommendedApi()
-                .getRecommendedInfo()
-                .compose(this.<RecommendInfo> bindToLifecycle())
-                .flatMap(new Func1<RecommendInfo,Observable<String>>()
+                .getRecommendedBannerInfo()
+                .compose(this.<RecommendBannerInfo> bindToLifecycle())
+                .flatMap(new Func1<RecommendBannerInfo,Observable<RecommendInfo>>()
                 {
 
                     @Override
-                    public Observable<String> call(RecommendInfo recommendInfo)
+                    public Observable<RecommendInfo> call(RecommendBannerInfo recommendBannerInfo)
                     {
-
-                        int size = recommendInfo.getResult().size();
-                        for (int i = 0; i < size; i++)
-                        {
-                            RecommendInfo.ResultBean result = recommendInfo.getResult().get(i);
-                            BannerEntity banner;
-                            if (result.getType() != null)
-                            {
-                                if (result.getType().equals(BANNER_TYPE))
-                                {
-                                    List<RecommendInfo.ResultBean.BodyBean> bodys = result.getBody();
-                                    RecommendInfo.ResultBean.BodyBean body = bodys.get(0);
-                                    banner = new BannerEntity();
-                                    banner.img = body.getCover();
-                                    banner.title = body.getTitle();
-                                    banner.link = body.getParam();
-                                    banners.add(banner);
-                                } else
-                                {
-                                    results.add(result);
-                                }
-                            }
-                        }
-
-                        return Observable.just("onNext");
+                        //设置Banner数据
+                        recommendBanners.addAll(recommendBannerInfo.getData());
+                        convertBanner();
+                        //在请求首页推荐数据
+                        return RetrofitHelper.getHomeRecommendedApi().getRecommendedInfo();
                     }
                 })
+                .compose(this.<RecommendInfo> bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>()
+                .subscribe(new Action1<RecommendInfo>()
                 {
 
                     @Override
-                    public void call(String s)
+                    public void call(RecommendInfo recommendInfo)
                     {
 
+                        results.addAll(recommendInfo.getResult());
                         finishTask();
                     }
                 }, new Action1<Throwable>()
@@ -236,6 +219,24 @@ public class HomeRecommendedFragment extends RxLazyFragment
                 });
     }
 
+    /**
+     * 设置轮播banners
+     */
+    private void convertBanner()
+    {
+
+        BannerEntity banner;
+        for (int i = 0, size = recommendBanners.size(); i < size; i++)
+        {
+            RecommendBannerInfo.DataBean dataBean = recommendBanners.get(i);
+            banner = new BannerEntity();
+            banner.img = dataBean.getImage();
+            banner.title = dataBean.getTitle();
+            banner.link = dataBean.getValue();
+            banners.add(banner);
+        }
+    }
+
 
     private void finishTask()
     {
@@ -243,28 +244,34 @@ public class HomeRecommendedFragment extends RxLazyFragment
         mSwipeRefreshLayout.setRefreshing(false);
         mIsRefreshing = false;
         hideEmptyView();
-
         mSectionedAdapter.addSection(new HomeRecommendBannerSection(banners));
-        for (int i = 0, size = results.size() + 2; i < size; i++)
-        {
 
-            if (i == 9)
+        int size = results.size();
+        for (int i = 0; i < size; i++)
+        {
+            if (i == 5)
+            {
+                mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
+                        results.get(5).getBody().get(0).getCover(),
+                        results.get(5).getBody().get(0).getTitle(),
+                        results.get(5).getBody().get(0).getParam()));
+            } else if (i == 7)
+            {
+                mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
+                        results.get(7).getBody().get(0).getCover(),
+                        results.get(7).getBody().get(0).getTitle(),
+                        results.get(7).getBody().get(0).getParam()));
+            } else if (i == 11)
             {
                 mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
                         getActivity(),
-                        results.get(9).getBody()));
-            } else if (i == size - 2)
+                        results.get(11).getBody()));
+            } else if (i == 14)
             {
                 mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
-                        banners.get(banners.size() - 2).img,
-                        banners.get(banners.size() - 2).title,
-                        banners.get(banners.size() - 2).link));
-            } else if (i == size - 1)
-            {
-                mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
-                        banners.get(banners.size() - 1).img,
-                        banners.get(banners.size() - 1).title,
-                        banners.get(banners.size() - 1).link));
+                        results.get(14).getBody().get(0).getCover(),
+                        results.get(14).getBody().get(0).getTitle(),
+                        results.get(14).getBody().get(0).getParam()));
             } else
             {
                 mSectionedAdapter.addSection(new HomeRecommendedSection(
@@ -305,6 +312,17 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
         mCustomEmptyView.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+
+    private void clearData()
+    {
+
+        banners.clear();
+        recommendBanners.clear();
+        results.clear();
+        mIsRefreshing = true;
+        mSectionedAdapter.removeAllSections();
     }
 
 
