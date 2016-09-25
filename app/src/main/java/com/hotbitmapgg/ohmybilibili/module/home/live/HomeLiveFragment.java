@@ -10,8 +10,8 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BiliBiliLiveRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.live.Result;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
+import com.hotbitmapgg.ohmybilibili.entity.live.Result;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
@@ -75,13 +75,12 @@ public class HomeLiveFragment extends RxLazyFragment
             return;
 
         showProgressBar();
+        initRecyclerView();
         isPrepared = false;
     }
 
-    private void showProgressBar()
+    private void initRecyclerView()
     {
-
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mBiliBiliLiveRecyclerAdapter = new BiliBiliLiveRecyclerAdapter(getActivity());
         mRecyclerView.setAdapter(mBiliBiliLiveRecyclerAdapter);
         GridLayoutManager layout = new GridLayoutManager(getActivity(), 12);
@@ -98,6 +97,12 @@ public class HomeLiveFragment extends RxLazyFragment
         });
 
         mRecyclerView.setLayoutManager(layout);
+    }
+
+    private void showProgressBar()
+    {
+
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
 

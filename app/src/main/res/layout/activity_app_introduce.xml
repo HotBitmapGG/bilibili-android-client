@@ -17,6 +17,7 @@
             android:layout_height="@dimen/appbar_parallax_max_height"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:collapsedTitleTextAppearance="@style/ToolBar.TitleText"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle.About"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -53,8 +54,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:minHeight="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:titleTextAppearance="@style/ToolBar.TitleText"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:titleTextAppearance="@style/ToolBar.TitleText" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 

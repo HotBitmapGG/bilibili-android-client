@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -190,6 +191,14 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         SystemBarHelper.setHeightAndPadding(this, mToolbar);
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        getMenuInflater().inflate(R.menu.menu_video, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)

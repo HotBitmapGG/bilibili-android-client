@@ -315,7 +315,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/line_height"
-            android:background="@color/line_bg" />
+            android:background="@color/gray_light" />
 
 
         <RelativeLayout

@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/appbar_parallax_max_height"
             android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="@style/ToolBar.TitleText"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle.About"
