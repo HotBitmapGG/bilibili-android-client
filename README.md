@@ -1,4 +1,4 @@
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bg.png?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bg.jpg?raw=true)
 
 ## High copy bilibili android client
 
