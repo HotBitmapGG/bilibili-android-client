@@ -54,8 +54,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
 
     private int index;
 
-    private Random random;
-
     private long exitTime;
 
     private HomePageFragment mHomePageFragment;
@@ -136,7 +134,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         TextView mUserSign = (TextView) headerView.findViewById(R.id.user_other_info);
         ImageView mSwitchMode = (ImageView) headerView.findViewById(R.id.iv_head_switch_mode);
         //进入应用随机设置头像
-        random = new Random(SystemClock.elapsedRealtime());
+        Random random = new Random(SystemClock.elapsedRealtime());
         avatarIndex = random.nextInt(avatars.length);
         mUserAvatarView.setImageResource(avatars[avatarIndex]);
         //设置用户名 签名
