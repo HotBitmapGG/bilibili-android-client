@@ -1,23 +1,29 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include
-        android:id="@+id/toolbar_layout"
-        layout="@layout/layout_toolbar" />
+    <include layout="@layout/layout_toolbar" />
+
 
     <FrameLayout
         android:id="@+id/live_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/live_video_player_height"
-        android:layout_below="@+id/toolbar_layout"
         android:background="@drawable/shadow_gradient_reserve">
+
 
         <SurfaceView
             android:id="@+id/video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_tiny_padding"
+            android:src="@drawable/ic_watermark_live_large" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -98,9 +104,8 @@
     <RelativeLayout
         android:id="@+id/user_info_layout"
         android:layout_width="match_parent"
-        android:background="@color/card_view_background"
         android:layout_height="@dimen/live_user_layout_height"
-        android:layout_below="@+id/live_layout">
+        android:background="@color/card_view_background">
 
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
@@ -133,7 +138,7 @@
             android:layout_marginStart="@dimen/default_general_margin"
             android:layout_toEndOf="@+id/user_name"
             android:drawablePadding="@dimen/default_tiny_padding"
-            android:drawableStart="@drawable/ic_muti_people"
+            android:drawableStart="@drawable/ic_watching"
             android:padding="@dimen/default_tiny_padding"
             android:textColor="@color/gray"
             android:textSize="@dimen/default_tiny_text_size" />
@@ -154,9 +159,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
-        android:layout_below="@+id/user_info_layout"
         android:background="@color/line_bg" />
 
 
-
-</RelativeLayout>
+</LinearLayout>
