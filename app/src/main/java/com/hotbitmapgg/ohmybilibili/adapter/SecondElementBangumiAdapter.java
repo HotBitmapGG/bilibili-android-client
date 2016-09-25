@@ -18,17 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by hcc on 16/8/6 14:31
+ * Created by hcc on 16/8/6 11:51
  * 100332338@qq.com
  * <p/>
  * 首页番剧推荐Adapter
  */
-public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
+public class SecondElementBangumiAdapter extends AbsRecyclerViewAdapter
 {
 
     private List<BangumiRecommend.RecommendsBean> recommends = new ArrayList<>();
 
-    public BangumiRecommendRecyclerAdapter(RecyclerView recyclerView, List<BangumiRecommend.RecommendsBean> recommends)
+    public SecondElementBangumiAdapter(RecyclerView recyclerView, List<BangumiRecommend.RecommendsBean> recommends)
     {
 
         super(recyclerView);
@@ -41,7 +41,7 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_recommend_bangumi, parent, false));
+                .inflate(R.layout.item_bangumi_recommend, parent, false));
     }
 
     @SuppressLint("SetTextI18n")
@@ -63,7 +63,7 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
                     .into(itemViewHolder.mImage);
 
             itemViewHolder.mTitle.setText(recommendsBean.getTitle());
-            itemViewHolder.mPlay.setText(recommendsBean.getPlay() + "人在看");
+            itemViewHolder.mDesc.setText(recommendsBean.getDescription());
         }
         super.onBindViewHolder(holder, position);
     }
@@ -82,7 +82,7 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
 
         public TextView mTitle;
 
-        public TextView mPlay;
+        public TextView mDesc;
 
         public ItemViewHolder(View itemView)
         {
@@ -90,7 +90,7 @@ public class BangumiRecommendRecyclerAdapter extends AbsRecyclerViewAdapter
             super(itemView);
             mImage = $(R.id.item_img);
             mTitle = $(R.id.item_title);
-            mPlay = $(R.id.item_play);
+            mDesc = $(R.id.item_desc);
         }
     }
 }

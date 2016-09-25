@@ -39,7 +39,7 @@
                 android:layout_marginStart="@dimen/discover_text_margin"
                 android:background="@color/card_view_background"
                 android:gravity="center_vertical"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:text="@string/discover_search_hint"
                 android:textColor="@color/font_normal"
                 android:textSize="@dimen/default_small_text_size" />

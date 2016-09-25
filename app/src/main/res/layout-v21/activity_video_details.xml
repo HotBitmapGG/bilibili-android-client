@@ -51,6 +51,7 @@
                     android:minHeight="?attr/actionBarSize"
                     app:contentInsetStart="150dp"
                     app:layout_collapseMode="pin"
+                    app:titleTextAppearance="@style/ToolBar.TitleText"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
 

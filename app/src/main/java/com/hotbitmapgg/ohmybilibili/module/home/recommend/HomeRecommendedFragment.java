@@ -60,6 +60,10 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private SectionedRecyclerViewAdapter mSectionedAdapter;
 
+    private static final String TYPE_TOPIC = "weblink";
+
+    private static final String TYPE_ACTIVITY_CENTER = "activity";
+
     private int[] icons = new int[]{
             R.drawable.ic_header_hot,
             R.drawable.ic_head_live,
@@ -249,29 +253,20 @@ public class HomeRecommendedFragment extends RxLazyFragment
         int size = results.size();
         for (int i = 0; i < size; i++)
         {
-            if (i == 5)
+            String type = results.get(i).getType();
+            if (type.equals(TYPE_TOPIC))
             {
+                //话题
                 mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
-                        results.get(5).getBody().get(0).getCover(),
-                        results.get(5).getBody().get(0).getTitle(),
-                        results.get(5).getBody().get(0).getParam()));
-            } else if (i == 7)
+                        results.get(i).getBody().get(0).getCover(),
+                        results.get(i).getBody().get(0).getTitle(),
+                        results.get(i).getBody().get(0).getParam()));
+            } else if (type.equals(TYPE_ACTIVITY_CENTER))
             {
-                mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
-                        results.get(7).getBody().get(0).getCover(),
-                        results.get(7).getBody().get(0).getTitle(),
-                        results.get(7).getBody().get(0).getParam()));
-            } else if (i == 11)
-            {
+                //活动中心
                 mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
                         getActivity(),
-                        results.get(11).getBody()));
-            } else if (i == 14)
-            {
-                mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
-                        results.get(14).getBody().get(0).getCover(),
-                        results.get(14).getBody().get(0).getTitle(),
-                        results.get(14).getBody().get(0).getParam()));
+                        results.get(i).getBody()));
             } else
             {
                 mSectionedAdapter.addSection(new HomeRecommendedSection(

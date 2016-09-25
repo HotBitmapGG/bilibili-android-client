@@ -12,13 +12,14 @@ import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.Html5VideoUrlService;
 import com.hotbitmapgg.ohmybilibili.network.api.IndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
+import com.hotbitmapgg.ohmybilibili.network.api.SeasonNewBangumiService;
 import com.hotbitmapgg.ohmybilibili.network.api.OriginalRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
 import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
 import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
-import com.hotbitmapgg.ohmybilibili.network.api.TwoDimensionalService;
+import com.hotbitmapgg.ohmybilibili.network.api.NewBangumiSerialService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
@@ -152,7 +153,7 @@ public class RetrofitHelper
      *
      * @return
      */
-    public static TwoDimensionalService getTwoDimensionalApi()
+    public static NewBangumiSerialService getNewBangumiSerial()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -162,7 +163,7 @@ public class RetrofitHelper
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        return retrofit.create(TwoDimensionalService.class);
+        return retrofit.create(NewBangumiSerialService.class);
     }
 
 
@@ -481,6 +482,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(OriginalRankService.class);
+    }
+
+
+    /**
+     * 获取分季新番数据
+     *
+     * @return
+     */
+    public static SeasonNewBangumiService getSeasonNewBangumiApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(APP_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(SeasonNewBangumiService.class);
     }
 
 

@@ -12,28 +12,30 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.TwoDimensional;
-import com.hotbitmapgg.ohmybilibili.utils.TimeUtils;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by hcc on 16/8/6 11:51
+ * Created by hcc on 16/8/6 14:31
  * 100332338@qq.com
  * <p/>
- * 二次元新番Adapter
+ * 首页番剧新番连载Adapter
  */
-public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
+public class NewBangumiSerialAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<TwoDimensional.ListBean> twoDimensionals = new ArrayList<>();
+    private List<NewBangumiSerial.ListBean> newBangumiSerials = new ArrayList<>();
 
-    public TwoDimensionalRecyclerAdapter(RecyclerView recyclerView, List<TwoDimensional.ListBean> twoDimensionals)
+    private boolean isShowAll = false;
+
+    public NewBangumiSerialAdapter(RecyclerView recyclerView, List<NewBangumiSerial.ListBean> newBangumiSerials, boolean isShowAll)
     {
 
         super(recyclerView);
-        this.twoDimensionals = twoDimensionals;
+        this.newBangumiSerials = newBangumiSerials;
+        this.isShowAll = isShowAll;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_bangumi_recommend, parent, false));
+                .inflate(R.layout.item_recommend_bangumi, parent, false));
     }
 
     @SuppressLint("SetTextI18n")
@@ -53,7 +55,7 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            TwoDimensional.ListBean listBean = twoDimensionals.get(position);
+            NewBangumiSerial.ListBean listBean = newBangumiSerials.get(position);
 
             Glide.with(getContext())
                     .load(listBean.getCover())
@@ -64,7 +66,8 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
                     .into(itemViewHolder.mImage);
 
             itemViewHolder.mTitle.setText(listBean.getTitle());
-            itemViewHolder.mDesc.setText(TimeUtils.friendlyTime(listBean.getLastupdate_at()) + "更新");
+            itemViewHolder.mPlay.setText(listBean.getPlay_count() + "人在看");
+            itemViewHolder.mUpdate.setText("更新至第" + listBean.getBgmcount() + "话");
         }
         super.onBindViewHolder(holder, position);
     }
@@ -73,7 +76,7 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return twoDimensionals.size();
+        return isShowAll ? newBangumiSerials.size() : 6;
     }
 
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
@@ -83,7 +86,9 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
 
         public TextView mTitle;
 
-        public TextView mDesc;
+        public TextView mPlay;
+
+        public TextView mUpdate;
 
         public ItemViewHolder(View itemView)
         {
@@ -91,7 +96,8 @@ public class TwoDimensionalRecyclerAdapter extends AbsRecyclerViewAdapter
             super(itemView);
             mImage = $(R.id.item_img);
             mTitle = $(R.id.item_title);
-            mDesc = $(R.id.item_desc);
+            mPlay = $(R.id.item_play);
+            mUpdate = $(R.id.item_update);
         }
     }
 }

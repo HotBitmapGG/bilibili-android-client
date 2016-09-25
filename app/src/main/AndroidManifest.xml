@@ -153,6 +153,17 @@
             android:name=".module.home.discover.OriginalRankActivity"
             android:screenOrientation="portrait" />
 
+
+        <!--分季全部新番界面-->
+        <activity
+            android:name=".module.home.bangumi.SeasonNewBangumiActivity"
+            android:screenOrientation="portrait" />
+
+        <!--新番连载全部界面-->
+        <activity
+            android:name=".module.home.bangumi.NewBangumiSerialActivity"
+            android:screenOrientation="portrait" />
+
         <!--播放器界面-->
         <activity
             android:name=".module.video.VideoPlayerActivity"

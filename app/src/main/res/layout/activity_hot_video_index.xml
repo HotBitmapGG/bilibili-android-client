@@ -18,6 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:titleTextAppearance="@style/ToolBar.TitleText"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
         <com.flyco.tablayout.SlidingTabLayout

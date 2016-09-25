@@ -12,17 +12,19 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.BangumiRecommendRecyclerAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.TwoDimensionalRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.NewBangumiSerialAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.SeasonNewBangumiAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.SecondElementBangumiAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.TwoDimensional;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
+import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,21 +58,19 @@ public class HomeBangumiFragment extends RxLazyFragment
 
     private List<BangumiRecommend.BannersBean> banners = new ArrayList<>();
 
-    private List<TwoDimensional.ListBean> twoDimensionals = new ArrayList<>();
+    private List<NewBangumiSerial.ListBean> newBangumiSerials = new ArrayList<>();
 
-    private TwoDimensionalRecyclerAdapter mAdapter;
+    private List<SeasonNewBangumi.ListBean> seasonNewBangumis = new ArrayList<>();
+
+    private SecondElementBangumiAdapter mAdapter;
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
-
-    private BannerView bannerView;
 
     private View headView_banner;
 
     private View headView_item;
 
     private View headView_list;
-
-    private RecyclerView mHeadRecommendList;
 
     //RecycleView是否正在刷新
     private boolean mIsRefreshing = false;
@@ -115,7 +115,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new TwoDimensionalRecyclerAdapter(mRecyclerView, twoDimensionals);
+        mAdapter = new SecondElementBangumiAdapter(mRecyclerView, recommends);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         setRecycleNoScroll();
     }
@@ -144,14 +144,21 @@ public class HomeBangumiFragment extends RxLazyFragment
             public void onRefresh()
             {
 
-                mIsRefreshing = true;
-                banners.clear();
-                recommends.clear();
-                twoDimensionals.clear();
-                mHeaderViewRecyclerAdapter.removeHeadView();
+                clearData();
                 getBangumiRecommends();
             }
         });
+    }
+
+    private void clearData()
+    {
+
+        mIsRefreshing = true;
+        banners.clear();
+        recommends.clear();
+        newBangumiSerials.clear();
+        seasonNewBangumis.clear();
+        mHeaderViewRecyclerAdapter.removeHeadView();
     }
 
 
@@ -163,34 +170,47 @@ public class HomeBangumiFragment extends RxLazyFragment
     private void getBangumiRecommends()
     {
 
+
         RetrofitHelper.getBnagumiRecommendApi()
                 .getBangumiRecommended()
                 .compose(this.<BangumiRecommend> bindToLifecycle())
-                .flatMap(new Func1<BangumiRecommend,Observable<TwoDimensional>>()
+                .flatMap(new Func1<BangumiRecommend,Observable<SeasonNewBangumi>>()
                 {
 
                     @Override
-                    public Observable<TwoDimensional> call(BangumiRecommend bangumiRecommend)
+                    public Observable<SeasonNewBangumi> call(BangumiRecommend bangumiRecommend)
                     {
 
                         banners.addAll(bangumiRecommend.getBanners());
                         recommends.addAll(bangumiRecommend.getRecommends());
-
-                        return RetrofitHelper.getTwoDimensionalApi()
-                                .getTwoDimensional();
+                        return RetrofitHelper.getSeasonNewBangumiApi()
+                                .getSeasonNewBangumiList();
                     }
                 })
-                .compose(this.<TwoDimensional> bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<TwoDimensional>()
+                .compose(this.<SeasonNewBangumi> bindToLifecycle())
+                .flatMap(new Func1<SeasonNewBangumi,Observable<NewBangumiSerial>>()
                 {
 
                     @Override
-                    public void call(TwoDimensional twoDimensional)
+                    public Observable<NewBangumiSerial> call(SeasonNewBangumi seasonNewBangumi)
                     {
 
-                        twoDimensionals.addAll(twoDimensional.getList());
+                        seasonNewBangumis.addAll(seasonNewBangumi.getList());
+                        return RetrofitHelper.getNewBangumiSerial()
+                                .getNewBangumiSerialList();
+                    }
+                })
+                .compose(this.<NewBangumiSerial> bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<NewBangumiSerial>()
+                {
+
+                    @Override
+                    public void call(NewBangumiSerial newBangumiSerial)
+                    {
+
+                        newBangumiSerials.addAll(newBangumiSerial.getList());
                         finishTask();
                     }
                 }, new Action1<Throwable>()
@@ -235,7 +255,7 @@ public class HomeBangumiFragment extends RxLazyFragment
     {
 
         //设置Banner
-        bannerView = (BannerView) headView_banner.findViewById(R.id.home_recommended_banner);
+        BannerView bannerView = (BannerView) headView_banner.findViewById(R.id.home_recommended_banner);
         if (banners != null && banners.size() > 0)
         {
             int size = banners.size();
@@ -287,15 +307,46 @@ public class HomeBangumiFragment extends RxLazyFragment
                 startActivity(new Intent(getActivity(), BangumiIndexActivity.class));
             }
         });
+        TextView mAllSerial = (TextView) headView_item.findViewById(R.id.tv_all_serial);
+        mAllSerial.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                startActivity(new Intent(getActivity(), NewBangumiSerialActivity.class));
+            }
+        });
         mHeaderViewRecyclerAdapter.addHeaderView(headView_item);
 
-        //设置番剧推荐
-        mHeadRecommendList = (RecyclerView) headView_list.findViewById(R.id.head_recommend_list);
+        //设置分季新番
+        RecyclerView mSeasonNewBangumiList = (RecyclerView) headView_list.findViewById(R.id.head_season_list);
+        mSeasonNewBangumiList.setHasFixedSize(false);
+        mSeasonNewBangumiList.setNestedScrollingEnabled(false);
+        mSeasonNewBangumiList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mSeasonNewBangumiList.setAdapter(new SeasonNewBangumiAdapter(mSeasonNewBangumiList, seasonNewBangumis, false));
+        //设置新番连载
+        RecyclerView mHeadRecommendList = (RecyclerView) headView_list.findViewById(R.id.head_recommend_list);
         mHeadRecommendList.setHasFixedSize(false);
         mHeadRecommendList.setNestedScrollingEnabled(false);
-        mHeadRecommendList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        mHeadRecommendList.setAdapter(new BangumiRecommendRecyclerAdapter(mHeadRecommendList, recommends));
+        mHeadRecommendList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mHeadRecommendList.setAdapter(new NewBangumiSerialAdapter(mHeadRecommendList, newBangumiSerials, false));
         mHeaderViewRecyclerAdapter.addHeaderView(headView_list);
+
+
+        //设置查看更多分季新番界面
+        TextView mAllNewBangumi = (TextView) headView_list.findViewById(R.id.tv_all_new_bangumi);
+        mAllNewBangumi.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                startActivity(new Intent(getActivity(), SeasonNewBangumiActivity.class));
+            }
+        });
     }
 
 

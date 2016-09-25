@@ -42,11 +42,16 @@
         <item name="android:textColor">@android:color/transparent</item>
     </style>
 
-
+    <!--Theme Dialog style-->
     <style name="AppTheme.AppCompat.Dialog.Alert" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowMinWidthMinor">90%</item>
         <item name="android:windowMinWidthMajor">90%</item>
         <item name="android:maxWidth">1080dp</item>
+    </style>
+
+    <!--ToolBar TextSize style-->
+    <style name="ToolBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
     </style>
 
 

@@ -8,6 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_general_margin"
+        android:layout_marginStart="@dimen/default_general_margin"
         android:layout_marginTop="@dimen/default_general_margin"
         android:orientation="horizontal">
 
@@ -64,25 +66,43 @@
 
     </LinearLayout>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_tiny_padding"
+        android:layout_marginStart="@dimen/default_tiny_padding">
 
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:drawablePadding="@dimen/default_general_margin"
-            android:drawableStart="@drawable/ic_tuijian"
-            android:padding="@dimen/default_general_margin"
-            android:text="@string/bangumi_recommend"
-            android:textColor="@color/font_normal"
-            android:textSize="@dimen/default_small_text_size" />
+            android:layout_marginTop="@dimen/default_general_margin"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_general_margin">
+
+            <ImageView
+                android:layout_width="@dimen/bangumi_recommend_image_size"
+                android:layout_height="@dimen/bangumi_recommend_image_size"
+                android:src="@drawable/ic_category_t33" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/default_general_margin"
+                android:text="@string/new_bangumi_serial"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+        </LinearLayout>
 
 
         <TextView
+            android:id="@+id/tv_all_serial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -90,9 +110,9 @@
             android:drawableEnd="@drawable/register_bottom_arrow"
             android:drawablePadding="@dimen/default_tiny_margin"
             android:padding="@dimen/default_general_margin"
-            android:text="@string/more"
+            android:text="@string/more_new_bangumi_serial"
             android:textColor="@color/black_alpha_30"
-            android:textSize="@dimen/default_small_text_size" />
+            android:textSize="@dimen/default_tiny_text_size" />
 
 
     </RelativeLayout>

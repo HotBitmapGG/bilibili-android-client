@@ -8,9 +8,9 @@ import java.util.List;
  * Created by hcc on 16/8/6 14:05
  * 100332338@qq.com
  * <p/>
- * 二次元新番
+ * 新番连载
  */
-public class TwoDimensional
+public class NewBangumiSerial
 {
 
     private String count;
