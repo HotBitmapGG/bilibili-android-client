@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:overScrollMode="never"
+    android:paddingBottom="@dimen/default_general_margin"
     android:scrollbars="none">
 
     <LinearLayout
@@ -28,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|start"
                 android:layout_marginStart="@dimen/default_general_margin"
-                android:src="@drawable/ic_hint_search" />
+                android:src="@drawable/ic_hint_search"
+                android:tint="@color/gray_20" />
 
 
             <TextView
@@ -41,7 +43,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@string/discover_search_hint"
-                android:textColor="@color/font_normal"
+                android:textColor="@color/black_alpha_45"
                 android:textSize="@dimen/default_small_text_size" />
 
 
@@ -52,7 +54,8 @@
                 android:layout_gravity="center|end"
                 android:clickable="true"
                 android:padding="@dimen/default_general_margin"
-                android:src="@drawable/ic_scan" />
+                android:src="@drawable/ic_scan"
+                android:tint="@color/gray_20" />
 
 
         </android.support.v7.widget.CardView>
@@ -74,7 +77,26 @@
             app:max_select="-1" />
 
 
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/hide_scroll_view"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:overScrollMode="never"
+            android:visibility="gone">
+
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/hide_tags_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_general_margin"
+                app:max_select="-1" />
+
+        </android.support.v4.widget.NestedScrollView>
+
+
         <LinearLayout
+            android:id="@+id/more_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_general_margin"
@@ -86,13 +108,17 @@
                 android:layout_height="@dimen/line_height"
                 android:layout_marginStart="@dimen/default_long_margin"
                 android:layout_weight="1"
-                android:background="@color/gray_20" />
+                android:background="@color/gray_light" />
 
             <TextView
-                android:layout_width="@dimen/app_bar_default_elevation"
+                android:id="@+id/tv_more"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:drawablePadding="@dimen/default_tiny_padding"
+                android:drawableStart="@drawable/ic_arrow_down_gray_round"
                 android:gravity="center"
+                android:paddingEnd="@dimen/default_tiny_padding"
+                android:paddingStart="@dimen/default_tiny_padding"
                 android:text="@string/look_more"
                 android:textColor="@color/font_normal"
                 android:textSize="12sp" />
@@ -102,7 +128,7 @@
                 android:layout_height="@dimen/line_height"
                 android:layout_marginEnd="@dimen/default_long_margin"
                 android:layout_weight="1"
-                android:background="@color/gray_20" />
+                android:background="@color/gray_light" />
 
 
         </LinearLayout>
@@ -133,7 +159,78 @@
                 android:layout_toEndOf="@+id/ic_quanzi"
                 android:text="@string/interest_in_circle"
                 android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_medium_text_size" />
+                android:textSize="@dimen/default_small_text_size" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/window_background" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_item_layout_height"
+            android:background="@color/card_view_background"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/ic_topic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/default_general_margin"
+                android:src="@drawable/ic_header_topic_center" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/default_general_margin"
+                android:layout_toEndOf="@+id/ic_topic"
+                android:text="@string/topic_center"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/window_background" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_item_layout_height"
+            android:background="@color/card_view_background"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/ic_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/default_general_margin"
+                android:src="@drawable/ic_header_activity_center" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/default_general_margin"
+                android:layout_toEndOf="@+id/ic_activity"
+                android:text="@string/activity_center"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_small_text_size" />
 
 
         </RelativeLayout>
@@ -165,7 +262,16 @@
                 android:layout_toEndOf="@+id/ic_original"
                 android:text="@string/original_rank"
                 android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_medium_text_size" />
+                android:textSize="@dimen/default_small_text_size" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/default_general_margin"
+                android:src="@drawable/ic_gray_arrow_right" />
 
 
         </RelativeLayout>
@@ -201,7 +307,15 @@
                 android:layout_toEndOf="@+id/ic_all_rank"
                 android:text="@string/all_rank"
                 android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_medium_text_size" />
+                android:textSize="@dimen/default_small_text_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/default_general_margin"
+                android:src="@drawable/ic_gray_arrow_right" />
 
 
         </RelativeLayout>
@@ -233,7 +347,7 @@
                 android:layout_toEndOf="@+id/ic_game"
                 android:text="@string/game_center"
                 android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_medium_text_size" />
+                android:textSize="@dimen/default_small_text_size" />
 
 
             <TextView

@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.HomePagerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.pager.HomePagerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.module.common.MainActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
@@ -132,6 +132,7 @@ public class HomePageFragment extends RxLazyFragment
         mViewPager.setOffscreenPageLimit(5);
         mViewPager.setAdapter(mHomeAdapter);
         mSlidingTab.setViewPager(mViewPager);
+        mViewPager.setCurrentItem(1);
     }
 
 

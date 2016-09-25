@@ -2,11 +2,11 @@
 <resources>
 
     <string-array name="sections">
+        <item>@string/section_live</item>
         <item>@string/section_recommend</item>
         <item>@string/section_bangumi</item>
-        <item>@string/section_live</item>
-        <item>@string/section_focus</item>
         <item>@string/section_more</item>
+        <item>@string/section_focus</item>
         <item>@string/section_discover</item>
     </string-array>
 
@@ -38,6 +38,7 @@
     <string name="everyone_in_the_search">大家都在搜</string>
     <string name="look_more">查看更多</string>
     <string name="interest_in_circle">兴趣圈</string>
+    <string name="topic_center">话题中心</string>
     <string name="original_rank">原创排行榜</string>
     <string name="all_rank">全区排行榜</string>
     <string name="game_center">游戏中心</string>

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.adapter;
+package com.hotbitmapgg.ohmybilibili.adapter.pager;
 
 import android.content.Context;
 import android.view.LayoutInflater;

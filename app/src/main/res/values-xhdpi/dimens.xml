@@ -116,7 +116,7 @@
     <!--discover layout size-->
     <dimen name="discover_card_view_height">45dp</dimen>
     <dimen name="discover_text_margin">40dp</dimen>
-    <dimen name="discover_item_layout_height">56dp</dimen>
+    <dimen name="discover_item_layout_height">46dp</dimen>
 
 
     <!--more layout size-->

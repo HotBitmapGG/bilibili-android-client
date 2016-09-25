@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.adapter;
+package com.hotbitmapgg.ohmybilibili.adapter.pager;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -43,19 +43,19 @@ public class HomePagerAdapter extends FragmentPagerAdapter
             switch (position)
             {
                 case 0:
-                    fragments[position] = HomeRecommendedFragment.newInstance();
-                    break;
-                case 1:
-                    fragments[position] = HomeBangumiFragment.newInstance();
-                    break;
-                case 2:
                     fragments[position] = HomeLiveFragment.newIntance();
                     break;
+                case 1:
+                    fragments[position] = HomeRecommendedFragment.newInstance();
+                    break;
+                case 2:
+                    fragments[position] = HomeBangumiFragment.newInstance();
+                    break;
                 case 3:
-                    fragments[position] = HomeFocusFragment.newIntance();
+                    fragments[position] = HomeMoreFragment.newInstance();
                     break;
                 case 4:
-                    fragments[position] = HomeMoreFragment.newInstance();
+                    fragments[position] = HomeFocusFragment.newIntance();
                     break;
                 case 5:
                     fragments[position] = HomeDiscoverFragment.newInstance();
