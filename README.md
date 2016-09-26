@@ -1,4 +1,4 @@
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bg.jpg?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bg2.png?raw=true)
 
 ## High copy bilibili android client
 
@@ -43,11 +43,9 @@
 ## The Api documentation
 
 * BiliBili API / REST service written in Go
-
 [WhiteBlue](https://github.com/WhiteBlue)/**[bilibili-go](https://github.com/WhiteBlue/bilibili-go)**
 
 * bilibili官方文档搬运(官方文档已不对外开放)
-
 [fython](https://github.com/fython)/**[BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)**
 
 
