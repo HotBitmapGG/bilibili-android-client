@@ -4,43 +4,50 @@
 
 [![Wercker](https://img.shields.io/badge/Android%20Client-bilibili-brightgreen.svg)](https://github.com/HotBitmapGG/bilibili) [![Issue Stats](https://img.shields.io/issuestats/i/github/strongloop/express.svg?maxAge=2592000)]()  [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?maxAge=2592000)]() [![Crates.io](https://img.shields.io/crates/l/rustc-serialize.svg?maxAge=2592000)]()
 
-## 简介
 
-### 使用到的开源库
+## Introduce
 
-* 1.Rxjava，RxAndroid，Rxbinding，Rxlifecycle，RxBus。
-* 2.Okhttp,Retrofit。
-* 3.ijkplayer,烈焰弹幕库。
-* 4.butterknife,Glide。
-* 5.materialsearchview,FlycoTabLayout。
-
-
-### 目前完成的功能
+### Function has been completed
 
 * 1.首页六大模块，推荐，番剧，直播，关注，分区，发现的实现。
-* 2.热门视频排行榜，全区视频排行榜。
+
+* 2.热门视频排行榜，全区视频排行榜,原创排行榜。
+
 * 3.视频详情界面，视频评论，使用ijkplayer完成的视频播放，烈焰弹幕库实现的弹幕功能。
-* 4.番剧，专题详情界面，番剧放送表，番剧索引。
+
+* 4.番剧，专题详情界面，番剧放送表，番剧索引,新番连载,分季新番。
+
 * 5.使用ijkplayer实现的直播视频的播放。(直播的弹幕没有实现，暂时还抓不到弹幕的数据)
+
 * 6.分区视频查看功能，目前只有基本的9大分区的实现，但是该接口需要Appkey才能获取到。
+
 * 7.游戏中心，离线缓存的界面实现。
+
 * 8.全区搜索的实现，目前支持综合视频，番剧，话题的搜索。
+
 * 9.仿B站登录的小彩蛋。(登录只是假登录，随意输入帐号密码即可)
+
 * 10.其他的一些仿官方的实现细节等，请自行发现。
 
-### 未完成的功能
+### Function of is not yet complete
+
 * 主题切换,夜间模式,已添加,目前还有bug,填坑中。
+
 * 直播功能的完善。
-* 番剧详情界面实现。
+
+* 番剧详情界面功能实现。
+
 * 离线缓存的功能实现。
 
 
-## 接口文档
+## The Api documentation
 
 * BiliBili API / REST service written in Go
+
 [WhiteBlue](https://github.com/WhiteBlue)/**[bilibili-go](https://github.com/WhiteBlue/bilibili-go)**
 
 * bilibili官方文档搬运(官方文档已不对外开放)
+
 [fython](https://github.com/fython)/**[BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)**
 
 
@@ -50,18 +57,23 @@
 因为目前还在开发阶段,等项目完成的差不多的时候会放上来一个公用的Appkey。
 
 
-## 说明
+## Instructions
 
-由于该项目是业余时间开发，更新比较慢还请见谅，有任何意见，bug，问题可以提issuse，我会第一时间关注并解决,
-还有就是目前我还在完善剩下的界面,功能的开发,后期会抽时间使用MVP来重构该项目,谢谢您的支持。
+>由于该项目是业余时间开发，更新比较慢还请见谅，有任何意见，bug，问题可以提issuse，我会第一时间关注并解决.
+
+ * 项目默认minSdkVersion设置的为21,因为21以下可能有些界面需要做适配,由于时间有限,只能后期慢慢完善,这个可以自己按照需求修改。
+
+ * Apk暂时不提供下载,因为还有一些界面功能没有做完,等全部完善后会上传到fir.im。
+
+ * 后期会抽时间使用MVP来重构该项目,让整体架构更清晰。
 
 
-## 声明
+## The statement
 
-如果该项目有侵犯版权问题，或被告知需停止共享与使用，本人会及时删除此页面与整个项目。
+如果该项目有侵犯B站版权问题，或被告知需停止共享与使用，本人会及时删除此页面与整个项目。
 
 
-## 更新日志
+## Update log
 
 >由于每个版本更新的东西较多，所以从现在开始每个版本都会贴上更新日志.
 
@@ -69,9 +81,9 @@
 
   * 1.主页推荐界面,番剧界面的大部分修改,保持跟官方版本一致。
   * 2.增加了原创排行榜,新番连载,分季新番等新界面。
-  * 3.修改了全局ToolBar的textsize,之前字体过大。
-  * 4.修复了很多已知的Bug。
-  * 5.主界面整体结构修改,修复切换显示bug和加载错误的问题。
+  * 3.修改了全局ToolBar的Textsize,修复了之前字体过大的问题。
+  * 4.主界面整体结构修改,修复切换显示bug和加载错误的问题。
+  * 5.修复了很多已知的Bug。
 
 
 ### V2.1.6
@@ -100,7 +112,7 @@
   * 3.增加直播送礼物特效动画
 
 
-## 截图
+## Screenshots
 
 <a href="art/01.png"><img src="art/01.png" width="40%"/></a> <a href="art/02.png"><img src="art/02.png" width="40%"/></a>
 
@@ -141,6 +153,38 @@
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/26.png?raw=true)
 
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/27.png?raw=true)
+
+
+
+### Thanks to the open source project
+
+* [RxJava](https://github.com/ReactiveX/RxJava)
+
+* [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+
+* [RxBinding](https://github.com/JakeWharton/RxBinding)
+
+* [RxLifecycle](https://github.com/trello/RxLifecycle)
+
+* [okhttp](https://github.com/square/okhttp)
+
+* [retrofit](https://github.com/square/retrofit)
+
+* [ijkplayer](https://github.com/Bilibili/ijkplayer)
+
+* [DanmakuFlameMaster](https://github.com/Bilibili/DanmakuFlameMaster)
+
+* [butterknife](https://github.com/JakeWharton/butterknife)
+
+* [glide](https://github.com/bumptech/glide)
+
+* [MaterialSearchView](https://github.com/MiguelCatalan/MaterialSearchView)
+
+* [FlycoTabLayout](https://github.com/H07000223/FlycoTabLayout)
+
+* [MagicaSakura](https://github.com/Bilibili/MagicaSakura)
+
+* [FlowLayout](https://github.com/hongyangAndroid/FlowLayout)
 
 
 
