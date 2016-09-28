@@ -201,7 +201,7 @@
 
     <!-- Android Design Support Library -->
     <dimen name="navigation_elevation">12dp</dimen>
-    <dimen name="navigation_max_width">300dp</dimen>
+    <dimen name="navigation_max_width">310dp</dimen>
 
     <!-- Layouts' special resources -->
     <dimen name="video_info_mini_icons_size">12dp</dimen>

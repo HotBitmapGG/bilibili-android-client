@@ -72,6 +72,8 @@
     <string name="danmaku_switch">弹幕开关</string>
     <string name="play_immediately">立即播放</string>
     <string name="activity_center">活动中心</string>
+    <string name="dynamic">动态</string>
+    <string name="not_watch">尚未观看</string>
 
 
     <!--Vitamio Strings-->

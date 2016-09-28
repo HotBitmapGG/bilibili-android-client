@@ -1,12 +1,19 @@
 package com.hotbitmapgg.ohmybilibili.module.home.focus;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.adapter.FocusOnBangumiAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.FocusOnDynamicAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
+
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -21,11 +28,14 @@ import butterknife.Bind;
 public class HomeFocusFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.empty_view)
-    CustomEmptyView mCustomEmptyView;
+    @Bind(R.id.recycle)
+    RecyclerView mRecyclerView;
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    private List<FocusOnBangumi> focusOnBangumis;
+
+    private List<FocusOnDynamic> focusOnDynamics;
+
+    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
     public static HomeFocusFragment newIntance()
     {
@@ -37,18 +47,46 @@ public class HomeFocusFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_empty;
+        return R.layout.fragment_focus;
     }
 
     @Override
     public void finishCreateView(Bundle state)
     {
 
-        mToolbar.setVisibility(View.GONE);
+        initData();
+    }
 
-        mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_space_no_data);
-        mCustomEmptyView.setEmptyText("没有关注的数据（╯－＿－）╯");
-        mCustomEmptyView.hideReloadButton();
+    private void initData()
+    {
+
+        FocusOnContents mFocusOnContents = new FocusOnContents();
+        focusOnBangumis = mFocusOnContents.fillBangumiData();
+        focusOnDynamics = mFocusOnContents.fillDynamicData();
+        initRecyclerView();
+    }
+
+    private void initRecyclerView()
+    {
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        FocusOnDynamicAdapter mAdapter = new FocusOnDynamicAdapter(mRecyclerView, focusOnDynamics);
+        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        createHeadView();
+        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+    }
+
+    private void createHeadView()
+    {
+
+        View headView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_focus_head_view, mRecyclerView, false);
+        RecyclerView mBangumiRecycler = (RecyclerView) headView.findViewById(R.id.focus_head_recycler);
+        mBangumiRecycler.setHasFixedSize(false);
+        mBangumiRecycler.setNestedScrollingEnabled(false);
+        mBangumiRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        mBangumiRecycler.setAdapter(new FocusOnBangumiAdapter(mBangumiRecycler, focusOnBangumis));
+        mHeaderViewRecyclerAdapter.addHeaderView(headView);
     }
 
     @Override

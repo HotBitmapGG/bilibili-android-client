@@ -202,7 +202,7 @@
 
     <!-- Android Design Support Library -->
     <dimen name="navigation_elevation">12dp</dimen>
-    <dimen name="navigation_max_width">300dp</dimen>
+    <dimen name="navigation_max_width">320dp</dimen>
 
     <!-- Layouts' special resources -->
     <dimen name="video_info_mini_icons_size">12dp</dimen>
@@ -231,5 +231,15 @@
     <dimen name="media_controller_bottom_layout_danmaku_padding">3dp</dimen>
     <dimen name="media_controller_bottom_layout_top_margin">4dp</dimen>
     <dimen name="media_controller_bottom_layout_left_right_bottom_margin">8dp</dimen>
+
+
+    <!--home focus size-->
+    <dimen name="focus_bangumi_card_height">240dp</dimen>
+    <dimen name="focus_bangumi_image_height">160dp</dimen>
+    <dimen name="focus_dynamic_card_height">200dp</dimen>
+    <dimen name="focus_dynamic_user_height">70dp</dimen>
+    <dimen name="focus_dynamic_user_avatar_size">38dp</dimen>
+    <dimen name="focus_dynamic_image_width">140dp</dimen>
+    <dimen name="focus_dynamic_image_height">100dp</dimen>
 
 </resources>
