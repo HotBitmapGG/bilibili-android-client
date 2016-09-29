@@ -284,7 +284,33 @@ public class VideoDetails implements Parcelable
      * 0 : {"page":1,"type":"vupload","part":"","cid":8444834,"vid":0}
      */
 
-    //private VideoList list;
+//    private VideoList list;
+//
+//    public class VideoList
+//    {
+//
+//        @SerializedName("0")
+//        public VideoAdditional videoAdditional;
+//
+//        public class VideoAdditional
+//        {
+//
+//            public int cid;
+//        }
+//    }
+//
+//    public VideoList getList()
+//    {
+//
+//        return list;
+//    }
+//
+//    public void setList(VideoList list)
+//    {
+//
+//        this.list = list;
+//    }
+
     @Override
     public int describeContents()
     {

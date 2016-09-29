@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/default_general_margin"
-                        android:singleLine="true"
+                        android:maxLines="1"
                         android:text="@string/hotbitmapgg"
                         android:textColor="@color/white"
                         android:textSize="@dimen/default_medium_text_size" />
