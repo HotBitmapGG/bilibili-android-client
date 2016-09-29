@@ -17,9 +17,11 @@ import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
@@ -41,7 +43,7 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
     @Bind(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    private String month = "1";
+    private String month = "4";
 
     private String year = "2016";
 
@@ -61,10 +63,6 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(BangumiIndexActivity.this, 3));
-
-
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
 
         getBangumiIndex();
     }
@@ -96,7 +94,18 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
         RetrofitHelper.getBangumiIndexApi()
                 .getBangumiIndex(year, month)
                 .compose(this.<List<BangumiIndex>> bindToLifecycle())
+                .doOnSubscribe(new Action0()
+                {
+
+                    @Override
+                    public void call()
+                    {
+
+                        showProgressBar();
+                    }
+                })
                 .subscribeOn(Schedulers.io())
+                .delay(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<BangumiIndex>>()
                 {
@@ -118,10 +127,24 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
                     public void call(Throwable throwable)
                     {
 
-                        mCircleProgressView.setVisibility(View.GONE);
-                        mCircleProgressView.stopSpinning();
+                        hideProgressBar();
                     }
                 });
+    }
+
+
+    private void showProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.VISIBLE);
+        mCircleProgressView.spin();
+    }
+
+    private void hideProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.GONE);
+        mCircleProgressView.stopSpinning();
     }
 
     private void finishTask()
@@ -129,8 +152,6 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
 
         BangumiIndexAdapter mAdapter = new BangumiIndexAdapter(mRecyclerView, bangumiIndexList);
         mRecyclerView.setAdapter(mAdapter);
-
-        mCircleProgressView.setVisibility(View.GONE);
-        mCircleProgressView.stopSpinning();
+        hideProgressBar();
     }
 }

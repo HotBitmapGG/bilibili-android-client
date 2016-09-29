@@ -90,20 +90,6 @@
 
 
         <ImageView
-            android:id="@+id/item_btn_bangumi_index"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/home_recommend_foot_bangumi_layout_height"
-            android:layout_weight="1"
-            android:background="@drawable/bangumi_index_background"
-            android:scaleType="center"
-            android:src="@drawable/bangumi_index_text" />
-
-        <Space
-            android:layout_width="@dimen/default_general_margin"
-            android:layout_height="wrap_content" />
-
-
-        <ImageView
             android:id="@+id/item_btn_bangumi_timeline"
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_recommend_foot_bangumi_layout_height"
@@ -111,6 +97,20 @@
             android:background="@drawable/bangumi_timeline_background"
             android:scaleType="center"
             android:src="@drawable/bangumi_timeline_text" />
+
+        <Space
+            android:layout_width="@dimen/default_general_margin"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:id="@+id/item_btn_bangumi_index"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_recommend_foot_bangumi_layout_height"
+            android:layout_weight="1"
+            android:background="@drawable/bangumi_index_background"
+            android:scaleType="center"
+            android:src="@drawable/bangumi_index_text" />
 
     </LinearLayout>
 
