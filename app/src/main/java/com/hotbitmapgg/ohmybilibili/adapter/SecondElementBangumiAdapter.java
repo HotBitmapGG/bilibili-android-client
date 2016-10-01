@@ -78,11 +78,11 @@ public class SecondElementBangumiAdapter extends AbsRecyclerViewAdapter
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public ImageView mImage;
+        ImageView mImage;
 
-        public TextView mTitle;
+        TextView mTitle;
 
-        public TextView mDesc;
+        TextView mDesc;
 
         public ItemViewHolder(View itemView)
         {

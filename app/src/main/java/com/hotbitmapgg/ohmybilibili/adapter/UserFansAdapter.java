@@ -79,9 +79,9 @@ public class UserFansAdapter extends AbsRecyclerViewAdapter
     {
 
 
-        public CircleImageView mUserAvatar;
+        CircleImageView mUserAvatar;
 
-        public TextView mUserName;
+        TextView mUserName;
 
         public itemViewHolder(View itemView)
         {

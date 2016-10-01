@@ -21,8 +21,6 @@ import java.util.concurrent.TimeUnit;
 import butterknife.Bind;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
 
 /**
  * Created by hcc on 16/8/7 14:12
@@ -127,27 +125,12 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
     {
 
         Observable.timer(2000, TimeUnit.MILLISECONDS)
-                .compose(this.<Long> bindToLifecycle())
-                .doOnSubscribe(new Action0()
-                {
-
-                    @Override
-                    public void call()
-                    {
-
-                        showProgress();
-                    }
-                })
+                .compose(this.bindToLifecycle())
+                .doOnSubscribe(this::showProgress)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Long>()
-                {
+                .subscribe(aLong -> {
 
-                    @Override
-                    public void call(Long aLong)
-                    {
-
-                        initData();
-                    }
+                    initData();
                 });
     }
 

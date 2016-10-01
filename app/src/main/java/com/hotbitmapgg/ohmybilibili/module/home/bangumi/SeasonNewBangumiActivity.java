@@ -20,9 +20,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -68,48 +65,18 @@ public class SeasonNewBangumiActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getSeasonNewBangumiApi()
                 .getSeasonNewBangumiList()
-                .compose(this.<SeasonNewBangumi> bindToLifecycle())
-                .doOnSubscribe(new Action0()
-                {
-
-                    @Override
-                    public void call()
-                    {
-
-                        showProgressBar();
-                    }
-                })
-                .map(new Func1<SeasonNewBangumi,List<SeasonNewBangumi.ListBean>>()
-                {
-
-                    @Override
-                    public List<SeasonNewBangumi.ListBean> call(SeasonNewBangumi seasonNewBangumi)
-                    {
-
-                        return seasonNewBangumi.getList();
-                    }
-                })
+                .compose(this.bindToLifecycle())
+                .doOnSubscribe(this::showProgressBar)
+                .map(SeasonNewBangumi::getList)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<SeasonNewBangumi.ListBean>>()
-                {
+                .subscribe(listBeans -> {
 
-                    @Override
-                    public void call(List<SeasonNewBangumi.ListBean> listBeans)
-                    {
+                    seasonNewBangumis.addAll(listBeans);
+                    finishTask();
+                }, throwable -> {
 
-                        seasonNewBangumis.addAll(listBeans);
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        hideProgressBar();
-                    }
+                    hideProgressBar();
                 });
     }
 

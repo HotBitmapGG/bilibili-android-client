@@ -20,9 +20,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -68,48 +65,18 @@ public class NewBangumiSerialActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getNewBangumiSerial()
                 .getNewBangumiSerialList()
-                .compose(this.<NewBangumiSerial> bindToLifecycle())
-                .doOnSubscribe(new Action0()
-                {
-
-                    @Override
-                    public void call()
-                    {
-
-                        showProgressBar();
-                    }
-                })
-                .map(new Func1<NewBangumiSerial,List<NewBangumiSerial.ListBean>>()
-                {
-
-                    @Override
-                    public List<NewBangumiSerial.ListBean> call(NewBangumiSerial newBangumiSerial)
-                    {
-
-                        return newBangumiSerial.getList();
-                    }
-                })
+                .compose(this.bindToLifecycle())
+                .doOnSubscribe(this::showProgressBar)
+                .map(NewBangumiSerial::getList)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<NewBangumiSerial.ListBean>>()
-                {
+                .subscribe(listBeans -> {
 
-                    @Override
-                    public void call(List<NewBangumiSerial.ListBean> listBeans)
-                    {
+                    newBangumiSerials.addAll(listBeans);
+                    finishTask();
+                }, throwable -> {
 
-                        newBangumiSerials.addAll(listBeans);
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        hideProgressBar();
-                    }
+                    hideProgressBar();
                 });
     }
 

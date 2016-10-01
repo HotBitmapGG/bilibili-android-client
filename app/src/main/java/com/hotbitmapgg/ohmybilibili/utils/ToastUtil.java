@@ -43,60 +43,28 @@ public class ToastUtil
     public static void LongToast(final String text)
     {
 
-        new Handler(Looper.getMainLooper()).post(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-
-                Toast.makeText(OhMyBiliBiliApp.getInstance(), text, Toast.LENGTH_LONG).show();
-            }
-        });
+        new Handler(Looper.getMainLooper()).post(() -> Toast.
+                makeText(OhMyBiliBiliApp.getInstance(), text, Toast.LENGTH_LONG).show());
     }
 
     public static void LongToast(final int stringId)
     {
 
-        new Handler(Looper.getMainLooper()).post(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-
-                Toast.makeText(OhMyBiliBiliApp.getInstance(), stringId, Toast.LENGTH_LONG).show();
-            }
-        });
+        new Handler(Looper.getMainLooper()).post(() -> Toast.
+                makeText(OhMyBiliBiliApp.getInstance(), stringId, Toast.LENGTH_LONG).show());
     }
 
     public static void ShortToast(final String text)
     {
 
-        new Handler(Looper.getMainLooper()).post(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-
-                Toast.makeText(OhMyBiliBiliApp.getInstance(), text, Toast.LENGTH_SHORT).show();
-            }
-        });
+        new Handler(Looper.getMainLooper()).post(() -> Toast.
+                makeText(OhMyBiliBiliApp.getInstance(), text, Toast.LENGTH_SHORT).show());
     }
 
     public static void ShortToast(final int stringId)
     {
 
-        new Handler(Looper.getMainLooper()).post(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-
-                Toast.makeText(OhMyBiliBiliApp.getInstance(), stringId, Toast.LENGTH_SHORT).show();
-            }
-        });
+        new Handler(Looper.getMainLooper()).post(() -> Toast.
+                makeText(OhMyBiliBiliApp.getInstance(), stringId, Toast.LENGTH_SHORT).show());
     }
 }

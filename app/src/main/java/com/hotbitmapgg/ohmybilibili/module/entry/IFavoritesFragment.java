@@ -3,7 +3,6 @@ package com.hotbitmapgg.ohmybilibili.module.entry;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
@@ -46,17 +45,11 @@ public class IFavoritesFragment extends RxLazyFragment
 
         mToolbar.setTitle("我的收藏");
         mToolbar.setNavigationIcon(R.drawable.ic_navigation_drawer);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
+        mToolbar.setNavigationOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v)
-            {
-
-                Activity activity = getActivity();
-                if (activity instanceof MainActivity)
-                    ((MainActivity) activity).toggleDrawer();
-            }
+            Activity activity1 = getActivity();
+            if (activity1 instanceof MainActivity)
+                ((MainActivity) activity1).toggleDrawer();
         });
 
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_fav_no_data);

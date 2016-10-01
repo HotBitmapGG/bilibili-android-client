@@ -109,7 +109,7 @@ public class HomeMoreLayoutAdapter extends BaseAdapter
         return convertView;
     }
 
-    static class MoreLayoutViewHolder
+    private static class MoreLayoutViewHolder
     {
 
         ImageView mItemPic;

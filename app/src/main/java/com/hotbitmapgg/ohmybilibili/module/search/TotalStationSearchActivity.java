@@ -35,7 +35,6 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -73,10 +72,6 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
     private static final String EXTRA_CONTENT = "extra_content";
 
     private String content;
-
-    private int page = 1;
-
-    private int count = 10;
 
     private List<String> titles = new ArrayList<>();
 
@@ -126,68 +121,29 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
     {
 
         RxTextView.textChanges(mSearchEdit)
-                .compose(this.<CharSequence> bindToLifecycle())
-                .map(new Func1<CharSequence,String>()
-                {
-
-                    @Override
-                    public String call(CharSequence charSequence)
-                    {
-
-                        return charSequence.toString();
-                    }
-                })
+                .compose(this.bindToLifecycle())
+                .map(CharSequence::toString)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>()
-                {
+                .subscribe(s -> {
 
-                    @Override
-                    public void call(String s)
-                    {
-
-                        if (!TextUtils.isEmpty(s))
-                            mSearchTextClear.setVisibility(View.VISIBLE);
-                        else
-                            mSearchTextClear.setVisibility(View.GONE);
-                    }
+                    if (!TextUtils.isEmpty(s))
+                        mSearchTextClear.setVisibility(View.VISIBLE);
+                    else
+                        mSearchTextClear.setVisibility(View.GONE);
                 });
 
 
         RxView.clicks(mSearchTextClear)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Void>()
-                {
+                .subscribe(aVoid -> {
 
-                    @Override
-                    public void call(Void aVoid)
-                    {
-
-                        mSearchEdit.setText("");
-                    }
+                    mSearchEdit.setText("");
                 });
 
 
         RxTextView.editorActions(mSearchEdit)
-                .filter(new Func1<Integer,Boolean>()
-                {
-
-                    @Override
-                    public Boolean call(Integer integer)
-                    {
-
-                        return !TextUtils.isEmpty(mSearchEdit.getText().toString().trim());
-                    }
-                })
-                .filter(new Func1<Integer,Boolean>()
-                {
-
-                    @Override
-                    public Boolean call(Integer integer)
-                    {
-
-                        return integer == EditorInfo.IME_ACTION_SEARCH;
-                    }
-                })
+                .filter(integer -> !TextUtils.isEmpty(mSearchEdit.getText().toString().trim()))
+                .filter(integer -> integer == EditorInfo.IME_ACTION_SEARCH)
                 .flatMap(new Func1<Integer,Observable<String>>()
                 {
 
@@ -199,19 +155,13 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>()
-                {
+                .subscribe(s -> {
 
-                    @Override
-                    public void call(String s)
-                    {
-
-                        KeyBoardUtil.closeKeybord(mSearchEdit,
-                                TotalStationSearchActivity.this);
-                        showSearchAnim();
-                        clearData();
-                        getSearchData(s);
-                    }
+                    KeyBoardUtil.closeKeybord(mSearchEdit,
+                            TotalStationSearchActivity.this);
+                    showSearchAnim();
+                    clearData();
+                    getSearchData(s);
                 });
     }
 
@@ -220,40 +170,16 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
 
         RxView.clicks(mSearchBtn)
                 .throttleFirst(2, TimeUnit.SECONDS)
-                .map(new Func1<Void,String>()
-                {
-
-                    @Override
-                    public String call(Void aVoid)
-                    {
-
-                        return mSearchEdit.getText().toString().trim();
-                    }
-                })
-                .filter(new Func1<String,Boolean>()
-                {
-
-                    @Override
-                    public Boolean call(String s)
-                    {
-
-                        return !TextUtils.isEmpty(s);
-                    }
-                })
+                .map(aVoid -> mSearchEdit.getText().toString().trim())
+                .filter(s -> !TextUtils.isEmpty(s))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>()
-                {
+                .subscribe(s -> {
 
-                    @Override
-                    public void call(String s)
-                    {
-
-                        KeyBoardUtil.closeKeybord(mSearchEdit,
-                                TotalStationSearchActivity.this);
-                        showSearchAnim();
-                        clearData();
-                        getSearchData(s);
-                    }
+                    KeyBoardUtil.closeKeybord(mSearchEdit,
+                            TotalStationSearchActivity.this);
+                    showSearchAnim();
+                    clearData();
+                    getSearchData(s);
                 });
     }
 
@@ -277,31 +203,21 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
     private void getSearchData(String text)
     {
 
+        int page = 1;
+        int count = 10;
         RetrofitHelper.getSearchApi()
                 .search(text, page, count)
-                .compose(this.<SearchResult> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<SearchResult>()
-                {
+                .subscribe(searchResult -> {
 
-                    @Override
-                    public void call(SearchResult searchResult)
-                    {
+                    pageinfo = searchResult.getPageinfo();
+                    result = searchResult.getResult();
+                    finishTask();
+                }, throwable -> {
 
-                        pageinfo = searchResult.getPageinfo();
-                        result = searchResult.getResult();
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        setEmptyLayout();
-                    }
+                    setEmptyLayout();
                 });
     }
 
@@ -443,9 +359,9 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
 
         private List<Fragment> fragments;
 
-        public SearchTabAdapter(FragmentManager fm,
-                                List<String> titles,
-                                List<Fragment> fragments)
+        SearchTabAdapter(FragmentManager fm,
+                         List<String> titles,
+                         List<Fragment> fragments)
         {
 
             super(fm);

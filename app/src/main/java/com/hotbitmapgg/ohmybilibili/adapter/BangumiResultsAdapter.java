@@ -76,13 +76,11 @@ public class BangumiResultsAdapter extends AbsRecyclerViewAdapter
     public class ItemViewHolder extends ClickableViewHolder
     {
 
-        public ImageView mBangumiPic;
+        ImageView mBangumiPic;
 
-        public TextView mBangumiTitle;
+        TextView mBangumiTitle;
 
-//        public TextView mBangumiFrom;
-
-        public TextView mBangumiDetails;
+        TextView mBangumiDetails;
 
         public ItemViewHolder(View itemView)
         {
@@ -91,7 +89,6 @@ public class BangumiResultsAdapter extends AbsRecyclerViewAdapter
 
             mBangumiPic = $(R.id.item_img);
             mBangumiTitle = $(R.id.item_title);
-            //  mBangumiFrom = $(R.id.item_user_name);
             mBangumiDetails = $(R.id.item_details);
         }
     }

@@ -40,7 +40,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -86,8 +85,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     private int av;
 
-    private VideoDetailsPagerAdapter mAdapter;
-
     private VideoDetails mVideoDetails;
 
     private String imgUrl;
@@ -125,27 +122,9 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         mFAB.setClickable(false);
         mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
         mFAB.setTranslationY(-getResources().getDimension(R.dimen.floating_action_button_size_half));
-        mFAB.setOnClickListener(new View.OnClickListener()
-        {
+        mFAB.setOnClickListener(v -> VideoPlayerActivity.launch(VideoDetailsActivity.this, av));
 
-            @Override
-            public void onClick(View v)
-            {
-
-                VideoPlayerActivity.launch(VideoDetailsActivity.this, av);
-            }
-        });
-
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener()
-        {
-
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset)
-            {
-
-                setViewsTranslation(verticalOffset);
-            }
-        });
+        mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> setViewsTranslation(verticalOffset));
 
         mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeEvent()
         {
@@ -261,30 +240,18 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getVideoDetailsApi()
                 .getVideoDetails(av)
-                .compose(this.<VideoDetails> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<VideoDetails>()
-                {
+                .subscribe(videoDetails -> {
 
-                    @Override
-                    public void call(VideoDetails videoDetails)
-                    {
+                    mVideoDetails = videoDetails;
+                    finishGetTask();
+                }, throwable -> {
 
-                        mVideoDetails = videoDetails;
-                        finishGetTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        mFAB.setClickable(false);
-                        mFAB.setBackgroundTintList(ColorStateList.valueOf(
-                                getResources().getColor(R.color.gray_20)));
-                    }
+                    mFAB.setClickable(false);
+                    mFAB.setBackgroundTintList(ColorStateList.valueOf(
+                            getResources().getColor(R.color.gray_20)));
                 });
     }
 
@@ -324,7 +291,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         titles.add("简介");
         titles.add("评论" + "(" + num + ")");
 
-        mAdapter = new VideoDetailsPagerAdapter(getSupportFragmentManager(), fragments, titles);
+        VideoDetailsPagerAdapter mAdapter = new VideoDetailsPagerAdapter(getSupportFragmentManager(), fragments, titles);
 
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(2);
@@ -371,7 +338,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
         private List<String> titles;
 
-        public VideoDetailsPagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles)
+        VideoDetailsPagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles)
         {
 
             super(fm);

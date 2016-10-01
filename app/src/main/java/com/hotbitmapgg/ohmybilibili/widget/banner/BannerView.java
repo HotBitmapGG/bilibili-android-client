@@ -51,8 +51,6 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
 
     private List<ImageView> imageViewList;
 
-    private BannerAdapter bannerAdapter;
-
     private Context context;
 
     private List<BannerEntity> bannerList;
@@ -85,8 +83,6 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
 
         imageViewList = new ArrayList<>();
     }
-
-    private LinearLayout.LayoutParams params;
 
     /**
      * 设置轮播间隔时间
@@ -147,7 +143,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
         {
             View dot = new View(context);
             dot.setBackgroundResource(unSelcetRes);
-            params = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     DisplayUtil.dp2px(context, 5),
                     DisplayUtil.dp2px(context, 5));
             params.leftMargin = 10;
@@ -213,7 +209,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
             }
         });
 
-        bannerAdapter = new BannerAdapter(imageViewList);
+        BannerAdapter bannerAdapter = new BannerAdapter(imageViewList);
         viewPager.setAdapter(bannerAdapter);
         bannerAdapter.notifyDataSetChanged();
         bannerAdapter.setmViewPagerOnItemClickListener(this);

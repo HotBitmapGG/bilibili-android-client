@@ -18,11 +18,12 @@ public abstract class AbsRecyclerViewAdapter extends
         RecyclerView.Adapter<AbsRecyclerViewAdapter.ClickableViewHolder>
 {
 
+
     private Context context;
 
     protected RecyclerView mRecyclerView;
 
-    protected List<RecyclerView.OnScrollListener> mListeners = new ArrayList<RecyclerView.OnScrollListener>();
+    private List<RecyclerView.OnScrollListener> mListeners = new ArrayList<>();
 
     public AbsRecyclerViewAdapter(RecyclerView recyclerView)
     {
@@ -65,10 +66,10 @@ public abstract class AbsRecyclerViewAdapter extends
         public void onItemClick(int position, ClickableViewHolder holder);
     }
 
-    public interface OnItemLongClickListener
+    interface OnItemLongClickListener
     {
 
-        public boolean onItemLongClick(int position, ClickableViewHolder holder);
+        boolean onItemLongClick(int position, ClickableViewHolder holder);
     }
 
     private OnItemClickListener itemClickListener;
@@ -103,35 +104,15 @@ public abstract class AbsRecyclerViewAdapter extends
     public void onBindViewHolder(final ClickableViewHolder holder, final int position)
     {
 
-        holder.getParentView().setOnClickListener(new View.OnClickListener()
-        {
+        holder.getParentView().setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v)
+            if (itemClickListener != null)
             {
-
-                if (itemClickListener != null)
-                {
-                    itemClickListener.onItemClick(position, holder);
-                }
+                itemClickListener.onItemClick(position, holder);
             }
         });
-        holder.getParentView().setOnLongClickListener(new View.OnLongClickListener()
-        {
-
-            @Override
-            public boolean onLongClick(View v)
-            {
-
-                if (itemLongClickListener != null)
-                {
-                    return itemLongClickListener.onItemLongClick(position, holder);
-                } else
-                {
-                    return false;
-                }
-            }
-        });
+        holder.getParentView().setOnLongClickListener(v -> itemLongClickListener != null
+                && itemLongClickListener.onItemLongClick(position, holder));
     }
 
     public class ClickableViewHolder extends RecyclerView.ViewHolder
@@ -146,7 +127,7 @@ public abstract class AbsRecyclerViewAdapter extends
             this.parentView = itemView;
         }
 
-        public View getParentView()
+        View getParentView()
         {
 
             return parentView;

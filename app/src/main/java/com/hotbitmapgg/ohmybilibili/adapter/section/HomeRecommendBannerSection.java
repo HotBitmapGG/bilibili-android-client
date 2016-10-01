@@ -86,7 +86,7 @@ public class HomeRecommendBannerSection extends StatelessSection
         @Bind(R.id.home_recommended_banner)
         BannerView mBannerView;
 
-        public BannerViewHolder(View itemView)
+        BannerViewHolder(View itemView)
         {
 
             super(itemView);

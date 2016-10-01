@@ -24,11 +24,7 @@ public class CommonUtils
     {
 
         NetworkInfo info = getNetworkInfo(context);
-        if (info != null)
-        {
-            return info.isAvailable();
-        }
-        return false;
+        return info != null && info.isAvailable();
     }
 
     /**
@@ -71,13 +67,10 @@ public class CommonUtils
     /**
      * 检查SD卡是否存在
      */
-    public static boolean checkSdCard()
+    private static boolean checkSdCard()
     {
 
-        if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
-            return true;
-        else
-            return false;
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
 
@@ -86,7 +79,7 @@ public class CommonUtils
      *
      * @return
      */
-    public static long getSDcardTotalSize()
+    private static long getSDcardTotalSize()
     {
 
         if (checkSdCard())
@@ -96,8 +89,7 @@ public class CommonUtils
             long blockSizeLong = mStatFs.getBlockSizeLong();
             long blockCountLong = mStatFs.getBlockCountLong();
 
-            long totalSize = blockSizeLong * blockCountLong;
-            return totalSize;
+            return blockSizeLong * blockCountLong;
         } else
         {
             return 0;
@@ -109,7 +101,7 @@ public class CommonUtils
      *
      * @return
      */
-    public static long getSDcardAvailableSize()
+    private static long getSDcardAvailableSize()
     {
 
         if (checkSdCard())
@@ -118,12 +110,9 @@ public class CommonUtils
             StatFs mStatFs = new StatFs(path.getPath());
             long blockSizeLong = mStatFs.getBlockSizeLong();
             long availableBlocksLong = mStatFs.getAvailableBlocksLong();
-            long availabSize = blockSizeLong * availableBlocksLong;
-            return availabSize;
+            return blockSizeLong * availableBlocksLong;
         } else
-        {
             return 0;
-        }
     }
 
 
@@ -141,12 +130,9 @@ public class CommonUtils
             StatFs mStatFs = new StatFs(path.getPath());
             long blockSizeLong = mStatFs.getBlockSizeLong();
             long blockCountLong = mStatFs.getBlockCountLong();
-            long totalSize = blockSizeLong * blockCountLong;
-            return totalSize;
+            return blockSizeLong * blockCountLong;
         } else
-        {
             return getSDcardTotalSize();
-        }
     }
 
 
@@ -164,11 +150,8 @@ public class CommonUtils
             StatFs mStatFs = new StatFs(path.getPath());
             long blockSizeLong = mStatFs.getBlockSizeLong();
             long availableBlocksLong = mStatFs.getAvailableBlocksLong();
-            long availabSize = blockSizeLong * availableBlocksLong;
-            return availabSize;
+            return blockSizeLong * availableBlocksLong;
         } else
-        {
             return getSDcardAvailableSize();
-        }
     }
 }

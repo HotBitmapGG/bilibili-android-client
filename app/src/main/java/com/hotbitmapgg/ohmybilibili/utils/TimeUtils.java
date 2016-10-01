@@ -15,13 +15,13 @@ import java.util.Locale;
 public class TimeUtils
 {
 
-    public static SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    private static SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
-    public static SimpleDateFormat formatDay = new SimpleDateFormat("d", Locale.getDefault());
+    private static SimpleDateFormat formatDay = new SimpleDateFormat("d", Locale.getDefault());
 
-    public static SimpleDateFormat formatMonthDay = new SimpleDateFormat("M-d", Locale.getDefault());
+    private static SimpleDateFormat formatMonthDay = new SimpleDateFormat("M-d", Locale.getDefault());
 
-    public static SimpleDateFormat formatDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+    private static SimpleDateFormat formatDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
 
     /**
@@ -29,7 +29,7 @@ public class TimeUtils
      *
      * @return 年月日
      */
-    public static String formatDate(Date date)
+    private static String formatDate(Date date)
     {
 
         return formatDate.format(date);
@@ -41,7 +41,7 @@ public class TimeUtils
      *
      * @return 年月日 时分秒
      */
-    public static String formatDateTime(Date date)
+    private static String formatDateTime(Date date)
     {
 
         return formatDateTime.format(date);
@@ -100,7 +100,7 @@ public class TimeUtils
     /**
      * 解析日期
      */
-    public static Date parseDateTime(String datetime)
+    private static Date parseDateTime(String datetime)
     {
 
         Date mDate = null;

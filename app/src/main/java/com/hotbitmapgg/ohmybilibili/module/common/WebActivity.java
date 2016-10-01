@@ -3,7 +3,6 @@ package com.hotbitmapgg.ohmybilibili.module.common;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.RenderPriority;
 import android.webkit.WebView;
@@ -153,16 +154,7 @@ public class WebActivity extends RxAppCompatBaseActivity
                         .Builder(WebActivity.this)
                         .setTitle(R.string.app_name)
                         .setMessage(message)
-                        .setPositiveButton("确定", new AlertDialog.OnClickListener()
-                        {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-
-                                result.confirm();
-                            }
-                        });
+                        .setPositiveButton("确定", (dialog, which) -> result.confirm());
 
                 b2.setCancelable(false);
                 b2.create();
@@ -194,10 +186,10 @@ public class WebActivity extends RxAppCompatBaseActivity
         }
 
         @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl)
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error)
         {
 
-            super.onReceivedError(view, errorCode, description, failingUrl);
+            super.onReceivedError(view, request, error);
             String errorHtml = "<html><body><h2>找不到网页</h2></body></html>";
             view.loadDataWithBaseURL(null, errorHtml, "text/html", "UTF-8", null);
         }
@@ -207,16 +199,7 @@ public class WebActivity extends RxAppCompatBaseActivity
     public void initialize()
     {
 
-        mHandler.post(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-
-                mWebView.loadUrl("javascript:initialize()");
-            }
-        });
+        mHandler.post(() -> mWebView.loadUrl("javascript:initialize()"));
     }
 
     @Override

@@ -22,8 +22,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -96,41 +94,23 @@ public class HotVideoIndexActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getIndexApi()
                 .getIndex("android")
-                .compose(this.<Index> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(new Action0()
-                {
+                .doOnSubscribe(() -> {
 
-                    @Override
-                    public void call()
-                    {
-
-                        mCircleProgressView.setVisibility(View.VISIBLE);
-                        mCircleProgressView.spin();
-                    }
+                    mCircleProgressView.setVisibility(View.VISIBLE);
+                    mCircleProgressView.spin();
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Index>()
-                {
+                .subscribe(index -> {
 
-                    @Override
-                    public void call(Index index)
-                    {
+                    mTypeIndex = index;
+                    finishTask();
+                }, throwable -> {
 
-                        mTypeIndex = index;
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        mCircleProgressView.setVisibility(View.GONE);
-                        mCircleProgressView.stopSpinning();
-                    }
+                    mCircleProgressView.setVisibility(View.GONE);
+                    mCircleProgressView.stopSpinning();
                 });
     }
 
@@ -173,7 +153,7 @@ public class HotVideoIndexActivity extends RxAppCompatBaseActivity
                 "鬼畜", "游戏", "电影", "科技", "电视剧"
         };
 
-        public HotVideoIndexPagerAdapter(FragmentManager fm, List<Index.FuckList> indexs)
+        HotVideoIndexPagerAdapter(FragmentManager fm, List<Index.FuckList> indexs)
         {
 
             super(fm);

@@ -72,9 +72,9 @@ public class ActivityCenterRecyclerAdapter extends AbsRecyclerViewAdapter
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public ImageView mVideoImg;
+        ImageView mVideoImg;
 
-        public TextView mVideoTitle;
+        TextView mVideoTitle;
 
 
         public ItemViewHolder(View itemView)

@@ -52,11 +52,11 @@ public class ScreenResolution
             Method mGetRawHeight = Display.class.getMethod("getRawHeight");
             Integer realWidth = (Integer) mGetRawWidth.invoke(display);
             Integer realHeight = (Integer) mGetRawHeight.invoke(display);
-            return new Pair<Integer,Integer>(realWidth, realHeight);
+            return new Pair<>(realWidth, realHeight);
         } catch (Exception e)
         {
             DisplayMetrics disp = ctx.getResources().getDisplayMetrics();
-            return new Pair<Integer,Integer>(disp.widthPixels, disp.heightPixels);
+            return new Pair<>(disp.widthPixels, disp.heightPixels);
         }
     }
 
@@ -71,6 +71,6 @@ public class ScreenResolution
         Display display = wm.getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
         display.getRealMetrics(metrics);
-        return new Pair<Integer,Integer>(metrics.widthPixels, metrics.heightPixels);
+        return new Pair<>(metrics.widthPixels, metrics.heightPixels);
     }
 }

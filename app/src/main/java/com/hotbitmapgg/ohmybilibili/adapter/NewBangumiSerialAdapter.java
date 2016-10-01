@@ -82,13 +82,13 @@ public class NewBangumiSerialAdapter extends AbsRecyclerViewAdapter
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public ImageView mImage;
+        ImageView mImage;
 
-        public TextView mTitle;
+        TextView mTitle;
 
-        public TextView mPlay;
+        TextView mPlay;
 
-        public TextView mUpdate;
+        TextView mUpdate;
 
         public ItemViewHolder(View itemView)
         {

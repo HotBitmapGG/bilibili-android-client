@@ -24,10 +24,10 @@ public class RxBus
 
     private static volatile RxBus mInstance;
 
-    private final Subject bus;
+    private final Subject<Object,Object> bus;
 
 
-    public RxBus()
+    private RxBus()
     {
 
         bus = new SerializedSubject<>(PublishSubject.create());

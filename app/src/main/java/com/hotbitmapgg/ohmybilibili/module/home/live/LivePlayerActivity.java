@@ -30,10 +30,8 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
@@ -214,25 +212,19 @@ public class LivePlayerActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getLiveUrlApi()
                 .getLiveUrl(cid)
-                .compose(this.<ResponseBody> bindToLifecycle())
-                .map(new Func1<ResponseBody,String>()
-                {
+                .compose(this.bindToLifecycle())
+                .map(responseBody -> {
 
-                    @Override
-                    public String call(ResponseBody responseBody)
+                    try
                     {
-
-                        try
-                        {
-                            String str = responseBody.string();
-                            String result = str.substring(str.lastIndexOf("[") + 1,
-                                    str.lastIndexOf("]") - 1);
-                            return result;
-                        } catch (IOException e)
-                        {
-                            e.printStackTrace();
-                            return null;
-                        }
+                        String str = responseBody.string();
+                        String result = str.substring(str.lastIndexOf("[") + 1,
+                                str.lastIndexOf("]") - 1);
+                        return result;
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                        return null;
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
@@ -249,28 +241,16 @@ public class LivePlayerActivity extends RxAppCompatBaseActivity
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Long>()
-                {
+                .subscribe(aLong -> {
 
-                    @Override
-                    public void call(Long aLong)
-                    {
+                    stopAnim();
+                    isPlay = true;
+                    videoView.setVisibility(View.VISIBLE);
+                    mRightPlayBtn.setImageResource(R.drawable.ic_tv_stop);
+                    mBottomPlayBtn.setImageResource(R.drawable.ic_portrait_stop);
+                }, throwable -> {
 
-                        stopAnim();
-                        isPlay = true;
-                        videoView.setVisibility(View.VISIBLE);
-                        mRightPlayBtn.setImageResource(R.drawable.ic_tv_stop);
-                        mBottomPlayBtn.setImageResource(R.drawable.ic_portrait_stop);
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        LogUtil.all("直播地址url获取失败" + throwable.getMessage());
-                    }
+                    LogUtil.all("直播地址url获取失败" + throwable.getMessage());
                 });
     }
 

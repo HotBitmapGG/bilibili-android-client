@@ -3,7 +3,6 @@ package com.hotbitmapgg.ohmybilibili.widget;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -44,6 +43,8 @@ import tv.danmaku.ijk.media.player.pragma.DebugLog;
 public class VideoPlayerView extends SurfaceView implements MediaPlayerControl
 {
 
+    private static final String TAG = VideoPlayerView.class.getName();
+
     public static final int VIDEO_LAYOUT_ORIGIN = 0;
 
     public static final int VIDEO_LAYOUT_SCALE = 1;
@@ -51,8 +52,6 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerControl
     public static final int VIDEO_LAYOUT_STRETCH = 2;
 
     public static final int VIDEO_LAYOUT_ZOOM = 3;
-
-    private static final String TAG = VideoPlayerView.class.getName();
 
     private static final int STATE_ERROR = -1;
 
@@ -240,17 +239,11 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerControl
                         .setMessage(message)
                         .setPositiveButton(
                                 R.string.vitamio_videoview_error_button,
-                                new DialogInterface.OnClickListener()
-                                {
+                                (dialog, whichButton) -> {
 
-                                    public void onClick(DialogInterface dialog,
-                                                        int whichButton)
-                                    {
-
-                                        if (mOnCompletionListener != null)
-                                            mOnCompletionListener
-                                                    .onCompletion(mMediaPlayer);
-                                    }
+                                    if (mOnCompletionListener != null)
+                                        mOnCompletionListener
+                                                .onCompletion(mMediaPlayer);
                                 }).setCancelable(false).show();
             }
             return true;
@@ -404,7 +397,7 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerControl
 
         LayoutParams lp = getLayoutParams();
         Pair<Integer,Integer> res = ScreenResolution.getResolution(mContext);
-        int windowWidth = res.first.intValue(), windowHeight = res.second.intValue();
+        int windowWidth = res.first, windowHeight = res.second;
         float windowRatio = windowWidth / (float) windowHeight;
         int sarNum = mVideoSarNum;
         int sarDen = mVideoSarDen;
@@ -540,6 +533,7 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerControl
                 }
             }
             mMediaPlayer = ijkMediaPlayer;
+            assert mMediaPlayer != null;
             mMediaPlayer.setOnPreparedListener(mPreparedListener);
             mMediaPlayer.setOnVideoSizeChangedListener(mSizeChangedListener);
             mMediaPlayer.setOnCompletionListener(mCompletionListener);

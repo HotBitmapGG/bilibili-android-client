@@ -86,11 +86,11 @@ public class SeasonNewBangumiAdapter extends AbsRecyclerViewAdapter
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public ImageView mImage;
+        ImageView mImage;
 
-        public TextView mTitle;
+        TextView mTitle;
 
-        public TextView mPlay;
+        TextView mPlay;
 
 
         public ItemViewHolder(View itemView)

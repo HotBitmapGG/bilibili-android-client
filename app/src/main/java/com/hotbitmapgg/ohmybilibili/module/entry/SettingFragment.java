@@ -7,7 +7,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -57,17 +56,11 @@ public class SettingFragment extends RxLazyFragment
 
         mToolbar.setTitle("设置与帮助");
         mToolbar.setNavigationIcon(R.drawable.ic_navigation_drawer);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
+        mToolbar.setNavigationOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v)
-            {
-
-                Activity activity = getActivity();
-                if (activity instanceof MainActivity)
-                    ((MainActivity) activity).toggleDrawer();
-            }
+            Activity activity1 = getActivity();
+            if (activity1 instanceof MainActivity)
+                ((MainActivity) activity1).toggleDrawer();
         });
 
         mVersionCode.setText("v" + getVersionCode());

@@ -72,6 +72,7 @@ public abstract class RxLazyFragment extends RxFragment
     {
 
         super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     @Override

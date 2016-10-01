@@ -93,16 +93,8 @@ public class HomeRecommendTopicSection extends StatelessSection
         else
             topicViewHolder.mTextView.setVisibility(View.VISIBLE);
 
-        topicViewHolder.mCardView.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                WebActivity.launch((Activity) mContext, link, title);
-            }
-        });
+        topicViewHolder.mCardView.setOnClickListener(v -> WebActivity.
+                launch((Activity) mContext, link, title));
     }
 
     static class TopicViewHolder extends RecyclerView.ViewHolder
@@ -117,7 +109,7 @@ public class HomeRecommendTopicSection extends StatelessSection
         @Bind(R.id.card_view)
         CardView mCardView;
 
-        public TopicViewHolder(View itemView)
+        TopicViewHolder(View itemView)
         {
 
             super(itemView);
@@ -125,10 +117,10 @@ public class HomeRecommendTopicSection extends StatelessSection
         }
     }
 
-    static class EmptyViewHolder extends RecyclerView.ViewHolder
+    private static class EmptyViewHolder extends RecyclerView.ViewHolder
     {
 
-        public EmptyViewHolder(View itemView)
+        EmptyViewHolder(View itemView)
         {
 
             super(itemView);

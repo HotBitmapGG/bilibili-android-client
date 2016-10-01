@@ -80,15 +80,15 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public ImageView mVideoPic;
+        ImageView mVideoPic;
 
-        public TextView mVideoTitle;
+        TextView mVideoTitle;
 
-        public TextView mVideoPlayNum;
+        TextView mVideoPlayNum;
 
-        public TextView mVideoReviewNum;
+        TextView mVideoReviewNum;
 
-        public TextView mUserName;
+        TextView mUserName;
 
         public ItemViewHolder(View itemView)
         {

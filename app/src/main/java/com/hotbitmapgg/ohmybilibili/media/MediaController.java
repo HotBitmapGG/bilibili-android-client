@@ -136,15 +136,10 @@ public class MediaController extends FrameLayout
         }
     };
 
-    private OnClickListener mPauseListener = new OnClickListener()
-    {
+    private OnClickListener mPauseListener = v -> {
 
-        public void onClick(View v)
-        {
-
-            doPauseResume();
-            show(sDefaultTimeout);
-        }
+        doPauseResume();
+        show(sDefaultTimeout);
     };
 
     private Runnable lastRunnable;
@@ -179,16 +174,7 @@ public class MediaController extends FrameLayout
             if (mInstantSeeking)
             {
                 mHandler.removeCallbacks(lastRunnable);
-                lastRunnable = new Runnable()
-                {
-
-                    @Override
-                    public void run()
-                    {
-
-                        mPlayer.seekTo(newposition);
-                    }
-                };
+                lastRunnable = () -> mPlayer.seekTo(newposition);
                 mHandler.postDelayed(lastRunnable, 200);
             }
             if (mInfoView != null)
@@ -346,38 +332,23 @@ public class MediaController extends FrameLayout
 
         mDanmakuSwitch = (ImageButton) v.
                 findViewById(R.id.media_controller_danmaku_switch);
-        mDanmakuSwitch.setOnClickListener(new OnClickListener()
-        {
+        mDanmakuSwitch.setOnClickListener(v1 -> {
 
-            @Override
-            public void onClick(View v)
+            if (mDanmakuShow)
             {
-
-                if (mDanmakuShow)
-                {
-                    mDanmakuSwitch.setImageResource(R.drawable.bili_player_danmaku_is_closed);
-                    mDanmakuSwitchEvent.setDanmakushow(false);
-                    mDanmakuShow = false;
-                } else
-                {
-                    mDanmakuSwitch.setImageResource(R.drawable.bili_player_danmaku_is_open);
-                    mDanmakuSwitchEvent.setDanmakushow(true);
-                    mDanmakuShow = true;
-                }
+                mDanmakuSwitch.setImageResource(R.drawable.bili_player_danmaku_is_closed);
+                mDanmakuSwitchEvent.setDanmakushow(false);
+                mDanmakuShow = false;
+            } else
+            {
+                mDanmakuSwitch.setImageResource(R.drawable.bili_player_danmaku_is_open);
+                mDanmakuSwitchEvent.setDanmakushow(true);
+                mDanmakuShow = true;
             }
         });
 
         mBack = (ImageView) v.findViewById(R.id.media_controller_back);
-        mBack.setOnClickListener(new OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                mVideoBackEvent.back();
-            }
-        });
+        mBack.setOnClickListener(v12 -> mVideoBackEvent.back());
     }
 
     public void setMediaPlayer(MediaPlayerControl player)

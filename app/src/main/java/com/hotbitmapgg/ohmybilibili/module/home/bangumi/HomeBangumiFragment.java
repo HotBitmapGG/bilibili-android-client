@@ -7,7 +7,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,8 +17,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.SecondElementBangumiAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
@@ -32,7 +31,6 @@ import java.util.List;
 import butterknife.Bind;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -124,29 +122,17 @@ public class HomeBangumiFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.post(new Runnable()
-        {
+        mSwipeRefreshLayout.post(() -> {
 
-            @Override
-            public void run()
-            {
-
-                mSwipeRefreshLayout.setRefreshing(true);
-                mIsRefreshing = true;
-                getBangumiRecommends();
-            }
+            mSwipeRefreshLayout.setRefreshing(true);
+            mIsRefreshing = true;
+            getBangumiRecommends();
         });
 
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-        {
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
-            @Override
-            public void onRefresh()
-            {
-
-                clearData();
-                getBangumiRecommends();
-            }
+            clearData();
+            getBangumiRecommends();
         });
     }
 
@@ -173,7 +159,7 @@ public class HomeBangumiFragment extends RxLazyFragment
 
         RetrofitHelper.getBnagumiRecommendApi()
                 .getBangumiRecommended()
-                .compose(this.<BangumiRecommend> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .flatMap(new Func1<BangumiRecommend,Observable<SeasonNewBangumi>>()
                 {
 
@@ -187,7 +173,7 @@ public class HomeBangumiFragment extends RxLazyFragment
                                 .getSeasonNewBangumiList();
                     }
                 })
-                .compose(this.<SeasonNewBangumi> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .flatMap(new Func1<SeasonNewBangumi,Observable<NewBangumiSerial>>()
                 {
 
@@ -200,28 +186,16 @@ public class HomeBangumiFragment extends RxLazyFragment
                                 .getNewBangumiSerialList();
                     }
                 })
-                .compose(this.<NewBangumiSerial> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<NewBangumiSerial>()
-                {
+                .subscribe(newBangumiSerial -> {
 
-                    @Override
-                    public void call(NewBangumiSerial newBangumiSerial)
-                    {
+                    newBangumiSerials.addAll(newBangumiSerial.getList());
+                    finishTask();
+                }, throwable -> {
 
-                        newBangumiSerials.addAll(newBangumiSerial.getList());
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        initEmptyView();
-                    }
+                    initEmptyView();
                 });
     }
 
@@ -277,47 +251,11 @@ public class HomeBangumiFragment extends RxLazyFragment
         TextView mNewBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_new);
         TextView mWeekBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_week);
         TextView mIndexBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_index);
-        mNewBangumiItem.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                WeekDayBangumiActivity.launch(getActivity(), "三次元新番", 3);
-            }
-        });
-        mWeekBangumiItem.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                WeekDayBangumiActivity.launch(getActivity(), "二次元新番", 2);
-            }
-        });
-        mIndexBangumiItem.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                startActivity(new Intent(getActivity(), BangumiIndexActivity.class));
-            }
-        });
+        mNewBangumiItem.setOnClickListener(v -> WeekDayBangumiActivity.launch(getActivity(), "三次元新番", 3));
+        mWeekBangumiItem.setOnClickListener(v -> WeekDayBangumiActivity.launch(getActivity(), "二次元新番", 2));
+        mIndexBangumiItem.setOnClickListener(v -> startActivity(new Intent(getActivity(), BangumiIndexActivity.class)));
         TextView mAllSerial = (TextView) headView_item.findViewById(R.id.tv_all_serial);
-        mAllSerial.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                startActivity(new Intent(getActivity(), NewBangumiSerialActivity.class));
-            }
-        });
+        mAllSerial.setOnClickListener(v -> startActivity(new Intent(getActivity(), NewBangumiSerialActivity.class)));
         mHeaderViewRecyclerAdapter.addHeaderView(headView_item);
 
         //设置分季新番
@@ -337,16 +275,7 @@ public class HomeBangumiFragment extends RxLazyFragment
 
         //设置查看更多分季新番界面
         TextView mAllNewBangumi = (TextView) headView_list.findViewById(R.id.tv_all_new_bangumi);
-        mAllNewBangumi.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                startActivity(new Intent(getActivity(), SeasonNewBangumiActivity.class));
-            }
-        });
+        mAllNewBangumi.setOnClickListener(v -> startActivity(new Intent(getActivity(), SeasonNewBangumiActivity.class)));
     }
 
 
@@ -359,16 +288,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
         mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
         SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,请重新加载或者检查网络是否链接");
-        mCustomEmptyView.reload(new CustomEmptyView.ReloadOnClickListener()
-        {
-
-            @Override
-            public void reloadClick()
-            {
-
-                showProgressBar();
-            }
-        });
+        mCustomEmptyView.reload(this::showProgressBar);
     }
 
     public void hideEmptyView()
@@ -381,22 +301,6 @@ public class HomeBangumiFragment extends RxLazyFragment
     private void setRecycleNoScroll()
     {
 
-        mRecyclerView.setOnTouchListener(new View.OnTouchListener()
-        {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-
-
-                if (mIsRefreshing)
-                {
-                    return true;
-                } else
-                {
-                    return false;
-                }
-            }
-        });
+        mRecyclerView.setOnTouchListener((v, event) -> mIsRefreshing);
     }
 }

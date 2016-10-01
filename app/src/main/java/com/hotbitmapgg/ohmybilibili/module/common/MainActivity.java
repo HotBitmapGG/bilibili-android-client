@@ -3,6 +3,7 @@ package com.hotbitmapgg.ohmybilibili.module.common;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -141,16 +142,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         mUserName.setText(getResources().getText(R.string.hotbitmapgg));
         mUserSign.setText("哔哩哔哩 - ( ゜- ゜)つロ 乾杯~");
         //设置日夜间模式切换
-        mSwitchMode.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                switchNightMode();
-            }
-        });
+        mSwitchMode.setOnClickListener(v -> switchNightMode());
 
 
         boolean flag = PreferenceUtils.getBoolean(SWITCH_MODE_KEY, false);
@@ -187,7 +179,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
 
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item)
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {
 
         mDrawerLayout.closeDrawer(GravityCompat.START);

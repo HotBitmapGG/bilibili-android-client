@@ -89,19 +89,19 @@ public class FocusOnDynamicAdapter extends AbsRecyclerViewAdapter
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public CircleImageView mAvatar;
+        CircleImageView mAvatar;
 
-        public TextView mName;
+        TextView mName;
 
-        public TextView mUpdateTime;
+        TextView mUpdateTime;
 
-        public ImageView mImage;
+        ImageView mImage;
 
-        public TextView mTitle;
+        TextView mTitle;
 
-        public TextView mPlay;
+        TextView mPlay;
 
-        public TextView mReview;
+        TextView mReview;
 
 
         public ItemViewHolder(View itemView)

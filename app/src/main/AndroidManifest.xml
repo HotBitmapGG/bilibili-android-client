@@ -70,8 +70,7 @@
         <!-- bilibili用户界面 -->
         <activity
             android:name=".module.user.UserInfoActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme" />
+            android:screenOrientation="portrait" />
 
 
         <!-- 专题详情界面 -->

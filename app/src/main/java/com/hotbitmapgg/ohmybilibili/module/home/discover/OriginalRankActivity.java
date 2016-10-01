@@ -80,7 +80,7 @@ public class OriginalRankActivity extends RxAppCompatBaseActivity
 
         private String[] orders;
 
-        public OriginalRankPagerAdapter(FragmentManager fm, String[] titles, String[] orders)
+        OriginalRankPagerAdapter(FragmentManager fm, String[] titles, String[] orders)
         {
 
             super(fm);

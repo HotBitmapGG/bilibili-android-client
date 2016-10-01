@@ -129,17 +129,11 @@ public class StatusBarUtils
         {
             return;
         }
-        v.post(new Runnable()
-        {
+        v.post(() -> {
 
-            @Override
-            public void run()
-            {
-
-                v.setPadding(v.getPaddingLeft(), v.getPaddingTop() + getStatusBarOffsetPx(v.getContext()),
-                        v.getPaddingRight(), v.getPaddingBottom());
-                v.getLayoutParams().height += getStatusBarOffsetPx(v.getContext());
-            }
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop() + getStatusBarOffsetPx(v.getContext()),
+                    v.getPaddingRight(), v.getPaddingBottom());
+            v.getLayoutParams().height += getStatusBarOffsetPx(v.getContext());
         });
     }
 
@@ -268,7 +262,7 @@ public class StatusBarUtils
         window.getDecorView().setSystemUiVisibility(flag);
     }
 
-    final public static class Builder
+    public final static class Builder
     {
 
         private Window window;

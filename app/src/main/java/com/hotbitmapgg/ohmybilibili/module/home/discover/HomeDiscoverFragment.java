@@ -110,16 +110,7 @@ public class HomeDiscoverFragment extends RxLazyFragment
                 TextView mTags = (TextView) LayoutInflater.from(getActivity())
                         .inflate(R.layout.layout_tags_item, parent, false);
                 mTags.setText(s);
-                mTags.setOnClickListener(new View.OnClickListener()
-                {
-
-                    @Override
-                    public void onClick(View v)
-                    {
-
-                        TotalStationSearchActivity.launch(getActivity(), s);
-                    }
-                });
+                mTags.setOnClickListener(v -> TotalStationSearchActivity.launch(getActivity(), s));
 
                 return mTags;
             }
@@ -136,16 +127,7 @@ public class HomeDiscoverFragment extends RxLazyFragment
                 TextView mTags = (TextView) LayoutInflater.from(getActivity())
                         .inflate(R.layout.layout_tags_item, parent, false);
                 mTags.setText(s);
-                mTags.setOnClickListener(new View.OnClickListener()
-                {
-
-                    @Override
-                    public void onClick(View v)
-                    {
-
-                        TotalStationSearchActivity.launch(getActivity(), s);
-                    }
-                });
+                mTags.setOnClickListener(v -> TotalStationSearchActivity.launch(getActivity(), s));
 
                 return mTags;
             }

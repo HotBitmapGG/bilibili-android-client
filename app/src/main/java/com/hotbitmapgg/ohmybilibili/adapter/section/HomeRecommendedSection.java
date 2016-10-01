@@ -60,8 +60,6 @@ public class HomeRecommendedSection extends StatelessSection
 
     private static final String TYPE_BANGUMI = "bangumi_2";
 
-    private static final String TYPE_WEBLINK = "weblink";
-
     private static final String TYPE_ACTIVITY = "activity";
 
     private List<RecommendInfo.ResultBean.BodyBean> datas = new ArrayList<>();
@@ -118,53 +116,49 @@ public class HomeRecommendedSection extends StatelessSection
                 .into(itemViewHolder.mVideoImg);
 
         itemViewHolder.mVideoTitle.setText(bodyBean.getTitle());
-        itemViewHolder.mCardView.setOnClickListener(new View.OnClickListener()
-        {
+        itemViewHolder.mCardView.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v)
+            String gotoX = bodyBean.getGotoX();
+            if (gotoX.equals(TYPE_LIVE))
             {
-
-                String gotoX = bodyBean.getGotoX();
-                if (gotoX.equals(TYPE_LIVE))
-                {
-                    LivePlayerActivity.launch((Activity) mContext,
-                            Integer.valueOf(bodyBean.getParam()), bodyBean.getTitle(),
-                            bodyBean.getOnline(), bodyBean.getUpFace(), bodyBean.getUp(), 0);
-                } else
-                {
-                    VideoDetailsActivity.launch((Activity) mContext,
-                            Integer.parseInt(bodyBean.getParam()), bodyBean.getCover());
-                }
+                LivePlayerActivity.launch((Activity) mContext,
+                        Integer.valueOf(bodyBean.getParam()), bodyBean.getTitle(),
+                        bodyBean.getOnline(), bodyBean.getUpFace(), bodyBean.getUp(), 0);
+            } else
+            {
+                VideoDetailsActivity.launch((Activity) mContext,
+                        Integer.parseInt(bodyBean.getParam()), bodyBean.getCover());
             }
         });
 
-        if (type.equals(TYPE_LIVE))
+        switch (type)
         {
-            //直播item
-            itemViewHolder.mLiveLayout.setVisibility(View.VISIBLE);
-            itemViewHolder.mVideoLayout.setVisibility(View.GONE);
-            itemViewHolder.mLiveUp.setText(bodyBean.getUp());
-            itemViewHolder.mLiveOnline.setText(String.valueOf(bodyBean.getOnline()));
-        } else if (type.equals(TYPE_BANGUMI))
-        {
-            // 番剧item
-            itemViewHolder.mLiveLayout.setVisibility(View.VISIBLE);
-            itemViewHolder.mVideoLayout.setVisibility(View.GONE);
-            itemViewHolder.mLiveUp.setText(bodyBean.getDesc1());
-        } else if (type.equals(TYPE_ACTIVITY))
-        {
-            ViewGroup.LayoutParams layoutParams = itemViewHolder.mCardView.getLayoutParams();
-            layoutParams.height = DisplayUtil.dp2px(mContext, 200f);
-            itemViewHolder.mCardView.setLayoutParams(layoutParams);
-            itemViewHolder.mLiveLayout.setVisibility(View.GONE);
-            itemViewHolder.mVideoLayout.setVisibility(View.GONE);
-        } else
-        {
-            itemViewHolder.mLiveLayout.setVisibility(View.GONE);
-            itemViewHolder.mVideoLayout.setVisibility(View.VISIBLE);
-            itemViewHolder.mVideoPlayNum.setText(bodyBean.getPlay());
-            itemViewHolder.mVideoReviewCount.setText(bodyBean.getDanmaku());
+            case TYPE_LIVE:
+                //直播item
+                itemViewHolder.mLiveLayout.setVisibility(View.VISIBLE);
+                itemViewHolder.mVideoLayout.setVisibility(View.GONE);
+                itemViewHolder.mLiveUp.setText(bodyBean.getUp());
+                itemViewHolder.mLiveOnline.setText(String.valueOf(bodyBean.getOnline()));
+                break;
+            case TYPE_BANGUMI:
+                // 番剧item
+                itemViewHolder.mLiveLayout.setVisibility(View.VISIBLE);
+                itemViewHolder.mVideoLayout.setVisibility(View.GONE);
+                itemViewHolder.mLiveUp.setText(bodyBean.getDesc1());
+                break;
+            case TYPE_ACTIVITY:
+                ViewGroup.LayoutParams layoutParams = itemViewHolder.mCardView.getLayoutParams();
+                layoutParams.height = DisplayUtil.dp2px(mContext, 200f);
+                itemViewHolder.mCardView.setLayoutParams(layoutParams);
+                itemViewHolder.mLiveLayout.setVisibility(View.GONE);
+                itemViewHolder.mVideoLayout.setVisibility(View.GONE);
+                break;
+            default:
+                itemViewHolder.mLiveLayout.setVisibility(View.GONE);
+                itemViewHolder.mVideoLayout.setVisibility(View.VISIBLE);
+                itemViewHolder.mVideoPlayNum.setText(bodyBean.getPlay());
+                itemViewHolder.mVideoReviewCount.setText(bodyBean.getDanmaku());
+                break;
         }
     }
 
@@ -184,33 +178,27 @@ public class HomeRecommendedSection extends StatelessSection
         HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
         headerViewHolder.mTypeImg.setImageResource(iconRes);
         headerViewHolder.mTypeTv.setText(title);
-        headerViewHolder.mTypeRankBtn.setOnClickListener(new View.OnClickListener()
-        {
+        headerViewHolder.mTypeRankBtn.setOnClickListener(v -> mContext.startActivity(
+                new Intent(mContext, HotVideoIndexActivity.class)));
 
-            @Override
-            public void onClick(View v)
-            {
-
-                mContext.startActivity(new Intent(mContext, HotVideoIndexActivity.class));
-            }
-        });
-
-        if (type.equals(TYPE_RECOMMENDED))
+        switch (type)
         {
-            headerViewHolder.mTypeMore.setVisibility(View.GONE);
-            headerViewHolder.mTypeRankBtn.setVisibility(View.VISIBLE);
-            headerViewHolder.mAllLiveNum.setVisibility(View.GONE);
-        } else if (type.equals(TYPE_LIVE))
-        {
-            headerViewHolder.mTypeRankBtn.setVisibility(View.GONE);
-            headerViewHolder.mTypeMore.setVisibility(View.VISIBLE);
-            headerViewHolder.mAllLiveNum.setVisibility(View.VISIBLE);
-            headerViewHolder.mAllLiveNum.setText("当前" + liveCount + "个直播");
-        } else
-        {
-            headerViewHolder.mTypeRankBtn.setVisibility(View.GONE);
-            headerViewHolder.mTypeMore.setVisibility(View.VISIBLE);
-            headerViewHolder.mAllLiveNum.setVisibility(View.GONE);
+            case TYPE_RECOMMENDED:
+                headerViewHolder.mTypeMore.setVisibility(View.GONE);
+                headerViewHolder.mTypeRankBtn.setVisibility(View.VISIBLE);
+                headerViewHolder.mAllLiveNum.setVisibility(View.GONE);
+                break;
+            case TYPE_LIVE:
+                headerViewHolder.mTypeRankBtn.setVisibility(View.GONE);
+                headerViewHolder.mTypeMore.setVisibility(View.VISIBLE);
+                headerViewHolder.mAllLiveNum.setVisibility(View.VISIBLE);
+                headerViewHolder.mAllLiveNum.setText("当前" + liveCount + "个直播");
+                break;
+            default:
+                headerViewHolder.mTypeRankBtn.setVisibility(View.GONE);
+                headerViewHolder.mTypeMore.setVisibility(View.VISIBLE);
+                headerViewHolder.mAllLiveNum.setVisibility(View.GONE);
+                break;
         }
     }
 
@@ -229,80 +217,48 @@ public class HomeRecommendedSection extends StatelessSection
 
         final FootViewHolder footViewHolder = (FootViewHolder) holder;
         footViewHolder.mDynamic.setText(String.valueOf(mRandom.nextInt(200)) + "条新动态,点这里刷新");
-        footViewHolder.mRefreshBtn.setOnClickListener(new View.OnClickListener()
+        footViewHolder.mRefreshBtn.setOnClickListener(v -> footViewHolder.mRefreshBtn
+                .animate()
+                .rotation(360)
+                .setInterpolator(new LinearInterpolator())
+                .setDuration(1000).start());
+
+        footViewHolder.mRecommendRefresh.setOnClickListener(v -> footViewHolder.mRecommendRefresh
+                .animate()
+                .rotation(360)
+                .setInterpolator(new LinearInterpolator())
+                .setDuration(1000).start());
+        footViewHolder.mBangumiIndexBtn.setOnClickListener(v -> mContext.startActivity(
+                new Intent(mContext, BangumiIndexActivity.class)));
+        footViewHolder.mBangumiTimelineBtn.setOnClickListener(v -> WeekDayBangumiActivity.
+                launch((Activity) mContext, "二次元新番", 2));
+
+        switch (type)
         {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                footViewHolder.mRefreshBtn
-                        .animate()
-                        .rotation(360)
-                        .setInterpolator(new LinearInterpolator())
-                        .setDuration(1000).start();
-            }
-        });
-
-        footViewHolder.mRecommendRefresh.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                footViewHolder.mRecommendRefresh
-                        .animate()
-                        .rotation(360)
-                        .setInterpolator(new LinearInterpolator())
-                        .setDuration(1000).start();
-            }
-        });
-        footViewHolder.mBangumiIndexBtn.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                mContext.startActivity(new Intent(mContext, BangumiIndexActivity.class));
-            }
-        });
-        footViewHolder.mBangumiTimelineBtn.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                WeekDayBangumiActivity.launch((Activity) mContext, "二次元新番", 2);
-            }
-        });
-
-        if (type.equals(TYPE_RECOMMENDED))
-        {
-            footViewHolder.mMoreBtn.setVisibility(View.GONE);
-            footViewHolder.mRefreshLayout.setVisibility(View.GONE);
-            footViewHolder.mBangumiLayout.setVisibility(View.GONE);
-            footViewHolder.mRecommendRefreshLayout.setVisibility(View.VISIBLE);
-        } else if (type.equals(TYPE_BANGUMI))
-        {
-            footViewHolder.mMoreBtn.setVisibility(View.GONE);
-            footViewHolder.mRefreshLayout.setVisibility(View.GONE);
-            footViewHolder.mRecommendRefreshLayout.setVisibility(View.GONE);
-            footViewHolder.mBangumiLayout.setVisibility(View.VISIBLE);
-        } else if (type.equals(TYPE_ACTIVITY))
-        {
-            footViewHolder.mRecommendRefreshLayout.setVisibility(View.GONE);
-            footViewHolder.mBangumiLayout.setVisibility(View.GONE);
-            footViewHolder.mMoreBtn.setVisibility(View.GONE);
-            footViewHolder.mRefreshLayout.setVisibility(View.GONE);
-        } else
-        {
-            footViewHolder.mRecommendRefreshLayout.setVisibility(View.GONE);
-            footViewHolder.mBangumiLayout.setVisibility(View.GONE);
-            footViewHolder.mMoreBtn.setVisibility(View.VISIBLE);
-            footViewHolder.mRefreshLayout.setVisibility(View.VISIBLE);
+            case TYPE_RECOMMENDED:
+                footViewHolder.mMoreBtn.setVisibility(View.GONE);
+                footViewHolder.mRefreshLayout.setVisibility(View.GONE);
+                footViewHolder.mBangumiLayout.setVisibility(View.GONE);
+                footViewHolder.mRecommendRefreshLayout.setVisibility(View.VISIBLE);
+                break;
+            case TYPE_BANGUMI:
+                footViewHolder.mMoreBtn.setVisibility(View.GONE);
+                footViewHolder.mRefreshLayout.setVisibility(View.GONE);
+                footViewHolder.mRecommendRefreshLayout.setVisibility(View.GONE);
+                footViewHolder.mBangumiLayout.setVisibility(View.VISIBLE);
+                break;
+            case TYPE_ACTIVITY:
+                footViewHolder.mRecommendRefreshLayout.setVisibility(View.GONE);
+                footViewHolder.mBangumiLayout.setVisibility(View.GONE);
+                footViewHolder.mMoreBtn.setVisibility(View.GONE);
+                footViewHolder.mRefreshLayout.setVisibility(View.GONE);
+                break;
+            default:
+                footViewHolder.mRecommendRefreshLayout.setVisibility(View.GONE);
+                footViewHolder.mBangumiLayout.setVisibility(View.GONE);
+                footViewHolder.mMoreBtn.setVisibility(View.VISIBLE);
+                footViewHolder.mRefreshLayout.setVisibility(View.VISIBLE);
+                break;
         }
     }
 
@@ -322,10 +278,10 @@ public class HomeRecommendedSection extends StatelessSection
         TextView mTypeRankBtn;
 
         @Bind(R.id.item_live_all_num)
-        public TextView mAllLiveNum;
+        TextView mAllLiveNum;
 
 
-        public HeaderViewHolder(View itemView)
+        HeaderViewHolder(View itemView)
         {
 
             super(itemView);
@@ -405,7 +361,7 @@ public class HomeRecommendedSection extends StatelessSection
         @Bind(R.id.item_btn_bangumi_timeline)
         ImageView mBangumiTimelineBtn;
 
-        public FootViewHolder(View itemView)
+        FootViewHolder(View itemView)
         {
 
             super(itemView);

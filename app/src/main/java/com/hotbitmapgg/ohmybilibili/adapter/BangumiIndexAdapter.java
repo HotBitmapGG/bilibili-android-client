@@ -75,9 +75,9 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public ImageView mImageView;
+        ImageView mImageView;
 
-        public TextView mTextView;
+        TextView mTextView;
 
         public ItemViewHolder(View itemView)
         {

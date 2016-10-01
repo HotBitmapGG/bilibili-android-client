@@ -12,19 +12,15 @@ import android.support.v7.widget.RecyclerView;
 public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener
 {
 
-    public static String TAG = EndlessRecyclerOnScrollListener.class.getSimpleName();
-
     private int previousTotal = 0;
 
     private boolean loading = true;
-
-    int lastCompletelyVisiableItemPosition, visibleItemCount, totalItemCount;
 
     private int currentPage = 1;
 
     private LinearLayoutManager mLinearLayoutManager;
 
-    public EndlessRecyclerOnScrollListener(LinearLayoutManager linearLayoutManager)
+    protected EndlessRecyclerOnScrollListener(LinearLayoutManager linearLayoutManager)
     {
 
         this.mLinearLayoutManager = linearLayoutManager;
@@ -36,9 +32,9 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
 
         super.onScrolled(recyclerView, dx, dy);
 
-        visibleItemCount = recyclerView.getChildCount();
-        totalItemCount = mLinearLayoutManager.getItemCount();
-        lastCompletelyVisiableItemPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+        int visibleItemCount = recyclerView.getChildCount();
+        int totalItemCount = mLinearLayoutManager.getItemCount();
+        int lastCompletelyVisiableItemPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
 
         if (loading)
         {

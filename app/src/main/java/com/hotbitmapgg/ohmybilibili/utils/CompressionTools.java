@@ -89,7 +89,7 @@ public class CompressionTools
         return bos.toByteArray();
     }
 
-    public static byte[] decompressXML(byte[] data) throws DataFormatException
+    static byte[] decompressXML(byte[] data) throws DataFormatException
     {
 
         byte[] dest = new byte[data.length + 2];

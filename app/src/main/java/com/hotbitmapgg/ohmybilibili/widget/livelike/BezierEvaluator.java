@@ -17,7 +17,7 @@ public class BezierEvaluator implements TypeEvaluator<PointF>
 
     private PointF pointF2;
 
-    public BezierEvaluator(PointF pointF1, PointF pointF2)
+    BezierEvaluator(PointF pointF1, PointF pointF2)
     {
 
         this.pointF1 = pointF1;

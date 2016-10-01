@@ -63,7 +63,7 @@ public class RetrofitHelper
 
     public static final String HDSLB_HOST = "http://i2.hdslb.com";
 
-    public static final String COMMON_UA_STR = "OhMyBiliBili Android Client/2.1 (100332338@qq.com)";
+    private static final String COMMON_UA_STR = "OhMyBiliBili Android Client/2.1 (100332338@qq.com)";
 
     static
     {
@@ -546,7 +546,7 @@ public class RetrofitHelper
      * 添加UA拦截器
      * B站请求API文档需要加上UA
      */
-    static class UserAgentInterceptor implements Interceptor
+    private static class UserAgentInterceptor implements Interceptor
     {
 
         @Override

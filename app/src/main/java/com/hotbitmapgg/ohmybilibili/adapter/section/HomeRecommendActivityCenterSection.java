@@ -84,7 +84,7 @@ public class HomeRecommendActivityCenterSection extends StatelessSection
         @Bind(R.id.recycle)
         RecyclerView mRecyclerView;
 
-        public ActivityCenterViewHolder(View itemView)
+        ActivityCenterViewHolder(View itemView)
         {
 
             super(itemView);
@@ -93,10 +93,10 @@ public class HomeRecommendActivityCenterSection extends StatelessSection
     }
 
 
-    static class EmptyViewHolder extends RecyclerView.ViewHolder
+    private static class EmptyViewHolder extends RecyclerView.ViewHolder
     {
 
-        public EmptyViewHolder(View itemView)
+        EmptyViewHolder(View itemView)
         {
 
             super(itemView);

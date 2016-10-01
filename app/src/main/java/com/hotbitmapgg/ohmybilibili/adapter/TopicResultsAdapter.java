@@ -78,13 +78,13 @@ public class TopicResultsAdapter extends AbsRecyclerViewAdapter
     public class ItemViewHolder extends ClickableViewHolder
     {
 
-        public ImageView mTopicPic;
+        ImageView mTopicPic;
 
-        public TextView mTopicTitle;
+        TextView mTopicTitle;
 
-        public TextView mUserName;
+        TextView mUserName;
 
-        public TextView mTopicDetails;
+        TextView mTopicDetails;
 
         public ItemViewHolder(View itemView)
         {

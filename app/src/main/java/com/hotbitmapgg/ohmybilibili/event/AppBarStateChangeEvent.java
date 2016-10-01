@@ -12,7 +12,7 @@ import android.support.design.widget.AppBarLayout;
 public abstract class AppBarStateChangeEvent implements AppBarLayout.OnOffsetChangedListener
 {
 
-    public enum State
+    protected enum State
     {
         EXPANDED,
 

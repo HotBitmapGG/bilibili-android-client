@@ -20,7 +20,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -76,27 +75,12 @@ public class AllRankActivity extends RxAppCompatBaseActivity
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.post(new Runnable()
-        {
+        mSwipeRefreshLayout.post(() -> {
 
-            @Override
-            public void run()
-            {
-
-                mSwipeRefreshLayout.setRefreshing(true);
-                getAllRank();
-            }
+            mSwipeRefreshLayout.setRefreshing(true);
+            getAllRank();
         });
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-        {
-
-            @Override
-            public void onRefresh()
-            {
-
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        });
+        mSwipeRefreshLayout.setOnRefreshListener(() -> mSwipeRefreshLayout.setRefreshing(false));
     }
 
     private void initRecyclerView()
@@ -131,28 +115,16 @@ public class AllRankActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getAllRankApi()
                 .getAllRankInfos()
-                .compose(this.<List<AllRankInfo>> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<AllRankInfo>>()
-                {
+                .subscribe(allRankInfos -> {
 
-                    @Override
-                    public void call(List<AllRankInfo> allRankInfos)
-                    {
-
-                        allRankList.addAll(allRankInfos);
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
+                    allRankList.addAll(allRankInfos);
+                    finishTask();
+                }, throwable -> {
 
 
-                    }
                 });
     }
 

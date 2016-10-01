@@ -102,17 +102,17 @@ public class OriginalRankAdapter extends AbsRecyclerViewAdapter
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public ImageView mVideoImg;
+        ImageView mVideoImg;
 
-        public TextView mVideoTitle;
+        TextView mVideoTitle;
 
-        public TextView mVideoPlayNum;
+        TextView mVideoPlayNum;
 
-        public TextView mVideoReviewCount;
+        TextView mVideoReviewCount;
 
-        public TextView mSortNum;
+        TextView mSortNum;
 
-        public TextView mUserName;
+        TextView mUserName;
 
         public ItemViewHolder(View itemView)
         {

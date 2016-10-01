@@ -67,7 +67,7 @@ public final class PreferenceUtils
         putBoolean(key, value);
     }
 
-    public static void putFloat(String key, float value)
+    private static void putFloat(String key, float value)
     {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
@@ -117,7 +117,7 @@ public final class PreferenceUtils
         return sharedPreferences.contains(key);
     }
 
-    public static void putString(String key, String value)
+    private static void putString(String key, String value)
     {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());
@@ -144,7 +144,7 @@ public final class PreferenceUtils
         editor.apply();
     }
 
-    public static void putInt(String key, int value)
+    private static void putInt(String key, int value)
     {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(OhMyBiliBiliApp.getInstance());

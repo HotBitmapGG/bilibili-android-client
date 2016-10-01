@@ -81,17 +81,11 @@ public class CustomEmptyView extends FrameLayout
 
         this.OnReloadOnClickListener = onReloadOnClickListener;
 
-        mReloadBtn.setOnClickListener(new OnClickListener()
-        {
+        mReloadBtn.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v)
+            if (OnReloadOnClickListener != null)
             {
-
-                if (OnReloadOnClickListener != null)
-                {
-                    OnReloadOnClickListener.reloadClick();
-                }
+                OnReloadOnClickListener.reloadClick();
             }
         });
     }

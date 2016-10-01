@@ -125,23 +125,23 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public CircleImageView mUserAvatar;
+        CircleImageView mUserAvatar;
 
-        public TextView mUserName;
+        TextView mUserName;
 
-        public ImageView mUserLv;
+        ImageView mUserLv;
 
-        public ImageView mUserSex;
+        ImageView mUserSex;
 
-        public TextView mFloor;
+        TextView mFloor;
 
-        public TextView mCommentTime;
+        TextView mCommentTime;
 
-        public TextView mCommentNum;
+        TextView mCommentNum;
 
-        public TextView mSpot;
+        TextView mSpot;
 
-        public TextView mContent;
+        TextView mContent;
 
         public ItemViewHolder(View itemView)
         {

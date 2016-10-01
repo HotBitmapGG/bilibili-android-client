@@ -117,19 +117,19 @@ public class HeaderViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         return getHeaderCount() + getFooterCount() + getWrappedItemCount();
     }
 
-    public int getWrappedItemCount()
+    private int getWrappedItemCount()
     {
 
         return mWrappedAdapter.getItemCount();
     }
 
-    public int getHeaderCount()
+    private int getHeaderCount()
     {
 
         return mHeaderViews.size();
     }
 
-    public int getFooterCount()
+    private int getFooterCount()
     {
 
         return mFooterViews.size();
@@ -213,7 +213,7 @@ public class HeaderViewRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     private static class StaticViewHolder extends RecyclerView.ViewHolder
     {
 
-        public StaticViewHolder(View itemView)
+        StaticViewHolder(View itemView)
         {
 
             super(itemView);

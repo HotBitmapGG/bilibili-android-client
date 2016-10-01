@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -119,6 +120,7 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
         return 0;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType)
     {
@@ -189,23 +191,10 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
 
 
                 ((LiveItemViewHolder) holder).itemLiveCount.setText(String.valueOf(item.online));
-                ((LiveItemViewHolder) holder).itemLiveLayout.setOnClickListener(new View.OnClickListener()
-                {
-
-                    @Override
-                    public void onClick(View v)
-                    {
-
-                        LivePlayerActivity.launch(
-                                (Activity) context,
-                                item.room_id,
-                                item.title,
-                                item.online,
-                                item.owner.face,
-                                item.owner.name,
-                                item.owner.mid);
-                    }
-                });
+                ((LiveItemViewHolder) holder).itemLiveLayout.setOnClickListener(v -> LivePlayerActivity.
+                        launch((Activity) context, item.room_id,
+                        item.title, item.online, item.owner.face,
+                        item.owner.name, item.owner.mid));
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -223,8 +212,10 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
             SpannableStringBuilder stringBuilder = new SpannableStringBuilder("当前" + partition.count + "个直播");
             ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(
                     context.getResources().getColor(R.color.pink_text_color));
+
             stringBuilder.setSpan(foregroundColorSpan, 2,
                     stringBuilder.length() - 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
             ((LivePartitionViewHolder) holder).itemCount.setText(stringBuilder);
         } else if (holder instanceof LiveBannerViewHolder)
         {
@@ -288,13 +279,13 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
     /**
      * 直播界面Banner ViewHolder
      */
-    public static class LiveBannerViewHolder extends RecyclerView.ViewHolder
+    static class LiveBannerViewHolder extends RecyclerView.ViewHolder
     {
 
         @Bind(R.id.item_live_banner)
         public BannerView banner;
 
-        public LiveBannerViewHolder(View itemView)
+        LiveBannerViewHolder(View itemView)
         {
 
             super(itemView);
@@ -305,7 +296,7 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
     /**
      * 直播界面Item分类 ViewHolder
      */
-    public static class LiveEntranceViewHolder extends RecyclerView.ViewHolder
+    static class LiveEntranceViewHolder extends RecyclerView.ViewHolder
     {
 
         @Bind(R.id.live_entrance_title)
@@ -314,7 +305,7 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
         @Bind(R.id.live_entrance_image)
         public ImageView image;
 
-        public LiveEntranceViewHolder(View itemView)
+        LiveEntranceViewHolder(View itemView)
         {
 
             super(itemView);
@@ -325,28 +316,28 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
     /**
      * 直播界面Grid Item ViewHolder
      */
-    public static class LiveItemViewHolder extends RecyclerView.ViewHolder
+    static class LiveItemViewHolder extends RecyclerView.ViewHolder
     {
 
         @Bind(R.id.item_live_cover)
-        public ImageView itemLiveCover;
+        ImageView itemLiveCover;
 
         @Bind(R.id.item_live_user)
-        public TextView itemLiveUser;
+        TextView itemLiveUser;
 
         @Bind(R.id.item_live_title)
-        public TextView itemLiveTitle;
+        TextView itemLiveTitle;
 
         @Bind(R.id.item_live_user_cover)
-        public CircleImageView itemLiveUserCover;
+        CircleImageView itemLiveUserCover;
 
         @Bind(R.id.item_live_count)
-        public TextView itemLiveCount;
+        TextView itemLiveCount;
 
         @Bind(R.id.item_live_layout)
-        public CardView itemLiveLayout;
+        CardView itemLiveLayout;
 
-        public LiveItemViewHolder(View itemView)
+        LiveItemViewHolder(View itemView)
         {
 
             super(itemView);
@@ -357,19 +348,19 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
     /**
      * 直播界面分区类型 ViewHolder
      */
-    public static class LivePartitionViewHolder extends RecyclerView.ViewHolder
+    static class LivePartitionViewHolder extends RecyclerView.ViewHolder
     {
 
         @Bind(R.id.item_live_partition_icon)
-        public ImageView itemIcon;
+        ImageView itemIcon;
 
         @Bind(R.id.item_live_partition_title)
-        public TextView itemTitle;
+        TextView itemTitle;
 
         @Bind(R.id.item_live_partition_count)
-        public TextView itemCount;
+        TextView itemCount;
 
-        public LivePartitionViewHolder(View itemView)
+        LivePartitionViewHolder(View itemView)
         {
 
             super(itemView);

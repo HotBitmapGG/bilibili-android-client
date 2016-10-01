@@ -77,9 +77,9 @@ public class SpecialVideoRecyclerAdapter extends AbsRecyclerViewAdapter
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public ImageView mPreviewImage;
+        ImageView mPreviewImage;
 
-        public TextView mSpNum;
+        TextView mSpNum;
 
         public ItemViewHolder(View itemView)
         {

@@ -13,19 +13,18 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UpMoreCoverAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -138,34 +137,22 @@ public class UserUpMoreCoverActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getUserUpVideoListApi()
                 .getUserUpVideos(mid, pageNum, pageSize)
-                .compose(this.<UserUpVideoInfo> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<UserUpVideoInfo>()
-                {
+                .subscribe(userUpVideoInfo -> {
 
-                    @Override
-                    public void call(UserUpVideoInfo userUpVideoInfo)
-                    {
-
-                        List<UserUpVideoInfo.VlistBean> vlist =
-                                userUpVideoInfo.getVlist();
-                        if (vlist.size() < pageSize)
-                            loadMoreView.setVisibility(View.GONE);
-
-                        userVideoList.addAll(vlist);
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
+                    List<UserUpVideoInfo.VlistBean> vlist =
+                            userUpVideoInfo.getVlist();
+                    if (vlist.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
-                        hideProgressBar();
-                    }
+
+                    userVideoList.addAll(vlist);
+                    finishTask();
+                }, throwable -> {
+
+                    loadMoreView.setVisibility(View.GONE);
+                    hideProgressBar();
                 });
     }
 
@@ -173,6 +160,7 @@ public class UserUpMoreCoverActivity extends RxAppCompatBaseActivity
     {
 
         hideProgressBar();
+        loadMoreView.setVisibility(View.GONE);
 
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);

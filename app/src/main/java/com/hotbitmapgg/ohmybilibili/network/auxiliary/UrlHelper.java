@@ -17,7 +17,7 @@ import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 public class UrlHelper
 {
 
-    public static boolean isVideoUrl(String url)
+    private static boolean isVideoUrl(String url)
     {
 
         return url.contains("bilibili.com/video/av");
@@ -60,9 +60,8 @@ public class UrlHelper
 
         if (url.contains("/52_52"))
         {
-            String mURL = url.replace("/52_52", "");
 
-            return mURL;
+            return url.replace("/52_52", "");
         }
         return url;
     }

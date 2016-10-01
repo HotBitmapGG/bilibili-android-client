@@ -91,15 +91,15 @@ public class PartitionMoreRecyclerAdapter extends AbsRecyclerViewAdapter
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
-        public ImageView mPreviewImage;
+        ImageView mPreviewImage;
 
-        public TextView mTitleView;
+        TextView mTitleView;
 
-        public TextView mPlayNum;
+        TextView mPlayNum;
 
-        public TextView mReviewNum;
+        TextView mReviewNum;
 
-        public TextView mUploadUser;
+        TextView mUploadUser;
 
 
         public ItemViewHolder(View itemView)

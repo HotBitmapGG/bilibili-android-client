@@ -8,17 +8,16 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoCommentAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 
@@ -41,8 +40,6 @@ public class VideoCommentFragment extends RxLazyFragment
     private int pageNum = 1;
 
     private int pageSize = 20;
-
-    private int ver = 3;
 
     private static final String AID = "aid";
 
@@ -109,39 +106,29 @@ public class VideoCommentFragment extends RxLazyFragment
     public void getCommentList()
     {
 
+        int ver = 3;
         RetrofitHelper.getVideoCommentApi()
                 .getVideoComment(aid, pageNum, pageSize, ver)
-                .compose(this.<VideoComment> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<VideoComment>()
-                {
+                .subscribe(videoComment -> {
 
-                    @Override
-                    public void call(VideoComment videoComment)
-                    {
-
-                        ArrayList<VideoComment.List> list = videoComment.list;
-                        if (list.size() < pageSize)
-                            loadMoreView.setVisibility(View.GONE);
-
-                        comments.addAll(list);
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
+                    ArrayList<VideoComment.List> list = videoComment.list;
+                    if (list.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
-                    }
+
+                    comments.addAll(list);
+                    finishTask();
+                }, throwable -> {
+
+                    loadMoreView.setVisibility(View.GONE);
                 });
     }
 
     private void finishTask()
     {
+        loadMoreView.setVisibility(View.GONE);
 
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);

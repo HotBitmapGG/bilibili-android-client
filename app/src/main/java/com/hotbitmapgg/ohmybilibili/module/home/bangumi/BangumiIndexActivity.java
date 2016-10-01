@@ -21,8 +21,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -93,42 +91,21 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getBangumiIndexApi()
                 .getBangumiIndex(year, month)
-                .compose(this.<List<BangumiIndex>> bindToLifecycle())
-                .doOnSubscribe(new Action0()
-                {
-
-                    @Override
-                    public void call()
-                    {
-
-                        showProgressBar();
-                    }
-                })
+                .compose(this.bindToLifecycle())
+                .doOnSubscribe(this::showProgressBar)
                 .subscribeOn(Schedulers.io())
                 .delay(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<BangumiIndex>>()
-                {
+                .subscribe(bangumiIndices -> {
 
-                    @Override
-                    public void call(List<BangumiIndex> bangumiIndices)
+                    if (bangumiIndices != null)
                     {
-
-                        if (bangumiIndices != null)
-                        {
-                            bangumiIndexList.addAll(bangumiIndices);
-                            finishTask();
-                        }
+                        bangumiIndexList.addAll(bangumiIndices);
+                        finishTask();
                     }
-                }, new Action1<Throwable>()
-                {
+                }, throwable -> {
 
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        hideProgressBar();
-                    }
+                    hideProgressBar();
                 });
     }
 

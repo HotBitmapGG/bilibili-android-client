@@ -19,10 +19,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.SpecialVideoRecyclerAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopicIResult;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -31,7 +29,6 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -153,29 +150,17 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getSpInfoApi()
                 .getSpInfo(spid, title)
-                .compose(this.<SpecialTopic> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<SpecialTopic>()
-                {
+                .subscribe(specialTopic -> {
 
-                    @Override
-                    public void call(SpecialTopic specialTopic)
-                    {
+                    mSpecialTopic = specialTopic;
+                    finishGetSpInfo();
+                }, throwable -> {
 
-                        mSpecialTopic = specialTopic;
-                        finishGetSpInfo();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        mCircleProgressView.setVisibility(View.GONE);
-                        mCircleProgressView.stopSpinning();
-                    }
+                    mCircleProgressView.setVisibility(View.GONE);
+                    mCircleProgressView.stopSpinning();
                 });
     }
 
@@ -190,29 +175,17 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getSpItemApi()
                 .getSpItemList(spid, season_id, 1)
-                .compose(this.<SpecialTopicIResult> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<SpecialTopicIResult>()
-                {
+                .subscribe(specialTopicIResult -> {
 
-                    @Override
-                    public void call(SpecialTopicIResult specialTopicIResult)
-                    {
+                    spList.addAll(specialTopicIResult.list);
+                    finishGetSpVideoListTask();
+                }, throwable -> {
 
-                        spList.addAll(specialTopicIResult.list);
-                        finishGetSpVideoListTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        mCircleProgressView.setVisibility(View.GONE);
-                        mCircleProgressView.stopSpinning();
-                    }
+                    mCircleProgressView.setVisibility(View.GONE);
+                    mCircleProgressView.stopSpinning();
                 });
     }
 
@@ -275,16 +248,10 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         mRecyclerView.setLayoutManager(new GridLayoutManager(SpecialDetailsActivity.this, 2));
         SpecialVideoRecyclerAdapter mAdapter = new SpecialVideoRecyclerAdapter(mRecyclerView, spList);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
+        mAdapter.setOnItemClickListener((position, holder) -> {
 
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                SpecialTopic.Item item = spList.get(position);
-                VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid,item.cover);
-            }
+            SpecialTopic.Item item = spList.get(position);
+            VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid,item.cover);
         });
     }
 

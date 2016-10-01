@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.ComprehensiveResultsAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
@@ -79,16 +78,10 @@ public class ComprehensiveResultsFragment extends RxLazyFragment
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ComprehensiveResultsAdapter mAdapter = new ComprehensiveResultsAdapter(mRecyclerView, videos);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
+        mAdapter.setOnItemClickListener((position, holder) -> {
 
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                SearchResult.ResultBean.VideoBean videoBean = videos.get(position);
-                VideoDetailsActivity.launch(getActivity(), Integer.valueOf(videoBean.getAid()),videoBean.getPic());
-            }
+            SearchResult.ResultBean.VideoBean videoBean = videos.get(position);
+            VideoDetailsActivity.launch(getActivity(), Integer.valueOf(videoBean.getAid()),videoBean.getPic());
         });
     }
 

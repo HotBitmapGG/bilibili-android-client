@@ -9,24 +9,20 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.PartitionMoreRecyclerAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreList;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreVideoItem;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
-import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -122,26 +118,11 @@ public class PartitionListFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-        {
+        mSwipeRefreshLayout.setOnRefreshListener(() -> mSwipeRefreshLayout.setRefreshing(false));
+        mSwipeRefreshLayout.postDelayed(() -> {
 
-            @Override
-            public void onRefresh()
-            {
-
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        mSwipeRefreshLayout.postDelayed(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-
-                mSwipeRefreshLayout.setRefreshing(true);
-                getPartitionMore(tid);
-            }
+            mSwipeRefreshLayout.setRefreshing(true);
+            getPartitionMore(tid);
         }, 500);
     }
 
@@ -152,63 +133,38 @@ public class PartitionListFragment extends RxLazyFragment
                 .getPartitionMore(tid, pageNum,
                         pageSize, 0, Secret.APP_KEY,
                         Long.toString(System.currentTimeMillis() / 1000))
-                .compose(this.<ResponseBody> bindToLifecycle())
-                .map(new Func1<ResponseBody,PartitionMoreList>()
-                {
+                .compose(this.bindToLifecycle())
+                .map(responseBody -> {
 
-                    @Override
-                    public PartitionMoreList call(ResponseBody responseBody)
+                    try
                     {
-
-                        try
-                        {
-                            return PartitionMoreList.createFromJson(responseBody.string());
-                        } catch (IOException e)
-                        {
-                            e.printStackTrace();
-                            return null;
-                        }
+                        return PartitionMoreList.createFromJson(responseBody.string());
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                        return null;
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<PartitionMoreList>()
-                {
+                .subscribe(partitionMoreList -> {
 
-                    @Override
-                    public void call(PartitionMoreList partitionMoreList)
-                    {
-
-                        if (partitionMoreList.lists.size() < pageSize)
-                            loadMoreView.setVisibility(View.GONE);
-
-                        items.addAll(partitionMoreList.lists);
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
+                    if (partitionMoreList.lists.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
-                        mSwipeRefreshLayout.post(new Runnable()
-                        {
 
-                            @Override
-                            public void run()
-                            {
+                    items.addAll(partitionMoreList.lists);
+                    finishTask();
+                }, throwable -> {
 
-                                mSwipeRefreshLayout.setRefreshing(false);
-                            }
-                        });
-                    }
+                    loadMoreView.setVisibility(View.GONE);
+                    mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(false));
                 });
     }
 
     private void finishTask()
     {
+
+        loadMoreView.setVisibility(View.GONE);
 
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
@@ -220,16 +176,10 @@ public class PartitionListFragment extends RxLazyFragment
             mSwipeRefreshLayout.setRefreshing(false);
         }
 
-        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
+        mAdapter.setOnItemClickListener((position, holder) -> {
 
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                PartitionMoreVideoItem bangumiMoreVideoItem = items.get(position);
-                VideoDetailsActivity.launch(getSupportActivity(), bangumiMoreVideoItem.aid,bangumiMoreVideoItem.pic);
-            }
+            PartitionMoreVideoItem bangumiMoreVideoItem = items.get(position);
+            VideoDetailsActivity.launch(getSupportActivity(), bangumiMoreVideoItem.aid,bangumiMoreVideoItem.pic);
         });
     }
 

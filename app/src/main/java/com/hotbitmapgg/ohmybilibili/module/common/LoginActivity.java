@@ -7,8 +7,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -59,53 +57,35 @@ public class LoginActivity extends RxAppCompatBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        mDeleteUserName.setOnClickListener(new OnClickListener()
-        {
+        mDeleteUserName.setOnClickListener(v -> {
+            // 清空用户名以及密码
+            et_username.setText("");
+            et_password.setText("");
+            mDeleteUserName.setVisibility(View.GONE);
+            et_username.setFocusable(true);
+            et_username.setFocusableInTouchMode(true);
+            et_username.requestFocus();
+        });
 
-            @Override
-            public void onClick(View v)
+
+        et_username.setOnFocusChangeListener((v, hasFocus) -> {
+
+            if (hasFocus && et_username.getText().length() > 0)
             {
-                // 清空用户名以及密码
-                et_username.setText("");
-                et_password.setText("");
+                mDeleteUserName.setVisibility(View.VISIBLE);
+            } else
+            {
                 mDeleteUserName.setVisibility(View.GONE);
-                et_username.setFocusable(true);
-                et_username.setFocusableInTouchMode(true);
-                et_username.requestFocus();
             }
+
+            mLeftLogo.setImageResource(R.drawable.ic_22);
+            mRightLogo.setImageResource(R.drawable.ic_33);
         });
 
+        et_password.setOnFocusChangeListener((v, hasFocus) -> {
 
-        et_username.setOnFocusChangeListener(new OnFocusChangeListener()
-        {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus)
-            {
-
-                if (hasFocus && et_username.getText().length() > 0)
-                {
-                    mDeleteUserName.setVisibility(View.VISIBLE);
-                } else
-                {
-                    mDeleteUserName.setVisibility(View.GONE);
-                }
-
-                mLeftLogo.setImageResource(R.drawable.ic_22);
-                mRightLogo.setImageResource(R.drawable.ic_33);
-            }
-        });
-
-        et_password.setOnFocusChangeListener(new OnFocusChangeListener()
-        {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus)
-            {
-
-                mLeftLogo.setImageResource(R.drawable.ic_22_hide);
-                mRightLogo.setImageResource(R.drawable.ic_33_hide);
-            }
+            mLeftLogo.setImageResource(R.drawable.ic_22_hide);
+            mRightLogo.setImageResource(R.drawable.ic_33_hide);
         });
 
         et_username.addTextChangedListener(new TextWatcher()
@@ -150,16 +130,7 @@ public class LoginActivity extends RxAppCompatBaseActivity
 
         mToolbar.setNavigationIcon(R.drawable.ic_cancle);
         mToolbar.setTitle("登录");
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                finish();
-            }
-        });
+        mToolbar.setNavigationOnClickListener(v -> finish());
     }
 
 

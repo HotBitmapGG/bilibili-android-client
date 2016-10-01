@@ -22,7 +22,8 @@ import butterknife.ButterKnife;
  * <p/>
  * Activity基类
  */
-public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity implements CardPickerDialog.ClickListener
+public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity
+        implements CardPickerDialog.ClickListener
 {
 
     @Override

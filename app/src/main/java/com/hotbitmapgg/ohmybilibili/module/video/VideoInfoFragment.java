@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoAlikeListAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoAlikeInfo;
@@ -31,10 +30,7 @@ import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -138,17 +134,11 @@ public class VideoInfoFragment extends RxLazyFragment
         mFavNum.setText(mVideoDetails.getFavorites());
         mCoinNum.setText(mVideoDetails.getCoins());
 
-        mMoreVideo.setOnClickListener(new View.OnClickListener()
-        {
+        mMoreVideo.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v)
-            {
-
-                Intent mIntent = new Intent(getActivity(), VideoPartsListMoreActivity.class);
-                mIntent.putExtra("aid", av + "");
-                startActivity(mIntent);
-            }
+            Intent mIntent = new Intent(getActivity(), VideoPartsListMoreActivity.class);
+            mIntent.putExtra("aid", av + "");
+            startActivity(mIntent);
         });
 
         setVideoTags();
@@ -195,47 +185,29 @@ public class VideoInfoFragment extends RxLazyFragment
                 .getPartitionMore(tid, anInt,
                         10, 0, Secret.APP_KEY,
                         Long.toString(System.currentTimeMillis() / 1000))
-                .compose(this.<ResponseBody> bindToLifecycle())
-                .map(new Func1<ResponseBody,VideoAlikeResult>()
-                {
+                .compose(this.bindToLifecycle())
+                .map(responseBody -> {
 
-                    @Override
-                    public VideoAlikeResult call(ResponseBody responseBody)
+                    try
                     {
-
-                        try
-                        {
-                            return VideoAlikeResult.createFromJson(responseBody.string());
-                        } catch (IOException e)
-                        {
-                            e.printStackTrace();
-                            return null;
-                        }
+                        return VideoAlikeResult.createFromJson(responseBody.string());
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                        return null;
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<VideoAlikeResult>()
-                {
+                .subscribe(videoAlikeResult -> {
 
-                    @Override
-                    public void call(VideoAlikeResult videoAlikeResult)
-                    {
+                    List<VideoAlikeInfo> datas = videoAlikeResult.lists;
+                    mUserVideos.addAll(datas);
 
-                        List<VideoAlikeInfo> datas = videoAlikeResult.lists;
-                        mUserVideos.addAll(datas);
-
-                        finishPartsGetTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
+                    finishPartsGetTask();
+                }, throwable -> {
 
 
-                    }
                 });
     }
 
@@ -248,17 +220,11 @@ public class VideoInfoFragment extends RxLazyFragment
         mVideoPartList.setNestedScrollingEnabled(false);
         mVideoPartList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mVideoPartList.setAdapter(mVideoAlikeListAdapter);
-        mVideoAlikeListAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
+        mVideoAlikeListAdapter.setOnItemClickListener((position, holder) -> {
 
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                getActivity().finish();
-                VideoAlikeInfo videoAlikeInfo = mUserVideos.get(position);
-                VideoDetailsActivity.launch(getActivity(), videoAlikeInfo.aid, videoAlikeInfo.pic);
-            }
+            getActivity().finish();
+            VideoAlikeInfo videoAlikeInfo = mUserVideos.get(position);
+            VideoDetailsActivity.launch(getActivity(), videoAlikeInfo.aid, videoAlikeInfo.pic);
         });
     }
 

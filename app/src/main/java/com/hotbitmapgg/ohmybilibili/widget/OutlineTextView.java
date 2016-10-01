@@ -25,8 +25,6 @@ public class OutlineTextView extends TextView
 
     private String mText = "";
 
-    private int mAscent = 0;
-
     private float mBorderSize;
 
     private int mBorderColor;
@@ -83,7 +81,7 @@ public class OutlineTextView extends TextView
     {
 
         super.setText(text);
-        mText = text.toString();
+        mText = text;
         requestLayout();
         invalidate();
     }
@@ -191,7 +189,7 @@ public class OutlineTextView extends TextView
         int specMode = MeasureSpec.getMode(measureSpec);
         int specSize = MeasureSpec.getSize(measureSpec);
 
-        mAscent = (int) mTextPaintOutline.ascent();
+        int mAscent = (int) mTextPaintOutline.ascent();
         if (specMode == MeasureSpec.EXACTLY)
         {
             result = specSize;

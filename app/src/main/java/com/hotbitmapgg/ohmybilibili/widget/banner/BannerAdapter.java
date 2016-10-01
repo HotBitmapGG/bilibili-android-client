@@ -23,13 +23,13 @@ public class BannerAdapter extends PagerAdapter
 
     private ViewPagerOnItemClickListener mViewPagerOnItemClickListener;
 
-    public void setmViewPagerOnItemClickListener(ViewPagerOnItemClickListener mViewPagerOnItemClickListener)
+    void setmViewPagerOnItemClickListener(ViewPagerOnItemClickListener mViewPagerOnItemClickListener)
     {
 
         this.mViewPagerOnItemClickListener = mViewPagerOnItemClickListener;
     }
 
-    public BannerAdapter(List<ImageView> list)
+    BannerAdapter(List<ImageView> list)
     {
 
         this.mList = list;
@@ -69,17 +69,11 @@ public class BannerAdapter extends PagerAdapter
             ViewGroup parent = (ViewGroup) vp;
             parent.removeView(v);
         }
-        v.setOnClickListener(new View.OnClickListener()
-        {
+        v.setOnClickListener(v1 -> {
 
-            @Override
-            public void onClick(View v)
+            if (mViewPagerOnItemClickListener != null)
             {
-
-                if (mViewPagerOnItemClickListener != null)
-                {
-                    mViewPagerOnItemClickListener.onItemClick(pos);
-                }
+                mViewPagerOnItemClickListener.onItemClick(pos);
             }
         });
 
@@ -91,11 +85,11 @@ public class BannerAdapter extends PagerAdapter
     @Override
     public void destroyItem(ViewGroup container, int position, Object object)
     {
-//        container.removeView(mList.get(position % mList.size()));
+
     }
 
 
-    public interface ViewPagerOnItemClickListener
+    interface ViewPagerOnItemClickListener
     {
 
         void onItemClick(int position);

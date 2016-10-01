@@ -50,7 +50,7 @@ public class FocusOnContents
     /**
      * 添加关注番剧数据
      */
-    public List<FocusOnBangumi> fillBangumiData()
+    List<FocusOnBangumi> fillBangumiData()
     {
 
         FocusOnBangumi one = new FocusOnBangumi();
@@ -242,7 +242,7 @@ public class FocusOnContents
 
     private List<FocusOnDynamic> focusOnDynamics = new ArrayList<>();
 
-    public List<FocusOnDynamic> fillDynamicData()
+    List<FocusOnDynamic> fillDynamicData()
     {
 
         FocusOnDynamic one = new FocusOnDynamic();

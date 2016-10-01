@@ -4,14 +4,10 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
-import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.OriginalRankAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.rank.OriginalRankInfo;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -23,8 +19,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -83,29 +77,17 @@ public class OriginalRankFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.post(new Runnable()
-        {
+        mSwipeRefreshLayout.post(() -> {
 
-            @Override
-            public void run()
-            {
-
-                mSwipeRefreshLayout.setRefreshing(true);
-                mIsRefreshing = true;
-                getOriginalRank();
-            }
+            mSwipeRefreshLayout.setRefreshing(true);
+            mIsRefreshing = true;
+            getOriginalRank();
         });
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-        {
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
-            @Override
-            public void onRefresh()
-            {
-
-                mIsRefreshing = true;
-                videos.clear();
-                getOriginalRank();
-            }
+            mIsRefreshing = true;
+            videos.clear();
+            getOriginalRank();
         });
     }
 
@@ -114,40 +96,19 @@ public class OriginalRankFragment extends RxLazyFragment
 
         RetrofitHelper.getOriginalRankApi()
                 .getOriginalRank(1, 20, order)
-                .compose(this.<OriginalRankInfo> bindToLifecycle())
-                .map(new Func1<OriginalRankInfo,List<VideoItemInfo>>()
-                {
-
-                    @Override
-                    public List<VideoItemInfo> call(OriginalRankInfo originalRankInfo)
-                    {
-
-                        return originalRankInfo.videos;
-                    }
-                })
+                .compose(this.bindToLifecycle())
+                .map(originalRankInfo -> originalRankInfo.videos)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<VideoItemInfo>>()
-                {
+                .subscribe(videoItemInfos -> {
 
-                    @Override
-                    public void call(List<VideoItemInfo> videoItemInfos)
-                    {
+                    LogUtil.all(videoItemInfos.get(0).author);
+                    videos.addAll(videoItemInfos);
+                    finishTask();
+                }, throwable -> {
 
-                        LogUtil.all(videoItemInfos.get(0).author);
-                        videos.addAll(videoItemInfos);
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        mSwipeRefreshLayout.setRefreshing(false);
-                        ToastUtil.ShortToast("加载失败啦,请重新加载~");
-                    }
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    ToastUtil.ShortToast("加载失败啦,请重新加载~");
                 });
     }
 
@@ -167,38 +128,14 @@ public class OriginalRankFragment extends RxLazyFragment
         mAdapter = new OriginalRankAdapter(mRecyclerView, videos);
         mRecyclerView.setAdapter(mAdapter);
         setRecycleNoScroll();
-        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
-
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                VideoDetailsActivity.launch(getActivity(), videos.get(position).aid, videos.get(position).pic);
-            }
-        });
+        mAdapter.setOnItemClickListener((position, holder) -> VideoDetailsActivity.
+                launch(getActivity(), videos.get(position).aid, videos.get(position).pic));
     }
 
     private void setRecycleNoScroll()
     {
 
-        mRecyclerView.setOnTouchListener(new View.OnTouchListener()
-        {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-
-
-                if (mIsRefreshing)
-                {
-                    return true;
-                } else
-                {
-                    return false;
-                }
-            }
-        });
+        mRecyclerView.setOnTouchListener((v, event) -> mIsRefreshing);
     }
 
     @Override

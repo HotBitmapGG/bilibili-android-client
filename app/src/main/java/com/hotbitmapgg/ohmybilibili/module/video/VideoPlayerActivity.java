@@ -15,8 +15,8 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.HDVideoInfo;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoSrc;
-import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchEvent;
 import com.hotbitmapgg.ohmybilibili.media.MediaController;
+import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchEvent;
 import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.DanmakuDownloadUtil;
@@ -31,7 +31,6 @@ import master.flame.danmaku.danmaku.model.android.DanmakuContext;
 import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 import rx.Observable;
 import rx.Observer;
-import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -149,7 +148,7 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
         // 获取Html5的视频数据
         observable = RetrofitHelper.getHtml5VideoPlayerUrlApi()
                 .getHtml5VideoPlayerUrl(aid, 1)
-                .compose(this.<VideoSrc> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io());
 
         //合并视频和弹幕数据
@@ -190,21 +189,15 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
     {
 
         return observable
-                .compose(this.<VideoSrc> bindToLifecycle())
-                .map(new Func1<VideoSrc,String>()
-                {
+                .compose(this.bindToLifecycle())
+                .map(videoSrc -> {
 
-                    @Override
-                    public String call(VideoSrc videoSrc)
+                    if (videoSrc.getCid() == null || videoSrc.getCid()
+                            .contentEquals(UNFIND_MESSAGE))
                     {
-
-                        if (videoSrc.getCid() == null || videoSrc.getCid()
-                                .contentEquals(UNFIND_MESSAGE))
-                        {
-                            return ERROR_MESSAGE;
-                        }
-                        return videoSrc.getCid();
+                        return ERROR_MESSAGE;
                     }
+                    return videoSrc.getCid();
                 })
                 .flatMap(new Func1<String,Observable<BaseDanmakuParser>>()
                 {
@@ -221,16 +214,7 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Func1<BaseDanmakuParser,Observable<?>>()
-                {
-
-                    @Override
-                    public Observable<?> call(BaseDanmakuParser parser)
-                    {
-
-                        return prepareDanmaku(parser);
-                    }
-                });
+                .flatMap((Func1<BaseDanmakuParser,Observable<?>>) this::prepareDanmaku);
     }
 
 
@@ -238,30 +222,15 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
     {
 
         return observable
-                .compose(this.<VideoSrc> bindToLifecycle())
-                .map(new Func1<VideoSrc,String>()
-                {
+                .compose(this.bindToLifecycle())
+                .map(VideoSrc::getCid)
+                .map(s -> {
 
-                    @Override
-                    public String call(VideoSrc videoSrc)
+                    if (s == null || s.contentEquals(UNFIND_MESSAGE))
                     {
-
-                        return videoSrc.getCid();
+                        return ERROR_MESSAGE;
                     }
-                })
-                .map(new Func1<String,String>()
-                {
-
-                    @Override
-                    public String call(String s)
-                    {
-
-                        if (s == null || s.contentEquals(UNFIND_MESSAGE))
-                        {
-                            return ERROR_MESSAGE;
-                        }
-                        return s.substring(s.lastIndexOf('/') + 1, s.lastIndexOf("."));
-                    }
+                    return s.substring(s.lastIndexOf('/') + 1, s.lastIndexOf("."));
                 })
                 .flatMap(new Func1<String,Observable<HDVideoInfo>>()
                 {
@@ -279,102 +248,66 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
                                 .getHDVideoUrl(cid, 4, VIDEO_TYPE_MP4);
                     }
                 })
-                .map(new Func1<HDVideoInfo,Uri>()
-                {
-
-                    @Override
-                    public Uri call(HDVideoInfo videoInfo)
-                    {
-
-                        return Uri.parse(videoInfo.getDurl().get(0).getUrl());
-                    }
-                })
+                .map(videoInfo -> Uri.parse(videoInfo.getDurl().get(0).getUrl()))
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Func1<Uri,Observable<?>>()
-                {
-
-                    @Override
-                    public Observable<?> call(Uri uri)
-                    {
-
-                        return prepareVideo(uri);
-                    }
-                });
+                .flatMap((Func1<Uri,Observable<?>>) this::prepareVideo);
     }
 
 
     public Observable prepareVideo(final Uri src)
     {
 
-        return Observable.create(new Observable.OnSubscribe<Object>()
-        {
+        return Observable.create(subscriber -> {
 
-            @Override
-            public void call(final Subscriber<? super Object> subscriber)
-            {
-
-                mPlayerView.setVideoURI(src);
-                mPlayerView.setOnPreparedListener(new IMediaPlayer.OnPreparedListener()
-                {
-
-                    @Override
-                    public void onPrepared(IMediaPlayer mp)
-                    {
+            mPlayerView.setVideoURI(src);
+            mPlayerView.setOnPreparedListener(mp -> {
 
 
-                        subscriber.onCompleted();
-                        mLoadingAnim.stop();
-                        startText = startText + "【完成】\n视频缓冲中...";
-                        mPrepareText.setText(startText);
-                        mVideoPrepareLayout.setVisibility(View.GONE);
-                    }
-                });
-            }
+                subscriber.onCompleted();
+                mLoadingAnim.stop();
+                startText = startText + "【完成】\n视频缓冲中...";
+                mPrepareText.setText(startText);
+                mVideoPrepareLayout.setVisibility(View.GONE);
+            });
         });
     }
 
     public Observable prepareDanmaku(final BaseDanmakuParser parser)
     {
 
-        return Observable.create(new Observable.OnSubscribe<Object>()
-        {
+        return Observable.create(subscriber -> {
 
-            @Override
-            public void call(final Subscriber<? super Object> subscriber)
+            mDanmakuView.prepare(parser, DanmakuContext.create());
+            mDanmakuView.showFPS(false);
+            mDanmakuView.enableDanmakuDrawingCache(false);
+            mDanmakuView.setCallback(new DrawHandler.Callback()
             {
 
-                mDanmakuView.prepare(parser, DanmakuContext.create());
-                mDanmakuView.showFPS(false);
-                mDanmakuView.enableDanmakuDrawingCache(false);
-                mDanmakuView.setCallback(new DrawHandler.Callback()
+                @Override
+                public void prepared()
                 {
 
-                    @Override
-                    public void prepared()
-                    {
+                    subscriber.onCompleted();
+                }
 
-                        subscriber.onCompleted();
-                    }
+                @Override
+                public void updateTimer(DanmakuTimer danmakuTimer)
+                {
 
-                    @Override
-                    public void updateTimer(DanmakuTimer danmakuTimer)
-                    {
+                }
 
-                    }
+                @Override
+                public void danmakuShown(BaseDanmaku danmaku)
+                {
 
-                    @Override
-                    public void danmakuShown(BaseDanmaku danmaku)
-                    {
+                }
 
-                    }
+                @Override
+                public void drawingFinished()
+                {
 
-                    @Override
-                    public void drawingFinished()
-                    {
-
-                    }
-                });
-            }
+                }
+            });
         });
     }
 

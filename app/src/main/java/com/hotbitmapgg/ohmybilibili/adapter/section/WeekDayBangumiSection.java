@@ -91,20 +91,11 @@ public class WeekDayBangumiSection extends StatelessSection
             itemViewHolder.mImageView.setImageResource(R.drawable.bili_default_image_tv);
         }
 
-        itemViewHolder.mCardView.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                SpecialDetailsActivity.launch(
-                        (Activity) mContext,
-                        weekDayBangumi.spid,
-                        weekDayBangumi.title,
-                        weekDayBangumi.season_id);
-            }
-        });
+        itemViewHolder.mCardView.setOnClickListener(v -> SpecialDetailsActivity.launch(
+                (Activity) mContext,
+                weekDayBangumi.spid,
+                weekDayBangumi.title,
+                weekDayBangumi.season_id));
     }
 
     @Override
@@ -132,7 +123,7 @@ public class WeekDayBangumiSection extends StatelessSection
         @Bind(R.id.item_weekday)
         TextView mWeekDay;
 
-        public HeaderViewHolder(View view)
+        HeaderViewHolder(View view)
         {
 
             super(view);

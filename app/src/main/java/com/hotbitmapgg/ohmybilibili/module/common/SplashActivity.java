@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 import butterknife.ButterKnife;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.functions.Func1;
 
 
@@ -62,22 +61,16 @@ public class SplashActivity extends Activity
                             return Observable.just(GOTO_LOGIN);
                     }
                 })
-                .subscribe(new Action1<String>()
-                {
+                .subscribe(s -> {
 
-                    @Override
-                    public void call(String s)
+                    if (s.equals(GOTO_HOME))
                     {
-
-                        if (s.equals(GOTO_HOME))
-                        {
-                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                            finish();
-                        } else
-                        {
-                            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                            finish();
-                        }
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        finish();
+                    } else
+                    {
+                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                        finish();
                     }
                 });
     }

@@ -205,10 +205,7 @@ public class HomePageFragment extends RxLazyFragment
     public boolean isOpenSearchView()
     {
 
-        if (mSearchView.isSearchOpen())
-            return true;
-        else
-            return false;
+        return mSearchView.isSearchOpen();
     }
 
     public void closeSearchView()

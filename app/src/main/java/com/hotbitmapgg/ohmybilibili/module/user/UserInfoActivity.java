@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserUpVideoAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
@@ -36,7 +35,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -188,28 +186,16 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getUserInfoApi()
                 .getUserInfoByName(name)
-                .compose(this.<UserInfo> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<UserInfo>()
-                {
+                .subscribe(userInfo -> {
 
-                    @Override
-                    public void call(UserInfo userInfo)
-                    {
+                    mUserInfo = userInfo;
+                    finishUserInfoTask();
+                }, throwable -> {
 
-                        mUserInfo = userInfo;
-                        finishUserInfoTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        hideProgressBar();
-                    }
+                    hideProgressBar();
                 });
     }
 
@@ -303,29 +289,17 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getUserUpVideoListApi()
                 .getUserUpVideos(mid, 1, 10)
-                .compose(this.<UserUpVideoInfo> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<UserUpVideoInfo>()
-                {
+                .subscribe(userUpVideoInfo -> {
 
-                    @Override
-                    public void call(UserUpVideoInfo userUpVideoInfo)
-                    {
+                    List<UserUpVideoInfo.VlistBean> vlist = userUpVideoInfo.getVlist();
+                    userVideoList.addAll(vlist);
+                    finishTask();
+                }, throwable -> {
 
-                        List<UserUpVideoInfo.VlistBean> vlist = userUpVideoInfo.getVlist();
-                        userVideoList.addAll(vlist);
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        hideProgressBar();
-                    }
+                    hideProgressBar();
                 });
     }
 
@@ -338,18 +312,9 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
         mRecyclerView.setLayoutManager(new GridLayoutManager(UserInfoActivity.this, 2));
         UserUpVideoAdapter mAdapter = new UserUpVideoAdapter(mRecyclerView, userVideoList);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
-
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                VideoDetailsActivity.launch(UserInfoActivity.this,
-                        userVideoList.get(position).getAid(),
-                        userVideoList.get(position).getPic());
-            }
-        });
+        mAdapter.setOnItemClickListener((position, holder) -> VideoDetailsActivity.launch(UserInfoActivity.this,
+                userVideoList.get(position).getAid(),
+                userVideoList.get(position).getPic()));
 
         mUpTip.setVisibility(View.VISIBLE);
         String str = "Up主的投稿" + "(" +

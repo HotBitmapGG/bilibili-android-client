@@ -230,19 +230,13 @@ public class LoveLikeLayout extends RelativeLayout
 
         animator.setDuration(3000);
         animator.setTarget(target);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
-        {
-
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator)
-            {
-                //获取贝塞尔曲线的运动轨迹 让爱心跟随着移动
-                PointF animatedValue = (PointF) valueAnimator.getAnimatedValue();
-                target.setX(animatedValue.x);
-                target.setY(animatedValue.y);
-                //增加透明度的变化
-                target.setAlpha(1 - valueAnimator.getAnimatedFraction());
-            }
+        animator.addUpdateListener(valueAnimator -> {
+            //获取贝塞尔曲线的运动轨迹 让爱心跟随着移动
+            PointF animatedValue = (PointF) valueAnimator.getAnimatedValue();
+            target.setX(animatedValue.x);
+            target.setY(animatedValue.y);
+            //增加透明度的变化
+            target.setAlpha(1 - valueAnimator.getAnimatedFraction());
         });
 
 

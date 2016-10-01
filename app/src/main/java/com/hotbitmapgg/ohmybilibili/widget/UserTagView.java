@@ -1,6 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.widget;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -27,8 +27,6 @@ import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
  */
 public class UserTagView extends FrameLayout
 {
-
-    private LinearLayout cardView;
 
     private CircleImageView avatarView;
 
@@ -60,27 +58,21 @@ public class UserTagView extends FrameLayout
     {
 
         super(context, attrs, defStyleAttr);
-        cardView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_user_tag_view, null);
+        @SuppressLint("InflateParams") LinearLayout cardView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_user_tag_view, null);
         avatarView = (CircleImageView) cardView.findViewById(R.id.user_avatar);
         userNameText = (TextView) cardView.findViewById(R.id.user_name);
 
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getResources().getDimensionPixelSize(R.dimen.user_tag_view_height));
         this.addView(cardView, lp);
 
-        cardView.setOnClickListener(new OnClickListener()
-        {
+        cardView.setOnClickListener(view -> {
 
-            @Override
-            public void onClick(View view)
+            if (mid != -1 && activity != null)
             {
-
-                if (mid != -1 && activity != null)
-                {
-                    UserInfoActivity.launch(activity, name, mid, avatarUrl);
-                } else if (onClickListener != null)
-                {
-                    onClickListener.onClick(view);
-                }
+                UserInfoActivity.launch(activity, name, mid, avatarUrl);
+            } else if (onClickListener != null)
+            {
+                onClickListener.onClick(view);
             }
         });
     }

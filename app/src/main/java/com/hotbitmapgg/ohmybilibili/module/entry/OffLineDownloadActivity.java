@@ -5,7 +5,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.format.Formatter;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -71,16 +70,7 @@ public class OffLineDownloadActivity extends RxAppCompatBaseActivity
         mToolbar.setTitle("离线缓存");
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.action_button_back_pressed_light);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-                finish();
-            }
-        });
+        mToolbar.setNavigationOnClickListener(v -> finish());
     }
 
 
@@ -92,8 +82,7 @@ public class OffLineDownloadActivity extends RxAppCompatBaseActivity
         //取整相减
         int size = (int) (Math.floor(totalSize) - Math.floor(availabSize));
         double v = (size / Math.floor(totalSize)) * 100;
-        int progress = (int) Math.floor(v);
-        return progress;
+        return (int) Math.floor(v);
     }
 
 

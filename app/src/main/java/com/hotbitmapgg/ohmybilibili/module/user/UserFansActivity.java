@@ -13,19 +13,17 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserFansAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserFans;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -140,42 +138,21 @@ public class UserFansActivity extends RxAppCompatBaseActivity
 
         RetrofitHelper.getUserFansApi()
                 .getUserFans(mid, pageNum, pageSize)
-                .compose(this.<UserFans> bindToLifecycle())
-                .map(new Func1<UserFans,ArrayList<UserFans.FansInfo>>()
-                {
-
-                    @Override
-                    public ArrayList<UserFans.FansInfo> call(UserFans userFans)
-                    {
-
-                        return userFans.list;
-                    }
-                })
+                .compose(this.bindToLifecycle())
+                .map(userFans -> userFans.list)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<ArrayList<UserFans.FansInfo>>()
-                {
+                .subscribe(fansInfos -> {
 
-                    @Override
-                    public void call(ArrayList<UserFans.FansInfo> fansInfos)
-                    {
-
-                        if (fansInfos.size() < pageSize)
-                            loadMoreView.setVisibility(View.GONE);
-
-                        userfansList.addAll(fansInfos);
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
+                    if (fansInfos.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
-                        hideProgressBar();
-                    }
+
+                    userfansList.addAll(fansInfos);
+                    finishTask();
+                }, throwable -> {
+
+                    loadMoreView.setVisibility(View.GONE);
+                    hideProgressBar();
                 });
     }
 
@@ -183,6 +160,7 @@ public class UserFansActivity extends RxAppCompatBaseActivity
     {
 
         hideProgressBar();
+        loadMoreView.setVisibility(View.GONE);
 
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);

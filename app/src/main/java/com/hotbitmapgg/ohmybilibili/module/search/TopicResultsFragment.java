@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.TopicResultsAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
 import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
@@ -79,16 +78,10 @@ public class TopicResultsFragment extends RxLazyFragment
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         TopicResultsAdapter mAdapter = new TopicResultsAdapter(mRecyclerView, topics);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
+        mAdapter.setOnItemClickListener((position, holder) -> {
 
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                SearchResult.ResultBean.TopicBean topicBean = topics.get(position);
-                WebActivity.launch(getActivity(), topicBean.getArcurl(), topicBean.getTitle());
-            }
+            SearchResult.ResultBean.TopicBean topicBean = topics.get(position);
+            WebActivity.launch(getActivity(), topicBean.getArcurl(), topicBean.getTitle());
         });
     }
 

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -27,7 +26,6 @@ import java.util.List;
 import butterknife.Bind;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -152,29 +150,17 @@ public class HomeRecommendedFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.post(new Runnable()
-        {
+        mSwipeRefreshLayout.post(() -> {
 
-            @Override
-            public void run()
-            {
-
-                mSwipeRefreshLayout.setRefreshing(true);
-                mIsRefreshing = true;
-                getHomeRecommendedData();
-            }
+            mSwipeRefreshLayout.setRefreshing(true);
+            mIsRefreshing = true;
+            getHomeRecommendedData();
         });
 
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-        {
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
-            @Override
-            public void onRefresh()
-            {
-
-                clearData();
-                getHomeRecommendedData();
-            }
+            clearData();
+            getHomeRecommendedData();
         });
     }
 
@@ -184,7 +170,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
         RetrofitHelper.getHomeRecommendedApi()
                 .getRecommendedBannerInfo()
-                .compose(this.<RecommendBannerInfo> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .flatMap(new Func1<RecommendBannerInfo,Observable<RecommendInfo>>()
                 {
 
@@ -198,28 +184,16 @@ public class HomeRecommendedFragment extends RxLazyFragment
                         return RetrofitHelper.getHomeRecommendedApi().getRecommendedInfo();
                     }
                 })
-                .compose(this.<RecommendInfo> bindToLifecycle())
+                .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<RecommendInfo>()
-                {
+                .subscribe(recommendInfo -> {
 
-                    @Override
-                    public void call(RecommendInfo recommendInfo)
-                    {
+                    results.addAll(recommendInfo.getResult());
+                    finishTask();
+                }, throwable -> {
 
-                        results.addAll(recommendInfo.getResult());
-                        finishTask();
-                    }
-                }, new Action1<Throwable>()
-                {
-
-                    @Override
-                    public void call(Throwable throwable)
-                    {
-
-                        initEmptyView();
-                    }
+                    initEmptyView();
                 });
     }
 
@@ -254,28 +228,30 @@ public class HomeRecommendedFragment extends RxLazyFragment
         for (int i = 0; i < size; i++)
         {
             String type = results.get(i).getType();
-            if (type.equals(TYPE_TOPIC))
+            switch (type)
             {
-                //话题
-                mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
-                        results.get(i).getBody().get(0).getCover(),
-                        results.get(i).getBody().get(0).getTitle(),
-                        results.get(i).getBody().get(0).getParam()));
-            } else if (type.equals(TYPE_ACTIVITY_CENTER))
-            {
-                //活动中心
-                mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
-                        getActivity(),
-                        results.get(i).getBody()));
-            } else
-            {
-                mSectionedAdapter.addSection(new HomeRecommendedSection(
-                        getActivity(),
-                        icons[i],
-                        results.get(i).getHead().getTitle(),
-                        results.get(i).getType(),
-                        results.get(1).getHead().getCount(),
-                        results.get(i).getBody()));
+                case TYPE_TOPIC:
+                    //话题
+                    mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
+                            results.get(i).getBody().get(0).getCover(),
+                            results.get(i).getBody().get(0).getTitle(),
+                            results.get(i).getBody().get(0).getParam()));
+                    break;
+                case TYPE_ACTIVITY_CENTER:
+                    //活动中心
+                    mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
+                            getActivity(),
+                            results.get(i).getBody()));
+                    break;
+                default:
+                    mSectionedAdapter.addSection(new HomeRecommendedSection(
+                            getActivity(),
+                            icons[i],
+                            results.get(i).getHead().getTitle(),
+                            results.get(i).getType(),
+                            results.get(1).getHead().getCount(),
+                            results.get(i).getBody()));
+                    break;
             }
         }
         mSectionedAdapter.notifyDataSetChanged();
@@ -290,16 +266,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
         mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
         SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,请重新加载或者检查网络是否链接");
-        mCustomEmptyView.reload(new CustomEmptyView.ReloadOnClickListener()
-        {
-
-            @Override
-            public void reloadClick()
-            {
-
-                showProgressBar();
-            }
-        });
+        mCustomEmptyView.reload(this::showProgressBar);
     }
 
     public void hideEmptyView()
@@ -324,22 +291,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
     private void setRecycleNoScroll()
     {
 
-        mRecyclerView.setOnTouchListener(new View.OnTouchListener()
-        {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-
-
-                if (mIsRefreshing)
-                {
-                    return true;
-                } else
-                {
-                    return false;
-                }
-            }
-        });
+        mRecyclerView.setOnTouchListener((v, event) -> mIsRefreshing);
     }
 }
