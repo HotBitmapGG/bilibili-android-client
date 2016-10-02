@@ -32,7 +32,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/appbar_parallax_max_height"
-                    android:background="@drawable/bg_live_sign_in_banner"
+                    android:background="@drawable/ic_group_header_bg"
                     android:fitsSystemWindows="true"
                     android:gravity="top|center"
                     android:orientation="vertical" />

@@ -1,5 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.entity.bangumi;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by hcc on 16/8/9 20:48
  * 100332338@qq.com
@@ -56,6 +58,9 @@ public class SpecialTopic
 
     // 专题视频数量
     public int count;
+
+    @SerializedName("video_view")
+    public int play;
 
     public static class Item
     {

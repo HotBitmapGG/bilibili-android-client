@@ -163,6 +163,11 @@
             android:name=".module.home.bangumi.NewBangumiSerialActivity"
             android:screenOrientation="portrait" />
 
+        <!--番剧详情界面-->
+        <activity
+            android:name=".module.home.bangumi.BangumiDetailsActivity"
+            android:screenOrientation="portrait" />
+
         <!--播放器界面-->
         <activity
             android:name=".module.video.VideoPlayerActivity"

@@ -48,6 +48,7 @@
     <string name="introduction">简介</string>
     <string name="coin">投硬币</string>
     <string name="collection">收藏</string>
+    <string name="bangumi_follow">追番</string>
     <string name="cache">缓存</string>
     <string name="charging">请赐予我电量吧 !</string>
     <string name="charg">充电</string>
@@ -74,6 +75,15 @@
     <string name="activity_center">活动中心</string>
     <string name="dynamic">动态</string>
     <string name="not_watch">尚未观看</string>
+    <string name="selection">选集</string>
+    <string name="please_contract_me">请承包我吧</string>
+    <string name="have_been_contracting_out_of_me">已有383人承包了这部番</string>
+    <string name="contract">承包</string>
+    <string name="contract_text">等34人七日内承包了这部番</string>
+    <string name="look_top_list">查看榜单</string>
+    <string name="commend">评论</string>
+    <string name="more_commend">更多评论</string>
+    <string name="more_commend_arrow">更多评论 >></string>
 
 
     <!--Vitamio Strings-->

@@ -1,6 +1,558 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/bangumi_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/bangumi_details_image_height"
+                    android:scaleType="centerCrop" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/bangumi_details_top_layout_margin"
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/card_view"
+                            android:layout_width="@dimen/bangumi_details_pic_width"
+                            android:layout_height="@dimen/bangumi_details_pic_height"
+                            android:layout_marginStart="@dimen/default_general_margin"
+                            app:cardBackgroundColor="@color/card_view_background"
+                            app:cardCornerRadius="@dimen/card_corner_radius"
+                            app:cardElevation="@dimen/card_elevation">
+
+                            <ImageView
+                                android:id="@+id/bangumi_pic"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/card_corner_radius"
+                                android:scaleType="center" />
+
+
+                        </android.support.v7.widget.CardView>
+
+
+                        <LinearLayout
+                            android:id="@+id/bangumi_text_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_general_margin"
+                            android:layout_toEndOf="@+id/card_view"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/bangumi_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/default_medium_text_size" />
+
+                            <TextView
+                                android:id="@+id/bangumi_update"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_tiny_padding"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/default_small_text_size" />
+
+
+                            <TextView
+                                android:id="@+id/bangumi_play"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_tiny_padding"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/default_small_text_size" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/bangumi_text_layout"
+                            android:layout_marginTop="@dimen/default_tiny_padding"
+                            android:layout_toEndOf="@+id/card_view"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/btn_share"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/daily_video_action_bg"
+                                    android:clickable="false"
+                                    android:src="@drawable/ic_share_green" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/default_tiny_padding"
+                                    android:text="@string/about_menu_action_share"
+                                    android:textColor="@color/font_normal"
+                                    android:textSize="@dimen/default_tiny_text_size" />
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/btn_follow"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/daily_video_action_bg"
+                                    android:src="@drawable/ic_bangumi_follow" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/default_tiny_padding"
+                                    android:text="@string/bangumi_follow"
+                                    android:textColor="@color/font_normal"
+                                    android:textSize="@dimen/default_tiny_text_size" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_download"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:foreground="?attr/selectableItemBackground"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/daily_video_action_bg"
+                                    android:src="@drawable/ic_download" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/default_tiny_padding"
+                                    android:text="@string/cache"
+                                    android:textColor="@color/font_normal"
+                                    android:textSize="@dimen/default_tiny_text_size" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:id="@+id/bangumi_details_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/default_general_margin"
+                        android:text="@string/selection"
+                        android:textColor="@color/font_normal"
+                        android:textSize="@dimen/default_small_text_size" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/bangumi_selection_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/default_general_margin"
+                        android:paddingEnd="@dimen/default_general_margin"
+                        android:paddingStart="@dimen/default_general_margin"
+                        android:paddingTop="@dimen/default_tiny_padding" />
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/bangumi_details_card_view_height"
+                        android:layout_margin="@dimen/default_general_margin"
+                        app:cardBackgroundColor="@color/card_view_background"
+                        app:cardCornerRadius="@dimen/card_corner_radius"
+                        app:cardElevation="@dimen/card_elevation">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/ic_pay_bangumi_tips"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:padding="@dimen/default_general_margin"
+                                android:src="@drawable/ic_pay_bangumi_tips" />
+
+
+                            <TextView
+                                android:id="@+id/tv_pay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/default_grow_margin"
+                                android:layout_toEndOf="@+id/ic_pay_bangumi_tips"
+                                android:paddingTop="@dimen/default_tiny_padding"
+                                android:text="@string/please_contract_me"
+                                android:textColor="@color/yellow_30"
+                                android:textSize="@dimen/default_medium_text_size" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_pay"
+                                android:layout_toEndOf="@+id/ic_pay_bangumi_tips"
+                                android:text="@string/have_been_contracting_out_of_me"
+                                android:textColor="@color/yellow_30"
+                                android:textSize="@dimen/default_tiny_text_size" />
+
+
+                            <Button
+                                android:layout_width="@dimen/video_details_text_width"
+                                android:layout_height="@dimen/video_details_text_height"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="@dimen/default_general_margin"
+                                android:layout_marginTop="@dimen/default_grow_margin"
+                                android:background="@drawable/yellow_btn_bg"
+                                android:text="@string/contract"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/default_small_text_size" />
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/ic_pay_bangumi_tips"
+                                android:layout_marginEnd="@dimen/default_tiny_padding"
+                                android:layout_marginStart="@dimen/default_tiny_padding"
+                                android:background="@color/line_bg" />
+
+
+                            <FrameLayout
+                                android:id="@+id/user_avatar_layout"
+                                android:layout_width="@dimen/bangumi_details_user_avatar_layout_width"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginBottom="@dimen/default_general_margin"
+                                android:layout_marginStart="@dimen/default_general_margin">
+
+                                <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                                    android:layout_width="@dimen/bangumi_details_user_avatar_size"
+                                    android:layout_height="@dimen/bangumi_details_user_avatar_size"
+                                    android:layout_gravity="center|start"
+                                    android:src="@drawable/ic_avatar1"
+                                    app:border_color="@color/white"
+                                    app:border_width="@dimen/circle_default_width" />
+
+
+                                <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                                    android:layout_width="@dimen/bangumi_details_user_avatar_size"
+                                    android:layout_height="@dimen/bangumi_details_user_avatar_size"
+                                    android:layout_gravity="center|start"
+                                    android:layout_marginStart="@dimen/bangumi_details_user_avatar_margin_1"
+                                    android:src="@drawable/ic_avatar2"
+                                    app:border_color="@color/white"
+                                    app:border_width="@dimen/circle_default_width" />
+
+                                <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                                    android:layout_width="@dimen/bangumi_details_user_avatar_size"
+                                    android:layout_height="@dimen/bangumi_details_user_avatar_size"
+                                    android:layout_gravity="center|start"
+                                    android:layout_marginStart="@dimen/bangumi_details_user_avatar_margin_2"
+                                    android:src="@drawable/ic_avatar3"
+                                    app:border_color="@color/white"
+                                    app:border_width="@dimen/circle_default_width" />
+
+                                <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                                    android:layout_width="@dimen/bangumi_details_user_avatar_size"
+                                    android:layout_height="@dimen/bangumi_details_user_avatar_size"
+                                    android:layout_gravity="center|start"
+                                    android:layout_marginStart="@dimen/bangumi_details_user_avatar_margin_3"
+                                    android:src="@drawable/ic_avatar4"
+                                    app:border_color="@color/white"
+                                    app:border_width="@dimen/circle_default_width" />
+
+                            </FrameLayout>
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="@dimen/default_tiny_padding"
+                                android:layout_toEndOf="@+id/user_avatar_layout"
+                                android:paddingBottom="@dimen/default_general_margin"
+                                android:paddingTop="@dimen/default_general_margin"
+                                android:text="@string/contract_text"
+                                android:textColor="@color/black_alpha_45"
+                                android:textSize="@dimen/default_tiny_text_size" />
+
+
+                            <Button
+                                android:layout_width="@dimen/video_details_text_width"
+                                android:layout_height="@dimen/bangumi_details_look_btn_height"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_margin="@dimen/default_general_margin"
+                                android:background="@drawable/btn_black_bg"
+                                android:text="@string/look_top_list"
+                                android:textColor="@color/yellow"
+                                android:textSize="@dimen/default_tiny_text_size" />
+
+                        </RelativeLayout>
+
+
+                    </android.support.v7.widget.CardView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/default_general_margin"
+                        android:background="@color/gray_light" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/bangumi_details_more_layout_height"
+                        android:layout_marginTop="@dimen/default_tiny_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:padding="@dimen/default_general_margin"
+                            android:text="@string/introduction"
+                            android:textColor="@color/font_normal"
+                            android:textSize="@dimen/default_small_text_size" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:drawableEnd="@drawable/register_bottom_arrow"
+                            android:drawablePadding="@dimen/default_tiny_padding"
+                            android:padding="@dimen/default_general_margin"
+                            android:text="@string/more"
+                            android:textColor="@color/black_alpha_45"
+                            android:textSize="@dimen/default_tiny_text_size" />
+
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/bangumi_details_introduction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="@dimen/default_general_margin"
+                        android:paddingStart="@dimen/default_general_margin"
+                        android:textColor="@color/black_alpha_45"
+                        android:textSize="@dimen/default_tiny_text_size" />
+
+                    <com.zhy.view.flowlayout.TagFlowLayout
+                        android:id="@+id/tags_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/default_general_margin"
+                        app:max_select="-1" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/default_general_margin"
+                        android:background="@color/gray_light" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/bangumi_details_more_layout_height"
+                        android:layout_marginTop="@dimen/default_tiny_padding"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:padding="@dimen/default_general_margin"
+                            android:text="@string/commend"
+                            android:textColor="@color/font_normal"
+                            android:textSize="@dimen/default_small_text_size" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:drawableEnd="@drawable/register_bottom_arrow"
+                            android:drawablePadding="@dimen/default_tiny_padding"
+                            android:padding="@dimen/default_general_margin"
+                            android:text="@string/more_commend"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/default_tiny_text_size" />
+
+
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/bangumi_comment_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/default_general_margin"
+                        android:visibility="gone" />
+
+
+                    <LinearLayout
+                        android:id="@+id/more_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_general_margin"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <View
+                            android:layout_width="@dimen/app_bar_default_elevation"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_weight="1"
+                            android:background="@color/gray_light" />
+
+                        <TextView
+                            android:id="@+id/tv_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/default_general_margin"
+                            android:paddingStart="@dimen/default_general_margin"
+                            android:text="@string/more_commend_arrow"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/default_tiny_text_size" />
+
+                        <View
+                            android:layout_width="@dimen/app_bar_default_elevation"
+                            android:layout_height="@dimen/line_height"
+                            android:layout_weight="1"
+                            android:background="@color/gray_light" />
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/default_general_margin"
+                        android:text="@string/bangumi_recommend"
+                        android:textColor="@color/font_normal"
+                        android:textSize="@dimen/default_small_text_size" />
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/bangumi_recommend_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/default_general_margin" />
+
+
+                </LinearLayout>
+
+                <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
+                    android:id="@+id/circle_progress"
+                    android:layout_width="@dimen/circle_progress_view_default_size"
+                    android:layout_height="@dimen/circle_progress_view_default_size"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="@dimen/default_general_margin"
+                    app:matProg_barColor="?attr/colorPrimary"
+                    app:matProg_barWidth="@dimen/circle_progress_view_default_border_width" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="@dimen/app_bar_default_elevation"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextAppearance="@style/ToolBar.TitleText" />
+
+
+</FrameLayout>

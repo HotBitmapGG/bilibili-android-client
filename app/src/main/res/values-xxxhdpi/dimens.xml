@@ -231,5 +231,20 @@
     <dimen name="media_controller_bottom_layout_top_margin">4dp</dimen>
     <dimen name="media_controller_bottom_layout_left_right_bottom_margin">8dp</dimen>
 
+    <!--bangumi details size-->
+    <dimen name="bangumi_details_image_height">180dp</dimen>
+    <dimen name="bangumi_details_top_layout_height">250dp</dimen>
+    <dimen name="bangumi_details_top_layout_margin">70dp</dimen>
+    <dimen name="bangumi_details_pic_height">130dp</dimen>
+    <dimen name="bangumi_details_pic_width">100dp</dimen>
+    <dimen name="bangumi_details_card_view_height">130dp</dimen>
+    <dimen name="bangumi_details_user_avatar_layout_width">80dp</dimen>
+    <dimen name="bangumi_details_user_avatar_size">24dp</dimen>
+    <dimen name="bangumi_details_user_avatar_margin_1">15dp</dimen>
+    <dimen name="bangumi_details_user_avatar_margin_2">30dp</dimen>
+    <dimen name="bangumi_details_user_avatar_margin_3">45dp</dimen>
+    <dimen name="bangumi_details_look_btn_height">25dp</dimen>
+    <dimen name="bangumi_details_more_layout_height">50dp</dimen>
+
 
 </resources>

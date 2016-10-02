@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:id="@+id/card_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/card_view_background"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:id="@+id/item_image_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bangumi_recommend_image_height">
+
+
+            <ImageView
+                android:id="@+id/item_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center" />
+
+            <ImageView
+                android:id="@+id/item_is_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/default_grow_margin"
+                android:background="@drawable/tv_new_bg"
+                android:padding="@dimen/default_tiny_padding"
+                android:layout_marginTop="-1dp"
+                android:src="@drawable/ic_new_text" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_image_layout"
+            android:padding="@dimen/default_general_margin"
+            android:textColor="@color/font_normal"
+            android:textSize="@dimen/default_small_text_size" />
+
+
+        <TextView
+            android:id="@+id/item_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_title"
+            android:padding="@dimen/default_general_margin"
+            android:textColor="@color/black_alpha_45"
+            android:textSize="@dimen/default_small_text_size" />
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

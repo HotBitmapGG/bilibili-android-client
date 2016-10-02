@@ -89,8 +89,8 @@ dependencies {
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
     //主题切换
     compile 'com.bilibili:magicasakura:0.1.1@aar'
-    //高斯模糊库
-    compile 'jp.wasabeef:blurry:2.0.3'
+    //Glide辅助库
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
 }
 
 repositories {

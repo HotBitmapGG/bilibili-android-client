@@ -4,6 +4,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
 import com.hotbitmapgg.ohmybilibili.network.api.AllRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BiliBiliLiveService;
@@ -60,6 +61,8 @@ public class RetrofitHelper
     private static final String LIVE_BASE_URL = "http://live.bilibili.com/";
 
     private static final String HOST_API_BASE_URL = "http://api.bilibili.cn/";
+
+    private static final String BANGUMI_BASE_URL = "http://bangumi.bilibili.com/";
 
     public static final String HDSLB_HOST = "http://i2.hdslb.com";
 
@@ -501,6 +504,24 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(SeasonNewBangumiService.class);
+    }
+
+    /**
+     * 获取番剧详情中的番剧推荐数据
+     *
+     * @return
+     */
+    public static BangumiDetailsRecommendService getBangumiDetailsRecommendedApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BANGUMI_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(BangumiDetailsRecommendService.class);
     }
 
 

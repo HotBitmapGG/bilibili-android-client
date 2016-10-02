@@ -9,4 +9,5 @@
     android:background="@drawable/tags_bg"
     android:gravity="center"
     android:padding="@dimen/default_tiny_padding"
-    android:textColor="@color/font_normal" />
+    android:textColor="@color/black_alpha_45"
+    android:textSize="@dimen/default_small_text_size" />

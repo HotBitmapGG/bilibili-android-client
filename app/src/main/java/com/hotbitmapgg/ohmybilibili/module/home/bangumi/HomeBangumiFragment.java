@@ -17,6 +17,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.SecondElementBangumiAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -114,6 +115,19 @@ public class HomeBangumiFragment extends RxLazyFragment
         mRecyclerView.setNestedScrollingEnabled(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAdapter = new SecondElementBangumiAdapter(mRecyclerView, recommends);
+        mAdapter.setOnItemClickListener((position, holder) -> {
+
+            BangumiRecommend.RecommendsBean recommendsBean = recommends.get(position);
+            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
+            middlewareBangumi.setAid(recommendsBean.getAid());
+            middlewareBangumi.setCreate(recommendsBean.getCreate());
+            middlewareBangumi.setPlay(recommendsBean.getPlay());
+            middlewareBangumi.setFavorites(recommendsBean.getFavorites());
+            middlewareBangumi.setPic(recommendsBean.getPic());
+            middlewareBangumi.setDescription(recommendsBean.getDescription());
+            middlewareBangumi.setTitle(recommendsBean.getTitle());
+            BangumiDetailsActivity.launch(getActivity(), middlewareBangumi);
+        });
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         setRecycleNoScroll();
     }
@@ -263,15 +277,42 @@ public class HomeBangumiFragment extends RxLazyFragment
         mSeasonNewBangumiList.setHasFixedSize(false);
         mSeasonNewBangumiList.setNestedScrollingEnabled(false);
         mSeasonNewBangumiList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mSeasonNewBangumiList.setAdapter(new SeasonNewBangumiAdapter(mSeasonNewBangumiList, seasonNewBangumis, false));
+        SeasonNewBangumiAdapter seasonNewBangumiAdapter = new SeasonNewBangumiAdapter(mSeasonNewBangumiList, seasonNewBangumis, false);
+        seasonNewBangumiAdapter.setOnItemClickListener((position, holder) -> {
+
+            SeasonNewBangumi.ListBean listBean = seasonNewBangumis.get(position);
+            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
+            middlewareBangumi.setTitle(listBean.getTitle());
+            middlewareBangumi.setPic(listBean.getImageurl());
+            middlewareBangumi.setSpid(listBean.getSpid());
+            BangumiDetailsActivity.launch(getActivity(), middlewareBangumi);
+        });
+        mSeasonNewBangumiList.setAdapter(seasonNewBangumiAdapter);
+
         //设置新番连载
         RecyclerView mHeadRecommendList = (RecyclerView) headView_list.findViewById(R.id.head_recommend_list);
         mHeadRecommendList.setHasFixedSize(false);
         mHeadRecommendList.setNestedScrollingEnabled(false);
         mHeadRecommendList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mHeadRecommendList.setAdapter(new NewBangumiSerialAdapter(mHeadRecommendList, newBangumiSerials, false));
-        mHeaderViewRecyclerAdapter.addHeaderView(headView_list);
+        NewBangumiSerialAdapter newBangumiSerialAdapter = new NewBangumiSerialAdapter(mHeadRecommendList, newBangumiSerials, false);
+        newBangumiSerialAdapter.setOnItemClickListener((position, holder) -> {
 
+            NewBangumiSerial.ListBean listBean = newBangumiSerials.get(position);
+            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
+            middlewareBangumi.setPic(listBean.getCover());
+            middlewareBangumi.setTitle(listBean.getTitle());
+            middlewareBangumi.setSpid(listBean.getSpid());
+            middlewareBangumi.setSeason_id(listBean.getSeason_id());
+            middlewareBangumi.setFavorites(listBean.getFavorites());
+            middlewareBangumi.setPlay(listBean.getPlay_count());
+            middlewareBangumi.setWeekday(listBean.getWeekday());
+            middlewareBangumi.setCreate(listBean.getLastupdate_at());
+            middlewareBangumi.setCount(Integer.valueOf(listBean.getBgmcount()));
+            BangumiDetailsActivity.launch(getActivity(), middlewareBangumi);
+        });
+        mHeadRecommendList.setAdapter(newBangumiSerialAdapter);
+
+        mHeaderViewRecyclerAdapter.addHeaderView(headView_list);
 
         //设置查看更多分季新番界面
         TextView mAllNewBangumi = (TextView) headView_list.findViewById(R.id.tv_all_new_bangumi);

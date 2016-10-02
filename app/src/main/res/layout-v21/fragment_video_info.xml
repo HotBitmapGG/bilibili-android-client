@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/font_normal"
-            android:textSize="@dimen/default_medium_text_size"  />
+            android:textSize="@dimen/default_medium_text_size" />
 
         <Space
             android:layout_width="match_parent"
@@ -106,7 +106,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
-                    android:backgroundTint="@color/card_view_background"
                     android:clickable="false"
                     android:src="@drawable/ic_share_green" />
 
@@ -115,7 +114,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/default_tiny_padding"
                     android:text="@string/about_menu_action_share"
-                    android:textColor="@color/font_normal" />
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_tiny_text_size" />
 
 
             </LinearLayout>
@@ -140,7 +140,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
-                    android:backgroundTint="@color/card_view_background"
                     android:src="@drawable/ic_coin" />
 
                 <TextView
@@ -148,7 +147,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/default_tiny_padding"
                     android:text="@string/coin"
-                    android:textColor="@color/font_normal" />
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_tiny_text_size" />
 
 
             </LinearLayout>
@@ -173,7 +173,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
-                    android:backgroundTint="@color/card_view_background"
                     android:src="@drawable/ic_collect" />
 
                 <TextView
@@ -181,7 +180,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/default_tiny_padding"
                     android:text="@string/collection"
-                    android:textColor="@color/font_normal" />
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_tiny_text_size" />
 
 
             </LinearLayout>
@@ -204,7 +204,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/daily_video_action_bg"
-                    android:backgroundTint="@color/card_view_background"
                     android:src="@drawable/ic_download" />
 
                 <TextView
@@ -212,7 +211,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/default_tiny_padding"
                     android:text="@string/cache"
-                    android:textColor="@color/font_normal" />
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_tiny_text_size" />
 
 
             </LinearLayout>

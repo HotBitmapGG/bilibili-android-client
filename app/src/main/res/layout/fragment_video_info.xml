@@ -113,7 +113,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/default_tiny_padding"
                     android:text="@string/about_menu_action_share"
-                    android:textColor="@color/font_normal" />
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_tiny_text_size" />
 
 
             </LinearLayout>
@@ -145,7 +146,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/default_tiny_padding"
                     android:text="@string/coin"
-                    android:textColor="@color/font_normal" />
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_tiny_text_size" />
 
 
             </LinearLayout>
@@ -177,7 +179,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/default_tiny_padding"
                     android:text="@string/collection"
-                    android:textColor="@color/font_normal" />
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_tiny_text_size" />
 
 
             </LinearLayout>
@@ -207,7 +210,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/default_tiny_padding"
                     android:text="@string/cache"
-                    android:textColor="@color/font_normal" />
+                    android:textColor="@color/font_normal"
+                    android:textSize="@dimen/default_tiny_text_size" />
 
 
             </LinearLayout>
