@@ -10,8 +10,6 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 
-import java.util.Random;
-
 /**
  * Created by hcc on 2016/10/1 17:12
  * 100332338@qq.com
@@ -25,9 +23,7 @@ public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
     private int count;
 
     private int layoutPosition = 0;
-
-    private Random random = new Random();
-
+    
     public BangumiDetailsSelectionAdapter(RecyclerView recyclerView, int count)
     {
 
@@ -74,7 +70,7 @@ public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return count == 0 ? random.nextInt(20) : count;
+        return count == 0 ? 12 : count;
     }
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder

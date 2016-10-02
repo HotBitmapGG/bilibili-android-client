@@ -56,7 +56,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="@dimen/card_corner_radius"
-                                android:scaleType="center" />
+                                android:scaleType="center"
+                                android:src="@drawable/bili_default_image_tv" />
 
 
                         </android.support.v7.widget.CardView>

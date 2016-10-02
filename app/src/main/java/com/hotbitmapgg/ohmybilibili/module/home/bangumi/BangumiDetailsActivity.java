@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
+import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.utils.WeekDayUtil;
@@ -264,6 +266,9 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
         BangumiDetailsRecommendAdapter mBangumiDetailsRecommendAdapter = new BangumiDetailsRecommendAdapter(
                 mBangumiRecommendRecycler, mBangumiDetailsRecommends);
         mBangumiRecommendRecycler.setAdapter(mBangumiDetailsRecommendAdapter);
+        mBangumiDetailsRecommendAdapter.setOnItemClickListener((position, holder) -> WebActivity.launch(
+                BangumiDetailsActivity.this, mBangumiDetailsRecommends.get(position).getLink(),
+                mBangumiDetailsRecommends.get(position).getTitle()));
     }
 
     @Override
@@ -317,6 +322,14 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
             onBackPressed();
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        getMenuInflater().inflate(R.menu.menu_bangumi_details, menu);
+        return true;
     }
 
     public void showProgressBar()
