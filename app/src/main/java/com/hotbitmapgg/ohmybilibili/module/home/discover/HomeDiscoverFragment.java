@@ -1,6 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.module.home.discover;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
@@ -144,12 +145,18 @@ public class HomeDiscoverFragment extends RxLazyFragment
             mScrollView.setVisibility(View.VISIBLE);
             mMoreText.setText("收起");
             mTagFlowLayout.setVisibility(View.GONE);
+            Drawable upDrawable = getResources().getDrawable(R.drawable.ic_arrow_up_gray_round);
+            upDrawable.setBounds(0, 0, upDrawable.getMinimumWidth(), upDrawable.getMinimumHeight());
+            mMoreText.setCompoundDrawables(upDrawable, null, null, null);
         } else
         {
             isShowMore = true;
             mScrollView.setVisibility(View.GONE);
             mMoreText.setText("查看更多");
             mTagFlowLayout.setVisibility(View.VISIBLE);
+            Drawable downDrawable = getResources().getDrawable(R.drawable.ic_arrow_down_gray_round);
+            downDrawable.setBounds(0, 0, downDrawable.getMinimumWidth(), downDrawable.getMinimumHeight());
+            mMoreText.setCompoundDrawables(downDrawable, null, null, null);
         }
     }
 
@@ -182,6 +189,7 @@ public class HomeDiscoverFragment extends RxLazyFragment
     void startActivityCenterActivity()
     {
 
+        startActivity(new Intent(getActivity(), ActivityCenterActivity.class));
     }
 
     /**

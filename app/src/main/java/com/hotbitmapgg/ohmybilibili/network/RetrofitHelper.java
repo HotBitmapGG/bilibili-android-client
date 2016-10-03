@@ -2,6 +2,7 @@ package com.hotbitmapgg.ohmybilibili.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
+import com.hotbitmapgg.ohmybilibili.network.api.ActivityCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.AllHotVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.AllareasRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
@@ -562,6 +563,24 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(TopicCenterService.class);
+    }
+
+    /**
+     * 获取活动中心数据
+     *
+     * @return
+     */
+    public static ActivityCenterService getActivityCenterApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(ActivityCenterService.class);
     }
 
 

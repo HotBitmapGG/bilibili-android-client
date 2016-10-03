@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import butterknife.Bind;
@@ -93,7 +93,7 @@ public class HomeRecommendTopicSection extends StatelessSection
         else
             topicViewHolder.mTextView.setVisibility(View.VISIBLE);
 
-        topicViewHolder.mCardView.setOnClickListener(v -> WebActivity.
+        topicViewHolder.mCardView.setOnClickListener(v -> BrowserActivity.
                 launch((Activity) mContext, link, title));
     }
 

@@ -14,7 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.discover.GameItem;
-import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
 
             mHolder.mTitle.setText(gameItem.name);
             mHolder.mDesc.setText(gameItem.desc);
-            mHolder.mButton.setOnClickListener(v -> WebActivity.
+            mHolder.mButton.setOnClickListener(v -> BrowserActivity.
                     launch((Activity) getContext(),
                             gameItem.path, gameItem.name));
         }

@@ -27,7 +27,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
-import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.utils.WeekDayUtil;
@@ -266,7 +266,7 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
         BangumiDetailsRecommendAdapter mBangumiDetailsRecommendAdapter = new BangumiDetailsRecommendAdapter(
                 mBangumiRecommendRecycler, mBangumiDetailsRecommends);
         mBangumiRecommendRecycler.setAdapter(mBangumiDetailsRecommendAdapter);
-        mBangumiDetailsRecommendAdapter.setOnItemClickListener((position, holder) -> WebActivity.launch(
+        mBangumiDetailsRecommendAdapter.setOnItemClickListener((position, holder) -> BrowserActivity.launch(
                 BangumiDetailsActivity.this, mBangumiDetailsRecommends.get(position).getLink(),
                 mBangumiDetailsRecommends.get(position).getTitle()));
     }

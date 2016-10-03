@@ -5,11 +5,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.JsResult;
@@ -17,12 +19,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
-import android.webkit.WebSettings.RenderPriority;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.utils.ClipboardUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import butterknife.Bind;
@@ -33,7 +36,7 @@ import butterknife.Bind;
  * <p/>
  * 浏览器界面
  */
-public class WebActivity extends RxAppCompatBaseActivity
+public class BrowserActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -90,12 +93,50 @@ public class WebActivity extends RxAppCompatBaseActivity
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        getMenuInflater().inflate(R.menu.menu_browser, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
 
-        if (item.getItemId() == android.R.id.home)
-            onBackPressed();
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+
+            case R.id.menu_share:
+                share();
+                break;
+
+            case R.id.menu_open:
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+                break;
+
+            case R.id.menu_copy:
+                ClipboardUtils.setText(BrowserActivity.this, url);
+                ToastUtil.ShortToast("已复制");
+                break;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void share()
+    {
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+        intent.putExtra(Intent.EXTRA_TEXT, "来自「哔哩哔哩」的分享:" + url);
+        startActivity(Intent.createChooser(intent, mTitle));
     }
 
 
@@ -117,7 +158,7 @@ public class WebActivity extends RxAppCompatBaseActivity
     public static void launch(Activity activity, String url, String title)
     {
 
-        Intent intent = new Intent(activity, WebActivity.class);
+        Intent intent = new Intent(activity, BrowserActivity.class);
         intent.putExtra(EXTRA_URL, url);
         intent.putExtra(EXTRA_TITLE, title);
         activity.startActivity(intent);
@@ -138,7 +179,6 @@ public class WebActivity extends RxAppCompatBaseActivity
         webSettings.setGeolocationEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
-        mWebView.getSettings().setRenderPriority(RenderPriority.HIGH);
         mWebView.getSettings().setBlockNetworkImage(true);
         mWebView.setWebViewClient(webViewClient);
         mWebView.requestFocus(View.FOCUS_DOWN);
@@ -151,7 +191,7 @@ public class WebActivity extends RxAppCompatBaseActivity
             {
 
                 AlertDialog.Builder b2 = new AlertDialog
-                        .Builder(WebActivity.this)
+                        .Builder(BrowserActivity.this)
                         .setTitle(R.string.app_name)
                         .setMessage(message)
                         .setPositiveButton("确定", (dialog, which) -> result.confirm());
@@ -193,13 +233,6 @@ public class WebActivity extends RxAppCompatBaseActivity
             String errorHtml = "<html><body><h2>找不到网页</h2></body></html>";
             view.loadDataWithBaseURL(null, errorHtml, "text/html", "UTF-8", null);
         }
-    }
-
-
-    public void initialize()
-    {
-
-        mHandler.post(() -> mWebView.loadUrl("javascript:initialize()"));
     }
 
     @Override

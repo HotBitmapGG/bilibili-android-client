@@ -101,6 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_general_margin"
             android:gravity="center"
+            android:clickable="true"
             android:orientation="horizontal">
 
             <View

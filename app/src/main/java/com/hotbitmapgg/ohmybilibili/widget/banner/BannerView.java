@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 
 import java.util.ArrayList;
@@ -295,6 +295,6 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
         {
             position -= 1;
         }
-        WebActivity.launch((Activity) context, bannerList.get(position).link, bannerList.get(position).title);
+        BrowserActivity.launch((Activity) context, bannerList.get(position).link, bannerList.get(position).title);
     }
 }

@@ -23,7 +23,7 @@
                 android:layout_width="@dimen/circle_default_size"
                 android:layout_height="@dimen/circle_default_size"
                 android:layout_marginTop="@dimen/circle_margin_top"
-                android:src="@drawable/ic_bg"
+                android:src="@drawable/ic_hotbitmapgg_avatar"
                 app:border_color="@color/gray"
                 app:border_width="@dimen/circle_default_width" />
 

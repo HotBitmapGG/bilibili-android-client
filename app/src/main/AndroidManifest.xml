@@ -60,7 +60,7 @@
 
         <!-- home跳转webView界面 -->
         <activity
-            android:name=".module.common.WebActivity"
+            android:name=".module.common.BrowserActivity"
             android:screenOrientation="portrait" />
 
 
@@ -183,10 +183,18 @@
             android:name=".module.home.bangumi.BangumiDetailsActivity"
             android:screenOrientation="portrait" />
 
+
         <!--话题中心界面-->
         <activity
             android:name=".module.home.discover.TopicCenterActivity"
             android:screenOrientation="portrait" />
+
+
+        <!--活动中心界面-->
+        <activity
+            android:name=".module.home.discover.ActivityCenterActivity"
+            android:screenOrientation="portrait" />
+
 
         <!--播放器界面-->
         <activity

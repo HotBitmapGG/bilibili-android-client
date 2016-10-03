@@ -16,22 +16,31 @@
         app:cardElevation="@dimen/card_elevation">
 
 
-        <ImageView
-            android:id="@+id/item_img"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/bangumi_recommend_image_big_height"
-            android:scaleType="center" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/item_play"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@drawable/shadow_normal_reserve"
-            android:gravity="end"
-            android:padding="@dimen/default_general_margin"
-            android:textColor="@color/white"
-            android:textSize="@dimen/default_tiny_text_size" />
+
+            <ImageView
+                android:id="@+id/item_img"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bangumi_recommend_image_big_height"
+                android:scaleType="center" />
+
+            <TextView
+                android:id="@+id/item_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/default_general_margin"
+                android:background="@drawable/bangumi_badge"
+                android:gravity="center_vertical"
+                android:padding="@dimen/default_tiny_margin"
+                android:textColor="@color/white"
+                android:textSize="@dimen/default_tiny_text_size" />
+
+        </FrameLayout>
+
 
     </android.support.v7.widget.CardView>
 

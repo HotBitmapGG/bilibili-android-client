@@ -12,9 +12,8 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.TopicCenterAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.discover.TopicCenterInfo;
-import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -48,6 +47,9 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
 
     private TopicCenterAdapter mAdapter;
 
+    //RecycleView是否正在刷新
+    private boolean mIsRefreshing = false;
+
     @Override
     public int getLayoutId()
     {
@@ -71,8 +73,10 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new TopicCenterAdapter(mRecyclerView, topicCenters);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener((position, holder) -> WebActivity.launch(
+        mAdapter.setOnItemClickListener((position, holder) -> BrowserActivity.launch(
                 TopicCenterActivity.this, topicCenters.get(position).getLink(), topicCenters.get(position).getTitle()));
+
+        setRecycleNoScroll();
     }
 
     private void showProgressBar()
@@ -81,11 +85,13 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.post(() -> {
 
+            mIsRefreshing = true;
             mSwipeRefreshLayout.setRefreshing(true);
             getTopicCenterList();
         });
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
+            mIsRefreshing = true;
             topicCenters.clear();
             getTopicCenterList();
         });
@@ -146,7 +152,14 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
     private void finishTask()
     {
 
+        mIsRefreshing = false;
         mSwipeRefreshLayout.setRefreshing(false);
         mAdapter.notifyDataSetChanged();
+    }
+
+    private void setRecycleNoScroll()
+    {
+
+        mRecyclerView.setOnTouchListener((v, event) -> mIsRefreshing);
     }
 }
