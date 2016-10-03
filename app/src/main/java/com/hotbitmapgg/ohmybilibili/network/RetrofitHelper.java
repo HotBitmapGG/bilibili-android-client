@@ -10,6 +10,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BiliBiliLiveService;
 import com.hotbitmapgg.ohmybilibili.network.api.FansService;
 import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
+import com.hotbitmapgg.ohmybilibili.network.api.HotSearchTagService;
 import com.hotbitmapgg.ohmybilibili.network.api.Html5VideoUrlService;
 import com.hotbitmapgg.ohmybilibili.network.api.IndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
@@ -63,6 +64,8 @@ public class RetrofitHelper
     private static final String HOST_API_BASE_URL = "http://api.bilibili.cn/";
 
     private static final String BANGUMI_BASE_URL = "http://bangumi.bilibili.com/";
+
+    private static final String SEARCH_BASE_URL = "http://s.search.bilibili.com/";
 
     public static final String HDSLB_HOST = "http://i2.hdslb.com";
 
@@ -522,6 +525,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(BangumiDetailsRecommendService.class);
+    }
+
+
+    /**
+     * 获取发现页面热搜词标签数据
+     *
+     * @return
+     */
+    public static HotSearchTagService getHotSearchTagsApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(SEARCH_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(HotSearchTagService.class);
     }
 
 

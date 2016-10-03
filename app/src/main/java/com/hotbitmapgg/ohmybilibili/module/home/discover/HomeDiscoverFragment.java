@@ -10,17 +10,21 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
+import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -48,27 +52,7 @@ public class HomeDiscoverFragment extends RxLazyFragment
 
     private boolean isShowMore = true;
 
-
-    private List<String> tags = Arrays.asList(
-            "釜山行", "极乐净土", "吃货木下",
-            "麻雀", "玻璃芦苇", "re:从零开始的异世界生活",
-            "守望先锋", "张继科"
-    );
-
-
-    private List<String> moreTags = Arrays.asList(
-            "釜山行", "极乐净土", "吃货木下",
-            "麻雀", "玻璃芦苇", "re:从零开始的异世界生活",
-            "守望先锋", "张继科", "贤者之爱",
-            "不可抗力", "逗鱼时刻", "抗韩中年人",
-            "蜡笔小新", "刺客列传", "主播炸了", "熬厂长",
-            "有喜欢的人", "主播真会玩", "亲爱的公主病", "起小点",
-            "暴走大事件", "毫不保留的爱", "一年生", "你的名字", "谷阿莫",
-            "云画的月光", "德云色", "美丽新世界", "老e", "snh48", "天天卡牌",
-            "杨洋", "心有所属", "微微一笑很倾城", "隧道", "识汝不识丁", "马龙",
-            "双程", "错生", "arashi", "火影忍者", "徐老师来巡山", "步步惊心丽",
-            "日剧", "张继科丁宁", "马男波杰克", "akb48", "乔任梁", "阴阳师"
-    );
+    private List<HotSearchTag.ListBean> hotSearchTags = new ArrayList<>();
 
     public static HomeDiscoverFragment newInstance()
     {
@@ -88,46 +72,61 @@ public class HomeDiscoverFragment extends RxLazyFragment
     {
 
         mScrollView.setNestedScrollingEnabled(true);
-        initTagLayout();
+        getTags();
     }
 
-    @Override
-    protected void lazyLoad()
+    private void getTags()
     {
 
+        RetrofitHelper.getHotSearchTagsApi()
+                .getHotSearchTags()
+                .compose(bindToLifecycle())
+                .map(HotSearchTag::getList)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(listBeans -> {
+
+                    hotSearchTags.addAll(listBeans);
+                    initTagLayout();
+                }, throwable -> {
+
+                });
     }
+
 
     private void initTagLayout()
     {
 
-        mTagFlowLayout.setAdapter(new TagAdapter<String>(tags)
+        //获取热搜标签集合前8个默认显示
+        List<HotSearchTag.ListBean> frontTags = hotSearchTags.subList(0, 7);
+        mTagFlowLayout.setAdapter(new TagAdapter<HotSearchTag.ListBean>(frontTags)
         {
 
             @Override
-            public View getView(FlowLayout parent, int position, final String s)
+            public View getView(FlowLayout parent, int position, HotSearchTag.ListBean listBean)
             {
 
                 TextView mTags = (TextView) LayoutInflater.from(getActivity())
                         .inflate(R.layout.layout_tags_item, parent, false);
-                mTags.setText(s);
-                mTags.setOnClickListener(v -> TotalStationSearchActivity.launch(getActivity(), s));
+                mTags.setText(listBean.getKeyword());
+                mTags.setOnClickListener(v -> TotalStationSearchActivity.launch(getActivity(), listBean.getKeyword()));
 
                 return mTags;
             }
         });
 
 
-        mHideTagLayout.setAdapter(new TagAdapter<String>(moreTags)
+        mHideTagLayout.setAdapter(new TagAdapter<HotSearchTag.ListBean>(hotSearchTags)
         {
 
             @Override
-            public View getView(FlowLayout parent, int position, final String s)
+            public View getView(FlowLayout parent, int position, HotSearchTag.ListBean listBean)
             {
 
                 TextView mTags = (TextView) LayoutInflater.from(getActivity())
                         .inflate(R.layout.layout_tags_item, parent, false);
-                mTags.setText(s);
-                mTags.setOnClickListener(v -> TotalStationSearchActivity.launch(getActivity(), s));
+                mTags.setText(listBean.getKeyword());
+                mTags.setOnClickListener(v -> TotalStationSearchActivity.launch(getActivity(), listBean.getKeyword()));
 
                 return mTags;
             }
@@ -181,5 +180,11 @@ public class HomeDiscoverFragment extends RxLazyFragment
     {
 
         startActivity(new Intent(getActivity(), TotalStationSearchActivity.class));
+    }
+
+    @Override
+    protected void lazyLoad()
+    {
+
     }
 }
