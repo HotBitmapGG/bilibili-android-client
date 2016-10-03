@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.rank.AllareasRankInfo;
+import com.hotbitmapgg.ohmybilibili.entity.discover.AllareasRankInfo;
 
 import java.util.List;
 

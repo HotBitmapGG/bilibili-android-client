@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.rank.AllHotVideoInfo;
+import com.hotbitmapgg.ohmybilibili.entity.discover.AllHotVideoInfo;
 
 import java.util.List;
 

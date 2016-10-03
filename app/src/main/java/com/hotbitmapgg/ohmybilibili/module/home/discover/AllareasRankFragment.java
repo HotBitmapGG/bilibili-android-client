@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.AllareasRankAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.rank.AllareasRankInfo;
+import com.hotbitmapgg.ohmybilibili.entity.discover.AllareasRankInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;

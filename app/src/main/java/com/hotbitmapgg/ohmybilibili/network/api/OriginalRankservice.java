@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.rank.OriginalRankInfo;
+import com.hotbitmapgg.ohmybilibili.entity.discover.OriginalRankInfo;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;

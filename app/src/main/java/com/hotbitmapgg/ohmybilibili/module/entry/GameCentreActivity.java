@@ -11,7 +11,7 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.GameCentreAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.game.GameItem;
+import com.hotbitmapgg.ohmybilibili.entity.discover.GameItem;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;

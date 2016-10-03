@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.game.GameItem;
+import com.hotbitmapgg.ohmybilibili.entity.discover.GameItem;
 import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
 
 import java.util.ArrayList;

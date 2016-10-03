@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.section.AllHotVideoItemSection;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.rank.AllHotVideoInfo;
+import com.hotbitmapgg.ohmybilibili.entity.discover.AllHotVideoInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapter;

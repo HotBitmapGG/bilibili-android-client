@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.rank;
+package com.hotbitmapgg.ohmybilibili.entity.discover;
 
 import java.util.List;
 
