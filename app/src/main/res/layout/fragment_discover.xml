@@ -172,6 +172,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/topic_center_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:background="@color/card_view_background"
@@ -208,6 +209,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/activity_center_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:background="@color/card_view_background"

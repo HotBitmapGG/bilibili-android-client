@@ -21,6 +21,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.SeasonNewBangumiService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
+import com.hotbitmapgg.ohmybilibili.network.api.TopicCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
@@ -543,6 +544,24 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(HotSearchTagService.class);
+    }
+
+    /**
+     * 获取话题中心数据
+     *
+     * @return
+     */
+    public static TopicCenterService getTopicCenterApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(TopicCenterService.class);
     }
 
 

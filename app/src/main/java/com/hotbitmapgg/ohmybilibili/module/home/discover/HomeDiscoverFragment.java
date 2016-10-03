@@ -166,6 +166,25 @@ public class HomeDiscoverFragment extends RxLazyFragment
 
 
     /**
+     * 前往话题中心界面
+     */
+    @OnClick(R.id.topic_center_layout)
+    void startTopicCenterActivity()
+    {
+
+        startActivity(new Intent(getActivity(), TopicCenterActivity.class));
+    }
+
+    /**
+     * 前往活动中心界面
+     */
+    @OnClick(R.id.activity_center_layout)
+    void startActivityCenterActivity()
+    {
+
+    }
+
+    /**
      * 前往全区排行榜界面
      */
     @OnClick(R.id.layout_all_rank)
