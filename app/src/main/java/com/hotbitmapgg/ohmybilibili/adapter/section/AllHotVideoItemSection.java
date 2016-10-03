@@ -41,7 +41,7 @@ public class AllHotVideoItemSection extends StatelessSection
     public AllHotVideoItemSection(Context context, List<AllHotVideoInfo.Videos> allRankVideos, String title, int imgRes)
     {
 
-        super(R.layout.layout_all_rank_head, R.layout.layout_all_rank_boby);
+        super(R.layout.layout_all_hot_video_head, R.layout.layout_all_hot_video_boby);
         this.mContext = context;
         this.allRankVideos = allRankVideos;
         this.title = title;
