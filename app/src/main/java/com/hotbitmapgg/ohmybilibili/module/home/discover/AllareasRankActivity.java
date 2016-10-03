@@ -17,16 +17,13 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import butterknife.Bind;
 
 /**
- * Created by hcc on 16/9/12 20:20
+ * Created by hcc on 16/8/7 14:12
  * 100332338@qq.com
  * <p/>
- * 原创排行榜界面
+ * 全区排行榜界面
  */
-public class OriginalRankActivity extends RxAppCompatBaseActivity
+public class AllareasRankActivity extends RxAppCompatBaseActivity
 {
-
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
 
     @Bind(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTabLayout;
@@ -34,23 +31,35 @@ public class OriginalRankActivity extends RxAppCompatBaseActivity
     @Bind(R.id.view_pager)
     ViewPager mViewPager;
 
-    private String[] titles = new String[]{"原创", "全站", "番剧"};
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
 
-    private String[] orders = new String[]{"origin-03.json", "all-03.json", "all-3-33.json"};
+    private String[] titles = new String[]{
+            "番剧", "动画", "音乐", "舞蹈", "游戏",
+            "科技", "生活", "鬼畜", "时尚", "娱乐", "电影", "电视剧"
+    };
+
+    private String[] types = new String[]{
+            "all-03-13.json", "all-03-1.json", "all-03-3.json",
+            "all-03-129.json", "all-03-4.json", "all-03-36.json",
+            "all-03-160.json", "all-03-155.json", "all-03-5.json",
+            "all-03-119.json", "all-03-23.json", "all-03-11.json"
+    };
 
     @Override
     public int getLayoutId()
     {
 
-        return R.layout.activity_original_rank;
+        return R.layout.activity_all_areas_rank;
     }
 
     @Override
     public void initViews(Bundle savedInstanceState)
     {
 
-        mViewPager.setAdapter(new OriginalRankPagerAdapter(getSupportFragmentManager(), titles, orders));
-        mViewPager.setOffscreenPageLimit(orders.length);
+        AllareasRankPagerAdapter mAdapter =
+                new AllareasRankPagerAdapter(getSupportFragmentManager(), titles, types);
+        mViewPager.setAdapter(mAdapter);
         mSlidingTabLayout.setViewPager(mViewPager);
     }
 
@@ -58,11 +67,11 @@ public class OriginalRankActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setTitle("排行榜");
+        mToolbar.setTitle("全区排行榜");
         setSupportActionBar(mToolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null)
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -83,26 +92,34 @@ public class OriginalRankActivity extends RxAppCompatBaseActivity
     }
 
 
-    private static class OriginalRankPagerAdapter extends FragmentStatePagerAdapter
+    private static class AllareasRankPagerAdapter extends FragmentStatePagerAdapter
     {
 
         private String[] titles;
 
-        private String[] orders;
+        private String[] types;
 
-        OriginalRankPagerAdapter(FragmentManager fm, String[] titles, String[] orders)
+        AllareasRankPagerAdapter(FragmentManager fm, String[] titles, String[] types)
         {
 
             super(fm);
             this.titles = titles;
-            this.orders = orders;
+            this.types = types;
         }
 
         @Override
         public Fragment getItem(int position)
         {
 
-            return OriginalRankFragment.newInstance(orders[position]);
+            return AllareasRankFragment
+                    .newInstance(types[position]);
+        }
+
+        @Override
+        public int getCount()
+        {
+
+            return types.length;
         }
 
         @Override
@@ -110,13 +127,6 @@ public class OriginalRankActivity extends RxAppCompatBaseActivity
         {
 
             return titles[position];
-        }
-
-        @Override
-        public int getCount()
-        {
-
-            return titles.length;
         }
     }
 }

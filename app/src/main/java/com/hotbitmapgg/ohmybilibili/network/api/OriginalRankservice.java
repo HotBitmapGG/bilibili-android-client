@@ -3,7 +3,7 @@ package com.hotbitmapgg.ohmybilibili.network.api;
 import com.hotbitmapgg.ohmybilibili.entity.rank.OriginalRankInfo;
 
 import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -12,14 +12,16 @@ import rx.Observable;
  * <p>
  * 原创排行榜API
  * <p>
- * http://api.bilibili.cn/recommend
+ * "原创":"http://www.bilibili.com/index/rank/origin-03.json"
+ * <p>
+ * "全站":"http://www.bilibili.com/index/rank/all-03.json"
+ * <p>
+ * "番剧":"http://www.bilibili.com/index/rank/all-03-13.json"
  */
 
 public interface OriginalRankService
 {
 
-    @GET("recommend")
-    Observable<OriginalRankInfo> getOriginalRank(@Query("page") int page,
-                                                 @Query("pagesize") int pagesize,
-                                                 @Query("order") String order);
+    @GET("index/rank/{type}")
+    Observable<OriginalRankInfo> getOriginalRanks(@Path("type") String type);
 }

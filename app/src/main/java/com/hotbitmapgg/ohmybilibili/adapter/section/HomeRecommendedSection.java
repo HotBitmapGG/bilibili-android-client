@@ -22,8 +22,8 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.WeekDayBangumiActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.discover.OriginalRankActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.live.LivePlayerActivity;
-import com.hotbitmapgg.ohmybilibili.module.home.recommend.HotVideoIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
@@ -193,7 +193,7 @@ public class HomeRecommendedSection extends StatelessSection
         setTypeIcon(headerViewHolder);
         headerViewHolder.mTypeTv.setText(title);
         headerViewHolder.mTypeRankBtn.setOnClickListener(v -> mContext.startActivity(
-                new Intent(mContext, HotVideoIndexActivity.class)));
+                new Intent(mContext, OriginalRankActivity.class)));
 
         switch (type)
         {

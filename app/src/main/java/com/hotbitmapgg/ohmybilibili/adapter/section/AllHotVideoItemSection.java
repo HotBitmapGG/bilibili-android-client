@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.rank.AllRankInfo;
+import com.hotbitmapgg.ohmybilibili.entity.rank.AllHotVideoInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
@@ -25,20 +25,20 @@ import butterknife.ButterKnife;
  * Created by hcc on 16/9/12 21:23
  * 100332338@qq.com
  * <p/>
- * 全区排行榜section
+ * 全区热门视频section
  */
-public class AllRankItemSection extends StatelessSection
+public class AllHotVideoItemSection extends StatelessSection
 {
 
     private Context mContext;
 
-    private List<AllRankInfo.Videos> allRankVideos;
+    private List<AllHotVideoInfo.Videos> allRankVideos;
 
     private String title;
 
     private int imgRes;
 
-    public AllRankItemSection(Context context, List<AllRankInfo.Videos> allRankVideos, String title, int imgRes)
+    public AllHotVideoItemSection(Context context, List<AllHotVideoInfo.Videos> allRankVideos, String title, int imgRes)
     {
 
         super(R.layout.layout_all_rank_head, R.layout.layout_all_rank_boby);
@@ -67,7 +67,7 @@ public class AllRankItemSection extends StatelessSection
     {
 
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        final AllRankInfo.Videos videos = allRankVideos.get(position);
+        final AllHotVideoInfo.Videos videos = allRankVideos.get(position);
 
         Glide.with(mContext)
                 .load(videos.getPic())
@@ -82,7 +82,7 @@ public class AllRankItemSection extends StatelessSection
         itemViewHolder.mReview.setText(String.valueOf(videos.getReview()));
         itemViewHolder.mCardView.setOnClickListener(v -> VideoDetailsActivity.
                 launch((Activity) mContext,
-                Integer.valueOf(videos.getAid()), videos.getPic()));
+                        Integer.valueOf(videos.getAid()), videos.getPic()));
     }
 
 
@@ -100,7 +100,7 @@ public class AllRankItemSection extends StatelessSection
 
         HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
         headerViewHolder.mTypeImage.setImageResource(imgRes);
-        headerViewHolder.mTypeText.setText(title + "区排行榜");
+        headerViewHolder.mTypeText.setText(title + "区热门视频");
     }
 
     static class HeaderViewHolder extends RecyclerView.ViewHolder

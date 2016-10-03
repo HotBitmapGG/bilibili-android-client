@@ -8,9 +8,9 @@ import java.util.ArrayList;
  * Created by hcc on 16/9/12 20:22
  * 100332338@qq.com
  * <p/>
- * 全区排行榜模型类
+ * 全区热门视频模型类
  */
-public class AllRankInfo
+public class AllHotVideoInfo
 {
 
     @SerializedName("sort_name")

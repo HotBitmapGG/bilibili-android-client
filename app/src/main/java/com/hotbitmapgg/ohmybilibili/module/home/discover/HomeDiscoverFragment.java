@@ -154,13 +154,30 @@ public class HomeDiscoverFragment extends RxLazyFragment
     }
 
 
+    /**
+     * 前往全区热门视频界面
+     */
+    @OnClick(R.id.ic_quanzi_layout)
+    void startQuanziActivity()
+    {
+
+        startActivity(new Intent(getActivity(), AllHotVideoActivity.class));
+    }
+
+
+    /**
+     * 前往全区排行榜界面
+     */
     @OnClick(R.id.layout_all_rank)
     void startAllRankActivity()
     {
 
-        startActivity(new Intent(getActivity(), AllRankActivity.class));
+        startActivity(new Intent(getActivity(), AllareasRankActivity.class));
     }
 
+    /**
+     * 前往原创排行榜界面
+     */
     @OnClick(R.id.layout_original)
     void startOriginalRankActivity()
     {
@@ -168,6 +185,9 @@ public class HomeDiscoverFragment extends RxLazyFragment
         startActivity(new Intent(getActivity(), OriginalRankActivity.class));
     }
 
+    /**
+     * 前往游戏中心界面
+     */
     @OnClick(R.id.layout_game_center)
     void startGameCenterActivity()
     {
@@ -175,6 +195,9 @@ public class HomeDiscoverFragment extends RxLazyFragment
         startActivity(new Intent(getActivity(), GameCentreActivity.class));
     }
 
+    /**
+     * 前往搜索界面
+     */
     @OnClick(R.id.card_view)
     void startSearchActivity()
     {

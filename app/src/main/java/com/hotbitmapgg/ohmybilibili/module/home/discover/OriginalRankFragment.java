@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.OriginalRankAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
+import com.hotbitmapgg.ohmybilibili.entity.rank.OriginalRankInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
@@ -43,9 +43,9 @@ public class OriginalRankFragment extends RxLazyFragment
 
     private boolean mIsRefreshing = false;
 
-    private List<VideoItemInfo> videos = new ArrayList<>();
-
     private OriginalRankAdapter mAdapter;
+
+    private List<OriginalRankInfo.RankBean.ListBean> originalRanks = new ArrayList<>();
 
     public static OriginalRankFragment newInstance(String order)
     {
@@ -86,7 +86,7 @@ public class OriginalRankFragment extends RxLazyFragment
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
             mIsRefreshing = true;
-            videos.clear();
+            originalRanks.clear();
             getOriginalRank();
         });
     }
@@ -95,19 +95,19 @@ public class OriginalRankFragment extends RxLazyFragment
     {
 
         RetrofitHelper.getOriginalRankApi()
-                .getOriginalRank(1, 20, order)
+                .getOriginalRanks(order)
                 .compose(this.bindToLifecycle())
-                .map(originalRankInfo -> originalRankInfo.videos)
+                .map(originalRankInfo -> originalRankInfo.getRank().getList())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(videoItemInfos -> {
+                .subscribe(listBeans -> {
 
-                    LogUtil.all(videoItemInfos.get(0).author);
-                    videos.addAll(videoItemInfos);
+                    originalRanks.addAll(listBeans.subList(0, 20));
                     finishTask();
                 }, throwable -> {
 
                     mSwipeRefreshLayout.setRefreshing(false);
+                    LogUtil.all(throwable.getMessage());
                     ToastUtil.ShortToast("加载失败啦,请重新加载~");
                 });
     }
@@ -125,11 +125,11 @@ public class OriginalRankFragment extends RxLazyFragment
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new OriginalRankAdapter(mRecyclerView, videos);
+        mAdapter = new OriginalRankAdapter(mRecyclerView, originalRanks);
         mRecyclerView.setAdapter(mAdapter);
         setRecycleNoScroll();
         mAdapter.setOnItemClickListener((position, holder) -> VideoDetailsActivity.
-                launch(getActivity(), videos.get(position).aid, videos.get(position).pic));
+                launch(getActivity(), originalRanks.get(position).getAid(), originalRanks.get(position).getPic()));
     }
 
     private void setRecycleNoScroll()

@@ -9,10 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.section.AllRankItemSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.AllHotVideoItemSection;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.rank.AllRankInfo;
+import com.hotbitmapgg.ohmybilibili.entity.rank.AllHotVideoInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -26,9 +27,9 @@ import rx.schedulers.Schedulers;
  * Created by hcc on 16/9/12 20:19
  * 100332338@qq.com
  * <p/>
- * 全区排行榜
+ * 全区热门视频排行榜界面
  */
-public class AllRankActivity extends RxAppCompatBaseActivity
+public class AllHotVideoActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -40,7 +41,7 @@ public class AllRankActivity extends RxAppCompatBaseActivity
     @Bind(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private List<AllRankInfo> allRankList = new ArrayList<>();
+    private List<AllHotVideoInfo> allRankList = new ArrayList<>();
 
     private SectionedRecyclerViewAdapter mSectionedAdapter;
 
@@ -60,7 +61,7 @@ public class AllRankActivity extends RxAppCompatBaseActivity
     public int getLayoutId()
     {
 
-        return R.layout.activity_all_rank;
+        return R.layout.activity_all_hot_video;
     }
 
     @Override
@@ -78,7 +79,7 @@ public class AllRankActivity extends RxAppCompatBaseActivity
         mSwipeRefreshLayout.post(() -> {
 
             mSwipeRefreshLayout.setRefreshing(true);
-            getAllRank();
+            getAllHotVideos();
         });
         mSwipeRefreshLayout.setOnRefreshListener(() -> mSwipeRefreshLayout.setRefreshing(false));
     }
@@ -87,7 +88,7 @@ public class AllRankActivity extends RxAppCompatBaseActivity
     {
 
         mSectionedAdapter = new SectionedRecyclerViewAdapter();
-        GridLayoutManager mGridLayoutManager = new GridLayoutManager(AllRankActivity.this, 2);
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(AllHotVideoActivity.this, 2);
         mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
         {
 
@@ -110,10 +111,10 @@ public class AllRankActivity extends RxAppCompatBaseActivity
         mRecyclerView.setAdapter(mSectionedAdapter);
     }
 
-    private void getAllRank()
+    private void getAllHotVideos()
     {
 
-        RetrofitHelper.getAllRankApi()
+        RetrofitHelper.getAllHotVideoApi()
                 .getAllRankInfos()
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
@@ -124,7 +125,8 @@ public class AllRankActivity extends RxAppCompatBaseActivity
                     finishTask();
                 }, throwable -> {
 
-
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    ToastUtil.ShortToast("加载失败啦,请重新加载~");
                 });
     }
 
@@ -134,7 +136,7 @@ public class AllRankActivity extends RxAppCompatBaseActivity
         mSwipeRefreshLayout.setRefreshing(false);
         for (int i = 0; i < allRankList.size(); i++)
         {
-            mSectionedAdapter.addSection(new AllRankItemSection(AllRankActivity.this,
+            mSectionedAdapter.addSection(new AllHotVideoItemSection(AllHotVideoActivity.this,
                     allRankList.get(i).getVideos(),
                     allRankList.get(i).getSortName(),
                     icons[i]));
@@ -146,7 +148,7 @@ public class AllRankActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setTitle("全区排行榜");
+        mToolbar.setTitle("全区热门视频");
         setSupportActionBar(mToolbar);
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null)
