@@ -190,7 +190,7 @@
 
     <!-- Navigation -->
     <dimen name="navigation_header_height">200dp</dimen>
-    <dimen name="navigation_avatar_size">84dp</dimen>
+    <dimen name="navigation_avatar_size">74dp</dimen>
     <dimen name="navigation_avatar_margin">16dp</dimen>
     <dimen name="navigation_subtitle_height">56dp</dimen>
     <dimen name="navigation_subtitle_primary_text_size">16sp</dimen>

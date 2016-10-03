@@ -140,7 +140,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         mUserAvatarView.setImageResource(avatars[avatarIndex]);
         //设置用户名 签名
         mUserName.setText(getResources().getText(R.string.hotbitmapgg));
-        mUserSign.setText("哔哩哔哩 - ( ゜- ゜)つロ 乾杯~");
+        mUserSign.setText(getResources().getText(R.string.about_user_head_layout));
         //设置日夜间模式切换
         mSwitchMode.setOnClickListener(v -> switchNightMode());
 

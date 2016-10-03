@@ -23,16 +23,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
             android:id="@+id/user_avatar_view"
             android:layout_width="@dimen/navigation_avatar_size"
             android:layout_height="@dimen/navigation_avatar_size"
             android:layout_gravity="start|top"
-            android:layout_margin="@dimen/navigation_avatar_margin"
+            android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/default_grow_margin"
             android:src="@drawable/ico_user_default"
             app:border_color="@android:color/white"
             app:border_width="1dp" />
@@ -63,45 +65,53 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/subtitle_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?attr/selectableItemBackground"
-        android:minHeight="@dimen/navigation_subtitle_height"
-        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="start|center_vertical"
-            android:orientation="vertical">
+            android:id="@+id/subtitle_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_avatar_view"
+            android:layout_gravity="bottom"
+            android:background="?attr/selectableItemBackground"
+            android:minHeight="@dimen/navigation_subtitle_height"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_general_margin">
 
-            <TextView
-                android:id="@+id/user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/navigation_subtitle_text_padding_vertical_smaller"
-                android:paddingEnd="@dimen/navigation_subtitle_text_padding_horizontal"
-                android:paddingStart="@dimen/navigation_subtitle_text_padding_horizontal"
-                android:paddingTop="@dimen/navigation_subtitle_text_padding_vertical"
-                android:textColor="@color/navigation_subtitle_primary_text"
-                android:textSize="@dimen/navigation_subtitle_primary_text_size" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="start|center_vertical"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/user_other_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/navigation_subtitle_text_padding_vertical"
-                android:paddingEnd="@dimen/navigation_subtitle_text_padding_horizontal"
-                android:paddingStart="@dimen/navigation_subtitle_text_padding_horizontal"
-                android:textColor="@color/navigation_subtitle_secondary_text"
-                android:textSize="@dimen/navigation_subtitle_secondary_text_size" />
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_user_male_border"
+                    android:drawablePadding="@dimen/default_tiny_padding"
+                    android:paddingBottom="@dimen/navigation_subtitle_text_padding_vertical_smaller"
+                    android:paddingEnd="@dimen/navigation_subtitle_text_padding_horizontal"
+                    android:paddingStart="@dimen/default_tiny_margin"
+                    android:paddingTop="@dimen/navigation_subtitle_text_padding_vertical"
+                    android:text="@string/hotbitmapgg"
+                    android:textColor="@color/navigation_subtitle_primary_text"
+                    android:textSize="@dimen/navigation_subtitle_primary_text_size" />
+
+                <TextView
+                    android:id="@+id/user_other_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/navigation_subtitle_text_padding_vertical"
+                    android:paddingEnd="@dimen/navigation_subtitle_text_padding_horizontal"
+                    android:paddingStart="@dimen/default_tiny_margin"
+                    android:textColor="@color/navigation_subtitle_secondary_text"
+                    android:textSize="@dimen/navigation_subtitle_secondary_text_size" />
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+    </RelativeLayout>
+
 
 </FrameLayout>
