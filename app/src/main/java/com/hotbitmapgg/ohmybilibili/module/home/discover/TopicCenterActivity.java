@@ -6,22 +6,20 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.TopicCenterAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.discover.TopicCenterInfo;
 import com.hotbitmapgg.ohmybilibili.module.common.WebActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
@@ -46,15 +44,7 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private int page = 0;
-
-    private int pageSize = 10;
-
     private List<TopicCenterInfo.ListBean> topicCenters = new ArrayList<>();
-
-    private View loadMoreView;
-
-    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
     private TopicCenterAdapter mAdapter;
 
@@ -80,21 +70,7 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new TopicCenterAdapter(mRecyclerView, topicCenters);
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
-        createLoadMoreView();
-        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
-        mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager)
-        {
-
-            @Override
-            public void onLoadMore(int currentPage)
-            {
-
-                page++;
-                getTopicCenterList();
-                loadMoreView.setVisibility(View.VISIBLE);
-            }
-        });
+        mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener((position, holder) -> WebActivity.launch(
                 TopicCenterActivity.this, topicCenters.get(position).getLink(), topicCenters.get(position).getTitle()));
     }
@@ -103,10 +79,13 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(true));
+        mSwipeRefreshLayout.post(() -> {
+
+            mSwipeRefreshLayout.setRefreshing(true);
+            getTopicCenterList();
+        });
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
-            page = 1;
             topicCenters.clear();
             getTopicCenterList();
         });
@@ -136,21 +115,29 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
     {
 
         RetrofitHelper.getTopicCenterApi()
-                .getTopicCenterList(page, pageSize)
+                .getTopicCenterList()
                 .compose(bindToLifecycle())
                 .map(TopicCenterInfo::getList)
+                .map(listBeans -> {
+
+                    List<TopicCenterInfo.ListBean> tempList = new ArrayList<>();
+                    for (int i = 0, size = listBeans.size(); i < size; i++)
+                    {
+                        TopicCenterInfo.ListBean listBean = listBeans.get(i);
+                        if (!Objects.equals(listBean.getCover(), ""))
+                        {
+                            tempList.add(listBean);
+                        }
+                    }
+                    return tempList;
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listBeans -> {
-
-                    if (listBeans.size() < pageSize)
-                        loadMoreView.setVisibility(View.GONE);
-
                     topicCenters.addAll(listBeans);
                     finishTask();
                 }, throwable -> {
                     mSwipeRefreshLayout.setRefreshing(false);
-                    loadMoreView.setVisibility(View.GONE);
                     ToastUtil.ShortToast("加载失败啦,请重新加载~");
                 });
     }
@@ -160,20 +147,6 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
     {
 
         mSwipeRefreshLayout.setRefreshing(false);
-        loadMoreView.setVisibility(View.GONE);
-
-        if (page * pageSize - pageSize - 1 > 0)
-            mAdapter.notifyItemRangeChanged(page * pageSize - pageSize - 1, pageSize);
-        else
-            mAdapter.notifyDataSetChanged();
-    }
-
-    private void createLoadMoreView()
-    {
-
-        loadMoreView = LayoutInflater.from(TopicCenterActivity.this)
-                .inflate(R.layout.layout_load_more, mRecyclerView, false);
-        mHeaderViewRecyclerAdapter.addFooterView(loadMoreView);
-        loadMoreView.setVisibility(View.GONE);
+        mAdapter.notifyDataSetChanged();
     }
 }

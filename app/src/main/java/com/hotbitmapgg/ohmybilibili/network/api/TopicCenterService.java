@@ -3,7 +3,6 @@ package com.hotbitmapgg.ohmybilibili.network.api;
 import com.hotbitmapgg.ohmybilibili.entity.discover.TopicCenterInfo;
 
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -17,6 +16,6 @@ import rx.Observable;
 public interface TopicCenterService
 {
 
-    @GET("topic/getlist?device=phone&mobi_app=iphone")
-    Observable<TopicCenterInfo> getTopicCenterList(@Query("page") int page, @Query("pagesize") int pagesize);
+    @GET("topic/getlist?device=phone&mobi_app=iphone&page=1&pagesize=137")
+    Observable<TopicCenterInfo> getTopicCenterList();
 }
