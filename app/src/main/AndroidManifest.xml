@@ -54,8 +54,7 @@
         <!-- APP简介界面 -->
         <activity
             android:name=".module.common.AppIntroduceActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme" />
+            android:screenOrientation="portrait" />
 
 
         <!-- home跳转webView界面 -->
