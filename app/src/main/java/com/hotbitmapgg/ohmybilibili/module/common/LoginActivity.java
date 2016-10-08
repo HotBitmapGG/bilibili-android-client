@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.CommonUtils;
-import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 
 import butterknife.Bind;
@@ -166,9 +165,7 @@ public class LoginActivity extends RxAppCompatBaseActivity
             return;
         }
 
-        PreferenceUtils.put("login", true);
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();
     }
 }
