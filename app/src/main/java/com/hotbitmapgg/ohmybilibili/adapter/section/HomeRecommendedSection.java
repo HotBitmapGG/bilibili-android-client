@@ -21,7 +21,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
-import com.hotbitmapgg.ohmybilibili.module.home.bangumi.WeekDayBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.discover.OriginalRankActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.live.LivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
@@ -299,8 +298,9 @@ public class HomeRecommendedSection extends StatelessSection
                 .setDuration(1000).start());
         footViewHolder.mBangumiIndexBtn.setOnClickListener(v -> mContext.startActivity(
                 new Intent(mContext, BangumiIndexActivity.class)));
-        footViewHolder.mBangumiTimelineBtn.setOnClickListener(v -> WeekDayBangumiActivity.
-                launch((Activity) mContext, "二次元新番", 2));
+        //屏蔽掉番剧放送表 后期重做
+//        footViewHolder.mBangumiTimelineBtn.setOnClickListener(v -> WeekDayBangumiActivity.
+//                launch((Activity) mContext, "二次元新番", 2));
 
         switch (type)
         {
