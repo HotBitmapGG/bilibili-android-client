@@ -109,15 +109,17 @@
 
 ## Screenshots
 
-<a href="art/01.png"><img src="art/01.png" width="40%"/></a> <a href="art/02.png"><img src="art/02.png" width="40%"/></a>
+<a href="art/00.png"><img src="art/00.png" width="40%"/></a> <a href="art/01.png"><img src="art/01.png" width="40%"/></a>
 
-<a href="art/03.png"><img src="art/03.png" width="40%"/></a> <a href="art/04.png"><img src="art/04.png" width="40%"/></a>
+<a href="art/02.png"><img src="art/02.png" width="40%"/></a> <a href="art/03.png"><img src="art/03.png" width="40%"/></a>
 
-<a href="art/05.png"><img src="art/05.png" width="40%"/></a> <a href="art/06.png"><img src="art/06.png" width="40%"/></a>
+<a href="art/04.png"><img src="art/04.png" width="40%"/></a> <a href="art/05.png"><img src="art/05.png" width="40%"/></a>
 
-<a href="art/07.png"><img src="art/07.png" width="40%"/></a> <a href="art/08.png"><img src="art/08.png" width="40%"/></a>
+<a href="art/06.png"><img src="art/06.png" width="40%"/></a> <a href="art/07.png"><img src="art/07.png" width="40%"/></a>
 
-<a href="art/09.png"><img src="art/09.png" width="40%"/></a> <a href="art/10.png"><img src="art/10.png" width="40%"/></a>
+<a href="art/08.png"><img src="art/08.png" width="40%"/></a> <a href="art/09.png"><img src="art/09.png" width="40%"/></a>
+
+<a href="art/10.png"><img src="art/10.png" width="40%"/></a> <a href="art/11.png"><img src="art/11.png" width="40%"/></a>
 
 <a href="art/12.png"><img src="art/12.png" width="40%"/></a> <a href="art/13.png"><img src="art/13.png" width="40%"/></a>
 
@@ -129,29 +131,17 @@
 
 <a href="art/20.png"><img src="art/20.png" width="40%"/></a> <a href="art/21.png"><img src="art/21.png" width="40%"/></a>
 
-<a href="art/23.png"><img src="art/23.png" width="40%"/></a> <a href="art/24.png"><img src="art/24.png" width="40%"/></a>
+<a href="art/22.png"><img src="art/22.png" width="40%"/></a> <a href="art/23.png"><img src="art/23.png" width="40%"/></a>
 
-<a href="art/22.png"><img src="art/22.png" width="40%"/></a> <a href="art/25.png"><img src="art/25.png" width="40%"/></a>
+<a href="art/24.png"><img src="art/24.png" width="40%"/></a> <a href="art/25.png"><img src="art/25.png" width="40%"/></a>
+
+<a href="art/26.png"><img src="art/26.png" width="40%"/></a> <a href="art/27.png"><img src="art/27.png" width="40%"/></a>
 
 <a href="art/28.png"><img src="art/28.png" width="40%"/></a> <a href="art/29.png"><img src="art/29.png" width="40%"/></a>
 
-<a href="art/31.png"><img src="art/31.png" width="40%"/></a> <a href="art/32.png"><img src="art/32.png" width="40%"/></a>
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/30.png?raw=true)
 
-<a href="art/33.png"><img src="art/33.png" width="40%"/></a> <a href="art/34.png"><img src="art/34.png" width="40%"/></a>
-
-<a href="art/30.png"><img src="art/30.png" width="40%"/></a> <a href="art/35.png"><img src="art/35.png" width="40%"/></a>
-
-<a href="art/36.png"><img src="art/36.png" width="40%"/></a> <a href="art/37.png"><img src="art/37.png" width="40%"/></a>
-
-<a href="art/38.png"><img src="art/38.png" width="40%"/></a> <a href="art/39.png"><img src="art/39.png" width="40%"/></a>
-
-<a href="art/40.png"><img src="art/40.png" width="40%"/></a> <a href="art/41.png"><img src="art/41.png" width="40%"/></a>
-
-<a href="art/42.png"><img src="art/42.png" width="40%"/></a> <a href="art/43.png"><img src="art/43.png" width="40%"/></a>
-
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/26.png?raw=true)
-
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/27.png?raw=true)
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/31.png?raw=true)
 
 
 
