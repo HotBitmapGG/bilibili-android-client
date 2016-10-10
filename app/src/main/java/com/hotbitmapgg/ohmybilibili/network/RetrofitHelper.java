@@ -108,7 +108,7 @@ public class RetrofitHelper
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MAIN_BASE_URL)
+                .baseUrl(BANGUMI_BASE_URL)
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

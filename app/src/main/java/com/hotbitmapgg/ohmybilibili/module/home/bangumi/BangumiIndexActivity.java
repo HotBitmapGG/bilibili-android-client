@@ -5,13 +5,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiIndexAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndex;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndexTag;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
@@ -41,11 +44,15 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
     @Bind(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    private String month = "4";
+    private List<BangumiIndexTag> bangumiIndexTags = new ArrayList<>();
 
-    private String year = "2016";
+    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    private List<BangumiIndex> bangumiIndexList = new ArrayList<>();
+    private GridLayoutManager mGridLayoutManager;
+
+    private List<BangumiIndex.ResultBean.CategoriesBean> categories;
+
+    private List<BangumiIndex.ResultBean.RecommendCategoryBean> recommendCategory;
 
 
     @Override
@@ -59,10 +66,29 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(BangumiIndexActivity.this, 3));
-
         getBangumiIndex();
+    }
+
+    private void initRecyclerView()
+    {
+
+        mRecyclerView.setHasFixedSize(true);
+        mGridLayoutManager = new GridLayoutManager(BangumiIndexActivity.this, 3);
+        mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
+        {
+
+            @Override
+            public int getSpanSize(int position)
+            {
+
+                return (0 == position) ? mGridLayoutManager.getSpanCount() : 1;
+            }
+        });
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
+        BangumiIndexAdapter mAdapter = new BangumiIndexAdapter(mRecyclerView, bangumiIndexTags);
+        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        createHeadLayout();
+        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
     }
 
     @Override
@@ -90,21 +116,18 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
     {
 
         RetrofitHelper.getBangumiIndexApi()
-                .getBangumiIndex(year, month)
+                .getBangumiIndex()
                 .compose(this.bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)
                 .subscribeOn(Schedulers.io())
                 .delay(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(bangumiIndices -> {
+                .subscribe(bangumiIndex -> {
 
-                    if (bangumiIndices != null)
-                    {
-                        bangumiIndexList.addAll(bangumiIndices);
-                        finishTask();
-                    }
+                    categories = bangumiIndex.getResult().getCategories();
+                    recommendCategory = bangumiIndex.getResult().getRecommendCategory();
+                    finishTask();
                 }, throwable -> {
-
                     hideProgressBar();
                 });
     }
@@ -127,8 +150,38 @@ public class BangumiIndexActivity extends RxAppCompatBaseActivity
     private void finishTask()
     {
 
-        BangumiIndexAdapter mAdapter = new BangumiIndexAdapter(mRecyclerView, bangumiIndexList);
-        mRecyclerView.setAdapter(mAdapter);
+        mergerIndexTags();
+        initRecyclerView();
         hideProgressBar();
+    }
+
+    private void mergerIndexTags()
+    {
+
+        BangumiIndexTag bangumiIndexTag;
+        for (int i = 0, size = categories.size(); i < size; i++)
+        {
+            BangumiIndex.ResultBean.CategoriesBean.CategoryBean category = categories.get(i).getCategory();
+            bangumiIndexTag = new BangumiIndexTag();
+            bangumiIndexTag.setPic(category.getCover());
+            bangumiIndexTag.setTitle(category.getTag_name());
+            bangumiIndexTags.add(bangumiIndexTag);
+        }
+
+        for (int i = 0, size = recommendCategory.size(); i < size; i++)
+        {
+            BangumiIndex.ResultBean.RecommendCategoryBean recommendCategoryBean = recommendCategory.get(i);
+            bangumiIndexTag = new BangumiIndexTag();
+            bangumiIndexTag.setPic(recommendCategoryBean.getCover());
+            bangumiIndexTag.setTitle(recommendCategoryBean.getTag_name());
+            bangumiIndexTags.add(bangumiIndexTag);
+        }
+    }
+
+    private void createHeadLayout()
+    {
+
+        View headView = LayoutInflater.from(this).inflate(R.layout.layout_bangumi_index_head, mRecyclerView, false);
+        mHeaderViewRecyclerAdapter.addHeaderView(headView);
     }
 }

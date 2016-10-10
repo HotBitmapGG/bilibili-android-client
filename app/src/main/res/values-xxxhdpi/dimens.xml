@@ -92,7 +92,7 @@
     <dimen name="home_recommend_foot_bangumi_layout_height">40dp</dimen>
 
     <!--bangumi index size-->
-    <dimen name="bangumi_index_image_size">100dp</dimen>
+    <dimen name="bangumi_index_image_size">120dp</dimen>
 
     <!--bangumi recomend size-->
     <dimen name="bangumi_recommend_image_height">140dp</dimen>

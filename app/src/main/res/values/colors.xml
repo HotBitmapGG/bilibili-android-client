@@ -41,6 +41,8 @@
     <color name="nav_head_image_background">#F8668D</color>
     <color name="nav_head_round_background">#FDC7D6</color>
     <color name="nav_head_roung_text_background">#FB7BA0</color>
+    <color name="bangumi_index_green_bg">#75C568</color>
+    <color name="bangumi_index_yellow_bg">#FFC03A</color>
 
 
     <color name="theme_color_primary">#fb7299</color>

@@ -2,10 +2,7 @@ package com.hotbitmapgg.ohmybilibili.network.api;
 
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndex;
 
-import java.util.List;
-
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -13,10 +10,12 @@ import rx.Observable;
  * 100332338@qq.com
  * <p/>
  * 番剧索引数据请求
+ * <p>
+ * http://bangumi.bilibili.com/api/app_index_page?actionKey=appkey&appkey=27eb53fc9058f8c3&build=2310&device=phone&platform=ios&sign=55c99772ca87ed4720201d2f0429d9c2&ts=1466676873
  */
 public interface BangumiIndexService
 {
 
-    @GET("index/bangumi/{year}-{month}.json")
-    Observable<List<BangumiIndex>> getBangumiIndex(@Path("year") String year, @Path("month") String month);
+    @GET("api/app_index_page?actionKey=appkey&appkey=27eb53fc9058f8c3&build=2310&device=phone&platform=ios&sign=55c99772ca87ed4720201d2f0429d9c2&ts=1466676873")
+    Observable<BangumiIndex> getBangumiIndex();
 }
