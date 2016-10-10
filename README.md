@@ -139,9 +139,9 @@
 
 <a href="art/28.png"><img src="art/28.png" width="40%"/></a> <a href="art/29.png"><img src="art/29.png" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/30.png?raw=true)
+![](https://github.com/HotBitmapGG/bilibili/blob/master-x/art/30.png?raw=true)
 
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/31.png?raw=true)
+![](https://github.com/HotBitmapGG/bilibili/blob/master-x/art/31.png?raw=true)
 
 
 
