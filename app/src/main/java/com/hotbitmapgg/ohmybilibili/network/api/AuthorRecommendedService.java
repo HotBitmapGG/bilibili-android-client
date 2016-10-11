@@ -16,5 +16,5 @@ public interface AuthorRecommendedService
 {
 
     @GET("author_recommend")
-    Observable<UserRecommend> getAuthorRecommended(@Query("aid") String aid);
+    Observable<UserRecommend> getAuthorRecommended(@Query("aid") int aid);
 }

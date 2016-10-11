@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -12,9 +11,7 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoAlikeListAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.config.Secret;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoAlikeInfo;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoAlikeResult;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.UserTagView;
@@ -22,11 +19,9 @@ import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -70,16 +65,13 @@ public class VideoInfoFragment extends RxLazyFragment
     TagFlowLayout mTagFlowLayout;
 
     @Bind(R.id.recycle)
-    RecyclerView mVideoPartList;
-
-    @Bind(R.id.btn_more_video)
-    TextView mMoreVideo;
+    RecyclerView mRecyclerView;
 
     private static final String AID = "aid";
 
     private static final String EXTRA_INFO = "extra_info";
 
-    private List<VideoAlikeInfo> mUserVideos = new ArrayList<>();
+    private List<UserRecommend.AuthorData> authorRecommendList = new ArrayList<>();
 
     private VideoDetails mVideoDetails;
 
@@ -134,17 +126,10 @@ public class VideoInfoFragment extends RxLazyFragment
         mFavNum.setText(mVideoDetails.getFavorites());
         mCoinNum.setText(mVideoDetails.getCoins());
 
-        mMoreVideo.setOnClickListener(v -> {
-
-            Intent mIntent = new Intent(getActivity(), VideoPartsListMoreActivity.class);
-            mIntent.putExtra("aid", av + "");
-            startActivity(mIntent);
-        });
-
+        //设置视频详情数据
         setVideoTags();
-
-        //获取该用户推荐的视频列表
-        getVideoListPartsByTid(String.valueOf(mVideoDetails.getTid()));
+        //获取相关视频列表
+        getVideoRelateds();
     }
 
     private void setVideoTags()
@@ -171,60 +156,38 @@ public class VideoInfoFragment extends RxLazyFragment
     }
 
 
-    public void getVideoListPartsByTid(String tid)
+    public void getVideoRelateds()
     {
 
-        if (TextUtils.isEmpty(Secret.APP_KEY))
-            return;
-
-        Random random = new Random();
-        int anInt = random.nextInt(50);
-
-
-        RetrofitHelper.getPartitionMoreApi()
-                .getPartitionMore(tid, anInt,
-                        10, 0, Secret.APP_KEY,
-                        Long.toString(System.currentTimeMillis() / 1000))
+        RetrofitHelper.getAuthorRecommendedApi()
+                .getAuthorRecommended(av)
                 .compose(this.bindToLifecycle())
-                .map(responseBody -> {
-
-                    try
-                    {
-                        return VideoAlikeResult.createFromJson(responseBody.string());
-                    } catch (IOException e)
-                    {
-                        e.printStackTrace();
-                        return null;
-                    }
-                })
+                .map(userRecommend -> userRecommend.list)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(videoAlikeResult -> {
+                .subscribe(authorDatas -> {
 
-                    List<VideoAlikeInfo> datas = videoAlikeResult.lists;
-                    mUserVideos.addAll(datas);
-
-                    finishPartsGetTask();
+                    authorRecommendList.addAll(authorDatas);
+                    finishTask();
                 }, throwable -> {
-
 
                 });
     }
 
 
-    private void finishPartsGetTask()
+    private void finishTask()
     {
 
-        VideoAlikeListAdapter mVideoAlikeListAdapter = new VideoAlikeListAdapter(mVideoPartList, mUserVideos);
-        mVideoPartList.setHasFixedSize(false);
-        mVideoPartList.setNestedScrollingEnabled(false);
-        mVideoPartList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mVideoPartList.setAdapter(mVideoAlikeListAdapter);
+        VideoAlikeListAdapter mVideoAlikeListAdapter = new VideoAlikeListAdapter(mRecyclerView, authorRecommendList);
+        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(mVideoAlikeListAdapter);
         mVideoAlikeListAdapter.setOnItemClickListener((position, holder) -> {
 
             getActivity().finish();
-            VideoAlikeInfo videoAlikeInfo = mUserVideos.get(position);
-            VideoDetailsActivity.launch(getActivity(), videoAlikeInfo.aid, videoAlikeInfo.pic);
+            UserRecommend.AuthorData authorData = authorRecommendList.get(position);
+            VideoDetailsActivity.launch(getActivity(), authorData.aid, authorData.cover);
         });
     }
 

@@ -104,13 +104,6 @@
             android:name=".module.entry.GameCentreActivity"
             android:screenOrientation="portrait" />
 
-
-        <!--视频相关推荐界面-->
-        <activity
-            android:name=".module.video.VideoPartsListMoreActivity"
-            android:screenOrientation="portrait" />
-
-
         <!--离线缓存界面-->
         <activity
             android:name=".module.entry.OffLineDownloadActivity"

@@ -11,10 +11,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoAlikeInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommend;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,13 +25,13 @@ import java.util.List;
 public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<VideoAlikeInfo> parts = new ArrayList<>();
+    private List<UserRecommend.AuthorData> authorRecommendList;
 
-    public VideoAlikeListAdapter(RecyclerView recyclerView, List<VideoAlikeInfo> parts)
+    public VideoAlikeListAdapter(RecyclerView recyclerView, List<UserRecommend.AuthorData> authorRecommendList)
     {
 
         super(recyclerView);
-        this.parts = parts;
+        this.authorRecommendList = authorRecommendList;
     }
 
     @Override
@@ -51,20 +50,19 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            VideoAlikeInfo videoAlikeInfo = parts.get(position);
+            UserRecommend.AuthorData authorData = authorRecommendList.get(position);
 
             Glide.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(videoAlikeInfo.pic))
+                    .load(UrlHelper.getClearVideoPreviewUrl(authorData.cover))
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mVideoPic);
 
-            itemViewHolder.mVideoTitle.setText(videoAlikeInfo.title);
-            itemViewHolder.mVideoPlayNum.setText(videoAlikeInfo.play);
-            itemViewHolder.mVideoReviewNum.setText(String.valueOf(videoAlikeInfo.video_review));
-            itemViewHolder.mUserName.setText(videoAlikeInfo.author);
+            itemViewHolder.mVideoTitle.setText(authorData.title);
+            itemViewHolder.mVideoPlayNum.setText(String.valueOf(authorData.click));
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(authorData.video_review));
         }
 
         super.onBindViewHolder(holder, position);
@@ -74,7 +72,7 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return parts.size();
+        return authorRecommendList.size();
     }
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
@@ -88,8 +86,6 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 
         TextView mVideoReviewNum;
 
-        TextView mUserName;
-
         public ItemViewHolder(View itemView)
         {
 
@@ -99,7 +95,6 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
             mVideoTitle = $(R.id.item_title);
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewNum = $(R.id.item_review);
-            mUserName = $(R.id.item_user_name);
         }
     }
 }
