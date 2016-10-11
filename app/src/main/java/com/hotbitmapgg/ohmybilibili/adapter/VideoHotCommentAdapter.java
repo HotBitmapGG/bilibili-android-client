@@ -17,25 +17,24 @@ import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.utils.DateUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
  * <p/>
- * 视频评论Adapter
+ * 热门视频评论Adapter
  */
-public class VideoCommentAdapter extends AbsRecyclerViewAdapter
+public class VideoHotCommentAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<VideoComment.List> comments = new ArrayList<>();
+    private List<VideoComment.HotList> hotComments;
 
-    public VideoCommentAdapter(RecyclerView recyclerView, List<VideoComment.List> comments)
+    public VideoHotCommentAdapter(RecyclerView recyclerView, List<VideoComment.HotList> hotComments)
     {
 
         super(recyclerView);
-        this.comments = comments;
+        this.hotComments = hotComments;
     }
 
     @Override
@@ -57,31 +56,31 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
             try
             {
                 ItemViewHolder mHolder = (ItemViewHolder) holder;
-                VideoComment.List list = comments.get(position);
-                mHolder.mUserName.setText(list.nick);
+                VideoComment.HotList hotList = hotComments.get(position);
+                mHolder.mUserName.setText(hotList.nick);
 
                 Glide.with(getContext())
-                        .load(UrlHelper.getFaceUrlByUrl(list.face))
+                        .load(UrlHelper.getFaceUrlByUrl(hotList.face))
                         .centerCrop()
                         .dontAnimate()
                         .placeholder(R.drawable.ico_user_default)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(mHolder.mUserAvatar);
 
-                int currentLevel = list.level_info.current_level;
+                int currentLevel = hotList.level_info.current_level;
                 checkLevel(currentLevel, mHolder);
-                if (list.sex.equals("女"))
+                if (hotList.sex.equals("女"))
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_female_border);
                 else
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_male_border);
 
-                mHolder.mCommentNum.setText(String.valueOf(list.reply_count));
-                mHolder.mSpot.setText(String.valueOf(list.good));
-                long l = DateUtils.stringToLong(list.create_at, "yyyy-MM-dd HH:mm");
+                mHolder.mCommentNum.setText(String.valueOf(hotList.reply_count));
+                mHolder.mSpot.setText(String.valueOf(hotList.good));
+                long l = DateUtils.stringToLong(hotList.create_at, "yyyy-MM-dd HH:mm");
                 String time = DateUtils.getDescriptionTimeFromTimestamp(l);
                 mHolder.mCommentTime.setText(time);
-                mHolder.mContent.setText(list.msg);
-                mHolder.mFloor.setText("#" + list.lv);
+                mHolder.mContent.setText(hotList.msg);
+                mHolder.mFloor.setText("#" + hotList.lv);
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -122,10 +121,10 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return comments.size();
+        return 3;
     }
 
-    public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
+    public class ItemViewHolder extends ClickableViewHolder
     {
 
         CircleImageView mUserAvatar;

@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoCommentAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.VideoHotCommentAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
@@ -35,6 +36,8 @@ public class VideoCommentFragment extends RxLazyFragment
 
     private ArrayList<VideoComment.List> comments = new ArrayList<>();
 
+    private ArrayList<VideoComment.HotList> hotComments = new ArrayList<>();
+
     private HeaderViewRecyclerAdapter mAdapter;
 
     private int pageNum = 1;
@@ -46,6 +49,10 @@ public class VideoCommentFragment extends RxLazyFragment
     private View loadMoreView;
 
     private int aid;
+
+    private VideoHotCommentAdapter mVideoHotCommentAdapter;
+
+    private View headView;
 
     public static VideoCommentFragment newInstance(int aid)
     {
@@ -73,12 +80,6 @@ public class VideoCommentFragment extends RxLazyFragment
         getCommentList();
     }
 
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
-
     private void initRecyclerView()
     {
 
@@ -88,6 +89,7 @@ public class VideoCommentFragment extends RxLazyFragment
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mAdapter = new HeaderViewRecyclerAdapter(mRecyclerAdapter);
         mRecyclerView.setAdapter(mAdapter);
+        createHeadView();
         createLoadMoreView();
         mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager)
         {
@@ -103,6 +105,7 @@ public class VideoCommentFragment extends RxLazyFragment
         });
     }
 
+
     public void getCommentList()
     {
 
@@ -115,25 +118,44 @@ public class VideoCommentFragment extends RxLazyFragment
                 .subscribe(videoComment -> {
 
                     ArrayList<VideoComment.List> list = videoComment.list;
+                    ArrayList<VideoComment.HotList> hotList = videoComment.hotList;
                     if (list.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
 
                     comments.addAll(list);
+                    hotComments.addAll(hotList);
                     finishTask();
                 }, throwable -> {
 
                     loadMoreView.setVisibility(View.GONE);
+                    headView.setVisibility(View.GONE);
                 });
     }
 
     private void finishTask()
     {
+
         loadMoreView.setVisibility(View.GONE);
+        mVideoHotCommentAdapter.notifyDataSetChanged();
 
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
         else
             mAdapter.notifyDataSetChanged();
+    }
+
+    private void createHeadView()
+    {
+
+        headView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_video_hot_comment_head,
+                mRecyclerView, false);
+        RecyclerView mHotCommentRecycler = (RecyclerView) headView.findViewById(R.id.hot_comment_recycler);
+        mHotCommentRecycler.setHasFixedSize(false);
+        mHotCommentRecycler.setNestedScrollingEnabled(false);
+        mHotCommentRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mVideoHotCommentAdapter = new VideoHotCommentAdapter(mHotCommentRecycler, hotComments);
+        mHotCommentRecycler.setAdapter(mVideoHotCommentAdapter);
+        mAdapter.addHeaderView(headView);
     }
 
     private void createLoadMoreView()
@@ -143,6 +165,12 @@ public class VideoCommentFragment extends RxLazyFragment
                 .inflate(R.layout.layout_load_more, mRecyclerView, false);
         mAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void lazyLoad()
+    {
+
     }
 }
 

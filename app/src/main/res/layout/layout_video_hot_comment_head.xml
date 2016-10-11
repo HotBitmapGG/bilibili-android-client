@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/hot_comment_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:id="@+id/more_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_general_margin"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/app_bar_default_elevation"
+            android:layout_height="@dimen/line_height"
+            android:layout_marginStart="@dimen/default_tiny_padding"
+            android:layout_weight="1"
+            android:background="@color/gray_light" />
+
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingEnd="@dimen/default_tiny_padding"
+            android:paddingStart="@dimen/default_tiny_padding"
+            android:text="@string/more_hot_comment"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/default_small_text_size" />
+
+        <View
+            android:layout_width="@dimen/app_bar_default_elevation"
+            android:layout_height="@dimen/line_height"
+            android:layout_marginEnd="@dimen/default_tiny_padding"
+            android:layout_weight="1"
+            android:background="@color/gray_light" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

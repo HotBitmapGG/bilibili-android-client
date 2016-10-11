@@ -122,7 +122,7 @@
                 android:paddingStart="@dimen/default_tiny_padding"
                 android:text="@string/look_more"
                 android:textColor="@color/font_normal"
-                android:textSize="12sp" />
+                android:textSize="@dimen/default_tiny_text_size" />
 
             <View
                 android:layout_width="@dimen/app_bar_default_elevation"
