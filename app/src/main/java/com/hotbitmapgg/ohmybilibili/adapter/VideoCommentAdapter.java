@@ -71,9 +71,15 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
                 int currentLevel = list.level_info.current_level;
                 checkLevel(currentLevel, mHolder);
                 if (list.sex.equals("女"))
-                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_female_border);
-                else
-                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_male_border);
+                {
+                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_female);
+                } else if (list.sex.equals("男"))
+                {
+                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_male);
+                } else
+                {
+                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_gay_border);
+                }
 
                 mHolder.mCommentNum.setText(String.valueOf(list.reply_count));
                 mHolder.mSpot.setText(String.valueOf(list.good));

@@ -82,7 +82,7 @@
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_user_male_border"
+                android:drawableEnd="@drawable/ic_user_male"
                 android:drawablePadding="@dimen/default_tiny_padding"
                 android:padding="@dimen/default_tiny_margin"
                 android:text="@string/hotbitmapgg"

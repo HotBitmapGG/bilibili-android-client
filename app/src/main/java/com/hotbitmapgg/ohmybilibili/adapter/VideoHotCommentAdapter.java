@@ -70,9 +70,15 @@ public class VideoHotCommentAdapter extends AbsRecyclerViewAdapter
                 int currentLevel = hotList.level_info.current_level;
                 checkLevel(currentLevel, mHolder);
                 if (hotList.sex.equals("女"))
-                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_female_border);
-                else
-                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_male_border);
+                {
+                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_female);
+                } else if (hotList.sex.equals("男"))
+                {
+                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_male);
+                } else
+                {
+                    mHolder.mUserSex.setImageResource(R.drawable.ic_user_gay_border);
+                }
 
                 mHolder.mCommentNum.setText(String.valueOf(hotList.reply_count));
                 mHolder.mSpot.setText(String.valueOf(hotList.good));

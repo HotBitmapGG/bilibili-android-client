@@ -12,18 +12,11 @@ import rx.Observable;
  * <p/>
  * 查询用户详情数据
  * <p/>
- * 备用API
- * http://bilibili-service.daoapp.io/user/{mid}
+ * https://account.bilibili.com/api/member/getCardByMid?mid=279463
  */
 public interface UserInfoService
 {
 
-    /**
-     * 根据用户ID查询
-     *
-     * @param mid
-     * @return
-     */
-    @GET("user/{mid}")
+    @GET("api/member/getCardByMid")
     Observable<UserInfo> getUserInfoById(@Query("mid") int mid);
 }

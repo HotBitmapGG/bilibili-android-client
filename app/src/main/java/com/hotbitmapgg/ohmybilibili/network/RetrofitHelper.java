@@ -70,6 +70,8 @@ public class RetrofitHelper
 
     private static final String SEARCH_BASE_URL = "http://s.search.bilibili.com/";
 
+    private static final String ACCOUNT_BASE_URL ="https://account.bilibili.com/";
+
     public static final String HDSLB_HOST = "http://i2.hdslb.com";
 
     private static final String COMMON_UA_STR = "OhMyBiliBili Android Client/2.1 (100332338@qq.com)";
@@ -333,7 +335,7 @@ public class RetrofitHelper
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
+                .baseUrl(ACCOUNT_BASE_URL)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())

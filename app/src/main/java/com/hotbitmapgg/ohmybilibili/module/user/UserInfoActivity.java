@@ -24,7 +24,6 @@ import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -204,13 +203,13 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     {
 
         mNumberBar.setVisibility(View.VISIBLE);
-        mUserNameText.setText(mUserInfo.name);
-        mFollowNumText.setText(String.format(getString(R.string.info_following_format), mUserInfo.attention));
-        mFansNumText.setText(String.format(getString(R.string.info_fans_format), mUserInfo.fans));
+        mUserNameText.setText(mUserInfo.getCard().getName());
+        mFollowNumText.setText(String.format(getString(R.string.info_following_format), mUserInfo.getCard().getAttention()));
+        mFansNumText.setText(String.format(getString(R.string.info_fans_format), mUserInfo.getCard().getFans()));
         mToolbar.setTitle("");
 
         Glide.with(UserInfoActivity.this)
-                .load(UrlHelper.getFaceUrl(mUserInfo))
+                .load(mUserInfo.getCard().getFace())
                 .centerCrop()
                 .dontAnimate()
                 .placeholder(R.drawable.ico_user_default)
@@ -218,37 +217,44 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
                 .into(mAvatarImage);
 
 
-        setUserLevel(mUserInfo.rank);
-        if (mUserInfo.sex.equals("男"))
+        setUserLevel(Integer.valueOf(mUserInfo.getCard().getRank()));
+
+        switch (mUserInfo.getCard().getSex())
         {
-            mUserSex.setImageResource(R.drawable.ic_user_male_border);
-        } else
-        {
-            mUserSex.setImageResource(R.drawable.ic_user_female_border);
+            case "男":
+                mUserSex.setImageResource(R.drawable.ic_user_male);
+                break;
+            case "女":
+                mUserSex.setImageResource(R.drawable.ic_user_female);
+                break;
+            default:
+                mUserSex.setImageResource(R.drawable.ic_user_gay_border);
+                break;
         }
-        if (mUserInfo.approve)
+
+        if (mUserInfo.getCard().isApprove())
         {
             //认证用户 显示认证资料
             mAuthorVerifiedLayout.setVisibility(View.VISIBLE);
             mDescriptionText.setVisibility(View.GONE);
-            if (!TextUtils.isEmpty(mUserInfo.description))
+            if (!TextUtils.isEmpty(mUserInfo.getCard().getDescription()))
             {
-                mAuthorVerifiedText.setText(mUserInfo.description);
+                mAuthorVerifiedText.setText(mUserInfo.getCard().getDescription());
             } else
             {
-                mAuthorVerifiedText.setText("这个家伙太懒,什么都没有填写");
+                mAuthorVerifiedText.setText("这个人懒死了,什么都没有写(・－・。)");
             }
         } else
         {
             //普通用户
             mAuthorVerifiedLayout.setVisibility(View.GONE);
             mDescriptionText.setVisibility(View.VISIBLE);
-            if (!TextUtils.isEmpty(mUserInfo.sign))
+            if (!TextUtils.isEmpty(mUserInfo.getCard().getSign()))
             {
-                mDescriptionText.setText(mUserInfo.sign);
+                mDescriptionText.setText(mUserInfo.getCard().getSign());
             } else
             {
-                mDescriptionText.setText("这个家伙太懒,什么都没有填写");
+                mDescriptionText.setText("这个人懒死了,什么都没有写(・－・。)");
             }
         }
 
@@ -318,7 +324,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
 
         mUpTip.setVisibility(View.VISIBLE);
         String str = "Up主的投稿" + "(" +
-                String.valueOf(mUserInfo.article) + ")";
+                String.valueOf(mUserInfo.getCard().getArticle()) + ")";
         mUpTip.setText(str);
         mRecyclerView.setVisibility(View.VISIBLE);
         mMoreTextView.setVisibility(View.VISIBLE);
@@ -330,14 +336,16 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     void startUpAllVideos()
     {
         //查看Up主所有视频
-        UserUpMoreCoverActivity.launch(UserInfoActivity.this, mUserInfo.name, mUserInfo.mid);
+        UserUpMoreCoverActivity.launch(UserInfoActivity.this,
+                mUserInfo.getCard().getName(), Integer.valueOf(mUserInfo.getCard().getMid()));
     }
 
     @OnClick(R.id.tv_fans)
     void startUpFans()
     {
         //查看Up主的粉丝
-        UserFansActivity.launch(UserInfoActivity.this, String.valueOf(mid), name);
+        UserFansActivity.launch(UserInfoActivity.this,
+                mUserInfo.getCard().getMid(), mUserInfo.getCard().getName());
     }
 
 

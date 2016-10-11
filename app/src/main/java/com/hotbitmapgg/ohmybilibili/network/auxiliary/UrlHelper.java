@@ -43,11 +43,11 @@ public class UrlHelper
     public static String getFaceUrl(UserInfo info)
     {
 
-        if (info.face.contains(".hdslb.com"))
+        if (info.getCard().getFace().contains(".hdslb.com"))
         {
-            return info.face;
+            return info.getCard().getFace();
         }
-        String face = RetrofitHelper.HDSLB_HOST + info.face;
+        String face = RetrofitHelper.HDSLB_HOST + info.getCard().getFace();
         if (face.contains("{SIZE}"))
         {
             face = face.replace("{SIZE}", "");
