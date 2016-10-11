@@ -46,7 +46,7 @@ public class ActivityCenterActivity extends RxAppCompatBaseActivity
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private int pageNum = 0;
+    private int pageNum = 1;
 
     private int pageSize = 20;
 
@@ -74,6 +74,7 @@ public class ActivityCenterActivity extends RxAppCompatBaseActivity
 
         showProgressBar();
         initRecyclerView();
+        getActivityCenterList();
     }
 
 

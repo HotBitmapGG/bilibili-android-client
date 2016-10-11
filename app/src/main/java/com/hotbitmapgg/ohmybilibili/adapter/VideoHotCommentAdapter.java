@@ -121,7 +121,7 @@ public class VideoHotCommentAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return 3;
+        return hotComments.size() == 0 ? 0 : 3;
     }
 
     public class ItemViewHolder extends ClickableViewHolder

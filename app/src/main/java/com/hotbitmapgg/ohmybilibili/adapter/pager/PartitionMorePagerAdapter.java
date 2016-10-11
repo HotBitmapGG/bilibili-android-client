@@ -4,11 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreType;
-import com.hotbitmapgg.ohmybilibili.module.home.partition.PartitionListFragment;
+import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
+import com.hotbitmapgg.ohmybilibili.module.home.partition.PartitionDetailsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.Observable;
 
 /**
  * Created by hcc on 16/8/4 14:12
@@ -19,26 +21,26 @@ import java.util.List;
 public class PartitionMorePagerAdapter extends FragmentStatePagerAdapter
 {
 
-    private List<PartitionMoreType> titles;
+    private List<PartitionInfo.DataBean.ChildrenBean> childrens;
 
     private List<Fragment> fragments = new ArrayList<>();
 
-    public PartitionMorePagerAdapter(FragmentManager fm, List<PartitionMoreType> titles)
+    public PartitionMorePagerAdapter(FragmentManager fm, List<PartitionInfo.DataBean.ChildrenBean> childrens)
     {
 
         super(fm);
-        this.titles = titles;
+        this.childrens = childrens;
         initFragments();
     }
 
     private void initFragments()
     {
 
-        for (int i = 0; i < titles.size(); i++)
-        {
-            fragments.add(PartitionListFragment.
-                    newInstance(titles.get(i).getTitleType() + ""));
-        }
+        Observable.from(childrens)
+                .subscribe(childrenBean -> {
+                    fragments.add(PartitionDetailsFragment.
+                            newInstance(String.valueOf(childrenBean.getTid())));
+                });
     }
 
     @Override
@@ -52,14 +54,13 @@ public class PartitionMorePagerAdapter extends FragmentStatePagerAdapter
     @Override
     public int getCount()
     {
-        // TODO Auto-generated method stub
-        return titles.size();
+        return childrens.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position)
     {
 
-        return titles.get(position).getTitleName();
+        return childrens.get(position).getName();
     }
 }

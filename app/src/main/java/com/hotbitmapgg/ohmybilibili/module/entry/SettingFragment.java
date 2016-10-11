@@ -104,11 +104,4 @@ public class SettingFragment extends RxLazyFragment
         assert packageInfo != null;
         return packageInfo.versionName;
     }
-
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

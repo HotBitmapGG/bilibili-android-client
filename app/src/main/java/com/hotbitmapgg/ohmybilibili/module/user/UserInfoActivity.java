@@ -185,7 +185,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     {
 
         RetrofitHelper.getUserInfoApi()
-                .getUserInfoByName(name)
+                .getUserInfoById(mid)
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

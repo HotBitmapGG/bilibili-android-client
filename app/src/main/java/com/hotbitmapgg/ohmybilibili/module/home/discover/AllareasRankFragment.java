@@ -123,10 +123,4 @@ public class AllareasRankFragment extends RxLazyFragment
                 allRanks.get(position).getAid(),
                 allRanks.get(position).getPic()));
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

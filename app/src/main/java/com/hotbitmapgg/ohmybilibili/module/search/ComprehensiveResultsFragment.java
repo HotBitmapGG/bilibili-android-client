@@ -96,10 +96,4 @@ public class ComprehensiveResultsFragment extends RxLazyFragment
 
         mEmptyView.setVisibility(View.GONE);
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

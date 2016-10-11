@@ -88,10 +88,4 @@ public class HomeFocusFragment extends RxLazyFragment
         mBangumiRecycler.setAdapter(new FocusOnBangumiAdapter(mBangumiRecycler, focusOnBangumis));
         mHeaderViewRecyclerAdapter.addHeaderView(headView);
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

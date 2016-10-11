@@ -56,10 +56,4 @@ public class IFavoritesFragment extends RxLazyFragment
         mCustomEmptyView.setEmptyText("没有找到你的收藏哟");
         mCustomEmptyView.hideReloadButton();
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

@@ -90,11 +90,4 @@ public class BangumiResultsFragment extends RxLazyFragment
 
         mEmptyView.setVisibility(View.GONE);
     }
-
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

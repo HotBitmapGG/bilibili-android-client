@@ -36,7 +36,7 @@
         </activity>
 
 
-        <!--主界面 -->
+        <!-- 主界面 -->
         <activity
             android:name=".module.common.MainActivity"
             android:launchMode="singleTask"
@@ -57,7 +57,7 @@
             android:screenOrientation="portrait" />
 
 
-        <!-- home跳转webView界面 -->
+        <!-- 浏览器界面 -->
         <activity
             android:name=".module.common.BrowserActivity"
             android:screenOrientation="portrait" />
@@ -69,7 +69,7 @@
             android:screenOrientation="portrait" />
 
 
-        <!-- bilibili用户界面 -->
+        <!-- 用户详情界面 -->
         <activity
             android:name=".module.user.UserInfoActivity"
             android:screenOrientation="portrait" />
@@ -81,84 +81,84 @@
             android:screenOrientation="portrait" />
 
 
-        <!-- 分区界面 根据传递的标题集合完成界面 -->
+        <!-- 分区详情界面 -->
         <activity
-            android:name=".module.home.partition.PartitionMoreActivity"
+            android:name=".module.home.partition.PartitionDetailsActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--用户粉丝界面-->
+        <!-- 用户粉丝界面 -->
         <activity
             android:name=".module.user.UserFansActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--番剧时间表界面-->
+        <!-- 番剧时间表界面 -->
         <activity
             android:name=".module.home.bangumi.BangumiScheduleActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--游戏中心界面-->
+        <!-- 游戏中心界面 -->
         <activity
             android:name=".module.entry.GameCentreActivity"
             android:screenOrientation="portrait" />
 
-        <!--离线缓存界面-->
+        <!-- 离线缓存界面 -->
         <activity
             android:name=".module.entry.OffLineDownloadActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--直播详情界面-->
+        <!-- 直播详情界面 -->
         <activity
             android:name=".module.home.live.LivePlayerActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--番剧索引界面-->
+        <!-- 番剧索引界面 -->
         <activity
             android:name=".module.home.bangumi.BangumiIndexActivity"
             android:screenOrientation="portrait" />
 
-        <!--关于我详情界面-->
+        <!-- 关于我 -->
         <activity
             android:name=".module.common.HotBitmapGGInfoActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--UP主推荐视频界面-->
+        <!-- UP主上传视频更多界面 -->
         <activity
             android:name=".module.user.UserUpMoreCoverActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--全区排行榜界面-->
+        <!-- 全区排行榜界面 -->
         <activity
             android:name=".module.home.discover.AllareasRankActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--全站搜索界面-->
+        <!-- 全站搜索界面 -->
         <activity
             android:name=".module.search.TotalStationSearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Search" />
 
 
-        <!--全区热门视频界面-->
+        <!-- 全区热门视频界面 -->
         <activity
             android:name=".module.home.discover.AllHotVideoActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--原创排行榜界面-->
+        <!-- 原创排行榜界面 -->
         <activity
             android:name=".module.home.discover.OriginalRankActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--分季全部新番界面-->
+        <!-- 分季全部新番界面 -->
         <activity
             android:name=".module.home.bangumi.SeasonNewBangumiActivity"
             android:screenOrientation="portrait" />
@@ -170,25 +170,25 @@
             android:screenOrientation="portrait" />
 
 
-        <!--番剧详情界面-->
+        <!-- 番剧详情界面 -->
         <activity
             android:name=".module.home.bangumi.BangumiDetailsActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--话题中心界面-->
+        <!-- 话题中心界面 -->
         <activity
             android:name=".module.home.discover.TopicCenterActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--活动中心界面-->
+        <!-- 活动中心界面 -->
         <activity
             android:name=".module.home.discover.ActivityCenterActivity"
             android:screenOrientation="portrait" />
 
 
-        <!--播放器界面-->
+        <!-- 播放器界面 -->
         <activity
             android:name=".module.video.VideoPlayerActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"

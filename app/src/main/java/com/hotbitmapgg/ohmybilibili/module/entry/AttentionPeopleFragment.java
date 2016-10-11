@@ -54,10 +54,4 @@ public class AttentionPeopleFragment extends RxLazyFragment
         mCustomEmptyView.setEmptyText("你还没有关注的人哟");
         mCustomEmptyView.hideReloadButton();
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

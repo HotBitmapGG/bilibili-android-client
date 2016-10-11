@@ -1,7 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.module.home.partition;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreList;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreVideoItem;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,14 +31,14 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 分区对应类型列表详情界面
  */
-public class PartitionListFragment extends RxLazyFragment
+public class PartitionDetailsFragment extends RxLazyFragment
 {
 
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    @Bind(R.id.circle_progress)
+    CircleProgressView mCircleProgressView;
 
     private PartitionMoreRecyclerAdapter mAdapter;
 
@@ -57,11 +57,11 @@ public class PartitionListFragment extends RxLazyFragment
     private View loadMoreView;
 
 
-    public static PartitionListFragment newInstance(String tid)
+    public static PartitionDetailsFragment newInstance(String tid)
     {
 
-        PartitionListFragment fragment =
-                new PartitionListFragment();
+        PartitionDetailsFragment fragment =
+                new PartitionDetailsFragment();
         Bundle bundle = new Bundle();
         bundle.putString(EXTRA_TID, tid);
         fragment.setArguments(bundle);
@@ -72,7 +72,7 @@ public class PartitionListFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_partition_more_list;
+        return R.layout.fragment_partition_details;
     }
 
     @Override
@@ -80,15 +80,24 @@ public class PartitionListFragment extends RxLazyFragment
     {
 
         tid = getArguments().getString(EXTRA_TID);
-        showProgressBar();
-        initRecyclerView();
+
+        isPrepared = true;
+        lazyLoad();
     }
 
     @Override
     protected void lazyLoad()
     {
 
+        if (!isPrepared || !isVisible)
+            return;
+
+        initRecyclerView();
+        showProgressBar();
+        getPartitionList();
+        isPrepared = false;
     }
+
 
     private void initRecyclerView()
     {
@@ -106,34 +115,21 @@ public class PartitionListFragment extends RxLazyFragment
             @Override
             public void onLoadMore(int i)
             {
-
                 pageNum++;
-                getPartitionMore(tid);
+                getPartitionList();
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
     }
 
-    private void showProgressBar()
-    {
-
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> mSwipeRefreshLayout.setRefreshing(false));
-        mSwipeRefreshLayout.postDelayed(() -> {
-
-            mSwipeRefreshLayout.setRefreshing(true);
-            getPartitionMore(tid);
-        }, 500);
-    }
-
-    public void getPartitionMore(final String tid)
+    public void getPartitionList()
     {
 
         RetrofitHelper.getPartitionMoreApi()
                 .getPartitionMore(tid, pageNum,
                         pageSize, 0, Secret.APP_KEY,
                         Long.toString(System.currentTimeMillis() / 1000))
-                .compose(this.bindToLifecycle())
+                .compose(bindToLifecycle())
                 .map(responseBody -> {
 
                     try
@@ -157,7 +153,7 @@ public class PartitionListFragment extends RxLazyFragment
                 }, throwable -> {
 
                     loadMoreView.setVisibility(View.GONE);
-                    mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(false));
+                    hideProgressBar();
                 });
     }
 
@@ -165,21 +161,17 @@ public class PartitionListFragment extends RxLazyFragment
     {
 
         loadMoreView.setVisibility(View.GONE);
+        hideProgressBar();
 
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
         else
             mAdapter.notifyDataSetChanged();
 
-        if (mSwipeRefreshLayout.isRefreshing())
-        {
-            mSwipeRefreshLayout.setRefreshing(false);
-        }
-
         mAdapter.setOnItemClickListener((position, holder) -> {
 
             PartitionMoreVideoItem bangumiMoreVideoItem = items.get(position);
-            VideoDetailsActivity.launch(getSupportActivity(), bangumiMoreVideoItem.aid,bangumiMoreVideoItem.pic);
+            VideoDetailsActivity.launch(getSupportActivity(), bangumiMoreVideoItem.aid, bangumiMoreVideoItem.pic);
         });
     }
 
@@ -191,4 +183,20 @@ public class PartitionListFragment extends RxLazyFragment
         mRecyclerAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
     }
+
+
+    private void showProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.VISIBLE);
+        mCircleProgressView.spin();
+    }
+
+    private void hideProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.GONE);
+        mCircleProgressView.stopSpinning();
+    }
+
 }

@@ -16,25 +16,17 @@ import com.hotbitmapgg.ohmybilibili.R;
  * <p/>
  * 首页分区Adapter
  */
-public class HomeMoreLayoutAdapter extends BaseAdapter
+public class HomePartitionLayoutAdapter extends BaseAdapter
 {
 
+    private Context context;
+
     private String[] itemNames = new String[]{
-            "直播",
-            "番剧",
-            "动画",
-            "音乐",
-            "舞蹈",
-            "游戏",
-            "科技",
-            "生活",
-            "鬼畜",
-            "时尚",
-            "广告",
-            "娱乐",
-            "电影",
-            "电视剧",
-            "游戏中心",
+            "直播", "番剧", "动画",
+            "音乐", "舞蹈", "游戏",
+            "科技", "生活", "鬼畜",
+            "时尚", "广告", "娱乐",
+            "电影", "电视剧", "游戏中心",
             };
 
     private int[] itemIcons = new int[]{
@@ -55,9 +47,8 @@ public class HomeMoreLayoutAdapter extends BaseAdapter
             R.drawable.ic_category_game_center
     };
 
-    private Context context;
 
-    public HomeMoreLayoutAdapter(Context context)
+    public HomePartitionLayoutAdapter(Context context)
     {
 
         this.context = context;
@@ -66,21 +57,21 @@ public class HomeMoreLayoutAdapter extends BaseAdapter
     @Override
     public int getCount()
     {
-        // TODO Auto-generated method stub
+
         return itemNames.length;
     }
 
     @Override
     public Object getItem(int position)
     {
-        // TODO Auto-generated method stub
+
         return itemIcons[position];
     }
 
     @Override
     public long getItemId(int position)
     {
-        // TODO Auto-generated method stub
+
         return position;
     }
 

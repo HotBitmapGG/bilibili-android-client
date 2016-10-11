@@ -202,11 +202,4 @@ public class VideoInfoFragment extends RxLazyFragment
         intent.putExtra(Intent.EXTRA_TEXT, "来自「哔哩哔哩」的分享:" + mVideoDetails.getDescription());
         startActivity(Intent.createChooser(intent, mVideoDetails.getTitle()));
     }
-
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextPaint;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -14,10 +15,7 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.pager.PartitionMorePagerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreTitle;
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreType;
-
-import java.util.List;
+import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
 
 import butterknife.Bind;
 
@@ -27,7 +25,7 @@ import butterknife.Bind;
  * <p/>
  * 分区详情界面
  */
-public class PartitionMoreActivity extends RxAppCompatBaseActivity
+public class PartitionDetailsActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -39,22 +37,16 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
     @Bind(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTab;
 
-    private PartitionMorePagerAdapter mAdapter;
+    private static final String EXTRA_PARTITION = "extra_partition";
 
-    private List<PartitionMoreType> titles;
-
-    private String typeTitle;
-
-    private static final String EXTRA_TITLES = "titles";
-
-    private static final String EXTRA_TYPE_TITLE = "typeTitle";
+    private PartitionInfo.DataBean mDataBean;
 
 
     @Override
     public int getLayoutId()
     {
 
-        return R.layout.activity_partition_more;
+        return R.layout.activity_partition_details;
     }
 
     @Override
@@ -62,13 +54,20 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
     {
 
         Bundle mBundle = getIntent().getExtras();
-        PartitionMoreTitle mPartitionMoreTitle = mBundle.getParcelable(EXTRA_TITLES);
-        if (mPartitionMoreTitle != null)
-            titles = mPartitionMoreTitle.titles;
-        typeTitle = mBundle.getString(EXTRA_TYPE_TITLE);
+        if (mBundle != null)
+        {
+            mDataBean = mBundle.getParcelable(EXTRA_PARTITION);
+        }
 
+        initViewPager();
+    }
 
-        mAdapter = new PartitionMorePagerAdapter(getSupportFragmentManager(), this.titles);
+    private void initViewPager()
+    {
+
+        PartitionMorePagerAdapter mAdapter = new PartitionMorePagerAdapter(
+                getSupportFragmentManager(), mDataBean.getChildren());
+        mViewPager.setOffscreenPageLimit(mDataBean.getChildren().size());
         mViewPager.setAdapter(mAdapter);
         mSlidingTab.setViewPager(mViewPager);
         //动态设置tabView的下划线宽度
@@ -101,7 +100,7 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setTitle(typeTitle);
+        mToolbar.setTitle(mDataBean.getName());
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
@@ -117,24 +116,30 @@ public class PartitionMoreActivity extends RxAppCompatBaseActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        getMenuInflater().inflate(R.menu.menu_partition, menu);
+        return true;
+    }
 
     public void measureTabLayoutTextWidth(int position)
     {
 
-        String titleName = titles.get(position).getTitleName();
+        String titleName = mDataBean.getChildren().get(position).getName();
         TextView titleView = mSlidingTab.getTitleView(position);
         TextPaint paint = titleView.getPaint();
         float v = paint.measureText(titleName);
         mSlidingTab.setIndicatorWidth(v / 3);
     }
 
-    public static void launch(Activity activity, PartitionMoreTitle titles, String typeTitle)
+    public static void launch(Activity activity, PartitionInfo.DataBean dataBean)
     {
 
-        Intent mIntent = new Intent(activity, PartitionMoreActivity.class);
+        Intent mIntent = new Intent(activity, PartitionDetailsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable(EXTRA_TITLES, titles);
-        bundle.putString(EXTRA_TYPE_TITLE, typeTitle);
+        bundle.putParcelable(EXTRA_PARTITION, dataBean);
         mIntent.putExtras(bundle);
         activity.startActivity(mIntent);
     }

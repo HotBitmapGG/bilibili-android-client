@@ -56,10 +56,4 @@ public class ConsumeHistoryFragment extends RxLazyFragment
         mCustomEmptyView.setEmptyText("你还没有消费记录哟");
         mCustomEmptyView.hideReloadButton();
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

@@ -56,10 +56,4 @@ public class HistoryFragment extends RxLazyFragment
         mCustomEmptyView.setEmptyText("暂时还没有观看记录哟");
         mCustomEmptyView.hideReloadButton();
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

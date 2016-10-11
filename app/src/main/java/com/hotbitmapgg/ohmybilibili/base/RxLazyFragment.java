@@ -150,13 +150,11 @@ public abstract class RxLazyFragment extends RxFragment
         lazyLoad();
     }
 
-    protected abstract void lazyLoad();
+    protected void lazyLoad() {}
 
-    protected void onInvisible()
-    {
+    protected void onInvisible() {}
 
-    }
-
+    @SuppressWarnings("unchecked")
     public <T extends View> T $(int id)
     {
 

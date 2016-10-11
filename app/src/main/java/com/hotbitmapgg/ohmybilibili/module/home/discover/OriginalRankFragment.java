@@ -137,10 +137,4 @@ public class OriginalRankFragment extends RxLazyFragment
 
         mRecyclerView.setOnTouchListener((v, event) -> mIsRefreshing);
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

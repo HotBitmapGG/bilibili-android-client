@@ -231,10 +231,4 @@ public class HomeDiscoverFragment extends RxLazyFragment
 
         startActivity(new Intent(getActivity(), TotalStationSearchActivity.class));
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

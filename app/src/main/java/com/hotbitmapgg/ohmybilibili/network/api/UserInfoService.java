@@ -19,20 +19,11 @@ public interface UserInfoService
 {
 
     /**
-     * 根据用户名查询
-     *
-     * @param name
-     * @return
-     */
-    @GET("userinfo")
-    Observable<UserInfo> getUserInfoByName(@Query("user") String name);
-
-    /**
      * 根据用户ID查询
      *
-     * @param uid
+     * @param mid
      * @return
      */
-    @GET("userinfo")
-    Observable<UserInfo> getUserInfoById(@Query("uid") int uid);
+    @GET("user/{mid}")
+    Observable<UserInfo> getUserInfoById(@Query("mid") int mid);
 }

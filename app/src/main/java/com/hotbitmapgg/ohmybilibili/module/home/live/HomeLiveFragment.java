@@ -54,7 +54,7 @@ public class HomeLiveFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_live;
+        return R.layout.fragment_home_live;
     }
 
 

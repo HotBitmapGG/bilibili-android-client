@@ -166,11 +166,5 @@ public class VideoCommentFragment extends RxLazyFragment
         mAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }
 

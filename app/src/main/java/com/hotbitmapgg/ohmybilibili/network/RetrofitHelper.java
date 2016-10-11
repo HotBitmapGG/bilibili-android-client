@@ -18,6 +18,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
 import com.hotbitmapgg.ohmybilibili.network.api.NewBangumiSerialService;
 import com.hotbitmapgg.ohmybilibili.network.api.OriginalRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
+import com.hotbitmapgg.ohmybilibili.network.api.PartitionTypeService;
 import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.SeasonNewBangumiService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
@@ -314,7 +315,7 @@ public class RetrofitHelper
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
+                .baseUrl(API_BASE_URL)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -581,6 +582,24 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(ActivityCenterService.class);
+    }
+
+    /**
+     * 获取全部分区数据类型
+     *
+     * @return
+     */
+    public static PartitionTypeService getPartitionTypesApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(APP_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(PartitionTypeService.class);
     }
 
 
