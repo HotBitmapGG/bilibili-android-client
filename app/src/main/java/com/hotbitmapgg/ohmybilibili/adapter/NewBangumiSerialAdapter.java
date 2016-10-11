@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
+import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class NewBangumiSerialAdapter extends AbsRecyclerViewAdapter
                     .into(itemViewHolder.mImage);
 
             itemViewHolder.mTitle.setText(listBean.getTitle());
-            itemViewHolder.mPlay.setText(listBean.getPlay_count() + "人在看");
+            itemViewHolder.mPlay.setText(NumberUtil.converString(listBean.getPlay_count()) + "人在看");
             itemViewHolder.mUpdate.setText("更新至第" + listBean.getBgmcount() + "话");
         }
         super.onBindViewHolder(holder, position);

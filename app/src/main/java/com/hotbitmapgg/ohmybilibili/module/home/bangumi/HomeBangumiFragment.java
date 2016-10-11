@@ -265,9 +265,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         TextView mNewBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_new);
         TextView mWeekBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_week);
         TextView mIndexBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_index);
-        //屏蔽掉追番 番剧放送表 后期会重做
-//        mNewBangumiItem.setOnClickListener(v -> WeekDayBangumiActivity.launch(getActivity(), "三次元新番", 3));
-//        mWeekBangumiItem.setOnClickListener(v -> WeekDayBangumiActivity.launch(getActivity(), "二次元新番", 2));
+        mWeekBangumiItem.setOnClickListener(v -> startActivity(new Intent(getActivity(), BangumiScheduleActivity.class)));
         mIndexBangumiItem.setOnClickListener(v -> startActivity(new Intent(getActivity(), BangumiIndexActivity.class)));
         TextView mAllSerial = (TextView) headView_item.findViewById(R.id.tv_all_serial);
         mAllSerial.setOnClickListener(v -> startActivity(new Intent(getActivity(), NewBangumiSerialActivity.class)));

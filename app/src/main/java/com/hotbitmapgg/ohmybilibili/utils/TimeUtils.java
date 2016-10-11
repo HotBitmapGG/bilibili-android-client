@@ -178,4 +178,24 @@ public class TimeUtils
         }
         return ftime;
     }
+
+    /**
+     * 根据日期获取当期是周几
+     *
+     * @param date
+     * @return
+     */
+    public static String getWeek(Date date)
+    {
+
+        String[] weeks = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int week_index = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        if (week_index < 0)
+        {
+            week_index = 0;
+        }
+        return weeks[week_index];
+    }
 }

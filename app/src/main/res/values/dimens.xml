@@ -96,7 +96,7 @@
 
     <!--bangumi recomend size-->
     <dimen name="bangumi_recommend_image_height">140dp</dimen>
-    <dimen name="bangumi_recommend_image_big_height">150dp</dimen>
+    <dimen name="bangumi_recommend_image_big_height">170dp</dimen>
     <dimen name="bangumi_recommend_title_height">50dp</dimen>
     <dimen name="bangumi_recommend_title_margin">5dp</dimen>
     <dimen name="bangumi_recommend_image_size">22dp</dimen>

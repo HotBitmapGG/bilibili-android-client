@@ -28,7 +28,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoDetailsService;
-import com.hotbitmapgg.ohmybilibili.network.api.WeekDayBangumiService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
 
 import java.io.File;
 import java.io.IOException;
@@ -287,21 +287,21 @@ public class RetrofitHelper
 
 
     /**
-     * 获取番剧放送表数据
+     * 获取番剧时间表数据
      *
      * @return
      */
-    public static WeekDayBangumiService getWeekDayBangumiApi()
+    public static BangumiScheduleService getBangumiScheduleApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
+                .baseUrl(BANGUMI_BASE_URL)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        return retrofit.create(WeekDayBangumiService.class);
+        return retrofit.create(BangumiScheduleService.class);
     }
 
 

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/default_general_margin"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/card_view_background"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation">
+
+
+        <ImageView
+            android:id="@+id/item_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bangumi_recommend_image_big_height"
+            android:scaleType="center" />
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_layout_height"
+            android:layout_gravity="bottom"
+            android:background="@drawable/shadow_gradient_reserve">
+
+            <TextView
+                android:id="@+id/item_time_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:drawablePadding="@dimen/default_tiny_padding"
+                android:drawableStart="@drawable/bangumi_timeline_clock"
+                android:gravity="start"
+                android:padding="@dimen/default_tiny_padding"
+                android:textColor="@color/white"
+                android:textSize="@dimen/default_tiny_text_size" />
+
+        </FrameLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:padding="@dimen/default_tiny_padding"
+        android:textColor="@color/font_normal"
+        android:textSize="@dimen/default_small_text_size" />
+
+    <TextView
+        android:id="@+id/item_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/default_tiny_padding"
+        android:paddingStart="@dimen/default_tiny_padding"
+        android:textColor="@color/black_alpha_45"
+        android:textSize="@dimen/default_small_text_size" />
+</LinearLayout>
+

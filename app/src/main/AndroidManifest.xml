@@ -93,9 +93,9 @@
             android:screenOrientation="portrait" />
 
 
-        <!--番剧专题界面-->
+        <!--番剧时间表界面-->
         <activity
-            android:name=".module.home.bangumi.WeekDayBangumiActivity"
+            android:name=".module.home.bangumi.BangumiScheduleActivity"
             android:screenOrientation="portrait" />
 
 
