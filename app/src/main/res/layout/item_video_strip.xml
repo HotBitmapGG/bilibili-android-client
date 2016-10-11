@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/video_info_count_text_margin_start"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@color/black_alpha_45"
                 android:textSize="@dimen/default_tiny_text_size" />
         </LinearLayout>

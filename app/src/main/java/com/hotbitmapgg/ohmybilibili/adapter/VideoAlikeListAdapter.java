@@ -27,10 +27,13 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 
     private List<UserRecommend.AuthorData> authorRecommendList;
 
-    public VideoAlikeListAdapter(RecyclerView recyclerView, List<UserRecommend.AuthorData> authorRecommendList)
+    private String upName;
+
+    public VideoAlikeListAdapter(RecyclerView recyclerView, List<UserRecommend.AuthorData> authorRecommendList, String upName)
     {
 
         super(recyclerView);
+        this.upName = upName;
         this.authorRecommendList = authorRecommendList;
     }
 
@@ -63,6 +66,7 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
             itemViewHolder.mVideoTitle.setText(authorData.title);
             itemViewHolder.mVideoPlayNum.setText(String.valueOf(authorData.click));
             itemViewHolder.mVideoReviewNum.setText(String.valueOf(authorData.video_review));
+            itemViewHolder.mUpName.setText(upName);
         }
 
         super.onBindViewHolder(holder, position);
@@ -86,6 +90,8 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 
         TextView mVideoReviewNum;
 
+        TextView mUpName;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -95,6 +101,7 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
             mVideoTitle = $(R.id.item_title);
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewNum = $(R.id.item_review);
+            mUpName = $(R.id.item_user_name);
         }
     }
 }

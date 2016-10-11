@@ -126,7 +126,7 @@ public class VideoInfoFragment extends RxLazyFragment
         mFavNum.setText(mVideoDetails.getFavorites());
         mCoinNum.setText(mVideoDetails.getCoins());
 
-        //设置视频详情数据
+        //设置视频tags
         setVideoTags();
         //获取相关视频列表
         getVideoRelateds();
@@ -178,7 +178,8 @@ public class VideoInfoFragment extends RxLazyFragment
     private void finishTask()
     {
 
-        VideoAlikeListAdapter mVideoAlikeListAdapter = new VideoAlikeListAdapter(mRecyclerView, authorRecommendList);
+        VideoAlikeListAdapter mVideoAlikeListAdapter = new VideoAlikeListAdapter(
+                mRecyclerView, authorRecommendList,mVideoDetails.getAuthor());
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
