@@ -1,13 +1,13 @@
 package com.hotbitmapgg.ohmybilibili.module.user;
 
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.UserChaseBangumiAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.UserCoinsVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserCoinsInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 
 import java.util.ArrayList;
@@ -18,13 +18,13 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by hcc on 2016/10/12 18:16
+ * Created by hcc on 2016/10/12 18:18
  * 100332338@qq.com
  * <p>
- * 用户详情界面的追番
+ * 用户详情界面的投币
  */
 
-public class UserChaseBangumiFragment extends RxLazyFragment
+public class UserCoinsVideoFragment extends RxLazyFragment
 {
 
     @Bind(R.id.recycle)
@@ -34,14 +34,14 @@ public class UserChaseBangumiFragment extends RxLazyFragment
 
     private static final String EXTRA_MID = "extra_mid";
 
-    private List<UserChaseBangumiInfo.DataBean.ResultBean> userChaseBangumis = new ArrayList<>();
+    private List<UserCoinsInfo.DataBean.ListBean> userCoins = new ArrayList<>();
 
-    private UserChaseBangumiAdapter mAdapter;
+    private UserCoinsVideoAdapter mAdapter;
 
-    public static UserChaseBangumiFragment newInstance(int mid)
+    public static UserCoinsVideoFragment newInstance(int mid)
     {
 
-        UserChaseBangumiFragment mFragment = new UserChaseBangumiFragment();
+        UserCoinsVideoFragment mFragment = new UserCoinsVideoFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(EXTRA_MID, mid);
         mFragment.setArguments(bundle);
@@ -52,7 +52,7 @@ public class UserChaseBangumiFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_user_chase_bangumi;
+        return R.layout.fragment_user_coins;
     }
 
     @Override
@@ -62,30 +62,29 @@ public class UserChaseBangumiFragment extends RxLazyFragment
         mid = getArguments().getInt(EXTRA_MID);
 
         initRecyclerView();
-        getUserChaseBangumis();
+        getUserCoins();
     }
 
     private void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mAdapter = new UserChaseBangumiAdapter(mRecyclerView, userChaseBangumis);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAdapter = new UserCoinsVideoAdapter(mRecyclerView, userCoins);
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void getUserChaseBangumis()
+    private void getUserCoins()
     {
 
-        RetrofitHelper.getUserChaseBangumiApi()
-                .getUserChaseBangumis(mid)
+        RetrofitHelper.getUserCoinsVideoApi()
+                .getUserCoinVideos(mid)
                 .compose(bindToLifecycle())
-                .map(userChaseBangumiInfo -> userChaseBangumiInfo.getData().getResult())
+                .map(userCoinsInfo -> userCoinsInfo.getData().getList())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(resultBeans -> {
-
-                    userChaseBangumis.addAll(resultBeans);
+                .subscribe(listBeans -> {
+                    userCoins.addAll(listBeans);
                     finishTask();
                 }, throwable -> {
 

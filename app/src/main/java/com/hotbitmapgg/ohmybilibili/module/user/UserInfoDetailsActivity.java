@@ -27,7 +27,6 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserDetailsInfo;
 import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
@@ -37,7 +36,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -99,8 +97,6 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
 
     private int mid;
 
-    private int mUserContributeCount;
-
     private String avatar_url;
 
     private UserDetailsInfo mUserDetailsInfo;
@@ -146,8 +142,6 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
 
         //获取用户详情
         getUserInfo();
-        //获取用户投稿视频数量
-        getUserContributeVideos();
     }
 
 
@@ -286,44 +280,31 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         initViewPager();
     }
 
-    private void getUserContributeVideos()
-    {
-
-        RetrofitHelper.getUserContributeVideoApi()
-                .getUserContributeVideos(mid)
-                .compose(bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userContributeInfo -> {
-
-                    mUserContributeCount = userContributeInfo.getData().getCount();
-                }, throwable -> {
-
-                    LogUtil.all(throwable.getMessage());
-                });
-    }
-
     private void initViewPager()
     {
 
         titles.add("主页");
-        titles.add("投稿" + " " + mUserContributeCount);
+        titles.add("投稿");
         titles.add("收藏");
         titles.add("追番");
         titles.add("兴趣圈");
-//        titles.add("投币");
-//        titles.add("游戏");
+        titles.add("投币");
+        titles.add("游戏");
 
         UserHomePageFragment userHomePageFragment = UserHomePageFragment.newInstance();
         UserContributeFragment userContributeFragment = UserContributeFragment.newInstance(mid);
         UserFavoritesFragment userFavoritesFragment = UserFavoritesFragment.newInstance(mid);
         UserChaseBangumiFragment userChaseBangumiFragment = UserChaseBangumiFragment.newInstance(mid);
         UserInterestQuanFragment userInterestQuanFragment = UserInterestQuanFragment.newInstance(mid);
+        UserCoinsVideoFragment userCoinsVideoFragment = UserCoinsVideoFragment.newInstance(mid);
+        UserPlayGameFragment userPlayGameFragment = UserPlayGameFragment.newInstance(mid);
         fragments.add(userHomePageFragment);
         fragments.add(userContributeFragment);
         fragments.add(userFavoritesFragment);
         fragments.add(userChaseBangumiFragment);
         fragments.add(userInterestQuanFragment);
+        fragments.add(userCoinsVideoFragment);
+        fragments.add(userPlayGameFragment);
 
         UserInfoDetailsPagerAdapter mAdapter = new UserInfoDetailsPagerAdapter(getSupportFragmentManager(), titles, fragments);
         mViewPager.setOffscreenPageLimit(fragments.size());
@@ -391,15 +372,6 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
             mUserLv.setImageResource(R.drawable.ic_lv6);
         }
     }
-
-    @OnClick(R.id.tv_fans)
-    void startUpFans()
-    {
-        //查看Up主的粉丝
-        UserFansActivity.launch(UserInfoDetailsActivity.this,
-                mUserDetailsInfo.getCard().getMid(), mUserDetailsInfo.getCard().getName());
-    }
-
 
     public static void launch(Activity activity, String name, int mid, String avatar_url)
     {

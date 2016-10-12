@@ -18,5 +18,7 @@ public interface UserContributeVideoService
 {
 
     @GET("ajax/member/getSubmitVideos")
-    Observable<UserContributeInfo> getUserContributeVideos(@Query("mid") int mid);
+    Observable<UserContributeInfo> getUserContributeVideos(@Query("mid") int mid,
+                                                           @Query("page") int page,
+                                                           @Query("pagesize") int pageSize);
 }

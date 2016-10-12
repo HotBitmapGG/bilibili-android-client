@@ -11,7 +11,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.UserContributeVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
@@ -53,7 +53,7 @@ public class UserContributeFragment extends RxLazyFragment
 
     private View loadMoreView;
 
-    private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
+    private List<UserContributeInfo.DataBean.VlistBean> userVideoList = new ArrayList<>();
 
 
     public static UserContributeFragment newInstance(int mid)
@@ -88,19 +88,18 @@ public class UserContributeFragment extends RxLazyFragment
     private void getUserVideoList()
     {
 
-        RetrofitHelper.getUserUpVideoListApi()
-                .getUserUpVideos(mid, pageNum, pageSize)
+        RetrofitHelper.getUserContributeVideoApi()
+                .getUserContributeVideos(mid, pageNum, pageSize)
                 .compose(this.bindToLifecycle())
+                .map(userContributeInfo -> userContributeInfo.getData().getVlist())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userUpVideoInfo -> {
+                .subscribe(listBeans -> {
 
-                    List<UserUpVideoInfo.VlistBean> vlist =
-                            userUpVideoInfo.getVlist();
-                    if (vlist.size() < pageSize)
+                    if (listBeans.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
 
-                    userVideoList.addAll(vlist);
+                    userVideoList.addAll(listBeans);
                     finishTask();
                 }, throwable -> {
 

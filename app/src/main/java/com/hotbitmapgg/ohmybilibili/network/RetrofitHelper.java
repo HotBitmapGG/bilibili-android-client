@@ -11,7 +11,6 @@ import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
 import com.hotbitmapgg.ohmybilibili.network.api.BiliBiliLiveService;
-import com.hotbitmapgg.ohmybilibili.network.api.FansService;
 import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.HotSearchTagService;
 import com.hotbitmapgg.ohmybilibili.network.api.Html5VideoUrlService;
@@ -27,10 +26,11 @@ import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
 import com.hotbitmapgg.ohmybilibili.network.api.TopicCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserChaseBangumiService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserCoinsVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserContributeVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoDetailsService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInterestQuanService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserPlayGameService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoDetailsService;
 
@@ -239,24 +239,6 @@ public class RetrofitHelper
         return retrofit.create(PartitionMoreService.class);
     }
 
-    /**
-     * 获取用户上传的视频
-     *
-     * @return
-     */
-    public static UserUpVideoService getUserUpVideoListApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(UserUpVideoService.class);
-    }
-
 
     /**
      * 获取HTML5视频播放地址
@@ -314,24 +296,6 @@ public class RetrofitHelper
         return retrofit.create(BangumiScheduleService.class);
     }
 
-
-    /**
-     * 获取用户粉丝列表
-     *
-     * @return
-     */
-    public static FansService getUserFansApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(FansService.class);
-    }
 
     /**
      * 获取用户详情数据
@@ -612,7 +576,7 @@ public class RetrofitHelper
     }
 
     /**
-     * 获取用户投稿视频数量
+     * 获取用户投稿视频数据
      *
      * @return
      */
@@ -664,6 +628,42 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(UserInterestQuanService.class);
+    }
+
+    /**
+     * 获取用户投币视频数据
+     *
+     * @return
+     */
+    public static UserCoinsVideoService getUserCoinsVideoApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(USER_DETAILS_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(UserCoinsVideoService.class);
+    }
+
+    /**
+     * 获取用户所玩游戏数据
+     *
+     * @return
+     */
+    public static UserPlayGameService getUserPlayGameApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(USER_DETAILS_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(UserPlayGameService.class);
     }
 
 

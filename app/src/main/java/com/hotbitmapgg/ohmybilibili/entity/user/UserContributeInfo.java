@@ -6,7 +6,7 @@ import java.util.List;
  * Created by hcc on 2016/10/12 17:11
  * 100332338@qq.com
  * <p>
- * 用户投稿视频模型类 用于获取用户投稿数量
+ * 用户投稿视频模型类
  */
 
 public class UserContributeInfo

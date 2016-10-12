@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserCoinsInfo;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 
 import java.util.List;
@@ -22,16 +22,16 @@ import java.util.List;
  * <p/>
  * 用户投稿视频adapter
  */
-public class UserContributeVideoAdapter extends AbsRecyclerViewAdapter
+public class UserCoinsVideoAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<UserContributeInfo.DataBean.VlistBean> userVideoList;
+    private List<UserCoinsInfo.DataBean.ListBean> userCoins;
 
-    public UserContributeVideoAdapter(RecyclerView recyclerView, List<UserContributeInfo.DataBean.VlistBean> userVideoList)
+    public UserCoinsVideoAdapter(RecyclerView recyclerView, List<UserCoinsInfo.DataBean.ListBean> userCoins)
     {
 
         super(recyclerView);
-        this.userVideoList = userVideoList;
+        this.userCoins = userCoins;
     }
 
     @Override
@@ -50,20 +50,20 @@ public class UserContributeVideoAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            UserContributeInfo.DataBean.VlistBean vlistBean = userVideoList.get(position);
+            UserCoinsInfo.DataBean.ListBean listBean = userCoins.get(position);
 
             Glide.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(vlistBean.getPic()))
+                    .load(UrlHelper.getClearVideoPreviewUrl(listBean.getPic()))
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mVideoPic);
 
-            itemViewHolder.mVideoTitle.setText(vlistBean.getTitle());
-            itemViewHolder.mVideoUserInfo.setText(vlistBean.getAuthor());
-            itemViewHolder.mVideoPlayNum.setText(String.valueOf(vlistBean.getPlay()));
-            itemViewHolder.mVideoReviewNum.setText(String.valueOf(vlistBean.getVideo_review()));
+            itemViewHolder.mVideoTitle.setText(listBean.getTitle());
+            itemViewHolder.mVideoUserInfo.setText(listBean.getOwner().getName());
+            itemViewHolder.mVideoPlayNum.setText(String.valueOf(listBean.getStat().getView()));
+            itemViewHolder.mVideoReviewNum.setText(String.valueOf(listBean.getStat().getDanmaku()));
         }
         super.onBindViewHolder(holder, position);
     }
@@ -72,10 +72,10 @@ public class UserContributeVideoAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return userVideoList.size();
+        return userCoins.size();
     }
 
-    public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
+    public class ItemViewHolder extends ClickableViewHolder
     {
 
         ImageView mVideoPic;
