@@ -8,7 +8,7 @@ import java.util.List;
  * <p/>
  * 用户推荐视频数据
  */
-public class UserRecommend
+public class UserRecommendVideoInfo
 {
 
     public int code;

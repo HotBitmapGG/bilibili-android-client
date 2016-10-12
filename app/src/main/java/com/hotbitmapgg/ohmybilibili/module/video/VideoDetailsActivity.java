@@ -125,7 +125,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         mFAB.setOnClickListener(v -> VideoPlayerActivity.launch(VideoDetailsActivity.this, av));
 
         mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> setViewsTranslation(verticalOffset));
-
         mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeEvent()
         {
 

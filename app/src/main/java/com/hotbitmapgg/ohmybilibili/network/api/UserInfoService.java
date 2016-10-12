@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserDetailsInfo;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -18,5 +18,5 @@ public interface UserInfoService
 {
 
     @GET("api/member/getCardByMid")
-    Observable<UserInfo> getUserInfoById(@Query("mid") int mid);
+    Observable<UserDetailsInfo> getUserInfoById(@Query("mid") int mid);
 }

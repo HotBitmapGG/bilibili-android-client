@@ -7,6 +7,7 @@
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
@@ -14,99 +15,57 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/appbar_parallax_max_height"
+            android:layout_height="@dimen/user_info_layout_height"
             android:fitsSystemWindows="true"
-            app:collapsedTitleTextAppearance="@style/ToolBar.TitleText"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:collapsedTitleTextAppearance="@style/ToolBar.TitleText"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle.About"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <FrameLayout
+            <LinearLayout
                 android:id="@+id/user_appbar_container"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/appbar_parallax_max_height"
-                android:background="@color/background_dark"
-                android:fitsSystemWindows="true">
+                android:layout_height="match_parent"
+                android:background="@color/card_view_background"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/user_pic"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/icon_bili_background" />
+                    android:layout_height="match_parent">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/shadow_gradient_height"
-                    android:layout_gravity="top"
-                    android:background="@drawable/shadow_gradient" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_gravity="bottom"
-                    android:background="@drawable/shadow_normal_reserve" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:background="@drawable/shadow_gradient_reserve"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="@dimen/user_info_avatar_padding"
-                        android:layout_marginRight="@dimen/user_info_avatar_padding"
-                        android:layout_marginTop="@dimen/default_general_margin"
-                        android:orientation="vertical">
-
-
-                        <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
-                            android:id="@+id/user_avatar_view"
-                            android:layout_width="@dimen/user_info_avatar_size"
-                            android:layout_height="@dimen/user_info_avatar_size"
-                            app:border_color="@android:color/white"
-                            app:border_width="@dimen/circle_default_width"
-                            tools:src="@drawable/ico_user_default" />
-
-                        <ImageView
-                            android:id="@+id/user_lv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="@dimen/default_general_margin" />
-
-                    </LinearLayout>
-
+                    <ImageView
+                        android:id="@+id/user_pic"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/user_info_top_image_height"
+                        android:background="@drawable/ic_zone_background" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:layout_marginEnd="@dimen/default_general_margin"
+                        android:layout_marginStart="@dimen/default_general_margin"
+                        android:layout_marginTop="@dimen/user_info_details_margin_top"
+                        android:background="@color/card_view_background"
                         android:gravity="center_vertical"
-                        android:orientation="vertical"
-                        android:paddingEnd="@dimen/user_info_details_layout_horizontal_padding"
-                        android:paddingStart="@dimen/user_info_details_layout_horizontal_padding"
-                        android:paddingTop="@dimen/user_info_details_layout_horizontal_padding">
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingEnd="@dimen/title_margin_small"
-                            android:paddingStart="@dimen/title_margin_small">
+                            android:layout_marginTop="@dimen/default_general_margin"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/user_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                android:textColor="@color/white" />
+                                android:textColor="@color/font_normal"
+                                android:textSize="@dimen/default_big_text_size" />
 
                             <Space
                                 android:layout_width="@dimen/default_tiny_padding"
@@ -116,29 +75,24 @@
                                 android:id="@+id/user_sex"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
+
+                            <Space
+                                android:layout_width="@dimen/default_tiny_padding"
+                                android:layout_height="wrap_content" />
+
+                            <ImageView
+                                android:id="@+id/user_lv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
                         </LinearLayout>
 
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/default_tiny_margin" />
-
-                        <TextView
-                            android:id="@+id/user_desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="3"
-                            android:paddingEnd="@dimen/title_margin_small"
-                            android:paddingStart="@dimen/title_margin_small"
-                            android:textColor="@color/white" />
 
                         <LinearLayout
                             android:id="@+id/author_verified_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_general_margin"
                             android:orientation="horizontal"
-                            android:paddingEnd="@dimen/title_margin_small"
-                            android:paddingStart="@dimen/title_margin_small"
                             android:visibility="gone">
 
                             <ImageView
@@ -158,50 +112,119 @@
 
                         </LinearLayout>
 
-
                         <LinearLayout
-                            android:id="@+id/number_bar"
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/user_info_details_number_bar_height"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_general_margin"
+                            android:gravity="center_vertical"
                             android:orientation="horizontal"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
                             <TextView
                                 android:id="@+id/tv_follow_users"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/default_tiny_padding"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:textColor="@color/font_normal"
+                                android:textSize="@dimen/default_small_text_size" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/default_general_margin"
                                 android:background="?attr/selectableItemBackground"
                                 android:clickable="true"
                                 android:gravity="center"
-                                android:paddingEnd="@dimen/user_info_details_number_padding"
-                                android:paddingStart="@dimen/user_info_details_number_padding"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                                android:textColor="@color/white" />
+                                android:text="@string/section_focus"
+                                android:textColor="@color/black_alpha_45"
+                                android:textSize="@dimen/default_small_text_size" />
 
-                            <View
-                                android:layout_width="@dimen/user_info_details_number_divider_size"
-                                android:layout_height="@dimen/default_general_margin"
-                                android:layout_marginTop="@dimen/user_info_details_number_divider_margin"
-                                android:background="@color/white" />
 
                             <TextView
                                 android:id="@+id/tv_fans"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/default_tiny_padding"
+                                android:clickable="true"
+                                android:gravity="center"
+                                android:textColor="@color/font_normal"
+                                android:textSize="@dimen/default_small_text_size" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:background="?attr/selectableItemBackground"
                                 android:clickable="true"
                                 android:gravity="center"
-                                android:paddingEnd="@dimen/user_info_details_number_padding"
-                                android:paddingStart="@dimen/user_info_details_number_padding"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                                android:textColor="@color/white" />
+                                android:text="@string/fans"
+                                android:textColor="@color/black_alpha_45"
+                                android:textSize="@dimen/default_small_text_size" />
                         </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
 
-            </FrameLayout>
+                        <TextView
+                            android:id="@+id/user_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="3"
+                            android:paddingBottom="@dimen/default_general_margin"
+                            android:paddingTop="@dimen/default_general_margin"
+                            android:textColor="@color/black_alpha_45"
+                            android:textSize="@dimen/default_small_text_size" />
+
+
+                    </LinearLayout>
+
+
+                    <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                        android:id="@+id/user_avatar_view"
+                        android:layout_width="@dimen/user_info_avatar_size"
+                        android:layout_height="@dimen/user_info_avatar_size"
+                        android:layout_marginStart="@dimen/default_grow_margin"
+                        android:layout_marginTop="@dimen/user_info_avatar_margin_top"
+                        app:border_color="@android:color/white"
+                        app:border_width="@dimen/circle_default_width"
+                        tools:src="@drawable/ico_user_default" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/default_general_margin"
+                        android:layout_marginTop="@dimen/user_info_button_margin_top"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/default_general_margin"
+                            android:background="@drawable/btn_pin_bg"
+                            android:gravity="center"
+                            android:text="@string/direct_messages"
+                            android:textColor="@color/focus_text_color"
+                            android:textSize="@dimen/default_small_text_size" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/btn_pin_solid_bg"
+                            android:gravity="center"
+                            android:text="@string/add_follow"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/default_small_text_size" />
+
+                    </LinearLayout>
+
+
+                </FrameLayout>
+
+            </LinearLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -209,96 +232,40 @@
                 android:layout_height="?attr/actionBarSize"
                 android:minHeight="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:titleTextAppearance="@style/ToolBar.TitleText"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:titleTextAppearance="@style/ToolBar.TitleText" />
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:layout_gravity="bottom"
+            android:background="@color/gray_light" />
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/sliding_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tab_layout_small_height"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            app:tl_indicator_color="@color/colorPrimary"
+            app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_tiny_radius"
+            app:tl_indicator_height="@dimen/tab_indicator_small_height"
+            app:tl_textSelectColor="@color/colorPrimary"
+            app:tl_textUnselectColor="@color/font_normal" />
+
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/default_tiny_margin">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
-                    android:id="@+id/circle_progress"
-                    android:layout_width="@dimen/circle_progress_view_default_size"
-                    android:layout_height="@dimen/circle_progress_view_default_size"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/circle_progress_view_default_margin_top"
-                    app:matProg_barColor="?attr/colorPrimary"
-                    app:matProg_barWidth="@dimen/circle_progress_view_default_border_width" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:paddingLeft="@dimen/user_info_padding"
-                        android:paddingRight="@dimen/user_info_padding"
-                        android:paddingTop="@dimen/user_info_padding">
-
-                        <TextView
-                            android:id="@+id/tv_up_contributor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerInParent="true"
-                            android:singleLine="true"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                            android:textColor="@color/font_normal"
-                            android:textSize="@dimen/default_big_text_size"
-                            android:visibility="gone" />
-
-
-                        <TextView
-                            android:id="@+id/btn_go_more"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerInParent="true"
-                            android:background="@drawable/btn_more_bg"
-                            android:text="@string/goto_look"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/default_tiny_text_size"
-                            android:visibility="gone" />
-
-
-                    </RelativeLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:overScrollMode="never"
-                        android:paddingTop="@dimen/activity_vertical_margin"
-                        android:scrollbars="none" />
-
-
-                </LinearLayout>
-            </FrameLayout>
-
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>
 

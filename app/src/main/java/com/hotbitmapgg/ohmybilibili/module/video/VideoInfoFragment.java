@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.VideoAlikeListAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommendVideoInfo;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.UserTagView;
@@ -71,7 +71,7 @@ public class VideoInfoFragment extends RxLazyFragment
 
     private static final String EXTRA_INFO = "extra_info";
 
-    private List<UserRecommend.AuthorData> authorRecommendList = new ArrayList<>();
+    private List<UserRecommendVideoInfo.AuthorData> authorRecommendList = new ArrayList<>();
 
     private VideoDetails mVideoDetails;
 
@@ -187,7 +187,7 @@ public class VideoInfoFragment extends RxLazyFragment
         mVideoAlikeListAdapter.setOnItemClickListener((position, holder) -> {
 
             getActivity().finish();
-            UserRecommend.AuthorData authorData = authorRecommendList.get(position);
+            UserRecommendVideoInfo.AuthorData authorData = authorRecommendList.get(position);
             VideoDetailsActivity.launch(getActivity(), authorData.aid, authorData.cover);
         });
     }

@@ -84,7 +84,7 @@
                 android:ellipsize="start"
                 android:hint="@string/login_hint_account"
                 android:inputType="textVisiblePassword"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@color/black_80"
                 android:textColorHint="@color/gray_20"
                 android:textSize="@dimen/default_medium_text_size" />
@@ -116,7 +116,7 @@
             android:drawableStart="@drawable/ic_login_password_default"
             android:hint="@string/login_hint_password"
             android:inputType="textPassword"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textColor="@color/black_80"
             android:textColorHint="@color/gray_20"
             android:textSize="@dimen/default_medium_text_size" />

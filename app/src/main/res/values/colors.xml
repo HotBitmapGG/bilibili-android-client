@@ -35,7 +35,7 @@
     <color name="refresh_pink_background">#fb7299</color>
     <color name="bili_logo_pink_color">#fb7299</color>
     <color name="focus_text_color">#fb7299</color>
-    <color name="focus_bg_color">@color/white</color>
+    <color name="focus_bg_color">@android:color/transparent</color>
     <color name="window_background">#eaeaea</color>
     <color name="bangumi_badge_gary">#e58B8B8C</color>
     <color name="nav_head_image_background">#F8668D</color>

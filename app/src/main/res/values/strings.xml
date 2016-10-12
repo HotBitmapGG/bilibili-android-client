@@ -86,6 +86,8 @@
     <string name="more_commend_arrow">更多评论 >></string>
     <string name="members">正式会员</string>
     <string name="more_hot_comment">更多热门评论 >></string>
+    <string name="fans">粉丝</string>
+    <string name="direct_messages">私信</string>
 
 
     <!--Vitamio Strings-->

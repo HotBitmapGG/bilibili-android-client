@@ -3,11 +3,15 @@ package com.hotbitmapgg.ohmybilibili.module.user;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,16 +21,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.UserUpVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserUpVideoInfo;
-import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserDetailsInfo;
+import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
+import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
-import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,17 +65,8 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     @Bind(R.id.tv_fans)
     TextView mFansNumText;
 
-    @Bind(R.id.recycle)
-    RecyclerView mRecyclerView;
-
     @Bind(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
-
-    @Bind(R.id.circle_progress)
-    CircleProgressView mCircleProgressView;
-
-    @Bind(R.id.tv_up_contributor)
-    TextView mUpTip;
 
     @Bind(R.id.user_lv)
     ImageView mUserLv;
@@ -87,21 +83,31 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.btn_go_more)
-    TextView mMoreTextView;
+    @Bind(R.id.sliding_tabs)
+    SlidingTabLayout mSlidingTabLayout;
 
-    @Bind(R.id.number_bar)
-    LinearLayout mNumberBar;
+    @Bind(R.id.view_pager)
+    ViewPager mViewPager;
+
+    @Bind(R.id.app_bar_layout)
+    AppBarLayout mAppBarLayout;
+
+    @Bind(R.id.line)
+    View mLineView;
 
     private String name = "";
 
     private int mid;
 
+    private int mUserContributeCount;
+
     private String avatar_url;
 
-    private UserInfo mUserInfo;
+    private UserDetailsInfo mUserDetailsInfo;
 
-    private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
+    private List<String> titles = new ArrayList<>();
+
+    private List<Fragment> fragments = new ArrayList<>();
 
     private static final String EXTRA_USER_NAME = "extra_user_name",
             EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
@@ -127,11 +133,9 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
         }
 
         if (name != null)
-        {
             mUserNameText.setText(name);
-        }
+
         if (avatar_url != null)
-        {
             Glide.with(UserInfoActivity.this)
                     .load(avatar_url)
                     .centerCrop()
@@ -139,9 +143,11 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
                     .placeholder(R.drawable.ico_user_default)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(mAvatarImage);
-        }
 
-        startGetUserInfoTask();
+        //获取用户详情
+        getUserInfo();
+        //获取用户投稿视频数量
+        getUserContributeVideos();
     }
 
 
@@ -149,7 +155,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mCollapsingToolbarLayout.setTitle(name);
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null)
@@ -159,6 +165,33 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
         //设置StatusBar透明
         SystemBarHelper.immersiveStatusBar(this);
         SystemBarHelper.setHeightAndPadding(this, mToolbar);
+
+        //设置AppBar展开折叠状态监听
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeEvent()
+        {
+
+
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset)
+            {
+
+                if (state == State.EXPANDED)
+                {
+                    //展开状态
+                    mCollapsingToolbarLayout.setTitle("");
+                    mLineView.setVisibility(View.VISIBLE);
+                } else if (state == State.COLLAPSED)
+                {
+                    //折叠状态
+                    mCollapsingToolbarLayout.setTitle(name);
+                    mLineView.setVisibility(View.GONE);
+                } else
+                {
+                    mCollapsingToolbarLayout.setTitle("");
+                    mLineView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
 
@@ -171,15 +204,6 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void startGetUserInfoTask()
-    {
-
-
-        showProgressBar();
-        getUserInfo();
-    }
-
-
     public void getUserInfo()
     {
 
@@ -190,36 +214,35 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userInfo -> {
 
-                    mUserInfo = userInfo;
-                    finishUserInfoTask();
+                    mUserDetailsInfo = userInfo;
+                    finishTask();
                 }, throwable -> {
-
-                    hideProgressBar();
+                    ToastUtil.ShortToast("用户详情加载失败啦~");
                 });
     }
 
 
-    public void finishUserInfoTask()
+    public void finishTask()
     {
-
-        mNumberBar.setVisibility(View.VISIBLE);
-        mUserNameText.setText(mUserInfo.getCard().getName());
-        mFollowNumText.setText(String.format(getString(R.string.info_following_format), mUserInfo.getCard().getAttention()));
-        mFansNumText.setText(String.format(getString(R.string.info_fans_format), mUserInfo.getCard().getFans()));
-        mToolbar.setTitle("");
-
+        //设置用户头像
         Glide.with(UserInfoActivity.this)
-                .load(mUserInfo.getCard().getFace())
+                .load(mUserDetailsInfo.getCard().getFace())
                 .centerCrop()
                 .dontAnimate()
                 .placeholder(R.drawable.ico_user_default)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mAvatarImage);
 
+        //设置粉丝和关注
+        mUserNameText.setText(mUserDetailsInfo.getCard().getName());
+        mFollowNumText.setText(String.valueOf(mUserDetailsInfo.getCard().getAttention()));
+        mFansNumText.setText(NumberUtil.converString(mUserDetailsInfo.getCard().getFans()));
 
-        setUserLevel(Integer.valueOf(mUserInfo.getCard().getRank()));
+        //设置用户等级
+        setUserLevel(Integer.valueOf(mUserDetailsInfo.getCard().getRank()));
 
-        switch (mUserInfo.getCard().getSex())
+        //设置用户性别
+        switch (mUserDetailsInfo.getCard().getSex())
         {
             case "男":
                 mUserSex.setImageResource(R.drawable.ic_user_male);
@@ -232,14 +255,15 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
                 break;
         }
 
-        if (mUserInfo.getCard().isApprove())
+        //设置认证用户信息
+        if (mUserDetailsInfo.getCard().isApprove())
         {
             //认证用户 显示认证资料
             mAuthorVerifiedLayout.setVisibility(View.VISIBLE);
             mDescriptionText.setVisibility(View.GONE);
-            if (!TextUtils.isEmpty(mUserInfo.getCard().getDescription()))
+            if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getDescription()))
             {
-                mAuthorVerifiedText.setText(mUserInfo.getCard().getDescription());
+                mAuthorVerifiedText.setText(mUserDetailsInfo.getCard().getDescription());
             } else
             {
                 mAuthorVerifiedText.setText("这个人懒死了,什么都没有写(・－・。)");
@@ -249,16 +273,90 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
             //普通用户
             mAuthorVerifiedLayout.setVisibility(View.GONE);
             mDescriptionText.setVisibility(View.VISIBLE);
-            if (!TextUtils.isEmpty(mUserInfo.getCard().getSign()))
+            if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getSign()))
             {
-                mDescriptionText.setText(mUserInfo.getCard().getSign());
+                mDescriptionText.setText(mUserDetailsInfo.getCard().getSign());
             } else
             {
                 mDescriptionText.setText("这个人懒死了,什么都没有写(・－・。)");
             }
         }
 
-        getUserVideoList();
+        //初始化Viewpager
+        initViewPager();
+    }
+
+    private void getUserContributeVideos()
+    {
+
+        RetrofitHelper.getUserContributeVideoApi()
+                .getUserContributeVideos(mid)
+                .compose(bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(userContributeInfo -> {
+
+                    mUserContributeCount = userContributeInfo.getData().getCount();
+                }, throwable -> {
+
+                    LogUtil.all(throwable.getMessage());
+                });
+    }
+
+    private void initViewPager()
+    {
+
+        titles.add("主页");
+        titles.add("投稿" + " " + mUserContributeCount);
+//        titles.add("收藏");
+//        titles.add("追番");
+//        titles.add("兴趣圈");
+//        titles.add("投币");
+//        titles.add("游戏");
+
+        UserInfoHomePageFragment userInfoHomePageFragment = UserInfoHomePageFragment.newInstance();
+        UserInfoContributeFragment userInfoContributeFragment = UserInfoContributeFragment.newInstance(mid);
+        fragments.add(userInfoHomePageFragment);
+        fragments.add(userInfoContributeFragment);
+
+        UserInfoDetailsPagerAdapter mAdapter = new UserInfoDetailsPagerAdapter(getSupportFragmentManager(), titles, fragments);
+        mViewPager.setOffscreenPageLimit(fragments.size());
+        mViewPager.setAdapter(mAdapter);
+        mSlidingTabLayout.setViewPager(mViewPager);
+        measureTabLayoutTextWidth(1);
+        mViewPager.setCurrentItem(1);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
+
+            }
+
+            @Override
+            public void onPageSelected(int position)
+            {
+
+                measureTabLayoutTextWidth(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state)
+            {
+
+            }
+        });
+    }
+
+    private void measureTabLayoutTextWidth(int position)
+    {
+
+        String title = titles.get(position);
+        TextView titleView = mSlidingTabLayout.getTitleView(position);
+        TextPaint paint = titleView.getPaint();
+        float textWidth = paint.measureText(title);
+        mSlidingTabLayout.setIndicatorWidth(textWidth / 3);
     }
 
     private void setUserLevel(int rank)
@@ -288,79 +386,12 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
         }
     }
 
-
-    private void getUserVideoList()
-    {
-
-
-        RetrofitHelper.getUserUpVideoListApi()
-                .getUserUpVideos(mid, 1, 10)
-                .compose(this.bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userUpVideoInfo -> {
-
-                    List<UserUpVideoInfo.VlistBean> vlist = userUpVideoInfo.getVlist();
-                    userVideoList.addAll(vlist);
-                    finishTask();
-                }, throwable -> {
-
-                    hideProgressBar();
-                });
-    }
-
-
-    private void finishTask()
-    {
-
-        mRecyclerView.setHasFixedSize(false);
-        mRecyclerView.setNestedScrollingEnabled(false);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(UserInfoActivity.this, 2));
-        UserUpVideoAdapter mAdapter = new UserUpVideoAdapter(mRecyclerView, userVideoList);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener((position, holder) -> VideoDetailsActivity.launch(UserInfoActivity.this,
-                userVideoList.get(position).getAid(),
-                userVideoList.get(position).getPic()));
-
-        mUpTip.setVisibility(View.VISIBLE);
-        String str = "Up主的投稿" + "(" +
-                String.valueOf(mUserInfo.getCard().getArticle()) + ")";
-        mUpTip.setText(str);
-        mRecyclerView.setVisibility(View.VISIBLE);
-        mMoreTextView.setVisibility(View.VISIBLE);
-        hideProgressBar();
-    }
-
-
-    @OnClick(R.id.btn_go_more)
-    void startUpAllVideos()
-    {
-        //查看Up主所有视频
-        UserUpMoreCoverActivity.launch(UserInfoActivity.this,
-                mUserInfo.getCard().getName(), Integer.valueOf(mUserInfo.getCard().getMid()));
-    }
-
     @OnClick(R.id.tv_fans)
     void startUpFans()
     {
         //查看Up主的粉丝
         UserFansActivity.launch(UserInfoActivity.this,
-                mUserInfo.getCard().getMid(), mUserInfo.getCard().getName());
-    }
-
-
-    public void showProgressBar()
-    {
-
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
-    }
-
-    public void hideProgressBar()
-    {
-
-        mCircleProgressView.setVisibility(View.GONE);
-        mCircleProgressView.stopSpinning();
+                mUserDetailsInfo.getCard().getMid(), mUserDetailsInfo.getCard().getName());
     }
 
 
@@ -373,5 +404,47 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
         intent.putExtra(EXTRA_MID, mid);
         intent.putExtra(EXTRA_AVATAR_URL, avatar_url);
         activity.startActivity(intent);
+    }
+
+
+    private static class UserInfoDetailsPagerAdapter extends FragmentStatePagerAdapter
+    {
+
+        private List<String> titles;
+
+        private List<Fragment> fragments;
+
+
+        UserInfoDetailsPagerAdapter(
+                FragmentManager fm,
+                List<String> titles,
+                List<Fragment> fragments)
+        {
+
+            super(fm);
+            this.titles = titles;
+            this.fragments = fragments;
+        }
+
+        @Override
+        public Fragment getItem(int position)
+        {
+
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getCount()
+        {
+
+            return titles.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position)
+        {
+
+            return titles.get(position);
+        }
     }
 }

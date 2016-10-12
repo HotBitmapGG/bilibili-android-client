@@ -8,39 +8,40 @@ import java.util.List;
  * <p/>
  * 用户详情数据
  */
-public class UserInfo
+public class UserDetailsInfo
 {
 
     /**
      * code : 0
-     * card : {"mid":"279463","name":"拆房武直","approve":false,"sex":"","rank":"10000","face":"http://i0.hdslb.com/bfs/face/6b495d1867d69ddbe8c360d5f256365db7be76da.jpg","coins":0,"DisplayRank":"10000","regtime":1325473397,"spacesta":0,"birthday":"1980-01-01","place":"","description":"","article":0,"attentions":[136710,777536,2859372],"fans":5477,"friend":3,"attention":3,"sign":"","level_info":{"current_level":4,"current_min":4500,"current_exp":9682,"next_exp":10800},"pendant":{"pid":0,"name":"","image":"","expire":0},"nameplate":{"nid":0,"name":"","image":"","image_small":"","level":null,"condition":null},"official_verify":{"type":-1,"desc":""}}
+     * card : {"mid":"185546","name":"小可儿","approve":false,"sex":"保密","rank":"10000","face":"http://i1.hdslb.com/bfs/face/5022986b528c74efadb6ab4669137214e066925c.x-png","coins":0,"DisplayRank":"1036","regtime":1312561293,"spacesta":2,"birthday":"1996-06-16","place":"上海市 长宁区","description":"","article":0,"attentions":[319291,690546,374377,186759,1296804,1318455,742564,311888,482524,264264,2695314,669173,375375,644202,7329,687883,99224,201434,2986310,542884,591541,776558,699049,149065,1284747,386004,546195,2848416,602496,3857249,525024,168598,270744,2740963,6881318,547008,1770706,1272598,667850,1643718,2731733,3173802,2853209,398510,477009,12434430,430031,122879,3947820,4385354,913497,699438,12464176,322892,1894748,777536,1532165,6927351,4391879,2101645,2735222,6997378,4548018,7661994,2152304,814450,4203935,622723,454636,2778733,231563,20771487,3097441,486183,2798449,71106,9550310,11684516,1438811,1951038,423442,391679,139905,20503549,442520,22965,27434809,688969,11758387,920713,26922,8585525,10552107,8688933,4440520,10414152,13736797,3379951,8332697,689753,500198,172683,515993,328212,61999,3226226,2470678,19285836,4431898,808171,25282560,592761,1963054,234256,6332228,4138198,7508296,6510526,14634764,346059,814727,14415563,12564758,1396558,453972,1936132,24314825,43536,2459948,25775194,1652288,282994,20484551,22986236,288239,329932],"fans":139476,"friend":135,"attention":135,"sign":"粉丝的支持是我创作的源泉。\r\n微博@小可儿有剁不光的手 粉丝群569465513 网易云音乐:小可儿spike","level_info":{"current_level":6,"current_min":28800,"current_exp":298859,"next_exp":"-"},"pendant":{"pid":0,"name":"","image":"","expire":0},"nameplate":{"nid":1,"name":"黄金殿堂","image":"http://i2.hdslb.com/bfs/face/82896ff40fcb4e7c7259cb98056975830cb55695.png","image_small":"http://i2.hdslb.com/bfs/face/627e342851dfda6fe7380c2fa0cbd7fae2e61533.png","level":"稀有勋章","condition":"单个自制视频总播放数>=100万"},"official_verify":{"type":-1,"desc":""}}
      */
 
     private int code;
 
     /**
-     * mid : 279463
-     * name : 拆房武直
+     * mid : 185546
+     * name : 小可儿
      * approve : false
-     * sex :
+     * sex : 保密
      * rank : 10000
-     * face : http://i0.hdslb.com/bfs/face/6b495d1867d69ddbe8c360d5f256365db7be76da.jpg
+     * face : http://i1.hdslb.com/bfs/face/5022986b528c74efadb6ab4669137214e066925c.x-png
      * coins : 0
-     * DisplayRank : 10000
-     * regtime : 1325473397
-     * spacesta : 0
-     * birthday : 1980-01-01
-     * place :
+     * DisplayRank : 1036
+     * regtime : 1312561293
+     * spacesta : 2
+     * birthday : 1996-06-16
+     * place : 上海市 长宁区
      * description :
      * article : 0
-     * attentions : [136710,777536,2859372]
-     * fans : 5477
-     * friend : 3
-     * attention : 3
-     * sign :
-     * level_info : {"current_level":4,"current_min":4500,"current_exp":9682,"next_exp":10800}
+     * attentions : [319291,690546,374377,186759,1296804,1318455,742564,311888,482524,264264,2695314,669173,375375,644202,7329,687883,99224,201434,2986310,542884,591541,776558,699049,149065,1284747,386004,546195,2848416,602496,3857249,525024,168598,270744,2740963,6881318,547008,1770706,1272598,667850,1643718,2731733,3173802,2853209,398510,477009,12434430,430031,122879,3947820,4385354,913497,699438,12464176,322892,1894748,777536,1532165,6927351,4391879,2101645,2735222,6997378,4548018,7661994,2152304,814450,4203935,622723,454636,2778733,231563,20771487,3097441,486183,2798449,71106,9550310,11684516,1438811,1951038,423442,391679,139905,20503549,442520,22965,27434809,688969,11758387,920713,26922,8585525,10552107,8688933,4440520,10414152,13736797,3379951,8332697,689753,500198,172683,515993,328212,61999,3226226,2470678,19285836,4431898,808171,25282560,592761,1963054,234256,6332228,4138198,7508296,6510526,14634764,346059,814727,14415563,12564758,1396558,453972,1936132,24314825,43536,2459948,25775194,1652288,282994,20484551,22986236,288239,329932]
+     * fans : 139476
+     * friend : 135
+     * attention : 135
+     * sign : 粉丝的支持是我创作的源泉。
+     * 微博@小可儿有剁不光的手 粉丝群569465513 网易云音乐:小可儿spike
+     * level_info : {"current_level":6,"current_min":28800,"current_exp":298859,"next_exp":"-"}
      * pendant : {"pid":0,"name":"","image":"","expire":0}
-     * nameplate : {"nid":0,"name":"","image":"","image_small":"","level":null,"condition":null}
+     * nameplate : {"nid":1,"name":"黄金殿堂","image":"http://i2.hdslb.com/bfs/face/82896ff40fcb4e7c7259cb98056975830cb55695.png","image_small":"http://i2.hdslb.com/bfs/face/627e342851dfda6fe7380c2fa0cbd7fae2e61533.png","level":"稀有勋章","condition":"单个自制视频总播放数>=100万"}
      * official_verify : {"type":-1,"desc":""}
      */
 
@@ -110,10 +111,10 @@ public class UserInfo
         private String sign;
 
         /**
-         * current_level : 4
-         * current_min : 4500
-         * current_exp : 9682
-         * next_exp : 10800
+         * current_level : 6
+         * current_min : 28800
+         * current_exp : 298859
+         * next_exp : -
          */
 
         private LevelInfoBean level_info;
@@ -128,12 +129,12 @@ public class UserInfo
         private PendantBean pendant;
 
         /**
-         * nid : 0
-         * name :
-         * image :
-         * image_small :
-         * level : null
-         * condition : null
+         * nid : 1
+         * name : 黄金殿堂
+         * image : http://i2.hdslb.com/bfs/face/82896ff40fcb4e7c7259cb98056975830cb55695.png
+         * image_small : http://i2.hdslb.com/bfs/face/627e342851dfda6fe7380c2fa0cbd7fae2e61533.png
+         * level : 稀有勋章
+         * condition : 单个自制视频总播放数>=100万
          */
 
         private NameplateBean nameplate;
@@ -432,7 +433,7 @@ public class UserInfo
 
             private int current_exp;
 
-            private int next_exp;
+            private String next_exp;
 
             public int getCurrent_level()
             {
@@ -470,13 +471,13 @@ public class UserInfo
                 this.current_exp = current_exp;
             }
 
-            public int getNext_exp()
+            public String getNext_exp()
             {
 
                 return next_exp;
             }
 
-            public void setNext_exp(int next_exp)
+            public void setNext_exp(String next_exp)
             {
 
                 this.next_exp = next_exp;
@@ -554,9 +555,9 @@ public class UserInfo
 
             private String image_small;
 
-            private Object level;
+            private String level;
 
-            private Object condition;
+            private String condition;
 
             public int getNid()
             {
@@ -606,25 +607,25 @@ public class UserInfo
                 this.image_small = image_small;
             }
 
-            public Object getLevel()
+            public String getLevel()
             {
 
                 return level;
             }
 
-            public void setLevel(Object level)
+            public void setLevel(String level)
             {
 
                 this.level = level;
             }
 
-            public Object getCondition()
+            public String getCondition()
             {
 
                 return condition;
             }
 
-            public void setCondition(Object condition)
+            public void setCondition(String condition)
             {
 
                 this.condition = condition;

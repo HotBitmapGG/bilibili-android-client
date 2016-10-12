@@ -212,10 +212,4 @@ public class HomePageFragment extends RxLazyFragment
 
         mSearchView.closeSearch();
     }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-    }
 }

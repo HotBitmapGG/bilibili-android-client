@@ -25,6 +25,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
 import com.hotbitmapgg.ohmybilibili.network.api.TopicCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserContributeVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
@@ -70,7 +71,9 @@ public class RetrofitHelper
 
     private static final String SEARCH_BASE_URL = "http://s.search.bilibili.com/";
 
-    private static final String ACCOUNT_BASE_URL ="https://account.bilibili.com/";
+    private static final String ACCOUNT_BASE_URL = "https://account.bilibili.com/";
+
+    private static final String AJAX_BASE_URL = "http://space.bilibili.com/";
 
     public static final String HDSLB_HOST = "http://i2.hdslb.com";
 
@@ -602,6 +605,24 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(PartitionTypeService.class);
+    }
+
+    /**
+     * 获取用户投稿视频数量
+     *
+     * @return
+     */
+    public static UserContributeVideoService getUserContributeVideoApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(AJAX_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(UserContributeVideoService.class);
     }
 
 

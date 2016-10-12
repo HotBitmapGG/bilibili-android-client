@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommendVideoInfo;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 
 import java.util.List;
@@ -25,11 +25,11 @@ import java.util.List;
 public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<UserRecommend.AuthorData> authorRecommendList;
+    private List<UserRecommendVideoInfo.AuthorData> authorRecommendList;
 
     private String upName;
 
-    public VideoAlikeListAdapter(RecyclerView recyclerView, List<UserRecommend.AuthorData> authorRecommendList, String upName)
+    public VideoAlikeListAdapter(RecyclerView recyclerView, List<UserRecommendVideoInfo.AuthorData> authorRecommendList, String upName)
     {
 
         super(recyclerView);
@@ -53,7 +53,7 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            UserRecommend.AuthorData authorData = authorRecommendList.get(position);
+            UserRecommendVideoInfo.AuthorData authorData = authorRecommendList.get(position);
 
             Glide.with(getContext())
                     .load(UrlHelper.getClearVideoPreviewUrl(authorData.cover))

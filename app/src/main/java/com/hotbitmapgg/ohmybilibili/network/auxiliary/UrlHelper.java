@@ -2,7 +2,7 @@ package com.hotbitmapgg.ohmybilibili.network.auxiliary;
 
 import android.util.Log;
 
-import com.hotbitmapgg.ohmybilibili.entity.user.UserInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserDetailsInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 
 /**
@@ -40,7 +40,7 @@ public class UrlHelper
         return Integer.parseInt(av);
     }
 
-    public static String getFaceUrl(UserInfo info)
+    public static String getFaceUrl(UserDetailsInfo info)
     {
 
         if (info.getCard().getFace().contains(".hdslb.com"))

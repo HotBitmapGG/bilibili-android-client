@@ -18,21 +18,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by hcc on 16/8/7 21:18
+ * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
  * <p/>
- * UP主上传视频查看Adapter
+ * 用户投稿视频adapter
  */
-public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
+public class UserContributeVideoAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<UserUpVideoInfo.VlistBean> parts = new ArrayList<>();
+    private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
 
-    public UserUpVideoAdapter(RecyclerView recyclerView, List<UserUpVideoInfo.VlistBean> parts)
+    public UserContributeVideoAdapter(RecyclerView recyclerView, List<UserUpVideoInfo.VlistBean> userVideoList)
     {
 
         super(recyclerView);
-        this.parts = parts;
+        this.userVideoList = userVideoList;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_video_card, parent, false));
+                .inflate(R.layout.item_video_strip, parent, false));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            UserUpVideoInfo.VlistBean vlistBean = parts.get(position);
+            UserUpVideoInfo.VlistBean vlistBean = userVideoList.get(position);
 
             Glide.with(getContext())
                     .load(UrlHelper.getClearVideoPreviewUrl(vlistBean.getPic()))
@@ -61,12 +61,11 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
                     .dontAnimate()
                     .into(itemViewHolder.mVideoPic);
 
-
             itemViewHolder.mVideoTitle.setText(vlistBean.getTitle());
+            itemViewHolder.mVideoUserInfo.setText(vlistBean.getAuthor());
             itemViewHolder.mVideoPlayNum.setText(String.valueOf(vlistBean.getPlay()));
             itemViewHolder.mVideoReviewNum.setText(String.valueOf(vlistBean.getVideo_review()));
         }
-
         super.onBindViewHolder(holder, position);
     }
 
@@ -74,7 +73,7 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return parts.size();
+        return userVideoList.size();
     }
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
@@ -83,6 +82,8 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
         ImageView mVideoPic;
 
         TextView mVideoTitle;
+
+        TextView mVideoUserInfo;
 
         TextView mVideoPlayNum;
 
@@ -95,6 +96,7 @@ public class UserUpVideoAdapter extends AbsRecyclerViewAdapter
 
             mVideoPic = $(R.id.item_img);
             mVideoTitle = $(R.id.item_title);
+            mVideoUserInfo = $(R.id.item_user_name);
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewNum = $(R.id.item_review);
         }
