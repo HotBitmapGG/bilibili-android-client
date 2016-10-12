@@ -5,12 +5,11 @@
     android:orientation="vertical">
 
 
-    <TextView
+    <com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView
+        android:id="@+id/empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="主页"
-        android:textColor="@color/black_alpha_30"
-        android:textSize="33sp" />
+        android:layout_gravity="center|top"
+        android:layout_marginTop="@dimen/user_layout_empty_margin" />
 
 </LinearLayout>

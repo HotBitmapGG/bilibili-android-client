@@ -21,14 +21,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/default_general_margin"
-            android:textColor="@color/font_normal"
-            android:textSize="@dimen/default_medium_text_size" />
+            android:textColor="@color/black_alpha_45"
+            android:textSize="@dimen/default_small_text_size" />
 
         <Button
             android:id="@+id/btn_reload"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_margin="12dp"
+            android:layout_height="@dimen/login_button_height"
+            android:layout_margin="@dimen/default_grow_margin"
             android:background="@drawable/corner_btn"
             android:gravity="center"
             android:text="@string/reload"

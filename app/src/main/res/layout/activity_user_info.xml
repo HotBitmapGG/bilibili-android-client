@@ -88,31 +88,6 @@
 
 
                         <LinearLayout
-                            android:id="@+id/author_verified_layout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/default_general_margin"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_author_verified" />
-
-                            <TextView
-                                android:id="@+id/author_verified_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:maxLines="3"
-                                android:paddingEnd="@dimen/title_margin_small"
-                                android:paddingStart="@dimen/title_margin_small"
-                                android:textColor="@color/orange_500" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_general_margin"
@@ -162,6 +137,33 @@
                                 android:text="@string/fans"
                                 android:textColor="@color/black_alpha_45"
                                 android:textSize="@dimen/default_small_text_size" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/author_verified_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_general_margin"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_author_verified" />
+
+                            <TextView
+                                android:id="@+id/author_verified_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:maxLines="3"
+                                android:paddingEnd="@dimen/title_margin_small"
+                                android:paddingStart="@dimen/title_margin_small"
+                                android:textColor="@color/orange_500" />
+
                         </LinearLayout>
 
                         <TextView

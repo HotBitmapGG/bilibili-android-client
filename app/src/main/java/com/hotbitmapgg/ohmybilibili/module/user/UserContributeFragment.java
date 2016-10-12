@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,9 @@ public class UserContributeFragment extends RxLazyFragment
 
     @Bind(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
+
+    @Bind(R.id.empty_view)
+    CustomEmptyView mCustomEmptyView;
 
     private static final String EXTRA_MID = "extra_mid";
 
@@ -105,6 +109,7 @@ public class UserContributeFragment extends RxLazyFragment
 
                     loadMoreView.setVisibility(View.GONE);
                     hideProgressBar();
+                    initEmptyLayout();
                 });
     }
 
@@ -143,6 +148,9 @@ public class UserContributeFragment extends RxLazyFragment
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
         else
             mAdapter.notifyDataSetChanged();
+
+        if (userVideoList.isEmpty())
+            initEmptyLayout();
     }
 
     private void createLoadMoreView()
@@ -166,5 +174,13 @@ public class UserContributeFragment extends RxLazyFragment
 
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
+    }
+
+    private void initEmptyLayout()
+    {
+
+        mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_space_no_data);
+        mCustomEmptyView.setEmptyText("ㄟ( ▔, ▔ )ㄏ 再怎么找也没有啦");
+        mCustomEmptyView.hideReloadButton();
     }
 }

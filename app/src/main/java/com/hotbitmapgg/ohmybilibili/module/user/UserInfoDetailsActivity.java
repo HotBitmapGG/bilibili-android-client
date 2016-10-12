@@ -291,7 +291,7 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         titles.add("投币");
         titles.add("游戏");
 
-        UserHomePageFragment userHomePageFragment = UserHomePageFragment.newInstance();
+        UserHomePageFragment userHomePageFragment = UserHomePageFragment.newInstance(mid);
         UserContributeFragment userContributeFragment = UserContributeFragment.newInstance(mid);
         UserFavoritesFragment userFavoritesFragment = UserFavoritesFragment.newInstance(mid);
         UserChaseBangumiFragment userChaseBangumiFragment = UserChaseBangumiFragment.newInstance(mid);

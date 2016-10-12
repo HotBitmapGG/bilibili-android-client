@@ -13,6 +13,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInterestQuanInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,9 @@ public class UserInterestQuanFragment extends RxLazyFragment
 
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
+
+    @Bind(R.id.empty_view)
+    CustomEmptyView mCustomEmptyView;
 
     private int mid;
 
@@ -118,7 +122,7 @@ public class UserInterestQuanFragment extends RxLazyFragment
                     userInterestQuans.addAll(resultBeans);
                     finishTask();
                 }, throwable -> {
-
+                    initEmptyLayout();
                 });
     }
 
@@ -131,6 +135,9 @@ public class UserInterestQuanFragment extends RxLazyFragment
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
         else
             mAdapter.notifyDataSetChanged();
+
+        if (userInterestQuans.isEmpty())
+            initEmptyLayout();
     }
 
     private void createLoadMoreView()
@@ -140,5 +147,13 @@ public class UserInterestQuanFragment extends RxLazyFragment
                 .inflate(R.layout.layout_load_more, mRecyclerView, false);
         mHeaderViewRecyclerAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
+    }
+
+    private void initEmptyLayout()
+    {
+
+        mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_space_no_data);
+        mCustomEmptyView.setEmptyText("ㄟ( ▔, ▔ )ㄏ 再怎么找也没有啦");
+        mCustomEmptyView.hideReloadButton();
     }
 }

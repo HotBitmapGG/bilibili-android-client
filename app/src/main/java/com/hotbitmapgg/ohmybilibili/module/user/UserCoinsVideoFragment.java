@@ -9,6 +9,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.UserCoinsVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserCoinsInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,9 @@ public class UserCoinsVideoFragment extends RxLazyFragment
 
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
+
+    @Bind(R.id.empty_view)
+    CustomEmptyView mCustomEmptyView;
 
     private int mid;
 
@@ -87,7 +91,7 @@ public class UserCoinsVideoFragment extends RxLazyFragment
                     userCoins.addAll(listBeans);
                     finishTask();
                 }, throwable -> {
-
+                    initEmptyLayout();
                 });
     }
 
@@ -95,5 +99,15 @@ public class UserCoinsVideoFragment extends RxLazyFragment
     {
 
         mAdapter.notifyDataSetChanged();
+        if (userCoins.isEmpty())
+            initEmptyLayout();
+    }
+
+    private void initEmptyLayout()
+    {
+
+        mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_space_no_data);
+        mCustomEmptyView.setEmptyText("ㄟ( ▔, ▔ )ㄏ 再怎么找也没有啦");
+        mCustomEmptyView.hideReloadButton();
     }
 }
