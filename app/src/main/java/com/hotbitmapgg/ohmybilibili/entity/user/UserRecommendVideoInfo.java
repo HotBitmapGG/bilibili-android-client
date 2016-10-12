@@ -6,7 +6,7 @@ import java.util.List;
  * Created by hcc on 16/8/22 20:48
  * 100332338@qq.com
  * <p/>
- * 用户推荐视频数据
+ * 用户推荐视频模型类
  */
 public class UserRecommendVideoInfo
 {

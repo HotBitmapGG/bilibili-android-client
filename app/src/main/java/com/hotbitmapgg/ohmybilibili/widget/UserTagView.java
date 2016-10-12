@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
+import com.hotbitmapgg.ohmybilibili.module.user.UserInfoDetailsActivity;
 
 /**
  * Created by hcc on 16/8/7 21:18
@@ -69,7 +69,7 @@ public class UserTagView extends FrameLayout
 
             if (mid != -1 && activity != null)
             {
-                UserInfoActivity.launch(activity, name, mid, avatarUrl);
+                UserInfoDetailsActivity.launch(activity, name, mid, avatarUrl);
             } else if (onClickListener != null)
             {
                 onClickListener.onClick(view);

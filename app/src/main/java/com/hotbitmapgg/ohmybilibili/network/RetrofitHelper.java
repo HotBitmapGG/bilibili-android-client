@@ -9,6 +9,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
 import com.hotbitmapgg.ohmybilibili.network.api.BiliBiliLiveService;
 import com.hotbitmapgg.ohmybilibili.network.api.FansService;
 import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
@@ -25,12 +26,13 @@ import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
 import com.hotbitmapgg.ohmybilibili.network.api.TopicCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserChaseBangumiService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserContributeVideoService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserInfoDetailsService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserInterestQuanService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoDetailsService;
-import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
 
 import java.io.File;
 import java.io.IOException;
@@ -73,7 +75,9 @@ public class RetrofitHelper
 
     private static final String ACCOUNT_BASE_URL = "https://account.bilibili.com/";
 
-    private static final String AJAX_BASE_URL = "http://space.bilibili.com/";
+    private static final String USER_DETAILS_BASE_URL = "http://space.bilibili.com/";
+
+    private static final String IM9_BASE_URL = "http://www.im9.com/";
 
     public static final String HDSLB_HOST = "http://i2.hdslb.com";
 
@@ -334,7 +338,7 @@ public class RetrofitHelper
      *
      * @return
      */
-    public static UserInfoService getUserInfoApi()
+    public static UserInfoDetailsService getUserInfoDetailsApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -344,7 +348,7 @@ public class RetrofitHelper
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        return retrofit.create(UserInfoService.class);
+        return retrofit.create(UserInfoDetailsService.class);
     }
 
 
@@ -616,13 +620,50 @@ public class RetrofitHelper
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(AJAX_BASE_URL)
+                .baseUrl(USER_DETAILS_BASE_URL)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         return retrofit.create(UserContributeVideoService.class);
+    }
+
+
+    /**
+     * 获取用户追番数据
+     *
+     * @return
+     */
+    public static UserChaseBangumiService getUserChaseBangumiApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(USER_DETAILS_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(UserChaseBangumiService.class);
+    }
+
+    /**
+     * 获取用户兴趣圈数据
+     *
+     * @return
+     */
+    public static UserInterestQuanService getUserInterestQuanApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(IM9_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(UserInterestQuanService.class);
     }
 
 

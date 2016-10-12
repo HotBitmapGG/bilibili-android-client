@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.module.user.UserInfoActivity;
+import com.hotbitmapgg.ohmybilibili.module.user.UserInfoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
@@ -362,7 +362,7 @@ public class LivePlayerActivity extends RxAppCompatBaseActivity
     void startUserInfo()
     {
 
-        UserInfoActivity.launch(LivePlayerActivity.this, name, mid, face);
+        UserInfoDetailsActivity.launch(LivePlayerActivity.this, name, mid, face);
         ControlVideo();
         mRightPlayBtn.setVisibility(View.VISIBLE);
     }

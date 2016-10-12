@@ -12,21 +12,21 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
  * 用户详情界面的主页
  */
 
-public class UserInfoHomePageFragment extends RxLazyFragment
+public class UserHomePageFragment extends RxLazyFragment
 {
 
 
-    public static UserInfoHomePageFragment newInstance()
+    public static UserHomePageFragment newInstance()
     {
 
-        return new UserInfoHomePageFragment();
+        return new UserHomePageFragment();
     }
 
     @Override
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_user_info_home_page;
+        return R.layout.fragment_user_home_page;
     }
 
     @Override

@@ -14,7 +14,7 @@ import rx.Observable;
  * <p/>
  * https://account.bilibili.com/api/member/getCardByMid?mid=279463
  */
-public interface UserInfoService
+public interface UserInfoDetailsService
 {
 
     @GET("api/member/getCardByMid")

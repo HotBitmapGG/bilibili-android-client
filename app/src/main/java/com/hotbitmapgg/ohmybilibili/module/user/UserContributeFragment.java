@@ -29,7 +29,7 @@ import rx.schedulers.Schedulers;
  * 用户详情界面的投稿
  */
 
-public class UserInfoContributeFragment extends RxLazyFragment
+public class UserContributeFragment extends RxLazyFragment
 {
 
 
@@ -56,10 +56,10 @@ public class UserInfoContributeFragment extends RxLazyFragment
     private List<UserUpVideoInfo.VlistBean> userVideoList = new ArrayList<>();
 
 
-    public static UserInfoContributeFragment newInstance(int mid)
+    public static UserContributeFragment newInstance(int mid)
     {
 
-        UserInfoContributeFragment mFragment = new UserInfoContributeFragment();
+        UserContributeFragment mFragment = new UserContributeFragment();
         Bundle mBundle = new Bundle();
         mBundle.putInt(EXTRA_MID, mid);
         mFragment.setArguments(mBundle);
@@ -71,7 +71,7 @@ public class UserInfoContributeFragment extends RxLazyFragment
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_user_info_contribute;
+        return R.layout.fragment_user_contribute;
     }
 
     @Override

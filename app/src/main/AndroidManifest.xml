@@ -71,7 +71,7 @@
 
         <!-- 用户详情界面 -->
         <activity
-            android:name=".module.user.UserInfoActivity"
+            android:name=".module.user.UserInfoDetailsActivity"
             android:screenOrientation="portrait" />
 
 

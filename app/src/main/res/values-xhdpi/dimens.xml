@@ -251,5 +251,10 @@
     <dimen name="bangumi_details_look_btn_height">25dp</dimen>
     <dimen name="bangumi_details_more_layout_height">50dp</dimen>
 
+    <!--user details quanzi size-->
+    <dimen name="user_interest_quan_card_height">100dp</dimen>
+    <dimen name="user_interest_quan_image_size">80dp</dimen>
+
+
 
 </resources>

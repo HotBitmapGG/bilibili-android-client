@@ -4,15 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="主页"
+        android:text="收藏夹"
         android:textColor="@color/black_alpha_30"
-        android:textSize="33sp"
-
-        />
+        android:textSize="33sp" />
 
 </LinearLayout>

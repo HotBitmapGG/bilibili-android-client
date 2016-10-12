@@ -6,7 +6,7 @@ import java.util.List;
  * Created by hcc on 16/8/15 21:06
  * 100332338@qq.com
  * <p/>
- * 用户上传的所有视频
+ * 用户上传的视频模型类
  */
 public class UserUpVideoInfo
 {

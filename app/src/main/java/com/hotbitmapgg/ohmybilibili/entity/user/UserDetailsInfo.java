@@ -6,7 +6,7 @@ import java.util.List;
  * Created by hcc on 16/8/22 20:48
  * 100332338@qq.com
  * <p/>
- * 用户详情数据
+ * 用户详情模型类
  */
 public class UserDetailsInfo
 {

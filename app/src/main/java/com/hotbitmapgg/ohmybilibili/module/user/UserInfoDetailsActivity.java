@@ -47,7 +47,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 用户个人中心界面
  */
-public class UserInfoActivity extends RxAppCompatBaseActivity
+public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
 {
 
     @Bind(R.id.user_avatar_view)
@@ -136,7 +136,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
             mUserNameText.setText(name);
 
         if (avatar_url != null)
-            Glide.with(UserInfoActivity.this)
+            Glide.with(UserInfoDetailsActivity.this)
                     .load(avatar_url)
                     .centerCrop()
                     .dontAnimate()
@@ -207,7 +207,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     public void getUserInfo()
     {
 
-        RetrofitHelper.getUserInfoApi()
+        RetrofitHelper.getUserInfoDetailsApi()
                 .getUserInfoById(mid)
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())
@@ -225,7 +225,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     public void finishTask()
     {
         //设置用户头像
-        Glide.with(UserInfoActivity.this)
+        Glide.with(UserInfoDetailsActivity.this)
                 .load(mUserDetailsInfo.getCard().getFace())
                 .centerCrop()
                 .dontAnimate()
@@ -308,16 +308,22 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
 
         titles.add("主页");
         titles.add("投稿" + " " + mUserContributeCount);
-//        titles.add("收藏");
-//        titles.add("追番");
-//        titles.add("兴趣圈");
+        titles.add("收藏");
+        titles.add("追番");
+        titles.add("兴趣圈");
 //        titles.add("投币");
 //        titles.add("游戏");
 
-        UserInfoHomePageFragment userInfoHomePageFragment = UserInfoHomePageFragment.newInstance();
-        UserInfoContributeFragment userInfoContributeFragment = UserInfoContributeFragment.newInstance(mid);
-        fragments.add(userInfoHomePageFragment);
-        fragments.add(userInfoContributeFragment);
+        UserHomePageFragment userHomePageFragment = UserHomePageFragment.newInstance();
+        UserContributeFragment userContributeFragment = UserContributeFragment.newInstance(mid);
+        UserFavoritesFragment userFavoritesFragment = UserFavoritesFragment.newInstance(mid);
+        UserChaseBangumiFragment userChaseBangumiFragment = UserChaseBangumiFragment.newInstance(mid);
+        UserInterestQuanFragment userInterestQuanFragment = UserInterestQuanFragment.newInstance(mid);
+        fragments.add(userHomePageFragment);
+        fragments.add(userContributeFragment);
+        fragments.add(userFavoritesFragment);
+        fragments.add(userChaseBangumiFragment);
+        fragments.add(userInterestQuanFragment);
 
         UserInfoDetailsPagerAdapter mAdapter = new UserInfoDetailsPagerAdapter(getSupportFragmentManager(), titles, fragments);
         mViewPager.setOffscreenPageLimit(fragments.size());
@@ -390,7 +396,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     void startUpFans()
     {
         //查看Up主的粉丝
-        UserFansActivity.launch(UserInfoActivity.this,
+        UserFansActivity.launch(UserInfoDetailsActivity.this,
                 mUserDetailsInfo.getCard().getMid(), mUserDetailsInfo.getCard().getName());
     }
 
@@ -398,7 +404,7 @@ public class UserInfoActivity extends RxAppCompatBaseActivity
     public static void launch(Activity activity, String name, int mid, String avatar_url)
     {
 
-        Intent intent = new Intent(activity, UserInfoActivity.class);
+        Intent intent = new Intent(activity, UserInfoDetailsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(EXTRA_USER_NAME, name);
         intent.putExtra(EXTRA_MID, mid);
