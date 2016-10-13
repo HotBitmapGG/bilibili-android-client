@@ -165,7 +165,7 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         //初始化Rxbus接收数据
         initRxBus();
         //隐藏ViewPager
-        mViewPager.setVisibility(View.GONE);
+        mViewPager.setVisibility(View.INVISIBLE);
     }
 
     private void initRxBus()
@@ -395,7 +395,7 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
             }
         });
 
-        Observable.timer(1000, TimeUnit.MILLISECONDS)
+        Observable.timer(2000, TimeUnit.MILLISECONDS)
                 .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
