@@ -13,6 +13,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInterestQuanInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.rx.RxBus;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
@@ -53,6 +55,8 @@ public class UserInterestQuanFragment extends RxLazyFragment
     private List<UserInterestQuanInfo.DataBean.ResultBean> userInterestQuans = new ArrayList<>();
 
     private UserInterestQuanAdapter mAdapter;
+
+    private int count;
 
     public static UserInterestQuanFragment newInstance(int mid)
     {
@@ -111,24 +115,28 @@ public class UserInterestQuanFragment extends RxLazyFragment
         RetrofitHelper.getUserInterestQuanApi()
                 .getUserInterestQuanData(mid, pageNum, pageSize)
                 .compose(bindToLifecycle())
-                .map(userInterestQuanInfo -> userInterestQuanInfo.getData().getResult())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(resultBeans -> {
+                .subscribe(userInterestQuanInfo -> {
 
-                    if (resultBeans.size() < pageSize)
+                    count = userInterestQuanInfo.getData().getTotal_count();
+                    List<UserInterestQuanInfo.DataBean.ResultBean> result =
+                            userInterestQuanInfo.getData().getResult();
+                    if (result.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
 
-                    userInterestQuans.addAll(resultBeans);
+                    userInterestQuans.addAll(result);
                     finishTask();
                 }, throwable -> {
-                    initEmptyLayout();
+
+                    loadMoreView.setVisibility(View.GONE);
                 });
     }
 
     private void finishTask()
     {
 
+        postCount();
         loadMoreView.setVisibility(View.GONE);
 
         if (pageNum * pageSize - pageSize - 1 > 0)
@@ -138,6 +146,15 @@ public class UserInterestQuanFragment extends RxLazyFragment
 
         if (userInterestQuans.isEmpty())
             initEmptyLayout();
+    }
+
+    private void postCount()
+    {
+
+        Bundle bundle = new Bundle();
+        bundle.putString(ConstantUtils.EXTRA_TYPE, ConstantUtils.USER_INTEREST_QUAN);
+        bundle.putInt(ConstantUtils.EXTRA_COUNT, count);
+        RxBus.getInstance().post(bundle);
     }
 
     private void createLoadMoreView()

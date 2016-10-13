@@ -9,6 +9,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.UserChaseBangumiAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.rx.RxBus;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ public class UserChaseBangumiFragment extends RxLazyFragment
 
     @Bind(R.id.empty_view)
     CustomEmptyView mCustomEmptyView;
+
+    private int count;
 
     private int mid;
 
@@ -84,14 +88,15 @@ public class UserChaseBangumiFragment extends RxLazyFragment
         RetrofitHelper.getUserChaseBangumiApi()
                 .getUserChaseBangumis(mid)
                 .compose(bindToLifecycle())
-                .map(userChaseBangumiInfo -> userChaseBangumiInfo.getData().getResult())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(resultBeans -> {
+                .subscribe(userChaseBangumiInfo -> {
 
-                    userChaseBangumis.addAll(resultBeans);
+                    count = userChaseBangumiInfo.getData().getCount();
+                    userChaseBangumis.addAll(userChaseBangumiInfo.getData().getResult());
                     finishTask();
                 }, throwable -> {
+
                     initEmptyLayout();
                 });
     }
@@ -99,9 +104,19 @@ public class UserChaseBangumiFragment extends RxLazyFragment
     private void finishTask()
     {
 
+        postCount();
         mAdapter.notifyDataSetChanged();
         if (userChaseBangumis.isEmpty())
             initEmptyLayout();
+    }
+
+    private void postCount()
+    {
+
+        Bundle bundle = new Bundle();
+        bundle.putString(ConstantUtils.EXTRA_TYPE, ConstantUtils.USER_CHASE_BANGUMI);
+        bundle.putInt(ConstantUtils.EXTRA_COUNT, count);
+        RxBus.getInstance().post(bundle);
     }
 
     private void initEmptyLayout()

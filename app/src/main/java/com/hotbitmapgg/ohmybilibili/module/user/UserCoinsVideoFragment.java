@@ -9,6 +9,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.UserCoinsVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserCoinsInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.rx.RxBus;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
@@ -41,6 +43,8 @@ public class UserCoinsVideoFragment extends RxLazyFragment
     private List<UserCoinsInfo.DataBean.ListBean> userCoins = new ArrayList<>();
 
     private UserCoinsVideoAdapter mAdapter;
+
+    private int count;
 
     public static UserCoinsVideoFragment newInstance(int mid)
     {
@@ -84,11 +88,12 @@ public class UserCoinsVideoFragment extends RxLazyFragment
         RetrofitHelper.getUserCoinsVideoApi()
                 .getUserCoinVideos(mid)
                 .compose(bindToLifecycle())
-                .map(userCoinsInfo -> userCoinsInfo.getData().getList())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(listBeans -> {
-                    userCoins.addAll(listBeans);
+                .subscribe(userCoinsInfo -> {
+
+                    count = userCoinsInfo.getData().getCount();
+                    userCoins.addAll(userCoinsInfo.getData().getList());
                     finishTask();
                 }, throwable -> {
                     initEmptyLayout();
@@ -98,9 +103,19 @@ public class UserCoinsVideoFragment extends RxLazyFragment
     private void finishTask()
     {
 
+        postCount();
         mAdapter.notifyDataSetChanged();
         if (userCoins.isEmpty())
             initEmptyLayout();
+    }
+
+    private void postCount()
+    {
+
+        Bundle bundle = new Bundle();
+        bundle.putString(ConstantUtils.EXTRA_TYPE, ConstantUtils.USER_COINS);
+        bundle.putInt(ConstantUtils.EXTRA_COUNT, count);
+        RxBus.getInstance().post(bundle);
     }
 
     private void initEmptyLayout()

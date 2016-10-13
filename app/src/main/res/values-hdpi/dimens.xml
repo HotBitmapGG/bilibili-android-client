@@ -180,9 +180,11 @@
     <dimen name="card_margin">10dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="card_small_radius">2dp</dimen>
+    <dimen name="card_small_elevation">0dp</dimen>
     <dimen name="card_title_margin">5dp</dimen>
     <dimen name="title_margin_small">8dp</dimen>
-    <dimen name="card_charging_width">130dp</dimen>
+    <dimen name="card_charging_width">110dp</dimen>
 
     <!-- List -->
     <dimen name="list_item_vertical_margin_small">8dp</dimen>

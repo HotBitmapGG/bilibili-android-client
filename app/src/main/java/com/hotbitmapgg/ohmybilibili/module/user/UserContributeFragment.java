@@ -13,7 +13,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
+import com.hotbitmapgg.ohmybilibili.rx.RxBus;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
@@ -37,9 +38,6 @@ public class UserContributeFragment extends RxLazyFragment
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.circle_progress)
-    CircleProgressView mCircleProgressView;
-
     @Bind(R.id.empty_view)
     CustomEmptyView mCustomEmptyView;
 
@@ -58,6 +56,8 @@ public class UserContributeFragment extends RxLazyFragment
     private View loadMoreView;
 
     private List<UserContributeInfo.DataBean.VlistBean> userVideoList = new ArrayList<>();
+
+    private int count;
 
 
     public static UserContributeFragment newInstance(int mid)
@@ -84,7 +84,6 @@ public class UserContributeFragment extends RxLazyFragment
 
         mid = getArguments().getInt(EXTRA_MID);
 
-        showProgressBar();
         getUserVideoList();
         initRecyclerView();
     }
@@ -95,21 +94,21 @@ public class UserContributeFragment extends RxLazyFragment
         RetrofitHelper.getUserContributeVideoApi()
                 .getUserContributeVideos(mid, pageNum, pageSize)
                 .compose(this.bindToLifecycle())
-                .map(userContributeInfo -> userContributeInfo.getData().getVlist())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(listBeans -> {
+                .subscribe(userContributeInfo -> {
 
-                    if (listBeans.size() < pageSize)
+                    count = userContributeInfo.getData().getCount();
+                    List<UserContributeInfo.DataBean.VlistBean> vlist =
+                            userContributeInfo.getData().getVlist();
+                    if (vlist.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
 
-                    userVideoList.addAll(listBeans);
+                    userVideoList.addAll(vlist);
                     finishTask();
                 }, throwable -> {
 
                     loadMoreView.setVisibility(View.GONE);
-                    hideProgressBar();
-                    initEmptyLayout();
                 });
     }
 
@@ -123,6 +122,7 @@ public class UserContributeFragment extends RxLazyFragment
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+        createHeadView();
         createLoadMoreView();
         mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(mLinearLayoutManager)
         {
@@ -141,7 +141,7 @@ public class UserContributeFragment extends RxLazyFragment
     private void finishTask()
     {
 
-        hideProgressBar();
+        postCount();
         loadMoreView.setVisibility(View.GONE);
 
         if (pageNum * pageSize - pageSize - 1 > 0)
@@ -153,6 +153,24 @@ public class UserContributeFragment extends RxLazyFragment
             initEmptyLayout();
     }
 
+
+    private void postCount()
+    {
+
+        Bundle bundle = new Bundle();
+        bundle.putString(ConstantUtils.EXTRA_TYPE, ConstantUtils.USER_CONTRIBUTE);
+        bundle.putInt(ConstantUtils.EXTRA_COUNT, count);
+        RxBus.getInstance().post(bundle);
+    }
+
+    private void createHeadView()
+    {
+
+        View headView = LayoutInflater.from(getActivity())
+                .inflate(R.layout.layout_user_chase_bangumi_head, mRecyclerView, false);
+        mHeaderViewRecyclerAdapter.addHeaderView(headView);
+    }
+
     private void createLoadMoreView()
     {
 
@@ -160,20 +178,6 @@ public class UserContributeFragment extends RxLazyFragment
                 .inflate(R.layout.layout_load_more, mRecyclerView, false);
         mHeaderViewRecyclerAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
-    }
-
-    public void showProgressBar()
-    {
-
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
-    }
-
-    public void hideProgressBar()
-    {
-
-        mCircleProgressView.setVisibility(View.GONE);
-        mCircleProgressView.stopSpinning();
     }
 
     private void initEmptyLayout()

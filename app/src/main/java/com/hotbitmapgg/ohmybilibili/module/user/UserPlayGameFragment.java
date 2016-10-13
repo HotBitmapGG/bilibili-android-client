@@ -9,6 +9,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.UserPlayGameAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserPlayGameInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.rx.RxBus;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
@@ -41,6 +43,8 @@ public class UserPlayGameFragment extends RxLazyFragment
     private List<UserPlayGameInfo.DataBean.GamesBean> games = new ArrayList<>();
 
     private UserPlayGameAdapter mAdapter;
+
+    private int count;
 
     public static UserPlayGameFragment newInstance(int mid)
     {
@@ -85,12 +89,12 @@ public class UserPlayGameFragment extends RxLazyFragment
         RetrofitHelper.getUserPlayGameApi()
                 .getUserPlayGames(mid)
                 .compose(bindToLifecycle())
-                .map(userPlayGameInfo -> userPlayGameInfo.getData().getGames())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(gameBeans -> {
+                .subscribe(userPlayGameInfo -> {
 
-                    games.addAll(gameBeans);
+                    count = userPlayGameInfo.getData().getCount();
+                    games.addAll(userPlayGameInfo.getData().getGames());
                     finishTask();
                 }, throwable -> {
                     initEmptyLayout();
@@ -100,9 +104,19 @@ public class UserPlayGameFragment extends RxLazyFragment
     private void finishTask()
     {
 
+        postCount();
         mAdapter.notifyDataSetChanged();
         if (games.isEmpty())
             initEmptyLayout();
+    }
+
+    private void postCount()
+    {
+
+        Bundle bundle = new Bundle();
+        bundle.putString(ConstantUtils.EXTRA_TYPE, ConstantUtils.USER_PLAY_GAME);
+        bundle.putInt(ConstantUtils.EXTRA_COUNT, count);
+        RxBus.getInstance().post(bundle);
     }
 
     private void initEmptyLayout()

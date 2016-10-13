@@ -1,44 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-
-    <FrameLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
-            android:id="@+id/circle_progress"
-            android:layout_width="@dimen/circle_progress_view_default_size"
-            android:layout_height="@dimen/circle_progress_view_default_size"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/circle_progress_view_default_margin_top"
-            app:matProg_barColor="?attr/colorPrimary"
-            app:matProg_barWidth="@dimen/circle_progress_view_default_border_width" />
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:scrollbars="none" />
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:scrollbars="none" />
+    <com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="@dimen/user_layout_empty_margin" />
 
-
-        <com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView
-            android:id="@+id/empty_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:layout_marginTop="@dimen/user_layout_empty_margin" />
-
-
-    </FrameLayout>
-
-
-</LinearLayout>
+</FrameLayout>

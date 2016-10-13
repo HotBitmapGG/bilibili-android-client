@@ -27,15 +27,20 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserDetailsInfo;
 import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.rx.RxBus;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
+import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -93,6 +98,9 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
     @Bind(R.id.line)
     View mLineView;
 
+    @Bind(R.id.circle_progress)
+    CircleProgressView mCircleProgressView;
+
     private String name = "";
 
     private int mid;
@@ -104,6 +112,18 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
     private List<String> titles = new ArrayList<>();
 
     private List<Fragment> fragments = new ArrayList<>();
+
+    private int userContributeCount;
+
+    private int userFavoritesCount;
+
+    private int userChaseBangumiCount;
+
+    private int userInterestQuanCount;
+
+    private int userCoinsCount;
+
+    private int userPlayGameCount;
 
     private static final String EXTRA_USER_NAME = "extra_user_name",
             EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
@@ -142,6 +162,55 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
 
         //获取用户详情
         getUserInfo();
+        //初始化Rxbus接收数据
+        initRxBus();
+        //隐藏ViewPager
+        mViewPager.setVisibility(View.GONE);
+    }
+
+    private void initRxBus()
+    {
+
+        RxBus.getInstance()
+                .toObserverable(Bundle.class)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::setUserTypeCount, throwable -> {
+                    LogUtil.all(throwable.getMessage());
+                });
+    }
+
+    private void setUserTypeCount(Bundle bundle)
+    {
+
+        String type = bundle.getString(ConstantUtils.EXTRA_TYPE);
+        assert type != null;
+        switch (type)
+        {
+            case ConstantUtils.USER_CONTRIBUTE:
+                userContributeCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
+                break;
+
+            case ConstantUtils.USER_FAVORITES:
+                userFavoritesCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
+                break;
+
+            case ConstantUtils.USER_CHASE_BANGUMI:
+                userChaseBangumiCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
+                break;
+
+            case ConstantUtils.USER_INTEREST_QUAN:
+                userInterestQuanCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
+                break;
+
+            case ConstantUtils.USER_COINS:
+                userCoinsCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
+                break;
+
+            case ConstantUtils.USER_PLAY_GAME:
+                userPlayGameCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
+                break;
+        }
     }
 
 
@@ -204,6 +273,7 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         RetrofitHelper.getUserInfoDetailsApi()
                 .getUserInfoById(mid)
                 .compose(this.bindToLifecycle())
+                .doOnSubscribe(this::showProgressBar)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userInfo -> {
@@ -211,7 +281,7 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
                     mUserDetailsInfo = userInfo;
                     finishTask();
                 }, throwable -> {
-                    ToastUtil.ShortToast("用户详情加载失败啦~");
+                    hideProgressBar();
                 });
     }
 
@@ -283,14 +353,6 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
     private void initViewPager()
     {
 
-        titles.add("主页");
-        titles.add("投稿");
-        titles.add("收藏");
-        titles.add("追番");
-        titles.add("兴趣圈");
-        titles.add("投币");
-        titles.add("游戏");
-
         UserHomePageFragment userHomePageFragment = UserHomePageFragment.newInstance(mid);
         UserContributeFragment userContributeFragment = UserContributeFragment.newInstance(mid);
         UserFavoritesFragment userFavoritesFragment = UserFavoritesFragment.newInstance(mid);
@@ -298,6 +360,7 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         UserInterestQuanFragment userInterestQuanFragment = UserInterestQuanFragment.newInstance(mid);
         UserCoinsVideoFragment userCoinsVideoFragment = UserCoinsVideoFragment.newInstance(mid);
         UserPlayGameFragment userPlayGameFragment = UserPlayGameFragment.newInstance(mid);
+
         fragments.add(userHomePageFragment);
         fragments.add(userContributeFragment);
         fragments.add(userFavoritesFragment);
@@ -306,12 +369,9 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         fragments.add(userCoinsVideoFragment);
         fragments.add(userPlayGameFragment);
 
-        UserInfoDetailsPagerAdapter mAdapter = new UserInfoDetailsPagerAdapter(getSupportFragmentManager(), titles, fragments);
+        UserInfoDetailsPagerAdapter mAdapter = new UserInfoDetailsPagerAdapter(getSupportFragmentManager(), fragments);
         mViewPager.setOffscreenPageLimit(fragments.size());
         mViewPager.setAdapter(mAdapter);
-        mSlidingTabLayout.setViewPager(mViewPager);
-        measureTabLayoutTextWidth(1);
-        mViewPager.setCurrentItem(1);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
 
@@ -334,6 +394,32 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
 
             }
         });
+
+        Observable.timer(1000, TimeUnit.MILLISECONDS)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    setPagerTitles();
+                }, throwable -> {
+                    LogUtil.all(throwable.getMessage());
+                });
+    }
+
+    private void setPagerTitles()
+    {
+
+        titles.add("主页");
+        titles.add("投稿 " + userContributeCount);
+        titles.add("收藏 " + userFavoritesCount);
+        titles.add("追番 " + userChaseBangumiCount);
+        titles.add("兴趣圈 " + userInterestQuanCount);
+        titles.add("投币 " + userCoinsCount);
+        titles.add("游戏 " + userPlayGameCount);
+        mSlidingTabLayout.setViewPager(mViewPager, titles.toArray(new String[titles.size()]));
+        measureTabLayoutTextWidth(1);
+        mViewPager.setCurrentItem(1);
+        hideProgressBar();
+        mViewPager.setVisibility(View.VISIBLE);
     }
 
     private void measureTabLayoutTextWidth(int position)
@@ -373,6 +459,22 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         }
     }
 
+
+    private void showProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.VISIBLE);
+        mCircleProgressView.spin();
+    }
+
+    private void hideProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.GONE);
+        mCircleProgressView.stopSpinning();
+    }
+
+
     public static void launch(Activity activity, String name, int mid, String avatar_url)
     {
 
@@ -384,23 +486,16 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         activity.startActivity(intent);
     }
 
-
     private static class UserInfoDetailsPagerAdapter extends FragmentStatePagerAdapter
     {
-
-        private List<String> titles;
 
         private List<Fragment> fragments;
 
 
-        UserInfoDetailsPagerAdapter(
-                FragmentManager fm,
-                List<String> titles,
-                List<Fragment> fragments)
+        UserInfoDetailsPagerAdapter(FragmentManager fm, List<Fragment> fragments)
         {
 
             super(fm);
-            this.titles = titles;
             this.fragments = fragments;
         }
 
@@ -415,14 +510,7 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         public int getCount()
         {
 
-            return titles.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position)
-        {
-
-            return titles.get(position);
+            return fragments.size();
         }
     }
 }
