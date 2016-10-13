@@ -306,26 +306,18 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         {
             //认证用户 显示认证资料
             mAuthorVerifiedLayout.setVisibility(View.VISIBLE);
-            mDescriptionText.setVisibility(View.GONE);
             if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getDescription()))
-            {
                 mAuthorVerifiedText.setText(mUserDetailsInfo.getCard().getDescription());
-            } else
-            {
+            else
                 mAuthorVerifiedText.setText("这个人懒死了,什么都没有写(・－・。)");
-            }
         } else
         {
             //普通用户
             mAuthorVerifiedLayout.setVisibility(View.GONE);
-            mDescriptionText.setVisibility(View.VISIBLE);
             if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getSign()))
-            {
                 mDescriptionText.setText(mUserDetailsInfo.getCard().getSign());
-            } else
-            {
+            else
                 mDescriptionText.setText("这个人懒死了,什么都没有写(・－・。)");
-            }
         }
 
         //获取用户详情全部数据
