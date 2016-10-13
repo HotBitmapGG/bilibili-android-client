@@ -430,14 +430,6 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
     private void initViewPager()
     {
 
-//        UserHomePageFragment userHomePageFragment = UserHomePageFragment.newInstance(mid);
-//        UserContributeFragment userContributeFragment = UserContributeFragment.newInstance(mid, mUserContributeInfo);
-//        UserFavoritesFragment userFavoritesFragment = UserFavoritesFragment.newInstance(mUserFavoritesInfo);
-//        UserChaseBangumiFragment userChaseBangumiFragment = UserChaseBangumiFragment.newInstance(mUserChaseBangumiInfo);
-//        UserInterestQuanFragment userInterestQuanFragment = UserInterestQuanFragment.newInstance(mid, mUserInterestQuanInfo);
-//        UserCoinsVideoFragment userCoinsVideoFragment = UserCoinsVideoFragment.newInstance(mUserCoinsInfo);
-//        UserPlayGameFragment userPlayGameFragment = UserPlayGameFragment.newInstance(mUserPlayGameInfo);
-
         fragments.add(UserHomePageFragment.newInstance(
                 mUserContributeInfo, mUserFavoritesInfo,
                 mUserChaseBangumiInfo, mUserInterestQuanInfo,
