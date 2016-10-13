@@ -28,6 +28,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserChaseBangumiService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserCoinsVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserContributeVideoService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserFavoritesService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoDetailsService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInterestQuanService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserPlayGameService;
@@ -664,6 +665,24 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(UserPlayGameService.class);
+    }
+
+    /**
+     * 获取用户收藏夹
+     *
+     * @return
+     */
+    public static UserFavoritesService getUserFavoritesApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(UserFavoritesService.class);
     }
 
 

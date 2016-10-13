@@ -58,7 +58,8 @@ public class UserTagView extends FrameLayout
     {
 
         super(context, attrs, defStyleAttr);
-        @SuppressLint("InflateParams") LinearLayout cardView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_user_tag_view, null);
+        @SuppressLint("InflateParams")
+        LinearLayout cardView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_user_tag_view, null);
         avatarView = (CircleImageView) cardView.findViewById(R.id.user_avatar);
         userNameText = (TextView) cardView.findViewById(R.id.user_name);
 

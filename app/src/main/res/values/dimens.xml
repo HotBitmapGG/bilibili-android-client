@@ -272,5 +272,7 @@
     <dimen name="user_interest_quan_card_height">100dp</dimen>
     <dimen name="user_interest_quan_image_size">80dp</dimen>
     <dimen name="user_layout_empty_margin">50dp</dimen>
+    <dimen name="user_favorites_image_height">100dp</dimen>
+    <dimen name="user_favorites_layout_height">200dp</dimen>
 
 </resources>
