@@ -24,11 +24,15 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserCoinsInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserDetailsInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserFavoritesInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserInterestQuanInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserPlayGameInfo;
 import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.rx.RxBus;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
@@ -42,6 +46,7 @@ import java.util.concurrent.TimeUnit;
 import butterknife.Bind;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -125,6 +130,30 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
 
     private int userPlayGameCount;
 
+    private UserContributeInfo mUserContributeInfo;
+
+    private UserFavoritesInfo mUserFavoritesInfo;
+
+    private UserChaseBangumiInfo mUserChaseBangumiInfo;
+
+    private UserInterestQuanInfo mUserInterestQuanInfo;
+
+    private UserCoinsInfo mUserCoinsInfo;
+
+    private UserPlayGameInfo mUserPlayGameInfo;
+
+    private List<UserContributeInfo.DataBean.VlistBean> userContributes = new ArrayList<>();
+
+    private List<UserCoinsInfo.DataBean.ListBean> userCoins = new ArrayList<>();
+
+    private List<UserFavoritesInfo.DataBean> userFavorites = new ArrayList<>();
+
+    private List<UserChaseBangumiInfo.DataBean.ResultBean> userChaseBangumis = new ArrayList<>();
+
+    private List<UserInterestQuanInfo.DataBean.ResultBean> userInterestQuans = new ArrayList<>();
+
+    private List<UserPlayGameInfo.DataBean.GamesBean> userPlayGames = new ArrayList<>();
+
     private static final String EXTRA_USER_NAME = "extra_user_name",
             EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
 
@@ -162,55 +191,8 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
 
         //获取用户详情
         getUserInfo();
-        //初始化Rxbus接收数据
-        initRxBus();
         //隐藏ViewPager
         mViewPager.setVisibility(View.INVISIBLE);
-    }
-
-    private void initRxBus()
-    {
-
-        RxBus.getInstance()
-                .toObserverable(Bundle.class)
-                .compose(bindToLifecycle())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::setUserTypeCount, throwable -> {
-                    LogUtil.all(throwable.getMessage());
-                });
-    }
-
-    private void setUserTypeCount(Bundle bundle)
-    {
-
-        String type = bundle.getString(ConstantUtils.EXTRA_TYPE);
-        assert type != null;
-        switch (type)
-        {
-            case ConstantUtils.USER_CONTRIBUTE:
-                userContributeCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
-                break;
-
-            case ConstantUtils.USER_FAVORITES:
-                userFavoritesCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
-                break;
-
-            case ConstantUtils.USER_CHASE_BANGUMI:
-                userChaseBangumiCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
-                break;
-
-            case ConstantUtils.USER_INTEREST_QUAN:
-                userInterestQuanCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
-                break;
-
-            case ConstantUtils.USER_COINS:
-                userCoinsCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
-                break;
-
-            case ConstantUtils.USER_PLAY_GAME:
-                userPlayGameCount = bundle.getInt(ConstantUtils.EXTRA_COUNT);
-                break;
-        }
     }
 
 
@@ -346,28 +328,126 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
             }
         }
 
-        //初始化Viewpager
-        initViewPager();
+        //获取用户详情全部数据
+        getUserAllData();
     }
+
+    private void getUserAllData()
+    {
+
+        RetrofitHelper.getUserContributeVideoApi()
+                .getUserContributeVideos(mid, 1, 10)
+                .compose(this.bindToLifecycle())
+                .flatMap(new Func1<UserContributeInfo,Observable<UserFavoritesInfo>>()
+                {
+
+                    @Override
+                    public Observable<UserFavoritesInfo> call(UserContributeInfo userContributeInfo)
+                    {
+
+                        mUserContributeInfo = userContributeInfo;
+                        userContributeCount = userContributeInfo.getData().getCount();
+                        userContributes.addAll(userContributeInfo.getData().getVlist());
+                        return RetrofitHelper.getUserFavoritesApi()
+                                .getUserFavorites(mid);
+                    }
+                })
+                .compose(bindToLifecycle())
+                .flatMap(new Func1<UserFavoritesInfo,Observable<UserChaseBangumiInfo>>()
+                {
+
+                    @Override
+                    public Observable<UserChaseBangumiInfo> call(UserFavoritesInfo userFavoritesInfo)
+                    {
+
+                        mUserFavoritesInfo = userFavoritesInfo;
+                        userFavoritesCount = userFavoritesInfo.getData().size();
+                        userFavorites.addAll(userFavoritesInfo.getData());
+                        return RetrofitHelper.getUserChaseBangumiApi()
+                                .getUserChaseBangumis(mid);
+                    }
+                })
+                .compose(bindToLifecycle())
+                .flatMap(new Func1<UserChaseBangumiInfo,Observable<UserInterestQuanInfo>>()
+                {
+
+                    @Override
+                    public Observable<UserInterestQuanInfo> call(UserChaseBangumiInfo userChaseBangumiInfo)
+                    {
+
+                        mUserChaseBangumiInfo = userChaseBangumiInfo;
+                        userChaseBangumiCount = userChaseBangumiInfo.getData().getCount();
+                        userChaseBangumis.addAll(userChaseBangumiInfo.getData().getResult());
+                        return RetrofitHelper.getUserInterestQuanApi()
+                                .getUserInterestQuanData(mid, 1, 10);
+                    }
+                })
+                .compose(bindToLifecycle())
+                .flatMap(new Func1<UserInterestQuanInfo,Observable<UserCoinsInfo>>()
+                {
+
+                    @Override
+                    public Observable<UserCoinsInfo> call(UserInterestQuanInfo userInterestQuanInfo)
+                    {
+
+                        mUserInterestQuanInfo = userInterestQuanInfo;
+                        userInterestQuanCount = userInterestQuanInfo.getData().getTotal_count();
+                        userInterestQuans.addAll(userInterestQuanInfo.getData().getResult());
+                        return RetrofitHelper.getUserCoinsVideoApi()
+                                .getUserCoinVideos(mid);
+                    }
+                })
+                .compose(bindToLifecycle())
+                .flatMap(new Func1<UserCoinsInfo,Observable<UserPlayGameInfo>>()
+                {
+
+                    @Override
+                    public Observable<UserPlayGameInfo> call(UserCoinsInfo userCoinsInfo)
+                    {
+
+                        mUserCoinsInfo = userCoinsInfo;
+                        userCoinsCount = userCoinsInfo.getData().getCount();
+                        userCoins.addAll(userCoinsInfo.getData().getList());
+                        return RetrofitHelper.getUserPlayGameApi()
+                                .getUserPlayGames(mid);
+                    }
+                })
+                .compose(bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(userPlayGameInfo -> {
+
+                    mUserPlayGameInfo = userPlayGameInfo;
+                    userPlayGameCount = userPlayGameInfo.getData().getCount();
+                    userPlayGames.addAll(userPlayGameInfo.getData().getGames());
+                    initViewPager();
+                }, throwable -> {
+                    LogUtil.all(throwable.getMessage());
+                });
+    }
+
 
     private void initViewPager()
     {
 
-        UserHomePageFragment userHomePageFragment = UserHomePageFragment.newInstance(mid);
-        UserContributeFragment userContributeFragment = UserContributeFragment.newInstance(mid);
-        UserFavoritesFragment userFavoritesFragment = UserFavoritesFragment.newInstance(mid);
-        UserChaseBangumiFragment userChaseBangumiFragment = UserChaseBangumiFragment.newInstance(mid);
-        UserInterestQuanFragment userInterestQuanFragment = UserInterestQuanFragment.newInstance(mid);
-        UserCoinsVideoFragment userCoinsVideoFragment = UserCoinsVideoFragment.newInstance(mid);
-        UserPlayGameFragment userPlayGameFragment = UserPlayGameFragment.newInstance(mid);
+//        UserHomePageFragment userHomePageFragment = UserHomePageFragment.newInstance(mid);
+//        UserContributeFragment userContributeFragment = UserContributeFragment.newInstance(mid, mUserContributeInfo);
+//        UserFavoritesFragment userFavoritesFragment = UserFavoritesFragment.newInstance(mUserFavoritesInfo);
+//        UserChaseBangumiFragment userChaseBangumiFragment = UserChaseBangumiFragment.newInstance(mUserChaseBangumiInfo);
+//        UserInterestQuanFragment userInterestQuanFragment = UserInterestQuanFragment.newInstance(mid, mUserInterestQuanInfo);
+//        UserCoinsVideoFragment userCoinsVideoFragment = UserCoinsVideoFragment.newInstance(mUserCoinsInfo);
+//        UserPlayGameFragment userPlayGameFragment = UserPlayGameFragment.newInstance(mUserPlayGameInfo);
 
-        fragments.add(userHomePageFragment);
-        fragments.add(userContributeFragment);
-        fragments.add(userFavoritesFragment);
-        fragments.add(userChaseBangumiFragment);
-        fragments.add(userInterestQuanFragment);
-        fragments.add(userCoinsVideoFragment);
-        fragments.add(userPlayGameFragment);
+        fragments.add(UserHomePageFragment.newInstance(
+                mUserContributeInfo, mUserFavoritesInfo,
+                mUserChaseBangumiInfo, mUserInterestQuanInfo,
+                mUserCoinsInfo, mUserPlayGameInfo));
+        fragments.add(UserContributeFragment.newInstance(mid, mUserContributeInfo));
+        fragments.add(UserFavoritesFragment.newInstance(mUserFavoritesInfo));
+        fragments.add(UserChaseBangumiFragment.newInstance(mUserChaseBangumiInfo));
+        fragments.add(UserInterestQuanFragment.newInstance(mid, mUserInterestQuanInfo));
+        fragments.add(UserCoinsVideoFragment.newInstance(mUserCoinsInfo));
+        fragments.add(UserPlayGameFragment.newInstance(mUserPlayGameInfo));
 
         UserInfoDetailsPagerAdapter mAdapter = new UserInfoDetailsPagerAdapter(getSupportFragmentManager(), fragments);
         mViewPager.setOffscreenPageLimit(fragments.size());
@@ -484,6 +564,38 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         intent.putExtra(EXTRA_MID, mid);
         intent.putExtra(EXTRA_AVATAR_URL, avatar_url);
         activity.startActivity(intent);
+    }
+
+
+    /**
+     * 根据下标切换页面
+     *
+     * @param index
+     */
+    public void switchPager(int index)
+    {
+
+        switch (index)
+        {
+            case 1:
+                mViewPager.setCurrentItem(1);
+                break;
+            case 2:
+                mViewPager.setCurrentItem(2);
+                break;
+            case 3:
+                mViewPager.setCurrentItem(3);
+                break;
+            case 4:
+                mViewPager.setCurrentItem(4);
+                break;
+            case 5:
+                mViewPager.setCurrentItem(5);
+                break;
+            case 6:
+                mViewPager.setCurrentItem(6);
+                break;
+        }
     }
 
     private static class UserInfoDetailsPagerAdapter extends FragmentStatePagerAdapter

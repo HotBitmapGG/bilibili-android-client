@@ -1,5 +1,9 @@
 package com.hotbitmapgg.ohmybilibili.entity.user;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +13,7 @@ import java.util.List;
  * 用户详情投币模型类
  */
 
-public class UserCoinsInfo
+public class UserCoinsInfo implements Parcelable
 {
 
     /**
@@ -51,7 +55,7 @@ public class UserCoinsInfo
         this.data = data;
     }
 
-    public static class DataBean
+    public static class DataBean implements Parcelable
     {
 
         private int pages;
@@ -124,7 +128,7 @@ public class UserCoinsInfo
             this.list = list;
         }
 
-        public static class ListBean
+        public static class ListBean implements Parcelable
         {
 
             private int aid;
@@ -419,7 +423,7 @@ public class UserCoinsInfo
                 this.tags = tags;
             }
 
-            public static class RightsBean
+            public static class RightsBean implements Parcelable
             {
 
                 private int bp;
@@ -505,9 +509,62 @@ public class UserCoinsInfo
 
                     this.hd5 = hd5;
                 }
+
+                @Override
+                public int describeContents()
+                {
+
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags)
+                {
+
+                    dest.writeInt(this.bp);
+                    dest.writeInt(this.elec);
+                    dest.writeInt(this.download);
+                    dest.writeInt(this.movie);
+                    dest.writeInt(this.pay);
+                    dest.writeInt(this.hd5);
+                }
+
+                public RightsBean()
+                {
+
+                }
+
+                protected RightsBean(Parcel in)
+                {
+
+                    this.bp = in.readInt();
+                    this.elec = in.readInt();
+                    this.download = in.readInt();
+                    this.movie = in.readInt();
+                    this.pay = in.readInt();
+                    this.hd5 = in.readInt();
+                }
+
+                public static final Creator<RightsBean> CREATOR = new Creator<RightsBean>()
+                {
+
+                    @Override
+                    public RightsBean createFromParcel(Parcel source)
+                    {
+
+                        return new RightsBean(source);
+                    }
+
+                    @Override
+                    public RightsBean[] newArray(int size)
+                    {
+
+                        return new RightsBean[size];
+                    }
+                };
             }
 
-            public static class OwnerBean
+            public static class OwnerBean implements Parcelable
             {
 
                 private int mid;
@@ -551,9 +608,56 @@ public class UserCoinsInfo
 
                     this.face = face;
                 }
+
+                @Override
+                public int describeContents()
+                {
+
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags)
+                {
+
+                    dest.writeInt(this.mid);
+                    dest.writeString(this.name);
+                    dest.writeString(this.face);
+                }
+
+                public OwnerBean()
+                {
+
+                }
+
+                protected OwnerBean(Parcel in)
+                {
+
+                    this.mid = in.readInt();
+                    this.name = in.readString();
+                    this.face = in.readString();
+                }
+
+                public static final Creator<OwnerBean> CREATOR = new Creator<OwnerBean>()
+                {
+
+                    @Override
+                    public OwnerBean createFromParcel(Parcel source)
+                    {
+
+                        return new OwnerBean(source);
+                    }
+
+                    @Override
+                    public OwnerBean[] newArray(int size)
+                    {
+
+                        return new OwnerBean[size];
+                    }
+                };
             }
 
-            public static class StatBean
+            public static class StatBean implements Parcelable
             {
 
                 private int view;
@@ -667,7 +771,236 @@ public class UserCoinsInfo
 
                     this.his_rank = his_rank;
                 }
+
+                @Override
+                public int describeContents()
+                {
+
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags)
+                {
+
+                    dest.writeInt(this.view);
+                    dest.writeInt(this.danmaku);
+                    dest.writeInt(this.reply);
+                    dest.writeInt(this.favorite);
+                    dest.writeInt(this.coin);
+                    dest.writeInt(this.share);
+                    dest.writeInt(this.now_rank);
+                    dest.writeInt(this.his_rank);
+                }
+
+                public StatBean()
+                {
+
+                }
+
+                protected StatBean(Parcel in)
+                {
+
+                    this.view = in.readInt();
+                    this.danmaku = in.readInt();
+                    this.reply = in.readInt();
+                    this.favorite = in.readInt();
+                    this.coin = in.readInt();
+                    this.share = in.readInt();
+                    this.now_rank = in.readInt();
+                    this.his_rank = in.readInt();
+                }
+
+                public static final Creator<StatBean> CREATOR = new Creator<StatBean>()
+                {
+
+                    @Override
+                    public StatBean createFromParcel(Parcel source)
+                    {
+
+                        return new StatBean(source);
+                    }
+
+                    @Override
+                    public StatBean[] newArray(int size)
+                    {
+
+                        return new StatBean[size];
+                    }
+                };
             }
+
+            @Override
+            public int describeContents()
+            {
+
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags)
+            {
+
+                dest.writeInt(this.aid);
+                dest.writeInt(this.tid);
+                dest.writeString(this.tname);
+                dest.writeInt(this.copyright);
+                dest.writeString(this.pic);
+                dest.writeString(this.title);
+                dest.writeInt(this.pubdate);
+                dest.writeInt(this.ctime);
+                dest.writeString(this.desc);
+                dest.writeInt(this.state);
+                dest.writeInt(this.attribute);
+                dest.writeInt(this.duration);
+                dest.writeParcelable(this.rights, flags);
+                dest.writeParcelable(this.owner, flags);
+                dest.writeParcelable(this.stat, flags);
+                dest.writeString(this.ip);
+                dest.writeInt(this.time);
+                dest.writeInt(this.coins);
+                dest.writeStringList(this.tags);
+            }
+
+            public ListBean()
+            {
+
+            }
+
+            protected ListBean(Parcel in)
+            {
+
+                this.aid = in.readInt();
+                this.tid = in.readInt();
+                this.tname = in.readString();
+                this.copyright = in.readInt();
+                this.pic = in.readString();
+                this.title = in.readString();
+                this.pubdate = in.readInt();
+                this.ctime = in.readInt();
+                this.desc = in.readString();
+                this.state = in.readInt();
+                this.attribute = in.readInt();
+                this.duration = in.readInt();
+                this.rights = in.readParcelable(RightsBean.class.getClassLoader());
+                this.owner = in.readParcelable(OwnerBean.class.getClassLoader());
+                this.stat = in.readParcelable(StatBean.class.getClassLoader());
+                this.ip = in.readString();
+                this.time = in.readInt();
+                this.coins = in.readInt();
+                this.tags = in.createStringArrayList();
+            }
+
+            public static final Creator<ListBean> CREATOR = new Creator<ListBean>()
+            {
+
+                @Override
+                public ListBean createFromParcel(Parcel source)
+                {
+
+                    return new ListBean(source);
+                }
+
+                @Override
+                public ListBean[] newArray(int size)
+                {
+
+                    return new ListBean[size];
+                }
+            };
         }
+
+        @Override
+        public int describeContents()
+        {
+
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags)
+        {
+
+            dest.writeInt(this.pages);
+            dest.writeInt(this.count);
+            dest.writeList(this.list);
+        }
+
+        public DataBean()
+        {
+
+        }
+
+        protected DataBean(Parcel in)
+        {
+
+            this.pages = in.readInt();
+            this.count = in.readInt();
+            this.list = new ArrayList<ListBean>();
+            in.readList(this.list, ListBean.class.getClassLoader());
+        }
+
+        public static final Creator<DataBean> CREATOR = new Creator<DataBean>()
+        {
+
+            @Override
+            public DataBean createFromParcel(Parcel source)
+            {
+
+                return new DataBean(source);
+            }
+
+            @Override
+            public DataBean[] newArray(int size)
+            {
+
+                return new DataBean[size];
+            }
+        };
     }
+
+    @Override
+    public int describeContents()
+    {
+
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+
+        dest.writeByte(this.status ? (byte) 1 : (byte) 0);
+        dest.writeParcelable(this.data, flags);
+    }
+
+    public UserCoinsInfo()
+    {
+
+    }
+
+    protected UserCoinsInfo(Parcel in)
+    {
+
+        this.status = in.readByte() != 0;
+        this.data = in.readParcelable(DataBean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<UserCoinsInfo> CREATOR = new Parcelable.Creator<UserCoinsInfo>()
+    {
+
+        @Override
+        public UserCoinsInfo createFromParcel(Parcel source)
+        {
+
+            return new UserCoinsInfo(source);
+        }
+
+        @Override
+        public UserCoinsInfo[] newArray(int size)
+        {
+
+            return new UserCoinsInfo[size];
+        }
+    };
 }

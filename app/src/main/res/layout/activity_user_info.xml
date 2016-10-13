@@ -185,7 +185,7 @@
                         android:id="@+id/user_avatar_view"
                         android:layout_width="@dimen/user_info_avatar_size"
                         android:layout_height="@dimen/user_info_avatar_size"
-                        android:layout_marginStart="@dimen/default_grow_margin"
+                        android:layout_marginStart="@dimen/default_general_margin"
                         android:layout_marginTop="@dimen/user_info_avatar_margin_top"
                         app:border_color="@android:color/white"
                         app:border_width="@dimen/circle_default_width"

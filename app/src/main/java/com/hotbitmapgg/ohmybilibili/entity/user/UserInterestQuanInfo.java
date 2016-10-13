@@ -1,5 +1,9 @@
 package com.hotbitmapgg.ohmybilibili.entity.user;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +13,7 @@ import java.util.List;
  * 用户详情兴趣圈模型类
  */
 
-public class UserInterestQuanInfo
+public class UserInterestQuanInfo implements Parcelable
 {
 
     /**
@@ -81,7 +85,7 @@ public class UserInterestQuanInfo
         this.data = data;
     }
 
-    public static class DataBean
+    public static class DataBean implements Parcelable
     {
 
         private int total_count;
@@ -141,7 +145,7 @@ public class UserInterestQuanInfo
             this.result = result;
         }
 
-        public static class ResultBean
+        public static class ResultBean implements Parcelable
         {
 
             private int id;
@@ -311,6 +315,168 @@ public class UserInterestQuanInfo
 
                 this.member_nickname = member_nickname;
             }
+
+            @Override
+            public int describeContents()
+            {
+
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags)
+            {
+
+                dest.writeInt(this.id);
+                dest.writeString(this.name);
+                dest.writeString(this.desc);
+                dest.writeString(this.thumb);
+                dest.writeInt(this.post_count);
+                dest.writeInt(this.post_count_today);
+                dest.writeInt(this.is_join_community);
+                dest.writeInt(this.member_count);
+                dest.writeInt(this.certification);
+                dest.writeInt(this.role_id);
+                dest.writeString(this.post_nickname);
+                dest.writeString(this.member_nickname);
+            }
+
+            public ResultBean()
+            {
+
+            }
+
+            protected ResultBean(Parcel in)
+            {
+
+                this.id = in.readInt();
+                this.name = in.readString();
+                this.desc = in.readString();
+                this.thumb = in.readString();
+                this.post_count = in.readInt();
+                this.post_count_today = in.readInt();
+                this.is_join_community = in.readInt();
+                this.member_count = in.readInt();
+                this.certification = in.readInt();
+                this.role_id = in.readInt();
+                this.post_nickname = in.readString();
+                this.member_nickname = in.readString();
+            }
+
+            public static final Creator<ResultBean> CREATOR = new Creator<ResultBean>()
+            {
+
+                @Override
+                public ResultBean createFromParcel(Parcel source)
+                {
+
+                    return new ResultBean(source);
+                }
+
+                @Override
+                public ResultBean[] newArray(int size)
+                {
+
+                    return new ResultBean[size];
+                }
+            };
         }
+
+        @Override
+        public int describeContents()
+        {
+
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags)
+        {
+
+            dest.writeInt(this.total_count);
+            dest.writeInt(this.total_page);
+            dest.writeList(this.result);
+        }
+
+        public DataBean()
+        {
+
+        }
+
+        protected DataBean(Parcel in)
+        {
+
+            this.total_count = in.readInt();
+            this.total_page = in.readInt();
+            this.result = new ArrayList<ResultBean>();
+            in.readList(this.result, ResultBean.class.getClassLoader());
+        }
+
+        public static final Creator<DataBean> CREATOR = new Creator<DataBean>()
+        {
+
+            @Override
+            public DataBean createFromParcel(Parcel source)
+            {
+
+                return new DataBean(source);
+            }
+
+            @Override
+            public DataBean[] newArray(int size)
+            {
+
+                return new DataBean[size];
+            }
+        };
     }
+
+    @Override
+    public int describeContents()
+    {
+
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+
+        dest.writeString(this.ts);
+        dest.writeInt(this.code);
+        dest.writeInt(this.type);
+        dest.writeParcelable(this.data, flags);
+    }
+
+    public UserInterestQuanInfo()
+    {
+
+    }
+
+    protected UserInterestQuanInfo(Parcel in)
+    {
+
+        this.ts = in.readString();
+        this.code = in.readInt();
+        this.type = in.readInt();
+        this.data = in.readParcelable(DataBean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<UserInterestQuanInfo> CREATOR = new Parcelable.Creator<UserInterestQuanInfo>()
+    {
+
+        @Override
+        public UserInterestQuanInfo createFromParcel(Parcel source)
+        {
+
+            return new UserInterestQuanInfo(source);
+        }
+
+        @Override
+        public UserInterestQuanInfo[] newArray(int size)
+        {
+
+            return new UserInterestQuanInfo[size];
+        }
+    };
 }

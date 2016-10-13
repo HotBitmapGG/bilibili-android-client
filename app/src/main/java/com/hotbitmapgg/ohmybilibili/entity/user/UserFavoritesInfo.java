@@ -1,5 +1,9 @@
 package com.hotbitmapgg.ohmybilibili.entity.user;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +13,7 @@ import java.util.List;
  * 用户收藏夹模型类
  */
 
-public class UserFavoritesInfo
+public class UserFavoritesInfo implements Parcelable
 {
 
     /**
@@ -57,7 +61,7 @@ public class UserFavoritesInfo
         this.data = data;
     }
 
-    public static class DataBean
+    public static class DataBean implements Parcelable
     {
 
         private int fid;
@@ -191,7 +195,7 @@ public class UserFavoritesInfo
             this.videos = videos;
         }
 
-        public static class VideosBean
+        public static class VideosBean implements Parcelable
         {
 
             private int aid;
@@ -221,6 +225,157 @@ public class UserFavoritesInfo
 
                 this.pic = pic;
             }
+
+            @Override
+            public int describeContents()
+            {
+
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags)
+            {
+
+                dest.writeInt(this.aid);
+                dest.writeString(this.pic);
+            }
+
+            public VideosBean()
+            {
+
+            }
+
+            protected VideosBean(Parcel in)
+            {
+
+                this.aid = in.readInt();
+                this.pic = in.readString();
+            }
+
+            public static final Creator<VideosBean> CREATOR = new Creator<VideosBean>()
+            {
+
+                @Override
+                public VideosBean createFromParcel(Parcel source)
+                {
+
+                    return new VideosBean(source);
+                }
+
+                @Override
+                public VideosBean[] newArray(int size)
+                {
+
+                    return new VideosBean[size];
+                }
+            };
         }
+
+        @Override
+        public int describeContents()
+        {
+
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags)
+        {
+
+            dest.writeInt(this.fid);
+            dest.writeInt(this.mid);
+            dest.writeString(this.name);
+            dest.writeInt(this.max_count);
+            dest.writeInt(this.cur_count);
+            dest.writeInt(this.atten_count);
+            dest.writeInt(this.state);
+            dest.writeInt(this.ctime);
+            dest.writeList(this.videos);
+        }
+
+        public DataBean()
+        {
+
+        }
+
+        protected DataBean(Parcel in)
+        {
+
+            this.fid = in.readInt();
+            this.mid = in.readInt();
+            this.name = in.readString();
+            this.max_count = in.readInt();
+            this.cur_count = in.readInt();
+            this.atten_count = in.readInt();
+            this.state = in.readInt();
+            this.ctime = in.readInt();
+            this.videos = new ArrayList<VideosBean>();
+            in.readList(this.videos, VideosBean.class.getClassLoader());
+        }
+
+        public static final Creator<DataBean> CREATOR = new Creator<DataBean>()
+        {
+
+            @Override
+            public DataBean createFromParcel(Parcel source)
+            {
+
+                return new DataBean(source);
+            }
+
+            @Override
+            public DataBean[] newArray(int size)
+            {
+
+                return new DataBean[size];
+            }
+        };
     }
+
+    @Override
+    public int describeContents()
+    {
+
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+
+        dest.writeInt(this.code);
+        dest.writeList(this.data);
+    }
+
+    public UserFavoritesInfo()
+    {
+
+    }
+
+    protected UserFavoritesInfo(Parcel in)
+    {
+
+        this.code = in.readInt();
+        this.data = new ArrayList<DataBean>();
+        in.readList(this.data, DataBean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<UserFavoritesInfo> CREATOR = new Parcelable.Creator<UserFavoritesInfo>()
+    {
+
+        @Override
+        public UserFavoritesInfo createFromParcel(Parcel source)
+        {
+
+            return new UserFavoritesInfo(source);
+        }
+
+        @Override
+        public UserFavoritesInfo[] newArray(int size)
+        {
+
+            return new UserFavoritesInfo[size];
+        }
+    };
 }

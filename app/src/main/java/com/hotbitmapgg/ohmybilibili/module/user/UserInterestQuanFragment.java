@@ -13,8 +13,6 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInterestQuanInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.rx.RxBus;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
@@ -23,6 +21,9 @@ import java.util.List;
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_MID;
 
 /**
  * Created by hcc on 2016/10/12 18:17
@@ -46,8 +47,6 @@ public class UserInterestQuanFragment extends RxLazyFragment
 
     private int pageSize = 10;
 
-    private static final String EXTRA_MID = "extra_mid";
-
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
     private View loadMoreView;
@@ -56,14 +55,13 @@ public class UserInterestQuanFragment extends RxLazyFragment
 
     private UserInterestQuanAdapter mAdapter;
 
-    private int count;
-
-    public static UserInterestQuanFragment newInstance(int mid)
+    public static UserInterestQuanFragment newInstance(int mid, UserInterestQuanInfo userInterestQuanInfo)
     {
 
         UserInterestQuanFragment mFragment = new UserInterestQuanFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(EXTRA_MID, mid);
+        bundle.putParcelable(EXTRA_DATA, userInterestQuanInfo);
         mFragment.setArguments(bundle);
         return mFragment;
     }
@@ -80,9 +78,13 @@ public class UserInterestQuanFragment extends RxLazyFragment
     {
 
         mid = getArguments().getInt(EXTRA_MID);
+        UserInterestQuanInfo userInterestQuanInfo = getArguments().getParcelable(EXTRA_DATA);
 
+        if (userInterestQuanInfo != null)
+        {
+            userInterestQuans.addAll(userInterestQuanInfo.getData().getResult());
+        }
         initRecyclerView();
-        getUserInterestQuanData();
     }
 
     private void initRecyclerView()
@@ -107,6 +109,9 @@ public class UserInterestQuanFragment extends RxLazyFragment
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
+
+        if (userInterestQuans.isEmpty())
+            initEmptyLayout();
     }
 
     private void getUserInterestQuanData()
@@ -119,7 +124,6 @@ public class UserInterestQuanFragment extends RxLazyFragment
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userInterestQuanInfo -> {
 
-                    count = userInterestQuanInfo.getData().getTotal_count();
                     List<UserInterestQuanInfo.DataBean.ResultBean> result =
                             userInterestQuanInfo.getData().getResult();
                     if (result.size() < pageSize)
@@ -136,26 +140,14 @@ public class UserInterestQuanFragment extends RxLazyFragment
     private void finishTask()
     {
 
-        postCount();
         loadMoreView.setVisibility(View.GONE);
 
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
         else
             mAdapter.notifyDataSetChanged();
-
-        if (userInterestQuans.isEmpty())
-            initEmptyLayout();
     }
 
-    private void postCount()
-    {
-
-        Bundle bundle = new Bundle();
-        bundle.putString(ConstantUtils.EXTRA_TYPE, ConstantUtils.USER_INTEREST_QUAN);
-        bundle.putInt(ConstantUtils.EXTRA_COUNT, count);
-        RxBus.getInstance().post(bundle);
-    }
 
     private void createLoadMoreView()
     {

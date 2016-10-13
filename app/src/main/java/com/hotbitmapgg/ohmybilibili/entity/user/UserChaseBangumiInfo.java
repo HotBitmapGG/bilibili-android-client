@@ -1,5 +1,9 @@
 package com.hotbitmapgg.ohmybilibili.entity.user;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +13,7 @@ import java.util.List;
  * 用户详情追番模型类
  */
 
-public class UserChaseBangumiInfo
+public class UserChaseBangumiInfo implements Parcelable
 {
 
     /**
@@ -51,7 +55,7 @@ public class UserChaseBangumiInfo
         this.data = data;
     }
 
-    public static class DataBean
+    public static class DataBean implements Parcelable
     {
 
         private int count;
@@ -111,7 +115,7 @@ public class UserChaseBangumiInfo
             this.result = result;
         }
 
-        public static class ResultBean
+        public static class ResultBean implements Parcelable
         {
 
             private String season_id;
@@ -267,6 +271,162 @@ public class UserChaseBangumiInfo
 
                 this.brief = brief;
             }
+
+            @Override
+            public int describeContents()
+            {
+
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags)
+            {
+
+                dest.writeString(this.season_id);
+                dest.writeString(this.share_url);
+                dest.writeString(this.title);
+                dest.writeInt(this.is_finish);
+                dest.writeInt(this.favorites);
+                dest.writeInt(this.newest_ep_index);
+                dest.writeInt(this.last_ep_index);
+                dest.writeInt(this.total_count);
+                dest.writeString(this.cover);
+                dest.writeString(this.evaluate);
+                dest.writeString(this.brief);
+            }
+
+            public ResultBean()
+            {
+
+            }
+
+            protected ResultBean(Parcel in)
+            {
+
+                this.season_id = in.readString();
+                this.share_url = in.readString();
+                this.title = in.readString();
+                this.is_finish = in.readInt();
+                this.favorites = in.readInt();
+                this.newest_ep_index = in.readInt();
+                this.last_ep_index = in.readInt();
+                this.total_count = in.readInt();
+                this.cover = in.readString();
+                this.evaluate = in.readString();
+                this.brief = in.readString();
+            }
+
+            public static final Creator<ResultBean> CREATOR = new Creator<ResultBean>()
+            {
+
+                @Override
+                public ResultBean createFromParcel(Parcel source)
+                {
+
+                    return new ResultBean(source);
+                }
+
+                @Override
+                public ResultBean[] newArray(int size)
+                {
+
+                    return new ResultBean[size];
+                }
+            };
         }
+
+        @Override
+        public int describeContents()
+        {
+
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags)
+        {
+
+            dest.writeInt(this.count);
+            dest.writeInt(this.pages);
+            dest.writeList(this.result);
+        }
+
+        public DataBean()
+        {
+
+        }
+
+        protected DataBean(Parcel in)
+        {
+
+            this.count = in.readInt();
+            this.pages = in.readInt();
+            this.result = new ArrayList<ResultBean>();
+            in.readList(this.result, ResultBean.class.getClassLoader());
+        }
+
+        public static final Creator<DataBean> CREATOR = new Creator<DataBean>()
+        {
+
+            @Override
+            public DataBean createFromParcel(Parcel source)
+            {
+
+                return new DataBean(source);
+            }
+
+            @Override
+            public DataBean[] newArray(int size)
+            {
+
+                return new DataBean[size];
+            }
+        };
     }
+
+    @Override
+    public int describeContents()
+    {
+
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+
+        dest.writeByte(this.status ? (byte) 1 : (byte) 0);
+        dest.writeParcelable(this.data, flags);
+    }
+
+    public UserChaseBangumiInfo()
+    {
+
+    }
+
+    protected UserChaseBangumiInfo(Parcel in)
+    {
+
+        this.status = in.readByte() != 0;
+        this.data = in.readParcelable(DataBean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<UserChaseBangumiInfo> CREATOR = new Parcelable.Creator<UserChaseBangumiInfo>()
+    {
+
+        @Override
+        public UserChaseBangumiInfo createFromParcel(Parcel source)
+        {
+
+            return new UserChaseBangumiInfo(source);
+        }
+
+        @Override
+        public UserChaseBangumiInfo[] newArray(int size)
+        {
+
+            return new UserChaseBangumiInfo[size];
+        }
+    };
 }

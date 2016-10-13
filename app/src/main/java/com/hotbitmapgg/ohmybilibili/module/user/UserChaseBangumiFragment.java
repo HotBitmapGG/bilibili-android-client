@@ -8,8 +8,6 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserChaseBangumiAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
-import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.rx.RxBus;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
@@ -17,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
 
 /**
  * Created by hcc on 2016/10/12 18:16
@@ -36,22 +34,16 @@ public class UserChaseBangumiFragment extends RxLazyFragment
     @Bind(R.id.empty_view)
     CustomEmptyView mCustomEmptyView;
 
-    private int count;
-
-    private int mid;
-
-    private static final String EXTRA_MID = "extra_mid";
-
     private List<UserChaseBangumiInfo.DataBean.ResultBean> userChaseBangumis = new ArrayList<>();
 
-    private UserChaseBangumiAdapter mAdapter;
+    private UserChaseBangumiInfo userChaseBangumiInfo;
 
-    public static UserChaseBangumiFragment newInstance(int mid)
+    public static UserChaseBangumiFragment newInstance(UserChaseBangumiInfo userChaseBangumiInfo)
     {
 
         UserChaseBangumiFragment mFragment = new UserChaseBangumiFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(EXTRA_MID, mid);
+        bundle.putParcelable(ConstantUtils.EXTRA_DATA, userChaseBangumiInfo);
         mFragment.setArguments(bundle);
         return mFragment;
     }
@@ -67,57 +59,22 @@ public class UserChaseBangumiFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        mid = getArguments().getInt(EXTRA_MID);
-
+        userChaseBangumiInfo = getArguments().getParcelable(EXTRA_DATA);
         initRecyclerView();
-        getUserChaseBangumis();
     }
 
     private void initRecyclerView()
     {
 
+        userChaseBangumis.addAll(userChaseBangumiInfo.getData().getResult());
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mAdapter = new UserChaseBangumiAdapter(mRecyclerView, userChaseBangumis);
+        UserChaseBangumiAdapter mAdapter = new UserChaseBangumiAdapter(mRecyclerView, userChaseBangumis);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-    private void getUserChaseBangumis()
-    {
-
-        RetrofitHelper.getUserChaseBangumiApi()
-                .getUserChaseBangumis(mid)
-                .compose(bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userChaseBangumiInfo -> {
-
-                    count = userChaseBangumiInfo.getData().getCount();
-                    userChaseBangumis.addAll(userChaseBangumiInfo.getData().getResult());
-                    finishTask();
-                }, throwable -> {
-
-                    initEmptyLayout();
-                });
-    }
-
-    private void finishTask()
-    {
-
-        postCount();
-        mAdapter.notifyDataSetChanged();
         if (userChaseBangumis.isEmpty())
             initEmptyLayout();
     }
 
-    private void postCount()
-    {
-
-        Bundle bundle = new Bundle();
-        bundle.putString(ConstantUtils.EXTRA_TYPE, ConstantUtils.USER_CHASE_BANGUMI);
-        bundle.putInt(ConstantUtils.EXTRA_COUNT, count);
-        RxBus.getInstance().post(bundle);
-    }
 
     private void initEmptyLayout()
     {

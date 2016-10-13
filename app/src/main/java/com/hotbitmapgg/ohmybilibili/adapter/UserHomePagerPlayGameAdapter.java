@@ -19,15 +19,15 @@ import java.util.List;
  * Created by hcc on 2016/10/12 22:53
  * 100332338@qq.com
  * <p>
- * 用户详情所玩游戏adapter
+ * 用户详情主页所玩游戏adapter
  */
 
-public class UserPlayGameAdapter extends AbsRecyclerViewAdapter
+public class UserHomePagerPlayGameAdapter extends AbsRecyclerViewAdapter
 {
 
     private List<UserPlayGameInfo.DataBean.GamesBean> games;
 
-    public UserPlayGameAdapter(RecyclerView recyclerView, List<UserPlayGameInfo.DataBean.GamesBean> games)
+    public UserHomePagerPlayGameAdapter(RecyclerView recyclerView, List<UserPlayGameInfo.DataBean.GamesBean> games)
     {
 
         super(recyclerView);
@@ -68,10 +68,19 @@ public class UserPlayGameAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return games.size();
+        if (games.size() == 0)
+        {
+            return 0;
+        } else if (games.size() == 1)
+        {
+            return 1;
+        } else
+        {
+            return 2;
+        }
     }
 
-    private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
+    private class ItemViewHolder extends ClickableViewHolder
     {
 
         ImageView mImage;

@@ -68,6 +68,23 @@ public class FavoritesItemLayout extends FrameLayout
         addView(layout);
     }
 
+
+    /**
+     * 设置收藏夹为空时候的占位图
+     */
+    public void setEmptyImage()
+    {
+
+        mFillImage.setVisibility(VISIBLE);
+        mTopImage.setVisibility(GONE);
+        mBottomImage.setVisibility(GONE);
+        mBottomImageLayout.setVisibility(GONE);
+        mLeftImage.setVisibility(GONE);
+        mRightImage.setVisibility(GONE);
+
+        mFillImage.setImageResource(R.drawable.ic_favorite_box_default_large);
+    }
+
     /**
      * 设置收藏夹一张图片时
      * <p>
@@ -153,22 +170,26 @@ public class FavoritesItemLayout extends FrameLayout
     {
 
         this.videos = videos;
-        switch (videos.size())
+        if (videos != null && videos.size() > 0)
         {
-            case 0:
-                break;
+            switch (videos.size())
+            {
 
-            case 1:
-                setOneImage();
-                break;
+                case 1:
+                    setOneImage();
+                    break;
 
-            case 2:
-                setTwoImage();
-                break;
+                case 2:
+                    setTwoImage();
+                    break;
 
-            case 3:
-                setThreeImage();
-                break;
+                case 3:
+                    setThreeImage();
+                    break;
+            }
+        } else
+        {
+            setEmptyImage();
         }
     }
 }

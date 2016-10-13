@@ -13,7 +13,6 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.rx.RxBus;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
@@ -23,6 +22,9 @@ import java.util.List;
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_MID;
 
 /**
  * Created by hcc on 2016/10/12 13:30
@@ -41,8 +43,6 @@ public class UserContributeFragment extends RxLazyFragment
     @Bind(R.id.empty_view)
     CustomEmptyView mCustomEmptyView;
 
-    private static final String EXTRA_MID = "extra_mid";
-
     private int mid;
 
     private int pageNum = 1;
@@ -55,17 +55,16 @@ public class UserContributeFragment extends RxLazyFragment
 
     private View loadMoreView;
 
-    private List<UserContributeInfo.DataBean.VlistBean> userVideoList = new ArrayList<>();
-
-    private int count;
+    private List<UserContributeInfo.DataBean.VlistBean> userContributes = new ArrayList<>();
 
 
-    public static UserContributeFragment newInstance(int mid)
+    public static UserContributeFragment newInstance(int mid, UserContributeInfo userContributeInfo)
     {
 
         UserContributeFragment mFragment = new UserContributeFragment();
         Bundle mBundle = new Bundle();
-        mBundle.putInt(EXTRA_MID, mid);
+        mBundle.putInt(ConstantUtils.EXTRA_MID, mid);
+        mBundle.putParcelable(ConstantUtils.EXTRA_DATA, userContributeInfo);
         mFragment.setArguments(mBundle);
         return mFragment;
     }
@@ -83,12 +82,17 @@ public class UserContributeFragment extends RxLazyFragment
     {
 
         mid = getArguments().getInt(EXTRA_MID);
+        UserContributeInfo userContributeInfo = getArguments().getParcelable(EXTRA_DATA);
 
-        getUserVideoList();
+
+        if (userContributeInfo != null)
+        {
+            userContributes.addAll(userContributeInfo.getData().getVlist());
+        }
         initRecyclerView();
     }
 
-    private void getUserVideoList()
+    private void getUserContributeVideos()
     {
 
         RetrofitHelper.getUserContributeVideoApi()
@@ -98,13 +102,12 @@ public class UserContributeFragment extends RxLazyFragment
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userContributeInfo -> {
 
-                    count = userContributeInfo.getData().getCount();
                     List<UserContributeInfo.DataBean.VlistBean> vlist =
                             userContributeInfo.getData().getVlist();
                     if (vlist.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
 
-                    userVideoList.addAll(vlist);
+                    userContributes.addAll(vlist);
                     finishTask();
                 }, throwable -> {
 
@@ -117,7 +120,7 @@ public class UserContributeFragment extends RxLazyFragment
     {
 
         mRecyclerView.setHasFixedSize(true);
-        mAdapter = new UserContributeVideoAdapter(mRecyclerView, userVideoList);
+        mAdapter = new UserContributeVideoAdapter(mRecyclerView, userContributes);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
@@ -132,36 +135,26 @@ public class UserContributeFragment extends RxLazyFragment
             {
 
                 pageNum++;
-                getUserVideoList();
+                getUserContributeVideos();
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
+
+        if (userContributes.isEmpty())
+            initEmptyLayout();
     }
 
     private void finishTask()
     {
 
-        postCount();
         loadMoreView.setVisibility(View.GONE);
 
         if (pageNum * pageSize - pageSize - 1 > 0)
             mAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
         else
             mAdapter.notifyDataSetChanged();
-
-        if (userVideoList.isEmpty())
-            initEmptyLayout();
     }
 
-
-    private void postCount()
-    {
-
-        Bundle bundle = new Bundle();
-        bundle.putString(ConstantUtils.EXTRA_TYPE, ConstantUtils.USER_CONTRIBUTE);
-        bundle.putInt(ConstantUtils.EXTRA_COUNT, count);
-        RxBus.getInstance().post(bundle);
-    }
 
     private void createHeadView()
     {

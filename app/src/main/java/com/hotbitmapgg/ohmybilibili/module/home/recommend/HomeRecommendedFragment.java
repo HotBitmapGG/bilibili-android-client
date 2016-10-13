@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendActivityCenterSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendBannerSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendPicSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendTopicSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendedSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
@@ -61,6 +63,8 @@ public class HomeRecommendedFragment extends RxLazyFragment
     private static final String TYPE_TOPIC = "weblink";
 
     private static final String TYPE_ACTIVITY_CENTER = "activity";
+
+    private static final String STYLE_PIC = "gl_pic";
 
 
     public static HomeRecommendedFragment newInstance()
@@ -208,29 +212,38 @@ public class HomeRecommendedFragment extends RxLazyFragment
         for (int i = 0; i < size; i++)
         {
             String type = results.get(i).getType();
-            switch (type)
+            if (!TextUtils.isEmpty(type))
+                switch (type)
+                {
+                    case TYPE_TOPIC:
+                        //话题
+                        mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
+                                results.get(i).getBody().get(0).getCover(),
+                                results.get(i).getBody().get(0).getTitle(),
+                                results.get(i).getBody().get(0).getParam()));
+                        break;
+                    case TYPE_ACTIVITY_CENTER:
+                        //活动中心
+                        mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
+                                getActivity(),
+                                results.get(i).getBody()));
+                        break;
+                    default:
+                        mSectionedAdapter.addSection(new HomeRecommendedSection(
+                                getActivity(),
+                                results.get(i).getHead().getTitle(),
+                                results.get(i).getType(),
+                                results.get(1).getHead().getCount(),
+                                results.get(i).getBody()));
+                        break;
+                }
+
+            String style = results.get(i).getHead().getStyle();
+            if (style.equals(STYLE_PIC))
             {
-                case TYPE_TOPIC:
-                    //话题
-                    mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
-                            results.get(i).getBody().get(0).getCover(),
-                            results.get(i).getBody().get(0).getTitle(),
-                            results.get(i).getBody().get(0).getParam()));
-                    break;
-                case TYPE_ACTIVITY_CENTER:
-                    //活动中心
-                    mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
-                            getActivity(),
-                            results.get(i).getBody()));
-                    break;
-                default:
-                    mSectionedAdapter.addSection(new HomeRecommendedSection(
-                            getActivity(),
-                            results.get(i).getHead().getTitle(),
-                            results.get(i).getType(),
-                            results.get(1).getHead().getCount(),
-                            results.get(i).getBody()));
-                    break;
+                mSectionedAdapter.addSection(new HomeRecommendPicSection(getActivity(),
+                        results.get(i).getBody().get(0).getCover(),
+                        results.get(i).getBody().get(0).getParam()));
             }
         }
         mSectionedAdapter.notifyDataSetChanged();

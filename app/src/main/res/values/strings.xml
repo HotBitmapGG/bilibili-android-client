@@ -88,6 +88,14 @@
     <string name="more_hot_comment">更多热门评论 >></string>
     <string name="fans">粉丝</string>
     <string name="direct_messages">私信</string>
+    <string name="live_message">TA现在还没有直播，去订阅TA的直播</string>
+    <string name="go_to_look">进去看看</string>
+    <string name="all_contribute">全部投稿</string>
+    <string name="coins_video">最近投硬币的视频</string>
+    <string name="ta_favorites">TA的收藏夹</string>
+    <string name="ta_chase_bangumi">TA的追番</string>
+    <string name="ta_quanzi">TA的圈子</string>
+    <string name="ta_play_game">TA玩的游戏</string>
 
 
     <!--Vitamio Strings-->

@@ -8,8 +8,6 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserPlayGameAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserPlayGameInfo;
-import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.rx.RxBus;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
@@ -17,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
 
 /**
  * Created by hcc on 2016/10/12 18:19
@@ -36,22 +34,16 @@ public class UserPlayGameFragment extends RxLazyFragment
     @Bind(R.id.empty_view)
     CustomEmptyView mCustomEmptyView;
 
-    private int mid;
-
-    private static final String EXTRA_MID = "extra_mid";
-
     private List<UserPlayGameInfo.DataBean.GamesBean> games = new ArrayList<>();
 
-    private UserPlayGameAdapter mAdapter;
+    private UserPlayGameInfo userPlayGameInfo;
 
-    private int count;
-
-    public static UserPlayGameFragment newInstance(int mid)
+    public static UserPlayGameFragment newInstance(UserPlayGameInfo userPlayGameInfo)
     {
 
         UserPlayGameFragment mFragment = new UserPlayGameFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(EXTRA_MID, mid);
+        bundle.putParcelable(ConstantUtils.EXTRA_DATA, userPlayGameInfo);
         mFragment.setArguments(bundle);
         return mFragment;
     }
@@ -68,55 +60,20 @@ public class UserPlayGameFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        mid = getArguments().getInt(EXTRA_MID);
-
+        userPlayGameInfo = getArguments().getParcelable(EXTRA_DATA);
         initRecyclerView();
-        getUserPlayGames();
     }
 
     private void initRecyclerView()
     {
 
+        games.addAll(userPlayGameInfo.getData().getGames());
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new UserPlayGameAdapter(mRecyclerView, games);
+        UserPlayGameAdapter mAdapter = new UserPlayGameAdapter(mRecyclerView, games);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-    private void getUserPlayGames()
-    {
-
-        RetrofitHelper.getUserPlayGameApi()
-                .getUserPlayGames(mid)
-                .compose(bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userPlayGameInfo -> {
-
-                    count = userPlayGameInfo.getData().getCount();
-                    games.addAll(userPlayGameInfo.getData().getGames());
-                    finishTask();
-                }, throwable -> {
-                    initEmptyLayout();
-                });
-    }
-
-    private void finishTask()
-    {
-
-        postCount();
-        mAdapter.notifyDataSetChanged();
         if (games.isEmpty())
             initEmptyLayout();
-    }
-
-    private void postCount()
-    {
-
-        Bundle bundle = new Bundle();
-        bundle.putString(ConstantUtils.EXTRA_TYPE, ConstantUtils.USER_PLAY_GAME);
-        bundle.putInt(ConstantUtils.EXTRA_COUNT, count);
-        RxBus.getInstance().post(bundle);
     }
 
     private void initEmptyLayout()

@@ -33,4 +33,10 @@ public class ConstantUtils
 
     //用户游戏
     public static final String USER_PLAY_GAME = "5";
+
+    //用户mid
+    public static final String EXTRA_MID = "extra_mid";
+
+    //用户详情界面传递数据
+    public static final String EXTRA_DATA = "extra_data";
 }
