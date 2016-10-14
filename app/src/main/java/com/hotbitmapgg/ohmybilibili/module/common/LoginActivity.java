@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.CommonUtils;
+import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 
 import butterknife.Bind;
@@ -44,6 +45,8 @@ public class LoginActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.et_password)
     EditText et_password;
+
+    private static final String KEY = "login";
 
     @Override
     public int getLayoutId()
@@ -165,6 +168,7 @@ public class LoginActivity extends RxAppCompatBaseActivity
             return;
         }
 
+        PreferenceUtils.putBoolean(KEY, true);
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();
     }
