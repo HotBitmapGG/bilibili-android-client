@@ -1,9 +1,8 @@
-![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bg2.png?raw=true)
-
-## High copy bilibili android client
+## Imitation Bilibili Android Client
 
 [![Wercker](https://img.shields.io/badge/Android%20Client-bilibili-brightgreen.svg)](https://github.com/HotBitmapGG/bilibili) [![Issue Stats](https://img.shields.io/issuestats/i/github/strongloop/express.svg?maxAge=2592000)]()  [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?maxAge=2592000)]() [![Crates.io](https://img.shields.io/crates/l/rustc-serialize.svg?maxAge=2592000)]()
 
+![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bg2.png?raw=true)
 
 ## Introduce
 
@@ -39,8 +38,7 @@
 
 ## AppKey
 
-关于Appkey的问题，如果你有AppKey,放置到Secret中即可，目前项目中有分区，番剧放送表,追番,视频更多推荐等接口需要Appkey才能正常请求,
-因为目前还在开发阶段,等项目完成的差不多的时候会放上来一个公用的Appkey。
+ * 已公开了一个公用的Appkey，目前只有分区界面才使用到，不过请尽量不要使用Appkey去做大量的请求操作，会导致Appkey被封掉，请悉知。
 
 
 ## Instructions
@@ -62,6 +60,14 @@
 ## Update log
 
 >由于每个版本更新的东西较多，所以从现在开始每个版本都会贴上更新日志.
+
+
+### V2.2.2
+
+  * 1.添加全新的用户详情界面，跟官方保持一致。
+  * 2.添加追番界面。
+  * 3.修复主页推荐的显示Bug，一些未知的数据处理。
+  * 4.修复部分已知Bug。
 
 
 ### V2.2.1
@@ -147,9 +153,17 @@
 
 <a href="art/28.png"><img src="art/28.png" width="40%"/></a> <a href="art/29.png"><img src="art/29.png" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/bilibili/blob/master-x/art/30.png?raw=true)
+<a href="art/30.png"><img src="art/30.png" width="40%"/></a> <a href="art/31.png"><img src="art/31.png" width="40%"/></a>
 
-![](https://github.com/HotBitmapGG/bilibili/blob/master-x/art/31.png?raw=true)
+<a href="art/32.png"><img src="art/32.png" width="40%"/></a> <a href="art/33.png"><img src="art/33.png" width="40%"/></a>
+
+<a href="art/34.png"><img src="art/34.png" width="40%"/></a> <a href="art/35.png"><img src="art/35.png" width="40%"/></a>
+
+<a href="art/36.png"><img src="art/36.png" width="40%"/></a> <a href="art/37.png"><img src="art/37.png" width="40%"/></a>
+
+![](https://github.com/HotBitmapGG/bilibili/blob/master-x/art/001.png?raw=true)
+
+![](https://github.com/HotBitmapGG/bilibili/blob/master-x/art/002.png?raw=true)
 
 
 
