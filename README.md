@@ -1,4 +1,4 @@
-## Imitation Bilibili Android Client
+# Imitation Bilibili Android Client
 
 [![Wercker](https://img.shields.io/badge/Android%20Client-bilibili-brightgreen.svg)](https://github.com/HotBitmapGG/bilibili) [![Issue Stats](https://img.shields.io/issuestats/i/github/strongloop/express.svg?maxAge=2592000)]()  [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?maxAge=2592000)]() [![Crates.io](https://img.shields.io/crates/l/rustc-serialize.svg?maxAge=2592000)]()
 
