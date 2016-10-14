@@ -16,6 +16,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.pager.PartitionMorePagerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
 import butterknife.Bind;
 
@@ -37,8 +38,6 @@ public class PartitionDetailsActivity extends RxAppCompatBaseActivity
     @Bind(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTab;
 
-    private static final String EXTRA_PARTITION = "extra_partition";
-
     private PartitionInfo.DataBean mDataBean;
 
 
@@ -56,7 +55,7 @@ public class PartitionDetailsActivity extends RxAppCompatBaseActivity
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null)
         {
-            mDataBean = mBundle.getParcelable(EXTRA_PARTITION);
+            mDataBean = mBundle.getParcelable(ConstantUtils.EXTRA_PARTITION);
         }
 
         initViewPager();
@@ -139,7 +138,7 @@ public class PartitionDetailsActivity extends RxAppCompatBaseActivity
 
         Intent mIntent = new Intent(activity, PartitionDetailsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable(EXTRA_PARTITION, dataBean);
+        bundle.putParcelable(ConstantUtils.EXTRA_PARTITION, dataBean);
         mIntent.putExtras(bundle);
         activity.startActivity(mIntent);
     }

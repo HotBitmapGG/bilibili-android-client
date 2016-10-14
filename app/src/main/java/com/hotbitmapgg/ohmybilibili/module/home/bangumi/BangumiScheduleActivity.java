@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.BangumiScheduleSection;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiSchedule;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapter;
@@ -42,20 +43,6 @@ public class BangumiScheduleActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
-
-    private static final String SUNDAY_TYPE = "0";
-
-    private static final String MONDAY_TYPE = "1";
-
-    private static final String TUESDAY_TYPE = "2";
-
-    private static final String WEDNESDAY_TYPE = "3";
-
-    private static final String THURSDAY_TYPE = "4";
-
-    private static final String FRIDAY_TYEP = "5";
-
-    private static final String SATURDAY_TYPE = "6";
 
     private List<BangumiSchedule.ResultBean> bangumiSchedules = new ArrayList<>();
 
@@ -151,44 +138,44 @@ public class BangumiScheduleActivity extends RxAppCompatBaseActivity
             String weekday = resultBean.getWeekday();
             switch (weekday)
             {
-                case SUNDAY_TYPE:
+                case ConstantUtils.SUNDAY_TYPE:
                     sundayBangumis.add(resultBean);
                     break;
-                case MONDAY_TYPE:
+                case ConstantUtils.MONDAY_TYPE:
                     mondayBangumis.add(resultBean);
                     break;
-                case TUESDAY_TYPE:
+                case ConstantUtils.TUESDAY_TYPE:
                     tuesdayBangumis.add(resultBean);
                     break;
-                case WEDNESDAY_TYPE:
+                case ConstantUtils.WEDNESDAY_TYPE:
                     wednesdayBangumis.add(resultBean);
                     break;
-                case THURSDAY_TYPE:
+                case ConstantUtils.THURSDAY_TYPE:
                     thursdayBangumis.add(resultBean);
                     break;
-                case FRIDAY_TYEP:
+                case ConstantUtils.FRIDAY_TYEP:
                     fridayBangumis.add(resultBean);
                     break;
-                case SATURDAY_TYPE:
+                case ConstantUtils.SATURDAY_TYPE:
                     saturdayBangumis.add(resultBean);
                     break;
             }
         }
 
         mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
-                sundayBangumis, Integer.valueOf(SUNDAY_TYPE)));
+                sundayBangumis, Integer.valueOf(ConstantUtils.SUNDAY_TYPE)));
         mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
-                mondayBangumis, Integer.valueOf(MONDAY_TYPE)));
+                mondayBangumis, Integer.valueOf(ConstantUtils.MONDAY_TYPE)));
         mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
-                tuesdayBangumis, Integer.valueOf(TUESDAY_TYPE)));
+                tuesdayBangumis, Integer.valueOf(ConstantUtils.TUESDAY_TYPE)));
         mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
-                wednesdayBangumis, Integer.valueOf(WEDNESDAY_TYPE)));
+                wednesdayBangumis, Integer.valueOf(ConstantUtils.WEDNESDAY_TYPE)));
         mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
-                thursdayBangumis, Integer.valueOf(THURSDAY_TYPE)));
+                thursdayBangumis, Integer.valueOf(ConstantUtils.THURSDAY_TYPE)));
         mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
-                fridayBangumis, Integer.valueOf(FRIDAY_TYEP)));
+                fridayBangumis, Integer.valueOf(ConstantUtils.FRIDAY_TYEP)));
         mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
-                saturdayBangumis, Integer.valueOf(SATURDAY_TYPE)));
+                saturdayBangumis, Integer.valueOf(ConstantUtils.SATURDAY_TYPE)));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mSectionedAdapter);
     }

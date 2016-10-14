@@ -16,6 +16,7 @@ import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreList;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreVideoItem;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.io.IOException;
@@ -52,8 +53,6 @@ public class PartitionDetailsFragment extends RxLazyFragment
 
     private String tid;
 
-    private static final String EXTRA_TID = "extra_tid";
-
     private View loadMoreView;
 
 
@@ -63,7 +62,7 @@ public class PartitionDetailsFragment extends RxLazyFragment
         PartitionDetailsFragment fragment =
                 new PartitionDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(EXTRA_TID, tid);
+        bundle.putString(ConstantUtils.EXTRA_TID, tid);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -79,7 +78,7 @@ public class PartitionDetailsFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        tid = getArguments().getString(EXTRA_TID);
+        tid = getArguments().getString(ConstantUtils.EXTRA_TID);
 
         isPrepared = true;
         lazyLoad();

@@ -22,6 +22,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.KeyBoardUtil;
 import com.hotbitmapgg.ohmybilibili.utils.StatusBarUtils;
 import com.jakewharton.rxbinding.view.RxView;
@@ -68,9 +69,6 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
     @Bind(R.id.search_layout)
     LinearLayout mSearchLayout;
 
-
-    private static final String EXTRA_CONTENT = "extra_content";
-
     private String content;
 
     private List<String> titles = new ArrayList<>();
@@ -106,7 +104,7 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
 
         Intent intent = getIntent();
         if (intent != null)
-            content = intent.getStringExtra(EXTRA_CONTENT);
+            content = intent.getStringExtra(ConstantUtils.EXTRA_CONTENT);
 
         mLoadingView.setImageResource(R.drawable.anim_search_loading);
         mAnimationDrawable = (AnimationDrawable) mLoadingView.getDrawable();
@@ -336,7 +334,7 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
     {
 
         Intent mIntent = new Intent(activity, TotalStationSearchActivity.class);
-        mIntent.putExtra(EXTRA_CONTENT, str);
+        mIntent.putExtra(ConstantUtils.EXTRA_CONTENT, str);
         activity.startActivity(mIntent);
     }
 

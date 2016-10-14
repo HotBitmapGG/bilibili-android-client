@@ -25,10 +25,13 @@ import android.webkit.WebViewClient;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.ClipboardUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import butterknife.Bind;
+
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_URL;
 
 /**
  * Created by hcc on 16/8/7 14:12
@@ -54,10 +57,6 @@ public class BrowserActivity extends RxAppCompatBaseActivity
 
     private WebViewClientBase webViewClient = new WebViewClientBase();
 
-    private static final String EXTRA_URL = "url";
-
-    private static final String EXTRA_TITLE = "title";
-
 
     @Override
     public int getLayoutId()
@@ -73,8 +72,8 @@ public class BrowserActivity extends RxAppCompatBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            url = intent.getStringExtra(EXTRA_URL);
-            mTitle = intent.getStringExtra(EXTRA_TITLE);
+            url = intent.getStringExtra(ConstantUtils.EXTRA_URL);
+            mTitle = intent.getStringExtra(ConstantUtils.EXTRA_TITLE);
         }
 
 
@@ -159,8 +158,8 @@ public class BrowserActivity extends RxAppCompatBaseActivity
     {
 
         Intent intent = new Intent(activity, BrowserActivity.class);
-        intent.putExtra(EXTRA_URL, url);
-        intent.putExtra(EXTRA_TITLE, title);
+        intent.putExtra(ConstantUtils.EXTRA_URL, url);
+        intent.putExtra(ConstantUtils.EXTRA_TITLE, title);
         activity.startActivity(intent);
     }
 

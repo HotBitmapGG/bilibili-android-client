@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
 import java.util.ArrayList;
 
@@ -44,8 +45,6 @@ public class VideoCommentFragment extends RxLazyFragment
 
     private int pageSize = 20;
 
-    private static final String AID = "aid";
-
     private View loadMoreView;
 
     private int aid;
@@ -59,7 +58,7 @@ public class VideoCommentFragment extends RxLazyFragment
 
         VideoCommentFragment fragment = new VideoCommentFragment();
         Bundle args = new Bundle();
-        args.putInt(AID, aid);
+        args.putInt(ConstantUtils.AID, aid);
         fragment.setArguments(args);
         return fragment;
     }
@@ -75,7 +74,7 @@ public class VideoCommentFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        aid = getArguments().getInt(AID);
+        aid = getArguments().getInt(ConstantUtils.AID);
         initRecyclerView();
         getCommentList();
     }

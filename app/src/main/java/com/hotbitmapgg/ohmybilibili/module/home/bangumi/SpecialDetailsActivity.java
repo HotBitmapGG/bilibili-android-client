@@ -23,6 +23,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;
@@ -84,12 +85,6 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
 
     private int season_id;
 
-    private static final String EXTRA_SPID = "spid";
-
-    private static final String EXTRA_TITLE = "title";
-
-    private static final String EXTRA_SEASON_ID = "season_id";
-
     private ArrayList<SpecialTopic.Item> spList = new ArrayList<>();
 
 
@@ -107,9 +102,9 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            spid = Integer.parseInt(intent.getStringExtra(EXTRA_SPID));
-            title = intent.getStringExtra(EXTRA_TITLE);
-            season_id = intent.getIntExtra(EXTRA_SEASON_ID, 0);
+            spid = Integer.parseInt(intent.getStringExtra(ConstantUtils.EXTRA_SPID));
+            title = intent.getStringExtra(ConstantUtils.EXTRA_TITLE);
+            season_id = intent.getIntExtra(ConstantUtils.EXTRA_SEASON_ID, 0);
         }
 
 
@@ -260,9 +255,9 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
     {
 
         Intent mIntent = new Intent(activity, SpecialDetailsActivity.class);
-        mIntent.putExtra(EXTRA_SPID, spid);
-        mIntent.putExtra(EXTRA_TITLE, title);
-        mIntent.putExtra(EXTRA_SEASON_ID, seasonId);
+        mIntent.putExtra(ConstantUtils.EXTRA_SPID, spid);
+        mIntent.putExtra(ConstantUtils.EXTRA_TITLE, title);
+        mIntent.putExtra(ConstantUtils.EXTRA_SEASON_ID, seasonId);
         activity.startActivity(mIntent);
     }
 }

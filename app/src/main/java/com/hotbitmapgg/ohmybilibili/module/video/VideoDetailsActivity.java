@@ -33,6 +33,7 @@ import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 
 import java.util.ArrayList;
@@ -79,10 +80,6 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     private List<String> titles = new ArrayList<>();
 
-    private static String EXTRA_AV = "extra_av";
-
-    private static String EXTRA_IMG_URL = "extra_img_url";
-
     private int av;
 
     private VideoDetails mVideoDetails;
@@ -104,8 +101,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            av = intent.getIntExtra(EXTRA_AV, -1);
-            imgUrl = intent.getStringExtra(EXTRA_IMG_URL);
+            av = intent.getIntExtra(ConstantUtils.EXTRA_AV, -1);
+            imgUrl = intent.getStringExtra(ConstantUtils.EXTRA_IMG_URL);
         }
 
         Glide.with(VideoDetailsActivity.this)
@@ -208,8 +205,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
         Intent intent = new Intent(activity, VideoDetailsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(EXTRA_AV, aid);
-        intent.putExtra(EXTRA_IMG_URL, imgUrl);
+        intent.putExtra(ConstantUtils.EXTRA_AV, aid);
+        intent.putExtra(ConstantUtils.EXTRA_IMG_URL, imgUrl);
         activity.startActivity(intent);
     }
 

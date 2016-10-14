@@ -11,6 +11,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.TopicResultsAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
 import java.util.List;
 
@@ -31,8 +32,6 @@ public class TopicResultsFragment extends RxLazyFragment
     @Bind(R.id.empty_view)
     ImageView mEmptyView;
 
-    private static final String EXTRA_DATA = "extra_data";
-
     private SearchResult.ResultBean resultBean;
 
     private List<SearchResult.ResultBean.TopicBean> topics;
@@ -42,7 +41,7 @@ public class TopicResultsFragment extends RxLazyFragment
 
         TopicResultsFragment fragment = new TopicResultsFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(EXTRA_DATA, result);
+        bundle.putParcelable(ConstantUtils.EXTRA_DATA, result);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -59,7 +58,7 @@ public class TopicResultsFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        resultBean = getArguments().getParcelable(EXTRA_DATA);
+        resultBean = getArguments().getParcelable(ConstantUtils.EXTRA_DATA);
         initData();
     }
 

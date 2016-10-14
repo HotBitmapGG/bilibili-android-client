@@ -29,6 +29,7 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.utils.WeekDayUtil;
@@ -48,6 +49,8 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_BANGUMI_KEY;
 
 /**
  * Created by hcc on 16/8/14 17:51
@@ -109,10 +112,7 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
     @Bind(R.id.bangumi_recommend_recycler)
     RecyclerView mBangumiRecommendRecycler;
 
-
     private SpecialTopic mSpecialTopic;
-
-    private final static String EXTRA_BANGUMI_KEY = "extra_bangumi";
 
     private MiddlewareBangumi mBangumiInfo;
 
@@ -120,7 +120,9 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
 
     private List<BangumiDetailsRecommend.ResultBean> mBangumiDetailsRecommends = new ArrayList<>();
 
-    private List<String> tags = Arrays.asList("轻改", "萌系", "搞笑", "催泪", "热血", "机战", "后宫", "恋爱", "基腐", "百合", "伪娘", "乙女");
+    private List<String> tags = Arrays.asList(
+            "轻改", "萌系", "搞笑", "催泪", "热血",
+            "机战", "后宫", "恋爱", "基腐", "百合", "伪娘", "乙女");
 
     @Override
     public int getLayoutId()
@@ -137,7 +139,7 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
         if (intent != null)
         {
             Bundle bundle = intent.getExtras();
-            mBangumiInfo = bundle.getParcelable(EXTRA_BANGUMI_KEY);
+            mBangumiInfo = bundle.getParcelable(ConstantUtils.EXTRA_BANGUMI_KEY);
         }
 
         getBangumiDetails();
@@ -354,7 +356,7 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
 
         Intent mIntent = new Intent(activity, BangumiDetailsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable(EXTRA_BANGUMI_KEY, bangumi);
+        bundle.putParcelable(ConstantUtils.EXTRA_BANGUMI_KEY, bangumi);
         mIntent.putExtras(bundle);
         activity.startActivity(mIntent);
     }

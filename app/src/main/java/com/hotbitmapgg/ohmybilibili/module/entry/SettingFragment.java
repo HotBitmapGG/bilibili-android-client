@@ -15,6 +15,7 @@ import com.hotbitmapgg.ohmybilibili.module.common.AppIntroduceActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.HotBitmapGGInfoActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.LoginActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.MainActivity;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 
 import butterknife.Bind;
@@ -35,8 +36,6 @@ public class SettingFragment extends RxLazyFragment
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
-
-    private static final String KEY = "login";
 
     public static SettingFragment newInstance()
     {
@@ -87,7 +86,7 @@ public class SettingFragment extends RxLazyFragment
     void logout()
     {
         //退出登录
-        PreferenceUtils.putBoolean(KEY, false);
+        PreferenceUtils.putBoolean(ConstantUtils.KEY, false);
         startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
     }

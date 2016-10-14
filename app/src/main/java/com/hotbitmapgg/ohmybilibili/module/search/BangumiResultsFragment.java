@@ -10,6 +10,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiResultsAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
 import java.util.ArrayList;
 
@@ -30,8 +31,6 @@ public class BangumiResultsFragment extends RxLazyFragment
     @Bind(R.id.empty_view)
     ImageView mEmptyView;
 
-    private static final String EXTRA_DATA = "extra_data";
-
     private SearchResult.ResultBean resultBean;
 
     private ArrayList<SearchResult.ResultBean.BangumiBean> bangumis;
@@ -41,7 +40,7 @@ public class BangumiResultsFragment extends RxLazyFragment
 
         BangumiResultsFragment fragment = new BangumiResultsFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(EXTRA_DATA, result);
+        bundle.putParcelable(ConstantUtils.EXTRA_DATA, result);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -58,7 +57,7 @@ public class BangumiResultsFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        resultBean = getArguments().getParcelable(EXTRA_DATA);
+        resultBean = getArguments().getParcelable(ConstantUtils.EXTRA_DATA);
         initData();
     }
 

@@ -17,6 +17,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
@@ -59,13 +60,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
     private boolean mIsRefreshing = false;
 
     private SectionedRecyclerViewAdapter mSectionedAdapter;
-
-    private static final String TYPE_TOPIC = "weblink";
-
-    private static final String TYPE_ACTIVITY_CENTER = "activity";
-
-    private static final String STYLE_PIC = "gl_pic";
-
 
     public static HomeRecommendedFragment newInstance()
     {
@@ -215,14 +209,14 @@ public class HomeRecommendedFragment extends RxLazyFragment
             if (!TextUtils.isEmpty(type))
                 switch (type)
                 {
-                    case TYPE_TOPIC:
+                    case ConstantUtils.TYPE_TOPIC:
                         //话题
                         mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
                                 results.get(i).getBody().get(0).getCover(),
                                 results.get(i).getBody().get(0).getTitle(),
                                 results.get(i).getBody().get(0).getParam()));
                         break;
-                    case TYPE_ACTIVITY_CENTER:
+                    case ConstantUtils.TYPE_ACTIVITY_CENTER:
                         //活动中心
                         mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
                                 getActivity(),
@@ -239,7 +233,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
                 }
 
             String style = results.get(i).getHead().getStyle();
-            if (style.equals(STYLE_PIC))
+            if (style.equals(ConstantUtils.STYLE_PIC))
             {
                 mSectionedAdapter.addSection(new HomeRecommendPicSection(getActivity(),
                         results.get(i).getBody().get(0).getCover(),

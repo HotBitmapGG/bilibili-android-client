@@ -19,6 +19,7 @@ import com.hotbitmapgg.ohmybilibili.media.MediaController;
 import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchEvent;
 import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.DanmakuDownloadUtil;
 import com.hotbitmapgg.ohmybilibili.widget.VideoPlayerView;
 
@@ -66,14 +67,6 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
 
     private String startText = "初始化播放器...";
 
-    private static final String ERROR_MESSAGE = "error";
-
-    private static final String UNFIND_MESSAGE = "undefined";
-
-    private static final String VIDEO_TYPE_MP4 = "mp4";
-
-    private static final String EXTRA_AID = "extra_aid";
-
     private int LastPosition = 0;
 
     private int aid;
@@ -115,7 +108,7 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
 
         Intent intent = getIntent();
         if (intent != null)
-            aid = intent.getIntExtra(EXTRA_AID, 0);
+            aid = intent.getIntExtra(ConstantUtils.EXTRA_AID, 0);
 
         initData();
     }
@@ -193,9 +186,9 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
                 .map(videoSrc -> {
 
                     if (videoSrc.getCid() == null || videoSrc.getCid()
-                            .contentEquals(UNFIND_MESSAGE))
+                            .contentEquals(ConstantUtils.UNFIND_MESSAGE))
                     {
-                        return ERROR_MESSAGE;
+                        return ConstantUtils.ERROR_MESSAGE;
                     }
                     return videoSrc.getCid();
                 })
@@ -206,7 +199,7 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
                     public Observable<BaseDanmakuParser> call(String string)
                     {
 
-                        if (string.equals(ERROR_MESSAGE))
+                        if (string.equals(ConstantUtils.ERROR_MESSAGE))
                         {
                             return Observable.error(new Exception("视频不存在或不能播放"));
                         }
@@ -226,9 +219,9 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
                 .map(VideoSrc::getCid)
                 .map(s -> {
 
-                    if (s == null || s.contentEquals(UNFIND_MESSAGE))
+                    if (s == null || s.contentEquals(ConstantUtils.UNFIND_MESSAGE))
                     {
-                        return ERROR_MESSAGE;
+                        return ConstantUtils.ERROR_MESSAGE;
                     }
                     return s.substring(s.lastIndexOf('/') + 1, s.lastIndexOf("."));
                 })
@@ -239,13 +232,13 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
                     public Observable<HDVideoInfo> call(String cid)
                     {
 
-                        if (cid.equals(ERROR_MESSAGE))
+                        if (cid.equals(ConstantUtils.ERROR_MESSAGE))
                         {
                             return Observable.error(new Exception("视频不存在或不能播放"));
                         }
 
                         return RetrofitHelper.getHDVideoApi()
-                                .getHDVideoUrl(cid, 4, VIDEO_TYPE_MP4);
+                                .getHDVideoUrl(cid, 4, ConstantUtils.VIDEO_TYPE_MP4);
                     }
                 })
                 .map(videoInfo -> Uri.parse(videoInfo.getDurl().get(0).getUrl()))
@@ -486,7 +479,7 @@ public class VideoPlayerActivity extends RxAppCompatBaseActivity implements Danm
     {
 
         Intent mIntent = new Intent(activity, VideoPlayerActivity.class);
-        mIntent.putExtra(EXTRA_AID, aid);
+        mIntent.putExtra(ConstantUtils.EXTRA_AID, aid);
         activity.startActivity(mIntent);
     }
 

@@ -11,6 +11,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.discover.OriginalRankInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 
@@ -37,8 +38,6 @@ public class OriginalRankFragment extends RxLazyFragment
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private static final String EXTRA_KEY = "extra_order";
-
     private String order;
 
     private boolean mIsRefreshing = false;
@@ -52,7 +51,7 @@ public class OriginalRankFragment extends RxLazyFragment
 
         OriginalRankFragment mFragment = new OriginalRankFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(EXTRA_KEY, order);
+        bundle.putString(ConstantUtils.EXTRA_ORDER, order);
         mFragment.setArguments(bundle);
         return mFragment;
     }
@@ -68,7 +67,7 @@ public class OriginalRankFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        order = getArguments().getString(EXTRA_KEY);
+        order = getArguments().getString(ConstantUtils.EXTRA_ORDER);
         initRefreshLayout();
         initRecyclerView();
     }

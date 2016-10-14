@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommendVideoInfo;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.UserTagView;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -67,10 +68,6 @@ public class VideoInfoFragment extends RxLazyFragment
     @Bind(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private static final String AID = "aid";
-
-    private static final String EXTRA_INFO = "extra_info";
-
     private List<UserRecommendVideoInfo.AuthorData> authorRecommendList = new ArrayList<>();
 
     private VideoDetails mVideoDetails;
@@ -82,8 +79,8 @@ public class VideoInfoFragment extends RxLazyFragment
 
         VideoInfoFragment fragment = new VideoInfoFragment();
         Bundle args = new Bundle();
-        args.putInt(AID, aid);
-        args.putParcelable(EXTRA_INFO, info);
+        args.putInt(ConstantUtils.AID, aid);
+        args.putParcelable(ConstantUtils.EXTRA_INFO, info);
         fragment.setArguments(args);
         return fragment;
     }
@@ -103,8 +100,8 @@ public class VideoInfoFragment extends RxLazyFragment
         Bundle bundle = getArguments();
         if (bundle != null)
         {
-            av = bundle.getInt(AID);
-            mVideoDetails = bundle.getParcelable(EXTRA_INFO);
+            av = bundle.getInt(ConstantUtils.AID);
+            mVideoDetails = bundle.getParcelable(ConstantUtils.EXTRA_INFO);
         }
 
 

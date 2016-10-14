@@ -21,6 +21,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
 import com.hotbitmapgg.ohmybilibili.module.user.UserInfoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.livelike.LoveLikeLayout;
@@ -84,17 +85,6 @@ public class LivePlayerActivity extends RxAppCompatBaseActivity
     @Bind(R.id.bottom_love)
     ImageView mlove;
 
-    private static final String EXTRA_CID = "cid";
-
-    private static final String EXTRA_TITLE = "title";
-
-    private static final String EXTRA_ONLINE = "online";
-
-    private static final String EXTRA_FACE = "face";
-
-    private static final String EXTRA_NAME = "name";
-
-    private static final String EXTRA_MID = "mid";
 
     private IjkMediaPlayer ijkMediaPlayer;
 
@@ -132,12 +122,12 @@ public class LivePlayerActivity extends RxAppCompatBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            cid = intent.getIntExtra(EXTRA_CID, 0);
-            title = intent.getStringExtra(EXTRA_TITLE);
-            online = intent.getIntExtra(EXTRA_ONLINE, 0);
-            face = intent.getStringExtra(EXTRA_FACE);
-            name = intent.getStringExtra(EXTRA_NAME);
-            mid = intent.getIntExtra(EXTRA_MID, 0);
+            cid = intent.getIntExtra(ConstantUtils.EXTRA_CID, 0);
+            title = intent.getStringExtra(ConstantUtils.EXTRA_TITLE);
+            online = intent.getIntExtra(ConstantUtils.EXTRA_ONLINE, 0);
+            face = intent.getStringExtra(ConstantUtils.EXTRA_FACE);
+            name = intent.getStringExtra(ConstantUtils.EXTRA_NAME);
+            mid = intent.getIntExtra(ConstantUtils.EXTRA_MID, 0);
         }
 
 
@@ -312,12 +302,12 @@ public class LivePlayerActivity extends RxAppCompatBaseActivity
     {
 
         Intent mIntent = new Intent(activity, LivePlayerActivity.class);
-        mIntent.putExtra(EXTRA_CID, cid);
-        mIntent.putExtra(EXTRA_TITLE, title);
-        mIntent.putExtra(EXTRA_ONLINE, online);
-        mIntent.putExtra(EXTRA_FACE, face);
-        mIntent.putExtra(EXTRA_NAME, name);
-        mIntent.putExtra(EXTRA_MID, mid);
+        mIntent.putExtra(ConstantUtils.EXTRA_CID, cid);
+        mIntent.putExtra(ConstantUtils.EXTRA_TITLE, title);
+        mIntent.putExtra(ConstantUtils.EXTRA_ONLINE, online);
+        mIntent.putExtra(ConstantUtils.EXTRA_FACE, face);
+        mIntent.putExtra(ConstantUtils.EXTRA_NAME, name);
+        mIntent.putExtra(ConstantUtils.EXTRA_MID, mid);
         activity.startActivity(mIntent);
     }
 
