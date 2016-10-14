@@ -31,6 +31,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.UserContributeVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserFavoritesService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoDetailsService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInterestQuanService;
+import com.hotbitmapgg.ohmybilibili.network.api.UserLiveRoomStatusService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserPlayGameService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoDetailsService;
@@ -683,6 +684,24 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(UserFavoritesService.class);
+    }
+
+    /**
+     * 获取用户直播状态
+     *
+     * @return
+     */
+    public static UserLiveRoomStatusService getUserLiveRoomStatusApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(LIVE_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(UserLiveRoomStatusService.class);
     }
 
 

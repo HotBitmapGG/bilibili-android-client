@@ -1,10 +1,14 @@
 package com.hotbitmapgg.ohmybilibili.module.user;
 
+import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,6 +24,7 @@ import com.hotbitmapgg.ohmybilibili.entity.user.UserCoinsInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserFavoritesInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInterestQuanInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserLiveRoomStatusInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserPlayGameInfo;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.FavoritesItemLayout;
@@ -93,6 +98,15 @@ public class UserHomePageFragment extends RxLazyFragment
     @Bind(R.id.play_game_layout)
     RelativeLayout playGameLayout;
 
+    @Bind(R.id.live_image)
+    ImageView liveImage;
+
+    @Bind(R.id.live_status_tv)
+    TextView liveStatusTv;
+
+    @Bind(R.id.card_view)
+    CardView cardView;
+
     private UserContributeInfo mUserContributeInfo;
 
     private UserFavoritesInfo mUserFavoritesInfo;
@@ -105,9 +119,13 @@ public class UserHomePageFragment extends RxLazyFragment
 
     private UserPlayGameInfo mUserPlayGameInfo;
 
+    private UserLiveRoomStatusInfo mUserLiveRoomStatusInfo;
+
+
     public static UserHomePageFragment newInstance(UserContributeInfo userContributeInfo, UserFavoritesInfo userFavoritesInfo,
                                                    UserChaseBangumiInfo userChaseBangumiInfo, UserInterestQuanInfo userInterestQuanInfo,
-                                                   UserCoinsInfo userCoinsInfo, UserPlayGameInfo userPlayGameInfo)
+                                                   UserCoinsInfo userCoinsInfo, UserPlayGameInfo userPlayGameInfo,
+                                                   UserLiveRoomStatusInfo userLiveRoomStatusInfo)
     {
 
         UserHomePageFragment mFragment = new UserHomePageFragment();
@@ -118,6 +136,7 @@ public class UserHomePageFragment extends RxLazyFragment
         bundle.putParcelable(ConstantUtils.USER_INTEREST_QUAN, userInterestQuanInfo);
         bundle.putParcelable(ConstantUtils.USER_COINS, userCoinsInfo);
         bundle.putParcelable(ConstantUtils.USER_PLAY_GAME, userPlayGameInfo);
+        bundle.putParcelable(ConstantUtils.USER_LIVE_STATUS, userLiveRoomStatusInfo);
         mFragment.setArguments(bundle);
         return mFragment;
     }
@@ -139,13 +158,37 @@ public class UserHomePageFragment extends RxLazyFragment
         mUserInterestQuanInfo = getArguments().getParcelable(ConstantUtils.USER_INTEREST_QUAN);
         mUserCoinsInfo = getArguments().getParcelable(ConstantUtils.USER_COINS);
         mUserPlayGameInfo = getArguments().getParcelable(ConstantUtils.USER_PLAY_GAME);
+        mUserLiveRoomStatusInfo = getArguments().getParcelable(ConstantUtils.USER_LIVE_STATUS);
 
+        setLive();
         setContribute();
         setCoins();
         setFavorites();
         setChaseBangumi();
         setQuanzi();
         setPlayGame();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void setLive()
+    {
+
+        int roomStatus = mUserLiveRoomStatusInfo.getData().getRoomStatus();
+        if (roomStatus == 0)
+        {
+            //用户没有直播
+            liveImage.setImageResource(R.drawable.ic_live_line);
+            liveImage.setImageTintList(ColorStateList.valueOf(getActivity().getResources().getColor(R.color.font_normal)));
+            liveStatusTv.setText(R.string.live_message);
+            liveStatusTv.setTextColor(getActivity().getResources().getColor(R.color.font_normal));
+        } else
+        {
+            //用户正在直播
+            liveImage.setImageResource(R.drawable.ic_live_fill);
+            liveImage.setImageTintList(ColorStateList.valueOf(getActivity().getResources().getColor(R.color.colorPrimary)));
+            liveStatusTv.setText("正在直播 :" + mUserLiveRoomStatusInfo.getData().getTitle());
+            liveStatusTv.setTextColor(getActivity().getResources().getColor(R.color.colorPrimary));
+        }
     }
 
     private void setPlayGame()
@@ -244,12 +287,6 @@ public class UserHomePageFragment extends RxLazyFragment
         ((UserInfoDetailsActivity) getActivity()).switchPager(1);
     }
 
-    @OnClick(R.id.coins_more)
-    void gotoCoinsPager()
-    {
-
-        ((UserInfoDetailsActivity) getActivity()).switchPager(5);
-    }
 
     @OnClick(R.id.favorites_more)
     void gotoFavoritesPager()
@@ -270,6 +307,13 @@ public class UserHomePageFragment extends RxLazyFragment
     {
 
         ((UserInfoDetailsActivity) getActivity()).switchPager(4);
+    }
+
+    @OnClick(R.id.coins_more)
+    void gotoCoinsPager()
+    {
+
+        ((UserInfoDetailsActivity) getActivity()).switchPager(5);
     }
 
     @OnClick(R.id.play_game_more)

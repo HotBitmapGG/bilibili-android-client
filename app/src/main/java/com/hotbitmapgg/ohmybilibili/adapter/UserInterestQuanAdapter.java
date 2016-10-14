@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class UserInterestQuanAdapter extends AbsRecyclerViewAdapter
         return new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_interest_quan, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
@@ -60,9 +62,9 @@ public class UserInterestQuanAdapter extends AbsRecyclerViewAdapter
 
             itemViewHolder.mTitle.setText(resultBean.getName());
             itemViewHolder.mDesc.setText(resultBean.getDesc());
-            itemViewHolder.mPostNickName.setText(resultBean.getPost_nickname());
+            itemViewHolder.mPostNickName.setText(resultBean.getPost_nickname() + ":");
             itemViewHolder.mPostCount.setText(String.valueOf(resultBean.getPost_count()));
-            itemViewHolder.mMemberNickName.setText(resultBean.getMember_nickname());
+            itemViewHolder.mMemberNickName.setText(resultBean.getMember_nickname() + ":");
             itemViewHolder.mMemberCount.setText(String.valueOf(resultBean.getMember_count()));
         }
 

@@ -30,6 +30,7 @@ import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserDetailsInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserFavoritesInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInterestQuanInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserLiveRoomStatusInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserPlayGameInfo;
 import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -141,6 +142,8 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
     private UserCoinsInfo mUserCoinsInfo;
 
     private UserPlayGameInfo mUserPlayGameInfo;
+
+    private UserLiveRoomStatusInfo mUserLiveRoomStatusInfo;
 
     private List<UserContributeInfo.DataBean.VlistBean> userContributes = new ArrayList<>();
 
@@ -301,6 +304,12 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
                 break;
         }
 
+        //设置用户签名信息
+        if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getSign()))
+            mDescriptionText.setText(mUserDetailsInfo.getCard().getSign());
+        else
+            mDescriptionText.setText("这个人懒死了,什么都没有写(・－・。)");
+
         //设置认证用户信息
         if (mUserDetailsInfo.getCard().isApprove())
         {
@@ -314,10 +323,6 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         {
             //普通用户
             mAuthorVerifiedLayout.setVisibility(View.GONE);
-            if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getSign()))
-                mDescriptionText.setText(mUserDetailsInfo.getCard().getSign());
-            else
-                mDescriptionText.setText("这个人懒死了,什么都没有写(・－・。)");
         }
 
         //获取用户详情全部数据
@@ -405,15 +410,28 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
                     }
                 })
                 .compose(bindToLifecycle())
+                .flatMap(new Func1<UserPlayGameInfo,Observable<UserLiveRoomStatusInfo>>()
+                {
+
+                    @Override
+                    public Observable<UserLiveRoomStatusInfo> call(UserPlayGameInfo userPlayGameInfo)
+                    {
+
+                        mUserPlayGameInfo = userPlayGameInfo;
+                        userPlayGameCount = userPlayGameInfo.getData().getCount();
+                        userPlayGames.addAll(userPlayGameInfo.getData().getGames());
+                        return RetrofitHelper.getUserLiveRoomStatusApi()
+                                .getUserLiveRoomStatus(mid);
+                    }
+                })
+                .compose(bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userPlayGameInfo -> {
-
-                    mUserPlayGameInfo = userPlayGameInfo;
-                    userPlayGameCount = userPlayGameInfo.getData().getCount();
-                    userPlayGames.addAll(userPlayGameInfo.getData().getGames());
+                .subscribe(userLiveRoomStatusInfo -> {
+                    mUserLiveRoomStatusInfo = userLiveRoomStatusInfo;
                     initViewPager();
                 }, throwable -> {
+                    hideProgressBar();
                     LogUtil.all(throwable.getMessage());
                 });
     }
@@ -425,7 +443,7 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
         fragments.add(UserHomePageFragment.newInstance(
                 mUserContributeInfo, mUserFavoritesInfo,
                 mUserChaseBangumiInfo, mUserInterestQuanInfo,
-                mUserCoinsInfo, mUserPlayGameInfo));
+                mUserCoinsInfo, mUserPlayGameInfo, mUserLiveRoomStatusInfo));
         fragments.add(UserContributeFragment.newInstance(mid, mUserContributeInfo));
         fragments.add(UserFavoritesFragment.newInstance(mUserFavoritesInfo));
         fragments.add(UserChaseBangumiFragment.newInstance(mUserChaseBangumiInfo));

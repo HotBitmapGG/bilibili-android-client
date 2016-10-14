@@ -13,6 +13,7 @@
 
 
         <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/user_home_pager_live_layout_height"
             android:layout_margin="@dimen/default_general_margin"
@@ -24,21 +25,20 @@
 
 
             <ImageView
+                android:id="@+id/live_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/default_grow_margin"
-                android:src="@drawable/ic_live_line"
-                android:tint="@color/font_normal" />
+                android:layout_marginStart="@dimen/default_grow_margin" />
 
 
             <TextView
+                android:id="@+id/live_status_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/user_layout_empty_margin"
                 android:text="@string/live_message"
-                android:textColor="@color/font_normal"
                 android:textSize="@dimen/default_small_text_size" />
 
 

@@ -34,6 +34,9 @@ public class ConstantUtils
     //用户游戏
     public static final String USER_PLAY_GAME = "5";
 
+    //用户直播状态
+    public static final String USER_LIVE_STATUS = "6";
+
     //用户mid
     public static final String EXTRA_MID = "extra_mid";
 
