@@ -162,17 +162,6 @@ public class HomeDiscoverFragment extends RxLazyFragment
 
 
     /**
-     * 前往全区热门视频界面
-     */
-    @OnClick(R.id.ic_quanzi_layout)
-    void startQuanziActivity()
-    {
-
-        startActivity(new Intent(getActivity(), AllHotVideoActivity.class));
-    }
-
-
-    /**
      * 前往话题中心界面
      */
     @OnClick(R.id.topic_center_layout)

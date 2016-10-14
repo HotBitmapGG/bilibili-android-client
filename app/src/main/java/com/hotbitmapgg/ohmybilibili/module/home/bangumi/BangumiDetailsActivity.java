@@ -29,6 +29,7 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.utils.WeekDayUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -119,7 +120,7 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
 
     private List<BangumiDetailsRecommend.ResultBean> mBangumiDetailsRecommends = new ArrayList<>();
 
-    private List<String> tags = Arrays.asList("日常", "搞笑", "漫改", "职场", "魔法", "致郁", "百合", "战斗", "原创", "奇幻", "热血");
+    private List<String> tags = Arrays.asList("轻改", "萌系", "搞笑", "催泪", "热血", "机战", "后宫", "恋爱", "基腐", "百合", "伪娘", "乙女");
 
     @Override
     public int getLayoutId()
@@ -201,9 +202,9 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
                 WeekDayUtil.converWeekDay(mBangumiInfo.getWeekday())) + "更新");
         //设置番剧播放和追番数量
         mBangumiPlay.setText("播放: " + (mBangumiInfo.getPlay() == 0 ?
-                mSpecialTopic.play : mBangumiInfo.getPlay())
+                NumberUtil.converString(mSpecialTopic.play) : NumberUtil.converString(mBangumiInfo.getPlay()))
                 + "  " + "追番: " + (mBangumiInfo.getFavorites() == 0 ?
-                mSpecialTopic.attention : mBangumiInfo.getFavorites()));
+                NumberUtil.converString(mSpecialTopic.attention) : NumberUtil.converString(mBangumiInfo.getFavorites())));
         //设置番剧简介
         if (mBangumiInfo.getDescription() == null)
         {
@@ -215,7 +216,7 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
         }
 
         //设置标签布局
-        List<String> strings = tags.subList(0, random.nextInt(10));
+        List<String> strings = tags.subList(0, random.nextInt(5));
         mTagsLayout.setAdapter(new TagAdapter<String>(strings)
         {
 

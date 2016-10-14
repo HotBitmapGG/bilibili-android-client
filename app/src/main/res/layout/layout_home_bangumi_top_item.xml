@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/default_general_margin"
+    android:layout_marginStart="@dimen/default_general_margin"
+    android:layout_marginTop="@dimen/default_general_margin"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/layout_chase_bangumi"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bangumi_recommend_title_height"
+        android:layout_margin="@dimen/bangumi_recommend_title_margin"
+        android:layout_weight="1"
+        android:background="@drawable/yellow_item_bg"
+        android:drawablePadding="@dimen/bangumi_recommend_title_margin"
+        android:drawableStart="@drawable/ic_following_bangumi"
+        android:gravity="center"
+        android:padding="@dimen/default_general_margin"
+        android:text="@string/to_them"
+        android:textColor="@color/white"
+        android:textSize="@dimen/default_medium_text_size"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/layout_bangumi_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bangumi_recommend_title_height"
+        android:layout_margin="@dimen/bangumi_recommend_title_margin"
+        android:layout_weight="1"
+        android:background="@drawable/pink_item_bg"
+        android:drawablePadding="@dimen/bangumi_recommend_title_margin"
+        android:drawableStart="@drawable/ic_bangumi_calendar_7"
+        android:gravity="center"
+        android:padding="@dimen/default_general_margin"
+        android:text="@string/time_line"
+        android:textColor="@color/white"
+        android:textSize="@dimen/default_medium_text_size"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/layout_bangumi_index"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bangumi_recommend_title_height"
+        android:layout_margin="@dimen/bangumi_recommend_title_margin"
+        android:layout_weight="1"
+        android:background="@drawable/blue_item_bg"
+        android:drawablePadding="@dimen/bangumi_recommend_title_margin"
+        android:drawableStart="@drawable/ic_bangumi_category"
+        android:gravity="center"
+        android:padding="@dimen/default_general_margin"
+        android:text="@string/index"
+        android:textColor="@color/white"
+        android:textSize="@dimen/default_medium_text_size"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
+

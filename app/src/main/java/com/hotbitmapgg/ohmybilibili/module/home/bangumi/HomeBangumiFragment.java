@@ -1,30 +1,27 @@
 package com.hotbitmapgg.ohmybilibili.module.home.bangumi;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.NewBangumiSerialAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.SeasonNewBangumiAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.SecondElementBangumiAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiBannerSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiItemSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiNewSerialSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiRecommendSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiSeasonNewSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
-import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
+import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +50,10 @@ public class HomeBangumiFragment extends RxLazyFragment
     @Bind(R.id.empty_layout)
     CustomEmptyView mCustomEmptyView;
 
+    private boolean mIsRefreshing = false;
+
+    private List<BannerEntity> bannerList = new ArrayList<>();
+
     private List<BangumiRecommend.RecommendsBean> recommends = new ArrayList<>();
 
     private List<BangumiRecommend.BannersBean> banners = new ArrayList<>();
@@ -61,19 +62,7 @@ public class HomeBangumiFragment extends RxLazyFragment
 
     private List<SeasonNewBangumi.ListBean> seasonNewBangumis = new ArrayList<>();
 
-    private SecondElementBangumiAdapter mAdapter;
-
-    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
-
-    private View headView_banner;
-
-    private View headView_item;
-
-    private View headView_list;
-
-    //RecycleView是否正在刷新
-    private boolean mIsRefreshing = false;
-
+    private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
 
     public static HomeBangumiFragment newInstance()
     {
@@ -111,24 +100,30 @@ public class HomeBangumiFragment extends RxLazyFragment
     private void initRecyclerView()
     {
 
+        mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
+        {
+
+            @Override
+            public int getSpanSize(int position)
+            {
+
+                switch (mSectionedRecyclerViewAdapter.getSectionItemViewType(position))
+                {
+                    case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
+                        return 3;
+
+                    default:
+                        return 1;
+                }
+            }
+        });
+
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new SecondElementBangumiAdapter(mRecyclerView, recommends);
-        mAdapter.setOnItemClickListener((position, holder) -> {
-
-            BangumiRecommend.RecommendsBean recommendsBean = recommends.get(position);
-            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-            middlewareBangumi.setAid(recommendsBean.getAid());
-            middlewareBangumi.setCreate(recommendsBean.getCreate());
-            middlewareBangumi.setPlay(recommendsBean.getPlay());
-            middlewareBangumi.setFavorites(recommendsBean.getFavorites());
-            middlewareBangumi.setPic(recommendsBean.getPic());
-            middlewareBangumi.setDescription(recommendsBean.getDescription());
-            middlewareBangumi.setTitle(recommendsBean.getTitle());
-            BangumiDetailsActivity.launch(getActivity(), middlewareBangumi);
-        });
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
+        mRecyclerView.setAdapter(mSectionedRecyclerViewAdapter);
         setRecycleNoScroll();
     }
 
@@ -158,7 +153,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         recommends.clear();
         newBangumiSerials.clear();
         seasonNewBangumis.clear();
-        mHeaderViewRecyclerAdapter.removeHeadView();
+        mSectionedRecyclerViewAdapter.removeAllSections();
     }
 
 
@@ -209,6 +204,7 @@ public class HomeBangumiFragment extends RxLazyFragment
                     finishTask();
                 }, throwable -> {
 
+                    LogUtil.all(throwable.getMessage());
                     initEmptyView();
                 });
     }
@@ -219,104 +215,22 @@ public class HomeBangumiFragment extends RxLazyFragment
         mSwipeRefreshLayout.setRefreshing(false);
         mIsRefreshing = false;
         hideEmptyView();
-        createHead();
-        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
-        mAdapter.notifyDataSetChanged();
-    }
 
-
-    private void createHead()
-    {
-
-        headView_banner = LayoutInflater.from(getActivity())
-                .inflate(R.layout.layout_banner, mRecyclerView, false);
-        headView_item = LayoutInflater.from(getActivity())
-                .inflate(R.layout.layout_head_bangumi_item, mRecyclerView, false);
-        headView_list = LayoutInflater.from(getActivity())
-                .inflate(R.layout.layout_head_recommend_bangumi, mRecyclerView, false);
-        //处理头部数据
-        processHeadView();
-    }
-
-
-    private void processHeadView()
-    {
-
-        //设置Banner
-        BannerView bannerView = (BannerView) headView_banner.findViewById(R.id.home_recommended_banner);
-        if (banners != null && banners.size() > 0)
+        BannerEntity banner;
+        for (int i = 0, size = banners.size(); i < size; i++)
         {
-            int size = banners.size();
-            List<BannerEntity> bannerList = new ArrayList<>();
-            BannerEntity banner;
-            for (int i = 0; i < size; i++)
-            {
-                banner = new BannerEntity();
-                BangumiRecommend.BannersBean bannersBean = banners.get(i);
-                banner.img = bannersBean.getImg();
-                banner.link = bannersBean.getLink();
-                bannerList.add(banner);
-            }
-            bannerView.delayTime(5).build(bannerList);
-            mHeaderViewRecyclerAdapter.addHeaderView(headView_banner);
+            banner = new BannerEntity();
+            BangumiRecommend.BannersBean bannersBean = banners.get(i);
+            banner.img = bannersBean.getImg();
+            banner.link = bannersBean.getLink();
+            bannerList.add(banner);
         }
-
-        //设置Item
-        TextView mNewBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_new);
-        TextView mWeekBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_week);
-        TextView mIndexBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_index);
-        mNewBangumiItem.setOnClickListener(v -> startActivity(new Intent(getActivity(), ChaseBangumiActivity.class)));
-        mWeekBangumiItem.setOnClickListener(v -> startActivity(new Intent(getActivity(), BangumiScheduleActivity.class)));
-        mIndexBangumiItem.setOnClickListener(v -> startActivity(new Intent(getActivity(), BangumiIndexActivity.class)));
-        TextView mAllSerial = (TextView) headView_item.findViewById(R.id.tv_all_serial);
-        mAllSerial.setOnClickListener(v -> startActivity(new Intent(getActivity(), NewBangumiSerialActivity.class)));
-        mHeaderViewRecyclerAdapter.addHeaderView(headView_item);
-
-        //设置分季新番
-        RecyclerView mSeasonNewBangumiList = (RecyclerView) headView_list.findViewById(R.id.head_season_list);
-        mSeasonNewBangumiList.setHasFixedSize(false);
-        mSeasonNewBangumiList.setNestedScrollingEnabled(false);
-        mSeasonNewBangumiList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        SeasonNewBangumiAdapter seasonNewBangumiAdapter = new SeasonNewBangumiAdapter(mSeasonNewBangumiList, seasonNewBangumis, false);
-        seasonNewBangumiAdapter.setOnItemClickListener((position, holder) -> {
-
-            SeasonNewBangumi.ListBean listBean = seasonNewBangumis.get(position);
-            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-            middlewareBangumi.setTitle(listBean.getTitle());
-            middlewareBangumi.setPic(listBean.getImageurl());
-            middlewareBangumi.setSpid(listBean.getSpid());
-            BangumiDetailsActivity.launch(getActivity(), middlewareBangumi);
-        });
-        mSeasonNewBangumiList.setAdapter(seasonNewBangumiAdapter);
-
-        //设置新番连载
-        RecyclerView mHeadRecommendList = (RecyclerView) headView_list.findViewById(R.id.head_recommend_list);
-        mHeadRecommendList.setHasFixedSize(false);
-        mHeadRecommendList.setNestedScrollingEnabled(false);
-        mHeadRecommendList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        NewBangumiSerialAdapter newBangumiSerialAdapter = new NewBangumiSerialAdapter(mHeadRecommendList, newBangumiSerials, false);
-        newBangumiSerialAdapter.setOnItemClickListener((position, holder) -> {
-
-            NewBangumiSerial.ListBean listBean = newBangumiSerials.get(position);
-            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-            middlewareBangumi.setPic(listBean.getCover());
-            middlewareBangumi.setTitle(listBean.getTitle());
-            middlewareBangumi.setSpid(listBean.getSpid());
-            middlewareBangumi.setSeason_id(listBean.getSeason_id());
-            middlewareBangumi.setFavorites(listBean.getFavorites());
-            middlewareBangumi.setPlay(listBean.getPlay_count());
-            middlewareBangumi.setWeekday(listBean.getWeekday());
-            middlewareBangumi.setCreate(listBean.getLastupdate_at());
-            middlewareBangumi.setCount(Integer.valueOf(listBean.getBgmcount()));
-            BangumiDetailsActivity.launch(getActivity(), middlewareBangumi);
-        });
-        mHeadRecommendList.setAdapter(newBangumiSerialAdapter);
-
-        mHeaderViewRecyclerAdapter.addHeaderView(headView_list);
-
-        //设置查看更多分季新番界面
-        TextView mAllNewBangumi = (TextView) headView_list.findViewById(R.id.tv_all_new_bangumi);
-        mAllNewBangumi.setOnClickListener(v -> startActivity(new Intent(getActivity(), SeasonNewBangumiActivity.class)));
+        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiBannerSection(bannerList));
+        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiItemSection(getActivity()));
+        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiNewSerialSection(getActivity(), newBangumiSerials));
+        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiSeasonNewSection(getActivity(), seasonNewBangumis));
+        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiRecommendSection(getActivity(), recommends));
+        mSectionedRecyclerViewAdapter.notifyDataSetChanged();
     }
 
 
