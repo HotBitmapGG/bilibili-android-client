@@ -261,6 +261,11 @@
     <dimen name="user_favorites_layout_height">200dp</dimen>
     <dimen name="user_home_pager_live_layout_height">40dp</dimen>
 
+    <!--chase bangumi size-->
+    <dimen name="chase_bangumi_card_height">150dp</dimen>
+    <dimen name="chase_bangumi_image_width">100dp</dimen>
+    <dimen name="chase_bangumi_image_height">130dp</dimen>
+
 
 
 </resources>

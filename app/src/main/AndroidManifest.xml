@@ -87,15 +87,14 @@
             android:screenOrientation="portrait" />
 
 
-        <!-- 用户粉丝界面 -->
-        <activity
-            android:name=".module.user.UserFansActivity"
-            android:screenOrientation="portrait" />
-
-
         <!-- 番剧时间表界面 -->
         <activity
             android:name=".module.home.bangumi.BangumiScheduleActivity"
+            android:screenOrientation="portrait" />
+
+        <!--追番界面-->
+        <activity
+            android:name=".module.home.bangumi.ChaseBangumiActivity"
             android:screenOrientation="portrait" />
 
 
@@ -124,12 +123,6 @@
         <!-- 关于我 -->
         <activity
             android:name=".module.common.HotBitmapGGInfoActivity"
-            android:screenOrientation="portrait" />
-
-
-        <!-- UP主上传视频更多界面 -->
-        <activity
-            android:name=".module.user.UserUpMoreCoverActivity"
             android:screenOrientation="portrait" />
 
 

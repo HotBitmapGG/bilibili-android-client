@@ -175,13 +175,20 @@ public class BangumiScheduleActivity extends RxAppCompatBaseActivity
             }
         }
 
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, sundayBangumis, Integer.valueOf(SUNDAY_TYPE)));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, mondayBangumis, Integer.valueOf(MONDAY_TYPE)));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, tuesdayBangumis, Integer.valueOf(TUESDAY_TYPE)));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, wednesdayBangumis, Integer.valueOf(WEDNESDAY_TYPE)));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, thursdayBangumis, Integer.valueOf(THURSDAY_TYPE)));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, fridayBangumis, Integer.valueOf(FRIDAY_TYEP)));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, saturdayBangumis, Integer.valueOf(SATURDAY_TYPE)));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
+                sundayBangumis, Integer.valueOf(SUNDAY_TYPE)));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
+                mondayBangumis, Integer.valueOf(MONDAY_TYPE)));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
+                tuesdayBangumis, Integer.valueOf(TUESDAY_TYPE)));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
+                wednesdayBangumis, Integer.valueOf(WEDNESDAY_TYPE)));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
+                thursdayBangumis, Integer.valueOf(THURSDAY_TYPE)));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
+                fridayBangumis, Integer.valueOf(FRIDAY_TYEP)));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this,
+                saturdayBangumis, Integer.valueOf(SATURDAY_TYPE)));
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mSectionedAdapter);
     }
@@ -195,9 +202,7 @@ public class BangumiScheduleActivity extends RxAppCompatBaseActivity
         setSupportActionBar(mToolbar);
         ActionBar mActionBar = getSupportActionBar();
         if (mActionBar != null)
-        {
             mActionBar.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     @Override

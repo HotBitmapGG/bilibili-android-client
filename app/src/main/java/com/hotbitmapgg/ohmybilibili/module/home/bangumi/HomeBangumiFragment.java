@@ -265,6 +265,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         TextView mNewBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_new);
         TextView mWeekBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_week);
         TextView mIndexBangumiItem = (TextView) headView_item.findViewById(R.id.layout_bangumi_index);
+        mNewBangumiItem.setOnClickListener(v -> startActivity(new Intent(getActivity(), ChaseBangumiActivity.class)));
         mWeekBangumiItem.setOnClickListener(v -> startActivity(new Intent(getActivity(), BangumiScheduleActivity.class)));
         mIndexBangumiItem.setOnClickListener(v -> startActivity(new Intent(getActivity(), BangumiIndexActivity.class)));
         TextView mAllSerial = (TextView) headView_item.findViewById(R.id.tv_all_serial);
