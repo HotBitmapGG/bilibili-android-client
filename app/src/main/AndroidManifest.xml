@@ -50,22 +50,24 @@
             android:name=".module.common.LoginActivity"
             android:screenOrientation="portrait" />
 
+
         <!-- APP简介界面 -->
         <activity
             android:name=".module.common.AppIntroduceActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ColorTranslucentTheme" />
+            android:screenOrientation="portrait" />
 
 
         <!-- home跳转webView界面 -->
         <activity
-            android:name=".module.common.WebActivity"
+            android:name=".module.common.BrowserActivity"
             android:screenOrientation="portrait" />
+
 
         <!-- 视频详情界面 -->
         <activity
             android:name=".module.video.VideoDetailsActivity"
             android:screenOrientation="portrait" />
+
 
         <!-- bilibili用户界面 -->
         <activity
@@ -84,6 +86,7 @@
             android:name=".module.home.partition.PartitionMoreActivity"
             android:screenOrientation="portrait" />
 
+
         <!--用户粉丝界面-->
         <activity
             android:name=".module.user.UserFansActivity"
@@ -95,25 +98,30 @@
             android:name=".module.home.bangumi.WeekDayBangumiActivity"
             android:screenOrientation="portrait" />
 
+
         <!--游戏中心界面-->
         <activity
             android:name=".module.entry.GameCentreActivity"
             android:screenOrientation="portrait" />
+
 
         <!--视频相关推荐界面-->
         <activity
             android:name=".module.video.VideoPartsListMoreActivity"
             android:screenOrientation="portrait" />
 
+
         <!--离线缓存界面-->
         <activity
             android:name=".module.entry.OffLineDownloadActivity"
             android:screenOrientation="portrait" />
 
+
         <!--直播详情界面-->
         <activity
             android:name=".module.home.live.LivePlayerActivity"
             android:screenOrientation="portrait" />
+
 
         <!--番剧索引界面-->
         <activity
@@ -125,15 +133,18 @@
             android:name=".module.common.HotBitmapGGInfoActivity"
             android:screenOrientation="portrait" />
 
+
         <!--UP主推荐视频界面-->
         <activity
             android:name=".module.user.UserUpMoreCoverActivity"
             android:screenOrientation="portrait" />
 
-        <!--热门视频排行榜界面-->
+
+        <!--全区排行榜界面-->
         <activity
-            android:name=".module.home.recommend.HotVideoIndexActivity"
+            android:name=".module.home.discover.AllareasRankActivity"
             android:screenOrientation="portrait" />
+
 
         <!--全站搜索界面-->
         <activity
@@ -142,10 +153,11 @@
             android:theme="@style/AppTheme.Search" />
 
 
-        <!--全区排行榜界面-->
+        <!--全区热门视频界面-->
         <activity
-            android:name=".module.home.discover.AllRankActivity"
+            android:name=".module.home.discover.AllHotVideoActivity"
             android:screenOrientation="portrait" />
+
 
         <!--原创排行榜界面-->
         <activity
@@ -158,15 +170,30 @@
             android:name=".module.home.bangumi.SeasonNewBangumiActivity"
             android:screenOrientation="portrait" />
 
+
         <!--新番连载全部界面-->
         <activity
             android:name=".module.home.bangumi.NewBangumiSerialActivity"
             android:screenOrientation="portrait" />
 
+
         <!--番剧详情界面-->
         <activity
             android:name=".module.home.bangumi.BangumiDetailsActivity"
             android:screenOrientation="portrait" />
+
+
+        <!--话题中心界面-->
+        <activity
+            android:name=".module.home.discover.TopicCenterActivity"
+            android:screenOrientation="portrait" />
+
+
+        <!--活动中心界面-->
+        <activity
+            android:name=".module.home.discover.ActivityCenterActivity"
+            android:screenOrientation="portrait" />
+
 
         <!--播放器界面-->
         <activity

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.flyco.tablayout.SlidingTabLayout;
@@ -19,7 +20,7 @@ import butterknife.Bind;
  * Created by hcc on 16/9/12 20:20
  * 100332338@qq.com
  * <p/>
- * 原创排行榜
+ * 原创排行榜界面
  */
 public class OriginalRankActivity extends RxAppCompatBaseActivity
 {
@@ -33,9 +34,9 @@ public class OriginalRankActivity extends RxAppCompatBaseActivity
     @Bind(R.id.view_pager)
     ViewPager mViewPager;
 
-    private String[] titles = new String[]{"原创", "全站", "最新"};
+    private String[] titles = new String[]{"原创", "全站", "番剧"};
 
-    private String[] orders = new String[]{"hot", "damku", "new"};
+    private String[] orders = new String[]{"origin-03.json", "all-03.json", "all-3-33.json"};
 
     @Override
     public int getLayoutId()
@@ -49,6 +50,7 @@ public class OriginalRankActivity extends RxAppCompatBaseActivity
     {
 
         mViewPager.setAdapter(new OriginalRankPagerAdapter(getSupportFragmentManager(), titles, orders));
+        mViewPager.setOffscreenPageLimit(orders.length);
         mSlidingTabLayout.setViewPager(mViewPager);
     }
 
@@ -56,11 +58,19 @@ public class OriginalRankActivity extends RxAppCompatBaseActivity
     public void initToolBar()
     {
 
-        mToolbar.setTitle("原创排行榜");
+        mToolbar.setTitle("排行榜");
         setSupportActionBar(mToolbar);
         ActionBar supportActionBar = getSupportActionBar();
         if (supportActionBar != null)
             supportActionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        getMenuInflater().inflate(R.menu.menu_rank, menu);
+        return true;
     }
 
     @Override

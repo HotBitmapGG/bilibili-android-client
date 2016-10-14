@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:drawableEnd="@drawable/register_bottom_arrow"
+            android:drawableEnd="@drawable/ic_gray_arrow_right"
             android:drawablePadding="@dimen/default_tiny_margin"
             android:padding="@dimen/default_general_margin"
             android:text="@string/more_new_bangumi_serial"

@@ -44,7 +44,6 @@ public class UserFansActivity extends RxAppCompatBaseActivity
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
-
     private static final String EXTRA_MID = "mid";
 
     private static final String EXTRA_USERNAME = "userName";

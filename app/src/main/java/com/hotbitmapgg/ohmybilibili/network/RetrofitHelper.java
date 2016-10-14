@@ -2,7 +2,9 @@ package com.hotbitmapgg.ohmybilibili.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
-import com.hotbitmapgg.ohmybilibili.network.api.AllRankService;
+import com.hotbitmapgg.ohmybilibili.network.api.ActivityCenterService;
+import com.hotbitmapgg.ohmybilibili.network.api.AllHotVideoService;
+import com.hotbitmapgg.ohmybilibili.network.api.AllareasRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
@@ -10,17 +12,18 @@ import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BiliBiliLiveService;
 import com.hotbitmapgg.ohmybilibili.network.api.FansService;
 import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
+import com.hotbitmapgg.ohmybilibili.network.api.HotSearchTagService;
 import com.hotbitmapgg.ohmybilibili.network.api.Html5VideoUrlService;
-import com.hotbitmapgg.ohmybilibili.network.api.IndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
-import com.hotbitmapgg.ohmybilibili.network.api.SeasonNewBangumiService;
+import com.hotbitmapgg.ohmybilibili.network.api.NewBangumiSerialService;
 import com.hotbitmapgg.ohmybilibili.network.api.OriginalRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
 import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
+import com.hotbitmapgg.ohmybilibili.network.api.SeasonNewBangumiService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
+import com.hotbitmapgg.ohmybilibili.network.api.TopicCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
-import com.hotbitmapgg.ohmybilibili.network.api.NewBangumiSerialService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserUpVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
@@ -63,6 +66,8 @@ public class RetrofitHelper
     private static final String HOST_API_BASE_URL = "http://api.bilibili.cn/";
 
     private static final String BANGUMI_BASE_URL = "http://bangumi.bilibili.com/";
+
+    private static final String SEARCH_BASE_URL = "http://s.search.bilibili.com/";
 
     public static final String HDSLB_HOST = "http://i2.hdslb.com";
 
@@ -338,25 +343,6 @@ public class RetrofitHelper
 
 
     /**
-     * 获取9个热门视频排行
-     *
-     * @return
-     */
-    public static IndexService getIndexApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(IndexService.class);
-    }
-
-
-    /**
      * 获取视频评论
      *
      * @return
@@ -450,11 +436,11 @@ public class RetrofitHelper
 
 
     /**
-     * 获取全区排行榜视频
+     * 获取全区热门视频视频
      *
      * @return
      */
-    public static AllRankService getAllRankApi()
+    public static AllHotVideoService getAllHotVideoApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -465,7 +451,7 @@ public class RetrofitHelper
                 .build();
 
 
-        return retrofit.create(AllRankService.class);
+        return retrofit.create(AllHotVideoService.class);
     }
 
 
@@ -478,13 +464,31 @@ public class RetrofitHelper
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
+                .baseUrl(MAIN_BASE_URL)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         return retrofit.create(OriginalRankService.class);
+    }
+
+    /**
+     * 获取全区排行榜数据
+     *
+     * @return
+     */
+    public static AllareasRankService getAllareasRankApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MAIN_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(AllareasRankService.class);
     }
 
 
@@ -522,6 +526,61 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(BangumiDetailsRecommendService.class);
+    }
+
+
+    /**
+     * 获取发现页面热搜词标签数据
+     *
+     * @return
+     */
+    public static HotSearchTagService getHotSearchTagsApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(SEARCH_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(HotSearchTagService.class);
+    }
+
+    /**
+     * 获取话题中心数据
+     *
+     * @return
+     */
+    public static TopicCenterService getTopicCenterApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(TopicCenterService.class);
+    }
+
+    /**
+     * 获取活动中心数据
+     *
+     * @return
+     */
+    public static ActivityCenterService getActivityCenterApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(ActivityCenterService.class);
     }
 
 

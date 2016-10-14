@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.game;
+package com.hotbitmapgg.ohmybilibili.entity.discover;
 
 public class GameItem
 {

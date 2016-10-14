@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.rank.AllRankInfo;
+import com.hotbitmapgg.ohmybilibili.entity.discover.AllHotVideoInfo;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import rx.Observable;
  * Created by hcc on 16/9/12 20:51
  * 100332338@qq.com
  * <p/>
- * 获取全区排行榜数据
+ * 获取全区热门视频数据
  */
-public interface AllRankService
+public interface AllHotVideoService
 {
 
     @GET("allrank")
-    Observable<List<AllRankInfo>> getAllRankInfos();
+    Observable<List<AllHotVideoInfo>> getAllRankInfos();
 }

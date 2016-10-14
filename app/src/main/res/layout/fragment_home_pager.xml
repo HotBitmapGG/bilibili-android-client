@@ -45,7 +45,7 @@
                         android:layout_height="@dimen/circle_user_small_size"
                         android:layout_marginEnd="@dimen/default_tiny_margin"
                         android:layout_marginStart="@dimen/activity_vertical_margin"
-                        android:src="@drawable/ic_bg"
+                        android:src="@drawable/ic_hotbitmapgg_avatar"
                         app:border_color="@color/white"
                         app:border_width="@dimen/circle_default_width" />
 

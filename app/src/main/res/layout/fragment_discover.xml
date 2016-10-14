@@ -101,6 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_general_margin"
             android:gravity="center"
+            android:clickable="true"
             android:orientation="horizontal">
 
             <View
@@ -135,6 +136,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/ic_quanzi_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:layout_marginTop="@dimen/default_grow_margin"
@@ -171,6 +173,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/topic_center_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:background="@color/card_view_background"
@@ -207,6 +210,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/activity_center_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/discover_item_layout_height"
             android:background="@color/card_view_background"

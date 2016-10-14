@@ -1,6 +1,5 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,25 +11,27 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoItemInfo;
+import com.hotbitmapgg.ohmybilibili.entity.discover.OriginalRankInfo;
 
 import java.util.List;
 
 /**
  * Created by hcc on 2016/9/22 19:30
  * 100332338@qq.com
+ * <p>
+ * 原创排行榜Adapter
  */
 
 public class OriginalRankAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<VideoItemInfo> videos;
+    private List<OriginalRankInfo.RankBean.ListBean> originalRanks;
 
-    public OriginalRankAdapter(RecyclerView recyclerView, List<VideoItemInfo> videos)
+    public OriginalRankAdapter(RecyclerView recyclerView, List<OriginalRankInfo.RankBean.ListBean> originalRanks)
     {
 
         super(recyclerView);
-        this.videos = videos;
+        this.originalRanks = originalRanks;
     }
 
 
@@ -50,16 +51,16 @@ public class OriginalRankAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof OriginalRankAdapter.ItemViewHolder)
         {
             OriginalRankAdapter.ItemViewHolder itemViewHolder = (OriginalRankAdapter.ItemViewHolder) holder;
-            VideoItemInfo videoItemInfo = videos.get(position);
-            itemViewHolder.mVideoTitle.setText(videoItemInfo.title);
-            itemViewHolder.mVideoPlayNum.setText(videoItemInfo.play);
-            itemViewHolder.mVideoReviewCount.setText(String.valueOf(videoItemInfo.video_review));
-            itemViewHolder.mUserName.setText(videoItemInfo.author);
+            OriginalRankInfo.RankBean.ListBean listBean = originalRanks.get(position);
+            itemViewHolder.mVideoTitle.setText(listBean.getTitle());
+            itemViewHolder.mVideoPlayNum.setText(String.valueOf(listBean.getPlay()));
+            itemViewHolder.mVideoReviewCount.setText(String.valueOf(listBean.getVideo_review()));
+            itemViewHolder.mUserName.setText(listBean.getAuthor());
             itemViewHolder.mSortNum.setText(String.valueOf(position + 1));
             setSortNumTextSize(itemViewHolder, position);
 
             Glide.with(getContext())
-                    .load(Uri.parse(videoItemInfo.pic))
+                    .load(listBean.getPic())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
@@ -95,7 +96,7 @@ public class OriginalRankAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return videos.size();
+        return originalRanks.size();
     }
 
 

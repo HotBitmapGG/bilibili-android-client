@@ -2,7 +2,6 @@ package com.hotbitmapgg.ohmybilibili.module.common;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -28,8 +27,6 @@ import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
 import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
-
-import java.util.Random;
 
 import butterknife.Bind;
 
@@ -59,20 +56,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
 
     private HomePageFragment mHomePageFragment;
 
-    private int avatarIndex;
-
     private static final String SWITCH_MODE_KEY = "mode_key";
-
-    //随机头像设置数组
-    private static final int[] avatars = new int[]{
-            R.drawable.ic_avatar1, R.drawable.ic_avatar2,
-            R.drawable.ic_avatar3, R.drawable.ic_avatar4,
-            R.drawable.ic_avatar5, R.drawable.ic_avatar6,
-            R.drawable.ic_avatar7, R.drawable.ic_avatar8,
-            R.drawable.ic_avatar9, R.drawable.ic_avatar10,
-            R.drawable.ic_avatar11,
-            };
-
 
     @Override
     public int getLayoutId()
@@ -134,13 +118,11 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         TextView mUserName = (TextView) headerView.findViewById(R.id.user_name);
         TextView mUserSign = (TextView) headerView.findViewById(R.id.user_other_info);
         ImageView mSwitchMode = (ImageView) headerView.findViewById(R.id.iv_head_switch_mode);
-        //进入应用随机设置头像
-        Random random = new Random(SystemClock.elapsedRealtime());
-        avatarIndex = random.nextInt(avatars.length);
-        mUserAvatarView.setImageResource(avatars[avatarIndex]);
+        //设置头像
+        mUserAvatarView.setImageResource(R.drawable.ic_hotbitmapgg_avatar);
         //设置用户名 签名
         mUserName.setText(getResources().getText(R.string.hotbitmapgg));
-        mUserSign.setText("哔哩哔哩 - ( ゜- ゜)つロ 乾杯~");
+        mUserSign.setText(getResources().getText(R.string.about_user_head_layout));
         //设置日夜间模式切换
         mSwitchMode.setOnClickListener(v -> switchNightMode());
 
@@ -282,17 +264,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         {
             mDrawerLayout.openDrawer(GravityCompat.START);
         }
-    }
-
-    /**
-     * 获取当前设置的头像Index
-     *
-     * @return
-     */
-    public int getUserAvatarIndex()
-    {
-
-        return avatarIndex;
     }
 
 

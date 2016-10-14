@@ -62,26 +62,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private static final String TYPE_ACTIVITY_CENTER = "activity";
 
-    private int[] icons = new int[]{
-            R.drawable.ic_header_hot,
-            R.drawable.ic_head_live,
-            R.drawable.ic_category_t13,
-            R.drawable.ic_category_t1,
-            R.drawable.ic_category_t3,
-            R.drawable.ic_header_topic,
-            R.drawable.ic_category_t129,
-            R.drawable.ic_header_topic,
-            R.drawable.ic_category_t4,
-            R.drawable.ic_category_t119,
-            R.drawable.ic_category_t36,
-            R.drawable.ic_header_activity_center,
-            R.drawable.ic_category_t160,
-            R.drawable.ic_category_t155,
-            R.drawable.ic_header_topic,
-            R.drawable.ic_category_t5,
-            R.drawable.ic_category_t11,
-            R.drawable.ic_category_t23
-    };
 
     public static HomeRecommendedFragment newInstance()
     {
@@ -246,7 +226,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
                 default:
                     mSectionedAdapter.addSection(new HomeRecommendedSection(
                             getActivity(),
-                            icons[i],
                             results.get(i).getHead().getTitle(),
                             results.get(i).getType(),
                             results.get(1).getHead().getCount(),

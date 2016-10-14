@@ -15,7 +15,7 @@
     <string name="info_reviews_format">%d</string>
     <string name="info_following_format">关注 %d</string>
     <string name="info_fans_format">粉丝 %d</string>
-    <string name="hotbitmapgg">HotBitmapGG</string>
+    <string name="hotbitmapgg">hotBitmapGG</string>
     <string name="github">GitHub: </string>
     <string name="github_link">https://github.com/HotBitmapGG</string>
     <string name="sina_weibo_link">新浪微博:http://m.weibo.cn/users/3223089177/qq</string>
@@ -84,6 +84,7 @@
     <string name="commend">评论</string>
     <string name="more_commend">更多评论</string>
     <string name="more_commend_arrow">更多评论 >></string>
+    <string name="members">正式会员</string>
 
 
     <!--Vitamio Strings-->
@@ -109,6 +110,7 @@
 
 
     <!--App 介绍-->
+    <string name="about_user_head_layout">硬币: 47</string>
     <string name="about_introduce">「哔哩哔哩」- bilibili ( ゜- ゜)つロ 干杯。</string>
     <string name="about_menu_action_share">分享</string>
     <string name="about_developers">关于我</string>

@@ -21,8 +21,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
-import com.hotbitmapgg.ohmybilibili.module.home.bangumi.WeekDayBangumiActivity;
-import com.hotbitmapgg.ohmybilibili.module.home.recommend.HotVideoIndexActivity;
+import com.hotbitmapgg.ohmybilibili.module.home.discover.OriginalRankActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.live.LivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
@@ -46,8 +45,6 @@ public class HomeRecommendedSection extends StatelessSection
 
     private Context mContext;
 
-    private int iconRes;
-
     private String title;
 
     private String type;
@@ -66,8 +63,25 @@ public class HomeRecommendedSection extends StatelessSection
 
     private final Random mRandom;
 
+    private int[] icons = new int[]{
+            R.drawable.ic_header_hot,
+            R.drawable.ic_head_live,
+            R.drawable.ic_category_t13,
+            R.drawable.ic_category_t1,
+            R.drawable.ic_category_t3,
+            R.drawable.ic_category_t129,
+            R.drawable.ic_category_t4,
+            R.drawable.ic_category_t119,
+            R.drawable.ic_category_t36,
+            R.drawable.ic_category_t160,
+            R.drawable.ic_category_t155,
+            R.drawable.ic_category_t5,
+            R.drawable.ic_category_t11,
+            R.drawable.ic_category_t23
+    };
 
-    public HomeRecommendedSection(Context context, int iconRes, String title,
+
+    public HomeRecommendedSection(Context context, String title,
                                   String type, int liveCount,
                                   List<RecommendInfo.ResultBean.BodyBean> datas)
     {
@@ -77,7 +91,6 @@ public class HomeRecommendedSection extends StatelessSection
                 R.layout.layout_home_recommend_boby);
 
         this.mContext = context;
-        this.iconRes = iconRes;
         this.title = title;
         this.type = type;
         this.liveCount = liveCount;
@@ -176,10 +189,10 @@ public class HomeRecommendedSection extends StatelessSection
     {
 
         HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
-        headerViewHolder.mTypeImg.setImageResource(iconRes);
+        setTypeIcon(headerViewHolder);
         headerViewHolder.mTypeTv.setText(title);
         headerViewHolder.mTypeRankBtn.setOnClickListener(v -> mContext.startActivity(
-                new Intent(mContext, HotVideoIndexActivity.class)));
+                new Intent(mContext, OriginalRankActivity.class)));
 
         switch (type)
         {
@@ -198,6 +211,61 @@ public class HomeRecommendedSection extends StatelessSection
                 headerViewHolder.mTypeRankBtn.setVisibility(View.GONE);
                 headerViewHolder.mTypeMore.setVisibility(View.VISIBLE);
                 headerViewHolder.mAllLiveNum.setVisibility(View.GONE);
+                break;
+        }
+    }
+
+    /**
+     * 根据title设置typeIcon
+     *
+     * @param headerViewHolder
+     */
+    private void setTypeIcon(HeaderViewHolder headerViewHolder)
+    {
+
+        switch (title)
+        {
+            case "热门焦点":
+                headerViewHolder.mTypeImg.setImageResource(icons[0]);
+                break;
+            case "热门直播":
+                headerViewHolder.mTypeImg.setImageResource(icons[1]);
+                break;
+            case "番剧推荐":
+                headerViewHolder.mTypeImg.setImageResource(icons[2]);
+                break;
+            case "动画区":
+                headerViewHolder.mTypeImg.setImageResource(icons[3]);
+                break;
+            case "音乐区":
+                headerViewHolder.mTypeImg.setImageResource(icons[4]);
+                break;
+            case "舞蹈区":
+                headerViewHolder.mTypeImg.setImageResource(icons[5]);
+                break;
+            case "游戏区":
+                headerViewHolder.mTypeImg.setImageResource(icons[6]);
+                break;
+            case "鬼畜区":
+                headerViewHolder.mTypeImg.setImageResource(icons[7]);
+                break;
+            case "科技区":
+                headerViewHolder.mTypeImg.setImageResource(icons[8]);
+                break;
+            case "生活区":
+                headerViewHolder.mTypeImg.setImageResource(icons[9]);
+                break;
+            case "时尚区":
+                headerViewHolder.mTypeImg.setImageResource(icons[10]);
+                break;
+            case "娱乐区":
+                headerViewHolder.mTypeImg.setImageResource(icons[11]);
+                break;
+            case "电视剧区":
+                headerViewHolder.mTypeImg.setImageResource(icons[12]);
+                break;
+            case "电影区":
+                headerViewHolder.mTypeImg.setImageResource(icons[13]);
                 break;
         }
     }
@@ -230,8 +298,9 @@ public class HomeRecommendedSection extends StatelessSection
                 .setDuration(1000).start());
         footViewHolder.mBangumiIndexBtn.setOnClickListener(v -> mContext.startActivity(
                 new Intent(mContext, BangumiIndexActivity.class)));
-        footViewHolder.mBangumiTimelineBtn.setOnClickListener(v -> WeekDayBangumiActivity.
-                launch((Activity) mContext, "二次元新番", 2));
+        //屏蔽掉番剧放送表 后期重做
+//        footViewHolder.mBangumiTimelineBtn.setOnClickListener(v -> WeekDayBangumiActivity.
+//                launch((Activity) mContext, "二次元新番", 2));
 
         switch (type)
         {

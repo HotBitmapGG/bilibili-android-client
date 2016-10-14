@@ -15,7 +15,6 @@ import com.hotbitmapgg.ohmybilibili.module.common.AppIntroduceActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.HotBitmapGGInfoActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.LoginActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.MainActivity;
-import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -84,8 +83,7 @@ public class SettingFragment extends RxLazyFragment
     @OnClick(R.id.btn_logout)
     void logout()
     {
-        //退出登录  清空本地保存的头像跟登录flag
-        PreferenceUtils.remove("login");
+        //退出登录
         startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
     }
