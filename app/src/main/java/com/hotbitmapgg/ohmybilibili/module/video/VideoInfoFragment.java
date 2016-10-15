@@ -176,10 +176,10 @@ public class VideoInfoFragment extends RxLazyFragment
     {
 
         VideoAlikeListAdapter mVideoAlikeListAdapter = new VideoAlikeListAdapter(
-                mRecyclerView, authorRecommendList,mVideoDetails.getAuthor());
+                mRecyclerView, authorRecommendList, mVideoDetails.getAuthor());
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setNestedScrollingEnabled(false);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true));
         mRecyclerView.setAdapter(mVideoAlikeListAdapter);
         mVideoAlikeListAdapter.setOnItemClickListener((position, holder) -> {
 

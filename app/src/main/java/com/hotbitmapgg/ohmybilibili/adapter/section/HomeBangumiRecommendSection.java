@@ -78,7 +78,7 @@ public class HomeBangumiRecommendSection extends StatelessSection
 
         recyclerViewHolder.mRecyclerView.setHasFixedSize(false);
         recyclerViewHolder.mRecyclerView.setNestedScrollingEnabled(false);
-        recyclerViewHolder.mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        recyclerViewHolder.mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         SecondElementBangumiAdapter mAdapter = new SecondElementBangumiAdapter(recyclerViewHolder.mRecyclerView, recommends);
         recyclerViewHolder.mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener((position, holder1) -> {
