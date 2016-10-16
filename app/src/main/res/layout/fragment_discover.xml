@@ -100,8 +100,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_general_margin"
-            android:gravity="center"
             android:clickable="true"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <View
@@ -353,16 +353,49 @@
                 android:textColor="@color/font_normal"
                 android:textSize="@dimen/default_small_text_size" />
 
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/window_background" />
+
+
+        <RelativeLayout
+            android:id="@+id/layout_shop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_item_layout_height"
+            android:background="@color/card_view_background"
+            android:foreground="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/ic_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/default_general_margin"
+                android:src="@drawable/ic_btn_shop" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/default_general_margin"
+                android:layout_toEndOf="@+id/ic_shop"
+                android:text="@string/shop"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_small_text_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/discover_msg_1"
-                android:textColor="@color/black_alpha_30"
-                android:textSize="@dimen/default_tiny_text_size" />
+                android:layout_marginEnd="@dimen/default_general_margin"
+                android:src="@drawable/ic_gray_arrow_right" />
+
 
         </RelativeLayout>
 

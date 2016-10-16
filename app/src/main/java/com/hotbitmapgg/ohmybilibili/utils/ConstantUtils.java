@@ -10,6 +10,10 @@ package com.hotbitmapgg.ohmybilibili.utils;
 public class ConstantUtils
 {
 
+    public static final String SHOP_URL = "http://bmall.bilibili.com/";
+
+    public static final String VIP_URL = "http://vip.bilibili.com/site/vip-faq-h5.html#yv1";
+
     //用户投稿
     public static final String USER_CONTRIBUTE = "0";
 
@@ -106,4 +110,6 @@ public class ConstantUtils
     public static final String VIDEO_TYPE_MP4 = "mp4";
 
     public static final String EXTRA_AID = "extra_aid";
+
+    public static final String SWITCH_MODE_KEY = "mode_key";
 }

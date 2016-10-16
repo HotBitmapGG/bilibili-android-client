@@ -41,8 +41,8 @@
     <string name="topic_center">话题中心</string>
     <string name="original_rank">原创排行榜</string>
     <string name="all_rank">全区排行榜</string>
+    <string name="shop">周边商城</string>
     <string name="game_center">游戏中心</string>
-    <string name="discover_msg_1">萌系少女战舰养成!</string>
     <string name="check_update">检查更新</string>
     <string name="logout">退出登录</string>
     <string name="introduction">简介</string>
@@ -98,6 +98,7 @@
     <string name="ta_play_game">TA玩的游戏</string>
 
 
+
     <!--Vitamio Strings-->
     <string name="video_init">初始化播放器…</string>
     <string name="video_loading">加载中…</string>
@@ -111,13 +112,14 @@
     <!-- Navigation Items -->
     <string name="item_home">主页</string>
     <string name="item_group">关注的人</string>
-    <string name="item_tracker">消费记录</string>
+    <string name="item_tracker">我的钱包</string>
     <string name="item_downloaded">离线缓存</string>
     <string name="item_favourite">我的收藏</string>
     <string name="item_history">历史记录</string>
     <string name="item_settings">设置与帮助</string>
     <string name="item_theme">主题选择</string>
     <string name="item_app">应用推荐</string>
+    <string name="item_vip">我的大会员</string>
 
 
     <!--App 介绍-->
@@ -157,5 +159,11 @@
     <string name="section_more">分区</string>
     <string name="section_bangumi">番剧</string>
     <string name="section_discover">发现</string>
+    <string name="level_text">LV2</string>
+    <string name="vip_message_1">您还不是</string>
+    <string name="vip">大会员</string>
+    <string name="vip_message_2">哦</string>
+    <string name="vip_message_3">黑科技在召唤</string>
+    <string name="immediately_opened">立即开通</string>
 
 </resources>

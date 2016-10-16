@@ -43,6 +43,8 @@
     <color name="nav_head_roung_text_background">#FB7BA0</color>
     <color name="bangumi_index_green_bg">#75C568</color>
     <color name="bangumi_index_yellow_bg">#FFC03A</color>
+    <color name="vip_button_bg_color">#FEB1B3</color>
+    <color name="vip_button_text_color">#FE6F70</color>
 
 
     <color name="theme_color_primary">#fb7299</color>

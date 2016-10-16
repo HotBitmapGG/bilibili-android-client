@@ -15,7 +15,7 @@ import butterknife.Bind;
  * Created by hcc on 16/8/7 14:12
  * 100332338@qq.com
  * <p/>
- * 消费记录
+ * 我的钱包
  */
 public class ConsumeHistoryFragment extends RxLazyFragment
 {
@@ -43,7 +43,7 @@ public class ConsumeHistoryFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        mToolbar.setTitle("消费记录");
+        mToolbar.setTitle("我的钱包");
         mToolbar.setNavigationIcon(R.drawable.ic_navigation_drawer);
         mToolbar.setNavigationOnClickListener(v -> {
 

@@ -78,16 +78,32 @@
             android:paddingTop="@dimen/default_tiny_padding">
 
 
-            <TextView
-                android:id="@+id/user_name"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_user_male"
-                android:drawablePadding="@dimen/default_tiny_padding"
-                android:padding="@dimen/default_tiny_margin"
-                android:text="@string/hotbitmapgg"
-                android:textColor="@color/white"
-                android:textSize="@dimen/default_small_text_size" />
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/default_tiny_padding">
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hotbitmapgg"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/default_small_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_tiny_margin"
+                    android:background="@drawable/white_border"
+                    android:text="@string/level_text"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
 
 
             <TextView
@@ -95,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_tiny_margin"
                 android:background="@drawable/round_wihte_bg"
-                android:padding="@dimen/card_corner_radius"
+                android:padding="@dimen/default_tiny_margin"
                 android:text="@string/members"
                 android:textColor="@color/nav_head_roung_text_background"
                 android:textSize="10sp" />

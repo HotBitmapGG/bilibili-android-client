@@ -12,9 +12,11 @@ import android.widget.TextView;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -219,5 +221,12 @@ public class HomeDiscoverFragment extends RxLazyFragment
     {
 
         startActivity(new Intent(getActivity(), TotalStationSearchActivity.class));
+    }
+
+    @OnClick(R.id.layout_shop)
+    void startShop()
+    {
+
+        BrowserActivity.launch(getActivity(), ConstantUtils.SHOP_URL, "bilibili - 周边商城");
     }
 }

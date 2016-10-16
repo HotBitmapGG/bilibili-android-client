@@ -23,7 +23,9 @@ import com.hotbitmapgg.ohmybilibili.module.entry.HistoryFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.IFavoritesFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.OffLineDownloadActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.SettingFragment;
+import com.hotbitmapgg.ohmybilibili.module.entry.VipActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.HomePageFragment;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
@@ -34,7 +36,7 @@ import butterknife.Bind;
  * Created by hcc on 16/8/7 14:12
  * 100332338@qq.com
  * <p/>
- * 主界面
+ * MainActivity
  */
 public class MainActivity extends RxAppCompatBaseActivity implements
         NavigationView.OnNavigationItemSelectedListener
@@ -55,8 +57,6 @@ public class MainActivity extends RxAppCompatBaseActivity implements
     private long exitTime;
 
     private HomePageFragment mHomePageFragment;
-
-    private static final String SWITCH_MODE_KEY = "mode_key";
 
     @Override
     public int getLayoutId()
@@ -127,7 +127,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
         mSwitchMode.setOnClickListener(v -> switchNightMode());
 
 
-        boolean flag = PreferenceUtils.getBoolean(SWITCH_MODE_KEY, false);
+        boolean flag = PreferenceUtils.getBoolean(ConstantUtils.SWITCH_MODE_KEY, false);
         if (flag)
         {
             mSwitchMode.setImageResource(R.drawable.ic_switch_daily);
@@ -143,17 +143,17 @@ public class MainActivity extends RxAppCompatBaseActivity implements
     private void switchNightMode()
     {
 
-        boolean isNight = PreferenceUtils.getBoolean(SWITCH_MODE_KEY, false);
+        boolean isNight = PreferenceUtils.getBoolean(ConstantUtils.SWITCH_MODE_KEY, false);
         if (isNight)
         {
             // 日间模式
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            PreferenceUtils.putBoolean(SWITCH_MODE_KEY, false);
+            PreferenceUtils.putBoolean(ConstantUtils.SWITCH_MODE_KEY, false);
         } else
         {
             // 夜间模式
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            PreferenceUtils.putBoolean(SWITCH_MODE_KEY, true);
+            PreferenceUtils.putBoolean(ConstantUtils.SWITCH_MODE_KEY, true);
         }
 
         recreate();
@@ -178,6 +178,12 @@ public class MainActivity extends RxAppCompatBaseActivity implements
                         OffLineDownloadActivity.class));
                 return true;
 
+            case R.id.item_vip:
+                //大会员
+                startActivity(new Intent(MainActivity.this,
+                        VipActivity.class));
+                return true;
+
             case R.id.item_favourite:
                 // 我的收藏
                 changeFragmentIndex(item, 1);
@@ -194,7 +200,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
                 return true;
 
             case R.id.item_tracker:
-                // 消费记录
+                // 我的钱包
                 changeFragmentIndex(item, 4);
                 return true;
 
@@ -316,7 +322,7 @@ public class MainActivity extends RxAppCompatBaseActivity implements
             exitTime = System.currentTimeMillis();
         } else
         {
-            PreferenceUtils.remove(SWITCH_MODE_KEY);
+            PreferenceUtils.remove(ConstantUtils.SWITCH_MODE_KEY);
             finish();
         }
     }
