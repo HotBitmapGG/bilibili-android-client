@@ -238,7 +238,7 @@
                         android:layout_margin="@dimen/default_general_margin"
                         app:cardBackgroundColor="@color/card_view_background"
                         app:cardCornerRadius="@dimen/card_corner_radius"
-                        app:cardElevation="@dimen/card_elevation">
+                        app:cardElevation="@dimen/app_bar_default_elevation">
 
 
                         <RelativeLayout
