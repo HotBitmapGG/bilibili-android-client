@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.module.video;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -34,6 +35,7 @@ import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 
 import java.util.ArrayList;
@@ -75,6 +77,9 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.tv_player)
     TextView mTvPlayer;
+
+    @Bind(R.id.tv_av)
+    TextView mAvText;
 
     private List<Fragment> fragments = new ArrayList<>();
 
@@ -134,18 +139,25 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                 {
                     //展开状态
                     mTvPlayer.setVisibility(View.GONE);
+                    mAvText.setVisibility(View.VISIBLE);
+                    mToolbar.setContentInsetsRelative(DisplayUtil.dp2px(VideoDetailsActivity.this, 15), 0);
                 } else if (state == State.COLLAPSED)
                 {
                     //折叠状态
                     mTvPlayer.setVisibility(View.VISIBLE);
+                    mAvText.setVisibility(View.GONE);
+                    mToolbar.setContentInsetsRelative(DisplayUtil.dp2px(VideoDetailsActivity.this, 150), 0);
                 } else
                 {
                     mTvPlayer.setVisibility(View.GONE);
+                    mAvText.setVisibility(View.VISIBLE);
+                    mToolbar.setContentInsetsRelative(DisplayUtil.dp2px(VideoDetailsActivity.this, 15), 0);
                 }
             }
         });
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void initToolBar()
     {
@@ -164,6 +176,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
         //设置StatusBar透明
         SystemBarHelper.immersiveStatusBar(this);
         SystemBarHelper.setHeightAndPadding(this, mToolbar);
+
+        mAvText.setText("av" + av);
     }
 
 

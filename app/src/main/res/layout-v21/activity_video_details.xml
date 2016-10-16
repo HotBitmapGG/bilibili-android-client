@@ -40,6 +40,12 @@
                         android:layout_height="match_parent"
                         android:scaleType="center" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/head_image_bg_height"
+                        android:layout_gravity="top"
+                        android:background="@drawable/shadow_gradient"/>
+
 
                 </FrameLayout>
 
@@ -49,10 +55,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:minHeight="?attr/actionBarSize"
-                    app:contentInsetStart="150dp"
                     app:layout_collapseMode="pin"
-                    app:titleTextAppearance="@style/ToolBar.TitleText"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:titleTextAppearance="@style/ToolBar.TitleText">
+
+                    <TextView
+                        android:id="@+id/tv_av"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/default_medium_text_size"
+                        android:visibility="gone" />
 
 
                     <TextView

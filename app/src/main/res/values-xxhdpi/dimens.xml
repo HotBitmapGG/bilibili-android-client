@@ -21,6 +21,7 @@
     <dimen name="default_general_margin">10dp</dimen>
     <dimen name="default_grow_margin">20dp</dimen>
     <dimen name="default_long_margin">30dp</dimen>
+    <dimen name="head_image_bg_height">128dp</dimen>
 
     <!--weekday bangumi layout size-->
     <dimen name="weekday_bangumi_card_height">170dp</dimen>
