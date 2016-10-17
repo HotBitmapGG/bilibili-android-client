@@ -8,6 +8,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserCoinsVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserCoinsInfo;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
@@ -72,6 +73,8 @@ public class UserCoinsVideoFragment extends RxLazyFragment
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         UserCoinsVideoAdapter mAdapter = new UserCoinsVideoAdapter(mRecyclerView, userCoins);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener((position, holder) -> VideoDetailsActivity.launch(getActivity(),
+                userCoins.get(position).getAid(), userCoins.get(position).getPic()));
         if (userCoins.isEmpty())
             initEmptyLayout();
     }

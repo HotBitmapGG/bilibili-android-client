@@ -12,6 +12,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListen
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
@@ -142,6 +143,9 @@ public class UserContributeFragment extends RxLazyFragment
 
         if (userContributes.isEmpty())
             initEmptyLayout();
+
+        mAdapter.setOnItemClickListener((position, holder) -> VideoDetailsActivity.launch(getActivity(),
+                userContributes.get(position).getAid(), userContributes.get(position).getPic()));
     }
 
     private void finishTask()

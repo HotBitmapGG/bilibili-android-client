@@ -122,10 +122,11 @@ public class UserHomePageFragment extends RxLazyFragment
     private UserLiveRoomStatusInfo mUserLiveRoomStatusInfo;
 
 
-    public static UserHomePageFragment newInstance(UserContributeInfo userContributeInfo, UserFavoritesInfo userFavoritesInfo,
-                                                   UserChaseBangumiInfo userChaseBangumiInfo, UserInterestQuanInfo userInterestQuanInfo,
-                                                   UserCoinsInfo userCoinsInfo, UserPlayGameInfo userPlayGameInfo,
-                                                   UserLiveRoomStatusInfo userLiveRoomStatusInfo)
+    public static UserHomePageFragment newInstance(
+            UserContributeInfo userContributeInfo, UserFavoritesInfo userFavoritesInfo,
+            UserChaseBangumiInfo userChaseBangumiInfo, UserInterestQuanInfo userInterestQuanInfo,
+            UserCoinsInfo userCoinsInfo, UserPlayGameInfo userPlayGameInfo,
+            UserLiveRoomStatusInfo userLiveRoomStatusInfo)
     {
 
         UserHomePageFragment mFragment = new UserHomePageFragment();
