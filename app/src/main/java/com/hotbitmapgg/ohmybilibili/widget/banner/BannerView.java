@@ -23,7 +23,6 @@ import java.util.concurrent.TimeUnit;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rx.Observable;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -51,8 +50,6 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
 
     private List<ImageView> imageViewList;
 
-    private Context context;
-
     private List<BannerEntity> bannerList;
 
     //选中显示Indicator
@@ -77,8 +74,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
     {
 
         super(context, attrs, defStyleAttr);
-        this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.layout_custom_banner, this, true);
+        LayoutInflater.from(getContext()).inflate(R.layout.layout_custom_banner, this, true);
         ButterKnife.bind(this);
 
         imageViewList = new ArrayList<>();
@@ -141,11 +137,11 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
         //初始化与个数相同的指示器点
         for (int i = 0; i < pointSize; i++)
         {
-            View dot = new View(context);
+            View dot = new View(getContext());
             dot.setBackgroundResource(unSelcetRes);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    DisplayUtil.dp2px(context, 5),
-                    DisplayUtil.dp2px(context, 5));
+                    DisplayUtil.dp2px(getContext(), 5),
+                    DisplayUtil.dp2px(getContext(), 5));
             params.leftMargin = 10;
             dot.setLayoutParams(params);
             dot.setEnabled(false);
@@ -156,9 +152,9 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
 
         for (int i = 0; i < bannerList.size(); i++)
         {
-            ImageView mImageView = new ImageView(context);
+            ImageView mImageView = new ImageView(getContext());
 
-            Glide.with(context)
+            Glide.with(getContext())
                     .load(bannerList.get(i).img)
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -231,33 +227,13 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
         Subscription subscription = Observable.timer(delayTime, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Long>()
-                {
+                .subscribe(aLong -> {
 
-                    @Override
-                    public void onCompleted()
-                    {
+                    if (isStopScroll)
+                        return;
 
-                    }
-
-                    @Override
-                    public void onError(Throwable e)
-                    {
-
-
-                    }
-
-                    @Override
-                    public void onNext(Long aLong)
-                    {
-
-                        if (isStopScroll)
-                        {
-                            return;
-                        }
-                        isStopScroll = true;
-                        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                    }
+                    isStopScroll = true;
+                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
                 });
         compositeSubscription.add(subscription);
     }
@@ -267,6 +243,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
      */
     private void stopScroll()
     {
+
         isStopScroll = true;
     }
 
@@ -289,12 +266,13 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
     {
 
         if (position == 0)
-        {
             position = bannerList.size() - 1;
-        } else
-        {
+        else
             position -= 1;
-        }
-        BrowserActivity.launch((Activity) context, bannerList.get(position).link, bannerList.get(position).title);
+
+
+        BrowserActivity.launch((Activity) getContext(),
+                bannerList.get(position).link,
+                bannerList.get(position).title);
     }
 }
