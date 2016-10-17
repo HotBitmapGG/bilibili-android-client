@@ -6,8 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/home_recommend_head_layout_height"
-        android:paddingBottom="@dimen/default_general_margin"
+        android:layout_height="@dimen/home_topic_head_layout_height"
         android:paddingEnd="@dimen/card_margin"
         android:paddingStart="@dimen/card_margin">
 
@@ -29,7 +28,7 @@
             android:gravity="center"
             android:text="@string/activity_center"
             android:textColor="@color/font_normal"
-            android:textSize="@dimen/default_medium_text_size" />
+            android:textSize="@dimen/default_small_text_size" />
 
 
         <TextView
