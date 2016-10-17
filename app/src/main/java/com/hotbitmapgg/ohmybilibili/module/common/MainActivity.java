@@ -339,8 +339,5 @@ public class MainActivity extends RxAppCompatBaseActivity implements
     }
 
     @Override
-    public void initToolBar()
-    {
-
-    }
+    public void initToolBar() {}
 }
