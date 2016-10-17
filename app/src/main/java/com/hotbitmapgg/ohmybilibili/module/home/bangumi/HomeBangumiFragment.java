@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiRecommendSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiSeasonNewSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -54,9 +55,9 @@ public class HomeBangumiFragment extends RxLazyFragment
 
     private List<BannerEntity> bannerList = new ArrayList<>();
 
-    private List<BangumiRecommend.RecommendsBean> recommends = new ArrayList<>();
+    private List<BangumiRecommend.ResultBean> bangumiRecommends = new ArrayList<>();
 
-    private List<BangumiRecommend.BannersBean> banners = new ArrayList<>();
+    private List<HomeBangumiRecommend.ResultBean.BannersBean> banners = new ArrayList<>();
 
     private List<NewBangumiSerial.ListBean> newBangumiSerials = new ArrayList<>();
 
@@ -150,7 +151,7 @@ public class HomeBangumiFragment extends RxLazyFragment
 
         mIsRefreshing = true;
         banners.clear();
-        recommends.clear();
+        bangumiRecommends.clear();
         newBangumiSerials.clear();
         seasonNewBangumis.clear();
         mSectionedRecyclerViewAdapter.removeAllSections();
@@ -160,24 +161,22 @@ public class HomeBangumiFragment extends RxLazyFragment
     /**
      * 获取番剧推荐数据
      * 包含Banner和番剧推荐内容
-     * 获取二次元新番
      */
     private void getBangumiRecommends()
     {
 
 
-        RetrofitHelper.getBnagumiRecommendApi()
-                .getBangumiRecommended()
+        RetrofitHelper.getHomeBnagumiRecommendApi()
+                .getHomeBangumiRecommended()
                 .compose(this.bindToLifecycle())
-                .flatMap(new Func1<BangumiRecommend,Observable<SeasonNewBangumi>>()
+                .flatMap(new Func1<HomeBangumiRecommend,Observable<SeasonNewBangumi>>()
                 {
 
                     @Override
-                    public Observable<SeasonNewBangumi> call(BangumiRecommend bangumiRecommend)
+                    public Observable<SeasonNewBangumi> call(HomeBangumiRecommend homeBangumiRecommend)
                     {
 
-                        banners.addAll(bangumiRecommend.getBanners());
-                        recommends.addAll(bangumiRecommend.getRecommends());
+                        banners.addAll(homeBangumiRecommend.getResult().getBanners());
                         return RetrofitHelper.getSeasonNewBangumiApi()
                                 .getSeasonNewBangumiList();
                     }
@@ -195,12 +194,24 @@ public class HomeBangumiFragment extends RxLazyFragment
                                 .getNewBangumiSerialList();
                     }
                 })
-                .compose(this.bindToLifecycle())
+                .flatMap(new Func1<NewBangumiSerial,Observable<BangumiRecommend>>()
+                {
+
+                    @Override
+                    public Observable<BangumiRecommend> call(NewBangumiSerial newBangumiSerial)
+                    {
+
+                        newBangumiSerials.addAll(newBangumiSerial.getList());
+                        return RetrofitHelper.getBangumiRecommendedApi()
+                                .getBangumiRecommended();
+                    }
+                })
+                .compose(bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(newBangumiSerial -> {
+                .subscribe(bangumiDetailsRecommend -> {
 
-                    newBangumiSerials.addAll(newBangumiSerial.getList());
+                    bangumiRecommends.addAll(bangumiDetailsRecommend.getResult());
                     finishTask();
                 }, throwable -> {
 
@@ -220,7 +231,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         for (int i = 0, size = banners.size(); i < size; i++)
         {
             banner = new BannerEntity();
-            BangumiRecommend.BannersBean bannersBean = banners.get(i);
+            HomeBangumiRecommend.ResultBean.BannersBean bannersBean = banners.get(i);
             banner.img = bannersBean.getImg();
             banner.link = bannersBean.getLink();
             bannerList.add(banner);
@@ -229,7 +240,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiItemSection(getActivity()));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiNewSerialSection(getActivity(), newBangumiSerials));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiSeasonNewSection(getActivity(), seasonNewBangumis));
-        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiRecommendSection(getActivity(), recommends));
+        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiRecommendSection(getActivity(), bangumiRecommends));
         mSectionedRecyclerViewAdapter.notifyDataSetChanged();
     }
 

@@ -8,10 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.SecondElementBangumiAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.HomeBangumiRecommendAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
-import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
@@ -31,15 +30,15 @@ public class HomeBangumiRecommendSection extends StatelessSection
 
     private Context mContext;
 
-    private List<BangumiRecommend.RecommendsBean> recommends;
+    private List<BangumiRecommend.ResultBean> bangumiRecommends;
 
 
-    public HomeBangumiRecommendSection(Context context, List<BangumiRecommend.RecommendsBean> recommends)
+    public HomeBangumiRecommendSection(Context context, List<BangumiRecommend.ResultBean> bangumiRecommends)
     {
 
         super(R.layout.layout_home_bangumi_recommend_head, R.layout.layout_home_recommend_empty);
         this.mContext = context;
-        this.recommends = recommends;
+        this.bangumiRecommends = bangumiRecommends;
     }
 
     @Override
@@ -79,21 +78,10 @@ public class HomeBangumiRecommendSection extends StatelessSection
         recyclerViewHolder.mRecyclerView.setHasFixedSize(false);
         recyclerViewHolder.mRecyclerView.setNestedScrollingEnabled(false);
         recyclerViewHolder.mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        SecondElementBangumiAdapter mAdapter = new SecondElementBangumiAdapter(recyclerViewHolder.mRecyclerView, recommends);
+        HomeBangumiRecommendAdapter mAdapter = new HomeBangumiRecommendAdapter(recyclerViewHolder.mRecyclerView, bangumiRecommends);
         recyclerViewHolder.mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener((position, holder1) -> {
-
-            BangumiRecommend.RecommendsBean recommendsBean = recommends.get(position);
-            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-            middlewareBangumi.setAid(recommendsBean.getAid());
-            middlewareBangumi.setCreate(recommendsBean.getCreate());
-            middlewareBangumi.setPlay(recommendsBean.getPlay());
-            middlewareBangumi.setFavorites(recommendsBean.getFavorites());
-            middlewareBangumi.setPic(recommendsBean.getPic());
-            middlewareBangumi.setDescription(recommendsBean.getDescription());
-            middlewareBangumi.setTitle(recommendsBean.getTitle());
-            BangumiDetailsActivity.launch((Activity) mContext, middlewareBangumi);
-        });
+        mAdapter.setOnItemClickListener((position, holder1) -> BrowserActivity.launch((Activity) mContext,
+                bangumiRecommends.get(position).getLink(), bangumiRecommends.get(position).getTitle()));
     }
 
 

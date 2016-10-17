@@ -51,16 +51,6 @@ public class HomePageFragment extends RxLazyFragment
     @Bind(R.id.toolbar_user_avatar)
     CircleImageView mCircleImageView;
 
-    //随机头像设置数组
-    private static final int[] avatars = new int[]{
-            R.drawable.ic_avatar1, R.drawable.ic_avatar2,
-            R.drawable.ic_avatar3, R.drawable.ic_avatar4,
-            R.drawable.ic_avatar5, R.drawable.ic_avatar6,
-            R.drawable.ic_avatar7, R.drawable.ic_avatar8,
-            R.drawable.ic_avatar9, R.drawable.ic_avatar10,
-            R.drawable.ic_avatar11,
-            };
-
     public static HomePageFragment newInstance()
     {
 

@@ -16,17 +16,37 @@
         android:layout_height="match_parent">
 
 
-        <ImageView
-            android:id="@+id/item_img"
+        <FrameLayout
+            android:id="@+id/item_image_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/bangumi_recommend_image_height"
-            android:scaleType="center" />
+            android:layout_height="@dimen/bangumi_recommend_image_height">
+
+
+            <ImageView
+                android:id="@+id/item_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center" />
+
+            <ImageView
+                android:id="@+id/item_is_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/default_grow_margin"
+                android:background="@drawable/tv_new_bg"
+                android:padding="@dimen/default_tiny_padding"
+                android:layout_marginTop="-1dp"
+                android:src="@drawable/ic_new_text" />
+
+        </FrameLayout>
+
 
         <TextView
             android:id="@+id/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/item_img"
+            android:layout_below="@+id/item_image_layout"
             android:padding="@dimen/default_general_margin"
             android:textColor="@color/font_normal"
             android:textSize="@dimen/default_small_text_size" />

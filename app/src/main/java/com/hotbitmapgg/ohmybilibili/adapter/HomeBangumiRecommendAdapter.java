@@ -1,6 +1,5 @@
 package com.hotbitmapgg.ohmybilibili.adapter;
 
-import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,25 +13,25 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by hcc on 16/8/6 11:51
+ * Created by hcc on 2016/10/2 17:06
  * 100332338@qq.com
- * <p/>
- * 首页番剧推荐Adapter
+ * <p>
+ * 首页番剧推荐adapter
  */
-public class SecondElementBangumiAdapter extends AbsRecyclerViewAdapter
+
+public class HomeBangumiRecommendAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<BangumiRecommend.RecommendsBean> recommends = new ArrayList<>();
+    private List<BangumiRecommend.ResultBean> mBangumiDetailsRecommends;
 
-    public SecondElementBangumiAdapter(RecyclerView recyclerView, List<BangumiRecommend.RecommendsBean> recommends)
+    public HomeBangumiRecommendAdapter(RecyclerView recyclerView, List<BangumiRecommend.ResultBean> mBangumiDetailsRecommends)
     {
 
         super(recyclerView);
-        this.recommends = recommends;
+        this.mBangumiDetailsRecommends = mBangumiDetailsRecommends;
     }
 
     @Override
@@ -40,11 +39,9 @@ public class SecondElementBangumiAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_bangumi_recommend, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_bangumi_recommend, parent, false));
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ClickableViewHolder holder, int position)
     {
@@ -52,18 +49,25 @@ public class SecondElementBangumiAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            BangumiRecommend.RecommendsBean recommendsBean = recommends.get(position);
+            BangumiRecommend.ResultBean resultBean = mBangumiDetailsRecommends.get(position);
 
             Glide.with(getContext())
-                    .load(recommendsBean.getPic())
+                    .load(resultBean.getCover())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mImage);
 
-            itemViewHolder.mTitle.setText(recommendsBean.getTitle());
-            itemViewHolder.mDesc.setText(recommendsBean.getDescription());
+            itemViewHolder.mTitle.setText(resultBean.getTitle());
+            itemViewHolder.mDesc.setText(resultBean.getDesc());
+            if (resultBean.getIs_new() == 1)
+            {
+                itemViewHolder.mIsNew.setVisibility(View.VISIBLE);
+            } else
+            {
+                itemViewHolder.mIsNew.setVisibility(View.GONE);
+            }
         }
         super.onBindViewHolder(holder, position);
     }
@@ -72,7 +76,7 @@ public class SecondElementBangumiAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return recommends.size();
+        return mBangumiDetailsRecommends.size();
     }
 
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
@@ -84,6 +88,8 @@ public class SecondElementBangumiAdapter extends AbsRecyclerViewAdapter
 
         TextView mDesc;
 
+        ImageView mIsNew;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -91,6 +97,7 @@ public class SecondElementBangumiAdapter extends AbsRecyclerViewAdapter
             mImage = $(R.id.item_img);
             mTitle = $(R.id.item_title);
             mDesc = $(R.id.item_desc);
+            mIsNew = $(R.id.item_is_new);
         }
     }
 }

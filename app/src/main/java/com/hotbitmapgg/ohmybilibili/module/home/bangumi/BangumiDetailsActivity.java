@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -24,10 +23,9 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsRecommendAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsSelectionAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
-import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
@@ -49,8 +47,6 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-
-import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_BANGUMI_KEY;
 
 /**
  * Created by hcc on 16/8/14 17:51
@@ -88,15 +84,6 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
     @Bind(R.id.bangumi_play)
     TextView mBangumiPlay;
 
-//    @Bind(R.id.btn_share)
-//    LinearLayout btnShare;
-//
-//    @Bind(R.id.btn_follow)
-//    LinearLayout btnFollow;
-//
-//    @Bind(R.id.btn_download)
-//    LinearLayout btnDownload;
-
     @Bind(R.id.bangumi_selection_recycler)
     RecyclerView mBangumiSelectionRecycler;
 
@@ -118,7 +105,7 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
 
     private Random random = new Random();
 
-    private List<BangumiDetailsRecommend.ResultBean> mBangumiDetailsRecommends = new ArrayList<>();
+    private List<HomeBangumiRecommend.ResultBean.EndsBean> recommends = new ArrayList<>();
 
     private List<String> tags = Arrays.asList(
             "轻改", "萌系", "搞笑", "催泪", "热血",
@@ -152,30 +139,38 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
                 .getSpInfo(mBangumiInfo.getSpid(), mBangumiInfo.getTitle())
                 .compose(bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)
-                .flatMap(new Func1<SpecialTopic,Observable<BangumiDetailsRecommend>>()
+                .flatMap(new Func1<SpecialTopic,Observable<HomeBangumiRecommend>>()
                 {
 
                     @Override
-                    public Observable<BangumiDetailsRecommend> call(SpecialTopic specialTopic)
+                    public Observable<HomeBangumiRecommend> call(SpecialTopic specialTopic)
                     {
 
                         mSpecialTopic = specialTopic;
-                        return RetrofitHelper.getBangumiDetailsRecommendedApi()
-                                .getBangumiDetailsRecommended();
+                        return RetrofitHelper.getHomeBnagumiRecommendApi()
+                                .getHomeBangumiRecommended();
                     }
                 })
                 .compose(bindToLifecycle())
-                .map(BangumiDetailsRecommend::getResult)
+                .map(homeBangumiRecommend -> homeBangumiRecommend.getResult().getEnds())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(resultBeanList -> {
+                .subscribe(endsBeans -> {
 
-                    mBangumiDetailsRecommends.addAll(resultBeanList);
+                    recommends.addAll(endsBeans);
                     finishTask();
                 }, throwable -> {
-
                     hideProgressBar();
                 });
+//                .map(HomeBangumiRecommend::getRecommends)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(recommendsBeans -> {
+//                    recommends.addAll(recommendsBeans);
+//                    finishTask();
+//                }, throwable -> {
+//                    hideProgressBar();
+//                });
     }
 
     private void finishTask()
@@ -265,13 +260,10 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
 
         mBangumiRecommendRecycler.setHasFixedSize(false);
         mBangumiRecommendRecycler.setNestedScrollingEnabled(false);
-        mBangumiRecommendRecycler.setLayoutManager(new LinearLayoutManager(this));
+        mBangumiRecommendRecycler.setLayoutManager(new GridLayoutManager(BangumiDetailsActivity.this, 3));
         BangumiDetailsRecommendAdapter mBangumiDetailsRecommendAdapter = new BangumiDetailsRecommendAdapter(
-                mBangumiRecommendRecycler, mBangumiDetailsRecommends);
+                mBangumiRecommendRecycler, recommends);
         mBangumiRecommendRecycler.setAdapter(mBangumiDetailsRecommendAdapter);
-        mBangumiDetailsRecommendAdapter.setOnItemClickListener((position, holder) -> BrowserActivity.launch(
-                BangumiDetailsActivity.this, mBangumiDetailsRecommends.get(position).getLink(),
-                mBangumiDetailsRecommends.get(position).getTitle()));
     }
 
     @Override
