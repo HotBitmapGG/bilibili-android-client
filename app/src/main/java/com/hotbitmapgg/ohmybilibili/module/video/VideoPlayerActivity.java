@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.module.video;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -13,25 +14,25 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.video.HDVideoInfo;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoSrc;
 import com.hotbitmapgg.ohmybilibili.media.MediaController;
-import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchEvent;
-import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackEvent;
+import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchListener;
+import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackListener;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
-import com.hotbitmapgg.ohmybilibili.utils.DanmakuDownloadUtil;
-import com.hotbitmapgg.ohmybilibili.widget.VideoPlayerView;
+import com.hotbitmapgg.ohmybilibili.media.DanmakuDownloadUtil;
+import com.hotbitmapgg.ohmybilibili.media.VideoPlayerView;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import master.flame.danmaku.controller.DrawHandler;
 import master.flame.danmaku.controller.IDanmakuView;
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
 import master.flame.danmaku.danmaku.model.DanmakuTimer;
+import master.flame.danmaku.danmaku.model.IDisplayer;
 import master.flame.danmaku.danmaku.model.android.DanmakuContext;
 import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 import rx.Observable;
-import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -43,7 +44,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * <p/>
  * 视频播放界面
  */
-public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitchEvent, VideoBackEvent
+public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitchListener, VideoBackListener
 {
 
 
@@ -65,34 +66,17 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitch
     @Bind(R.id.video_start_info)
     TextView mPrepareText;
 
-    private String startText = "初始化播放器...";
+    private AnimationDrawable mLoadingAnim;
+
+    private DanmakuContext danmakuContext;
+
+    private int cid;
+
+    private String title;
 
     private int LastPosition = 0;
 
-    private int aid;
-
-    private AnimationDrawable mLoadingAnim;
-
-    private Observable<VideoSrc> observable;
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-
-        super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().setBackgroundDrawable(null);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        // 初始化加载动画
-        mVideoPrepareLayout.setVisibility(View.VISIBLE);
-        startText = startText + "【完成】\n解析视频地址...【完成】\n全舰弹幕填装...";
-        mPrepareText.setText(startText);
-        mLoadingAnim = (AnimationDrawable) mAnimImageView.getBackground();
-        mLoadingAnim.start();
-    }
+    private String startText = "初始化播放器...";
 
 
     @Override
@@ -108,202 +92,252 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitch
 
         Intent intent = getIntent();
         if (intent != null)
-            aid = intent.getIntExtra(ConstantUtils.EXTRA_AID, 0);
+        {
+            cid = intent.getIntExtra(ConstantUtils.EXTRA_CID, 0);
+            title = intent.getStringExtra(ConstantUtils.EXTRA_TITLE);
+        }
 
-        initData();
+        initAnimation();
+        initMediaPlayer();
+    }
+
+    @SuppressLint("UseSparseArrays")
+    private void initMediaPlayer()
+    {
+        //配置播放器
+        MediaController mMediaController = new MediaController(this);
+        mMediaController.setTitle(title);
+        mPlayerView.setMediaController(mMediaController);
+        mPlayerView.setMediaBufferingIndicator(mBufferingIndicator);
+        mPlayerView.requestFocus();
+        mPlayerView.setOnInfoListener(onInfoListener);
+        mPlayerView.setOnSeekCompleteListener(onSeekCompleteListener);
+        mPlayerView.setOnCompletionListener(onCompletionListener);
+        mPlayerView.setOnControllerEventsListener(onControllerEventsListener);
+        //设置弹幕开关监听
+        mMediaController.setDanmakuSwitchListener(this);
+        //设置返回键监听
+        mMediaController.setVideoBackEvent(this);
+
+        //配置弹幕库
+        mDanmakuView.enableDanmakuDrawingCache(true);
+        //设置最大显示行数
+        HashMap<Integer,Integer> maxLinesPair = new HashMap<>();
+        //滚动弹幕最大显示5行
+        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL, 5);
+        //设置是否禁止重叠
+        HashMap<Integer,Boolean> overlappingEnablePair = new HashMap<>();
+        overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_RL, true);
+        overlappingEnablePair.put(BaseDanmaku.TYPE_FIX_TOP, true);
+        //设置弹幕样式
+        danmakuContext = DanmakuContext.create();
+        danmakuContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_STROKEN, 3)
+                .setDuplicateMergingEnabled(false)
+                .setScrollSpeedFactor(1.2f)
+                .setScaleTextSize(0.8f)
+                .setMaximumLines(maxLinesPair)
+                .preventOverlapping(overlappingEnablePair);
+
+        loadData();
+    }
+
+    /**
+     * 初始化加载动画
+     */
+    private void initAnimation()
+    {
+
+        mVideoPrepareLayout.setVisibility(View.VISIBLE);
+        startText = startText + "【完成】\n解析视频地址...【完成】\n全舰弹幕填装...";
+        mPrepareText.setText(startText);
+        mLoadingAnim = (AnimationDrawable) mAnimImageView.getBackground();
+        mLoadingAnim.start();
     }
 
     @Override
     public void initToolBar()
     {
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setBackgroundDrawable(null);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-    private void initData()
+
+    /**
+     * 获取视频数据以及解析弹幕
+     */
+    @Override
+    public void loadData()
     {
-        //配置播放器
-        MediaController mMediaController = new MediaController(this);
-        mDanmakuView.enableDanmakuDrawingCache(true);
-        mPlayerView.setMediaController(mMediaController);
-        mPlayerView.setMediaBufferingIndicator(mBufferingIndicator);
-        mPlayerView.requestFocus();
 
-        mPlayerView.setOnInfoListener(onInfoListener);
-        mPlayerView.setOnSeekCompleteListener(onSeekCompleteListener);
-        mPlayerView.setOnCompletionListener(onCompletionListener);
-        mPlayerView.setOnControllerEventsListener(onControllerEventsListener);
-
-        // 设置弹幕开关监听
-        mMediaController.setDanmakuSwitchListener(this);
-        //设置返回键监听
-        mMediaController.setVideoBackEvent(this);
-
-        // 获取Html5的视频数据
-        observable = RetrofitHelper.getHtml5VideoPlayerUrlApi()
-                .getHtml5VideoPlayerUrl(aid, 1)
-                .compose(this.bindToLifecycle())
-                .subscribeOn(Schedulers.io());
-
-        //合并视频和弹幕数据
-        Observable.merge(loadVideo(), loadDanmaku())
-                .last()
+        RetrofitHelper.getHDVideoApi()
+                .getHDVideoUrl(cid, 4, ConstantUtils.VIDEO_TYPE_MP4)
+                .compose(bindToLifecycle())
+                .map(videoInfo -> Uri.parse(videoInfo.getDurl().get(0).getUrl()))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Object>()
+                .flatMap(new Func1<Uri,Observable<BaseDanmakuParser>>()
                 {
 
                     @Override
-                    public void onCompleted()
+                    public Observable<BaseDanmakuParser> call(Uri uri)
                     {
 
-                        mPlayerView.start();
-                        mDanmakuView.start();
-                    }
+                        mPlayerView.setVideoURI(uri);
+                        mPlayerView.setOnPreparedListener(mp -> {
 
-                    @Override
-                    public void onError(Throwable e)
+
+                            mLoadingAnim.stop();
+                            startText = startText + "【完成】\n视频缓冲中...";
+                            mPrepareText.setText(startText);
+                            mVideoPrepareLayout.setVisibility(View.GONE);
+                        });
+
+                        String url = "http://comment.bilibili.com/" + cid + ".xml";
+                        return DanmakuDownloadUtil.downloadXML(url);
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(baseDanmakuParser -> {
+
+                    mDanmakuView.prepare(baseDanmakuParser, danmakuContext);
+                    mDanmakuView.showFPS(false);
+                    mDanmakuView.enableDanmakuDrawingCache(false);
+                    mDanmakuView.setCallback(new DrawHandler.Callback()
                     {
 
-                        startText = startText + "【失败】\n视频缓冲中...";
-                        mPrepareText.setText(startText);
-                        startText = startText + "【失败】\n" + e.getMessage();
-                        mPrepareText.setText(startText);
-                    }
+                        @Override
+                        public void prepared()
+                        {
 
-                    @Override
-                    public void onNext(Object o)
-                    {
+                            mDanmakuView.start();
+                        }
 
-                    }
+                        @Override
+                        public void updateTimer(DanmakuTimer danmakuTimer)
+                        {
+
+                        }
+
+                        @Override
+                        public void danmakuShown(BaseDanmaku danmaku)
+                        {
+
+                        }
+
+                        @Override
+                        public void drawingFinished()
+                        {
+
+                        }
+                    });
+
+                    mPlayerView.start();
+                }, throwable -> {
+
+
+                    startText = startText + "【失败】\n视频缓冲中...";
+                    mPrepareText.setText(startText);
+                    startText = startText + "【失败】\n" + throwable.getMessage();
+                    mPrepareText.setText(startText);
                 });
     }
 
-
-    public Observable<Object> loadDanmaku()
+    /**
+     * 视频缓冲事件回调
+     */
+    private IMediaPlayer.OnInfoListener onInfoListener = new IMediaPlayer.OnInfoListener()
     {
 
-        return observable
-                .compose(this.bindToLifecycle())
-                .map(videoSrc -> {
+        @Override
+        public boolean onInfo(IMediaPlayer mp, int what, int extra)
+        {
 
-                    if (videoSrc.getCid() == null || videoSrc.getCid()
-                            .contentEquals(ConstantUtils.UNFIND_MESSAGE))
-                    {
-                        return ConstantUtils.ERROR_MESSAGE;
-                    }
-                    return videoSrc.getCid();
-                })
-                .flatMap(new Func1<String,Observable<BaseDanmakuParser>>()
-                {
-
-                    @Override
-                    public Observable<BaseDanmakuParser> call(String string)
-                    {
-
-                        if (string.equals(ConstantUtils.ERROR_MESSAGE))
-                        {
-                            return Observable.error(new Exception("视频不存在或不能播放"));
-                        }
-                        return new DanmakuDownloadUtil().downloadXML(string);
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .flatMap((Func1<BaseDanmakuParser,Observable<?>>) this::prepareDanmaku);
-    }
-
-
-    public Observable<Object> loadVideo()
-    {
-
-        return observable
-                .compose(this.bindToLifecycle())
-                .map(VideoSrc::getCid)
-                .map(s -> {
-
-                    if (s == null || s.contentEquals(ConstantUtils.UNFIND_MESSAGE))
-                    {
-                        return ConstantUtils.ERROR_MESSAGE;
-                    }
-                    return s.substring(s.lastIndexOf('/') + 1, s.lastIndexOf("."));
-                })
-                .flatMap(new Func1<String,Observable<HDVideoInfo>>()
-                {
-
-                    @Override
-                    public Observable<HDVideoInfo> call(String cid)
-                    {
-
-                        if (cid.equals(ConstantUtils.ERROR_MESSAGE))
-                        {
-                            return Observable.error(new Exception("视频不存在或不能播放"));
-                        }
-
-                        return RetrofitHelper.getHDVideoApi()
-                                .getHDVideoUrl(cid, 4, ConstantUtils.VIDEO_TYPE_MP4);
-                    }
-                })
-                .map(videoInfo -> Uri.parse(videoInfo.getDurl().get(0).getUrl()))
-                .observeOn(AndroidSchedulers.mainThread())
-                .flatMap((Func1<Uri,Observable<?>>) this::prepareVideo);
-    }
-
-
-    public Observable prepareVideo(final Uri src)
-    {
-
-        return Observable.create(subscriber -> {
-
-            mPlayerView.setVideoURI(src);
-            mPlayerView.setOnPreparedListener(mp -> {
-
-
-                subscriber.onCompleted();
-                mLoadingAnim.stop();
-                startText = startText + "【完成】\n视频缓冲中...";
-                mPrepareText.setText(startText);
-                mVideoPrepareLayout.setVisibility(View.GONE);
-            });
-        });
-    }
-
-    public Observable prepareDanmaku(final BaseDanmakuParser parser)
-    {
-
-        return Observable.create(subscriber -> {
-
-            mDanmakuView.prepare(parser, DanmakuContext.create());
-            mDanmakuView.showFPS(false);
-            mDanmakuView.enableDanmakuDrawingCache(false);
-            mDanmakuView.setCallback(new DrawHandler.Callback()
+            if (what == IMediaPlayer.MEDIA_INFO_BUFFERING_START)
             {
-
-                @Override
-                public void prepared()
+                if (mDanmakuView != null && mDanmakuView.isPrepared())
                 {
-
-                    subscriber.onCompleted();
+                    mDanmakuView.pause();
+                    if (mBufferingIndicator != null)
+                        mBufferingIndicator.setVisibility(View.VISIBLE);
                 }
-
-                @Override
-                public void updateTimer(DanmakuTimer danmakuTimer)
+            } else if (what == IMediaPlayer.MEDIA_INFO_BUFFERING_END)
+            {
+                if (mDanmakuView != null && mDanmakuView.isPaused())
                 {
-
+                    mDanmakuView.resume();
                 }
+                if (mBufferingIndicator != null)
+                    mBufferingIndicator.setVisibility(View.GONE);
+            }
+            return true;
+        }
+    };
 
-                @Override
-                public void danmakuShown(BaseDanmaku danmaku)
-                {
+    /**
+     * 视频跳转事件回调
+     */
+    private IMediaPlayer.OnSeekCompleteListener onSeekCompleteListener = new IMediaPlayer.OnSeekCompleteListener()
+    {
 
-                }
+        @Override
+        public void onSeekComplete(IMediaPlayer mp)
+        {
 
-                @Override
-                public void drawingFinished()
-                {
+            if (mDanmakuView != null && mDanmakuView.isPrepared())
+            {
+                mDanmakuView.seekTo(mp.getCurrentPosition());
+            }
+        }
+    };
 
-                }
-            });
-        });
-    }
+    /**
+     * 视频播放完成事件回调
+     */
+    private IMediaPlayer.OnCompletionListener onCompletionListener = new IMediaPlayer.OnCompletionListener()
+    {
 
+        @Override
+        public void onCompletion(IMediaPlayer mp)
+        {
+
+            if (mDanmakuView != null && mDanmakuView.isPrepared())
+            {
+                mDanmakuView.seekTo((long) 0);
+                mDanmakuView.pause();
+            }
+            mPlayerView.pause();
+        }
+    };
+
+    /**
+     * 控制条控制状态事件回调
+     */
+    private VideoPlayerView.OnControllerEventsListener onControllerEventsListener = new VideoPlayerView.OnControllerEventsListener()
+    {
+
+        @Override
+        public void onVideoPause()
+        {
+
+            if (mDanmakuView != null && mDanmakuView.isPrepared())
+            {
+                mDanmakuView.pause();
+            }
+        }
+
+        @Override
+        public void OnVideoResume()
+        {
+
+            if (mDanmakuView != null && mDanmakuView.isPaused())
+            {
+                mDanmakuView.resume();
+            }
+        }
+    };
 
     @Override
     protected void onResume()
@@ -375,114 +409,11 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitch
         }
     }
 
-
     /**
-     * 视频缓冲事件回调
+     * 弹幕开关回调
+     *
+     * @param isShow
      */
-    private IMediaPlayer.OnInfoListener onInfoListener =
-            new IMediaPlayer.OnInfoListener()
-            {
-
-                @Override
-                public boolean onInfo(IMediaPlayer mp, int what, int extra)
-                {
-
-                    if (what == IMediaPlayer.MEDIA_INFO_BUFFERING_START)
-                    {
-                        if (mDanmakuView != null && mDanmakuView.isPrepared())
-                        {
-                            mDanmakuView.pause();
-                            if (mBufferingIndicator != null)
-                                mBufferingIndicator.setVisibility(View.VISIBLE);
-                        }
-                    } else if (what == IMediaPlayer.MEDIA_INFO_BUFFERING_END)
-                    {
-                        if (mDanmakuView != null && mDanmakuView.isPaused())
-                        {
-                            mDanmakuView.resume();
-                        }
-                        if (mBufferingIndicator != null)
-                            mBufferingIndicator.setVisibility(View.GONE);
-                    }
-                    return true;
-                }
-            };
-
-    /**
-     * 视频跳转事件回调
-     */
-    private IMediaPlayer.OnSeekCompleteListener onSeekCompleteListener =
-            new IMediaPlayer.OnSeekCompleteListener()
-            {
-
-                @Override
-                public void onSeekComplete(IMediaPlayer mp)
-                {
-
-                    if (mDanmakuView != null && mDanmakuView.isPrepared())
-                    {
-                        mDanmakuView.seekTo(mp.getCurrentPosition());
-                    }
-                }
-            };
-
-    /**
-     * 视频播放完成事件回调
-     */
-    private IMediaPlayer.OnCompletionListener onCompletionListener =
-            new IMediaPlayer.OnCompletionListener()
-            {
-
-                @Override
-                public void onCompletion(IMediaPlayer mp)
-                {
-
-                    if (mDanmakuView != null && mDanmakuView.isPrepared())
-                    {
-                        mDanmakuView.seekTo((long) 0);
-                        mDanmakuView.pause();
-                    }
-                    mPlayerView.pause();
-                }
-            };
-
-    /**
-     * 控制条控制状态事件回调
-     */
-    private VideoPlayerView.OnControllerEventsListener onControllerEventsListener =
-            new VideoPlayerView.OnControllerEventsListener()
-            {
-
-                @Override
-                public void onVideoPause()
-                {
-
-                    if (mDanmakuView != null && mDanmakuView.isPrepared())
-                    {
-                        mDanmakuView.pause();
-                    }
-                }
-
-                @Override
-                public void OnVideoResume()
-                {
-
-                    if (mDanmakuView != null && mDanmakuView.isPaused())
-                    {
-                        mDanmakuView.resume();
-                    }
-                }
-            };
-
-
-    public static void launch(Activity activity, int aid)
-    {
-
-        Intent mIntent = new Intent(activity, VideoPlayerActivity.class);
-        mIntent.putExtra(ConstantUtils.EXTRA_AID, aid);
-        activity.startActivity(mIntent);
-    }
-
     @Override
     public void setDanmakushow(boolean isShow)
     {
@@ -499,10 +430,24 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitch
         }
     }
 
+
+    /**
+     * 退出界面回调
+     */
     @Override
     public void back()
     {
 
         onBackPressed();
+    }
+
+
+    public static void launch(Activity activity, int cid, String title)
+    {
+
+        Intent mIntent = new Intent(activity, VideoPlayerActivity.class);
+        mIntent.putExtra(ConstantUtils.EXTRA_CID, cid);
+        mIntent.putExtra(ConstantUtils.EXTRA_TITLE, title);
+        activity.startActivity(mIntent);
     }
 }

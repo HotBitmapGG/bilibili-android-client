@@ -1,5 +1,5 @@
 
-package com.hotbitmapgg.ohmybilibili.utils;
+package com.hotbitmapgg.ohmybilibili.media;
 
 import android.annotation.TargetApi;
 import android.content.Context;

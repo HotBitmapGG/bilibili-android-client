@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -23,10 +24,9 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchEvent;
+import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchListener;
 import com.hotbitmapgg.ohmybilibili.media.callback.MediaPlayerControl;
-import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackEvent;
-import com.hotbitmapgg.ohmybilibili.widget.OutlineTextView;
+import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackListener;
 
 import java.util.Locale;
 
@@ -65,7 +65,7 @@ public class MediaController extends FrameLayout
 
     private TextView mEndTime, mCurrentTime;
 
-    private TextView mFileName;
+    private TextView mTitleView;
 
     private OutlineTextView mInfoView;
 
@@ -91,22 +91,24 @@ public class MediaController extends FrameLayout
 
     private boolean mDanmakuShow = true;
 
-    private DanmakuSwitchEvent mDanmakuSwitchEvent;
+    private DanmakuSwitchListener mDanmakuSwitchListener;
 
     private ImageView mBack;
 
-    private VideoBackEvent mVideoBackEvent;
+    private VideoBackListener mVideoBackListener;
 
-    public void setDanmakuSwitchListener(DanmakuSwitchEvent danmakuSwitchEvent)
+    private ImageView mTvPlay;
+
+    public void setDanmakuSwitchListener(DanmakuSwitchListener danmakuSwitchListener)
     {
 
-        this.mDanmakuSwitchEvent = danmakuSwitchEvent;
+        this.mDanmakuSwitchListener = danmakuSwitchListener;
     }
 
-    public void setVideoBackEvent(VideoBackEvent videoBackEvent)
+    public void setVideoBackEvent(VideoBackListener videoBackListener)
     {
 
-        this.mVideoBackEvent = videoBackEvent;
+        this.mVideoBackListener = videoBackListener;
     }
 
     @SuppressLint("HandlerLeak")
@@ -201,7 +203,6 @@ public class MediaController extends FrameLayout
         }
     };
 
-    private ImageButton mDanmakuSwitch;
 
     public MediaController(Context context, AttributeSet attrs)
     {
@@ -303,12 +304,17 @@ public class MediaController extends FrameLayout
     private void initControllerView(View v)
     {
 
-        mPauseButton = (ImageButton) v
-                .findViewById(R.id.media_controller_play_pause);
-        if (mPauseButton != null)
+        mPauseButton = (ImageButton) v.findViewById(R.id.media_controller_play_pause);
+        mTvPlay = (ImageView) v.findViewById(R.id.media_controller_tv_play);
+        if (mPauseButton != null && mTvPlay != null)
         {
             mPauseButton.requestFocus();
             mPauseButton.setOnClickListener(mPauseListener);
+            mTvPlay.requestFocus();
+            mTvPlay.setOnClickListener(v13 -> {
+                doPauseResume();
+                show(sDefaultTimeout);
+            });
         }
 
         mProgress = (SeekBar) v.findViewById(R.id.media_controller_seekbar);
@@ -326,29 +332,32 @@ public class MediaController extends FrameLayout
         mEndTime = (TextView) v.findViewById(R.id.media_controller_time_total);
         mCurrentTime = (TextView) v
                 .findViewById(R.id.media_controller_time_current);
-        mFileName = (TextView) v.findViewById(R.id.media_controller_file_name);
-        if (mFileName != null)
-            mFileName.setText(mTitle);
+        mTitleView = (TextView) v.findViewById(R.id.media_controller_title);
+        if (mTitleView != null)
+            mTitleView.setText(mTitle);
 
-        mDanmakuSwitch = (ImageButton) v.
-                findViewById(R.id.media_controller_danmaku_switch);
-        mDanmakuSwitch.setOnClickListener(v1 -> {
+        LinearLayout mDanmakuLayout = (LinearLayout) v.findViewById(R.id.media_controller_danmaku_layout);
+        ImageView mDanmakuImage = (ImageView) v.findViewById(R.id.media_controller_danmaku_switch);
+        TextView mDanmakuText = (TextView) v.findViewById(R.id.media_controller_danmaku_text);
+        mDanmakuLayout.setOnClickListener(v1 -> {
 
             if (mDanmakuShow)
             {
-                mDanmakuSwitch.setImageResource(R.drawable.bili_player_danmaku_is_closed);
-                mDanmakuSwitchEvent.setDanmakushow(false);
+                mDanmakuImage.setImageResource(R.drawable.bili_player_danmaku_is_closed);
+                mDanmakuText.setText("弹幕开");
+                mDanmakuSwitchListener.setDanmakushow(false);
                 mDanmakuShow = false;
             } else
             {
-                mDanmakuSwitch.setImageResource(R.drawable.bili_player_danmaku_is_open);
-                mDanmakuSwitchEvent.setDanmakushow(true);
+                mDanmakuImage.setImageResource(R.drawable.bili_player_danmaku_is_open);
+                mDanmakuText.setText("弹幕关");
+                mDanmakuSwitchListener.setDanmakushow(true);
                 mDanmakuShow = true;
             }
         });
 
         mBack = (ImageView) v.findViewById(R.id.media_controller_back);
-        mBack.setOnClickListener(v12 -> mVideoBackEvent.back());
+        mBack.setOnClickListener(v12 -> mVideoBackListener.back());
     }
 
     public void setMediaPlayer(MediaPlayerControl player)
@@ -380,12 +389,12 @@ public class MediaController extends FrameLayout
      *
      * @param name
      */
-    public void setFileName(String name)
+    public void setTitle(String name)
     {
 
         mTitle = name;
-        if (mFileName != null)
-            mFileName.setText(mTitle);
+        if (mTitleView != null)
+            mTitleView.setText(mTitle);
     }
 
     /**
@@ -402,12 +411,11 @@ public class MediaController extends FrameLayout
     private void disableUnsupportedButtons()
     {
 
-        try
+
+        if (mPauseButton != null && mTvPlay != null && !mPlayer.canPause())
         {
-            if (mPauseButton != null && !mPlayer.canPause())
-                mPauseButton.setEnabled(false);
-        } catch (IncompatibleClassChangeError ex)
-        {
+            mPauseButton.setEnabled(false);
+            mTvPlay.setEnabled(false);
         }
     }
 
@@ -435,8 +443,11 @@ public class MediaController extends FrameLayout
             {
                 mAnchor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
             }
-            if (mPauseButton != null)
+            if (mPauseButton != null && mTvPlay != null)
+            {
                 mPauseButton.requestFocus();
+                mTvPlay.requestFocus();
+            }
             disableUnsupportedButtons();
 
             if (mFromXml)
@@ -574,8 +585,11 @@ public class MediaController extends FrameLayout
         {
             doPauseResume();
             show(sDefaultTimeout);
-            if (mPauseButton != null)
+            if (mPauseButton != null && mTvPlay != null)
+            {
                 mPauseButton.requestFocus();
+                mTvPlay.requestFocus();
+            }
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_MEDIA_STOP)
         {
@@ -600,15 +614,18 @@ public class MediaController extends FrameLayout
     private void updatePausePlay()
     {
 
-        if (mRoot == null || mPauseButton == null)
+        if (mRoot == null || mPauseButton == null || mTvPlay == null)
             return;
 
         if (mPlayer.isPlaying())
-            mPauseButton
-                    .setImageResource(R.drawable.mediacontroller_pause);
-        else
-            mPauseButton
-                    .setImageResource(R.drawable.mediacontroller_play);
+        {
+            mPauseButton.setImageResource(R.drawable.bili_player_play_can_pause);
+            mTvPlay.setImageResource(R.drawable.ic_tv_stop);
+        } else
+        {
+            mPauseButton.setImageResource(R.drawable.bili_player_play_can_play);
+            mTvPlay.setImageResource(R.drawable.ic_tv_play);
+        }
     }
 
     private void doPauseResume()
@@ -627,6 +644,8 @@ public class MediaController extends FrameLayout
 
         if (mPauseButton != null)
             mPauseButton.setEnabled(enabled);
+        if (mTvPlay != null)
+            mTvPlay.setEnabled(enabled);
         if (mProgress != null)
             mProgress.setEnabled(enabled);
         disableUnsupportedButtons();

@@ -21,7 +21,7 @@ public interface HDVideoService
 {
 
     @GET("/video/{cid}")
-    Observable<HDVideoInfo> getHDVideoUrl(@Path("cid") String cid,
+    Observable<HDVideoInfo> getHDVideoUrl(@Path("cid") int cid,
                                           @Query("quailty") int quailty,
                                           @Query("type") String type);
 }

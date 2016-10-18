@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.utils;
+package com.hotbitmapgg.ohmybilibili.media;
 
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;

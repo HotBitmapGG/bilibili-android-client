@@ -124,7 +124,8 @@ public class VideoDetailsActivity extends RxBaseActivity
         mFAB.setClickable(false);
         mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
         mFAB.setTranslationY(-getResources().getDimension(R.dimen.floating_action_button_size_half));
-        mFAB.setOnClickListener(v -> VideoPlayerActivity.launch(VideoDetailsActivity.this, av));
+        mFAB.setOnClickListener(v -> VideoPlayerActivity.launch(VideoDetailsActivity.this,
+                mVideoDetails.getList().videoAdditional.cid,mVideoDetails.getTitle()));
 
         mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> setViewsTranslation(verticalOffset));
         mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeEvent()

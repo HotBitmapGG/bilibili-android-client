@@ -1,4 +1,6 @@
-package com.hotbitmapgg.ohmybilibili.utils;
+package com.hotbitmapgg.ohmybilibili.media;
+
+import android.text.TextUtils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.helper.HttpConnection;
@@ -29,7 +31,7 @@ import rx.schedulers.Schedulers;
 public class DanmakuDownloadUtil
 {
 
-    public Observable<BaseDanmakuParser> downloadXML(final String uri)
+    public static Observable<BaseDanmakuParser> downloadXML(final String uri)
     {
 
         return Observable.create(new Observable.OnSubscribe<BaseDanmakuParser>()
@@ -39,8 +41,8 @@ public class DanmakuDownloadUtil
             public void call(final Subscriber<? super BaseDanmakuParser> subscriber)
             {
 
-                InputStream stream = null;
-                if (uri == null)
+
+                if (TextUtils.isEmpty(uri))
                 {
                     subscriber.onNext(new BaseDanmakuParser()
                     {
@@ -53,32 +55,29 @@ public class DanmakuDownloadUtil
                         }
                     });
                 }
+
+                ILoader loader = null;
                 try
                 {
                     HttpConnection.Response rsp = (HttpConnection.Response)
                             Jsoup.connect(uri).timeout(20000).execute();
-                    stream = new ByteArrayInputStream(CompressionTools.
+                    InputStream stream = new ByteArrayInputStream(CompressionTools.
                             decompressXML(rsp.bodyAsBytes()));
-                } catch (IOException | DataFormatException e1)
-                {
-                    e1.printStackTrace();
-                }
 
-                ILoader loader = DanmakuLoaderFactory.
-                        create(DanmakuLoaderFactory.TAG_BILI);
-
-                try
-                {
+                    loader = DanmakuLoaderFactory.
+                            create(DanmakuLoaderFactory.TAG_BILI);
                     loader.load(stream);
-                } catch (IllegalDataException e)
+                } catch (IOException | DataFormatException | IllegalDataException e)
                 {
                     e.printStackTrace();
                 }
+
+
                 BaseDanmakuParser parser = new BiliDanmukuParser();
+                assert loader != null;
                 IDataSource<?> dataSource = loader.getDataSource();
                 parser.load(dataSource);
                 subscriber.onNext(parser);
-
             }
         }).subscribeOn(Schedulers.io());
     }

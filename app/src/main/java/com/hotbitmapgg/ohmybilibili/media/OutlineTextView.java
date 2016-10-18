@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget;
+package com.hotbitmapgg.ohmybilibili.media;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

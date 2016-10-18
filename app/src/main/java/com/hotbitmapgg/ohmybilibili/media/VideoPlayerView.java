@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.widget;
+package com.hotbitmapgg.ohmybilibili.media;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,12 +16,9 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.media.MediaController;
 import com.hotbitmapgg.ohmybilibili.media.callback.MediaPlayerControl;
-import com.hotbitmapgg.ohmybilibili.utils.ScreenResolution;
 
 import java.io.IOException;
-import java.util.List;
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IMediaPlayer.OnBufferingUpdateListener;
@@ -594,14 +591,6 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerControl
                     .getParent() : this;
             mMediaController.setAnchorView(anchorView);
             mMediaController.setEnabled(isInPlaybackState());
-
-            if (mUri != null)
-            {
-                List<String> paths = mUri.getPathSegments();
-                String name = paths == null || paths.isEmpty() ? "null" : paths
-                        .get(paths.size() - 1);
-                mMediaController.setFileName(name);
-            }
         }
     }
 

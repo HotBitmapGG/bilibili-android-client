@@ -18,21 +18,33 @@
             android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/default_general_margin"
             android:padding="@dimen/default_general_margin"
-            android:src="@drawable/ic_arrow_back_white"
+            android:src="@drawable/bili_player_back_button"
             android:tint="@color/white" />
 
         <TextView
-            android:id="@+id/media_controller_file_name"
+            android:id="@+id/media_controller_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/default_general_margin"
             android:layout_toEndOf="@+id/media_controller_back"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textColor="@android:color/white"
             android:textSize="@dimen/default_medium_text_size" />
 
     </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/media_controller_tv_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/media_controller_controls"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/default_general_margin"
+        android:padding="@dimen/default_general_margin"
+        android:src="@drawable/ic_tv_play" />
+
 
     <LinearLayout
         android:id="@+id/media_controller_controls"
@@ -69,98 +81,152 @@
 
         </RelativeLayout>
 
+
         <RelativeLayout
+            android:id="@+id/media_controller_controls_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/mediacontroller_bottom_layout_small_margin"
-            android:layout_marginLeft="@dimen/mediacontroller_bottom_layout_big_margin"
-            android:layout_marginRight="@dimen/mediacontroller_bottom_layout_big_margin"
-            android:layout_marginTop="@dimen/mediacontroller_bottom_layout_small_margin">
+            android:layout_marginBottom="@dimen/mediacontroller_buttons_bottom_margin"
+            android:layout_marginLeft="@dimen/mediacontroller_bottom_layout_center_margin"
+            android:layout_marginRight="@dimen/mediacontroller_bottom_layout_center_margin"
+            android:layout_marginTop="@dimen/mediacontroller_buttons_top_margin"
+            android:orientation="horizontal">
 
-
-            <RelativeLayout
-                android:id="@+id/media_controller_controls_buttons"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/media_controller_play_pause"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/mediacontroller_buttons_bottom_margin"
-                android:layout_marginLeft="@dimen/mediacontroller_bottom_layout_center_margin"
-                android:layout_marginRight="@dimen/mediacontroller_bottom_layout_center_margin"
-                android:layout_marginTop="@dimen/mediacontroller_buttons_top_margin"
-                android:orientation="horizontal">
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:background="@null"
+                android:gravity="center"
+                android:src="@drawable/bili_player_play_can_play" />
 
-                <ImageButton
-                    android:id="@+id/media_controller_play_pause"
+
+            <TextView
+                android:id="@+id/media_controller_time_current"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="22dp"
+                android:layout_toEndOf="@+id/media_controller_play_pause"
+                android:textColor="@color/white"
+                android:textSize="@dimen/default_small_text_size" />
+
+            <TextView
+                android:id="@+id/time_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_toEndOf="@+id/media_controller_time_current"
+                android:text="/"
+                android:textColor="@color/white"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+            <TextView
+                android:id="@+id/media_controller_time_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/time_line"
+                android:textColor="@color/white"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+            <LinearLayout
+                android:id="@+id/media_controller_danmaku_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_general_margin"
+                android:layout_toStartOf="@+id/media_controller_controls_quality_layout"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/default_general_margin">
+
+                <ImageView
+                    android:id="@+id/media_controller_danmaku_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerInParent="true"
-                    android:background="@null"
-                    android:gravity="center"
-                    android:src="@drawable/mediacontroller_pause" />
-
+                    android:src="@drawable/bili_player_danmaku_is_open" />
 
                 <TextView
-                    android:id="@+id/media_controller_time_current"
+                    android:id="@+id/media_controller_danmaku_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="22dp"
-                    android:layout_toEndOf="@+id/media_controller_play_pause"
+                    android:paddingTop="@dimen/mediacontroller_bottom_layout_danmaku_padding"
+                    android:text="@string/danmaku_switch"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/default_small_text_size" />
+                    android:textSize="@dimen/default_tiny_text_size" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/media_controller_controls_quality_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_general_margin"
+                android:layout_toStartOf="@+id/media_controller_controls_lock_layout"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/default_general_margin">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_player_media_quality_medium" />
 
                 <TextView
-                    android:id="@+id/time_line"
+                    android:id="@+id/media_controller_quality_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="1dp"
-                    android:layout_toEndOf="@+id/media_controller_time_current"
-                    android:text="/"
+                    android:paddingTop="@dimen/mediacontroller_bottom_layout_danmaku_padding"
+                    android:text="@string/quality_medium"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/default_small_text_size" />
+                    android:textSize="@dimen/default_tiny_text_size" />
 
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/media_controller_controls_lock_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/default_general_margin">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_player_locked_2" />
 
                 <TextView
-                    android:id="@+id/media_controller_time_total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/time_line"
+                    android:paddingTop="@dimen/mediacontroller_bottom_layout_danmaku_padding"
+                    android:text="@string/lock"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/default_small_text_size" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/media_controller_danmaku_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/bili_player_danmaku_is_open" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/mediacontroller_bottom_layout_danmaku_padding"
-                        android:text="@string/danmaku_switch"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/default_tiny_text_size" />
-
-                </LinearLayout>
+                    android:textSize="@dimen/default_tiny_text_size" />
 
 
-            </RelativeLayout>
+            </LinearLayout>
 
 
         </RelativeLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

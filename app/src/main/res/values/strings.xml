@@ -70,7 +70,7 @@
     <string name="topic">话题</string>
     <string name="load_more">正在加载…</string>
     <string name="search_hint">搜索视频,番剧,up主或av号</string>
-    <string name="danmaku_switch">弹幕开关</string>
+    <string name="danmaku_switch">弹幕开</string>
     <string name="play_immediately">立即播放</string>
     <string name="activity_center">活动中心</string>
     <string name="dynamic">动态</string>
@@ -165,5 +165,9 @@
     <string name="vip_message_2">哦</string>
     <string name="vip_message_3">黑科技在召唤</string>
     <string name="immediately_opened">立即开通</string>
+    <string name="lock">锁屏</string>
+    <string name="quality_medium">清晰</string>
+    <string name="quality_smooth">流畅</string>
+    <string name="quality_super">超清</string>
 
 </resources>

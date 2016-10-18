@@ -6,7 +6,7 @@ package com.hotbitmapgg.ohmybilibili.media.callback;
  * <p/>
  * 视频返回回调接口
  */
-public interface VideoBackEvent
+public interface VideoBackListener
 {
 
     void back();
