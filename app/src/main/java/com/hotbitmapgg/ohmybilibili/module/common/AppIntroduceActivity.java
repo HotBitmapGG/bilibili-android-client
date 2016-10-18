@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 
 import butterknife.Bind;
@@ -21,7 +21,7 @@ import butterknife.Bind;
  * <p/>
  * App介绍界面
  */
-public class AppIntroduceActivity extends RxAppCompatBaseActivity
+public class AppIntroduceActivity extends RxBaseActivity
 {
 
 

@@ -64,7 +64,8 @@ public class UserPlayGameFragment extends RxLazyFragment
         initRecyclerView();
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         games.addAll(userPlayGameInfo.getData().getGames());

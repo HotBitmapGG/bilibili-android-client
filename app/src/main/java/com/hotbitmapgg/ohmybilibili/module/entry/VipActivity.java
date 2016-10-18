@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 
@@ -21,7 +21,7 @@ import butterknife.Bind;
  * 大会员界面
  */
 
-public class VipActivity extends RxAppCompatBaseActivity
+public class VipActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)

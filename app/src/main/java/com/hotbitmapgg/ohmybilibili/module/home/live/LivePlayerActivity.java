@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.module.user.UserInfoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
@@ -43,7 +43,7 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  * <p/>
  * 直播播放界面
  */
-public class LivePlayerActivity extends RxAppCompatBaseActivity
+public class LivePlayerActivity extends RxBaseActivity
 {
 
     @Bind(R.id.video_view)
@@ -84,7 +84,6 @@ public class LivePlayerActivity extends RxAppCompatBaseActivity
 
     @Bind(R.id.bottom_love)
     ImageView mlove;
-
 
     private IjkMediaPlayer ijkMediaPlayer;
 

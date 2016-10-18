@@ -12,6 +12,9 @@ import com.hotbitmapgg.ohmybilibili.adapter.FocusOnBangumiAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.FocusOnDynamicAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
+import com.hotbitmapgg.ohmybilibili.entity.focus.FocusOnBangumi;
+import com.hotbitmapgg.ohmybilibili.entity.focus.FocusOnContents;
+import com.hotbitmapgg.ohmybilibili.entity.focus.FocusOnDynamic;
 
 import java.util.List;
 
@@ -54,10 +57,11 @@ public class HomeFocusFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        initData();
+        loadData();
     }
 
-    private void initData()
+    @Override
+    protected void loadData()
     {
 
         FocusOnContents mFocusOnContents = new FocusOnContents();
@@ -66,7 +70,8 @@ public class HomeFocusFragment extends RxLazyFragment
         initRecyclerView();
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);

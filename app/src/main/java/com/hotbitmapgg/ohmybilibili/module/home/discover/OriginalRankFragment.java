@@ -72,7 +72,8 @@ public class OriginalRankFragment extends RxLazyFragment
         initRecyclerView();
     }
 
-    private void initRefreshLayout()
+    @Override
+    protected void initRefreshLayout()
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -80,17 +81,18 @@ public class OriginalRankFragment extends RxLazyFragment
 
             mSwipeRefreshLayout.setRefreshing(true);
             mIsRefreshing = true;
-            getOriginalRank();
+            loadData();
         });
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
             mIsRefreshing = true;
             originalRanks.clear();
-            getOriginalRank();
+            loadData();
         });
     }
 
-    private void getOriginalRank()
+    @Override
+    protected void loadData()
     {
 
         RetrofitHelper.getOriginalRankApi()
@@ -111,7 +113,8 @@ public class OriginalRankFragment extends RxLazyFragment
                 });
     }
 
-    private void finishTask()
+    @Override
+    protected void finishTask()
     {
 
         mIsRefreshing = false;
@@ -119,7 +122,8 @@ public class OriginalRankFragment extends RxLazyFragment
         mAdapter.notifyDataSetChanged();
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);

@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.SeasonNewBangumiAdapter;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
  * 更多新番列表界面
  */
 
-public class SeasonNewBangumiActivity extends RxAppCompatBaseActivity
+public class SeasonNewBangumiActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -58,10 +58,11 @@ public class SeasonNewBangumiActivity extends RxAppCompatBaseActivity
     {
 
         initRecyclerView();
-        getAllNewBangumis();
+        loadData();
     }
 
-    private void getAllNewBangumis()
+    @Override
+    public void loadData()
     {
 
         RetrofitHelper.getSeasonNewBangumiApi()
@@ -81,14 +82,17 @@ public class SeasonNewBangumiActivity extends RxAppCompatBaseActivity
                 });
     }
 
-    private void finishTask()
+    @Override
+    public void finishTask()
     {
+
 
         mAdapter.notifyDataSetChanged();
         hideProgressBar();
     }
 
-    private void initRecyclerView()
+    @Override
+    public void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);
@@ -126,6 +130,8 @@ public class SeasonNewBangumiActivity extends RxAppCompatBaseActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
     public void showProgressBar()
     {
 
@@ -133,6 +139,7 @@ public class SeasonNewBangumiActivity extends RxAppCompatBaseActivity
         mCircleProgressView.spin();
     }
 
+    @Override
     public void hideProgressBar()
     {
 

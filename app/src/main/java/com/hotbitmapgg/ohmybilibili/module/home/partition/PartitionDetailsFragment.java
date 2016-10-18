@@ -91,14 +91,15 @@ public class PartitionDetailsFragment extends RxLazyFragment
         if (!isPrepared || !isVisible)
             return;
 
-        initRecyclerView();
         showProgressBar();
-        getPartitionList();
+        initRecyclerView();
+        loadData();
         isPrepared = false;
     }
 
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);
@@ -114,14 +115,16 @@ public class PartitionDetailsFragment extends RxLazyFragment
             @Override
             public void onLoadMore(int i)
             {
+
                 pageNum++;
-                getPartitionList();
+                loadData();
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
     }
 
-    public void getPartitionList()
+    @Override
+    protected void loadData()
     {
 
         RetrofitHelper.getPartitionMoreApi()
@@ -156,7 +159,8 @@ public class PartitionDetailsFragment extends RxLazyFragment
                 });
     }
 
-    private void finishTask()
+    @Override
+    protected void finishTask()
     {
 
         loadMoreView.setVisibility(View.GONE);
@@ -184,18 +188,19 @@ public class PartitionDetailsFragment extends RxLazyFragment
     }
 
 
-    private void showProgressBar()
+    @Override
+    protected void showProgressBar()
     {
 
         mCircleProgressView.setVisibility(View.VISIBLE);
         mCircleProgressView.spin();
     }
 
-    private void hideProgressBar()
+    @Override
+    protected void hideProgressBar()
     {
 
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
     }
-
 }

@@ -63,7 +63,8 @@ public class UserFavoritesFragment extends RxLazyFragment
         initRecyclerView();
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         userFavorites.addAll(userFavoritesInfo.getData());
@@ -74,7 +75,6 @@ public class UserFavoritesFragment extends RxLazyFragment
         if (userFavorites.isEmpty())
             initEmptyLayout();
     }
-
 
     private void initEmptyLayout()
     {

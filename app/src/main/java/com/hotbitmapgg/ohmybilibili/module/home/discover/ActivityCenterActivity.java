@@ -14,7 +14,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.ActivityCenterAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.discover.ActivityCenterInfo;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -34,7 +34,7 @@ import rx.schedulers.Schedulers;
  * 活动中心界面
  */
 
-public class ActivityCenterActivity extends RxAppCompatBaseActivity
+public class ActivityCenterActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -58,7 +58,6 @@ public class ActivityCenterActivity extends RxAppCompatBaseActivity
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    //RecycleView是否正在刷新
     private boolean mIsRefreshing = false;
 
     @Override
@@ -72,13 +71,14 @@ public class ActivityCenterActivity extends RxAppCompatBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        showProgressBar();
+        initRefreshLayout();
         initRecyclerView();
-        getActivityCenterList();
+        loadData();
     }
 
 
-    private void initRecyclerView()
+    @Override
+    public void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);
@@ -96,7 +96,7 @@ public class ActivityCenterActivity extends RxAppCompatBaseActivity
             {
 
                 pageNum++;
-                getActivityCenterList();
+                loadData();
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
@@ -107,7 +107,8 @@ public class ActivityCenterActivity extends RxAppCompatBaseActivity
         setRecycleNoScroll();
     }
 
-    private void showProgressBar()
+    @Override
+    public void initRefreshLayout()
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -115,11 +116,12 @@ public class ActivityCenterActivity extends RxAppCompatBaseActivity
 
             mIsRefreshing = true;
             activityCenters.clear();
-            getActivityCenterList();
+            loadData();
         });
     }
 
-    private void getActivityCenterList()
+    @Override
+    public void loadData()
     {
 
         RetrofitHelper.getActivityCenterApi()
@@ -144,7 +146,8 @@ public class ActivityCenterActivity extends RxAppCompatBaseActivity
                 });
     }
 
-    private void finishTask()
+    @Override
+    public void finishTask()
     {
 
         mIsRefreshing = false;

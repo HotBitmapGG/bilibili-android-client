@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserCoinsInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
@@ -56,7 +56,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 用户个人中心界面
  */
-public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
+public class UserInfoDetailsActivity extends RxBaseActivity
 {
 
     @Bind(R.id.user_avatar_view)
@@ -542,20 +542,21 @@ public class UserInfoDetailsActivity extends RxAppCompatBaseActivity
     }
 
 
-    private void showProgressBar()
+    @Override
+    public void showProgressBar()
     {
 
         mCircleProgressView.setVisibility(View.VISIBLE);
         mCircleProgressView.spin();
     }
 
-    private void hideProgressBar()
+    @Override
+    public void hideProgressBar()
     {
 
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
     }
-
 
     public static void launch(Activity activity, String name, int mid, String avatar_url)
     {

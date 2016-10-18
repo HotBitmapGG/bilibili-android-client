@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.TopicCenterAdapter;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.discover.TopicCenterInfo;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -31,7 +31,7 @@ import rx.schedulers.Schedulers;
  * 话题中心界面
  */
 
-public class TopicCenterActivity extends RxAppCompatBaseActivity
+public class TopicCenterActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -47,7 +47,6 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
 
     private TopicCenterAdapter mAdapter;
 
-    //RecycleView是否正在刷新
     private boolean mIsRefreshing = false;
 
     @Override
@@ -61,11 +60,12 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        showProgressBar();
+        initRefreshLayout();
         initRecyclerView();
     }
 
-    private void initRecyclerView()
+    @Override
+    public void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);
@@ -79,7 +79,8 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
         setRecycleNoScroll();
     }
 
-    private void showProgressBar()
+    @Override
+    public void initRefreshLayout()
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -87,13 +88,13 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
 
             mIsRefreshing = true;
             mSwipeRefreshLayout.setRefreshing(true);
-            getTopicCenterList();
+            loadData();
         });
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
             mIsRefreshing = true;
             topicCenters.clear();
-            getTopicCenterList();
+            loadData();
         });
     }
 
@@ -117,7 +118,8 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void getTopicCenterList()
+    @Override
+    public void loadData()
     {
 
         RetrofitHelper.getTopicCenterApi()
@@ -148,8 +150,8 @@ public class TopicCenterActivity extends RxAppCompatBaseActivity
                 });
     }
 
-
-    private void finishTask()
+    @Override
+    public void finishTask()
     {
 
         mIsRefreshing = false;

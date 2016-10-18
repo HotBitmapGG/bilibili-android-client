@@ -29,7 +29,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -51,7 +51,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 视频详情界面
  */
-public class VideoDetailsActivity extends RxAppCompatBaseActivity
+public class VideoDetailsActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -119,7 +119,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                 .into(mVideoPreview);
 
 
-        getVideoInfo();
+        loadData();
 
         mFAB.setClickable(false);
         mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
@@ -245,7 +245,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
     }
 
 
-    public void getVideoInfo()
+    @Override
+    public void loadData()
     {
 
         RetrofitHelper.getVideoDetailsApi()
@@ -256,7 +257,7 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                 .subscribe(videoDetails -> {
 
                     mVideoDetails = videoDetails;
-                    finishGetTask();
+                    finishTask();
                 }, throwable -> {
 
                     mFAB.setClickable(false);
@@ -265,7 +266,8 @@ public class VideoDetailsActivity extends RxAppCompatBaseActivity
                 });
     }
 
-    private void finishGetTask()
+    @Override
+    public void finishTask()
     {
 
         mFAB.setClickable(true);

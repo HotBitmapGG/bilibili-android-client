@@ -69,19 +69,21 @@ public class AllareasRankFragment extends RxLazyFragment
         initRecyclerView();
     }
 
-    private void initRefreshLayout()
+    @Override
+    protected void initRefreshLayout()
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.postDelayed(() -> {
 
             mSwipeRefreshLayout.setRefreshing(true);
-            getAllareasRanks();
+            loadData();
         }, 500);
         mSwipeRefreshLayout.setOnRefreshListener(() -> mSwipeRefreshLayout.setRefreshing(false));
     }
 
-    private void getAllareasRanks()
+    @Override
+    protected void loadData()
     {
 
         RetrofitHelper.getAllareasRankApi()
@@ -101,15 +103,17 @@ public class AllareasRankFragment extends RxLazyFragment
                 });
     }
 
-    private void finishTask()
+    @Override
+    protected void finishTask()
     {
+
 
         mSwipeRefreshLayout.setRefreshing(false);
         mAdapter.notifyDataSetChanged();
     }
 
-
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         mSwipeRefreshLayout.setRefreshing(false);

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home.focus;
+package com.hotbitmapgg.ohmybilibili.entity.focus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class FocusOnContents
     /**
      * 添加关注番剧数据
      */
-    List<FocusOnBangumi> fillBangumiData()
+    public List<FocusOnBangumi> fillBangumiData()
     {
 
         FocusOnBangumi one = new FocusOnBangumi();
@@ -242,7 +242,7 @@ public class FocusOnContents
 
     private List<FocusOnDynamic> focusOnDynamics = new ArrayList<>();
 
-    List<FocusOnDynamic> fillDynamicData()
+    public List<FocusOnDynamic> fillDynamicData()
     {
 
         FocusOnDynamic one = new FocusOnDynamic();

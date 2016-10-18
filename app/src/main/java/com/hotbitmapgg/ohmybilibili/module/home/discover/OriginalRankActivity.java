@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 
 import butterknife.Bind;
 
@@ -22,7 +22,7 @@ import butterknife.Bind;
  * <p/>
  * 原创排行榜界面
  */
-public class OriginalRankActivity extends RxAppCompatBaseActivity
+public class OriginalRankActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)

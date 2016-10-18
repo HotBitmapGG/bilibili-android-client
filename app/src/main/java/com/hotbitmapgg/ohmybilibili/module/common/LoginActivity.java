@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.CommonUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
@@ -26,7 +26,7 @@ import butterknife.OnClick;
  * <p/>
  * 登录界面
  */
-public class LoginActivity extends RxAppCompatBaseActivity
+public class LoginActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)

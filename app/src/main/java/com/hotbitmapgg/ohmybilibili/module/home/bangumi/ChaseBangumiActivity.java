@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.ChaseBangumiAdapter;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
  * 追番界面
  */
 
-public class ChaseBangumiActivity extends RxAppCompatBaseActivity
+public class ChaseBangumiActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -60,10 +60,11 @@ public class ChaseBangumiActivity extends RxAppCompatBaseActivity
     {
 
         initRecyclerView();
-        getChaseBangumis();
+        loadData();
     }
 
-    private void getChaseBangumis()
+    @Override
+    public void loadData()
     {
 
         RetrofitHelper.getUserChaseBangumiApi()
@@ -82,15 +83,8 @@ public class ChaseBangumiActivity extends RxAppCompatBaseActivity
                 });
     }
 
-    private void finishTask()
-    {
-
-        hideProgressBar();
-        mAdapter.notifyDataSetChanged();
-    }
-
-
-    private void initRecyclerView()
+    @Override
+    public void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);
@@ -98,6 +92,15 @@ public class ChaseBangumiActivity extends RxAppCompatBaseActivity
         mAdapter = new ChaseBangumiAdapter(mRecyclerView, chaseBangumis);
         mRecyclerView.setAdapter(mAdapter);
     }
+
+    @Override
+    public void finishTask()
+    {
+
+        hideProgressBar();
+        mAdapter.notifyDataSetChanged();
+    }
+
 
     @Override
     public void initToolBar()
@@ -128,6 +131,7 @@ public class ChaseBangumiActivity extends RxAppCompatBaseActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
     public void showProgressBar()
     {
 
@@ -135,6 +139,7 @@ public class ChaseBangumiActivity extends RxAppCompatBaseActivity
         mCircleProgressView.spin();
     }
 
+    @Override
     public void hideProgressBar()
     {
 

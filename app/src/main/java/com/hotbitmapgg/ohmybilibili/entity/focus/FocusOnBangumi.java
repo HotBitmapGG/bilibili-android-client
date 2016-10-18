@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home.focus;
+package com.hotbitmapgg.ohmybilibili.entity.focus;
 
 /**
  * Created by hcc on 2016/9/28 19:48

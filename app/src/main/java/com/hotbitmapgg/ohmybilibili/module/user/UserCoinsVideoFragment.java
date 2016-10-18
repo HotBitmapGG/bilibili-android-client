@@ -65,7 +65,8 @@ public class UserCoinsVideoFragment extends RxLazyFragment
         initRecyclerView();
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         userCoins.addAll(userCoinsInfo.getData().getList());
@@ -78,7 +79,6 @@ public class UserCoinsVideoFragment extends RxLazyFragment
         if (userCoins.isEmpty())
             initEmptyLayout();
     }
-
 
     private void initEmptyLayout()
     {

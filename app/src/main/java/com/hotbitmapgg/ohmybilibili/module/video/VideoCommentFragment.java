@@ -76,10 +76,11 @@ public class VideoCommentFragment extends RxLazyFragment
 
         aid = getArguments().getInt(ConstantUtils.AID);
         initRecyclerView();
-        getCommentList();
+        loadData();
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         VideoCommentAdapter mRecyclerAdapter = new VideoCommentAdapter(mRecyclerView, comments);
@@ -98,14 +99,14 @@ public class VideoCommentFragment extends RxLazyFragment
             {
 
                 pageNum++;
-                getCommentList();
+                loadData();
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
     }
 
-
-    public void getCommentList()
+    @Override
+    protected void loadData()
     {
 
         int ver = 3;
@@ -131,7 +132,8 @@ public class VideoCommentFragment extends RxLazyFragment
                 });
     }
 
-    private void finishTask()
+    @Override
+    protected void finishTask()
     {
 
         loadMoreView.setVisibility(View.GONE);

@@ -65,7 +65,8 @@ public class UserChaseBangumiFragment extends RxLazyFragment
         initRecyclerView();
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         userChaseBangumis.addAll(userChaseBangumiInfo.getData().getResult());
@@ -88,7 +89,6 @@ public class UserChaseBangumiFragment extends RxLazyFragment
         if (userChaseBangumis.isEmpty())
             initEmptyLayout();
     }
-
 
     private void initEmptyLayout()
     {

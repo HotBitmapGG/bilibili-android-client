@@ -22,7 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsRecommendAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsSelectionAdapter;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
@@ -54,7 +54,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 番剧详情界面
  */
-public class BangumiDetailsActivity extends RxAppCompatBaseActivity
+public class BangumiDetailsActivity extends RxBaseActivity
 {
 
     @Bind(R.id.nested_scroll_view)
@@ -162,18 +162,10 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
                 }, throwable -> {
                     hideProgressBar();
                 });
-//                .map(HomeBangumiRecommend::getRecommends)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(recommendsBeans -> {
-//                    recommends.addAll(recommendsBeans);
-//                    finishTask();
-//                }, throwable -> {
-//                    hideProgressBar();
-//                });
     }
 
-    private void finishTask()
+    @Override
+    public void finishTask()
     {
 
         //设置番剧封面
@@ -327,6 +319,7 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
         return true;
     }
 
+    @Override
     public void showProgressBar()
     {
 
@@ -335,7 +328,8 @@ public class BangumiDetailsActivity extends RxAppCompatBaseActivity
         mDetailsLayout.setVisibility(View.GONE);
     }
 
-    private void hideProgressBar()
+    @Override
+    public void hideProgressBar()
     {
 
         mCircleProgressView.setVisibility(View.GONE);

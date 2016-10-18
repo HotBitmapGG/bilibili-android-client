@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
@@ -45,7 +45,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 全站搜索界面
  */
-public class TotalStationSearchActivity extends RxAppCompatBaseActivity
+public class TotalStationSearchActivity extends RxBaseActivity
 {
 
     @Bind(R.id.sliding_tabs)
@@ -219,7 +219,8 @@ public class TotalStationSearchActivity extends RxAppCompatBaseActivity
                 });
     }
 
-    private void finishTask()
+    @Override
+    public void finishTask()
     {
 
         hideSearchAnim();

@@ -37,7 +37,7 @@ import butterknife.ButterKnife;
  * <p/>
  * B站直播Adapter
  */
-public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
+public class LiveRecyclerAdapter extends RecyclerView.Adapter
 {
 
     private Context context;
@@ -76,7 +76,7 @@ public class BiliBiliLiveRecyclerAdapter extends RecyclerView.Adapter
             "全部分类"
     };
 
-    public BiliBiliLiveRecyclerAdapter(Context context)
+    public LiveRecyclerAdapter(Context context)
     {
 
         this.context = context;

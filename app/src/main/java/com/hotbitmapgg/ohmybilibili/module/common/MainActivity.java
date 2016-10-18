@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.AttentionPeopleFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.ConsumeHistoryFragment;
 import com.hotbitmapgg.ohmybilibili.module.entry.HistoryFragment;
@@ -38,7 +38,7 @@ import butterknife.Bind;
  * <p/>
  * MainActivity
  */
-public class MainActivity extends RxAppCompatBaseActivity implements
+public class MainActivity extends RxBaseActivity implements
         NavigationView.OnNavigationItemSelectedListener
 {
 

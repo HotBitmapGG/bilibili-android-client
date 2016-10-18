@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.section.BangumiScheduleSection;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiSchedule;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
@@ -32,7 +32,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 番剧时间表界面
  */
-public class BangumiScheduleActivity extends RxAppCompatBaseActivity
+public class BangumiScheduleActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -76,11 +76,18 @@ public class BangumiScheduleActivity extends RxAppCompatBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        mSectionedAdapter = new SectionedRecyclerViewAdapter();
-        getBangumiSchedule();
+        initRecyclerView();
+        loadData();
     }
 
-    private void getBangumiSchedule()
+    @Override
+    public void initRecyclerView()
+    {
+        mSectionedAdapter = new SectionedRecyclerViewAdapter();
+    }
+
+    @Override
+    public void loadData()
     {
 
         RetrofitHelper.getBangumiScheduleApi()
@@ -101,7 +108,8 @@ public class BangumiScheduleActivity extends RxAppCompatBaseActivity
     }
 
 
-    private void finishTask()
+    @Override
+    public void finishTask()
     {
 
         mLayoutManager = new GridLayoutManager(BangumiScheduleActivity.this, 3);
@@ -202,16 +210,20 @@ public class BangumiScheduleActivity extends RxAppCompatBaseActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
     public void showProgressBar()
     {
 
+        super.showProgressBar();
         mCircleProgressView.setVisibility(View.VISIBLE);
         mCircleProgressView.spin();
     }
 
+    @Override
     public void hideProgressBar()
     {
 
+        super.hideProgressBar();
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
     }

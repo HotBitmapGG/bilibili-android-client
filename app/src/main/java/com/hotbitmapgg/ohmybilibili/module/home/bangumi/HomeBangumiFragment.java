@@ -93,12 +93,13 @@ public class HomeBangumiFragment extends RxLazyFragment
         if (!isPrepared || !isVisible)
 
             return;
-        showProgressBar();
+        initRefreshLayout();
         initRecyclerView();
         isPrepared = false;
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
@@ -128,7 +129,8 @@ public class HomeBangumiFragment extends RxLazyFragment
         setRecycleNoScroll();
     }
 
-    private void showProgressBar()
+    @Override
+    protected void initRefreshLayout()
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -136,15 +138,16 @@ public class HomeBangumiFragment extends RxLazyFragment
 
             mSwipeRefreshLayout.setRefreshing(true);
             mIsRefreshing = true;
-            getBangumiRecommends();
+            loadData();
         });
 
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
             clearData();
-            getBangumiRecommends();
+            loadData();
         });
     }
+
 
     private void clearData()
     {
@@ -158,13 +161,9 @@ public class HomeBangumiFragment extends RxLazyFragment
     }
 
 
-    /**
-     * 获取番剧推荐数据
-     * 包含Banner和番剧推荐内容
-     */
-    private void getBangumiRecommends()
+    @Override
+    protected void loadData()
     {
-
 
         RetrofitHelper.getHomeBnagumiRecommendApi()
                 .getHomeBangumiRecommended()
@@ -220,7 +219,8 @@ public class HomeBangumiFragment extends RxLazyFragment
                 });
     }
 
-    private void finishTask()
+    @Override
+    protected void finishTask()
     {
 
         mSwipeRefreshLayout.setRefreshing(false);
@@ -244,7 +244,6 @@ public class HomeBangumiFragment extends RxLazyFragment
         mSectionedRecyclerViewAdapter.notifyDataSetChanged();
     }
 
-
     public void initEmptyView()
     {
 
@@ -254,7 +253,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
         mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
         SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,请重新加载或者检查网络是否链接");
-        mCustomEmptyView.reload(this::showProgressBar);
+        mCustomEmptyView.reload(this::initRefreshLayout);
     }
 
     public void hideEmptyView()

@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.video.HDVideoInfo;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoSrc;
 import com.hotbitmapgg.ohmybilibili.media.MediaController;
@@ -43,7 +43,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * <p/>
  * 视频播放界面
  */
-public class VideoPlayerActivity extends RxAppCompatBaseActivity implements DanmakuSwitchEvent, VideoBackEvent
+public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitchEvent, VideoBackEvent
 {
 
 

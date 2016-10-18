@@ -126,7 +126,7 @@ public class VideoInfoFragment extends RxLazyFragment
         //设置视频tags
         setVideoTags();
         //获取相关视频列表
-        getVideoRelateds();
+        loadData();
     }
 
     private void setVideoTags()
@@ -153,7 +153,8 @@ public class VideoInfoFragment extends RxLazyFragment
     }
 
 
-    public void getVideoRelateds()
+    @Override
+    protected void loadData()
     {
 
         RetrofitHelper.getAuthorRecommendedApi()
@@ -171,8 +172,8 @@ public class VideoInfoFragment extends RxLazyFragment
                 });
     }
 
-
-    private void finishTask()
+    @Override
+    protected void finishTask()
     {
 
         VideoAlikeListAdapter mVideoAlikeListAdapter = new VideoAlikeListAdapter(

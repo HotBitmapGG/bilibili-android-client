@@ -87,7 +87,8 @@ public class UserInterestQuanFragment extends RxLazyFragment
         initRecyclerView();
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);
@@ -105,7 +106,7 @@ public class UserInterestQuanFragment extends RxLazyFragment
             {
 
                 pageNum++;
-                getUserInterestQuanData();
+                loadData();
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
@@ -114,7 +115,8 @@ public class UserInterestQuanFragment extends RxLazyFragment
             initEmptyLayout();
     }
 
-    private void getUserInterestQuanData()
+    @Override
+    protected void loadData()
     {
 
         RetrofitHelper.getUserInterestQuanApi()
@@ -137,7 +139,8 @@ public class UserInterestQuanFragment extends RxLazyFragment
                 });
     }
 
-    private void finishTask()
+    @Override
+    protected void finishTask()
     {
 
         loadMoreView.setVisibility(View.GONE);
@@ -147,7 +150,6 @@ public class UserInterestQuanFragment extends RxLazyFragment
         else
             mAdapter.notifyDataSetChanged();
     }
-
 
     private void createLoadMoreView()
     {

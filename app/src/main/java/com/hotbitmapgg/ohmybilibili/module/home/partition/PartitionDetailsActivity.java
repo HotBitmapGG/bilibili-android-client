@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.pager.PartitionMorePagerAdapter;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
@@ -26,7 +26,7 @@ import butterknife.Bind;
  * <p/>
  * 分区详情界面
  */
-public class PartitionDetailsActivity extends RxAppCompatBaseActivity
+public class PartitionDetailsActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -54,9 +54,8 @@ public class PartitionDetailsActivity extends RxAppCompatBaseActivity
 
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null)
-        {
             mDataBean = mBundle.getParcelable(ConstantUtils.EXTRA_PARTITION);
-        }
+
 
         initViewPager();
     }

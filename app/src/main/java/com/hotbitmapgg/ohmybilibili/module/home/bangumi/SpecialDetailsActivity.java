@@ -19,8 +19,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.SpecialVideoRecyclerAdapter;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopicIResult;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
@@ -29,16 +30,18 @@ import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
  * Created by hcc on 16/8/4 21:18
  * 100332338@qq.com
  * <p/>
- * 专题详情界面(二三次元番剧进入)
+ * 专题详情界面
  */
-public class SpecialDetailsActivity extends RxAppCompatBaseActivity
+public class SpecialDetailsActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -107,8 +110,7 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
             season_id = intent.getIntExtra(ConstantUtils.EXTRA_SEASON_ID, 0);
         }
 
-
-        startGetSpInfoTask();
+        loadData();
     }
 
     @Override
@@ -131,62 +133,46 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void startGetSpInfoTask()
-    {
-
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
-
-        getSpInfo();
-    }
-
-    public void getSpInfo()
+    @Override
+    public void loadData()
     {
 
         RetrofitHelper.getSpInfoApi()
                 .getSpInfo(spid, title)
                 .compose(this.bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(specialTopic -> {
+                .doOnSubscribe(this::showProgressBar)
+                .flatMap(new Func1<SpecialTopic,Observable<SpecialTopicIResult>>()
+                {
 
-                    mSpecialTopic = specialTopic;
-                    finishGetSpInfo();
-                }, throwable -> {
+                    @Override
+                    public Observable<SpecialTopicIResult> call(SpecialTopic specialTopic)
+                    {
 
-                    mCircleProgressView.setVisibility(View.GONE);
-                    mCircleProgressView.stopSpinning();
-                });
-    }
-
-
-    /**
-     * bangumi 设置为1时只返回番剧类视频
-     * <p/>
-     * 设置为0时只返回普通视频 不设置则返回所有视频
-     */
-    private void getSpVideo()
-    {
-
-        RetrofitHelper.getSpItemApi()
-                .getSpItemList(spid, season_id, 1)
-                .compose(this.bindToLifecycle())
+                        mSpecialTopic = specialTopic;
+                        return RetrofitHelper.getSpItemApi()
+                                .getSpItemList(spid, season_id, 1);
+                    }
+                })
+                .compose(bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(specialTopicIResult -> {
-
                     spList.addAll(specialTopicIResult.list);
-                    finishGetSpVideoListTask();
+                    finishTask();
                 }, throwable -> {
-
-                    mCircleProgressView.setVisibility(View.GONE);
-                    mCircleProgressView.stopSpinning();
+                    hideProgressBar();
                 });
     }
 
+
     @SuppressLint("SetTextI18n")
-    public void finishGetSpInfo()
+    @Override
+    public void finishTask()
     {
+
+        hideProgressBar();
+        mRootLayout.setVisibility(View.VISIBLE);
+
         // 专题名称
         String spTitle = mSpecialTopic.title;
         // 最后更新日期
@@ -227,17 +213,7 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         mFavourite.setText(String.valueOf(favourite));
         mAttention.setText(String.valueOf(attention));
 
-        getSpVideo();
-    }
-
-
-    public void finishGetSpVideoListTask()
-    {
-
-        mCircleProgressView.setVisibility(View.GONE);
-        mCircleProgressView.stopSpinning();
-        mRootLayout.setVisibility(View.VISIBLE);
-
+        //设置专题视频
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setLayoutManager(new GridLayoutManager(SpecialDetailsActivity.this, 2));
@@ -246,10 +222,26 @@ public class SpecialDetailsActivity extends RxAppCompatBaseActivity
         mAdapter.setOnItemClickListener((position, holder) -> {
 
             SpecialTopic.Item item = spList.get(position);
-            VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid,item.cover);
+            VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid, item.cover);
         });
     }
 
+
+    @Override
+    public void showProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.VISIBLE);
+        mCircleProgressView.spin();
+    }
+
+    @Override
+    public void hideProgressBar()
+    {
+
+        mCircleProgressView.setVisibility(View.GONE);
+        mCircleProgressView.stopSpinning();
+    }
 
     public static void launch(Activity activity, String spid, String title, int seasonId)
     {

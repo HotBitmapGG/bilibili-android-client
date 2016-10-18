@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  * <p/>
  * Activity基类
  */
-public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity
+public abstract class RxBaseActivity extends RxAppCompatActivity
         implements CardPickerDialog.ClickListener
 {
 
@@ -55,14 +55,26 @@ public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity
 
     public abstract void initToolBar();
 
+    public void loadData() {}
+
+    public void showProgressBar() {}
+
+    public void hideProgressBar() {}
+
+    public void initRecyclerView() {}
+
+    public void initRefreshLayout() {}
+
+    public void finishTask() {}
+
     @Override
     public void onConfirm(int currentTheme)
     {
 
-        if (ThemeHelper.getTheme(RxAppCompatBaseActivity.this) != currentTheme)
+        if (ThemeHelper.getTheme(RxBaseActivity.this) != currentTheme)
         {
-            ThemeHelper.setTheme(RxAppCompatBaseActivity.this, currentTheme);
-            ThemeUtils.refreshUI(RxAppCompatBaseActivity.this, new ThemeUtils.ExtraRefreshable()
+            ThemeHelper.setTheme(RxBaseActivity.this, currentTheme);
+            ThemeUtils.refreshUI(RxBaseActivity.this, new ThemeUtils.ExtraRefreshable()
                     {
 
 
@@ -72,7 +84,7 @@ public abstract class RxAppCompatBaseActivity extends RxAppCompatActivity
 
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP)
                             {
-                                final RxAppCompatBaseActivity context = RxAppCompatBaseActivity.this;
+                                final RxBaseActivity context = RxBaseActivity.this;
                                 ActivityManager.TaskDescription taskDescription = new ActivityManager.TaskDescription(null,
                                         null, ThemeUtils.getThemeAttrColor(context, android.R.attr.colorPrimary));
                                 setTaskDescription(taskDescription);

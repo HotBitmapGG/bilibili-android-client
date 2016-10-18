@@ -51,11 +51,12 @@ public class HomePartitionFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        getPartitionTypes();
+        loadData();
         initGridView();
     }
 
-    private void getPartitionTypes()
+    @Override
+    protected void loadData()
     {
 
         RetrofitHelper.getPartitionTypesApi()
@@ -173,11 +174,5 @@ public class HomePartitionFragment extends RxLazyFragment
                     break;
             }
         });
-    }
-
-    @Override
-    protected void lazyLoad()
-    {
-
     }
 }

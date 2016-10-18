@@ -23,7 +23,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.ClipboardUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
@@ -31,15 +31,13 @@ import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import butterknife.Bind;
 
-import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_URL;
-
 /**
  * Created by hcc on 16/8/7 14:12
  * 100332338@qq.com
  * <p/>
  * 浏览器界面
  */
-public class BrowserActivity extends RxAppCompatBaseActivity
+public class BrowserActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)

@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.CommonUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
@@ -22,7 +22,7 @@ import butterknife.Bind;
  * <p/>
  * 离线缓存
  */
-public class OffLineDownloadActivity extends RxAppCompatBaseActivity
+public class OffLineDownloadActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)

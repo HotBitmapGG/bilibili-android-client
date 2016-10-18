@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.NewBangumiSerialAdapter;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
  * 新番连载全部界面
  */
 
-public class NewBangumiSerialActivity extends RxAppCompatBaseActivity
+public class NewBangumiSerialActivity extends RxBaseActivity
 {
 
     @Bind(R.id.toolbar)
@@ -58,10 +58,11 @@ public class NewBangumiSerialActivity extends RxAppCompatBaseActivity
     {
 
         initRecyclerView();
-        getAllNewBangumiSerial();
+        loadData();
     }
 
-    private void getAllNewBangumiSerial()
+    @Override
+    public void loadData()
     {
 
         RetrofitHelper.getNewBangumiSerial()
@@ -81,7 +82,8 @@ public class NewBangumiSerialActivity extends RxAppCompatBaseActivity
                 });
     }
 
-    private void finishTask()
+    @Override
+    public void finishTask()
     {
 
         hideProgressBar();
@@ -109,7 +111,8 @@ public class NewBangumiSerialActivity extends RxAppCompatBaseActivity
     }
 
 
-    private void initRecyclerView()
+    @Override
+    public void initRecyclerView()
     {
 
         mRecyclerView.setHasFixedSize(true);
@@ -133,6 +136,7 @@ public class NewBangumiSerialActivity extends RxAppCompatBaseActivity
         });
     }
 
+    @Override
     public void showProgressBar()
     {
 
@@ -140,6 +144,7 @@ public class NewBangumiSerialActivity extends RxAppCompatBaseActivity
         mCircleProgressView.spin();
     }
 
+    @Override
     public void hideProgressBar()
     {
 

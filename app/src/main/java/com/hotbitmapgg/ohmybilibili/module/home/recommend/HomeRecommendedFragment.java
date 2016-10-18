@@ -56,7 +56,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private List<RecommendBannerInfo.DataBean> recommendBanners = new ArrayList<>();
 
-    //RecycleView是否正在刷新
     private boolean mIsRefreshing = false;
 
     private SectionedRecyclerViewAdapter mSectionedAdapter;
@@ -89,12 +88,13 @@ public class HomeRecommendedFragment extends RxLazyFragment
         if (!isPrepared || !isVisible)
             return;
 
-        showProgressBar();
+        initRefreshLayout();
         initRecyclerView();
         isPrepared = false;
     }
 
-    private void initRecyclerView()
+    @Override
+    protected void initRecyclerView()
     {
 
         mSectionedAdapter = new SectionedRecyclerViewAdapter();
@@ -124,7 +124,8 @@ public class HomeRecommendedFragment extends RxLazyFragment
         setRecycleNoScroll();
     }
 
-    private void showProgressBar()
+    @Override
+    protected void initRefreshLayout()
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -132,18 +133,18 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
             mSwipeRefreshLayout.setRefreshing(true);
             mIsRefreshing = true;
-            getHomeRecommendedData();
+            loadData();
         });
 
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
             clearData();
-            getHomeRecommendedData();
+            loadData();
         });
     }
 
-
-    private void getHomeRecommendedData()
+    @Override
+    protected void loadData()
     {
 
         RetrofitHelper.getHomeRecommendedApi()
@@ -193,8 +194,8 @@ public class HomeRecommendedFragment extends RxLazyFragment
         }
     }
 
-
-    private void finishTask()
+    @Override
+    protected void finishTask()
     {
 
         mSwipeRefreshLayout.setRefreshing(false);

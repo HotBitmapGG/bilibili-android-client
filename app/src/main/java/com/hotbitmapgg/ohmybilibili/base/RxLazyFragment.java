@@ -26,8 +26,6 @@ public abstract class RxLazyFragment extends RxFragment
 
     private FragmentActivity activity;
 
-    private LayoutInflater inflater;
-
     // 标志位 标志已经初始化完成。
     protected boolean isPrepared;
 
@@ -41,8 +39,6 @@ public abstract class RxLazyFragment extends RxFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle state)
     {
-
-        this.inflater = inflater;
         parentView = inflater.inflate(getLayoutResId(), container, false);
         activity = getSupportActivity();
         return parentView;
@@ -110,18 +106,6 @@ public abstract class RxLazyFragment extends RxFragment
                 getActivity().getApplicationContext()) : this.activity.getApplicationContext();
     }
 
-    protected LayoutInflater getLayoutInflater()
-    {
-
-        return inflater;
-    }
-
-    protected View getParentView()
-    {
-
-        return parentView;
-    }
-
 
     /**
      * Fragment数据的懒加载
@@ -153,6 +137,18 @@ public abstract class RxLazyFragment extends RxFragment
     protected void lazyLoad() {}
 
     protected void onInvisible() {}
+
+    protected void loadData() {}
+
+    protected void showProgressBar() {}
+
+    protected void hideProgressBar() {}
+
+    protected void initRecyclerView() {}
+
+    protected void initRefreshLayout() {}
+
+    protected void finishTask() {}
 
     @SuppressWarnings("unchecked")
     public <T extends View> T $(int id)

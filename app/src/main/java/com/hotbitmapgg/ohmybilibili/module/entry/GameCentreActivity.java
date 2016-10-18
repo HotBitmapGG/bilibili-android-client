@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.GameCentreAdapter;
-import com.hotbitmapgg.ohmybilibili.base.RxAppCompatBaseActivity;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.discover.GameItem;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
@@ -28,7 +28,7 @@ import rx.android.schedulers.AndroidSchedulers;
  * <p/>
  * 游戏中心界面
  */
-public class GameCentreActivity extends RxAppCompatBaseActivity
+public class GameCentreActivity extends RxBaseActivity
 {
 
 
@@ -117,7 +117,6 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        showProgress();
         setGameFill();
     }
 
@@ -126,7 +125,7 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
 
         Observable.timer(2000, TimeUnit.MILLISECONDS)
                 .compose(this.bindToLifecycle())
-                .doOnSubscribe(this::showProgress)
+                .doOnSubscribe(this::showProgressBar)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
 
@@ -173,11 +172,11 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
             games.add(mGameItem);
         }
 
-        hideProgress();
+        hideProgressBar();
     }
 
-
-    private void showProgress()
+    @Override
+    public void showProgressBar()
     {
 
         mCircleProgressView.setVisibility(View.VISIBLE);
@@ -185,7 +184,8 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
         mRecycle.setVisibility(View.GONE);
     }
 
-    public void hideProgress()
+    @Override
+    public void hideProgressBar()
     {
 
         mCircleProgressView.setVisibility(View.GONE);
@@ -194,7 +194,8 @@ public class GameCentreActivity extends RxAppCompatBaseActivity
         initRecyclerView();
     }
 
-    private void initRecyclerView()
+    @Override
+    public void initRecyclerView()
     {
 
         mRecycle.setHasFixedSize(true);
