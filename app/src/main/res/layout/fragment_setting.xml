@@ -103,21 +103,13 @@
                     android:id="@+id/app_version_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
-                    android:layout_marginEnd="@dimen/default_general_margin"
-                    android:layout_toStartOf="@+id/update_arrow"
+                    android:layout_marginEnd="@dimen/default_grow_margin"
                     android:text="@string/about_version"
                     android:textColor="@color/black_alpha_45"
                     android:textSize="@dimen/default_medium_text_size" />
 
-                <ImageView
-                    android:id="@+id/update_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginEnd="@dimen/default_grow_margin"
-                    android:src="@drawable/register_bottom_arrow" />
             </RelativeLayout>
 
 

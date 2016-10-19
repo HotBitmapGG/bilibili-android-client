@@ -271,6 +271,8 @@
     <dimen name="vip_head_image_margin_top">50dp</dimen>
     <dimen name="vip_toolbar_title_margin_start">30dp</dimen>
     <dimen name="home_topic_head_layout_height">40dp</dimen>
+    <dimen name="app_logo_size">120dp</dimen>
+    <dimen name="about_bottom_layout_height">50dp</dimen>
 
 
 </resources>

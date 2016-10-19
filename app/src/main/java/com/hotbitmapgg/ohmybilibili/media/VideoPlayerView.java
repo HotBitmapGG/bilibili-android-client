@@ -228,14 +228,14 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerControl
 
             if (getWindowToken() != null)
             {
-                int message = framework_err == IMediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK ? R.string.vitamio_videoview_error_text_invalid_progressive_playback
-                        : R.string.vitamio_videoview_error_text_unknown;
+                int message = framework_err == IMediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK ?
+                        R.string.video_error_text_invalid_progressive_playback : R.string.video_error_text_unknown;
 
                 new AlertDialog.Builder(mContext)
-                        .setTitle(R.string.vitamio_videoview_error_title)
+                        .setTitle(R.string.video_error_title)
                         .setMessage(message)
                         .setPositiveButton(
-                                R.string.vitamio_videoview_error_button,
+                                R.string.video_error_button,
                                 (dialog, whichButton) -> {
 
                                     if (mOnCompletionListener != null)

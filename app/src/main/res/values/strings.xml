@@ -98,15 +98,12 @@
     <string name="ta_play_game">TA玩的游戏</string>
 
 
-
-    <!--Vitamio Strings-->
     <string name="video_init">初始化播放器…</string>
     <string name="video_loading">加载中…</string>
-    <string name="vitamio_videoview_error_title">Cannot play video</string>
-    <string name="vitamio_videoview_error_text_invalid_progressive_playback">Sorry, this video is not valid for streaming to
-		this device.</string>
-    <string name="vitamio_videoview_error_text_unknown">Sorry, this video cannot be played.</string>
-    <string name="vitamio_videoview_error_button">OK</string>
+    <string name="video_error_title">Cannot play video</string>
+    <string name="video_error_text_invalid_progressive_playback">Sorry, this video is not valid for streaming tothis device.</string>
+    <string name="video_error_text_unknown">Sorry, this video cannot be played.</string>
+    <string name="video_error_button">OK</string>
 
 
     <!-- Navigation Items -->
@@ -124,29 +121,9 @@
 
     <!--App 介绍-->
     <string name="about_user_head_layout">硬币: 47</string>
-    <string name="about_introduce">「哔哩哔哩」- bilibili ( ゜- ゜)つロ 干杯。</string>
+    <string name="about_introduce">「哔哩哔哩」</string>
     <string name="about_menu_action_share">分享</string>
     <string name="about_developers">关于我</string>
-    <string name="about_open_source_lis">感谢开源贡献</string>
-    <string name="about_introduce_and_help">介绍与帮助</string>
-    <string name="about_open_source_libraries_list">
-        com.flyco.tablayout:FlycoTabLayout_Lib:2.0.0@aar
-        \n\ncom.zhy:flowlayout-lib:1.0.1
-        \n\ncom.jakewharton:butterknife:7.0.1
-        \n\ncom.squareup.okhttp3:okhttp:3.2.0
-        \n\nio.reactivex:rxandroid:1.1.0
-        \n\nio.reactivex:rxjava:1.1.0
-        \n\ncom.squareup.retrofit:retrofit:2.0.0-beta1
-        \n\ntv.danmaku.ijk.media:ijkplayer-java:0.4.5.1
-        \n\ncom.github.bumptech.glide:glide:3.7.0
-        \n\ntv.danmaku.ijk.media:ijkplayer-java:0.6.0</string>
-    <string name="about_function">实现功能</string>
-    <string name="about_function_list">
-        * 首页推荐\n* 首页番剧\n* 首页直播
-        \n* 首页分区\n* 首页发现\n* 番剧详情
-        \n* 视频详情\n* 直播详情\n* 专题详情
-        \n* 全区排行榜\n* 热门排行榜\n* 个人中心
-        \n* 视频播放\n* 烈焰弹幕库\n* Material Design</string>
     <string name="about">关于哔哩哔哩</string>
     <string name="about_version">V1.0</string>
 
@@ -169,5 +146,11 @@
     <string name="quality_medium">清晰</string>
     <string name="quality_smooth">流畅</string>
     <string name="quality_super">超清</string>
+    <string name="about_app_net">© 2014-2016 NetOpen.com</string>
+    <string name="all_rights_reserved">All rights reserved</string>
+    <string name="about_open_source">向开源致敬</string>
+    <string name="about_network_diagnosis">网络诊断</string>
+    <string name="about_share">分享</string>
+    <string name="about_feedback">意见反馈</string>
 
 </resources>

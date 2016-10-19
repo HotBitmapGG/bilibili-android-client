@@ -1,215 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
+    <include layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/appbar_parallax_max_height"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:collapsedTitleTextAppearance="@style/ToolBar.TitleText"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle.About"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="@dimen/app_logo_size"
+            android:layout_height="@dimen/app_logo_size"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/default_grow_margin"
+            android:src="@drawable/ic_logo" />
 
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/appbar_parallax_max_height"
-                android:fitsSystemWindows="true">
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_logo"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/default_general_margin"
+            android:textColor="@color/font_normal"
+            android:textSize="@dimen/default_big_text_size" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_version"
+            android:layout_centerInParent="true"
+            android:text="@string/about_introduce"
+            android:textColor="@color/black_alpha_45"
+            android:textSize="@dimen/default_medium_text_size" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/ic_group_header_bg"
-                    android:gravity="top|center"
-                    android:orientation="vertical" />
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/shadow_gradient_reserve"
-                    android:visibility="visible" />
-
-
-            </FrameLayout>
-
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:minHeight="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:titleTextAppearance="@style/ToolBar.TitleText" />
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/default_small_padding">
+            android:layout_above="@+id/bottom_layout"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/default_grow_margin"
+            android:gravity="center"
+            android:orientation="vertical">
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/about_introduce_and_help"
+                android:padding="@dimen/default_tiny_padding"
+                android:text="@string/about_app_net"
                 android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_small_text_size" />
+                android:textSize="@dimen/default_tiny_text_size" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/default_small_padding">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoLink="web"
-                    android:text="@string/about_introduce"
-                    android:textColor="@color/font_normal"
-                    android:textIsSelectable="true"
-                    android:textSize="@dimen/default_small_text_size" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_height"
-                android:layout_marginTop="@dimen/default_general_margin"
-                android:background="@color/line_bg" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_general_margin"
-                android:text="@string/about_developers"
+                android:padding="@dimen/default_tiny_padding"
+                android:text="@string/all_rights_reserved"
                 android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_small_text_size" />
+                android:textSize="@dimen/default_tiny_text_size" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/default_small_padding">
-
-                <TextView
-                    android:id="@+id/tv_avator_blog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_small_padding"
-                    android:text="@string/hotbitmapgg"
-                    android:textColor="@color/font_normal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/tv_avator_blog"
-                    android:layout_toEndOf="@id/tv_avator_blog"
-                    android:autoLink="web"
-                    android:textColor="@color/font_normal"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/tv_avator_github"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/tv_avator_blog"
-                    android:layout_below="@id/tv_avator_blog"
-                    android:text="@string/github"
-                    android:textColor="@color/font_normal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/tv_avator_github"
-                    android:layout_toEndOf="@id/tv_avator_github"
-                    android:autoLink="web"
-                    android:text="@string/github_link"
-                    android:textColor="@color/font_normal" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_height"
-                android:layout_marginTop="@dimen/default_general_margin"
-                android:background="@color/line_bg" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_general_margin"
-                android:text="@string/about_function"
+                android:padding="@dimen/default_tiny_padding"
+                android:text="@string/about_open_source"
                 android:textColor="@color/font_normal"
                 android:textSize="@dimen/default_small_text_size" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/default_small_padding">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/about_function_list"
-                    android:textColor="@color/font_normal"
-                    android:textSize="@dimen/default_tiny_text_size"
-                    tools:ignore="HardcodedText" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_height"
-                android:layout_marginTop="@dimen/default_general_margin"
-                android:background="@color/line_bg" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/card_margin"
-                android:text="@string/about_open_source_lis"
-                android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_small_text_size" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/default_small_padding">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/about_open_source_libraries_list"
-                    android:textColor="@color/font_normal"
-                    android:textSize="@dimen/default_tiny_text_size"
-                    tools:ignore="HardcodedText" />
-
-            </RelativeLayout>
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
 
-</android.support.design.widget.CoordinatorLayout>
+        <RelativeLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/about_bottom_layout_height"
+            android:layout_alignParentBottom="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/gray_light" />
+
+
+            <TextView
+                android:id="@+id/tv_network_diagnosis"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/default_general_margin"
+                android:text="@string/about_network_diagnosis"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+            <TextView
+                android:id="@+id/tv_share_app"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/default_general_margin"
+                android:layout_toStartOf="@+id/tv_feedback"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/default_general_margin"
+                android:text="@string/about_share"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+            <TextView
+                android:id="@+id/tv_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/default_general_margin"
+                android:text="@string/about_feedback"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
