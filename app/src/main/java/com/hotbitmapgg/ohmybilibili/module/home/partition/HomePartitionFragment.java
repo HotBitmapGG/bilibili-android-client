@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 
+import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.pager.HomePartitionLayoutAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
-import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
 
 import java.util.List;
@@ -59,14 +59,15 @@ public class HomePartitionFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getPartitionTypesApi()
-                .getPartitionTypes()
+        BilibiliApp.getInstance()
+                .getRepository()
+                .getPartitionTypes(false)
                 .compose(bindToLifecycle())
+                .map(partitionInfoReply -> partitionInfoReply.getData().getData())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(partitionInfo -> {
-
-                    datas = partitionInfo.getData();
+                .subscribe(dataBeans -> {
+                    datas.addAll(dataBeans);
                 }, throwable -> {
 
                 });
@@ -89,25 +90,29 @@ public class HomePartitionFragment extends RxLazyFragment
                 case 1:
                     //番剧
                     PartitionInfo.DataBean mBangumi = datas.get(1);
-                    PartitionDetailsActivity.launch(getActivity(), mBangumi);
+                    if (mBangumi != null)
+                        PartitionDetailsActivity.launch(getActivity(), mBangumi);
                     break;
 
                 case 2:
                     //动画
                     PartitionInfo.DataBean mAnimation = datas.get(2);
-                    PartitionDetailsActivity.launch(getActivity(), mAnimation);
+                    if (mAnimation != null)
+                        PartitionDetailsActivity.launch(getActivity(), mAnimation);
                     break;
 
                 case 3:
                     //音乐
                     PartitionInfo.DataBean mMuise = datas.get(3);
-                    PartitionDetailsActivity.launch(getActivity(), mMuise);
+                    if (mMuise != null)
+                        PartitionDetailsActivity.launch(getActivity(), mMuise);
                     break;
 
                 case 4:
                     //舞蹈
                     PartitionInfo.DataBean mDence = datas.get(4);
-                    PartitionDetailsActivity.launch(getActivity(), mDence);
+                    if (mDence != null)
+                        PartitionDetailsActivity.launch(getActivity(), mDence);
                     break;
 
                 case 5:
@@ -125,43 +130,48 @@ public class HomePartitionFragment extends RxLazyFragment
                 case 7:
                     //生活
                     PartitionInfo.DataBean mLife = datas.get(7);
-                    PartitionDetailsActivity.launch(getActivity(), mLife);
+                    if (mLife != null)
+                        PartitionDetailsActivity.launch(getActivity(), mLife);
                     break;
 
                 case 8:
                     //鬼畜
                     PartitionInfo.DataBean mKichiku = datas.get(8);
-                    PartitionDetailsActivity.launch(getActivity(), mKichiku);
+                    if (mKichiku != null)
+                        PartitionDetailsActivity.launch(getActivity(), mKichiku);
                     break;
 
                 case 9:
                     //时尚
                     PartitionInfo.DataBean mFashion = datas.get(9);
-                    PartitionDetailsActivity.launch(getActivity(), mFashion);
+                    if (mFashion != null)
+                        PartitionDetailsActivity.launch(getActivity(), mFashion);
                     break;
 
                 case 10:
                     //广告
-
                     break;
 
                 case 11:
                     //娱乐
                     PartitionInfo.DataBean mRecreation = datas.get(10);
-                    PartitionDetailsActivity.launch(getActivity(), mRecreation);
+                    if (mRecreation != null)
+                        PartitionDetailsActivity.launch(getActivity(), mRecreation);
                     break;
 
 
                 case 12:
                     //电影
                     PartitionInfo.DataBean mMovei = datas.get(11);
-                    PartitionDetailsActivity.launch(getActivity(), mMovei);
+                    if (mMovei != null)
+                        PartitionDetailsActivity.launch(getActivity(), mMovei);
                     break;
 
                 case 13:
                     //电视剧
                     PartitionInfo.DataBean mTv = datas.get(12);
-                    PartitionDetailsActivity.launch(getActivity(), mTv);
+                    if (mTv != null)
+                        PartitionDetailsActivity.launch(getActivity(), mTv);
                     break;
 
 

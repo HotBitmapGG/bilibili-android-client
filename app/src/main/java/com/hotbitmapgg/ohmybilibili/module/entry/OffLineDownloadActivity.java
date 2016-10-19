@@ -60,7 +60,6 @@ public class OffLineDownloadActivity extends RxBaseActivity
         assert mEmptyLayout != null;
         mEmptyLayout.setEmptyImage(R.drawable.img_tips_error_no_downloads);
         mEmptyLayout.setEmptyText("没有找到你的缓存哟");
-        mEmptyLayout.hideReloadButton();
     }
 
     @Override

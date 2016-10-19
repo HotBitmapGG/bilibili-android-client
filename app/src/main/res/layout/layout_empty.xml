@@ -24,17 +24,6 @@
             android:textColor="@color/black_alpha_45"
             android:textSize="@dimen/default_small_text_size" />
 
-        <Button
-            android:id="@+id/btn_reload"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/login_button_height"
-            android:layout_margin="@dimen/default_grow_margin"
-            android:background="@drawable/corner_btn"
-            android:gravity="center"
-            android:text="@string/reload"
-            android:textColor="@color/white"
-            android:textSize="@dimen/default_medium_text_size" />
-
 
     </LinearLayout>
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendActivityCenterSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendBannerSection;
@@ -16,7 +17,6 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendedSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
-import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.rx_cache.Reply;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -58,6 +59,8 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private boolean mIsRefreshing = false;
 
+    private boolean mIsCacheRefresh = false;
+
     private SectionedRecyclerViewAdapter mSectionedAdapter;
 
     public static HomeRecommendedFragment newInstance()
@@ -77,21 +80,10 @@ public class HomeRecommendedFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        isPrepared = true;
-        lazyLoad();
-    }
-
-    @Override
-    protected void lazyLoad()
-    {
-
-        if (!isPrepared || !isVisible)
-            return;
-
         initRefreshLayout();
         initRecyclerView();
-        isPrepared = false;
     }
+
 
     @Override
     protected void initRecyclerView()
@@ -147,31 +139,30 @@ public class HomeRecommendedFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getHomeRecommendedApi()
-                .getRecommendedBannerInfo()
-                .compose(this.bindToLifecycle())
-                .flatMap(new Func1<RecommendBannerInfo,Observable<RecommendInfo>>()
+        BilibiliApp.getInstance().getRepository()
+                .getRecommendedBannerInfo(mIsCacheRefresh)
+                .compose(bindToLifecycle())
+                .map(recommendBannerInfoReply -> recommendBannerInfoReply.getData().getData())
+                .flatMap(new Func1<List<RecommendBannerInfo.DataBean>,Observable<Reply<RecommendInfo>>>()
                 {
 
                     @Override
-                    public Observable<RecommendInfo> call(RecommendBannerInfo recommendBannerInfo)
+                    public Observable<Reply<RecommendInfo>> call(List<RecommendBannerInfo.DataBean> dataBeans)
                     {
-                        //设置Banner数据
-                        recommendBanners.addAll(recommendBannerInfo.getData());
+
+                        recommendBanners.addAll(dataBeans);
                         convertBanner();
-                        //在请求首页推荐数据
-                        return RetrofitHelper.getHomeRecommendedApi().getRecommendedInfo();
+                        return BilibiliApp.getInstance().getRepository().getRecommendedInfo(mIsCacheRefresh);
                     }
                 })
-                .compose(this.bindToLifecycle())
+                .compose(bindToLifecycle())
+                .map(recommendInfoReply -> recommendInfoReply.getData().getResult())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(recommendInfo -> {
-
-                    results.addAll(recommendInfo.getResult());
+                .subscribe(resultBeans -> {
+                    results.addAll(resultBeans);
                     finishTask();
                 }, throwable -> {
-
                     initEmptyView();
                 });
     }
@@ -253,7 +244,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
         mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
         SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,请重新加载或者检查网络是否链接");
-        mCustomEmptyView.reload(this::showProgressBar);
     }
 
     public void hideEmptyView()
@@ -271,6 +261,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
         recommendBanners.clear();
         results.clear();
         mIsRefreshing = true;
+        mIsCacheRefresh = true;
         mSectionedAdapter.removeAllSections();
     }
 

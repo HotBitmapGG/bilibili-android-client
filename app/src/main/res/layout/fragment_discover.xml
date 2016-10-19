@@ -73,7 +73,6 @@
             android:id="@+id/tags_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/default_general_margin"
             app:max_select="-1" />
 
 
@@ -89,7 +88,6 @@
                 android:id="@+id/hide_tags_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/default_general_margin"
                 app:max_select="-1" />
 
         </android.support.v4.widget.NestedScrollView>

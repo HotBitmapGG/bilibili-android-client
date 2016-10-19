@@ -17,9 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.live.Live;
-import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
-import com.hotbitmapgg.ohmybilibili.entity.live.PartitionSub;
+import com.hotbitmapgg.ohmybilibili.entity.live.LiveInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.live.LivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
@@ -42,13 +40,9 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
 
     private Context context;
 
-    private LiveIndex liveIndex;
+    private LiveInfo mLiveInfo;
 
     private int entranceSize;
-
-    private List<BannerEntity> banner;
-
-    private List<Integer> liveSizes = new ArrayList<>();
 
     //直播分类入口
     private static final int TYPE_ENTRANCE = 0;
@@ -62,6 +56,10 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     //直播页Banner
     private static final int TYPE_BANNER = 3;
 
+    private List<BannerEntity> bannerEntitys = new ArrayList<>();
+
+    private List<Integer> liveSizes = new ArrayList<>();
+
     private int[] entranceIconRes = new int[]{
             R.drawable.live_home_follow_anchor,
             R.drawable.live_home_live_center,
@@ -70,10 +68,8 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     };
 
     private String[] entranceTitles = new String[]{
-            "关注主播",
-            "直播中心",
-            "搜索直播",
-            "全部分类"
+            "关注主播", "直播中心",
+            "搜索直播", "全部分类"
     };
 
     public LiveRecyclerAdapter(Context context)
@@ -82,23 +78,32 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
         this.context = context;
     }
 
-    public void setLiveIndex(LiveIndex data)
+    public void setLiveInfo(LiveInfo liveInfo)
     {
 
-        this.liveIndex = data;
+        this.mLiveInfo = liveInfo;
         entranceSize = 4;
-        int partitionSize = data.partitions.size();
-
-        banner = new ArrayList<>();
-        banner.clear();
-        banner = data.banner;
-
         liveSizes.clear();
+        bannerEntitys.clear();
         int tempSize = 0;
+        int partitionSize = mLiveInfo.getData().getPartitions().size();
+
+
+        BannerEntity bannerEntity;
+        List<LiveInfo.DataBean.BannerBean> banner = mLiveInfo.getData().getBanner();
+        for (int i = 0, size = banner.size(); i < size; i++)
+        {
+            bannerEntity = new BannerEntity();
+            bannerEntity.img = banner.get(i).getImg();
+            bannerEntity.title = banner.get(i).getTitle();
+            bannerEntity.link = banner.get(i).getLink();
+            bannerEntitys.add(bannerEntity);
+        }
+
         for (int i = 0; i < partitionSize; i++)
         {
             liveSizes.add(tempSize);
-            tempSize += data.partitions.get(i).lives.size();
+            tempSize += mLiveInfo.getData().getPartitions().get(i).getLives().size();
         }
     }
 
@@ -154,72 +159,74 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     {
 
         position -= 1;
-        final Live item;
+        final LiveInfo.DataBean.PartitionsBean.LivesBean livesBean;
         if (holder instanceof LiveEntranceViewHolder)
         {
-            ((LiveEntranceViewHolder) holder).title.setText(entranceTitles[position]);
 
+            LiveEntranceViewHolder liveEntranceViewHolder = (LiveEntranceViewHolder) holder;
+            liveEntranceViewHolder.title.setText(entranceTitles[position]);
             Glide.with(context)
                     .load(entranceIconRes[position])
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(((LiveEntranceViewHolder) holder).image);
         } else if (holder instanceof LiveItemViewHolder)
         {
-            try
-            {
-                item = liveIndex.partitions.get(partitionCol(position))
-                        .lives.get(position - 1 - entranceSize - partitionCol(position) * 5);
 
-                Glide.with(context)
-                        .load(item.cover.src)
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .placeholder(R.drawable.bili_default_image_tv)
-                        .dontAnimate()
-                        .into(((LiveItemViewHolder) holder).itemLiveCover);
+            LiveItemViewHolder liveItemViewHolder = (LiveItemViewHolder) holder;
 
-                ((LiveItemViewHolder) holder).itemLiveTitle.setText(item.title);
-                ((LiveItemViewHolder) holder).itemLiveUser.setText(item.owner.name);
-
-                Glide.with(context)
-                        .load(item.owner.face)
-                        .centerCrop()
-                        .dontAnimate()
-                        .placeholder(R.drawable.ico_user_default)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(((LiveItemViewHolder) holder).itemLiveUserCover);
-
-
-                ((LiveItemViewHolder) holder).itemLiveCount.setText(String.valueOf(item.online));
-                ((LiveItemViewHolder) holder).itemLiveLayout.setOnClickListener(v -> LivePlayerActivity.
-                        launch((Activity) context, item.room_id,
-                        item.title, item.online, item.owner.face,
-                        item.owner.name, item.owner.mid));
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        } else if (holder instanceof LivePartitionViewHolder)
-        {
-            PartitionSub partition = liveIndex.partitions.get(partitionCol(position)).partition;
+            livesBean = mLiveInfo.getData().getPartitions().get(getItemPosition(position))
+                    .getLives().get(position - 1 - entranceSize - getItemPosition(position) * 5);
 
             Glide.with(context)
-                    .load(partition.sub_icon.src)
+                    .load(livesBean.getCover().getSrc())
+                    .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(((LivePartitionViewHolder) holder).itemIcon);
+                    .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
+                    .into(liveItemViewHolder.itemLiveCover);
 
-            ((LivePartitionViewHolder) holder).itemTitle.setText(partition.name);
-            SpannableStringBuilder stringBuilder = new SpannableStringBuilder("当前" + partition.count + "个直播");
+            Glide.with(context)
+                    .load(livesBean.getCover().getSrc())
+                    .centerCrop()
+                    .dontAnimate()
+                    .placeholder(R.drawable.ico_user_default)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(((LiveItemViewHolder) holder).itemLiveUserCover);
+
+            liveItemViewHolder.itemLiveTitle.setText(livesBean.getTitle());
+            liveItemViewHolder.itemLiveUser.setText(livesBean.getOwner().getName());
+            liveItemViewHolder.itemLiveCount.setText(String.valueOf(livesBean.getOnline()));
+            liveItemViewHolder.itemLiveLayout.setOnClickListener(v -> LivePlayerActivity.
+                    launch((Activity) context, livesBean.getRoom_id(),
+                            livesBean.getTitle(), livesBean.getOnline(), livesBean.getOwner().getFace(),
+                            livesBean.getOwner().getName(), livesBean.getOwner().getMid()));
+        } else if (holder instanceof LivePartitionViewHolder)
+        {
+
+            LivePartitionViewHolder livePartitionViewHolder = (LivePartitionViewHolder) holder;
+
+            LiveInfo.DataBean.PartitionsBean.PartitionBean partition = mLiveInfo.
+                    getData().getPartitions().get(getItemPosition(position)).getPartition();
+
+            Glide.with(context)
+                    .load(partition.getSub_icon().getSrc())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(livePartitionViewHolder.itemIcon);
+
+            livePartitionViewHolder.itemTitle.setText(partition.getName());
+            SpannableStringBuilder stringBuilder = new SpannableStringBuilder("当前" + partition.getCount() + "个直播");
             ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(
                     context.getResources().getColor(R.color.pink_text_color));
-
             stringBuilder.setSpan(foregroundColorSpan, 2,
                     stringBuilder.length() - 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            ((LivePartitionViewHolder) holder).itemCount.setText(stringBuilder);
+            livePartitionViewHolder.itemCount.setText(stringBuilder);
         } else if (holder instanceof LiveBannerViewHolder)
         {
-            ((LiveBannerViewHolder) holder).banner.delayTime(5).build(banner);
+            LiveBannerViewHolder liveBannerViewHolder = (LiveBannerViewHolder) holder;
+
+            liveBannerViewHolder.banner
+                    .delayTime(5)
+                    .build(bannerEntitys);
         }
     }
 
@@ -227,10 +234,10 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     public int getItemCount()
     {
 
-        if (liveIndex != null)
+        if (mLiveInfo != null)
         {
             return 1 + entranceIconRes.length
-                    + liveIndex.partitions.size() * 5;
+                    + mLiveInfo.getData().getPartitions().size() * 5;
         } else
         {
             return 0;
@@ -249,7 +256,7 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
         if (position < entranceSize)
         {
             return TYPE_ENTRANCE;
-        } else if (ifPartitionTitle(position))
+        } else if (isPartitionTitle(position))
         {
             return TYPE_PARTITION;
         } else
@@ -261,14 +268,14 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     /**
      * 获取当前Item在第几组中
      */
-    private int partitionCol(int pos)
+    private int getItemPosition(int pos)
     {
 
         pos -= entranceSize;
         return pos / 5;
     }
 
-    private boolean ifPartitionTitle(int pos)
+    private boolean isPartitionTitle(int pos)
     {
 
         pos -= entranceSize;

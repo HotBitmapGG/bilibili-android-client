@@ -1,14 +1,14 @@
 package com.hotbitmapgg.ohmybilibili.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
+import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.network.api.ActivityCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.AllareasRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
-import com.hotbitmapgg.ohmybilibili.network.api.BiliBiliLiveService;
+import com.hotbitmapgg.ohmybilibili.network.api.LiveInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.HomeBangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.HotSearchTagService;
@@ -94,7 +94,7 @@ public class RetrofitHelper
      * @return
      */
 
-    public static BiliBiliLiveService getBiliBiliLiveApi()
+    public static LiveInfoService getLiveApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -104,7 +104,7 @@ public class RetrofitHelper
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 
-        return retrofit.create(BiliBiliLiveService.class);
+        return retrofit.create(LiveInfoService.class);
     }
 
 
@@ -683,7 +683,7 @@ public class RetrofitHelper
                 if (mOkHttpClient == null)
                 {
                     //设置Http缓存
-                    Cache cache = new Cache(new File(OhMyBiliBiliApp.getInstance()
+                    Cache cache = new Cache(new File(BilibiliApp.getInstance()
                             .getCacheDir(), "HttpCache"), 1024 * 1024 * 100);
 
                     mOkHttpClient = new OkHttpClient.Builder()

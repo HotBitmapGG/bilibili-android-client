@@ -7,22 +7,26 @@ import android.support.annotation.ColorRes;
 
 import com.bilibili.magicasakura.utils.ThemeUtils;
 import com.facebook.stetho.Stetho;
+import com.hotbitmapgg.ohmybilibili.rx.cache.Repository;
 import com.hotbitmapgg.ohmybilibili.utils.ThemeHelper;
 
 /**
  * Created by hcc on 16/8/7 21:18
  * 100332338@qq.com
  * <p/>
- * 高仿哔哩哔哩动画App
+ * 哔哩哔哩动画App
  */
-public class OhMyBiliBiliApp extends Application implements ThemeUtils.switchColor
+public class BilibiliApp extends Application implements ThemeUtils.switchColor
 {
 
-    public static OhMyBiliBiliApp mInstance;
+    public static BilibiliApp mInstance;
+
+    private Repository repository;
 
     @Override
     public void onCreate()
     {
+
         super.onCreate();
 
         mInstance = this;
@@ -30,6 +34,8 @@ public class OhMyBiliBiliApp extends Application implements ThemeUtils.switchCol
 
         // 初始化主题切换
         ThemeUtils.setSwitchColor(this);
+        //初始化全局RxCache
+        repository = Repository.init(getFilesDir());
     }
 
     private void init()
@@ -42,8 +48,14 @@ public class OhMyBiliBiliApp extends Application implements ThemeUtils.switchCol
                         .build());
     }
 
+    public Repository getRepository()
+    {
 
-    public static OhMyBiliBiliApp getInstance()
+        return repository;
+    }
+
+
+    public static BilibiliApp getInstance()
     {
 
         return mInstance;

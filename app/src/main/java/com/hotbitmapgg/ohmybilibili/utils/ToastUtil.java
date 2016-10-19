@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.hotbitmapgg.ohmybilibili.OhMyBiliBiliApp;
+import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -44,27 +44,27 @@ public class ToastUtil
     {
 
         new Handler(Looper.getMainLooper()).post(() -> Toast.
-                makeText(OhMyBiliBiliApp.getInstance(), text, Toast.LENGTH_LONG).show());
+                makeText(BilibiliApp.getInstance(), text, Toast.LENGTH_LONG).show());
     }
 
     public static void LongToast(final int stringId)
     {
 
         new Handler(Looper.getMainLooper()).post(() -> Toast.
-                makeText(OhMyBiliBiliApp.getInstance(), stringId, Toast.LENGTH_LONG).show());
+                makeText(BilibiliApp.getInstance(), stringId, Toast.LENGTH_LONG).show());
     }
 
     public static void ShortToast(final String text)
     {
 
         new Handler(Looper.getMainLooper()).post(() -> Toast.
-                makeText(OhMyBiliBiliApp.getInstance(), text, Toast.LENGTH_SHORT).show());
+                makeText(BilibiliApp.getInstance(), text, Toast.LENGTH_SHORT).show());
     }
 
     public static void ShortToast(final int stringId)
     {
 
         new Handler(Looper.getMainLooper()).post(() -> Toast.
-                makeText(OhMyBiliBiliApp.getInstance(), stringId, Toast.LENGTH_SHORT).show());
+                makeText(BilibiliApp.getInstance(), stringId, Toast.LENGTH_SHORT).show());
     }
 }

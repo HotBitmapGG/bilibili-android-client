@@ -85,6 +85,5 @@ public class UserCoinsVideoFragment extends RxLazyFragment
 
         mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_space_no_data);
         mCustomEmptyView.setEmptyText("ㄟ( ▔, ▔ )ㄏ 再怎么找也没有啦");
-        mCustomEmptyView.hideReloadButton();
     }
 }

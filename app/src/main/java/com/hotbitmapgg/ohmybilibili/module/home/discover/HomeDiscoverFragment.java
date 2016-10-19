@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
-import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -81,10 +81,11 @@ public class HomeDiscoverFragment extends RxLazyFragment
     private void getTags()
     {
 
-        RetrofitHelper.getHotSearchTagsApi()
-                .getHotSearchTags()
+        BilibiliApp.getInstance()
+                .getRepository()
+                .getHotSearchTags(false)
                 .compose(bindToLifecycle())
-                .map(HotSearchTag::getList)
+                .map(hotSearchTagReply -> hotSearchTagReply.getData().getList())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listBeans -> {
@@ -100,8 +101,8 @@ public class HomeDiscoverFragment extends RxLazyFragment
     private void initTagLayout()
     {
 
-        //获取热搜标签集合前8个默认显示
-        List<HotSearchTag.ListBean> frontTags = hotSearchTags.subList(0, 7);
+        //获取热搜标签集合前9个默认显示
+        List<HotSearchTag.ListBean> frontTags = hotSearchTags.subList(0, 9);
         mTagFlowLayout.setAdapter(new TagAdapter<HotSearchTag.ListBean>(frontTags)
         {
 
