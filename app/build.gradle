@@ -49,8 +49,11 @@ android {
     }
 
     dexOptions{
-        javaMaxHeapSize "2g"
-        incremental true
+        javaMaxHeapSize "4g"
+    }
+
+    lintOptions {
+        abortOnError false
     }
 
     compileOptions {
