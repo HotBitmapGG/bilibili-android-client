@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -35,13 +35,13 @@ import rx.schedulers.Schedulers;
 public class BangumiIndexActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.circle_progress)
+    @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
     private List<BangumiIndexTag> bangumiIndexTags = new ArrayList<>();

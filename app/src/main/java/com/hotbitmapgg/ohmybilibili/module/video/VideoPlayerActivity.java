@@ -14,17 +14,17 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
+import com.hotbitmapgg.ohmybilibili.media.DanmakuDownloadUtil;
 import com.hotbitmapgg.ohmybilibili.media.MediaController;
+import com.hotbitmapgg.ohmybilibili.media.VideoPlayerView;
 import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchListener;
 import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackListener;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
-import com.hotbitmapgg.ohmybilibili.media.DanmakuDownloadUtil;
-import com.hotbitmapgg.ohmybilibili.media.VideoPlayerView;
 
 import java.util.HashMap;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import master.flame.danmaku.controller.DrawHandler;
 import master.flame.danmaku.controller.IDanmakuView;
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
@@ -48,22 +48,22 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitch
 {
 
 
-    @Bind(R.id.sv_danmaku)
+    @BindView(R.id.sv_danmaku)
     IDanmakuView mDanmakuView;
 
-    @Bind(R.id.playerView)
+    @BindView(R.id.playerView)
     VideoPlayerView mPlayerView;
 
-    @Bind(R.id.buffering_indicator)
+    @BindView(R.id.buffering_indicator)
     View mBufferingIndicator;
 
-    @Bind(R.id.video_start)
+    @BindView(R.id.video_start)
     RelativeLayout mVideoPrepareLayout;
 
-    @Bind(R.id.bili_anim)
+    @BindView(R.id.bili_anim)
     ImageView mAnimImageView;
 
-    @Bind(R.id.video_start_info)
+    @BindView(R.id.video_start_info)
     TextView mPrepareText;
 
     private AnimationDrawable mLoadingAnim;

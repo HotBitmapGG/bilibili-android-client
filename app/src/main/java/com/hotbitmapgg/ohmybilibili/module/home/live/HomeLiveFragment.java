@@ -16,7 +16,7 @@ import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -31,13 +31,13 @@ import rx.schedulers.Schedulers;
 public class HomeLiveFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.swipe_refresh_layout)
+    @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    @Bind(R.id.empty_layout)
+    @BindView(R.id.empty_layout)
     CustomEmptyView mCustomEmptyView;
 
     private LiveIndex mLiveIndex;

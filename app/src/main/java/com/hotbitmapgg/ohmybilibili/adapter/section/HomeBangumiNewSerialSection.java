@@ -22,7 +22,7 @@ import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -119,7 +119,7 @@ public class HomeBangumiNewSerialSection extends StatelessSection
     static class HeaderViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.tv_all_serial)
+        @BindView(R.id.tv_all_serial)
         TextView mAllSerial;
 
 
@@ -134,19 +134,19 @@ public class HomeBangumiNewSerialSection extends StatelessSection
     static class ItemViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.card_view)
+        @BindView(R.id.card_view)
         LinearLayout mCardView;
 
-        @Bind(R.id.item_img)
+        @BindView(R.id.item_img)
         ImageView mImage;
 
-        @Bind(R.id.item_title)
+        @BindView(R.id.item_title)
         TextView mTitle;
 
-        @Bind(R.id.item_play)
+        @BindView(R.id.item_play)
         TextView mPlay;
 
-        @Bind(R.id.item_update)
+        @BindView(R.id.item_update)
         TextView mUpdate;
 
 

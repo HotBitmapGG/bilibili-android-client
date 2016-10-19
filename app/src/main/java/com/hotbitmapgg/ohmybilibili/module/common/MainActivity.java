@@ -30,7 +30,7 @@ import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by hcc on 16/8/7 14:12
@@ -42,10 +42,10 @@ public class MainActivity extends RxBaseActivity implements
         NavigationView.OnNavigationItemSelectedListener
 {
 
-    @Bind(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
-    @Bind(R.id.navigation_view)
+    @BindView(R.id.navigation_view)
     NavigationView mNavigationView;
 
     private Fragment[] fragments;

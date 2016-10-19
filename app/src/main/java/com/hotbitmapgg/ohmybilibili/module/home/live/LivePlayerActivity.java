@@ -29,7 +29,7 @@ import com.hotbitmapgg.ohmybilibili.widget.livelike.LoveLikeLayout;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -46,43 +46,43 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 public class LivePlayerActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.video_view)
+    @BindView(R.id.video_view)
     SurfaceView videoView;
 
-    @Bind(R.id.bili_anim)
+    @BindView(R.id.bili_anim)
     ImageView mAnimView;
 
-    @Bind(R.id.right_play)
+    @BindView(R.id.right_play)
     ImageView mRightPlayBtn;
 
-    @Bind(R.id.bottom_layout)
+    @BindView(R.id.bottom_layout)
     RelativeLayout mBottomLayout;
 
-    @Bind(R.id.bottom_play)
+    @BindView(R.id.bottom_play)
     ImageView mBottomPlayBtn;
 
-    @Bind(R.id.bottom_fullscreen)
+    @BindView(R.id.bottom_fullscreen)
     ImageView mBottomFullscreen;
 
-    @Bind(R.id.video_start_info)
+    @BindView(R.id.video_start_info)
     TextView mLoadTv;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.user_pic)
+    @BindView(R.id.user_pic)
     CircleImageView mUserPic;
 
-    @Bind(R.id.user_name)
+    @BindView(R.id.user_name)
     TextView mUserName;
 
-    @Bind(R.id.live_num)
+    @BindView(R.id.live_num)
     TextView mLiveNum;
 
-    @Bind(R.id.love_layout)
+    @BindView(R.id.love_layout)
     LoveLikeLayout mLoveLikeLayout;
 
-    @Bind(R.id.bottom_love)
+    @BindView(R.id.bottom_love)
     ImageView mlove;
 
     private IjkMediaPlayer ijkMediaPlayer;

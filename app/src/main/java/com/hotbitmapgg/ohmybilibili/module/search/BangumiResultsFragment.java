@@ -14,7 +14,7 @@ import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by hcc on 16/8/29 21:08
@@ -25,10 +25,10 @@ import butterknife.Bind;
 public class BangumiResultsFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.empty_view)
+    @BindView(R.id.empty_view)
     ImageView mEmptyView;
 
     private SearchResult.ResultBean resultBean;

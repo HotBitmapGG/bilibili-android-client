@@ -41,7 +41,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -57,46 +57,46 @@ import rx.schedulers.Schedulers;
 public class BangumiDetailsActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.nested_scroll_view)
+    @BindView(R.id.nested_scroll_view)
     NestedScrollView mNestedScrollView;
 
-    @Bind(R.id.bangumi_bg)
+    @BindView(R.id.bangumi_bg)
     ImageView mBangumiBackgroundImage;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.bangumi_pic)
+    @BindView(R.id.bangumi_pic)
     ImageView mBangumiPic;
 
-    @Bind(R.id.bangumi_details_layout)
+    @BindView(R.id.bangumi_details_layout)
     LinearLayout mDetailsLayout;
 
-    @Bind(R.id.circle_progress)
+    @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    @Bind(R.id.bangumi_title)
+    @BindView(R.id.bangumi_title)
     TextView mBangumiTitle;
 
-    @Bind(R.id.bangumi_update)
+    @BindView(R.id.bangumi_update)
     TextView mBangumiUpdate;
 
-    @Bind(R.id.bangumi_play)
+    @BindView(R.id.bangumi_play)
     TextView mBangumiPlay;
 
-    @Bind(R.id.bangumi_selection_recycler)
+    @BindView(R.id.bangumi_selection_recycler)
     RecyclerView mBangumiSelectionRecycler;
 
-    @Bind(R.id.tags_layout)
+    @BindView(R.id.tags_layout)
     TagFlowLayout mTagsLayout;
 
-    @Bind(R.id.bangumi_details_introduction)
+    @BindView(R.id.bangumi_details_introduction)
     TextView mBangumiIntroduction;
 
 //    @Bind(R.id.bangumi_comment_recycler)
 //    RecyclerView mBangumiCommentRecycler;
 
-    @Bind(R.id.bangumi_recommend_recycler)
+    @BindView(R.id.bangumi_recommend_recycler)
     RecyclerView mBangumiRecommendRecycler;
 
     private SpecialTopic mSpecialTopic;

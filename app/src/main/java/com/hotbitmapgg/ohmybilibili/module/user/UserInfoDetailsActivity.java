@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -59,52 +59,52 @@ import rx.schedulers.Schedulers;
 public class UserInfoDetailsActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.user_avatar_view)
+    @BindView(R.id.user_avatar_view)
     CircleImageView mAvatarImage;
 
-    @Bind(R.id.user_name)
+    @BindView(R.id.user_name)
     TextView mUserNameText;
 
-    @Bind(R.id.user_desc)
+    @BindView(R.id.user_desc)
     TextView mDescriptionText;
 
-    @Bind(R.id.tv_follow_users)
+    @BindView(R.id.tv_follow_users)
     TextView mFollowNumText;
 
-    @Bind(R.id.tv_fans)
+    @BindView(R.id.tv_fans)
     TextView mFansNumText;
 
-    @Bind(R.id.collapsing_toolbar)
+    @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
 
-    @Bind(R.id.user_lv)
+    @BindView(R.id.user_lv)
     ImageView mUserLv;
 
-    @Bind(R.id.user_sex)
+    @BindView(R.id.user_sex)
     ImageView mUserSex;
 
-    @Bind(R.id.author_verified_layout)
+    @BindView(R.id.author_verified_layout)
     LinearLayout mAuthorVerifiedLayout;
 
-    @Bind(R.id.author_verified_text)
+    @BindView(R.id.author_verified_text)
     TextView mAuthorVerifiedText;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.sliding_tabs)
+    @BindView(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTabLayout;
 
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager mViewPager;
 
-    @Bind(R.id.app_bar_layout)
+    @BindView(R.id.app_bar_layout)
     AppBarLayout mAppBarLayout;
 
-    @Bind(R.id.line)
+    @BindView(R.id.line)
     View mLineView;
 
-    @Bind(R.id.circle_progress)
+    @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
     private String name = "";

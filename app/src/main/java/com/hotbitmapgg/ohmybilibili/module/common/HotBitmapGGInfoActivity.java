@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 
 /**
@@ -20,7 +20,7 @@ import butterknife.Bind;
 public class HotBitmapGGInfoActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override

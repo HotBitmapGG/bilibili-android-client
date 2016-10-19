@@ -24,7 +24,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -36,19 +36,19 @@ import butterknife.OnClick;
 public class HomePageFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager mViewPager;
 
-    @Bind(R.id.sliding_tabs)
+    @BindView(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTab;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.search_view)
+    @BindView(R.id.search_view)
     MaterialSearchView mSearchView;
 
-    @Bind(R.id.toolbar_user_avatar)
+    @BindView(R.id.toolbar_user_avatar)
     CircleImageView mCircleImageView;
 
     public static HomePageFragment newInstance()

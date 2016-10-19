@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -48,25 +48,25 @@ import rx.schedulers.Schedulers;
 public class TotalStationSearchActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.sliding_tabs)
+    @BindView(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTabLayout;
 
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager mViewPager;
 
-    @Bind(R.id.iv_search_loading)
+    @BindView(R.id.iv_search_loading)
     ImageView mLoadingView;
 
-    @Bind(R.id.search_img)
+    @BindView(R.id.search_img)
     ImageView mSearchBtn;
 
-    @Bind(R.id.search_edit)
+    @BindView(R.id.search_edit)
     EditText mSearchEdit;
 
-    @Bind(R.id.search_text_clear)
+    @BindView(R.id.search_text_clear)
     ImageView mSearchTextClear;
 
-    @Bind(R.id.search_layout)
+    @BindView(R.id.search_layout)
     LinearLayout mSearchLayout;
 
     private String content;

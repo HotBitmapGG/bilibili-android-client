@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -38,34 +38,34 @@ import rx.schedulers.Schedulers;
 public class VideoInfoFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.tv_title)
+    @BindView(R.id.tv_title)
     TextView mTitleText;
 
-    @Bind(R.id.tv_play_time)
+    @BindView(R.id.tv_play_time)
     TextView mPlayTimeText;
 
-    @Bind(R.id.tv_review_count)
+    @BindView(R.id.tv_review_count)
     TextView mReviewCountText;
 
-    @Bind(R.id.tv_description)
+    @BindView(R.id.tv_description)
     TextView mDescText;
 
-    @Bind(R.id.author_tag)
+    @BindView(R.id.author_tag)
     UserTagView mAuthorTagView;
 
-    @Bind(R.id.share_num)
+    @BindView(R.id.share_num)
     TextView mShareNum;
 
-    @Bind(R.id.coin_num)
+    @BindView(R.id.coin_num)
     TextView mCoinNum;
 
-    @Bind(R.id.fav_num)
+    @BindView(R.id.fav_num)
     TextView mFavNum;
 
-    @Bind(R.id.tags_layout)
+    @BindView(R.id.tags_layout)
     TagFlowLayout mTagFlowLayout;
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
     private List<UserRecommendVideoInfo.AuthorData> authorRecommendList = new ArrayList<>();

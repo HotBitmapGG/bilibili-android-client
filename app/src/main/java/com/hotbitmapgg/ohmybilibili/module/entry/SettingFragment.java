@@ -18,7 +18,7 @@ import com.hotbitmapgg.ohmybilibili.module.common.MainActivity;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -31,10 +31,10 @@ public class SettingFragment extends RxLazyFragment
 {
 
 
-    @Bind(R.id.app_version_code)
+    @BindView(R.id.app_version_code)
     TextView mVersionCode;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     public static SettingFragment newInstance()

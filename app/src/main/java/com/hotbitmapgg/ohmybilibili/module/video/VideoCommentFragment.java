@@ -18,7 +18,7 @@ import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -32,7 +32,7 @@ import rx.schedulers.Schedulers;
 public class VideoCommentFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
     private ArrayList<VideoComment.List> comments = new ArrayList<>();

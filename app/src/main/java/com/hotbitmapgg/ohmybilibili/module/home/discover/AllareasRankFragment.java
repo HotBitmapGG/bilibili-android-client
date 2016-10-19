@@ -17,7 +17,7 @@ import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -30,10 +30,10 @@ import rx.schedulers.Schedulers;
 public class AllareasRankFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.swipe_refresh_layout)
+    @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private String type;

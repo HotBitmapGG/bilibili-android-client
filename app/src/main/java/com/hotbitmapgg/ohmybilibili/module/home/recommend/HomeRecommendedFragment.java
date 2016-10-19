@@ -26,7 +26,7 @@ import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapte
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -41,13 +41,13 @@ import rx.schedulers.Schedulers;
 public class HomeRecommendedFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.swipe_refresh_layout)
+    @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.empty_layout)
+    @BindView(R.id.empty_layout)
     CustomEmptyView mCustomEmptyView;
 
     private List<RecommendInfo.ResultBean> results = new ArrayList<>();

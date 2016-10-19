@@ -24,7 +24,7 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -38,19 +38,19 @@ import rx.schedulers.Schedulers;
 public class HomeDiscoverFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.tags_layout)
+    @BindView(R.id.tags_layout)
     TagFlowLayout mTagFlowLayout;
 
-    @Bind(R.id.hide_scroll_view)
+    @BindView(R.id.hide_scroll_view)
     NestedScrollView mScrollView;
 
-    @Bind(R.id.hide_tags_layout)
+    @BindView(R.id.hide_tags_layout)
     TagFlowLayout mHideTagLayout;
 
-    @Bind(R.id.more_layout)
+    @BindView(R.id.more_layout)
     LinearLayout mMoreLayout;
 
-    @Bind(R.id.tv_more)
+    @BindView(R.id.tv_more)
     TextView mMoreText;
 
     private boolean isShowMore = true;

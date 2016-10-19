@@ -13,7 +13,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -89,10 +89,10 @@ public class HomeRecommendPicSection extends StatelessSection
     static class TopicViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.topic_image)
+        @BindView(R.id.topic_image)
         ImageView mImageView;
 
-        @Bind(R.id.card_view)
+        @BindView(R.id.card_view)
         CardView mCardView;
 
         TopicViewHolder(View itemView)

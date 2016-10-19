@@ -15,6 +15,7 @@ import com.hotbitmapgg.ohmybilibili.widget.dialog.CardPickerDialog;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by hcc on 16/8/7 21:18
@@ -22,9 +23,10 @@ import butterknife.ButterKnife;
  * <p/>
  * Activity基类
  */
-public abstract class RxBaseActivity extends RxAppCompatActivity
-        implements CardPickerDialog.ClickListener
+public abstract class RxBaseActivity extends RxAppCompatActivity implements CardPickerDialog.ClickListener
 {
+
+    private Unbinder bind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,7 +36,7 @@ public abstract class RxBaseActivity extends RxAppCompatActivity
         //设置布局内容
         setContentView(getLayoutId());
         //初始化黄油刀控件绑定框架
-        ButterKnife.bind(this);
+        bind = ButterKnife.bind(this);
         //初始化控件
         initViews(savedInstanceState);
         //初始化ToolBar
@@ -46,7 +48,7 @@ public abstract class RxBaseActivity extends RxAppCompatActivity
     {
 
         super.onDestroy();
-        ButterKnife.unbind(this);
+        bind.unbind();
     }
 
     public abstract int getLayoutId();

@@ -22,7 +22,7 @@ import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapte
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -35,13 +35,13 @@ import rx.schedulers.Schedulers;
 public class BangumiScheduleActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.circle_progress)
+    @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
     private List<BangumiSchedule.ResultBean> bangumiSchedules = new ArrayList<>();

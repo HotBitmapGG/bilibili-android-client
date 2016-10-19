@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by hcc on 16/8/7 21:18
@@ -32,6 +33,8 @@ public abstract class RxLazyFragment extends RxFragment
     //标志位 fragment是否可见
     protected boolean isVisible;
 
+    private Unbinder bind;
+
     public abstract
     @LayoutRes
     int getLayoutResId();
@@ -50,7 +53,7 @@ public abstract class RxLazyFragment extends RxFragment
     {
 
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
+        bind = ButterKnife.bind(this, view);
         finishCreateView(savedInstanceState);
     }
 
@@ -68,7 +71,7 @@ public abstract class RxLazyFragment extends RxFragment
     {
 
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        bind.unbind();
     }
 
     @Override

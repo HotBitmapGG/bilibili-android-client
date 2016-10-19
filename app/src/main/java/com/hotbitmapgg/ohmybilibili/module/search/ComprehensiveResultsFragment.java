@@ -15,7 +15,7 @@ import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by hcc on 16/9/4 12:10
@@ -26,10 +26,10 @@ import butterknife.Bind;
 public class ComprehensiveResultsFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.empty_view)
+    @BindView(R.id.empty_view)
     ImageView mEmptyView;
 
     private SearchResult.ResultBean resultBean;

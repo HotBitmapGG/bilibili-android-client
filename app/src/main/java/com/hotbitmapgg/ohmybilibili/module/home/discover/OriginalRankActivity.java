@@ -14,7 +14,7 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by hcc on 16/9/12 20:20
@@ -25,13 +25,13 @@ import butterknife.Bind;
 public class OriginalRankActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.sliding_tabs)
+    @BindView(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTabLayout;
 
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager mViewPager;
 
     private String[] titles = new String[]{"原创", "全站", "番剧"};

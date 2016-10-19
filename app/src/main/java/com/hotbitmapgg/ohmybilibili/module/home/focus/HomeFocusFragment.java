@@ -18,7 +18,7 @@ import com.hotbitmapgg.ohmybilibili.entity.focus.FocusOnDynamic;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by hcc on 16/8/22 21:40
@@ -31,7 +31,7 @@ import butterknife.Bind;
 public class HomeFocusFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
     private List<FocusOnBangumi> focusOnBangumis;

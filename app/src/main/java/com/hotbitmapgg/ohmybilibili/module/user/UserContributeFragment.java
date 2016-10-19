@@ -20,7 +20,7 @@ import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -38,10 +38,10 @@ public class UserContributeFragment extends RxLazyFragment
 {
 
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.empty_view)
+    @BindView(R.id.empty_view)
     CustomEmptyView mCustomEmptyView;
 
     private int mid;

@@ -15,7 +15,7 @@ import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -88,7 +88,7 @@ public class HomeBangumiRecommendSection extends StatelessSection
     static class RecyclerViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.home_bangumi_recommend_recycler)
+        @BindView(R.id.home_bangumi_recommend_recycler)
         RecyclerView mRecyclerView;
 
         RecyclerViewHolder(View itemView)

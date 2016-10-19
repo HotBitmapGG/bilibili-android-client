@@ -10,7 +10,7 @@ import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -82,7 +82,7 @@ public class HomeBangumiBannerSection extends StatelessSection
     static class BannerViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.home_recommended_banner)
+        @BindView(R.id.home_recommended_banner)
         BannerView mBannerView;
 
         BannerViewHolder(View itemView)

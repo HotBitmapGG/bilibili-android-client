@@ -14,7 +14,7 @@ import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -27,7 +27,7 @@ import rx.schedulers.Schedulers;
 public class HomePartitionFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.more_layout)
+    @BindView(R.id.more_layout)
     ExpandableHeightGridView mMoreLayout;
 
     private List<PartitionInfo.DataBean> datas;

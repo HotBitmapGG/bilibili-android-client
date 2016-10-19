@@ -41,7 +41,7 @@ import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -54,31 +54,31 @@ import rx.schedulers.Schedulers;
 public class VideoDetailsActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.collapsing_toolbar)
+    @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
 
-    @Bind(R.id.video_preview)
+    @BindView(R.id.video_preview)
     ImageView mVideoPreview;
 
-    @Bind(R.id.tab_layout)
+    @BindView(R.id.tab_layout)
     SlidingTabLayout mSlidingTabLayout;
 
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager mViewPager;
 
-    @Bind(R.id.fab)
+    @BindView(R.id.fab)
     FloatingActionButton mFAB;
 
-    @Bind(R.id.app_bar_layout)
+    @BindView(R.id.app_bar_layout)
     AppBarLayout mAppBarLayout;
 
-    @Bind(R.id.tv_player)
+    @BindView(R.id.tv_player)
     TextView mTvPlayer;
 
-    @Bind(R.id.tv_av)
+    @BindView(R.id.tv_av)
     TextView mAvText;
 
     private List<Fragment> fragments = new ArrayList<>();

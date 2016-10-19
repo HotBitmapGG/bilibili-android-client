@@ -17,18 +17,18 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
 import com.hotbitmapgg.ohmybilibili.entity.live.Live;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveIndex;
 import com.hotbitmapgg.ohmybilibili.entity.live.PartitionSub;
 import com.hotbitmapgg.ohmybilibili.module.home.live.LivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
+import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -282,7 +282,7 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     static class LiveBannerViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.item_live_banner)
+        @BindView(R.id.item_live_banner)
         public BannerView banner;
 
         LiveBannerViewHolder(View itemView)
@@ -299,10 +299,10 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     static class LiveEntranceViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.live_entrance_title)
+        @BindView(R.id.live_entrance_title)
         public TextView title;
 
-        @Bind(R.id.live_entrance_image)
+        @BindView(R.id.live_entrance_image)
         public ImageView image;
 
         LiveEntranceViewHolder(View itemView)
@@ -319,22 +319,22 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     static class LiveItemViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.item_live_cover)
+        @BindView(R.id.item_live_cover)
         ImageView itemLiveCover;
 
-        @Bind(R.id.item_live_user)
+        @BindView(R.id.item_live_user)
         TextView itemLiveUser;
 
-        @Bind(R.id.item_live_title)
+        @BindView(R.id.item_live_title)
         TextView itemLiveTitle;
 
-        @Bind(R.id.item_live_user_cover)
+        @BindView(R.id.item_live_user_cover)
         CircleImageView itemLiveUserCover;
 
-        @Bind(R.id.item_live_count)
+        @BindView(R.id.item_live_count)
         TextView itemLiveCount;
 
-        @Bind(R.id.item_live_layout)
+        @BindView(R.id.item_live_layout)
         CardView itemLiveLayout;
 
         LiveItemViewHolder(View itemView)
@@ -351,13 +351,13 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     static class LivePartitionViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.item_live_partition_icon)
+        @BindView(R.id.item_live_partition_icon)
         ImageView itemIcon;
 
-        @Bind(R.id.item_live_partition_title)
+        @BindView(R.id.item_live_partition_title)
         TextView itemTitle;
 
-        @Bind(R.id.item_live_partition_count)
+        @BindView(R.id.item_live_partition_count)
         TextView itemCount;
 
         LivePartitionViewHolder(View itemView)

@@ -16,7 +16,7 @@ import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -159,10 +159,10 @@ public class BangumiScheduleSection extends StatelessSection
     static class HeaderViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.item_weekday)
+        @BindView(R.id.item_weekday)
         TextView mWeekDay;
 
-        @Bind(R.id.item_update_time)
+        @BindView(R.id.item_update_time)
         TextView mUpdateTime;
 
         HeaderViewHolder(View view)
@@ -176,16 +176,16 @@ public class BangumiScheduleSection extends StatelessSection
     static class ItemViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.item_img)
+        @BindView(R.id.item_img)
         ImageView mImageView;
 
-        @Bind(R.id.item_title)
+        @BindView(R.id.item_title)
         TextView mTitle;
 
-        @Bind(R.id.item_update)
+        @BindView(R.id.item_update)
         TextView mUpdate;
 
-        @Bind(R.id.item_time_line)
+        @BindView(R.id.item_time_line)
         TextView mTimeLine;
 
         public ItemViewHolder(View view)

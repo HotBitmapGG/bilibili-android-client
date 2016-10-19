@@ -31,7 +31,7 @@ import com.hotbitmapgg.ohmybilibili.widget.FavoritesItemLayout;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -44,67 +44,67 @@ import butterknife.OnClick;
 public class UserHomePageFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.contribute_count)
+    @BindView(R.id.contribute_count)
     TextView mContributeCount;
 
-    @Bind(R.id.contribute_recycler)
+    @BindView(R.id.contribute_recycler)
     RecyclerView mContributeRecycler;
 
-    @Bind(R.id.coins_count)
+    @BindView(R.id.coins_count)
     TextView mCoinsCount;
 
-    @Bind(R.id.coins_recycler)
+    @BindView(R.id.coins_recycler)
     RecyclerView mCoinsRecycler;
 
-    @Bind(R.id.favorites_count)
+    @BindView(R.id.favorites_count)
     TextView mFavoritesCount;
 
-    @Bind(R.id.favorites_layout)
+    @BindView(R.id.favorites_layout)
     FavoritesItemLayout mFavoritesLayout;
 
-    @Bind(R.id.chase_bangumi_count)
+    @BindView(R.id.chase_bangumi_count)
     TextView mChaseBangumiCount;
 
-    @Bind(R.id.chase_bangumi_recycler)
+    @BindView(R.id.chase_bangumi_recycler)
     RecyclerView mChaseBangumiRecycler;
 
-    @Bind(R.id.quanzi_count)
+    @BindView(R.id.quanzi_count)
     TextView mQuanziCount;
 
-    @Bind(R.id.quanzi_recycler)
+    @BindView(R.id.quanzi_recycler)
     RecyclerView mQuanziRecycler;
 
-    @Bind(R.id.play_game_count)
+    @BindView(R.id.play_game_count)
     TextView mPlayGameCount;
 
-    @Bind(R.id.player_game_recycler)
+    @BindView(R.id.player_game_recycler)
     RecyclerView mPlayerGameRecycler;
 
-    @Bind(R.id.contribute_layout)
+    @BindView(R.id.contribute_layout)
     RelativeLayout contributeLayout;
 
-    @Bind(R.id.coins_layout)
+    @BindView(R.id.coins_layout)
     RelativeLayout coinsLayout;
 
-    @Bind(R.id.favorites_head_layout)
+    @BindView(R.id.favorites_head_layout)
     RelativeLayout favoritesHeadLayout;
 
-    @Bind(R.id.chase_bangumi_layout)
+    @BindView(R.id.chase_bangumi_layout)
     RelativeLayout chaseBangumiLayout;
 
-    @Bind(R.id.quanzi_layout)
+    @BindView(R.id.quanzi_layout)
     RelativeLayout quanziLayout;
 
-    @Bind(R.id.play_game_layout)
+    @BindView(R.id.play_game_layout)
     RelativeLayout playGameLayout;
 
-    @Bind(R.id.live_image)
+    @BindView(R.id.live_image)
     ImageView liveImage;
 
-    @Bind(R.id.live_status_tv)
+    @BindView(R.id.live_status_tv)
     TextView liveStatusTv;
 
-    @Bind(R.id.card_view)
+    @BindView(R.id.card_view)
     CardView cardView;
 
     private UserContributeInfo mUserContributeInfo;

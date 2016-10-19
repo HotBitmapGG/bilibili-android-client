@@ -9,7 +9,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.module.common.MainActivity;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by hcc on 16/8/7 14:12
@@ -20,10 +20,10 @@ import butterknife.Bind;
 public class IFavoritesFragment extends RxLazyFragment
 {
 
-    @Bind(R.id.empty_view)
+    @BindView(R.id.empty_view)
     CustomEmptyView mCustomEmptyView;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     public static IFavoritesFragment newInstance()

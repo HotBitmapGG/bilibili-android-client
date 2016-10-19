@@ -12,7 +12,7 @@ import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiScheduleActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.ChaseBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -93,13 +93,13 @@ public class HomeBangumiItemSection extends StatelessSection
     static class TopItemViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.layout_chase_bangumi)
+        @BindView(R.id.layout_chase_bangumi)
         TextView mChaseBangumi;
 
-        @Bind(R.id.layout_bangumi_schedule)
+        @BindView(R.id.layout_bangumi_schedule)
         TextView mBangumiSchedule;
 
-        @Bind(R.id.layout_bangumi_index)
+        @BindView(R.id.layout_bangumi_index)
         TextView mBangumiIndex;
 
         TopItemViewHolder(View itemView)

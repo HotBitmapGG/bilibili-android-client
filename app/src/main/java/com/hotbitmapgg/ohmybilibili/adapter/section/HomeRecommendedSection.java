@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -335,19 +335,19 @@ public class HomeRecommendedSection extends StatelessSection
     static class HeaderViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.item_type_img)
+        @BindView(R.id.item_type_img)
         ImageView mTypeImg;
 
-        @Bind(R.id.item_type_tv)
+        @BindView(R.id.item_type_tv)
         TextView mTypeTv;
 
-        @Bind(R.id.item_type_more)
+        @BindView(R.id.item_type_more)
         TextView mTypeMore;
 
-        @Bind(R.id.item_type_rank_btn)
+        @BindView(R.id.item_type_rank_btn)
         TextView mTypeRankBtn;
 
-        @Bind(R.id.item_live_all_num)
+        @BindView(R.id.item_live_all_num)
         TextView mAllLiveNum;
 
 
@@ -364,31 +364,31 @@ public class HomeRecommendedSection extends StatelessSection
     {
 
 
-        @Bind(R.id.card_view)
+        @BindView(R.id.card_view)
         CardView mCardView;
 
-        @Bind(R.id.video_preview)
+        @BindView(R.id.video_preview)
         ImageView mVideoImg;
 
-        @Bind(R.id.video_title)
+        @BindView(R.id.video_title)
         TextView mVideoTitle;
 
-        @Bind(R.id.video_play_num)
+        @BindView(R.id.video_play_num)
         TextView mVideoPlayNum;
 
-        @Bind(R.id.video_review_count)
+        @BindView(R.id.video_review_count)
         TextView mVideoReviewCount;
 
-        @Bind(R.id.layout_live)
+        @BindView(R.id.layout_live)
         RelativeLayout mLiveLayout;
 
-        @Bind(R.id.layout_video)
+        @BindView(R.id.layout_video)
         LinearLayout mVideoLayout;
 
-        @Bind(R.id.item_live_up)
+        @BindView(R.id.item_live_up)
         TextView mLiveUp;
 
-        @Bind(R.id.item_live_online)
+        @BindView(R.id.item_live_online)
         TextView mLiveOnline;
 
 
@@ -404,31 +404,31 @@ public class HomeRecommendedSection extends StatelessSection
     static class FootViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.item_btn_more)
+        @BindView(R.id.item_btn_more)
         Button mMoreBtn;
 
-        @Bind(R.id.item_dynamic)
+        @BindView(R.id.item_dynamic)
         TextView mDynamic;
 
-        @Bind(R.id.item_btn_refresh)
+        @BindView(R.id.item_btn_refresh)
         ImageView mRefreshBtn;
 
-        @Bind(R.id.item_refresh_layout)
+        @BindView(R.id.item_refresh_layout)
         LinearLayout mRefreshLayout;
 
-        @Bind(R.id.item_recommend_refresh_layout)
+        @BindView(R.id.item_recommend_refresh_layout)
         LinearLayout mRecommendRefreshLayout;
 
-        @Bind(R.id.item_recommend_refresh)
+        @BindView(R.id.item_recommend_refresh)
         ImageView mRecommendRefresh;
 
-        @Bind(R.id.item_bangumi_layout)
+        @BindView(R.id.item_bangumi_layout)
         LinearLayout mBangumiLayout;
 
-        @Bind(R.id.item_btn_bangumi_index)
+        @BindView(R.id.item_btn_bangumi_index)
         ImageView mBangumiIndexBtn;
 
-        @Bind(R.id.item_btn_bangumi_timeline)
+        @BindView(R.id.item_btn_bangumi_timeline)
         ImageView mBangumiTimelineBtn;
 
         FootViewHolder(View itemView)

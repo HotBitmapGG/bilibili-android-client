@@ -29,7 +29,7 @@ import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -44,40 +44,40 @@ import rx.schedulers.Schedulers;
 public class SpecialDetailsActivity extends RxBaseActivity
 {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.sp_preview)
+    @BindView(R.id.sp_preview)
     ImageView mPreviewImage;
 
-    @Bind(R.id.sp_title)
+    @BindView(R.id.sp_title)
     TextView mTitleText;
 
-    @Bind(R.id.sp_last_update_at)
+    @BindView(R.id.sp_last_update_at)
     TextView mLastUpdateText;
 
-    @Bind(R.id.sp_desc)
+    @BindView(R.id.sp_desc)
     TextView mDescText;
 
-    @Bind(R.id.tv_play_time)
+    @BindView(R.id.tv_play_time)
     TextView mPlayTimeText;
 
-    @Bind(R.id.tv_video_count)
+    @BindView(R.id.tv_video_count)
     TextView mVideoCountText;
 
-    @Bind(R.id.recycle)
+    @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.tv_favourite)
+    @BindView(R.id.tv_favourite)
     TextView mFavourite;
 
-    @Bind(R.id.tv_attention)
+    @BindView(R.id.tv_attention)
     TextView mAttention;
 
-    @Bind(R.id.circle_progress)
+    @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    @Bind(R.id.root_layout)
+    @BindView(R.id.root_layout)
     LinearLayout mRootLayout;
 
     private int spid;

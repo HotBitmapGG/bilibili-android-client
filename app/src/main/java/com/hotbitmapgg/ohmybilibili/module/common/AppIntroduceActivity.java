@@ -12,7 +12,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 
 /**
@@ -25,10 +25,10 @@ public class AppIntroduceActivity extends RxBaseActivity
 {
 
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.collapsing_toolbar)
+    @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout mCollapsingToolbarLayout;
 
     @Override

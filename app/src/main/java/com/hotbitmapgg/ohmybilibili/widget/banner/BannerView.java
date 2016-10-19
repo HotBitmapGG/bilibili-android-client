@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Subscription;
@@ -37,10 +37,10 @@ import rx.subscriptions.CompositeSubscription;
 public class BannerView extends RelativeLayout implements BannerAdapter.ViewPagerOnItemClickListener
 {
 
-    @Bind(R.id.layout_banner_viewpager)
+    @BindView(R.id.layout_banner_viewpager)
     ViewPager viewPager;
 
-    @Bind(R.id.layout_banner_points_group)
+    @BindView(R.id.layout_banner_points_group)
     LinearLayout points;
 
     private CompositeSubscription compositeSubscription;
