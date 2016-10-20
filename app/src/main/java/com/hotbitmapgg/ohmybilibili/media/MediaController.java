@@ -164,8 +164,7 @@ public class MediaController extends FrameLayout
             }
         }
 
-        public void onProgressChanged(SeekBar bar, int progress,
-                                      boolean fromuser)
+        public void onProgressChanged(SeekBar bar, int progress, boolean fromuser)
         {
 
             if (!fromuser)
@@ -655,12 +654,12 @@ public class MediaController extends FrameLayout
     public interface OnShownListener
     {
 
-        public void onShown();
+        void onShown();
     }
 
     public interface OnHiddenListener
     {
 
-        public void onHidden();
+        void onHidden();
     }
 }
