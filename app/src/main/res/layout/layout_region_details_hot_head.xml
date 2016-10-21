@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/default_general_margin">
+
+    <TextView
+        android:id="@+id/item_type_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_tiny_padding"
+        android:gravity="center"
+        android:text="@string/hot_videos"
+        android:textColor="@color/font_normal"
+        android:textSize="@dimen/default_small_text_size" />
+
+</LinearLayout>

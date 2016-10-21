@@ -152,5 +152,11 @@
     <string name="about_network_diagnosis">网络诊断</string>
     <string name="about_share">分享</string>
     <string name="about_feedback">意见反馈</string>
+    <string name="hot_recommend">热门推荐</string>
+    <string name="goin_and_see">进去看看</string>
+    <string name="all_dynamic">全区动态</string>
+    <string name="new_videos">最新视频</string>
+    <string name="hot_videos">最热视频</string>
+    <string name="news_videos">最新视频</string>
 
 </resources>

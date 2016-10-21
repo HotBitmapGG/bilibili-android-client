@@ -6,7 +6,7 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveInfo;
-import com.hotbitmapgg.ohmybilibili.entity.region.PartitionInfo;
+import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
@@ -98,7 +98,7 @@ public class Repository
                 .getBangumiRecommended(), new DynamicKey("首页番剧推荐"), new EvictDynamicKey(update));
     }
 
-    public Observable<Reply<PartitionInfo>> getPartitionTypes(final boolean update)
+    public Observable<Reply<RegionTypesInfo>> getPartitionTypes(final boolean update)
     {
 
         return providers.getPartitionTypes(RetrofitHelper.getPartitionTypesApi()

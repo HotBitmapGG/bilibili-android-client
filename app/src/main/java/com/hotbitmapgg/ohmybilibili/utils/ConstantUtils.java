@@ -103,13 +103,9 @@ public class ConstantUtils
 
     public static final String EXTRA_INFO = "extra_info";
 
-    public static final String ERROR_MESSAGE = "error";
-
-    public static final String UNFIND_MESSAGE = "undefined";
-
     public static final String VIDEO_TYPE_MP4 = "mp4";
 
-    public static final String EXTRA_AID = "extra_aid";
-
     public static final String SWITCH_MODE_KEY = "mode_key";
+
+    public static final String EXTRA_RID = "extra_rid";
 }

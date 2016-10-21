@@ -2,10 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/home_recommend_head_layout_height"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingEnd="@dimen/default_general_margin"
     android:paddingStart="@dimen/default_general_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/default_general_margin">
 
 
     <ImageView
@@ -33,8 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:background="@drawable/btn_rank_bg"
-        android:drawableStart="@drawable/ic_header_indicator_rank"
+        android:layout_centerInParent="true"
         android:drawablePadding="@dimen/default_tiny_padding"
+        android:drawableStart="@drawable/ic_header_indicator_rank"
         android:padding="@dimen/default_tiny_padding"
         android:text="@string/rank"
         android:textColor="@color/white"

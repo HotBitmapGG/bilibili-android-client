@@ -84,7 +84,7 @@
     <dimen name="activity_center_card_width">170dp</dimen>
     <dimen name="activity_center_card_height">150dp</dimen>
     <dimen name="activity_center_image_height">110dp</dimen>
-    <dimen name="home_recommend_head_layout_height">60dp</dimen>
+    <dimen name="home_recommend_head_layout_height">50dp</dimen>
     <dimen name="home_recommend_head_image_size">22dp</dimen>
     <dimen name="home_recommend_foot_layout_height">60dp</dimen>
     <dimen name="home_recommend_foot_button_width">120dp</dimen>
@@ -273,6 +273,7 @@
     <dimen name="home_topic_head_layout_height">40dp</dimen>
     <dimen name="app_logo_size">120dp</dimen>
     <dimen name="about_bottom_layout_height">50dp</dimen>
+    <dimen name="region_recommend_icon_size">40dp</dimen>
 
 
 </resources>

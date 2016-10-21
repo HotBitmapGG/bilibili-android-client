@@ -8,16 +8,17 @@ import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
-import com.hotbitmapgg.ohmybilibili.network.api.LiveInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.HomeBangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.HotSearchTagService;
+import com.hotbitmapgg.ohmybilibili.network.api.LiveInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
 import com.hotbitmapgg.ohmybilibili.network.api.NewBangumiSerialService;
 import com.hotbitmapgg.ohmybilibili.network.api.OriginalRankService;
-import com.hotbitmapgg.ohmybilibili.network.api.PartitionMoreService;
-import com.hotbitmapgg.ohmybilibili.network.api.PartitionTypeService;
 import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
+import com.hotbitmapgg.ohmybilibili.network.api.RegionDetailsService;
+import com.hotbitmapgg.ohmybilibili.network.api.RegionRecommendService;
+import com.hotbitmapgg.ohmybilibili.network.api.RegionTypeService;
 import com.hotbitmapgg.ohmybilibili.network.api.SeasonNewBangumiService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
@@ -219,24 +220,6 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(LiveUrlService.class);
-    }
-
-
-    /**
-     * 获取分区数据列表详情
-     *
-     * @return
-     */
-    public static PartitionMoreService getPartitionMoreApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-
-        return retrofit.create(PartitionMoreService.class);
     }
 
 
@@ -523,7 +506,7 @@ public class RetrofitHelper
      *
      * @return
      */
-    public static PartitionTypeService getPartitionTypesApi()
+    public static RegionTypeService getPartitionTypesApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -533,7 +516,7 @@ public class RetrofitHelper
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        return retrofit.create(PartitionTypeService.class);
+        return retrofit.create(RegionTypeService.class);
     }
 
     /**
@@ -661,6 +644,43 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(UserLiveRoomStatusService.class);
+    }
+
+
+    /**
+     * 获取分区推荐页数据
+     *
+     * @return
+     */
+    public static RegionRecommendService getRegionRecommendApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(APP_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(RegionRecommendService.class);
+    }
+
+    /**
+     * 获取分区详情数据
+     *
+     * @return
+     */
+    public static RegionDetailsService getRegionDetailsApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(APP_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(RegionDetailsService.class);
     }
 
 
