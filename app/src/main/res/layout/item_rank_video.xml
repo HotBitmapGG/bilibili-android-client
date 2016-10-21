@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/video_item_layout_height"
-    android:layout_marginBottom="@dimen/default_general_margin">
+    android:layout_marginBottom="@dimen/default_general_margin"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/item_sort_num"

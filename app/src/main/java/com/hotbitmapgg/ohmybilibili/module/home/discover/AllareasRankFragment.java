@@ -74,11 +74,10 @@ public class AllareasRankFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.postDelayed(() -> {
-
+        mSwipeRefreshLayout.post(() -> {
             mSwipeRefreshLayout.setRefreshing(true);
             loadData();
-        }, 500);
+        });
         mSwipeRefreshLayout.setOnRefreshListener(() -> mSwipeRefreshLayout.setRefreshing(false));
     }
 
@@ -106,7 +105,6 @@ public class AllareasRankFragment extends RxLazyFragment
     @Override
     protected void finishTask()
     {
-
 
         mSwipeRefreshLayout.setRefreshing(false);
         mAdapter.notifyDataSetChanged();
