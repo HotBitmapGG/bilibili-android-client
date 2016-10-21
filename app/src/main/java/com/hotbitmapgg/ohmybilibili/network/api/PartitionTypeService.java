@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
+import com.hotbitmapgg.ohmybilibili.entity.region.PartitionInfo;
 
 import retrofit2.http.GET;
 import rx.Observable;

@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
-import com.hotbitmapgg.ohmybilibili.module.home.partition.PartitionDetailsFragment;
+import com.hotbitmapgg.ohmybilibili.entity.region.PartitionInfo;
+import com.hotbitmapgg.ohmybilibili.module.home.region.PartitionDetailsFragment;
 
 import java.util.ArrayList;
 import java.util.List;

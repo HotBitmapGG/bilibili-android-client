@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home.focus;
+package com.hotbitmapgg.ohmybilibili.module.home.attention;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,13 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.FocusOnBangumiAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.FocusOnDynamicAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.AttentionBangumiAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.AttentionDynamicAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.focus.FocusOnBangumi;
-import com.hotbitmapgg.ohmybilibili.entity.focus.FocusOnContents;
-import com.hotbitmapgg.ohmybilibili.entity.focus.FocusOnDynamic;
+import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionBangumi;
+import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionContents;
+import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionDynamic;
 
 import java.util.List;
 
@@ -28,29 +28,29 @@ import butterknife.BindView;
  * 该界面由于需要请求登录用户的关注数据
  * 所以这里只能用假数据让界面好看点
  */
-public class HomeFocusFragment extends RxLazyFragment
+public class HomeAttentionFragment extends RxLazyFragment
 {
 
     @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private List<FocusOnBangumi> focusOnBangumis;
+    private List<AttentionBangumi> attentionBangumis;
 
-    private List<FocusOnDynamic> focusOnDynamics;
+    private List<AttentionDynamic> attentionDynamics;
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    public static HomeFocusFragment newIntance()
+    public static HomeAttentionFragment newIntance()
     {
 
-        return new HomeFocusFragment();
+        return new HomeAttentionFragment();
     }
 
     @Override
     public int getLayoutResId()
     {
 
-        return R.layout.fragment_focus;
+        return R.layout.fragment_attention;
     }
 
     @Override
@@ -64,9 +64,9 @@ public class HomeFocusFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        FocusOnContents mFocusOnContents = new FocusOnContents();
-        focusOnBangumis = mFocusOnContents.fillBangumiData();
-        focusOnDynamics = mFocusOnContents.fillDynamicData();
+        AttentionContents mAttentionContents = new AttentionContents();
+        attentionBangumis = mAttentionContents.fillBangumiData();
+        attentionDynamics = mAttentionContents.fillDynamicData();
         initRecyclerView();
     }
 
@@ -76,7 +76,7 @@ public class HomeFocusFragment extends RxLazyFragment
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        FocusOnDynamicAdapter mAdapter = new FocusOnDynamicAdapter(mRecyclerView, focusOnDynamics);
+        AttentionDynamicAdapter mAdapter = new AttentionDynamicAdapter(mRecyclerView, attentionDynamics);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         createHeadView();
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
@@ -85,12 +85,12 @@ public class HomeFocusFragment extends RxLazyFragment
     private void createHeadView()
     {
 
-        View headView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_focus_head_view, mRecyclerView, false);
+        View headView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_attention_head_view, mRecyclerView, false);
         RecyclerView mBangumiRecycler = (RecyclerView) headView.findViewById(R.id.focus_head_recycler);
         mBangumiRecycler.setHasFixedSize(false);
         mBangumiRecycler.setNestedScrollingEnabled(false);
         mBangumiRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mBangumiRecycler.setAdapter(new FocusOnBangumiAdapter(mBangumiRecycler, focusOnBangumis));
+        mBangumiRecycler.setAdapter(new AttentionBangumiAdapter(mBangumiRecycler, attentionBangumis));
         mHeaderViewRecyclerAdapter.addHeaderView(headView);
     }
 }

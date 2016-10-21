@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.focus;
+package com.hotbitmapgg.ohmybilibili.entity.attention;
 
 /**
  * Created by hcc on 2016/9/28 19:49
@@ -7,7 +7,7 @@ package com.hotbitmapgg.ohmybilibili.entity.focus;
  * 关注动态模型类
  */
 
-public class FocusOnDynamic
+public class AttentionDynamic
 {
 
     private String avatar;

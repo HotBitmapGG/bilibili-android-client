@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.partition;
+package com.hotbitmapgg.ohmybilibili.entity.region;
 
 import android.os.Parcel;
 import android.os.Parcelable;

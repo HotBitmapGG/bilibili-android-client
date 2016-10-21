@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.focus.FocusOnDynamic;
+import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionDynamic;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 
 import java.util.List;
@@ -24,16 +24,16 @@ import java.util.List;
  * 关注界面动态Adapter
  */
 
-public class FocusOnDynamicAdapter extends AbsRecyclerViewAdapter
+public class AttentionDynamicAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<FocusOnDynamic> focusOnDynamics;
+    private List<AttentionDynamic> attentionDynamics;
 
-    public FocusOnDynamicAdapter(RecyclerView recyclerView, List<FocusOnDynamic> focusOnDynamics)
+    public AttentionDynamicAdapter(RecyclerView recyclerView, List<AttentionDynamic> attentionDynamics)
     {
 
         super(recyclerView);
-        this.focusOnDynamics = focusOnDynamics;
+        this.attentionDynamics = attentionDynamics;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class FocusOnDynamicAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_focus_dynamic, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_attention_dynamic, parent, false));
     }
 
     @SuppressLint("SetTextI18n")
@@ -52,10 +52,10 @@ public class FocusOnDynamicAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            FocusOnDynamic focusOnDynamic = focusOnDynamics.get(position);
+            AttentionDynamic attentionDynamic = attentionDynamics.get(position);
 
             Glide.with(getContext())
-                    .load(focusOnDynamic.getPic())
+                    .load(attentionDynamic.getPic())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
@@ -63,18 +63,18 @@ public class FocusOnDynamicAdapter extends AbsRecyclerViewAdapter
                     .into(itemViewHolder.mImage);
 
             Glide.with(getContext())
-                    .load(focusOnDynamic.getAvatar())
+                    .load(attentionDynamic.getAvatar())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.ico_user_default)
                     .dontAnimate()
                     .into(itemViewHolder.mAvatar);
 
-            itemViewHolder.mName.setText(focusOnDynamic.getName());
-            itemViewHolder.mTitle.setText(focusOnDynamic.getTitle());
-            itemViewHolder.mPlay.setText(focusOnDynamic.getPlay());
-            itemViewHolder.mReview.setText(focusOnDynamic.getDanmaku());
-            itemViewHolder.mUpdateTime.setText("于" + focusOnDynamic.getUploadTime() + "投稿");
+            itemViewHolder.mName.setText(attentionDynamic.getName());
+            itemViewHolder.mTitle.setText(attentionDynamic.getTitle());
+            itemViewHolder.mPlay.setText(attentionDynamic.getPlay());
+            itemViewHolder.mReview.setText(attentionDynamic.getDanmaku());
+            itemViewHolder.mUpdateTime.setText("于" + attentionDynamic.getUploadTime() + "投稿");
         }
         super.onBindViewHolder(holder, position);
     }
@@ -83,7 +83,7 @@ public class FocusOnDynamicAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return focusOnDynamics.size();
+        return attentionDynamics.size();
     }
 
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder

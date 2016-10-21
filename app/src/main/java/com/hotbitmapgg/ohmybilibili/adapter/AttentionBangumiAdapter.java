@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.focus.FocusOnBangumi;
+import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionBangumi;
 
 import java.util.List;
 
@@ -22,16 +22,16 @@ import java.util.List;
  * 关注界面番剧Adapter
  */
 
-public class FocusOnBangumiAdapter extends AbsRecyclerViewAdapter
+public class AttentionBangumiAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<FocusOnBangumi> focusOnBangumis;
+    private List<AttentionBangumi> attentionBangumis;
 
-    public FocusOnBangumiAdapter(RecyclerView recyclerView, List<FocusOnBangumi> focusOnBangumis)
+    public AttentionBangumiAdapter(RecyclerView recyclerView, List<AttentionBangumi> attentionBangumis)
     {
 
         super(recyclerView);
-        this.focusOnBangumis = focusOnBangumis;
+        this.attentionBangumis = attentionBangumis;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class FocusOnBangumiAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_focus_bangumi, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_attention_bangumi, parent, false));
     }
 
     @Override
@@ -49,18 +49,18 @@ public class FocusOnBangumiAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            FocusOnBangumi focusOnBangumi = focusOnBangumis.get(position);
+            AttentionBangumi attentionBangumi = attentionBangumis.get(position);
 
             Glide.with(getContext())
-                    .load(focusOnBangumi.getPic())
+                    .load(attentionBangumi.getPic())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mImage);
 
-            itemViewHolder.mTitle.setText(focusOnBangumi.getTitle());
-            itemViewHolder.mDesc.setText(focusOnBangumi.getDesc());
+            itemViewHolder.mTitle.setText(attentionBangumi.getTitle());
+            itemViewHolder.mDesc.setText(attentionBangumi.getDesc());
         }
 
         super.onBindViewHolder(holder, position);
@@ -70,7 +70,7 @@ public class FocusOnBangumiAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return focusOnBangumis.size();
+        return attentionBangumis.size();
     }
 
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder

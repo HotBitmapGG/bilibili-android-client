@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home.partition;
+package com.hotbitmapgg.ohmybilibili.module.home.region;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.pager.PartitionMorePagerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
+import com.hotbitmapgg.ohmybilibili.entity.region.PartitionInfo;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
 import butterknife.BindView;

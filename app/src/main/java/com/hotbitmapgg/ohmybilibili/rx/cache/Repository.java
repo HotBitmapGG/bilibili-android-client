@@ -6,7 +6,7 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveInfo;
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
+import com.hotbitmapgg.ohmybilibili.entity.region.PartitionInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;

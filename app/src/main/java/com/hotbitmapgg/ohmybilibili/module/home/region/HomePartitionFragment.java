@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home.partition;
+package com.hotbitmapgg.ohmybilibili.module.home.region;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,11 @@ import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.pager.HomePartitionLayoutAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionInfo;
+import com.hotbitmapgg.ohmybilibili.entity.region.PartitionInfo;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,7 +31,7 @@ public class HomePartitionFragment extends RxLazyFragment
     @BindView(R.id.more_layout)
     ExpandableHeightGridView mMoreLayout;
 
-    private List<PartitionInfo.DataBean> datas;
+    private List<PartitionInfo.DataBean> datas = new ArrayList<>();
 
     public static HomePartitionFragment newInstance()
     {

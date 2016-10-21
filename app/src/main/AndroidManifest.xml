@@ -83,7 +83,7 @@
 
         <!-- 分区详情界面 -->
         <activity
-            android:name=".module.home.partition.PartitionDetailsActivity"
+            android:name=".module.home.region.PartitionDetailsActivity"
             android:screenOrientation="portrait" />
 
 

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.partition;
+package com.hotbitmapgg.ohmybilibili.entity.region;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;

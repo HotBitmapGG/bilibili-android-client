@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.partition;
+package com.hotbitmapgg.ohmybilibili.entity.region;
 
 /**
  * Created by hcc on 16/8/22 20:48

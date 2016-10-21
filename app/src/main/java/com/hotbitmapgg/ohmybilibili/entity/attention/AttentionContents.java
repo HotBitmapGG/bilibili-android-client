@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.focus;
+package com.hotbitmapgg.ohmybilibili.entity.attention;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  * 关注界面数据生成
  */
 
-public class FocusOnContents
+public class AttentionContents
 {
 
     /**
@@ -45,17 +45,17 @@ public class FocusOnContents
     private static final String BANGUMI_THREE_DESC = "更新至第25话";
 
 
-    private List<FocusOnBangumi> focusOnBangumis = new ArrayList<>();
+    private List<AttentionBangumi> attentionBangumis = new ArrayList<>();
 
     /**
      * 添加关注番剧数据
      */
-    public List<FocusOnBangumi> fillBangumiData()
+    public List<AttentionBangumi> fillBangumiData()
     {
 
-        FocusOnBangumi one = new FocusOnBangumi();
-        FocusOnBangumi two = new FocusOnBangumi();
-        FocusOnBangumi three = new FocusOnBangumi();
+        AttentionBangumi one = new AttentionBangumi();
+        AttentionBangumi two = new AttentionBangumi();
+        AttentionBangumi three = new AttentionBangumi();
 
         one.setPic(BANGUMI_ONE_IMAGE_URL);
         one.setTitle(BANGUMI_ONE_TITLE);
@@ -70,11 +70,11 @@ public class FocusOnContents
         three.setTitle(BANGUMI_THREE_TITLE);
         three.setDesc(BANGUMI_THREE_DESC);
 
-        focusOnBangumis.add(one);
-        focusOnBangumis.add(two);
-        focusOnBangumis.add(three);
+        attentionBangumis.add(one);
+        attentionBangumis.add(two);
+        attentionBangumis.add(three);
 
-        return focusOnBangumis;
+        return attentionBangumis;
     }
 
 
@@ -240,21 +240,21 @@ public class FocusOnContents
     private static final String DYNAMIC_TEN_UP_TIME = "2016-09-22 09:58";
 
 
-    private List<FocusOnDynamic> focusOnDynamics = new ArrayList<>();
+    private List<AttentionDynamic> attentionDynamics = new ArrayList<>();
 
-    public List<FocusOnDynamic> fillDynamicData()
+    public List<AttentionDynamic> fillDynamicData()
     {
 
-        FocusOnDynamic one = new FocusOnDynamic();
-        FocusOnDynamic two = new FocusOnDynamic();
-        FocusOnDynamic three = new FocusOnDynamic();
-        FocusOnDynamic four = new FocusOnDynamic();
-        FocusOnDynamic five = new FocusOnDynamic();
-        FocusOnDynamic six = new FocusOnDynamic();
-        FocusOnDynamic seven = new FocusOnDynamic();
-        FocusOnDynamic eight = new FocusOnDynamic();
-        FocusOnDynamic nine = new FocusOnDynamic();
-        FocusOnDynamic ten = new FocusOnDynamic();
+        AttentionDynamic one = new AttentionDynamic();
+        AttentionDynamic two = new AttentionDynamic();
+        AttentionDynamic three = new AttentionDynamic();
+        AttentionDynamic four = new AttentionDynamic();
+        AttentionDynamic five = new AttentionDynamic();
+        AttentionDynamic six = new AttentionDynamic();
+        AttentionDynamic seven = new AttentionDynamic();
+        AttentionDynamic eight = new AttentionDynamic();
+        AttentionDynamic nine = new AttentionDynamic();
+        AttentionDynamic ten = new AttentionDynamic();
 
         one.setAvatar(DYNAMIC_ONE_USER_AVATAR);
         one.setName(DYNAMIC_ONE_USER_NAME);
@@ -344,17 +344,17 @@ public class FocusOnContents
         ten.setDanmaku(DYNAMIC_TEN_DAMUKU);
 
 
-        focusOnDynamics.add(one);
-        focusOnDynamics.add(two);
-        focusOnDynamics.add(three);
-        focusOnDynamics.add(four);
-        focusOnDynamics.add(five);
-        focusOnDynamics.add(six);
-        focusOnDynamics.add(seven);
-        focusOnDynamics.add(eight);
-        focusOnDynamics.add(nine);
-        focusOnDynamics.add(ten);
+        attentionDynamics.add(one);
+        attentionDynamics.add(two);
+        attentionDynamics.add(three);
+        attentionDynamics.add(four);
+        attentionDynamics.add(five);
+        attentionDynamics.add(six);
+        attentionDynamics.add(seven);
+        attentionDynamics.add(eight);
+        attentionDynamics.add(nine);
+        attentionDynamics.add(ten);
 
-        return focusOnDynamics;
+        return attentionDynamics;
     }
 }

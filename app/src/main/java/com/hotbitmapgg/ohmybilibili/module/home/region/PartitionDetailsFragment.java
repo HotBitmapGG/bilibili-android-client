@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.module.home.partition;
+package com.hotbitmapgg.ohmybilibili.module.home.region;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,8 +12,8 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListen
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.config.Secret;
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreList;
-import com.hotbitmapgg.ohmybilibili.entity.partition.PartitionMoreVideoItem;
+import com.hotbitmapgg.ohmybilibili.entity.region.PartitionMoreList;
+import com.hotbitmapgg.ohmybilibili.entity.region.PartitionMoreVideoItem;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
