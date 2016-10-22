@@ -83,7 +83,7 @@
 
 ## UpdateLog
 
-[更新日志](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
+ * 版本的更新日志已迁移至:[更新日志](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
 
 
 ## Instructions
@@ -108,6 +108,7 @@
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 * [RxBinding](https://github.com/JakeWharton/RxBinding)
 * [RxLifecycle](https://github.com/trello/RxLifecycle)
+* [RxCache](https://github.com/VictorAlbertos/RxCache)
 * [okhttp](https://github.com/square/okhttp)
 * [retrofit](https://github.com/square/retrofit)
 * [ijkplayer](https://github.com/Bilibili/ijkplayer)
