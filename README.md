@@ -80,15 +80,20 @@
 ![](https://github.com/HotBitmapGG/bilibili/blob/master-x/art/002.png?raw=true)
 
 
+## Compilation
+
+因升级至Android Studio2.2，项目已使用新的编译器Jack，如果你不是AS2.2版本，遇到编译报错，
+请参考[issues#15](https://github.com/HotBitmapGG/bilibili-android-client/issues/15)
+
 
 ## UpdateLog
 
- * 版本的更新日志已迁移至:[更新日志](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
+版本的更新日志已迁移至:[更新日志](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
 
 
 ## API
 
- * 现用接口都已不需要Appkey，大部分接口是使用iOS客户端抓包获取的接口，后期会抽时间整理成详细的接口文档放出来。
+现用接口都已不需要Appkey，大部分接口是使用iOS客户端抓包获取的接口，后期会抽时间整理成详细的接口文档放出来。
 
 
 
