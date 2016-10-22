@@ -723,8 +723,7 @@ public class RetrofitHelper
 
 
     /**
-     * 添加UA拦截器
-     * B站请求API文档需要加上UA
+     * 添加UA拦截器，B站请求API需要加上UA才能正常使用
      */
     private static class UserAgentInterceptor implements Interceptor
     {
