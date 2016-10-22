@@ -108,4 +108,6 @@ public class ConstantUtils
     public static final String SWITCH_MODE_KEY = "mode_key";
 
     public static final String EXTRA_RID = "extra_rid";
+
+    public static final String EXTRA_POSITION = "extra_pos";
 }

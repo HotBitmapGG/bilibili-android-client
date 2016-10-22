@@ -1,15 +1,18 @@
 package com.hotbitmapgg.ohmybilibili.adapter.section;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionDetailsInfo;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
@@ -71,6 +74,8 @@ public class RegionDetailsNewsVideoSection extends StatelessSection
         itemViewHolder.mUpName.setText(newBean.getName());
         itemViewHolder.mPlay.setText(String.valueOf(newBean.getPlay()));
         itemViewHolder.mReview.setText(String.valueOf(newBean.getDanmaku()));
+        itemViewHolder.mItemView.setOnClickListener(v -> VideoDetailsActivity.launch((Activity) mContext,
+                Integer.valueOf(newBean.getParam()), newBean.getCover()));
     }
 
     @Override
@@ -99,6 +104,9 @@ public class RegionDetailsNewsVideoSection extends StatelessSection
 
     static class ItemViewHolder extends RecyclerView.ViewHolder
     {
+
+        @BindView(R.id.item_view)
+        RelativeLayout mItemView;
 
         @BindView(R.id.item_img)
         ImageView mVideoPic;

@@ -25,6 +25,7 @@ import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.KeyBoardUtil;
 import com.hotbitmapgg.ohmybilibili.utils.StatusBarUtils;
+import com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
 
@@ -52,7 +53,7 @@ public class TotalStationSearchActivity extends RxBaseActivity
     SlidingTabLayout mSlidingTabLayout;
 
     @BindView(R.id.view_pager)
-    ViewPager mViewPager;
+    NoScrollViewPager mViewPager;
 
     @BindView(R.id.iv_search_loading)
     ImageView mLoadingView;

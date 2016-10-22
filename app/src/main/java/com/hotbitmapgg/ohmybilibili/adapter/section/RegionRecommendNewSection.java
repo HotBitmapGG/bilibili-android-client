@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter.section;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionRecommendInfo;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.rx.RxBus;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
@@ -71,6 +74,8 @@ public class RegionRecommendNewSection extends StatelessSection
         itemViewHolder.mTitle.setText(newBean.getTitle());
         itemViewHolder.mPlay.setText(String.valueOf(newBean.getPlay()));
         itemViewHolder.mReview.setText(String.valueOf(newBean.getDanmaku()));
+        itemViewHolder.mCardView.setOnClickListener(v -> VideoDetailsActivity.launch((Activity) mContext,
+                Integer.valueOf(newBean.getParam()), newBean.getCover()));
     }
 
 
@@ -85,16 +90,21 @@ public class RegionRecommendNewSection extends StatelessSection
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder)
     {
 
-        super.onBindHeaderViewHolder(holder);
+        HeadViewHolder headViewHolder = (HeadViewHolder) holder;
+        headViewHolder.mMore.setOnClickListener(v -> RxBus.getInstance().post(0));
     }
 
     static class HeadViewHolder extends RecyclerView.ViewHolder
     {
 
+        @BindView(R.id.item_type_more)
+        TextView mMore;
+
         public HeadViewHolder(View itemView)
         {
 
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 

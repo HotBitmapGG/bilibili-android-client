@@ -170,7 +170,7 @@ public class RegionTypeRecommendFragment extends RxLazyFragment
         converBanner();
         mSectionedRecyclerViewAdapter.addSection(new RegionRecommendBannerSection(bannerEntities));
         mSectionedRecyclerViewAdapter.addSection(new RegionRecommendTypesSection(getActivity(), rid));
-        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendHotSection(getActivity(), recommends));
+        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendHotSection(getActivity(), rid, recommends));
         mSectionedRecyclerViewAdapter.addSection(new RegionRecommendNewSection(getActivity(), news));
         mSectionedRecyclerViewAdapter.addSection(new RegionRecommendDynamicSection(getActivity(), dynamics));
 

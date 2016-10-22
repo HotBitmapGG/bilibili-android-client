@@ -39,6 +39,7 @@ import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
+import com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +97,7 @@ public class UserInfoDetailsActivity extends RxBaseActivity
     SlidingTabLayout mSlidingTabLayout;
 
     @BindView(R.id.view_pager)
-    ViewPager mViewPager;
+    NoScrollViewPager mViewPager;
 
     @BindView(R.id.app_bar_layout)
     AppBarLayout mAppBarLayout;

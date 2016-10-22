@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter.section;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionRecommendInfo;
+import com.hotbitmapgg.ohmybilibili.module.home.discover.AllareasRankActivity;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
@@ -31,12 +34,15 @@ public class RegionRecommendHotSection extends StatelessSection
 
     private Context mContext;
 
+    private int rid;
+
     private List<RegionRecommendInfo.DataBean.RecommendBean> recommends;
 
-    public RegionRecommendHotSection(Context context, List<RegionRecommendInfo.DataBean.RecommendBean> recommends)
+    public RegionRecommendHotSection(Context context, int rid, List<RegionRecommendInfo.DataBean.RecommendBean> recommends)
     {
 
         super(R.layout.layout_region_recommend_hot_head, R.layout.layout_region_recommend_card_item);
+        this.rid = rid;
         this.recommends = recommends;
         this.mContext = context;
     }
@@ -72,6 +78,8 @@ public class RegionRecommendHotSection extends StatelessSection
         itemViewHolder.mTitle.setText(recommendBean.getTitle());
         itemViewHolder.mPlay.setText(NumberUtil.converString(recommendBean.getPlay()));
         itemViewHolder.mReview.setText(NumberUtil.converString(recommendBean.getDanmaku()));
+        itemViewHolder.mCardView.setOnClickListener(v -> VideoDetailsActivity.launch((Activity) mContext,
+                Integer.valueOf(recommendBean.getParam()), recommendBean.getCover()));
     }
 
 
@@ -86,16 +94,77 @@ public class RegionRecommendHotSection extends StatelessSection
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder)
     {
 
-        super.onBindHeaderViewHolder(holder);
+        HeadViewHolder headViewHolder = (HeadViewHolder) holder;
+        headViewHolder.mRankBtn.setOnClickListener(v -> startRankActivityById());
+    }
+
+    private void startRankActivityById()
+    {
+
+        switch (rid)
+        {
+            case 13:
+                //番剧
+                AllareasRankActivity.launch((Activity) mContext, 0);
+                break;
+            case 1:
+                //动画
+                AllareasRankActivity.launch((Activity) mContext, 1);
+                break;
+            case 3:
+                //音乐
+                AllareasRankActivity.launch((Activity) mContext, 2);
+                break;
+            case 129:
+                //舞蹈
+                AllareasRankActivity.launch((Activity) mContext, 3);
+                break;
+            case 4:
+                //游戏
+                AllareasRankActivity.launch((Activity) mContext, 4);
+                break;
+            case 36:
+                //科技
+                AllareasRankActivity.launch((Activity) mContext, 5);
+                break;
+            case 160:
+                //生活
+                AllareasRankActivity.launch((Activity) mContext, 6);
+                break;
+            case 119:
+                //鬼畜
+                AllareasRankActivity.launch((Activity) mContext, 7);
+                break;
+            case 155:
+                //时尚
+                AllareasRankActivity.launch((Activity) mContext, 8);
+                break;
+            case 5:
+                //娱乐
+                AllareasRankActivity.launch((Activity) mContext, 9);
+                break;
+            case 23:
+                //电影
+                AllareasRankActivity.launch((Activity) mContext, 10);
+                break;
+            case 11:
+                //电视剧
+                AllareasRankActivity.launch((Activity) mContext, 11);
+                break;
+        }
     }
 
     static class HeadViewHolder extends RecyclerView.ViewHolder
     {
 
+        @BindView(R.id.item_type_rank_btn)
+        TextView mRankBtn;
+
         public HeadViewHolder(View itemView)
         {
 
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 

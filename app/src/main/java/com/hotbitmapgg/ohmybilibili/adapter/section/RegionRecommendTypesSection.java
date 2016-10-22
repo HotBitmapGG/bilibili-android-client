@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.RegionRecommendTypesAdapter;
+import com.hotbitmapgg.ohmybilibili.rx.RxBus;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import butterknife.BindView;
@@ -255,10 +256,10 @@ public class RegionRecommendTypesSection extends StatelessSection
                 typesViewHolder.mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
                 mAdapter = new RegionRecommendTypesAdapter(typesViewHolder.mRecyclerView, tvIcons, tvTitles);
                 break;
-
         }
 
         typesViewHolder.mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener((position, holder) -> RxBus.getInstance().post(position));
     }
 
     static class TypesViewHolder extends RecyclerView.ViewHolder

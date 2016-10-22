@@ -16,13 +16,16 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.pager.RegionPagerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
+import com.hotbitmapgg.ohmybilibili.rx.RxBus;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -37,7 +40,7 @@ public class RegionTypeDetailsActivity extends RxBaseActivity
     Toolbar mToolbar;
 
     @BindView(R.id.view_pager)
-    ViewPager mViewPager;
+    NoScrollViewPager mViewPager;
 
     @BindView(R.id.sliding_tabs)
     SlidingTabLayout mSlidingTab;
@@ -64,6 +67,17 @@ public class RegionTypeDetailsActivity extends RxBaseActivity
 
 
         initViewPager();
+        initRxBus();
+    }
+
+
+    private void initRxBus()
+    {
+
+        RxBus.getInstance().toObserverable(Integer.class)
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::switchPager);
     }
 
     private void initViewPager()
@@ -152,5 +166,40 @@ public class RegionTypeDetailsActivity extends RxBaseActivity
         bundle.putParcelable(ConstantUtils.EXTRA_PARTITION, dataBean);
         mIntent.putExtras(bundle);
         activity.startActivity(mIntent);
+    }
+
+    private void switchPager(int position)
+    {
+
+        switch (position)
+        {
+            case 0:
+                mViewPager.setCurrentItem(1);
+                break;
+
+            case 1:
+                mViewPager.setCurrentItem(2);
+                break;
+
+            case 2:
+                mViewPager.setCurrentItem(3);
+                break;
+
+            case 3:
+                mViewPager.setCurrentItem(4);
+                break;
+
+            case 4:
+                mViewPager.setCurrentItem(5);
+                break;
+
+            case 5:
+                mViewPager.setCurrentItem(6);
+                break;
+
+            case 6:
+                mViewPager.setCurrentItem(7);
+                break;
+        }
     }
 }

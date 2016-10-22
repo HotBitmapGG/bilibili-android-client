@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter.section;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionRecommendInfo;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
@@ -72,6 +74,8 @@ public class RegionRecommendDynamicSection extends StatelessSection
         itemViewHolder.mTitle.setText(dynamicBean.getTitle());
         itemViewHolder.mPlay.setText(NumberUtil.converString(dynamicBean.getPlay()));
         itemViewHolder.mReview.setText(NumberUtil.converString(dynamicBean.getDanmaku()));
+        itemViewHolder.mCardView.setOnClickListener(v -> VideoDetailsActivity.launch((Activity) mContext,
+                Integer.valueOf(dynamicBean.getParam()), dynamicBean.getCover()));
     }
 
 

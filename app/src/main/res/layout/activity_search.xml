@@ -36,7 +36,7 @@
                 android:layout_height="@dimen/line_height"
                 android:background="@color/black_alpha_60" />
 
-            <android.support.v4.view.ViewPager
+            <com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

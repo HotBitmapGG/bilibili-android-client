@@ -1,10 +1,11 @@
 package com.hotbitmapgg.ohmybilibili.module.home.discover;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager;
 
 import butterknife.BindView;
 
@@ -29,7 +32,7 @@ public class AllareasRankActivity extends RxBaseActivity
     SlidingTabLayout mSlidingTabLayout;
 
     @BindView(R.id.view_pager)
-    ViewPager mViewPager;
+    NoScrollViewPager mViewPager;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -46,6 +49,8 @@ public class AllareasRankActivity extends RxBaseActivity
             "all-03-119.json", "all-03-23.json", "all-03-11.json"
     };
 
+    private int position;
+
     @Override
     public int getLayoutId()
     {
@@ -57,10 +62,61 @@ public class AllareasRankActivity extends RxBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
+        Intent intent = getIntent();
+        if (intent != null)
+        {
+            position = intent.getIntExtra(ConstantUtils.EXTRA_POSITION, 0);
+        }
+
         AllareasRankPagerAdapter mAdapter =
                 new AllareasRankPagerAdapter(getSupportFragmentManager(), titles, types);
         mViewPager.setAdapter(mAdapter);
         mSlidingTabLayout.setViewPager(mViewPager);
+        switchPager();
+    }
+
+    private void switchPager()
+    {
+
+        switch (position)
+        {
+            case 0:
+                mViewPager.setCurrentItem(0);
+                break;
+            case 1:
+                mViewPager.setCurrentItem(1);
+                break;
+            case 2:
+                mViewPager.setCurrentItem(2);
+                break;
+            case 3:
+                mViewPager.setCurrentItem(3);
+                break;
+            case 4:
+                mViewPager.setCurrentItem(4);
+                break;
+            case 5:
+                mViewPager.setCurrentItem(5);
+                break;
+            case 6:
+                mViewPager.setCurrentItem(6);
+                break;
+            case 7:
+                mViewPager.setCurrentItem(7);
+                break;
+            case 8:
+                mViewPager.setCurrentItem(8);
+                break;
+            case 9:
+                mViewPager.setCurrentItem(9);
+                break;
+            case 10:
+                mViewPager.setCurrentItem(10);
+                break;
+            case 11:
+                mViewPager.setCurrentItem(11);
+                break;
+        }
     }
 
     @Override
@@ -89,6 +145,14 @@ public class AllareasRankActivity extends RxBaseActivity
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void launch(Activity activity, int position)
+    {
+
+        Intent intent = new Intent(activity, AllareasRankActivity.class);
+        intent.putExtra(ConstantUtils.EXTRA_POSITION, position);
+        activity.startActivity(intent);
     }
 
 

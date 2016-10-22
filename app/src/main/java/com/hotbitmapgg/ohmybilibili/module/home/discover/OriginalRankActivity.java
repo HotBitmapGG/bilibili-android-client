@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +12,7 @@ import android.view.MenuItem;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
+import com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager;
 
 import butterknife.BindView;
 
@@ -32,7 +32,7 @@ public class OriginalRankActivity extends RxBaseActivity
     SlidingTabLayout mSlidingTabLayout;
 
     @BindView(R.id.view_pager)
-    ViewPager mViewPager;
+    NoScrollViewPager mViewPager;
 
     private String[] titles = new String[]{"原创", "全站", "番剧"};
 
