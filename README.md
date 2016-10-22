@@ -86,6 +86,12 @@
  * 版本的更新日志已迁移至:[更新日志](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
 
 
+## API
+
+ * 现用接口都已不需要Appkey，大部分接口是使用iOS客户端抓包获取的接口，后期会抽时间整理成详细的接口文档放出来。
+
+
+
 ## Instructions
 
 >由于该项目是业余时间开发，更新比较慢还请见谅，有任何意见，bug，问题可以提issuse，我会第一时间关注并解决.
