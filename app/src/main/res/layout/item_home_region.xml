@@ -4,20 +4,22 @@
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_margin="@dimen/default_general_margin"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
     android:gravity="center"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/item_icon"
-        android:layout_width="@dimen/region_recommend_icon_size"
-        android:layout_height="@dimen/region_recommend_icon_size" />
+        android:layout_width="@dimen/more_item_image_size"
+        android:layout_height="@dimen/more_item_image_size" />
 
     <TextView
         android:id="@+id/item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_tiny_margin"
+        android:layout_marginTop="@dimen/default_tiny_padding"
         android:textColor="@color/font_normal"
-        android:textSize="10sp" />
+        android:textSize="@dimen/default_small_text_size" />
 </LinearLayout>
 

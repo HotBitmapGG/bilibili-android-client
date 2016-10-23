@@ -11,7 +11,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
 import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
 import com.hotbitmapgg.ohmybilibili.network.api.HomeBangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.HotSearchTagService;
-import com.hotbitmapgg.ohmybilibili.network.api.LiveInfoService;
+import com.hotbitmapgg.ohmybilibili.network.api.LiveAppIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
 import com.hotbitmapgg.ohmybilibili.network.api.NewBangumiSerialService;
 import com.hotbitmapgg.ohmybilibili.network.api.OriginalRankService;
@@ -95,7 +95,7 @@ public class RetrofitHelper
      * @return
      */
 
-    public static LiveInfoService getLiveApi()
+    public static LiveAppIndexService getLiveAppIndexApi()
     {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -105,7 +105,7 @@ public class RetrofitHelper
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 
-        return retrofit.create(LiveInfoService.class);
+        return retrofit.create(LiveAppIndexService.class);
     }
 
 

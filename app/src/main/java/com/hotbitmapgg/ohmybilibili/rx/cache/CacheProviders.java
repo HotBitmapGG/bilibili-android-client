@@ -5,7 +5,7 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
-import com.hotbitmapgg.ohmybilibili.entity.live.LiveInfo;
+import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
@@ -68,7 +68,7 @@ interface CacheProviders
      * @return
      */
     @LifeCache(duration = 1, timeUnit = TimeUnit.DAYS)
-    Observable<Reply<LiveInfo>> getLiveInfo(Observable<LiveInfo> liveInfo, DynamicKey dynamicKey, EvictProvider evictProvider);
+    Observable<Reply<LiveAppIndexInfo>> getLiveAppIndex(Observable<LiveAppIndexInfo> liveInfo, DynamicKey dynamicKey, EvictProvider evictProvider);
 
 
     /**

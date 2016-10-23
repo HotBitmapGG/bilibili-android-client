@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.live.LiveInfo;
+import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.live.LivePlayerActivity;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
@@ -33,14 +33,14 @@ import butterknife.ButterKnife;
  * Created by hcc on 16/8/4 14:12
  * 100332338@qq.com
  * <p/>
- * B站直播Adapter
+ * 首页直播adapter
  */
-public class LiveRecyclerAdapter extends RecyclerView.Adapter
+public class LiveAppIndexAdapter extends RecyclerView.Adapter
 {
 
     private Context context;
 
-    private LiveInfo mLiveInfo;
+    private LiveAppIndexInfo mLiveAppIndexInfo;
 
     private int entranceSize;
 
@@ -72,25 +72,25 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
             "搜索直播", "全部分类"
     };
 
-    public LiveRecyclerAdapter(Context context)
+    public LiveAppIndexAdapter(Context context)
     {
 
         this.context = context;
     }
 
-    public void setLiveInfo(LiveInfo liveInfo)
+    public void setLiveInfo(LiveAppIndexInfo liveAppIndexInfo)
     {
 
-        this.mLiveInfo = liveInfo;
+        this.mLiveAppIndexInfo = liveAppIndexInfo;
         entranceSize = 4;
         liveSizes.clear();
         bannerEntitys.clear();
         int tempSize = 0;
-        int partitionSize = mLiveInfo.getData().getPartitions().size();
+        int partitionSize = mLiveAppIndexInfo.getData().getPartitions().size();
 
 
         BannerEntity bannerEntity;
-        List<LiveInfo.DataBean.BannerBean> banner = mLiveInfo.getData().getBanner();
+        List<LiveAppIndexInfo.DataBean.BannerBean> banner = mLiveAppIndexInfo.getData().getBanner();
         for (int i = 0, size = banner.size(); i < size; i++)
         {
             bannerEntity = new BannerEntity();
@@ -103,7 +103,7 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
         for (int i = 0; i < partitionSize; i++)
         {
             liveSizes.add(tempSize);
-            tempSize += mLiveInfo.getData().getPartitions().get(i).getLives().size();
+            tempSize += mLiveAppIndexInfo.getData().getPartitions().get(i).getLives().size();
         }
     }
 
@@ -159,7 +159,7 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     {
 
         position -= 1;
-        final LiveInfo.DataBean.PartitionsBean.LivesBean livesBean;
+        final LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean livesBean;
         if (holder instanceof LiveEntranceViewHolder)
         {
 
@@ -174,7 +174,7 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
 
             LiveItemViewHolder liveItemViewHolder = (LiveItemViewHolder) holder;
 
-            livesBean = mLiveInfo.getData().getPartitions().get(getItemPosition(position))
+            livesBean = mLiveAppIndexInfo.getData().getPartitions().get(getItemPosition(position))
                     .getLives().get(position - 1 - entranceSize - getItemPosition(position) * 5);
 
             Glide.with(context)
@@ -205,7 +205,7 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
 
             LivePartitionViewHolder livePartitionViewHolder = (LivePartitionViewHolder) holder;
 
-            LiveInfo.DataBean.PartitionsBean.PartitionBean partition = mLiveInfo.
+            LiveAppIndexInfo.DataBean.PartitionsBean.PartitionBean partition = mLiveAppIndexInfo.
                     getData().getPartitions().get(getItemPosition(position)).getPartition();
 
             Glide.with(context)
@@ -234,10 +234,10 @@ public class LiveRecyclerAdapter extends RecyclerView.Adapter
     public int getItemCount()
     {
 
-        if (mLiveInfo != null)
+        if (mLiveAppIndexInfo != null)
         {
             return 1 + entranceIconRes.length
-                    + mLiveInfo.getData().getPartitions().size() * 5;
+                    + mLiveAppIndexInfo.getData().getPartitions().size() * 5;
         } else
         {
             return 0;

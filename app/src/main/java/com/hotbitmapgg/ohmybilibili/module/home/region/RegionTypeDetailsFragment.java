@@ -132,6 +132,7 @@ public class RegionTypeDetailsFragment extends RxLazyFragment
                     finishTask();
                 }, throwable -> {
                     LogUtil.all(throwable.getMessage());
+                    hideProgressBar();
                     ToastUtil.ShortToast("加载失败啦,请重新加载~");
                 });
     }

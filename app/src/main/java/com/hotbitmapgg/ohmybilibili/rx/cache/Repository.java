@@ -5,7 +5,7 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
-import com.hotbitmapgg.ohmybilibili.entity.live.LiveInfo;
+import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
@@ -62,11 +62,11 @@ public class Repository
                 .getRecommendedBannerInfo(), new DynamicKey("首页推荐Banner"), new EvictDynamicKey(update));
     }
 
-    public Observable<Reply<LiveInfo>> getLiveInfo(final boolean update)
+    public Observable<Reply<LiveAppIndexInfo>> getLiveAppIndex(final boolean update)
     {
 
-        return providers.getLiveInfo(RetrofitHelper.getLiveApi()
-                .getLiveInfo(), new DynamicKey("首页直播"), new EvictDynamicKey(update));
+        return providers.getLiveAppIndex(RetrofitHelper.getLiveAppIndexApi()
+                .getLiveAppIndex(), new DynamicKey("首页直播"), new EvictDynamicKey(update));
     }
 
 

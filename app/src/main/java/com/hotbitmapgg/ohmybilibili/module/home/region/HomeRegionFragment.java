@@ -3,14 +3,15 @@ package com.hotbitmapgg.ohmybilibili.module.home.region;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.pager.RegionGridViewAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.HomeRegionItemAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
-import com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +29,8 @@ import rx.schedulers.Schedulers;
 public class HomeRegionFragment extends RxLazyFragment
 {
 
-    @BindView(R.id.more_layout)
-    ExpandableHeightGridView mMoreLayout;
+    @BindView(R.id.recycle)
+    RecyclerView mRecyclerView;
 
     private List<RegionTypesInfo.DataBean> datas = new ArrayList<>();
 
@@ -53,7 +54,7 @@ public class HomeRegionFragment extends RxLazyFragment
     {
 
         loadData();
-        initGridView();
+        initRecyclerView();
     }
 
     @Override
@@ -74,18 +75,21 @@ public class HomeRegionFragment extends RxLazyFragment
                 });
     }
 
-    public void initGridView()
+    @Override
+    protected void initRecyclerView()
     {
 
-        RegionGridViewAdapter mAdapter = new RegionGridViewAdapter(getActivity());
-        mMoreLayout.setAdapter(mAdapter);
-        mMoreLayout.setExpanded(true);
-        mMoreLayout.setOnItemClickListener((parent, view, position, id) -> {
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        HomeRegionItemAdapter mAdapter = new HomeRegionItemAdapter(mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener((position, holder) -> {
 
             switch (position)
             {
                 case 0:
                     //直播
+                    startActivity(new Intent(getActivity(), LiveAppIndexActivity.class));
                     break;
 
                 case 1:

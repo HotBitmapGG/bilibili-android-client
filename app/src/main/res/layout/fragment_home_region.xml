@@ -1,28 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.RecyclerView android:id="@+id/recycle"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     android:overScrollMode="never"
-    android:scrollbars="none">
-
-
-    <com.hotbitmapgg.ohmybilibili.widget.ExpandableHeightGridView
-        android:id="@+id/more_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:columnWidth="@dimen/grid_column_width"
-        android:fadingEdge="none"
-        android:gravity="center"
-        android:horizontalSpacing="@dimen/default_grow_margin"
-        android:listSelector="@android:color/transparent"
-        android:numColumns="3"
-        android:overScrollMode="never"
-        android:paddingBottom="@dimen/default_general_margin"
-        android:paddingLeft="@dimen/default_general_margin"
-        android:paddingRight="@dimen/default_general_margin"
-        android:paddingTop="@dimen/default_long_margin"
-        android:scrollbars="none"
-        android:verticalSpacing="@dimen/default_grow_margin" />
-
-</android.support.v4.widget.NestedScrollView>
+    android:paddingTop="@dimen/activity_vertical_margin" />

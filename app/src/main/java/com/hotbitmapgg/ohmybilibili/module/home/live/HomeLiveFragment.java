@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.LiveRecyclerAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.LiveAppIndexAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
@@ -38,7 +38,7 @@ public class HomeLiveFragment extends RxLazyFragment
 
     private boolean mIsCacheRefresh = false;
 
-    private LiveRecyclerAdapter mLiveRecyclerAdapter;
+    private LiveAppIndexAdapter mLiveAppIndexAdapter;
 
 
     public static HomeLiveFragment newIntance()
@@ -68,8 +68,8 @@ public class HomeLiveFragment extends RxLazyFragment
     protected void initRecyclerView()
     {
 
-        mLiveRecyclerAdapter = new LiveRecyclerAdapter(getActivity());
-        mRecyclerView.setAdapter(mLiveRecyclerAdapter);
+        mLiveAppIndexAdapter = new LiveAppIndexAdapter(getActivity());
+        mRecyclerView.setAdapter(mLiveAppIndexAdapter);
         GridLayoutManager layout = new GridLayoutManager(getActivity(), 12);
         layout.setOrientation(LinearLayoutManager.VERTICAL);
         layout.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
@@ -79,7 +79,7 @@ public class HomeLiveFragment extends RxLazyFragment
             public int getSpanSize(int position)
             {
 
-                return mLiveRecyclerAdapter.getSpanSize(position);
+                return mLiveAppIndexAdapter.getSpanSize(position);
             }
         });
 
@@ -92,11 +92,9 @@ public class HomeLiveFragment extends RxLazyFragment
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
-
             mIsCacheRefresh = true;
             loadData();
         });
-
         mSwipeRefreshLayout.post(() -> {
 
             mSwipeRefreshLayout.setRefreshing(true);
@@ -110,12 +108,13 @@ public class HomeLiveFragment extends RxLazyFragment
 
         BilibiliApp.getInstance()
                 .getRepository()
-                .getLiveInfo(mIsCacheRefresh)
+                .getLiveAppIndex(mIsCacheRefresh)
                 .compose(bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(liveInfoReply -> {
-                    mLiveRecyclerAdapter.setLiveInfo(liveInfoReply.getData());
+                .subscribe(liveAppIndexInfoReply -> {
+
+                    mLiveAppIndexAdapter.setLiveInfo(liveAppIndexInfoReply.getData());
                     finishTask();
                 }, throwable -> {
                     initEmptyView();
@@ -147,7 +146,7 @@ public class HomeLiveFragment extends RxLazyFragment
 
         hideEmptyView();
         mSwipeRefreshLayout.setRefreshing(false);
-        mLiveRecyclerAdapter.notifyDataSetChanged();
+        mLiveAppIndexAdapter.notifyDataSetChanged();
         mRecyclerView.scrollToPosition(0);
     }
 }

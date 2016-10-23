@@ -179,6 +179,11 @@
             android:name=".module.entry.VipActivity"
             android:screenOrientation="portrait" />
 
+        <!--分区直播界面-->
+        <activity
+            android:name=".module.home.region.LiveAppIndexActivity"
+            android:screenOrientation="portrait" />
+
 
         <!-- 播放器界面 -->
         <activity
