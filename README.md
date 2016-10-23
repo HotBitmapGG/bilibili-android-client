@@ -82,13 +82,13 @@
 
 ## Compilation
 
-因升级至Android Studio2.2，项目已使用新的编译器Jack，如果你不是AS2.2版本，遇到编译报错，
+因升级至Android Studio2.2，项目已使用新的编译器Jack，如果你不是AS2.2以上版本，遇到编译报错，
 请参考[issues#15](https://github.com/HotBitmapGG/bilibili-android-client/issues/15)
 
 
 ## UpdateLog
 
-版本的更新日志已迁移至:[更新日志](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
+版本详细更新日志查看:[更新日志](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
 
 
 ## API
@@ -99,9 +99,7 @@
 
 ## Instructions
 
->由于该项目是业余时间开发，更新比较慢还请见谅，有任何意见，bug，问题可以提issuse，我会第一时间关注并解决.
-
- * 项目默认minSdkVersion设置的为21,因为21以下可能有些界面需要做适配,由于时间有限,只能后期慢慢完善,这个可以自己按照需求修改。
+ * 由于该项目是业余时间开发，更新比较慢还请见谅，有任何意见，bug，问题可以提issuse，我会第一时间关注并解决.
 
  * Apk暂时不提供下载,因为还有一些界面功能没有做完,等全部完善后会上传到fir.im。
 
