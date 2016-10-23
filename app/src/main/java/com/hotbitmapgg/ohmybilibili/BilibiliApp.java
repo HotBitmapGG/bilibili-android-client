@@ -31,15 +31,14 @@ public class BilibiliApp extends Application implements ThemeUtils.switchColor
 
         mInstance = this;
         init();
-
-        // 初始化主题切换
-        ThemeUtils.setSwitchColor(this);
-        //初始化全局RxCache
-        repository = Repository.init(getFilesDir());
     }
 
     private void init()
     {
+        // 初始化主题切换
+        ThemeUtils.setSwitchColor(this);
+        //初始化全局RxCache
+        repository = Repository.init(getFilesDir());
         //初始化Stetho调试工具
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)

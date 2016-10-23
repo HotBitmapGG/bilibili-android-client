@@ -709,6 +709,7 @@ public class RetrofitHelper
                     mOkHttpClient = new OkHttpClient.Builder()
                             .cache(cache)
                             .addInterceptor(interceptor)
+                            .addNetworkInterceptor(new CacheInterceptor())
                             .addNetworkInterceptor(new StethoInterceptor())
                             .retryOnConnectionFailure(true)
                             .connectTimeout(30, TimeUnit.SECONDS)
@@ -738,6 +739,27 @@ public class RetrofitHelper
                     .addHeader("User-Agent", COMMON_UA_STR)
                     .build();
             return chain.proceed(requestWithUserAgent);
+        }
+    }
+
+
+    /**
+     * 为okhttp添加缓存，缓存时间为1天，
+     * 这里是考虑到服务器不支持缓存时，从而让okhttp支持缓存
+     */
+    private static class CacheInterceptor implements Interceptor
+    {
+
+        @Override
+        public Response intercept(Chain chain) throws IOException
+        {
+
+            Request request = chain.request();
+            return chain.proceed(request).newBuilder()
+                    .removeHeader("Pragma")
+                    .removeHeader("Cache-Control")
+                    .header("Cache-Control", "max-age=" + 3600 * 24)
+                    .build();
         }
     }
 }
