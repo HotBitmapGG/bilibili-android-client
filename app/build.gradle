@@ -19,7 +19,7 @@ android {
 
     defaultConfig {
         applicationId "com.hotbitmapgg.ohmybilibili"
-        minSdkVersion 21
+        minSdkVersion 17
         targetSdkVersion 24
         versionCode props.getAt("versionCode") as int
         versionName props['versionName']
@@ -75,7 +75,6 @@ dependencies {
     compile 'com.zhy:flowlayout-lib:1.0.1'
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-    compile 'com.google.code.gson:gson:2.6.2'
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
@@ -85,8 +84,6 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.6.0'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.1'
     compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.6.1'
-    compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.1'
     compile 'com.trello:rxlifecycle-components:0.6.1'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
     compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.3.0'
