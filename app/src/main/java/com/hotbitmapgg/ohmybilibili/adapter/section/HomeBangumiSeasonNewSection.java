@@ -88,11 +88,10 @@ public class HomeBangumiSeasonNewSection extends StatelessSection
 
         itemViewHolder.mCardView.setOnClickListener(v -> {
 
-            SeasonNewBangumi.ListBean listBean1 = seasonNewBangumis.get(position);
             MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-            middlewareBangumi.setTitle(listBean1.getTitle());
-            middlewareBangumi.setPic(listBean1.getImageurl());
-            middlewareBangumi.setSpid(listBean1.getSpid());
+            middlewareBangumi.setTitle(listBean.getTitle());
+            middlewareBangumi.setPic(listBean.getImageurl());
+            middlewareBangumi.setSpid(listBean.getSpid());
             BangumiDetailsActivity.launch((Activity) mContext, middlewareBangumi);
         });
     }

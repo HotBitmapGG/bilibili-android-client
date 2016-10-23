@@ -83,17 +83,16 @@ public class HomeBangumiNewSerialSection extends StatelessSection
         itemViewHolder.mUpdate.setText("更新至第" + listBean.getBgmcount() + "话");
 
         itemViewHolder.mCardView.setOnClickListener(v -> {
-            NewBangumiSerial.ListBean listBean1 = newBangumiSerials.get(position);
             MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-            middlewareBangumi.setPic(listBean1.getCover());
-            middlewareBangumi.setTitle(listBean1.getTitle());
-            middlewareBangumi.setSpid(listBean1.getSpid());
-            middlewareBangumi.setSeason_id(listBean1.getSeason_id());
-            middlewareBangumi.setFavorites(listBean1.getFavorites());
-            middlewareBangumi.setPlay(listBean1.getPlay_count());
-            middlewareBangumi.setWeekday(listBean1.getWeekday());
-            middlewareBangumi.setCreate(listBean1.getLastupdate_at());
-            middlewareBangumi.setCount(Integer.valueOf(listBean1.getBgmcount()));
+            middlewareBangumi.setPic(listBean.getCover());
+            middlewareBangumi.setTitle(listBean.getTitle());
+            middlewareBangumi.setSpid(listBean.getSpid());
+            middlewareBangumi.setSeason_id(listBean.getSeason_id());
+            middlewareBangumi.setFavorites(listBean.getFavorites());
+            middlewareBangumi.setPlay(listBean.getPlay_count());
+            middlewareBangumi.setWeekday(listBean.getWeekday());
+            middlewareBangumi.setCreate(listBean.getLastupdate_at());
+            middlewareBangumi.setCount(Integer.valueOf(listBean.getBgmcount()));
             BangumiDetailsActivity.launch((Activity) mContext, middlewareBangumi);
         });
     }

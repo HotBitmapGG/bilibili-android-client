@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
@@ -19,7 +22,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiScheduleActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.discover.OriginalRankActivity;
@@ -57,6 +62,8 @@ public class HomeRecommendedSection extends StatelessSection
     private static final String TYPE_LIVE = "live";
 
     private static final String TYPE_BANGUMI = "bangumi_2";
+
+    private static final String GOTO_BANGUMI = "bangumi_list";
 
     private static final String TYPE_ACTIVITY = "activity";
 
@@ -138,6 +145,13 @@ public class HomeRecommendedSection extends StatelessSection
                 LivePlayerActivity.launch((Activity) mContext,
                         Integer.valueOf(bodyBean.getParam()), bodyBean.getTitle(),
                         bodyBean.getOnline(), bodyBean.getUpFace(), bodyBean.getUp(), 0);
+            } else if (gotoX.equals(GOTO_BANGUMI))
+            {
+                MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
+                middlewareBangumi.setTitle(bodyBean.getTitle());
+                middlewareBangumi.setPic(bodyBean.getCover());
+                middlewareBangumi.setSpid(Integer.valueOf(bodyBean.getParam()));
+                BangumiDetailsActivity.launch((Activity) mContext, middlewareBangumi);
             } else
             {
                 VideoDetailsActivity.launch((Activity) mContext,
@@ -151,14 +165,16 @@ public class HomeRecommendedSection extends StatelessSection
                 //直播item
                 itemViewHolder.mLiveLayout.setVisibility(View.VISIBLE);
                 itemViewHolder.mVideoLayout.setVisibility(View.GONE);
+                itemViewHolder.mBangumiLayout.setVisibility(View.GONE);
                 itemViewHolder.mLiveUp.setText(bodyBean.getUp());
                 itemViewHolder.mLiveOnline.setText(String.valueOf(bodyBean.getOnline()));
                 break;
             case TYPE_BANGUMI:
                 // 番剧item
-                itemViewHolder.mLiveLayout.setVisibility(View.VISIBLE);
+                itemViewHolder.mLiveLayout.setVisibility(View.GONE);
                 itemViewHolder.mVideoLayout.setVisibility(View.GONE);
-                itemViewHolder.mLiveUp.setText(bodyBean.getDesc1());
+                itemViewHolder.mBangumiLayout.setVisibility(View.VISIBLE);
+                itemViewHolder.mBangumiUpdate.setText(bodyBean.getDesc1());
                 break;
             case TYPE_ACTIVITY:
                 ViewGroup.LayoutParams layoutParams = itemViewHolder.mCardView.getLayoutParams();
@@ -166,9 +182,11 @@ public class HomeRecommendedSection extends StatelessSection
                 itemViewHolder.mCardView.setLayoutParams(layoutParams);
                 itemViewHolder.mLiveLayout.setVisibility(View.GONE);
                 itemViewHolder.mVideoLayout.setVisibility(View.GONE);
+                itemViewHolder.mBangumiLayout.setVisibility(View.GONE);
                 break;
             default:
                 itemViewHolder.mLiveLayout.setVisibility(View.GONE);
+                itemViewHolder.mBangumiLayout.setVisibility(View.GONE);
                 itemViewHolder.mVideoLayout.setVisibility(View.VISIBLE);
                 itemViewHolder.mVideoPlayNum.setText(bodyBean.getPlay());
                 itemViewHolder.mVideoReviewCount.setText(bodyBean.getDanmaku());
@@ -206,7 +224,12 @@ public class HomeRecommendedSection extends StatelessSection
                 headerViewHolder.mTypeRankBtn.setVisibility(View.GONE);
                 headerViewHolder.mTypeMore.setVisibility(View.VISIBLE);
                 headerViewHolder.mAllLiveNum.setVisibility(View.VISIBLE);
-                headerViewHolder.mAllLiveNum.setText("当前" + liveCount + "个直播");
+                SpannableStringBuilder stringBuilder = new SpannableStringBuilder("当前" + liveCount + "个直播");
+                ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(
+                        mContext.getResources().getColor(R.color.pink_text_color));
+                stringBuilder.setSpan(foregroundColorSpan, 2,
+                        stringBuilder.length() - 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                headerViewHolder.mAllLiveNum.setText(stringBuilder);
                 break;
             default:
                 headerViewHolder.mTypeRankBtn.setVisibility(View.GONE);
@@ -390,6 +413,12 @@ public class HomeRecommendedSection extends StatelessSection
 
         @BindView(R.id.item_live_online)
         TextView mLiveOnline;
+
+        @BindView(R.id.layout_bangumi)
+        RelativeLayout mBangumiLayout;
+
+        @BindView(R.id.item_bangumi_update)
+        TextView mBangumiUpdate;
 
 
         public ItemViewHolder(View itemView)

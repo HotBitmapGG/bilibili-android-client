@@ -112,8 +112,31 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/video_info_count_text_margin_start"
+                android:drawablePadding="@dimen/default_tiny_margin"
+                android:drawableStart="@drawable/ic_watching"
                 android:gravity="center"
                 android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_tiny_text_size" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_bangumi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/card_title_margin"
+            android:paddingBottom="@dimen/default_general_margin"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/item_bangumi_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/default_small_text_size" />
         </RelativeLayout>
 
