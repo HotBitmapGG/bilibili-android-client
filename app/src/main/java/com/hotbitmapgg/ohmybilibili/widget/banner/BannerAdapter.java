@@ -61,7 +61,7 @@ public class BannerAdapter extends PagerAdapter
         }
         ImageView v = mList.get(position);
         pos = position;
-        v.setScaleType(ImageView.ScaleType.FIT_XY);
+        v.setScaleType(ImageView.ScaleType.CENTER);
         //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
         ViewParent vp = v.getParent();
         if (vp != null)

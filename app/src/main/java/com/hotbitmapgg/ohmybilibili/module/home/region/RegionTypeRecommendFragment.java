@@ -192,6 +192,7 @@ public class RegionTypeRecommendFragment extends RxLazyFragment
             bannerEntity = new BannerEntity();
             bannerEntity.img = topBean.getImage();
             bannerEntity.link = topBean.getUri();
+            bannerEntity.title = topBean.getTitle();
             bannerEntities.add(bannerEntity);
         }
     }
