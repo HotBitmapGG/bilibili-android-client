@@ -155,6 +155,7 @@ public class HomeRegionFragment extends RxLazyFragment
 
                 case 10:
                     //广告
+                    startActivity(new Intent(getActivity(), AdvertisingActivity.class));
                     break;
 
                 case 11:

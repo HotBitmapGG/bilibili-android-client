@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.rx.RxBus;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
@@ -33,13 +34,16 @@ public class RegionRecommendNewSection extends StatelessSection
 
     private Context mContext;
 
+    private int rid;
+
     private List<RegionRecommendInfo.DataBean.NewBean> news;
 
-    public RegionRecommendNewSection(Context context, List<RegionRecommendInfo.DataBean.NewBean> news)
+    public RegionRecommendNewSection(Context context, int rid, List<RegionRecommendInfo.DataBean.NewBean> news)
     {
 
         super(R.layout.layout_region_recommend_new_head, R.layout.layout_region_recommend_card_item);
         this.news = news;
+        this.rid = rid;
         this.mContext = context;
     }
 
@@ -91,11 +95,28 @@ public class RegionRecommendNewSection extends StatelessSection
     {
 
         HeadViewHolder headViewHolder = (HeadViewHolder) holder;
-        headViewHolder.mMore.setOnClickListener(v -> RxBus.getInstance().post(0));
+        if (rid == ConstantUtils.ADVERTISING_RID)
+        {
+            headViewHolder.mMore.setVisibility(View.GONE);
+            headViewHolder.mTypeIcon.setImageResource(R.drawable.ic_header_movie_relate);
+            headViewHolder.mTypeTv.setText("最新投稿");
+        } else
+        {
+            headViewHolder.mMore.setVisibility(View.VISIBLE);
+            headViewHolder.mTypeIcon.setImageResource(R.drawable.ic_header_new);
+            headViewHolder.mTypeTv.setText("最新视频");
+            headViewHolder.mMore.setOnClickListener(v -> RxBus.getInstance().post(0));
+        }
     }
 
     static class HeadViewHolder extends RecyclerView.ViewHolder
     {
+
+        @BindView(R.id.item_type_img)
+        ImageView mTypeIcon;
+
+        @BindView(R.id.item_type_tv)
+        TextView mTypeTv;
 
         @BindView(R.id.item_type_more)
         TextView mMore;

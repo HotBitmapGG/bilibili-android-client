@@ -2,16 +2,19 @@ package com.hotbitmapgg.ohmybilibili.module.home.region;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.section.RegionRecommendBannerSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.RegionRecommendDynamicSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.RegionRecommendHotSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.RegionRecommendNewSection;
-import com.hotbitmapgg.ohmybilibili.adapter.section.RegionRecommendTypesSection;
-import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
+import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
@@ -28,23 +31,23 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by hcc on 2016/10/21 20:39
+ * Created by hcc on 2016/10/23 12:09
  * 100332338@qq.com
  * <p>
- * 分区推荐页面
+ * 分区广告界面
  */
 
-public class RegionTypeRecommendFragment extends RxLazyFragment
+public class AdvertisingActivity extends RxBaseActivity
 {
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mRefreshLayout;
-
-    private int rid;
 
     private boolean mIsRefreshing = false;
 
@@ -60,34 +63,51 @@ public class RegionTypeRecommendFragment extends RxLazyFragment
 
     private List<RegionRecommendInfo.DataBean.DynamicBean> dynamics = new ArrayList<>();
 
-    public static RegionTypeRecommendFragment newInstance(int rid)
+    @Override
+    public int getLayoutId()
     {
 
-        RegionTypeRecommendFragment fragment = new RegionTypeRecommendFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ConstantUtils.EXTRA_RID, rid);
-        fragment.setArguments(bundle);
-        return fragment;
+        return R.layout.activity_advertising;
     }
 
     @Override
-    public int getLayoutResId()
+    public void initViews(Bundle savedInstanceState)
     {
 
-        return R.layout.fragment_region_recommend;
-    }
-
-    @Override
-    public void finishCreateView(Bundle state)
-    {
-
-        rid = getArguments().getInt(ConstantUtils.EXTRA_RID);
         initRefreshLayout();
         initRecyclerView();
     }
 
     @Override
-    protected void initRefreshLayout()
+    public void initToolBar()
+    {
+
+        mToolbar.setTitle("广告");
+        setSupportActionBar(mToolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null)
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+
+        getMenuInflater().inflate(R.menu.menu_region, menu);
+        return true;
+    }
+
+    @Override
+    public void initRefreshLayout()
     {
 
         mRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
@@ -115,11 +135,11 @@ public class RegionTypeRecommendFragment extends RxLazyFragment
     }
 
     @Override
-    protected void initRecyclerView()
+    public void initRecyclerView()
     {
 
         mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
-        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(AdvertisingActivity.this, 2);
         mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
         {
 
@@ -143,11 +163,11 @@ public class RegionTypeRecommendFragment extends RxLazyFragment
     }
 
     @Override
-    protected void loadData()
+    public void loadData()
     {
 
         RetrofitHelper.getRegionRecommendApi()
-                .getRegionRecommends(rid)
+                .getRegionRecommends(ConstantUtils.ADVERTISING_RID)
                 .compose(bindToLifecycle())
                 .map(RegionRecommendInfo::getData)
                 .subscribeOn(Schedulers.io())
@@ -167,15 +187,14 @@ public class RegionTypeRecommendFragment extends RxLazyFragment
     }
 
     @Override
-    protected void finishTask()
+    public void finishTask()
     {
 
         converBanner();
         mSectionedRecyclerViewAdapter.addSection(new RegionRecommendBannerSection(bannerEntities));
-        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendTypesSection(getActivity(), rid));
-        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendHotSection(getActivity(), rid, recommends));
-        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendNewSection(getActivity(), rid, news));
-        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendDynamicSection(getActivity(), dynamics));
+        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendHotSection(AdvertisingActivity.this, ConstantUtils.ADVERTISING_RID, recommends));
+        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendNewSection(AdvertisingActivity.this, ConstantUtils.ADVERTISING_RID, news));
+        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendDynamicSection(AdvertisingActivity.this, dynamics));
 
         mIsRefreshing = false;
         mRefreshLayout.setRefreshing(false);

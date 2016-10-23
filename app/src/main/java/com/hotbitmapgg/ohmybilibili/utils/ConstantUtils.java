@@ -110,4 +110,6 @@ public class ConstantUtils
     public static final String EXTRA_RID = "extra_rid";
 
     public static final String EXTRA_POSITION = "extra_pos";
+
+    public static final int ADVERTISING_RID = 165;
 }
