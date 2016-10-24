@@ -29,7 +29,7 @@
 
 ## Screenshots
 
-<a href="art/00.png"><img src="art/00.png" width="40%"/></a> <a href="art/01.png"><img src="art/01.png" width="40%"/></a> <a href="art/02.png"><img src="art/02.png" width="40%"/></a>
+<a href="art/00.png"><img src="art/00.png" width="30%"/></a> <a href="art/01.png"><img src="art/01.png" width="30%"/></a> <a href="art/02.png"><img src="art/02.png" width="30%"/></a>
 
 <a href="art/02.png"><img src="art/02.png" width="40%"/></a> <a href="art/03.png"><img src="art/03.png" width="40%"/></a>
 
