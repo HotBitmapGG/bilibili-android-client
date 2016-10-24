@@ -4,11 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/search_top_layout_height"
-    android:layout_marginStart="@dimen/default_tiny_padding"
     android:layout_marginEnd="@dimen/default_tiny_padding"
+    android:layout_marginStart="@dimen/default_tiny_padding"
     android:fitsSystemWindows="true"
     app:cardBackgroundColor="@color/cardview_light_background"
-    app:cardCornerRadius="1dp">
+    app:cardCornerRadius="1dp"
+    app:cardElevation="@dimen/app_bar_default_elevation">
 
     <ImageView
         android:id="@+id/search_back"
@@ -30,8 +31,9 @@
         android:gravity="center_vertical"
         android:hint="@string/search_hint"
         android:imeOptions="actionSearch"
-        android:singleLine="true"
-        android:textColor="@color/font_normal" />
+        android:maxLines="1"
+        android:textColor="@color/font_normal"
+        android:textSize="@dimen/default_small_text_size" />
 
 
     <ImageView

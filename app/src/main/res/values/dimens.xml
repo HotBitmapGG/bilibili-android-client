@@ -56,7 +56,7 @@
     <dimen name="search_item_bangumi_image_height">150dp</dimen>
     <dimen name="search_item_bangumi_image_width">120dp</dimen>
     <dimen name="search_item_text_margin_top">15dp</dimen>
-    <dimen name="search_top_layout_height">60dp</dimen>
+    <dimen name="search_top_layout_height">50dp</dimen>
     <dimen name="search_back_padding">12dp</dimen>
     <dimen name="search_edit_margin_start">75dp</dimen>
     <dimen name="search_edit_margin_end">40dp</dimen>

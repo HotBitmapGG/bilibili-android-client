@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/tab_layout_default_height"
                 android:background="@color/gray_light_30"
+                android:elevation="@dimen/app_bar_elevation"
                 app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_tiny_radius"
                 app:tl_indicator_color="@color/colorPrimary"
                 app:tl_indicator_height="@dimen/tab_indicator_small_height"
