@@ -277,6 +277,10 @@
     <dimen name="about_bottom_layout_height">50dp</dimen>
     <dimen name="region_recommend_icon_size">40dp</dimen>
     <dimen name="search_archive_image_width">160dp</dimen>
+    <dimen name="search_movie_image_width">120dp</dimen>
+    <dimen name="search_movie_image_height">160dp</dimen>
+    <dimen name="search_upper_avatar_size">70dp</dimen>
+    <dimen name="tab_bar_item_padding">15dp</dimen>
 
 
 </resources>

@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.search.SearchBangumiInfo;
+import com.hotbitmapgg.ohmybilibili.entity.search.SearchArchiveInfo;
 
 import java.util.List;
 
@@ -19,18 +19,18 @@ import java.util.List;
  * Created by hcc on 16/8/29 21:18
  * 100332338@qq.com
  * <p/>
- * 番剧搜索数据Adapter
+ * 综合搜索头部番剧Adapter
  */
-public class BangumiResultsAdapter extends AbsRecyclerViewAdapter
+public class ArchiveHeadBangumiAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<SearchBangumiInfo.DataBean.ItemsBean> bangumis;
+    private List<SearchArchiveInfo.DataBean.ItemsBean.SeasonBean> seasons;
 
-    public BangumiResultsAdapter(RecyclerView recyclerView, List<SearchBangumiInfo.DataBean.ItemsBean> bangumis)
+    public ArchiveHeadBangumiAdapter(RecyclerView recyclerView, List<SearchArchiveInfo.DataBean.ItemsBean.SeasonBean> seasons)
     {
 
         super(recyclerView);
-        this.bangumis = bangumis;
+        this.seasons = seasons;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class BangumiResultsAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext()).
-                inflate(R.layout.item_search_bangumi, parent, false));
+                inflate(R.layout.item_archive_head_bangumi, parent, false));
     }
 
     @Override
@@ -49,22 +49,22 @@ public class BangumiResultsAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            SearchBangumiInfo.DataBean.ItemsBean itemsBean = bangumis.get(position);
+            SearchArchiveInfo.DataBean.ItemsBean.SeasonBean seasonBean = seasons.get(position);
 
             Glide.with(getContext())
-                    .load(itemsBean.getCover())
+                    .load(seasonBean.getCover())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mBangumiPic);
 
-            itemViewHolder.mBangumiTitle.setText(itemsBean.getTitle());
-            if (itemsBean.getFinish() == 1)
-                itemViewHolder.mBangumiCount.setText(itemsBean.getNewest_season() + "," + itemsBean.getTotal_count() + "话全");
+            itemViewHolder.mBangumiTitle.setText(seasonBean.getTitle());
+            if (seasonBean.getFinish() == 1)
+                itemViewHolder.mBangumiCount.setText(seasonBean.getNewest_season() + "," + seasonBean.getTotal_count() + "话全");
             else
-                itemViewHolder.mBangumiCount.setText(itemsBean.getNewest_season() + "," + "更新至第" + itemsBean.getTotal_count() + "话");
-            itemViewHolder.mBangumiDetails.setText(itemsBean.getCat_desc());
+                itemViewHolder.mBangumiCount.setText(seasonBean.getNewest_season() + "," + "更新至第" + seasonBean.getTotal_count() + "话");
+            itemViewHolder.mBangumiDetails.setText(seasonBean.getCat_desc());
         }
 
         super.onBindViewHolder(holder, position);
@@ -74,7 +74,7 @@ public class BangumiResultsAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return bangumis.size();
+        return seasons.size();
     }
 
     public class ItemViewHolder extends ClickableViewHolder

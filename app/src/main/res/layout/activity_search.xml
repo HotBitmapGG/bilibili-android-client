@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/gray_light_30"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <include layout="@layout/layout_card_search" />
@@ -25,9 +25,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/tab_layout_default_height"
                 android:background="@color/gray_light_30"
-                app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_tiny_radius"
                 app:tl_indicator_color="@color/colorPrimary"
+                app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_tiny_radius"
                 app:tl_indicator_height="@dimen/tab_indicator_small_height"
+                app:tl_tab_padding="@dimen/tab_bar_item_padding"
+                app:tl_tab_space_equal="false"
                 app:tl_textSelectColor="@color/colorPrimary"
                 app:tl_textUnselectColor="@color/font_normal" />
 

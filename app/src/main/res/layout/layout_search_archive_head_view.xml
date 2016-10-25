@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_layout_default_height"
+        android:layout_marginBottom="@dimen/default_general_margin"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/search_sorting_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/search_sorting_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="默认排序"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_small_text_size" />
+
+            <ImageView
+                android:id="@+id/search_sorting_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_tiny_margin"
+                android:src="@drawable/ic_bangumi_index_close" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/search_duration_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/search_duration_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全部时长"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_small_text_size" />
+
+            <ImageView
+                android:id="@+id/search_duration_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_tiny_margin"
+                android:src="@drawable/ic_bangumi_index_close" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/search_region_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/search_region_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全部分区"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_small_text_size" />
+
+            <ImageView
+                android:id="@+id/search_region_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_tiny_margin"
+                android:src="@drawable/ic_bangumi_index_close" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/search_archive_bangumi_head_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+
+</LinearLayout>

@@ -1,11 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.entity.search;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +16,7 @@ public class SearchArchiveInfo
 
     /**
      * code : 0
-     * data : {"page":1,"nav":[{"name":"番剧","total":0,"pages":1,"type":1},{"name":"UP主","total":50,"pages":17,"type":2},{"name":"影视","total":0,"pages":1,"type":3},{"name":"专题","total":0,"pages":1,"type":4}],"items":{"season":[],"upper":[],"movie":[],"sp":[],"archive":[{"title":" 【夏一可】守望先锋：《夏家三千菜》第十期","cover":"http://i0.hdslb.com/bfs/archive/21ebde727c4ab549b1a0cf26102ad34add7aa345.jpg","uri":"bilibili://video/6796458","param":"6796458","goto":"av","play":120172,"danmaku":938,"author":"夏一可","total_count":0,"desc":"当你要惩罚一个屁股的时候，往往需要另一个屁股。","official_verify":{"type":0,"desc":""},"duration":"8:24","status":0},{"title":"[守望先锋]好莱坞的万圣后宫\u2014逗川","cover":"http://i0.hdslb.com/bfs/archive/2904317e319d260b3dfeb0b2540a148d010cc862.jpg","uri":"bilibili://video/6779287","param":"6779287","goto":"av","play":124249,"danmaku":1048,"author":"逗川kshadow","total_count":0,"desc":"自制 感谢收看 万圣节小剧场~\nBGM：尸体派对-恐るべき暗暗\n内心毫无恐怖，甚至还想笑~","official_verify":{"type":0,"desc":""},"duration":"3:45","status":0},{"title":"《守望先锋》动画短片\u2014\u2014最后的堡垒","cover":"http://i0.hdslb.com/bfs/archive/1c9960a90d8a2cd15894c9f970f80223745cce86.jpg","uri":"bilibili://video/5891295","param":"5891295","goto":"av","play":1296480,"danmaku":16871,"author":"网易暴雪游戏视频","total_count":0,"desc":"《最后的堡垒》为大家讲述的是充满好奇心的变形机器人\u201c堡垒\u201d的身世。这台战斗机器人在荒野中沉眠了十几年，之后又被意外激活。本集，我们将跟随它的脚步，一起探寻未知却又充满魅力的世界。虽然这位充满探索欲的智械渐渐迷上了周围的环境 ，但很快却发现，其核心战斗程序正指引它踏上另一条道路\u2026\u2026","official_verify":{"type":0,"desc":""},"duration":"7:2","status":0},{"title":"【种族天赋rap】千万别玩守望先锋！","cover":"http://i0.hdslb.com/bfs/archive/3dd09bd1bde6127ce441f452ee6b3e20bfc3726b.jpg","uri":"bilibili://video/5021215","param":"5021215","goto":"av","play":2841491,"danmaku":8737,"author":"小可儿","total_count":0,"desc":"自制曲！ etika小哥rap种族天赋满点！\r\n感谢@凯玟桑 的和声\r\n","official_verify":{"type":0,"desc":""},"duration":"1:9","status":0},{"title":"【老E】守望先锋！教你如何制裁外挂！","cover":"http://i0.hdslb.com/bfs/archive/4c139fa94a2b912030fa7fcbce615235601a42e6.jpg","uri":"bilibili://video/5452366","param":"5452366","goto":"av","play":1247823,"danmaku":28956,"author":"EdmundDZhang","total_count":0,"desc":"正义！\n【直播间】www.zhanqi.tv/edmunddzhang\n【微博】@老E_EdmundDZhang","official_verify":{"type":0,"desc":""},"duration":"29:54","status":0},{"title":"【MMD】欢迎来到守望先锋【LOL预告还原再现】","cover":"http://i0.hdslb.com/bfs/archive/4010e2f88189792c18fcc08d1ff8c8d2c9fd75f3.jpg","uri":"bilibili://video/6747898","param":"6747898","goto":"av","play":60448,"danmaku":254,"author":"幻想乡的新月","total_count":0,"desc":"sm29869992 \n嘛~Mahlazer的新作，依然很棒，虽然我个人是没玩守望先锋的\n前作-Miku对于有毒视频的反应：av5910085","official_verify":{"type":0,"desc":""},"duration":"2:49","status":0},{"title":"【A路人】千万别玩守望先锋！！","cover":"http://i0.hdslb.com/bfs/archive/8bb02be4c2aae89686d30788c2074c5a73d0e776.jpg","uri":"bilibili://video/5049950","param":"5049950","goto":"av","play":1896253,"danmaku":16914,"author":"A路人","total_count":0,"desc":"本家：av5021215  原作：小可儿\n你们怎么都开始玩这毁青春的游戏了？！NOOOOOOOOOOOOOOO！！","official_verify":{"type":0,"desc":""},"duration":"1:51","status":0},{"title":"守望先锋：亮剑全场最佳","cover":"http://i0.hdslb.com/bfs/archive/b4a121f317e3fa6a51648f2d84d26e09f2dd7f5a.jpg","uri":"bilibili://video/5041671","param":"5041671","goto":"av","play":2200841,"danmaku":8440,"author":"撸龙","total_count":0,"desc":"自制 最近中毒 看什么都联想屁股于是这个视频诞生咯\r\n 堡垒狂鼠死神麦爹源氏卢西奥 \r\n是的，这个世界需要更多的屁股\r\n群号:543669626 欢迎拉稀 /来吸","official_verify":{"type":0,"desc":""},"duration":"2:57","status":0},{"title":"【60帧超级燃】欢迎来到守望屁股【守望先锋高能MMD】【60fps大片向】","cover":"http://i0.hdslb.com/bfs/archive/46fe3496fd44c6a5e5cbe6c4860ff031fdb397c7.jpg","uri":"bilibili://video/6748238","param":"6748238","goto":"av","play":55984,"danmaku":163,"author":"missrin","total_count":0,"desc":"youtube 首先，先膜拜下mahlazer巨巨~然后，mahlazer巨巨这次给大家带来的是，守望先锋的高能剧情向~根据mahlazer的说明，片段有些部分仿拟了 LOL 电影预告片【Welcome to League of Legends】，想深入了解的可以去看看原版预告~源地址https://www.youtube.com/watch?v=rV_OnNBo5mo  其她合集：【舞蹈】mylist430693 【剧情】mylist636322 【舞蹈】mylist601988","official_verify":{"type":0,"desc":""},"duration":"2:49","status":0},{"title":"【守望先锋】全角色【投篮】究极教学 一局双响","cover":"http://i0.hdslb.com/bfs/archive/3ed23a7693fc530521a77f502bcfe2d956118784.jpg","uri":"bilibili://video/5861052","param":"5861052","goto":"av","play":721950,"danmaku":4305,"author":"天青树","total_count":0,"desc":"自制 只有占点图的重生点才有投篮彩蛋，一个点2个桌子可以投2次，回合结束篮球会重置位置，每个角色都有特殊的投篮♂技巧，主要根据身高区分。学会了可以一局触发2次彩蛋，没人干扰百发百中。推荐使用76，死神，麦克雷，路霸，查莉亚，和尚来投篮。初次投稿，多有不足还请多多包涵。","official_verify":{"type":0,"desc":""},"duration":"16:14","status":0},{"title":"【守望先锋】你渴望学习吗？（一只沉迷学习的小钻风）","cover":"http://i0.hdslb.com/bfs/archive/f641d124386ddaa47b628a8dc2bb0c6c9087ec2c.jpg","uri":"bilibili://video/5235961","param":"5235961","goto":"av","play":1186935,"danmaku":8531,"author":"裸奔的爱毛","total_count":0,"desc":"最近沉迷学习成了一只咸毛，所以这个视频详述了一只沉迷学习的小钻风的故事。\n花了几百个小时后最终还是把这个视频做好啦！\n关于梦想，原本想到的是能有一个自己安静听音乐的房间，里面有一流的设备。但是这太世俗了。和呆毛聊了一会后，我才想起来我真正可谓之为梦想的愿望：\n听见数万人为我欢呼的声音！（S级）","official_verify":{"type":0,"desc":""},"duration":"4:14","status":0},{"title":"【RAP】守望先锋×全明星","cover":"http://i0.hdslb.com/bfs/archive/aeb4a06f0d6b0a2e573c8eae801203dffb2531b1.jpg","uri":"bilibili://video/5020663","param":"5020663","goto":"av","play":1587691,"danmaku":6414,"author":"吃素的狮子","total_count":0,"desc":"看到短裙的新作想到了做这么个鬼畜，第一次做全程RAP的就当试水了，好想玩屁股啊。","official_verify":{"type":0,"desc":""},"duration":"2:29","status":0},{"title":"【老E】守望先锋！教你如何用死神偷人！","cover":"http://i0.hdslb.com/bfs/archive/299a0ef39b726b29e216104ea722e42448e66594.jpg","uri":"bilibili://video/5659056","param":"5659056","goto":"av","play":1134211,"danmaku":13618,"author":"EdmundDZhang","total_count":0,"desc":"500强了！这游戏可以毕业了！\n【直播间】www.zhanqi.tv/edmunddzhang\n【微博】@老E_EdmundDZhang","official_verify":{"type":0,"desc":""},"duration":"22:48","status":0},{"title":"守望先锋MV《半藏 VS 源氏 (HANZO VS GENJI)》","cover":"http://i0.hdslb.com/bfs/archive/7f4fe246e626012b229dc773bcc945fa170c057b.jpg","uri":"bilibili://video/6027751","param":"6027751","goto":"av","play":704329,"danmaku":3233,"author":"M.Scarlet","total_count":0,"desc":"优酷 搬运","official_verify":{"type":0,"desc":""},"duration":"12:2","status":0},{"title":"【守望先锋】这才是守望先锋的正确玩法","cover":"http://i0.hdslb.com/bfs/archive/9998f370277147606923a4de87ce70fbd86b82f2.jpg","uri":"bilibili://video/5841738","param":"5841738","goto":"av","play":806369,"danmaku":12394,"author":"奶茶☆","total_count":0,"desc":"【请问你虐菜开心吗？】 【废话！当然开心了！】  （分量很足 大家慢慢食用 (๑\u2022̀ㅂ\u2022́)و✧） 【新浪微博@奶茶桑_","official_verify":{"type":0,"desc":""},"duration":"49:56","status":0},{"title":"守望先锋《PUMP♀IT》","cover":"http://i0.hdslb.com/bfs/archive/fc2831ef1e98757089b95526cab9b77369187c82.jpg","uri":"bilibili://video/4814985","param":"4814985","goto":"av","play":1812575,"danmaku":7040,"author":"吃素的狮子","total_count":0,"desc":"玩屁股中毒了，做了个守望屁股的鬼畜，真是太IMBA了~！不多说了，我继续玩屁股去~关注并转发微博可以抽一份典藏版哦~","official_verify":{"type":0,"desc":""},"duration":"3:41","status":0},{"title":"在其他游戏中来玩守望先锋【2p制作视角已更新】","cover":"http://i0.hdslb.com/bfs/archive/d43c104f1f7a8be7f24b96e3056d1f40cc0e7f2a.jpg","uri":"bilibili://video/6063474","param":"6063474","goto":"av","play":745273,"danmaku":5148,"author":"梅森MonSe","total_count":0,"desc":"因为断网了，，所以就一直拖欠，拖到了现在。昨天就做好了，今天蹭中国移动营业厅的网制作完成并且上传成功的。。up要开学了，做的不好请见谅、、、、\n之前就录好了，因为一直没有网没上传，今天接老师办公室的网上传了2p。可能会有音画不同步，没时间剪了。见谅，上一次作者版权忘记录了，今天改了一下。\n视频3:40处的漫画已由LOFTER上面的作者：Dagger授权","official_verify":{"type":0,"desc":""},"duration":"5:15","status":0},{"title":"守望先锋国语配音和声优们","cover":"http://i0.hdslb.com/bfs/archive/bddddb9cc9edcd0cd1e6ddc4c9dfbaff9376066f.jpg","uri":"bilibili://video/5246794","param":"5246794","goto":"av","play":1250488,"danmaku":36803,"author":"仟水君","total_count":0,"desc":"自制 资料来自新浪微博@落枕武士猁释然   一切素材来自网络\n目前找不到源氏CV的照片，堡垒是电脑合成，请尊重每个CV请不要将CV带入角色\n大锤的CV配图配错了，原先的是翟巍老师，现在已经修改，对不起袁国庆老师QAQ\n以下是CV们的新浪微博\n@北辰是也 半藏\n@笨笨笂_彭博 源氏\n@洪海天了个咪 猎空、毛妹\n@刘茫儿 士兵76\n@贾邱 死神\n@陶典oO 天使，D.VA\n@昱头Yolanda 小美\n@孙晔Gary DJ\n@杨梦露ada 黒百合\n@张欣1970 狂鼠\n@孟祥龙福大命大造化大 温斯顿","official_verify":{"type":0,"desc":""},"duration":"11:52","status":0},{"title":"【守望先锋CG宣传片合集】","cover":"http://i0.hdslb.com/bfs/archive/4e25a931306f5fa3cb8481b58562fa418f743062.jpg","uri":"bilibili://video/4873874","param":"4873874","goto":"av","play":1653510,"danmaku":28017,"author":"Bilibili丶南北","total_count":0,"desc":"没有守望先锋玩我要死了~~~~~\n这里有最全的守望先锋cg(￣ε(#￣) Σ \n喜欢的话就点个收藏吧(｡･ω･｡)\n网盘资源：https://yun.baidu.com/s/1c2kaiiO\n","official_verify":{"type":0,"desc":""},"duration":"110:39","status":0},{"title":"【老E】守望先锋！教你如何用半藏坑队友！","cover":"http://i0.hdslb.com/bfs/archive/1630ae3b3cf12a9e747ee43f206751bf3b8a9d2b.jpg","uri":"bilibili://video/5155077","param":"5155077","goto":"av","play":1465674,"danmaku":12084,"author":"EdmundDZhang","total_count":0,"desc":"10个半藏9个坑。\n使用前【半藏！谁玩这个辣鸡英雄！】\n使用后【半藏真TMD好玩】（杀了1个，死了10次）\n【直播间】www.zhanqi.tv/edmunddzhang\n【微博】@老E_EdmundDZhang","official_verify":{"type":0,"desc":""},"duration":"26:12","status":0}]}}
+     * data : {"page":1,"nav":[{"name":"番剧","total":1,"pages":1,"type":1},{"name":"UP主","total":1,"pages":1,"type":2},{"name":"影视","total":0,"pages":1,"type":3},{"name":"专题","total":0,"pages":1,"type":4}],"items":{"season":[{"title":"甜甜私房猫","cover":"http://i0.hdslb.com/bfs/bangumi/e4eaa21feb4449abe887ca50618638e953d05413.jpg","uri":"bilibili://bangumi/season/5563","param":"5563","goto":"bangumi","index":"4","newest_cat":"tv","newest_season":"第三季","cat_desc":"TV(1) ","total_count":12,"official_verify":{"type":0,"desc":""},"status":0}],"upper":[],"movie":[],"sp":[],"archive":[{"title":"【六道配音】甜甜六道猫：被吃掉的小起！","cover":"http://i0.hdslb.com/bfs/archive/38b1fe059f5d83f1e0c7aa1add7c62f36f7c1f6a.jpg","uri":"bilibili://video/6637146","param":"6637146","goto":"av","play":46749,"danmaku":1692,"author":"★⑥檤轮囬★","total_count":0,"desc":"《甜甜私房猫》第三季的部分配音，感觉整个人都萌萌哒的呢~！ε=ε=(ノ≧∇≦)ノ","official_verify":{"type":0,"desc":""},"duration":"6:49","status":0},{"title":"【一年生】 暖暖日常超主动好不好系列 甜甜甜 边剪边笑 大脸猫和小狼狗活动视频剪辑 BGM 甜甜的","cover":"http://i0.hdslb.com/bfs/archive/df412698b7a40e47915d7888b96c8a1a81751848.jpg","uri":"bilibili://video/6686090","param":"6686090","goto":"av","play":13715,"danmaku":215,"author":"青青家的七七哟","total_count":0,"desc":"第一次剪视频啊啊啊啊啊，好多视频照片找不到最初的作者，侵删。","official_verify":{"type":0,"desc":""},"duration":"4:16","status":0},{"title":"【720P】甜甜私房猫【诸神字幕组】【中日字幕】","cover":"http://i0.hdslb.com/bfs/archive/fd57e3c6c54b97c5c890b35c888c785bedd5c066.jpg","uri":"bilibili://video/6254654","param":"6254654","goto":"av","play":33142,"danmaku":1567,"author":"苹果小酱","total_count":0,"desc":"故事讲述的是在初次散步就迷了路的虎斑条纹小猫\u201cchi\u201d（小起），被亲切的山田洋平和妈妈家捡了回去，不过山田家住的却是禁止养宠物的公寓。由于无法找到新的饲主，山田一家只能偷偷地养起了它。当小猫得到了他们的疼爱后，变得越来越调皮捣蛋，不但在衣服和地毯上随处小便，还用名贵的沙发和爸爸最爱的牛仔裤磨爪子。随着时间的慢慢流逝，小chi也逐渐成了山田不可缺少的一员，为了能妥善的解决公寓不能养猫的问题，在偶然间山田家决定搬入一所允许饲养宠物的新公寓，从此开始小chi也开始另一段新的冒险旅程。","official_verify":{"type":0,"desc":""},"duration":"343:43","status":0},{"title":"【10月】甜甜私房猫  PV","cover":"http://i0.hdslb.com/bfs/archive/e274962bd2555bb2ecb71689864cc012aaf1f449.jpg","uri":"bilibili://video/6168196","param":"6168196","goto":"av","play":18127,"danmaku":218,"author":"森冰爵","total_count":0,"desc":" ","official_verify":{"type":0,"desc":""},"duration":"1:34","status":0},{"title":"【修复中】【一口气看完】甜甜私房猫 第一季【无OP】","cover":"http://i0.hdslb.com/bfs/archive/fb4224a35f52bda07b0d8dc8e4b8ac71366878cd.jpg","uri":"bilibili://video/6670948","param":"6670948","goto":"av","play":2143,"danmaku":13,"author":"晴诗","total_count":0,"desc":"自剪，每P13集，其实是八口气~\n抱歉音画不同步，正在重新制作，十分抱歉QAQ","official_verify":{"type":0,"desc":""},"duration":"251:18","status":0},{"title":"【猫殿酱】[已翻译]吃甜甜圈不会掉的唇膏！","cover":"http://i0.hdslb.com/bfs/archive/38ff5069d136a29c4cd94994c87627438aaf8eef.png","uri":"bilibili://video/6305240","param":"6305240","goto":"av","play":3438,"danmaku":35,"author":"Kiyoshi_Kwok","total_count":0,"desc":"https://youtu.be/MNjmNGEUgz8 2016年9月14日发布\n原po：ねこてん\nスガオのリップティントとベリサムのリップティントパックを買ってきたよ。ベリサムは怖いくらいに落ちない！\nこんちゃっす！どうもねこてんだよ！\n鼻はコンプレックスです、チャンネル登録とグッドボタンぜひお願いします(/・ω・)/","official_verify":{"type":0,"desc":""},"duration":"3:45","status":0},{"title":"【Perfume】「甜甜私房猫」第三季OP","cover":"http://i0.hdslb.com/bfs/archive/7ac410887aa50bdc5ed58ff928822cfdb10ac4c2.png","uri":"bilibili://video/6496205","param":"6496205","goto":"av","play":1664,"danmaku":5,"author":"FYNE","total_count":0,"desc":"Twitter https://twitter.com/masatoshi_no_ma/status/782363312998666240 ♪ ねぇ","official_verify":{"type":0,"desc":""},"duration":"1:39","status":0},{"title":"【杏乾兒搬运】超~~~萌！教你制作巨型猫咪蛋糕甜甜圈~","cover":"http://i2.hdslb.com/video/d6/d685ffb5f906cb7caf134ddc429b00d2.jpg","uri":"bilibili://video/3467380","param":"3467380","goto":"av","play":17139,"danmaku":319,"author":"Sakura·杏乾兒","total_count":0,"desc":"YouTube 【申明：若需转载本视频，请提前私信up获得许可，转载时请标注up主&amp;amp;原po名字以及原地址&amp;amp;转向哪里，谢谢合作！】\r\n原po:Bonobos25 微博@神谷杏乾兒 求支持！求硬币！你们的鼓励是我前进的动力！啾咪☆（○｀ 3\u2032○） 另：视频讨论群300947193 欢迎观众老爷们加入w(๑´ㅂ`๑)","official_verify":{"type":0,"desc":""},"duration":"4:56","status":0},{"title":"【学唱日语歌】甜甜起司猫教学篇","cover":"http://i0.hdslb.com/bfs/archive/4c914315b5584bf34cfe37015cfa856e71997d40.jpg","uri":"bilibili://video/6686899","param":"6686899","goto":"av","play":281,"author":"日语初学者交流","total_count":0,"desc":"喜欢的同学可以加老师qq:486467295  领取免费课程和更多日语学习资料！！！！！！","official_verify":{"type":0,"desc":""},"duration":"4:46","status":0},{"title":"【主题空耳】甜甜私房猫 第三季OP","cover":"http://i0.hdslb.com/bfs/archive/06e3c99bede720168a6309117b4ff1c87f27ff94.jpg","uri":"bilibili://video/6516682","param":"6516682","goto":"av","play":614,"danmaku":4,"author":"flashyiyi","total_count":0,"desc":"山田家杠把子参见~~~~\n上季空耳合集：av5616250","official_verify":{"type":0,"desc":""},"duration":"1:39","status":0},{"title":"BBC纪录片 大熊猫甜甜和阳光","cover":"http://i0.hdslb.com/bfs/archive/7eb2cddc545abddb20d8802ea3e573988889aff4.png","uri":"bilibili://video/5399575","param":"5399575","goto":"av","play":2811,"danmaku":28,"author":"成就就是臭99","total_count":0,"desc":"BBC 英文字母","official_verify":{"type":0,"desc":""},"duration":"74:0","status":0},{"title":"【怪盗山猫/神崎润（J）】双雄大盗（剧情向，甜甜甜~）","cover":"http://i0.hdslb.com/group1/M00/40/1E/oYYBAFbQYc2AW2GMAAB0FnujWto317.jpg","uri":"bilibili://video/3958771","param":"3958771","goto":"av","play":3544,"danmaku":154,"author":"小飞儿爱地球","total_count":0,"desc":"自制 粮太少，自割大腿肉~绝对甜！！\r\n第一次剪视频，技术渣，画面渣，纯脑洞，人物OOC，不喜右上角\r\n\r\n大概就是讲山猫和J大是一对没脸没皮的双雄大盗，山猫负责外勤J大负责技术支持以及貌美如花~在一次任务中，夫夫两人被仇家设计，J大被绑，然后山猫集合众人勇救J大最后goodending的故事~","official_verify":{"type":0,"desc":""},"duration":"4:27","status":0},{"title":"学唱日语歌：萌妹子教唱甜甜起司猫/动漫歌曲/日语歌曲","cover":"http://i0.hdslb.com/bfs/archive/25ecd2a1bdd2b82da54917f13b6e0832f0d933da.jpg","uri":"bilibili://video/6636593","param":"6636593","goto":"av","play":211,"danmaku":1,"author":"熊本熊学日语","total_count":0,"desc":"更多日语歌曲学习可以加qq3098972509~可以邀请大家进学习群，一起愉快的学习吧~","official_verify":{"type":0,"desc":""},"duration":"4:46","status":0},{"title":" DIY钢琴吊袜带+ DIY熊猫旅行颈枕+ DIY甜甜圈领","cover":"http://i0.hdslb.com/bfs/archive/9f47ae5b74a98c5d8f9ded9271a043f4369823fa.png","uri":"bilibili://video/6056918","param":"6056918","goto":"av","play":790,"danmaku":25,"author":"月痕雪兔","total_count":0,"desc":"https://www.youtube.com/watch?v=qbwW5SP2Tqo  转载与YOUTUBE\n\nTwitter : https://twitter.com/YumiKing21\nGoogle: https://plus.google.com/+YumiKing\nLinkedIn: Yumi King","official_verify":{"type":0,"desc":""},"duration":"5:28","status":0},{"title":"[五鼠闹东京][猫鼠]迷弟白玉堂的烦恼 加长豪华版，甜甜哒，不甜不要钱","cover":"http://i0.hdslb.com/group1/M00/5C/D1/oYYBAFbVC7SAExEDAAMxcnyIpxY332.jpg","uri":"bilibili://video/3988942","param":"3988942","goto":"av","play":3607,"danmaku":99,"author":"云霄","total_count":0,"desc":"自制 甜甜哒，不甜不要钱\r\nP1是迷弟白玉堂的烦恼 加长豪华版\r\nP2是之前的片段\r\n","official_verify":{"type":0,"desc":""},"duration":"0:42","status":0},{"title":"甜甜私房猫Xlovelive完整版","cover":"http://i0.hdslb.com/bfs/archive/f42dd387304d7b5d251172a2f09fe59af496d677.jpg","uri":"bilibili://video/6154148","param":"6154148","goto":"av","play":592,"danmaku":44,"author":"lxhdj123","total_count":0,"desc":"lovelive第一季第4集   \n第二季第2集和第8集","official_verify":{"type":0,"desc":""},"duration":"3:48","status":0},{"title":"日语--教唱甜甜起司猫","cover":"http://i0.hdslb.com/bfs/archive/1dfa81a707a7c397953e2bd5c03294d4d2f43f31.jpg","uri":"bilibili://video/6655677","param":"6655677","goto":"av","play":130,"author":"日语趣味学习","total_count":0,"desc":"喜欢我，可以加关注，每天有不同精彩视频资料分享哦 ~~~加qq：3013439606，获取免费日语课程和日语资料哒：）","official_verify":{"type":0,"desc":""},"duration":"4:57","status":0},{"title":"【喵博搬运】【食用系列】龙猫甜甜圈w(ﾟДﾟ)w_高清","cover":"http://i0.hdslb.com/bfs/archive/2bb56ccf1d82a11f5b779b308118325cf9f7e1c4.jpg","uri":"bilibili://video/6062921","param":"6062921","goto":"av","play":508,"danmaku":4,"author":"该用户没有存在感","total_count":0,"desc":"youku 原名【喵博搬运】【食用系列】龙猫甜甜圈w(ﾟДﾟ)w_高清\n原po喵博","official_verify":{"type":0,"desc":""},"duration":"4:13","status":0},{"title":"【鼠猫】【昭白】 是非题   无虐甜甜甜","cover":"http://i0.hdslb.com/bfs/archive/0033ff58f2f26b0125dade7f521f15c77b0e738d.jpg","uri":"bilibili://video/5901644","param":"5901644","goto":"av","play":588,"danmaku":54,"author":"心悦君兮jun","total_count":0,"desc":"转载自土豆，已留言侵删 相识相斗相知相惜到相爱，难得的猫儿先表白啊\n原作者---格老子的摔","official_verify":{"type":0,"desc":""},"duration":"3:56","status":0},{"title":"【我的天哪第二十七期】伤物语为挽救票房放福利，甜甜私房猫3D版萌坏依旧","cover":"http://i0.hdslb.com/bfs/archive/89079361055e4859b0a4254961d6daeddcd9cb3e.jpg","uri":"bilibili://video/6179429","param":"6179429","goto":"av","play":601,"danmaku":6,"author":"兴视界","total_count":0,"desc":"伤物语为挽救票房放福利，甜甜私房猫3D版萌坏依旧，可爱程度丝毫不减，九条命终极预告，霸道总裁变萌猫","official_verify":{"type":0,"desc":""},"duration":"14:41","status":0}]}}
      * message :
      */
 
@@ -28,8 +24,8 @@ public class SearchArchiveInfo
 
     /**
      * page : 1
-     * nav : [{"name":"番剧","total":0,"pages":1,"type":1},{"name":"UP主","total":50,"pages":17,"type":2},{"name":"影视","total":0,"pages":1,"type":3},{"name":"专题","total":0,"pages":1,"type":4}]
-     * items : {"season":[],"upper":[],"movie":[],"sp":[],"archive":[{"title":" 【夏一可】守望先锋：《夏家三千菜》第十期","cover":"http://i0.hdslb.com/bfs/archive/21ebde727c4ab549b1a0cf26102ad34add7aa345.jpg","uri":"bilibili://video/6796458","param":"6796458","goto":"av","play":120172,"danmaku":938,"author":"夏一可","total_count":0,"desc":"当你要惩罚一个屁股的时候，往往需要另一个屁股。","official_verify":{"type":0,"desc":""},"duration":"8:24","status":0},{"title":"[守望先锋]好莱坞的万圣后宫\u2014逗川","cover":"http://i0.hdslb.com/bfs/archive/2904317e319d260b3dfeb0b2540a148d010cc862.jpg","uri":"bilibili://video/6779287","param":"6779287","goto":"av","play":124249,"danmaku":1048,"author":"逗川kshadow","total_count":0,"desc":"自制 感谢收看 万圣节小剧场~\nBGM：尸体派对-恐るべき暗暗\n内心毫无恐怖，甚至还想笑~","official_verify":{"type":0,"desc":""},"duration":"3:45","status":0},{"title":"《守望先锋》动画短片\u2014\u2014最后的堡垒","cover":"http://i0.hdslb.com/bfs/archive/1c9960a90d8a2cd15894c9f970f80223745cce86.jpg","uri":"bilibili://video/5891295","param":"5891295","goto":"av","play":1296480,"danmaku":16871,"author":"网易暴雪游戏视频","total_count":0,"desc":"《最后的堡垒》为大家讲述的是充满好奇心的变形机器人\u201c堡垒\u201d的身世。这台战斗机器人在荒野中沉眠了十几年，之后又被意外激活。本集，我们将跟随它的脚步，一起探寻未知却又充满魅力的世界。虽然这位充满探索欲的智械渐渐迷上了周围的环境 ，但很快却发现，其核心战斗程序正指引它踏上另一条道路\u2026\u2026","official_verify":{"type":0,"desc":""},"duration":"7:2","status":0},{"title":"【种族天赋rap】千万别玩守望先锋！","cover":"http://i0.hdslb.com/bfs/archive/3dd09bd1bde6127ce441f452ee6b3e20bfc3726b.jpg","uri":"bilibili://video/5021215","param":"5021215","goto":"av","play":2841491,"danmaku":8737,"author":"小可儿","total_count":0,"desc":"自制曲！ etika小哥rap种族天赋满点！\r\n感谢@凯玟桑 的和声\r\n","official_verify":{"type":0,"desc":""},"duration":"1:9","status":0},{"title":"【老E】守望先锋！教你如何制裁外挂！","cover":"http://i0.hdslb.com/bfs/archive/4c139fa94a2b912030fa7fcbce615235601a42e6.jpg","uri":"bilibili://video/5452366","param":"5452366","goto":"av","play":1247823,"danmaku":28956,"author":"EdmundDZhang","total_count":0,"desc":"正义！\n【直播间】www.zhanqi.tv/edmunddzhang\n【微博】@老E_EdmundDZhang","official_verify":{"type":0,"desc":""},"duration":"29:54","status":0},{"title":"【MMD】欢迎来到守望先锋【LOL预告还原再现】","cover":"http://i0.hdslb.com/bfs/archive/4010e2f88189792c18fcc08d1ff8c8d2c9fd75f3.jpg","uri":"bilibili://video/6747898","param":"6747898","goto":"av","play":60448,"danmaku":254,"author":"幻想乡的新月","total_count":0,"desc":"sm29869992 \n嘛~Mahlazer的新作，依然很棒，虽然我个人是没玩守望先锋的\n前作-Miku对于有毒视频的反应：av5910085","official_verify":{"type":0,"desc":""},"duration":"2:49","status":0},{"title":"【A路人】千万别玩守望先锋！！","cover":"http://i0.hdslb.com/bfs/archive/8bb02be4c2aae89686d30788c2074c5a73d0e776.jpg","uri":"bilibili://video/5049950","param":"5049950","goto":"av","play":1896253,"danmaku":16914,"author":"A路人","total_count":0,"desc":"本家：av5021215  原作：小可儿\n你们怎么都开始玩这毁青春的游戏了？！NOOOOOOOOOOOOOOO！！","official_verify":{"type":0,"desc":""},"duration":"1:51","status":0},{"title":"守望先锋：亮剑全场最佳","cover":"http://i0.hdslb.com/bfs/archive/b4a121f317e3fa6a51648f2d84d26e09f2dd7f5a.jpg","uri":"bilibili://video/5041671","param":"5041671","goto":"av","play":2200841,"danmaku":8440,"author":"撸龙","total_count":0,"desc":"自制 最近中毒 看什么都联想屁股于是这个视频诞生咯\r\n 堡垒狂鼠死神麦爹源氏卢西奥 \r\n是的，这个世界需要更多的屁股\r\n群号:543669626 欢迎拉稀 /来吸","official_verify":{"type":0,"desc":""},"duration":"2:57","status":0},{"title":"【60帧超级燃】欢迎来到守望屁股【守望先锋高能MMD】【60fps大片向】","cover":"http://i0.hdslb.com/bfs/archive/46fe3496fd44c6a5e5cbe6c4860ff031fdb397c7.jpg","uri":"bilibili://video/6748238","param":"6748238","goto":"av","play":55984,"danmaku":163,"author":"missrin","total_count":0,"desc":"youtube 首先，先膜拜下mahlazer巨巨~然后，mahlazer巨巨这次给大家带来的是，守望先锋的高能剧情向~根据mahlazer的说明，片段有些部分仿拟了 LOL 电影预告片【Welcome to League of Legends】，想深入了解的可以去看看原版预告~源地址https://www.youtube.com/watch?v=rV_OnNBo5mo  其她合集：【舞蹈】mylist430693 【剧情】mylist636322 【舞蹈】mylist601988","official_verify":{"type":0,"desc":""},"duration":"2:49","status":0},{"title":"【守望先锋】全角色【投篮】究极教学 一局双响","cover":"http://i0.hdslb.com/bfs/archive/3ed23a7693fc530521a77f502bcfe2d956118784.jpg","uri":"bilibili://video/5861052","param":"5861052","goto":"av","play":721950,"danmaku":4305,"author":"天青树","total_count":0,"desc":"自制 只有占点图的重生点才有投篮彩蛋，一个点2个桌子可以投2次，回合结束篮球会重置位置，每个角色都有特殊的投篮♂技巧，主要根据身高区分。学会了可以一局触发2次彩蛋，没人干扰百发百中。推荐使用76，死神，麦克雷，路霸，查莉亚，和尚来投篮。初次投稿，多有不足还请多多包涵。","official_verify":{"type":0,"desc":""},"duration":"16:14","status":0},{"title":"【守望先锋】你渴望学习吗？（一只沉迷学习的小钻风）","cover":"http://i0.hdslb.com/bfs/archive/f641d124386ddaa47b628a8dc2bb0c6c9087ec2c.jpg","uri":"bilibili://video/5235961","param":"5235961","goto":"av","play":1186935,"danmaku":8531,"author":"裸奔的爱毛","total_count":0,"desc":"最近沉迷学习成了一只咸毛，所以这个视频详述了一只沉迷学习的小钻风的故事。\n花了几百个小时后最终还是把这个视频做好啦！\n关于梦想，原本想到的是能有一个自己安静听音乐的房间，里面有一流的设备。但是这太世俗了。和呆毛聊了一会后，我才想起来我真正可谓之为梦想的愿望：\n听见数万人为我欢呼的声音！（S级）","official_verify":{"type":0,"desc":""},"duration":"4:14","status":0},{"title":"【RAP】守望先锋×全明星","cover":"http://i0.hdslb.com/bfs/archive/aeb4a06f0d6b0a2e573c8eae801203dffb2531b1.jpg","uri":"bilibili://video/5020663","param":"5020663","goto":"av","play":1587691,"danmaku":6414,"author":"吃素的狮子","total_count":0,"desc":"看到短裙的新作想到了做这么个鬼畜，第一次做全程RAP的就当试水了，好想玩屁股啊。","official_verify":{"type":0,"desc":""},"duration":"2:29","status":0},{"title":"【老E】守望先锋！教你如何用死神偷人！","cover":"http://i0.hdslb.com/bfs/archive/299a0ef39b726b29e216104ea722e42448e66594.jpg","uri":"bilibili://video/5659056","param":"5659056","goto":"av","play":1134211,"danmaku":13618,"author":"EdmundDZhang","total_count":0,"desc":"500强了！这游戏可以毕业了！\n【直播间】www.zhanqi.tv/edmunddzhang\n【微博】@老E_EdmundDZhang","official_verify":{"type":0,"desc":""},"duration":"22:48","status":0},{"title":"守望先锋MV《半藏 VS 源氏 (HANZO VS GENJI)》","cover":"http://i0.hdslb.com/bfs/archive/7f4fe246e626012b229dc773bcc945fa170c057b.jpg","uri":"bilibili://video/6027751","param":"6027751","goto":"av","play":704329,"danmaku":3233,"author":"M.Scarlet","total_count":0,"desc":"优酷 搬运","official_verify":{"type":0,"desc":""},"duration":"12:2","status":0},{"title":"【守望先锋】这才是守望先锋的正确玩法","cover":"http://i0.hdslb.com/bfs/archive/9998f370277147606923a4de87ce70fbd86b82f2.jpg","uri":"bilibili://video/5841738","param":"5841738","goto":"av","play":806369,"danmaku":12394,"author":"奶茶☆","total_count":0,"desc":"【请问你虐菜开心吗？】 【废话！当然开心了！】  （分量很足 大家慢慢食用 (๑\u2022̀ㅂ\u2022́)و✧） 【新浪微博@奶茶桑_","official_verify":{"type":0,"desc":""},"duration":"49:56","status":0},{"title":"守望先锋《PUMP♀IT》","cover":"http://i0.hdslb.com/bfs/archive/fc2831ef1e98757089b95526cab9b77369187c82.jpg","uri":"bilibili://video/4814985","param":"4814985","goto":"av","play":1812575,"danmaku":7040,"author":"吃素的狮子","total_count":0,"desc":"玩屁股中毒了，做了个守望屁股的鬼畜，真是太IMBA了~！不多说了，我继续玩屁股去~关注并转发微博可以抽一份典藏版哦~","official_verify":{"type":0,"desc":""},"duration":"3:41","status":0},{"title":"在其他游戏中来玩守望先锋【2p制作视角已更新】","cover":"http://i0.hdslb.com/bfs/archive/d43c104f1f7a8be7f24b96e3056d1f40cc0e7f2a.jpg","uri":"bilibili://video/6063474","param":"6063474","goto":"av","play":745273,"danmaku":5148,"author":"梅森MonSe","total_count":0,"desc":"因为断网了，，所以就一直拖欠，拖到了现在。昨天就做好了，今天蹭中国移动营业厅的网制作完成并且上传成功的。。up要开学了，做的不好请见谅、、、、\n之前就录好了，因为一直没有网没上传，今天接老师办公室的网上传了2p。可能会有音画不同步，没时间剪了。见谅，上一次作者版权忘记录了，今天改了一下。\n视频3:40处的漫画已由LOFTER上面的作者：Dagger授权","official_verify":{"type":0,"desc":""},"duration":"5:15","status":0},{"title":"守望先锋国语配音和声优们","cover":"http://i0.hdslb.com/bfs/archive/bddddb9cc9edcd0cd1e6ddc4c9dfbaff9376066f.jpg","uri":"bilibili://video/5246794","param":"5246794","goto":"av","play":1250488,"danmaku":36803,"author":"仟水君","total_count":0,"desc":"自制 资料来自新浪微博@落枕武士猁释然   一切素材来自网络\n目前找不到源氏CV的照片，堡垒是电脑合成，请尊重每个CV请不要将CV带入角色\n大锤的CV配图配错了，原先的是翟巍老师，现在已经修改，对不起袁国庆老师QAQ\n以下是CV们的新浪微博\n@北辰是也 半藏\n@笨笨笂_彭博 源氏\n@洪海天了个咪 猎空、毛妹\n@刘茫儿 士兵76\n@贾邱 死神\n@陶典oO 天使，D.VA\n@昱头Yolanda 小美\n@孙晔Gary DJ\n@杨梦露ada 黒百合\n@张欣1970 狂鼠\n@孟祥龙福大命大造化大 温斯顿","official_verify":{"type":0,"desc":""},"duration":"11:52","status":0},{"title":"【守望先锋CG宣传片合集】","cover":"http://i0.hdslb.com/bfs/archive/4e25a931306f5fa3cb8481b58562fa418f743062.jpg","uri":"bilibili://video/4873874","param":"4873874","goto":"av","play":1653510,"danmaku":28017,"author":"Bilibili丶南北","total_count":0,"desc":"没有守望先锋玩我要死了~~~~~\n这里有最全的守望先锋cg(￣ε(#￣) Σ \n喜欢的话就点个收藏吧(｡･ω･｡)\n网盘资源：https://yun.baidu.com/s/1c2kaiiO\n","official_verify":{"type":0,"desc":""},"duration":"110:39","status":0},{"title":"【老E】守望先锋！教你如何用半藏坑队友！","cover":"http://i0.hdslb.com/bfs/archive/1630ae3b3cf12a9e747ee43f206751bf3b8a9d2b.jpg","uri":"bilibili://video/5155077","param":"5155077","goto":"av","play":1465674,"danmaku":12084,"author":"EdmundDZhang","total_count":0,"desc":"10个半藏9个坑。\n使用前【半藏！谁玩这个辣鸡英雄！】\n使用后【半藏真TMD好玩】（杀了1个，死了10次）\n【直播间】www.zhanqi.tv/edmunddzhang\n【微博】@老E_EdmundDZhang","official_verify":{"type":0,"desc":""},"duration":"26:12","status":0}]}
+     * nav : [{"name":"番剧","total":1,"pages":1,"type":1},{"name":"UP主","total":1,"pages":1,"type":2},{"name":"影视","total":0,"pages":1,"type":3},{"name":"专题","total":0,"pages":1,"type":4}]
+     * items : {"season":[{"title":"甜甜私房猫","cover":"http://i0.hdslb.com/bfs/bangumi/e4eaa21feb4449abe887ca50618638e953d05413.jpg","uri":"bilibili://bangumi/season/5563","param":"5563","goto":"bangumi","index":"4","newest_cat":"tv","newest_season":"第三季","cat_desc":"TV(1) ","total_count":12,"official_verify":{"type":0,"desc":""},"status":0}],"upper":[],"movie":[],"sp":[],"archive":[{"title":"【六道配音】甜甜六道猫：被吃掉的小起！","cover":"http://i0.hdslb.com/bfs/archive/38b1fe059f5d83f1e0c7aa1add7c62f36f7c1f6a.jpg","uri":"bilibili://video/6637146","param":"6637146","goto":"av","play":46749,"danmaku":1692,"author":"★⑥檤轮囬★","total_count":0,"desc":"《甜甜私房猫》第三季的部分配音，感觉整个人都萌萌哒的呢~！ε=ε=(ノ≧∇≦)ノ","official_verify":{"type":0,"desc":""},"duration":"6:49","status":0},{"title":"【一年生】 暖暖日常超主动好不好系列 甜甜甜 边剪边笑 大脸猫和小狼狗活动视频剪辑 BGM 甜甜的","cover":"http://i0.hdslb.com/bfs/archive/df412698b7a40e47915d7888b96c8a1a81751848.jpg","uri":"bilibili://video/6686090","param":"6686090","goto":"av","play":13715,"danmaku":215,"author":"青青家的七七哟","total_count":0,"desc":"第一次剪视频啊啊啊啊啊，好多视频照片找不到最初的作者，侵删。","official_verify":{"type":0,"desc":""},"duration":"4:16","status":0},{"title":"【720P】甜甜私房猫【诸神字幕组】【中日字幕】","cover":"http://i0.hdslb.com/bfs/archive/fd57e3c6c54b97c5c890b35c888c785bedd5c066.jpg","uri":"bilibili://video/6254654","param":"6254654","goto":"av","play":33142,"danmaku":1567,"author":"苹果小酱","total_count":0,"desc":"故事讲述的是在初次散步就迷了路的虎斑条纹小猫\u201cchi\u201d（小起），被亲切的山田洋平和妈妈家捡了回去，不过山田家住的却是禁止养宠物的公寓。由于无法找到新的饲主，山田一家只能偷偷地养起了它。当小猫得到了他们的疼爱后，变得越来越调皮捣蛋，不但在衣服和地毯上随处小便，还用名贵的沙发和爸爸最爱的牛仔裤磨爪子。随着时间的慢慢流逝，小chi也逐渐成了山田不可缺少的一员，为了能妥善的解决公寓不能养猫的问题，在偶然间山田家决定搬入一所允许饲养宠物的新公寓，从此开始小chi也开始另一段新的冒险旅程。","official_verify":{"type":0,"desc":""},"duration":"343:43","status":0},{"title":"【10月】甜甜私房猫  PV","cover":"http://i0.hdslb.com/bfs/archive/e274962bd2555bb2ecb71689864cc012aaf1f449.jpg","uri":"bilibili://video/6168196","param":"6168196","goto":"av","play":18127,"danmaku":218,"author":"森冰爵","total_count":0,"desc":" ","official_verify":{"type":0,"desc":""},"duration":"1:34","status":0},{"title":"【修复中】【一口气看完】甜甜私房猫 第一季【无OP】","cover":"http://i0.hdslb.com/bfs/archive/fb4224a35f52bda07b0d8dc8e4b8ac71366878cd.jpg","uri":"bilibili://video/6670948","param":"6670948","goto":"av","play":2143,"danmaku":13,"author":"晴诗","total_count":0,"desc":"自剪，每P13集，其实是八口气~\n抱歉音画不同步，正在重新制作，十分抱歉QAQ","official_verify":{"type":0,"desc":""},"duration":"251:18","status":0},{"title":"【猫殿酱】[已翻译]吃甜甜圈不会掉的唇膏！","cover":"http://i0.hdslb.com/bfs/archive/38ff5069d136a29c4cd94994c87627438aaf8eef.png","uri":"bilibili://video/6305240","param":"6305240","goto":"av","play":3438,"danmaku":35,"author":"Kiyoshi_Kwok","total_count":0,"desc":"https://youtu.be/MNjmNGEUgz8 2016年9月14日发布\n原po：ねこてん\nスガオのリップティントとベリサムのリップティントパックを買ってきたよ。ベリサムは怖いくらいに落ちない！\nこんちゃっす！どうもねこてんだよ！\n鼻はコンプレックスです、チャンネル登録とグッドボタンぜひお願いします(/・ω・)/","official_verify":{"type":0,"desc":""},"duration":"3:45","status":0},{"title":"【Perfume】「甜甜私房猫」第三季OP","cover":"http://i0.hdslb.com/bfs/archive/7ac410887aa50bdc5ed58ff928822cfdb10ac4c2.png","uri":"bilibili://video/6496205","param":"6496205","goto":"av","play":1664,"danmaku":5,"author":"FYNE","total_count":0,"desc":"Twitter https://twitter.com/masatoshi_no_ma/status/782363312998666240 ♪ ねぇ","official_verify":{"type":0,"desc":""},"duration":"1:39","status":0},{"title":"【杏乾兒搬运】超~~~萌！教你制作巨型猫咪蛋糕甜甜圈~","cover":"http://i2.hdslb.com/video/d6/d685ffb5f906cb7caf134ddc429b00d2.jpg","uri":"bilibili://video/3467380","param":"3467380","goto":"av","play":17139,"danmaku":319,"author":"Sakura·杏乾兒","total_count":0,"desc":"YouTube 【申明：若需转载本视频，请提前私信up获得许可，转载时请标注up主&amp;amp;原po名字以及原地址&amp;amp;转向哪里，谢谢合作！】\r\n原po:Bonobos25 微博@神谷杏乾兒 求支持！求硬币！你们的鼓励是我前进的动力！啾咪☆（○｀ 3\u2032○） 另：视频讨论群300947193 欢迎观众老爷们加入w(๑´ㅂ`๑)","official_verify":{"type":0,"desc":""},"duration":"4:56","status":0},{"title":"【学唱日语歌】甜甜起司猫教学篇","cover":"http://i0.hdslb.com/bfs/archive/4c914315b5584bf34cfe37015cfa856e71997d40.jpg","uri":"bilibili://video/6686899","param":"6686899","goto":"av","play":281,"author":"日语初学者交流","total_count":0,"desc":"喜欢的同学可以加老师qq:486467295  领取免费课程和更多日语学习资料！！！！！！","official_verify":{"type":0,"desc":""},"duration":"4:46","status":0},{"title":"【主题空耳】甜甜私房猫 第三季OP","cover":"http://i0.hdslb.com/bfs/archive/06e3c99bede720168a6309117b4ff1c87f27ff94.jpg","uri":"bilibili://video/6516682","param":"6516682","goto":"av","play":614,"danmaku":4,"author":"flashyiyi","total_count":0,"desc":"山田家杠把子参见~~~~\n上季空耳合集：av5616250","official_verify":{"type":0,"desc":""},"duration":"1:39","status":0},{"title":"BBC纪录片 大熊猫甜甜和阳光","cover":"http://i0.hdslb.com/bfs/archive/7eb2cddc545abddb20d8802ea3e573988889aff4.png","uri":"bilibili://video/5399575","param":"5399575","goto":"av","play":2811,"danmaku":28,"author":"成就就是臭99","total_count":0,"desc":"BBC 英文字母","official_verify":{"type":0,"desc":""},"duration":"74:0","status":0},{"title":"【怪盗山猫/神崎润（J）】双雄大盗（剧情向，甜甜甜~）","cover":"http://i0.hdslb.com/group1/M00/40/1E/oYYBAFbQYc2AW2GMAAB0FnujWto317.jpg","uri":"bilibili://video/3958771","param":"3958771","goto":"av","play":3544,"danmaku":154,"author":"小飞儿爱地球","total_count":0,"desc":"自制 粮太少，自割大腿肉~绝对甜！！\r\n第一次剪视频，技术渣，画面渣，纯脑洞，人物OOC，不喜右上角\r\n\r\n大概就是讲山猫和J大是一对没脸没皮的双雄大盗，山猫负责外勤J大负责技术支持以及貌美如花~在一次任务中，夫夫两人被仇家设计，J大被绑，然后山猫集合众人勇救J大最后goodending的故事~","official_verify":{"type":0,"desc":""},"duration":"4:27","status":0},{"title":"学唱日语歌：萌妹子教唱甜甜起司猫/动漫歌曲/日语歌曲","cover":"http://i0.hdslb.com/bfs/archive/25ecd2a1bdd2b82da54917f13b6e0832f0d933da.jpg","uri":"bilibili://video/6636593","param":"6636593","goto":"av","play":211,"danmaku":1,"author":"熊本熊学日语","total_count":0,"desc":"更多日语歌曲学习可以加qq3098972509~可以邀请大家进学习群，一起愉快的学习吧~","official_verify":{"type":0,"desc":""},"duration":"4:46","status":0},{"title":" DIY钢琴吊袜带+ DIY熊猫旅行颈枕+ DIY甜甜圈领","cover":"http://i0.hdslb.com/bfs/archive/9f47ae5b74a98c5d8f9ded9271a043f4369823fa.png","uri":"bilibili://video/6056918","param":"6056918","goto":"av","play":790,"danmaku":25,"author":"月痕雪兔","total_count":0,"desc":"https://www.youtube.com/watch?v=qbwW5SP2Tqo  转载与YOUTUBE\n\nTwitter : https://twitter.com/YumiKing21\nGoogle: https://plus.google.com/+YumiKing\nLinkedIn: Yumi King","official_verify":{"type":0,"desc":""},"duration":"5:28","status":0},{"title":"[五鼠闹东京][猫鼠]迷弟白玉堂的烦恼 加长豪华版，甜甜哒，不甜不要钱","cover":"http://i0.hdslb.com/group1/M00/5C/D1/oYYBAFbVC7SAExEDAAMxcnyIpxY332.jpg","uri":"bilibili://video/3988942","param":"3988942","goto":"av","play":3607,"danmaku":99,"author":"云霄","total_count":0,"desc":"自制 甜甜哒，不甜不要钱\r\nP1是迷弟白玉堂的烦恼 加长豪华版\r\nP2是之前的片段\r\n","official_verify":{"type":0,"desc":""},"duration":"0:42","status":0},{"title":"甜甜私房猫Xlovelive完整版","cover":"http://i0.hdslb.com/bfs/archive/f42dd387304d7b5d251172a2f09fe59af496d677.jpg","uri":"bilibili://video/6154148","param":"6154148","goto":"av","play":592,"danmaku":44,"author":"lxhdj123","total_count":0,"desc":"lovelive第一季第4集   \n第二季第2集和第8集","official_verify":{"type":0,"desc":""},"duration":"3:48","status":0},{"title":"日语--教唱甜甜起司猫","cover":"http://i0.hdslb.com/bfs/archive/1dfa81a707a7c397953e2bd5c03294d4d2f43f31.jpg","uri":"bilibili://video/6655677","param":"6655677","goto":"av","play":130,"author":"日语趣味学习","total_count":0,"desc":"喜欢我，可以加关注，每天有不同精彩视频资料分享哦 ~~~加qq：3013439606，获取免费日语课程和日语资料哒：）","official_verify":{"type":0,"desc":""},"duration":"4:57","status":0},{"title":"【喵博搬运】【食用系列】龙猫甜甜圈w(ﾟДﾟ)w_高清","cover":"http://i0.hdslb.com/bfs/archive/2bb56ccf1d82a11f5b779b308118325cf9f7e1c4.jpg","uri":"bilibili://video/6062921","param":"6062921","goto":"av","play":508,"danmaku":4,"author":"该用户没有存在感","total_count":0,"desc":"youku 原名【喵博搬运】【食用系列】龙猫甜甜圈w(ﾟДﾟ)w_高清\n原po喵博","official_verify":{"type":0,"desc":""},"duration":"4:13","status":0},{"title":"【鼠猫】【昭白】 是非题   无虐甜甜甜","cover":"http://i0.hdslb.com/bfs/archive/0033ff58f2f26b0125dade7f521f15c77b0e738d.jpg","uri":"bilibili://video/5901644","param":"5901644","goto":"av","play":588,"danmaku":54,"author":"心悦君兮jun","total_count":0,"desc":"转载自土豆，已留言侵删 相识相斗相知相惜到相爱，难得的猫儿先表白啊\n原作者---格老子的摔","official_verify":{"type":0,"desc":""},"duration":"3:56","status":0},{"title":"【我的天哪第二十七期】伤物语为挽救票房放福利，甜甜私房猫3D版萌坏依旧","cover":"http://i0.hdslb.com/bfs/archive/89079361055e4859b0a4254961d6daeddcd9cb3e.jpg","uri":"bilibili://video/6179429","param":"6179429","goto":"av","play":601,"danmaku":6,"author":"兴视界","total_count":0,"desc":"伤物语为挽救票房放福利，甜甜私房猫3D版萌坏依旧，可爱程度丝毫不减，九条命终极预告，霸道总裁变萌猫","official_verify":{"type":0,"desc":""},"duration":"14:41","status":0}]}
      */
 
     private DataBean data;
@@ -81,7 +77,7 @@ public class SearchArchiveInfo
 
         /**
          * name : 番剧
-         * total : 0
+         * total : 1
          * pages : 1
          * type : 1
          */
@@ -124,26 +120,56 @@ public class SearchArchiveInfo
             this.nav = nav;
         }
 
-        public static class ItemsBean implements Parcelable
+        public static class ItemsBean
         {
 
             /**
-             * title :  【夏一可】守望先锋：《夏家三千菜》第十期
-             * cover : http://i0.hdslb.com/bfs/archive/21ebde727c4ab549b1a0cf26102ad34add7aa345.jpg
-             * uri : bilibili://video/6796458
-             * param : 6796458
-             * goto : av
-             * play : 120172
-             * danmaku : 938
-             * author : 夏一可
-             * total_count : 0
-             * desc : 当你要惩罚一个屁股的时候，往往需要另一个屁股。
+             * title : 甜甜私房猫
+             * cover : http://i0.hdslb.com/bfs/bangumi/e4eaa21feb4449abe887ca50618638e953d05413.jpg
+             * uri : bilibili://bangumi/season/5563
+             * param : 5563
+             * goto : bangumi
+             * index : 4
+             * newest_cat : tv
+             * newest_season : 第三季
+             * cat_desc : TV(1)
+             * total_count : 12
              * official_verify : {"type":0,"desc":""}
-             * duration : 8:24
+             * status : 0
+             */
+
+            private List<SeasonBean> season;
+
+            /**
+             * title : 【六道配音】甜甜六道猫：被吃掉的小起！
+             * cover : http://i0.hdslb.com/bfs/archive/38b1fe059f5d83f1e0c7aa1add7c62f36f7c1f6a.jpg
+             * uri : bilibili://video/6637146
+             * param : 6637146
+             * goto : av
+             * play : 46749
+             * danmaku : 1692
+             * author : ★⑥檤轮囬★
+             * total_count : 0
+             * desc : 《甜甜私房猫》第三季的部分配音，感觉整个人都萌萌哒的呢~！ε=ε=(ノ≧∇≦)ノ
+             * official_verify : {"type":0,"desc":""}
+             * duration : 6:49
              * status : 0
              */
 
             private List<ArchiveBean> archive;
+
+            public List<SeasonBean> getSeason()
+            {
+
+                return season;
+            }
+
+            public void setSeason(List<SeasonBean> season)
+            {
+
+                this.season = season;
+            }
+
 
             public List<ArchiveBean> getArchive()
             {
@@ -155,6 +181,230 @@ public class SearchArchiveInfo
             {
 
                 this.archive = archive;
+            }
+
+            public static class SeasonBean
+            {
+
+                private String title;
+
+                private String cover;
+
+                private String uri;
+
+                private String param;
+
+                @SerializedName("goto")
+                private String gotoX;
+
+                private String index;
+
+                private String newest_cat;
+
+                private String newest_season;
+
+                private String cat_desc;
+
+                private int total_count;
+
+                private int finish;
+
+                /**
+                 * type : 0
+                 * desc :
+                 */
+
+                private OfficialVerifyBean official_verify;
+
+                private int status;
+
+                public int getFinish()
+                {
+
+                    return finish;
+                }
+
+                public void setFinish(int finish)
+                {
+
+                    this.finish = finish;
+                }
+
+                public String getTitle()
+                {
+
+                    return title;
+                }
+
+                public void setTitle(String title)
+                {
+
+                    this.title = title;
+                }
+
+                public String getCover()
+                {
+
+                    return cover;
+                }
+
+                public void setCover(String cover)
+                {
+
+                    this.cover = cover;
+                }
+
+                public String getUri()
+                {
+
+                    return uri;
+                }
+
+                public void setUri(String uri)
+                {
+
+                    this.uri = uri;
+                }
+
+                public String getParam()
+                {
+
+                    return param;
+                }
+
+                public void setParam(String param)
+                {
+
+                    this.param = param;
+                }
+
+                public String getGotoX()
+                {
+
+                    return gotoX;
+                }
+
+                public void setGotoX(String gotoX)
+                {
+
+                    this.gotoX = gotoX;
+                }
+
+                public String getIndex()
+                {
+
+                    return index;
+                }
+
+                public void setIndex(String index)
+                {
+
+                    this.index = index;
+                }
+
+                public String getNewest_cat()
+                {
+
+                    return newest_cat;
+                }
+
+                public void setNewest_cat(String newest_cat)
+                {
+
+                    this.newest_cat = newest_cat;
+                }
+
+                public String getNewest_season()
+                {
+
+                    return newest_season;
+                }
+
+                public void setNewest_season(String newest_season)
+                {
+
+                    this.newest_season = newest_season;
+                }
+
+                public String getCat_desc()
+                {
+
+                    return cat_desc;
+                }
+
+                public void setCat_desc(String cat_desc)
+                {
+
+                    this.cat_desc = cat_desc;
+                }
+
+                public int getTotal_count()
+                {
+
+                    return total_count;
+                }
+
+                public void setTotal_count(int total_count)
+                {
+
+                    this.total_count = total_count;
+                }
+
+                public OfficialVerifyBean getOfficial_verify()
+                {
+
+                    return official_verify;
+                }
+
+                public void setOfficial_verify(OfficialVerifyBean official_verify)
+                {
+
+                    this.official_verify = official_verify;
+                }
+
+                public int getStatus()
+                {
+
+                    return status;
+                }
+
+                public void setStatus(int status)
+                {
+
+                    this.status = status;
+                }
+
+                public static class OfficialVerifyBean
+                {
+
+                    private int type;
+
+                    private String desc;
+
+                    public int getType()
+                    {
+
+                        return type;
+                    }
+
+                    public void setType(int type)
+                    {
+
+                        this.type = type;
+                    }
+
+                    public String getDesc()
+                    {
+
+                        return desc;
+                    }
+
+                    public void setDesc(String desc)
+                    {
+
+                        this.desc = desc;
+                    }
+                }
             }
 
             public static class ArchiveBean
@@ -380,50 +630,6 @@ public class SearchArchiveInfo
                     }
                 }
             }
-
-            @Override
-            public int describeContents()
-            {
-
-                return 0;
-            }
-
-            @Override
-            public void writeToParcel(Parcel dest, int flags)
-            {
-
-                dest.writeList(this.archive);
-            }
-
-            public ItemsBean()
-            {
-
-            }
-
-            protected ItemsBean(Parcel in)
-            {
-
-                this.archive = new ArrayList<ArchiveBean>();
-                in.readList(this.archive, ArchiveBean.class.getClassLoader());
-            }
-
-            public static final Parcelable.Creator<ItemsBean> CREATOR = new Parcelable.Creator<ItemsBean>()
-            {
-
-                @Override
-                public ItemsBean createFromParcel(Parcel source)
-                {
-
-                    return new ItemsBean(source);
-                }
-
-                @Override
-                public ItemsBean[] newArray(int size)
-                {
-
-                    return new ItemsBean[size];
-                }
-            };
         }
 
         public static class NavBean

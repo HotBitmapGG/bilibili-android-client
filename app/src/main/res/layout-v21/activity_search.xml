@@ -30,7 +30,9 @@
                 app:tl_indicator_color="@color/colorPrimary"
                 app:tl_indicator_height="@dimen/tab_indicator_small_height"
                 app:tl_textSelectColor="@color/colorPrimary"
-                app:tl_textUnselectColor="@color/font_normal" />
+                app:tl_textUnselectColor="@color/font_normal"
+                app:tl_tab_space_equal="false"
+                app:tl_tab_padding="@dimen/tab_bar_item_padding" />
 
             <com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager
                 android:id="@+id/view_pager"

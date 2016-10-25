@@ -31,7 +31,7 @@
             app:tl_tab_space_equal="false"
             android:layout_marginStart="@dimen/default_tiny_padding"
             android:layout_marginEnd="@dimen/default_tiny_padding"
-            app:tl_tab_padding="15dp" />
+            app:tl_tab_padding="@dimen/tab_bar_item_padding" />
 
     </android.support.design.widget.AppBarLayout>
 
