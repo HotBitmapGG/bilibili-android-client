@@ -39,7 +39,9 @@
 
 <a href="art/10.png"><img src="art/10.png" width="30%"/></a> <a href="art/11.png"><img src="art/11.png" width="30%"/></a> <a href="art/12.png"><img src="art/12.png" width="30%"/></a>
 
-<a href="art/13.png"><img src="art/13.png" width="30%"/></a> <a href="art/14.png"><img src="art/14.png" width="30%"/></a> <a href="art/15.png"><img src="art/15.png" width="30%"/></a>
+<a href="art/13.png"><img src="art/13.png" width="30%"/></a> <a href="art/005.png"><img src="art/005.png" width="30%"/></a> <a href="art/006.png"><img src="art/006.png" width="30%"/></a>
+
+<a href="art/007.png"><img src="art/007.png" width="30%"/></a> <a href="art/14.png"><img src="art/14.png" width="30%"/></a> <a href="art/15.png"><img src="art/15.png" width="30%"/></a>
 
 <a href="art/16.png"><img src="art/16.png" width="30%"/></a> <a href="art/17.png"><img src="art/17.png" width="30%"/></a> <a href="art/18.png"><img src="art/18.png" width="30%"/></a>
 
