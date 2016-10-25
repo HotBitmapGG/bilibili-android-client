@@ -62,6 +62,9 @@
     <dimen name="search_edit_margin_end">40dp</dimen>
     <dimen name="search_clear_button_margin_end">60dp</dimen>
 
+    <dimen name="search_upper_layout_height">100dp</dimen>
+    <dimen name="search_archive_layout_height">100dp</dimen>
+
 
     <!--game center size-->
     <dimen name="game_center_layout_height">230dp</dimen>
@@ -274,6 +277,7 @@
     <dimen name="app_logo_size">120dp</dimen>
     <dimen name="about_bottom_layout_height">50dp</dimen>
     <dimen name="region_recommend_icon_size">40dp</dimen>
+    <dimen name="search_archive_image_width">160dp</dimen>
 
 
 </resources>

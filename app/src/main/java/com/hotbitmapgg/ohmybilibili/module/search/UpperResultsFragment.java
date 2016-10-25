@@ -9,11 +9,11 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.BangumiResultsAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.UpperResultsAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.search.SearchBangumiInfo;
+import com.hotbitmapgg.ohmybilibili.entity.search.SearchUpperInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
@@ -26,12 +26,12 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by hcc on 16/8/29 21:08
+ * Created by hcc on 16/9/4 12:26
  * 100332338@qq.com
  * <p/>
- * 番剧搜索内容列表界面
+ * up主搜索界面
  */
-public class BangumiResultsFragment extends RxLazyFragment
+public class UpperResultsFragment extends RxLazyFragment
 {
 
     @BindView(R.id.recycle)
@@ -55,12 +55,12 @@ public class BangumiResultsFragment extends RxLazyFragment
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    private List<SearchBangumiInfo.DataBean.ItemsBean> bangumis = new ArrayList<>();
+    private List<SearchUpperInfo.DataBean.ItemsBean> uppers = new ArrayList<>();
 
-    public static BangumiResultsFragment newInstance(String content)
+    public static UpperResultsFragment newInstance(String content)
     {
 
-        BangumiResultsFragment fragment = new BangumiResultsFragment();
+        UpperResultsFragment fragment = new UpperResultsFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ConstantUtils.EXTRA_CONTENT, content);
         fragment.setArguments(bundle);
@@ -108,7 +108,7 @@ public class BangumiResultsFragment extends RxLazyFragment
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        BangumiResultsAdapter mAdapter = new BangumiResultsAdapter(mRecyclerView, bangumis);
+        UpperResultsAdapter mAdapter = new UpperResultsAdapter(mRecyclerView, uppers);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
         createLoadMoreView();
@@ -131,9 +131,9 @@ public class BangumiResultsFragment extends RxLazyFragment
     {
 
         RetrofitHelper.getSearchApi()
-                .searchBangumi(content, pageNum, pageSize)
+                .searchUpper(content, pageNum, pageSize)
                 .compose(bindToLifecycle())
-                .map(SearchBangumiInfo::getData)
+                .map(SearchUpperInfo::getData)
                 .delay(1000, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -141,7 +141,7 @@ public class BangumiResultsFragment extends RxLazyFragment
                     if (dataBean.getItems().size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
 
-                    bangumis.addAll(dataBean.getItems());
+                    uppers.addAll(dataBean.getItems());
                     finishTask();
                 }, throwable -> {
                     hideSearchAnim();
@@ -154,8 +154,8 @@ public class BangumiResultsFragment extends RxLazyFragment
     protected void finishTask()
     {
 
-        if (bangumis != null)
-            if (bangumis.size() == 0)
+        if (uppers != null)
+            if (uppers.size() == 0)
                 showEmptyView();
             else
                 hideEmptyView();
@@ -190,7 +190,6 @@ public class BangumiResultsFragment extends RxLazyFragment
         mLoadingView.setVisibility(View.GONE);
         mAnimationDrawable.stop();
     }
-
 
     public void showEmptyView()
     {

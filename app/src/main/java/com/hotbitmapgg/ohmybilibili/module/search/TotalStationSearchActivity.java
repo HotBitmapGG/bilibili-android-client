@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
+import com.hotbitmapgg.ohmybilibili.entity.search.SearchArchiveInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.KeyBoardUtil;
@@ -72,15 +72,13 @@ public class TotalStationSearchActivity extends RxBaseActivity
 
     private String content;
 
+    private AnimationDrawable mAnimationDrawable;
+
     private List<String> titles = new ArrayList<>();
 
     private List<Fragment> fragments = new ArrayList<>();
 
-    private AnimationDrawable mAnimationDrawable;
-
-    private SearchResult.PageinfoBean pageinfo;
-
-    private SearchResult.ResultBean result;
+    private List<SearchArchiveInfo.DataBean.NavBean> navs = new ArrayList<>();
 
 
     @Override
@@ -110,8 +108,9 @@ public class TotalStationSearchActivity extends RxBaseActivity
         mLoadingView.setImageResource(R.drawable.anim_search_loading);
         mAnimationDrawable = (AnimationDrawable) mLoadingView.getDrawable();
         showSearchAnim();
+        mSearchEdit.clearFocus();
         mSearchEdit.setText(content);
-        getSearchData(content);
+        getSearchData();
         search();
         setUpEditText();
     }
@@ -160,7 +159,8 @@ public class TotalStationSearchActivity extends RxBaseActivity
                             TotalStationSearchActivity.this);
                     showSearchAnim();
                     clearData();
-                    getSearchData(s);
+                    content = s;
+                    getSearchData();
                 });
     }
 
@@ -178,44 +178,34 @@ public class TotalStationSearchActivity extends RxBaseActivity
                             TotalStationSearchActivity.this);
                     showSearchAnim();
                     clearData();
-                    getSearchData(s);
+                    content = s;
+                    getSearchData();
                 });
     }
 
     private void clearData()
     {
 
-        pageinfo = null;
+        navs.clear();
         titles.clear();
         fragments.clear();
-        if (result != null)
-        {
-            if (result.getVideo() != null)
-                result.getVideo().clear();
-            if (result.getBangumi() != null)
-                result.getBangumi().clear();
-            if (result.getTopic() != null)
-                result.getTopic().clear();
-        }
     }
 
-    private void getSearchData(String text)
+    private void getSearchData()
     {
 
         int page = 1;
-        int count = 10;
+        int pageSize = 10;
         RetrofitHelper.getSearchApi()
-                .search(text, page, count)
+                .searchArchive(content, page, pageSize)
                 .compose(this.bindToLifecycle())
+                .map(SearchArchiveInfo::getData)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(searchResult -> {
-
-                    pageinfo = searchResult.getPageinfo();
-                    result = searchResult.getResult();
+                .subscribe(dataBean -> {
+                    navs.addAll(dataBean.getNav());
                     finishTask();
                 }, throwable -> {
-
                     setEmptyLayout();
                 });
     }
@@ -226,20 +216,23 @@ public class TotalStationSearchActivity extends RxBaseActivity
 
         hideSearchAnim();
         titles.add("综合");
-        titles.add("番剧" + "(" + checkNumResults(pageinfo.getBangumi().getNumResults()) + ")");
-        titles.add("话题" + "(" + checkNumResults(pageinfo.getTopic().getNumResults()) + ")");
+        titles.add(navs.get(0).getName() + "(" + checkNumResults(navs.get(0).getTotal()) + ")");
+        titles.add(navs.get(1).getName() + "(" + checkNumResults(navs.get(1).getTotal()) + ")");
+//        titles.add(navs.get(2).getName() + "(" + checkNumResults(navs.get(2).getTotal()) + ")");
+//        titles.add(navs.get(3).getName() + "(" + checkNumResults(navs.get(3).getTotal()) + ")");
 
 
-        ComprehensiveResultsFragment comprehensiveResultsFragment = ComprehensiveResultsFragment.newInstance(result);
-        BangumiResultsFragment bangumiResultsFragment = BangumiResultsFragment.newInstance(result);
-        TopicResultsFragment topicResultsFragment = TopicResultsFragment.newInstance(result);
+        ArchiveResultsFragment archiveResultsFragment = ArchiveResultsFragment.newInstance(content);
+        BangumiResultsFragment bangumiResultsFragment = BangumiResultsFragment.newInstance(content);
+        UpperResultsFragment upperResultsFragment = UpperResultsFragment.newInstance(content);
 
-        fragments.add(comprehensiveResultsFragment);
+        fragments.add(archiveResultsFragment);
         fragments.add(bangumiResultsFragment);
-        fragments.add(topicResultsFragment);
+        fragments.add(upperResultsFragment);
 
         SearchTabAdapter mAdapter = new SearchTabAdapter(getSupportFragmentManager(), titles, fragments);
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setOffscreenPageLimit(titles.size());
         mSlidingTabLayout.setViewPager(mViewPager);
         measureTabLayoutTextWidth(0);
         mSlidingTabLayout.setCurrentTab(0);
@@ -359,9 +352,7 @@ public class TotalStationSearchActivity extends RxBaseActivity
 
         private List<Fragment> fragments;
 
-        SearchTabAdapter(FragmentManager fm,
-                         List<String> titles,
-                         List<Fragment> fragments)
+        SearchTabAdapter(FragmentManager fm, List<String> titles, List<Fragment> fragments)
         {
 
             super(fm);

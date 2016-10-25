@@ -1,6 +1,5 @@
 package com.hotbitmapgg.ohmybilibili.module.search;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,29 +8,29 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.BangumiResultsAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.ArchiveResultsAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.search.SearchBangumiInfo;
+import com.hotbitmapgg.ohmybilibili.entity.search.SearchArchiveInfo;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by hcc on 16/8/29 21:08
+ * Created by hcc on 16/9/4 12:10
  * 100332338@qq.com
  * <p/>
- * 番剧搜索内容列表界面
+ * 综合搜索结果界面
  */
-public class BangumiResultsFragment extends RxLazyFragment
+public class ArchiveResultsFragment extends RxLazyFragment
 {
 
     @BindView(R.id.recycle)
@@ -51,16 +50,15 @@ public class BangumiResultsFragment extends RxLazyFragment
 
     private View loadMoreView;
 
-    private AnimationDrawable mAnimationDrawable;
-
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    private List<SearchBangumiInfo.DataBean.ItemsBean> bangumis = new ArrayList<>();
+    private List<SearchArchiveInfo.DataBean.ItemsBean.ArchiveBean> archives = new ArrayList<>();
 
-    public static BangumiResultsFragment newInstance(String content)
+
+    public static ArchiveResultsFragment newInstance(String content)
     {
 
-        BangumiResultsFragment fragment = new BangumiResultsFragment();
+        ArchiveResultsFragment fragment = new ArchiveResultsFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ConstantUtils.EXTRA_CONTENT, content);
         fragment.setArguments(bundle);
@@ -80,10 +78,6 @@ public class BangumiResultsFragment extends RxLazyFragment
     {
 
         content = getArguments().getString(ConstantUtils.EXTRA_CONTENT);
-
-        mLoadingView.setImageResource(R.drawable.anim_search_loading);
-        mAnimationDrawable = (AnimationDrawable) mLoadingView.getDrawable();
-        showSearchAnim();
 
         isPrepared = true;
         lazyLoad();
@@ -108,7 +102,7 @@ public class BangumiResultsFragment extends RxLazyFragment
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        BangumiResultsAdapter mAdapter = new BangumiResultsAdapter(mRecyclerView, bangumis);
+        ArchiveResultsAdapter mAdapter = new ArchiveResultsAdapter(mRecyclerView, archives);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
         createLoadMoreView();
@@ -124,6 +118,11 @@ public class BangumiResultsFragment extends RxLazyFragment
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
+        mAdapter.setOnItemClickListener((position, holder) -> {
+
+            SearchArchiveInfo.DataBean.ItemsBean.ArchiveBean archiveBean = archives.get(position);
+            VideoDetailsActivity.launch(getActivity(), Integer.valueOf(archiveBean.getParam()), archiveBean.getCover());
+        });
     }
 
     @Override
@@ -131,20 +130,18 @@ public class BangumiResultsFragment extends RxLazyFragment
     {
 
         RetrofitHelper.getSearchApi()
-                .searchBangumi(content, pageNum, pageSize)
-                .compose(bindToLifecycle())
-                .map(SearchBangumiInfo::getData)
-                .delay(1000, TimeUnit.MILLISECONDS)
+                .searchArchive(content, pageNum, pageSize)
+                .compose(this.bindToLifecycle())
+                .map(SearchArchiveInfo::getData)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(dataBean -> {
-                    if (dataBean.getItems().size() < pageSize)
+                    if (dataBean.getItems().getArchive().size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
 
-                    bangumis.addAll(dataBean.getItems());
+                    archives.addAll(dataBean.getItems().getArchive());
                     finishTask();
                 }, throwable -> {
-                    hideSearchAnim();
                     showEmptyView();
                     loadMoreView.setVisibility(View.GONE);
                 });
@@ -154,13 +151,12 @@ public class BangumiResultsFragment extends RxLazyFragment
     protected void finishTask()
     {
 
-        if (bangumis != null)
-            if (bangumis.size() == 0)
+        if (archives != null)
+            if (archives.size() == 0)
                 showEmptyView();
             else
                 hideEmptyView();
 
-        hideSearchAnim();
         loadMoreView.setVisibility(View.GONE);
         if (pageNum * pageSize - pageSize - 1 > 0)
             mHeaderViewRecyclerAdapter.notifyItemRangeChanged(pageNum * pageSize - pageSize - 1, pageSize);
@@ -176,21 +172,6 @@ public class BangumiResultsFragment extends RxLazyFragment
         mHeaderViewRecyclerAdapter.addFooterView(loadMoreView);
         loadMoreView.setVisibility(View.GONE);
     }
-
-    private void showSearchAnim()
-    {
-
-        mLoadingView.setVisibility(View.VISIBLE);
-        mAnimationDrawable.start();
-    }
-
-    private void hideSearchAnim()
-    {
-
-        mLoadingView.setVisibility(View.GONE);
-        mAnimationDrawable.stop();
-    }
-
 
     public void showEmptyView()
     {

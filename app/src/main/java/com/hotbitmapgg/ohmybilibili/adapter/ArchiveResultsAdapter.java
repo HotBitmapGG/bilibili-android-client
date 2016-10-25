@@ -11,8 +11,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.search.SearchResult;
-import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
+import com.hotbitmapgg.ohmybilibili.entity.search.SearchArchiveInfo;
+import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 
 import java.util.List;
 
@@ -22,16 +22,16 @@ import java.util.List;
  * <p/>
  * 综合搜索结果Adapter
  */
-public class ComprehensiveResultsAdapter extends AbsRecyclerViewAdapter
+public class ArchiveResultsAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<SearchResult.ResultBean.VideoBean> videos;
+    private List<SearchArchiveInfo.DataBean.ItemsBean.ArchiveBean> archives;
 
-    public ComprehensiveResultsAdapter(RecyclerView recyclerView, List<SearchResult.ResultBean.VideoBean> videos)
+    public ArchiveResultsAdapter(RecyclerView recyclerView, List<SearchArchiveInfo.DataBean.ItemsBean.ArchiveBean> archives)
     {
 
         super(recyclerView);
-        this.videos = videos;
+        this.archives = archives;
     }
 
 
@@ -41,7 +41,7 @@ public class ComprehensiveResultsAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext()).
-                inflate(R.layout.item_video_strip, parent, false));
+                inflate(R.layout.item_search_archive, parent, false));
     }
 
     @Override
@@ -51,20 +51,24 @@ public class ComprehensiveResultsAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            SearchResult.ResultBean.VideoBean videoBean = videos.get(position);
+            SearchArchiveInfo.DataBean.ItemsBean.ArchiveBean archiveBean = archives.get(position);
 
             Glide.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(videoBean.getPic()))
+                    .load(archiveBean.getCover())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mVideoPic);
 
-            itemViewHolder.mVideoTitle.setText(videoBean.getTitle());
-            itemViewHolder.mVideoPlayNum.setText(String.valueOf(videoBean.getPlay()));
-            itemViewHolder.mVideoReviewNum.setText(String.valueOf(videoBean.getVideo_review()));
-            itemViewHolder.mUserName.setText(videoBean.getAuthor());
+            itemViewHolder.mVideoTitle.setText(archiveBean.getTitle());
+            itemViewHolder.mVideoPlayNum.setText(NumberUtil.converString(archiveBean.getPlay()));
+            itemViewHolder.mVideoReviewNum.setText(NumberUtil.converString(archiveBean.getDanmaku()));
+            itemViewHolder.mUserName.setText(archiveBean.getAuthor());
+            if (archiveBean.getDuration() != null)
+                itemViewHolder.mDuration.setText(archiveBean.getDuration());
+            else
+                itemViewHolder.mDuration.setText("--:--");
         }
 
         super.onBindViewHolder(holder, position);
@@ -74,7 +78,7 @@ public class ComprehensiveResultsAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return videos.size();
+        return archives.size();
     }
 
     public class ItemViewHolder extends ClickableViewHolder
@@ -90,6 +94,8 @@ public class ComprehensiveResultsAdapter extends AbsRecyclerViewAdapter
 
         TextView mUserName;
 
+        TextView mDuration;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -100,6 +106,7 @@ public class ComprehensiveResultsAdapter extends AbsRecyclerViewAdapter
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewNum = $(R.id.item_review);
             mUserName = $(R.id.item_user_name);
+            mDuration = $(R.id.item_duration);
         }
     }
 }

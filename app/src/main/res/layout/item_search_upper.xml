@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/search_upper_layout_height"
+    android:layout_marginBottom="@dimen/default_general_margin"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+        android:id="@+id/item_avatar_view"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/default_general_margin"
+        app:border_color="@android:color/white"
+        app:border_width="@dimen/circle_default_width" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_toEndOf="@+id/item_avatar_view"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/item_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_tiny_margin"
+            android:textColor="@color/font_normal"
+            android:textSize="@dimen/default_medium_text_size" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_tiny_margin">
+
+            <TextView
+                android:id="@+id/item_user_fans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+            <TextView
+                android:id="@+id/item_user_videos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_grow_margin"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/item_user_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/default_tiny_margin"
+            android:textColor="@color/black_alpha_45"
+            android:textSize="@dimen/default_small_text_size" />
+
+    </LinearLayout>
+</RelativeLayout>

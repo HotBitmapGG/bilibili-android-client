@@ -344,7 +344,7 @@ public class RetrofitHelper
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
+                .baseUrl(APP_BASE_URL)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
