@@ -41,7 +41,7 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
 
         if (loading)
         {
-            if (totalItemCount >= previousTotal)
+            if (totalItemCount > previousTotal)
             {
                 loading = false;
                 previousTotal = totalItemCount;
@@ -54,6 +54,15 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
             onLoadMore(currentPage);
             loading = true;
         }
+    }
+
+
+    public void refresh()
+    {
+
+        loading = true;
+        previousTotal = 0;
+        currentPage = 1;
     }
 
     public abstract void onLoadMore(int currentPage);

@@ -60,6 +60,8 @@ public class ActivityCenterActivity extends RxBaseActivity
 
     private boolean mIsRefreshing = false;
 
+    private EndlessRecyclerOnScrollListener mEndlessRecyclerOnScrollListener;
+
     @Override
     public int getLayoutId()
     {
@@ -87,7 +89,7 @@ public class ActivityCenterActivity extends RxBaseActivity
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
         createLoadMoreView();
-        mRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager)
+        mEndlessRecyclerOnScrollListener = new EndlessRecyclerOnScrollListener(linearLayoutManager)
         {
 
             @Override
@@ -98,7 +100,8 @@ public class ActivityCenterActivity extends RxBaseActivity
                 loadData();
                 loadMoreView.setVisibility(View.VISIBLE);
             }
-        });
+        };
+        mRecyclerView.addOnScrollListener(mEndlessRecyclerOnScrollListener);
         mAdapter.setOnItemClickListener((position, holder) -> BrowserActivity.launch(
                 ActivityCenterActivity.this, activityCenters.get(position).getLink(),
                 activityCenters.get(position).getTitle()));
@@ -121,6 +124,7 @@ public class ActivityCenterActivity extends RxBaseActivity
             pageNum = 1;
             mIsRefreshing = true;
             activityCenters.clear();
+            mEndlessRecyclerOnScrollListener.refresh();
             loadData();
         });
     }
@@ -136,7 +140,6 @@ public class ActivityCenterActivity extends RxBaseActivity
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listBeans -> {
-
                     if (listBeans.size() < pageSize)
                         loadMoreView.setVisibility(View.GONE);
 
