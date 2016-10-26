@@ -73,7 +73,6 @@ public class ActivityCenterActivity extends RxBaseActivity
 
         initRefreshLayout();
         initRecyclerView();
-        loadData();
     }
 
 
@@ -112,8 +111,14 @@ public class ActivityCenterActivity extends RxBaseActivity
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefreshLayout.post(() -> {
+
+            mSwipeRefreshLayout.setRefreshing(true);
+            loadData();
+        });
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
 
+            pageNum = 1;
             mIsRefreshing = true;
             activityCenters.clear();
             loadData();
