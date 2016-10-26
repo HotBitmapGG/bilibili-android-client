@@ -63,7 +63,7 @@ public abstract class AbsRecyclerViewAdapter extends
     public interface OnItemClickListener
     {
 
-        public void onItemClick(int position, ClickableViewHolder holder);
+        void onItemClick(int position, ClickableViewHolder holder);
     }
 
     interface OnItemLongClickListener
