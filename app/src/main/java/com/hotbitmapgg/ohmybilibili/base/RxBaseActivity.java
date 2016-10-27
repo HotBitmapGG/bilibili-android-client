@@ -43,14 +43,6 @@ public abstract class RxBaseActivity extends RxAppCompatActivity implements Card
         initToolBar();
     }
 
-    @Override
-    protected void onDestroy()
-    {
-
-        super.onDestroy();
-        bind.unbind();
-    }
-
     public abstract int getLayoutId();
 
     public abstract void initViews(Bundle savedInstanceState);
@@ -120,5 +112,13 @@ public abstract class RxBaseActivity extends RxAppCompatActivity implements Card
                     ThemeUtils.getThemeAttrColor(this, android.R.attr.colorPrimary));
             setTaskDescription(description);
         }
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+
+        super.onDestroy();
+        bind.unbind();
     }
 }

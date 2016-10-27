@@ -19,6 +19,7 @@ import com.hotbitmapgg.ohmybilibili.entity.discover.ActivityCenterInfo;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
+import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,9 +51,9 @@ public class ActivityCenterActivity extends RxBaseActivity
 
     private int pageSize = 20;
 
-    private List<ActivityCenterInfo.ListBean> activityCenters = new ArrayList<>();
-
     private View loadMoreView;
+
+    private List<ActivityCenterInfo.ListBean> activityCenters = new ArrayList<>();
 
     private ActivityCenterAdapter mAdapter;
 
@@ -61,6 +62,8 @@ public class ActivityCenterActivity extends RxBaseActivity
     private boolean mIsRefreshing = false;
 
     private EndlessRecyclerOnScrollListener mEndlessRecyclerOnScrollListener;
+
+    private CircleProgressView loadViewProgress;
 
     @Override
     public int getLayoutId()

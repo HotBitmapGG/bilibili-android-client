@@ -68,7 +68,7 @@
     <string name="change_recommend">换一波推荐</string>
     <string name="rank">排行榜</string>
     <string name="topic">话题</string>
-    <string name="load_more">正在加载…</string>
+    <string name="load_more">加载中…</string>
     <string name="search_hint">搜索视频,番剧,up主或av号</string>
     <string name="danmaku_switch">弹幕开</string>
     <string name="play_immediately">立即播放</string>
@@ -162,5 +162,6 @@
     <string name="share_title">分享哔哩哔哩App</string>
     <string name="feedback_titlle">意见反馈</string>
     <string name="feedback_message">如果您有任何意见或者发现了Bug，可以在GitHub上给我提Issuse，我会第一时间关注并解决，谢谢。</string>
+    <string name="load_more_no_text">╮(╯3╰)╭ 没有更多数据了</string>
 
 </resources>

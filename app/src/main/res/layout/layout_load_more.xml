@@ -25,7 +25,8 @@
         android:layout_marginStart="@dimen/default_general_margin"
         android:gravity="center"
         android:text="@string/load_more"
-        android:textColor="@color/font_normal"
+        android:textColor="@color/black_alpha_45"
         android:textSize="@dimen/default_small_text_size" />
+
 </LinearLayout>
 
