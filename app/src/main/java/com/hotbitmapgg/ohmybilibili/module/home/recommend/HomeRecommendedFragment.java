@@ -173,16 +173,12 @@ public class HomeRecommendedFragment extends RxLazyFragment
     private void convertBanner()
     {
 
-        BannerEntity banner;
-        for (int i = 0, size = recommendBanners.size(); i < size; i++)
-        {
-            RecommendBannerInfo.DataBean dataBean = recommendBanners.get(i);
-            banner = new BannerEntity();
-            banner.img = dataBean.getImage();
-            banner.title = dataBean.getTitle();
-            banner.link = dataBean.getValue();
-            banners.add(banner);
-        }
+        Observable.from(recommendBanners)
+                .compose(bindToLifecycle())
+                .forEach(dataBean -> {
+                    banners.add(new BannerEntity(dataBean.getValue(),
+                            dataBean.getTitle(), dataBean.getImage()));
+                });
     }
 
     @Override

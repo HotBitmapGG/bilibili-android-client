@@ -28,6 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.Observable;
 
 /**
  * Created by hcc on 16/8/4 14:12
@@ -88,17 +89,10 @@ public class LiveAppIndexAdapter extends RecyclerView.Adapter
         int tempSize = 0;
         int partitionSize = mLiveAppIndexInfo.getData().getPartitions().size();
 
-
-        BannerEntity bannerEntity;
         List<LiveAppIndexInfo.DataBean.BannerBean> banner = mLiveAppIndexInfo.getData().getBanner();
-        for (int i = 0, size = banner.size(); i < size; i++)
-        {
-            bannerEntity = new BannerEntity();
-            bannerEntity.img = banner.get(i).getImg();
-            bannerEntity.title = banner.get(i).getTitle();
-            bannerEntity.link = banner.get(i).getLink();
-            bannerEntitys.add(bannerEntity);
-        }
+        Observable.from(banner)
+                .forEach(bannerBean -> bannerEntitys.add(new BannerEntity(
+                        bannerBean.getLink(), bannerBean.getTitle(), bannerBean.getImg())));
 
         for (int i = 0; i < partitionSize; i++)
         {

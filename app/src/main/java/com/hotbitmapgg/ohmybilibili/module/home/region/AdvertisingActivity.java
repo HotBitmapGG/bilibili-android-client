@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -204,16 +205,10 @@ public class AdvertisingActivity extends RxBaseActivity
     private void converBanner()
     {
 
-        BannerEntity bannerEntity;
-        for (int i = 0, size = banners.size(); i < size; i++)
-        {
-            RegionRecommendInfo.DataBean.BannerBean.TopBean topBean = banners.get(i);
-            bannerEntity = new BannerEntity();
-            bannerEntity.img = topBean.getImage();
-            bannerEntity.link = topBean.getUri();
-            bannerEntity.title = topBean.getTitle();
-            bannerEntities.add(bannerEntity);
-        }
+        Observable.from(banners)
+                .compose(bindToLifecycle())
+                .forEach(topBean -> bannerEntities.add(new BannerEntity(
+                        topBean.getUri(), topBean.getTitle(), topBean.getImage())));
     }
 
     private void setRecycleNoScroll()

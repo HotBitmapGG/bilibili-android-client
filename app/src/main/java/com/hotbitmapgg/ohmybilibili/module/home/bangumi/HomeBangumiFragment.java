@@ -218,15 +218,11 @@ public class HomeBangumiFragment extends RxLazyFragment
         mIsRefreshing = false;
         hideEmptyView();
 
-        BannerEntity banner;
-        for (int i = 0, size = banners.size(); i < size; i++)
-        {
-            banner = new BannerEntity();
-            HomeBangumiRecommend.ResultBean.BannersBean bannersBean = banners.get(i);
-            banner.img = bannersBean.getImg();
-            banner.link = bannersBean.getLink();
-            bannerList.add(banner);
-        }
+        Observable.from(banners)
+                .compose(bindToLifecycle())
+                .forEach(bannersBean -> bannerList.add(new BannerEntity(
+                        bannersBean.getLink(), bannersBean.getTitle(), bannersBean.getImg())));
+
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiBannerSection(bannerList));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiItemSection(getActivity()));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiNewSerialSection(getActivity(), newBangumiSerials));
