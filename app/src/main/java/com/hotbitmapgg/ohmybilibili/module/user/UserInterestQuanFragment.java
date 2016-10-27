@@ -20,6 +20,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
@@ -122,19 +124,22 @@ public class UserInterestQuanFragment extends RxLazyFragment
         RetrofitHelper.getUserInterestQuanApi()
                 .getUserInterestQuanData(mid, pageNum, pageSize)
                 .compose(bindToLifecycle())
+                .map(userInterestQuanInfo -> userInterestQuanInfo.getData().getResult())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userInterestQuanInfo -> {
+                .doOnNext(resultBeans -> {
 
-                    List<UserInterestQuanInfo.DataBean.ResultBean> result =
-                            userInterestQuanInfo.getData().getResult();
-                    if (result.size() < pageSize)
+                    if (resultBeans.size() < pageSize)
+                    {
                         loadMoreView.setVisibility(View.GONE);
+                        mHeaderViewRecyclerAdapter.removeFootView();
+                    }
+                })
+                .subscribe(resultBeans -> {
 
-                    userInterestQuans.addAll(result);
+                    userInterestQuans.addAll(resultBeans);
                     finishTask();
                 }, throwable -> {
-
                     loadMoreView.setVisibility(View.GONE);
                 });
     }

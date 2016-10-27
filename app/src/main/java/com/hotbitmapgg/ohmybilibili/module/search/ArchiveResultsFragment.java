@@ -23,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -141,10 +142,14 @@ public class ArchiveResultsFragment extends RxLazyFragment
                 .map(SearchArchiveInfo::getData)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(dataBean -> {
+                .doOnNext(dataBean -> {
                     if (dataBean.getItems().getArchive().size() < pageSize)
+                    {
                         loadMoreView.setVisibility(View.GONE);
-
+                        mHeaderViewRecyclerAdapter.removeFootView();
+                    }
+                })
+                .subscribe(dataBean -> {
                     archives.addAll(dataBean.getItems().getArchive());
                     seasons.addAll(dataBean.getItems().getSeason());
                     finishTask();

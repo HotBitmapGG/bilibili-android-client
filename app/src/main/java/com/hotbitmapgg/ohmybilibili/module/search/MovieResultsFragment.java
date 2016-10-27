@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -137,10 +138,15 @@ public class MovieResultsFragment extends RxLazyFragment
                 .delay(1000, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(dataBean -> {
-                    if (dataBean.getItems().size() < pageSize)
-                        loadMoreView.setVisibility(View.GONE);
+                .doOnNext(dataBean -> {
 
+                    if (dataBean.getItems().size() < pageSize)
+                    {
+                        loadMoreView.setVisibility(View.GONE);
+                        mHeaderViewRecyclerAdapter.removeFootView();
+                    }
+                })
+                .subscribe(dataBean -> {
                     movies.addAll(dataBean.getItems());
                     finishTask();
                 }, throwable -> {

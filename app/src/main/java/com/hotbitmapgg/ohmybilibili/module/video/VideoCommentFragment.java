@@ -120,8 +120,10 @@ public class VideoCommentFragment extends RxLazyFragment
                     ArrayList<VideoComment.List> list = videoComment.list;
                     ArrayList<VideoComment.HotList> hotList = videoComment.hotList;
                     if (list.size() < pageSize)
+                    {
                         loadMoreView.setVisibility(View.GONE);
-
+                        mAdapter.removeFootView();
+                    }
                     comments.addAll(list);
                     hotComments.addAll(hotList);
                     finishTask();

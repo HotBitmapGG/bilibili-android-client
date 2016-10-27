@@ -22,6 +22,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
@@ -98,19 +100,21 @@ public class UserContributeFragment extends RxLazyFragment
         RetrofitHelper.getUserContributeVideoApi()
                 .getUserContributeVideos(mid, pageNum, pageSize)
                 .compose(this.bindToLifecycle())
+                .map(userContributeInfo -> userContributeInfo.getData().getVlist())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userContributeInfo -> {
+                .doOnNext(vlistBeans -> {
 
-                    List<UserContributeInfo.DataBean.VlistBean> vlist =
-                            userContributeInfo.getData().getVlist();
-                    if (vlist.size() < pageSize)
+                    if (vlistBeans.size() < pageSize)
+                    {
                         loadMoreView.setVisibility(View.GONE);
-
-                    userContributes.addAll(vlist);
+                        mHeaderViewRecyclerAdapter.removeFootView();
+                    }
+                })
+                .subscribe(vlistBeans -> {
+                    userContributes.addAll(vlistBeans);
                     finishTask();
                 }, throwable -> {
-
                     loadMoreView.setVisibility(View.GONE);
                 });
     }
