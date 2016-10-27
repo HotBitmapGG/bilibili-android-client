@@ -89,7 +89,7 @@ public class MediaController extends FrameLayout
 
     private OnHiddenListener mHiddenListener;
 
-    private boolean mDanmakuShow = true;
+    private boolean mDanmakuShow = false;
 
     private DanmakuSwitchListener mDanmakuSwitchListener;
 
@@ -342,15 +342,15 @@ public class MediaController extends FrameLayout
 
             if (mDanmakuShow)
             {
-                mDanmakuImage.setImageResource(R.drawable.bili_player_danmaku_is_closed);
+                mDanmakuImage.setImageResource(R.drawable.bili_player_danmaku_is_open);
                 mDanmakuText.setText("弹幕开");
-                mDanmakuSwitchListener.setDanmakushow(false);
+                mDanmakuSwitchListener.setDanmakushow(true);
                 mDanmakuShow = false;
             } else
             {
-                mDanmakuImage.setImageResource(R.drawable.bili_player_danmaku_is_open);
+                mDanmakuImage.setImageResource(R.drawable.bili_player_danmaku_is_closed);
                 mDanmakuText.setText("弹幕关");
-                mDanmakuSwitchListener.setDanmakushow(true);
+                mDanmakuSwitchListener.setDanmakushow(false);
                 mDanmakuShow = true;
             }
         });

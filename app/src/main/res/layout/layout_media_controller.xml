@@ -51,13 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="0dp"
         android:background="@color/media_controller_bg"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/media_controller_bottom_layout_left_right_bottom_margin"
-        android:paddingLeft="@dimen/media_controller_bottom_layout_left_right_bottom_margin"
-        android:paddingRight="@dimen/media_controller_bottom_layout_left_right_bottom_margin"
-        android:paddingTop="@dimen/media_controller_bottom_layout_top_margin">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -86,7 +81,6 @@
             android:id="@+id/media_controller_controls_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/mediacontroller_buttons_bottom_margin"
             android:layout_marginLeft="@dimen/mediacontroller_bottom_layout_center_margin"
             android:layout_marginRight="@dimen/mediacontroller_bottom_layout_center_margin"
             android:layout_marginTop="@dimen/mediacontroller_buttons_top_margin"
@@ -98,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/default_general_margin"
                 android:background="@null"
                 android:gravity="center"
                 android:src="@drawable/bili_player_play_can_play" />
@@ -111,7 +106,8 @@
                 android:layout_marginStart="22dp"
                 android:layout_toEndOf="@+id/media_controller_play_pause"
                 android:textColor="@color/white"
-                android:textSize="@dimen/default_small_text_size" />
+                android:textSize="@dimen/default_tiny_text_size"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/time_line"
@@ -123,7 +119,7 @@
                 android:layout_toEndOf="@+id/media_controller_time_current"
                 android:text="/"
                 android:textColor="@color/white"
-                android:textSize="@dimen/default_small_text_size" />
+                android:textSize="@dimen/default_tiny_text_size" />
 
 
             <TextView
@@ -133,20 +129,21 @@
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/time_line"
                 android:textColor="@color/white"
-                android:textSize="@dimen/default_small_text_size" />
+                android:textSize="@dimen/default_tiny_text_size"
+                android:textStyle="bold" />
 
 
             <LinearLayout
                 android:id="@+id/media_controller_danmaku_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/default_general_margin"
+                android:layout_marginEnd="@dimen/default_grow_margin"
                 android:layout_toStartOf="@+id/media_controller_controls_quality_layout"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="@dimen/default_general_margin">
+                android:padding="@dimen/default_tiny_margin">
 
                 <ImageView
                     android:id="@+id/media_controller_danmaku_switch"
@@ -170,13 +167,13 @@
                 android:id="@+id/media_controller_controls_quality_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/default_general_margin"
+                android:layout_marginEnd="@dimen/default_grow_margin"
                 android:layout_toStartOf="@+id/media_controller_controls_lock_layout"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="@dimen/default_general_margin">
+                android:padding="@dimen/default_tiny_margin">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -202,11 +199,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
+                android:layout_marginEnd="@dimen/default_general_margin"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="@dimen/default_general_margin">
+                android:padding="@dimen/default_tiny_margin">
 
                 <ImageView
                     android:layout_width="wrap_content"
