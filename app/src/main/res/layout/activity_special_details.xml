@@ -66,7 +66,7 @@
                         android:layout_width="@dimen/sp_preview_size"
                         android:layout_height="@dimen/sp_preview_size"
                         android:layout_margin="@dimen/sp_preview_padding"
-                        android:scaleType="fitXY" />
+                        android:scaleType="center" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

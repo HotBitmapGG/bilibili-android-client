@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListen
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchSpInfo;
+import com.hotbitmapgg.ohmybilibili.module.home.bangumi.SpecialDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
@@ -23,7 +24,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -125,6 +125,11 @@ public class SpResultsFragment extends RxLazyFragment
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
+
+        mAdapter.setOnItemClickListener((position, holder) -> SpecialDetailsActivity.launch(getActivity(),
+                specialTopics.get(position).getParam(),
+                specialTopics.get(position).getTitle(),
+                Integer.valueOf(specialTopics.get(position).getParam())));
     }
 
     @Override

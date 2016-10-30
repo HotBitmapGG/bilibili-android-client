@@ -117,6 +117,7 @@ public class SpecialDetailsActivity extends RxBaseActivity
     public void initToolBar()
     {
 
+        mToolbar.setTitle("专题详情");
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
@@ -193,8 +194,10 @@ public class SpecialDetailsActivity extends RxBaseActivity
         // 初始化界面数据
         Glide.with(SpecialDetailsActivity.this)
                 .load(cover)
+                .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.bili_default_image_tv)
+                .dontAnimate()
                 .into(mPreviewImage);
 
         mTitleText.setText(spTitle);
@@ -209,7 +212,6 @@ public class SpecialDetailsActivity extends RxBaseActivity
 
         mPlayTimeText.setText(String.valueOf(playCount));
         mVideoCountText.setText(count + "话");
-        mToolbar.setTitle(spTitle);
         mFavourite.setText(String.valueOf(favourite));
         mAttention.setText(String.valueOf(attention));
 

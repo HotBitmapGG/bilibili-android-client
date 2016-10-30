@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListen
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchUpperInfo;
+import com.hotbitmapgg.ohmybilibili.module.user.UserInfoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
@@ -124,6 +125,11 @@ public class UpperResultsFragment extends RxLazyFragment
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
+
+        mAdapter.setOnItemClickListener((position, holder) -> UserInfoDetailsActivity.launch(getActivity(),
+                uppers.get(position).getTitle(),
+                Integer.valueOf(uppers.get(position).getParam()),
+                uppers.get(position).getCover()));
     }
 
     @Override

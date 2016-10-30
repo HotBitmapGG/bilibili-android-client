@@ -14,6 +14,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListen
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchMovieInfo;
+import com.hotbitmapgg.ohmybilibili.module.home.bangumi.SpecialDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 
@@ -23,7 +24,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -125,6 +125,11 @@ public class MovieResultsFragment extends RxLazyFragment
                 loadMoreView.setVisibility(View.VISIBLE);
             }
         });
+
+        mAdapter.setOnItemClickListener((position, holder) -> SpecialDetailsActivity.launch(getActivity(),
+                movies.get(position).getParam(),
+                movies.get(position).getTitle(),
+                Integer.valueOf( movies.get(position).getParam())));
     }
 
     @Override
