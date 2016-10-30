@@ -282,6 +282,7 @@
     <dimen name="search_movie_image_height">160dp</dimen>
     <dimen name="search_upper_avatar_size">70dp</dimen>
     <dimen name="tab_bar_item_padding">15dp</dimen>
+    <dimen name="tags_radius">50dp</dimen>
 
 
 </resources>

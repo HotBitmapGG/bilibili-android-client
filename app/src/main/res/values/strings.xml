@@ -163,5 +163,7 @@
     <string name="feedback_titlle">意见反馈</string>
     <string name="feedback_message">如果您有任何意见或者发现了Bug，可以在GitHub上给我提Issuse，我会第一时间关注并解决，谢谢。</string>
     <string name="load_more_no_text">╮(╯3╰)╭ 没有更多数据了</string>
+    <string name="about_tag">标签相关</string>
+    <string name="tag_edit">编辑</string>
 
 </resources>

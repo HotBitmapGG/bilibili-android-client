@@ -102,7 +102,7 @@ public class HomeDiscoverFragment extends RxLazyFragment
     {
 
         //获取热搜标签集合前9个默认显示
-        List<HotSearchTag.ListBean> frontTags = hotSearchTags.subList(0, 9);
+        List<HotSearchTag.ListBean> frontTags = hotSearchTags.subList(0, 8);
         mTagFlowLayout.setAdapter(new TagAdapter<HotSearchTag.ListBean>(frontTags)
         {
 

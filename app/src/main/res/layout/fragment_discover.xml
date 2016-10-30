@@ -20,7 +20,8 @@
             android:layout_marginRight="@dimen/default_general_margin"
             android:layout_marginTop="@dimen/default_general_margin"
             app:cardBackgroundColor="@color/card_view_background"
-            app:cardCornerRadius="@dimen/line_height">
+            app:cardCornerRadius="@dimen/line_height"
+            app:cardElevation="@dimen/app_bar_default_elevation">
 
 
             <ImageView
@@ -73,6 +74,8 @@
             android:id="@+id/tags_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_tiny_padding"
+            android:layout_marginStart="@dimen/default_tiny_padding"
             app:max_select="-1" />
 
 
@@ -88,6 +91,8 @@
                 android:id="@+id/hide_tags_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_tiny_padding"
+                android:layout_marginStart="@dimen/default_tiny_padding"
                 app:max_select="-1" />
 
         </android.support.v4.widget.NestedScrollView>

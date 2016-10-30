@@ -22,7 +22,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/title_margin_small"
+            android:layout_marginStart="@dimen/default_tiny_padding"
             android:textColor="@color/font_normal"
             android:textSize="@dimen/default_medium_text_size" />
 
@@ -267,6 +267,45 @@
             android:layout_height="@dimen/line_height"
             android:background="@color/gray_light" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_general_margin"
+                android:text="@string/about_tag"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/default_general_margin"
+                android:text="@string/tag_edit"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_tiny_text_size" />
+
+
+        </RelativeLayout>
+
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/tags_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_tiny_padding"
+            android:layout_marginStart="@dimen/default_tiny_padding"
+            app:max_select="-1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/gray_light" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -279,15 +318,9 @@
                 android:padding="@dimen/default_general_margin"
                 android:text="@string/video_about"
                 android:textColor="@color/font_normal"
-                android:textSize="@dimen/default_medium_text_size" />
+                android:textSize="@dimen/default_small_text_size" />
+
         </RelativeLayout>
-
-
-        <com.zhy.view.flowlayout.TagFlowLayout
-            android:id="@+id/tags_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:max_select="-1" />
 
 
         <android.support.v7.widget.RecyclerView
@@ -296,7 +329,6 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:overScrollMode="never"
-            android:paddingTop="@dimen/activity_vertical_margin"
             android:scrollbars="none" />
 
 
