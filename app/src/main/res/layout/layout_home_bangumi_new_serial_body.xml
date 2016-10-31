@@ -30,13 +30,13 @@
 
             <TextView
                 android:id="@+id/item_play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottom_shadow_height"
+                android:layout_gravity="bottom"
                 android:layout_marginTop="@dimen/default_general_margin"
-                android:background="@drawable/bangumi_badge"
-                android:gravity="center_vertical"
-                android:padding="@dimen/default_tiny_margin"
+                android:background="@drawable/shadow_normal_reserve"
+                android:gravity="center_vertical|bottom"
+                android:padding="@dimen/default_tiny_padding"
                 android:textColor="@color/white"
                 android:textSize="@dimen/default_tiny_text_size" />
 
