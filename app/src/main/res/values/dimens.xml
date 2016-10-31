@@ -6,7 +6,6 @@
 
     <!--Global configuration dimen-->
     <dimen name="action_bar_default_height">48dp</dimen>
-    <dimen name="user_info_padding">10dp</dimen>
     <dimen name="fab_margin_height">190dp</dimen>
     <dimen name="fab_default_elevation">4dp</dimen>
     <dimen name="app_bar_elevation">3dp</dimen>
@@ -24,9 +23,6 @@
     <dimen name="head_image_bg_height">128dp</dimen>
 
     <!--weekday bangumi layout size-->
-    <dimen name="weekday_bangumi_card_height">170dp</dimen>
-    <dimen name="weekday_bangumi_card_image_height">116dp</dimen>
-    <dimen name="weekday_bangumi_bottom_layout_height">58dp</dimen>
     <dimen name="weekday_bangumi_head_height">60dp</dimen>
 
     <!--load more layout size-->
@@ -47,9 +43,6 @@
     <!--video card size-->
     <dimen name="card_default_height">190dp</dimen>
     <dimen name="card_image_default_height">120dp</dimen>
-
-    <!--user fans size-->
-    <dimen name="user_fans_layout_height">70dp</dimen>
 
 
     <!--search size-->
@@ -108,8 +101,6 @@
 
     <!--splash size-->
     <dimen name="splash_logo_margin">40dp</dimen>
-    <dimen name="splash_text_margin">20dp</dimen>
-
 
     <!--video details size-->
     <dimen name="video_details_margin_top">26dp</dimen>
@@ -124,8 +115,6 @@
 
 
     <!--more layout size-->
-    <dimen name="grid_column_width">60dp</dimen>
-    <dimen name="grid_horizontal_spacing">10dp</dimen>
     <dimen name="more_item_image_size">50dp</dimen>
 
 
@@ -138,7 +127,6 @@
     <dimen name="default_small_text_size">14sp</dimen>
     <dimen name="default_medium_text_size">16sp</dimen>
     <dimen name="default_big_text_size">18sp</dimen>
-    <dimen name="default_large_text_size">20sp</dimen>
     <dimen name="default_big_large_text_size">22sp</dimen>
 
     <!--tab layout size-->
@@ -170,7 +158,6 @@
     <dimen name="circle_progress_view_default_size">56dp</dimen>
     <dimen name="circle_progress_view_small_size">56dp</dimen>
     <dimen name="circle_progress_view_default_border_width">4dp</dimen>
-    <dimen name="circle_progress_view_default_margin_top">80dp</dimen>
 
     <!-- UserTagView -->
     <dimen name="user_avatar_size">38dp</dimen>
@@ -192,22 +179,13 @@
 
     <!-- List -->
     <dimen name="list_item_vertical_margin_small">8dp</dimen>
-    <dimen name="list_item_avatar_size">48dp</dimen>
-    <dimen name="list_item_user_name_size">14sp</dimen>
 
     <!-- Navigation -->
     <dimen name="navigation_header_height">200dp</dimen>
     <dimen name="navigation_avatar_size">74dp</dimen>
-    <dimen name="navigation_avatar_margin">16dp</dimen>
-    <dimen name="navigation_subtitle_height">56dp</dimen>
-    <dimen name="navigation_subtitle_primary_text_size">16sp</dimen>
     <dimen name="navigation_subtitle_secondary_text_size">14sp</dimen>
-    <dimen name="navigation_subtitle_text_padding_vertical">8dp</dimen>
-    <dimen name="navigation_subtitle_text_padding_vertical_smaller">4dp</dimen>
-    <dimen name="navigation_subtitle_text_padding_horizontal">16dp</dimen>
 
     <!-- Android Design Support Library -->
-    <dimen name="navigation_elevation">12dp</dimen>
     <dimen name="navigation_max_width">320dp</dimen>
 
     <!-- Layouts' special resources -->
@@ -217,12 +195,6 @@
 
     <!-- activity_user_info.xml -->
     <dimen name="user_info_avatar_size">84dp</dimen>
-    <dimen name="user_info_avatar_padding">24dp</dimen>
-    <dimen name="user_info_details_layout_horizontal_padding">12dp</dimen>
-    <dimen name="user_info_details_number_divider_size">1dp</dimen>
-    <dimen name="user_info_details_number_divider_margin">20dp</dimen>
-    <dimen name="user_info_details_number_bar_height">48dp</dimen>
-    <dimen name="user_info_details_number_padding">12dp</dimen>
 
     <dimen name="user_info_layout_height">320dp</dimen>
     <dimen name="user_info_top_image_height">130dp</dimen>
@@ -236,14 +208,9 @@
     <dimen name="sp_preview_size">100dp</dimen>
 
     <!-- video player -->
-    <dimen name="media_controller_button_top_margin">2dp</dimen>
-    <dimen name="media_controller_button_bottom_margin">0dp</dimen>
-    <dimen name="media_controller_bottom_layout_small_margin">2dp</dimen>
-    <dimen name="media_controller_bottom_layout_big_margin">7dp</dimen>
-    <dimen name="media_controller_bottom_layout_center_margin">12dp</dimen>
-    <dimen name="media_controller_bottom_layout_danmaku_padding">3dp</dimen>
-    <dimen name="media_controller_bottom_layout_top_margin">4dp</dimen>
-    <dimen name="media_controller_bottom_layout_left_right_bottom_margin">8dp</dimen>
+    <dimen name="mediacontroller_buttons_top_margin">2dp</dimen>
+    <dimen name="mediacontroller_bottom_layout_center_margin">12dp</dimen>
+    <dimen name="mediacontroller_bottom_layout_danmaku_padding">3dp</dimen>
 
 
     <!--home focus size-->

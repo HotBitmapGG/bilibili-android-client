@@ -13,10 +13,7 @@
     <string name="app_name">哔哩哔哩</string>
     <string name="info_play_times_format">%d</string>
     <string name="info_reviews_format">%d</string>
-    <string name="info_following_format">关注 %d</string>
-    <string name="info_fans_format">粉丝 %d</string>
     <string name="hotbitmapgg">hotBitmapGG</string>
-    <string name="github">GitHub: </string>
     <string name="github_link">https://github.com/HotBitmapGG</string>
     <string name="sina_weibo_link">新浪微博:http://m.weibo.cn/users/3223089177/qq</string>
     <string name="jianshu_link">简书:http://www.jianshu.com/notebooks/5181955/latest</string>
@@ -32,7 +29,6 @@
     <string name="sp_collection">收藏:</string>
     <string name="sp_introduction">专题简介:</string>
     <string name="sp_videos">专题剧集</string>
-    <string name="splash_title">copyright © 2015–2016 BILIBILI</string>
     <string name="goto_look">进去看看</string>
     <string name="discover_search_hint">搜索视频 番剧 up主或av号</string>
     <string name="everyone_in_the_search">大家都在搜</string>
@@ -56,7 +52,6 @@
     <string name="video_about">视频相关</string>
     <string name="more">更多</string>
     <string name="download">下载</string>
-    <string name="reload">重新加载</string>
     <string name="to_them">追番</string>
     <string name="time_line">放送表</string>
     <string name="index">索引</string>
