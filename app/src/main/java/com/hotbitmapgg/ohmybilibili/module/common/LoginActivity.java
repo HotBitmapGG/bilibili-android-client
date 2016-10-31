@@ -58,26 +58,14 @@ public class LoginActivity extends RxBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        mDeleteUserName.setOnClickListener(v -> {
-            // 清空用户名以及密码
-            et_username.setText("");
-            et_password.setText("");
-            mDeleteUserName.setVisibility(View.GONE);
-            et_username.setFocusable(true);
-            et_username.setFocusableInTouchMode(true);
-            et_username.requestFocus();
-        });
-
 
         et_username.setOnFocusChangeListener((v, hasFocus) -> {
 
             if (hasFocus && et_username.getText().length() > 0)
-            {
                 mDeleteUserName.setVisibility(View.VISIBLE);
-            } else
-            {
+            else
                 mDeleteUserName.setVisibility(View.GONE);
-            }
+
 
             mLeftLogo.setImageResource(R.drawable.ic_22);
             mRightLogo.setImageResource(R.drawable.ic_33);
@@ -95,7 +83,6 @@ public class LoginActivity extends RxBaseActivity
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                // TODO Auto-generated method stub
                 // 如果用户名清空了 清空密码 清空记住密码选项
                 et_password.setText("");
                 if (s.length() > 0)
@@ -110,18 +97,10 @@ public class LoginActivity extends RxBaseActivity
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after)
-            {
-                // TODO Auto-generated method stub
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void afterTextChanged(Editable s)
-            {
-                // TODO Auto-generated method stub
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
     }
 
@@ -146,6 +125,18 @@ public class LoginActivity extends RxBaseActivity
             return;
         }
         login();
+    }
+
+    @OnClick(R.id.delete_username)
+    void delete()
+    {
+        // 清空用户名以及密码
+        et_username.setText("");
+        et_password.setText("");
+        mDeleteUserName.setVisibility(View.GONE);
+        et_username.setFocusable(true);
+        et_username.setFocusableInTouchMode(true);
+        et_username.requestFocus();
     }
 
 
