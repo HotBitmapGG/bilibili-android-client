@@ -7,10 +7,8 @@
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/login_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         app:elevation="@dimen/app_bar_default_elevation">
 
         <android.support.v7.widget.Toolbar
