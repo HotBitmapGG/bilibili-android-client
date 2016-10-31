@@ -23,10 +23,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsRecommendAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsSelectionAdapter;
-import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsInfo;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsRecommendInfo;
+import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
@@ -227,15 +227,11 @@ public class BangumiDetailsActivity extends RxBaseActivity
         mBangumiSelectionRecycler.setLayoutManager(mLinearLayoutManager);
         BangumiDetailsSelectionAdapter mBangumiDetailsSelectionAdapter = new BangumiDetailsSelectionAdapter(mBangumiSelectionRecycler, episodes);
         mBangumiSelectionRecycler.setAdapter(mBangumiDetailsSelectionAdapter);
-        mBangumiDetailsSelectionAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
-        {
+        mBangumiDetailsSelectionAdapter.setOnItemClickListener((position, holder) -> {
 
-            @Override
-            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
-            {
-
-                mBangumiDetailsSelectionAdapter.notifyItemForeground(holder.getLayoutPosition());
-            }
+            mBangumiDetailsSelectionAdapter.notifyItemForeground(holder.getLayoutPosition());
+            VideoDetailsActivity.launch(BangumiDetailsActivity.this,
+                    Integer.valueOf(episodes.get(position).getAv_id()), episodes.get(position).getCover());
         });
     }
 

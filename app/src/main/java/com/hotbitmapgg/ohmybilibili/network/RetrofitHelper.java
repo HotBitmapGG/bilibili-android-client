@@ -37,6 +37,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.UserLiveRoomStatusService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserPlayGameService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
 import com.hotbitmapgg.ohmybilibili.network.api.VideoDetailsService;
+import com.hotbitmapgg.ohmybilibili.network.api.VipGameService;
 
 import java.io.File;
 import java.io.IOException;
@@ -80,6 +81,8 @@ public class RetrofitHelper
     private static final String ACCOUNT_BASE_URL = "https://account.bilibili.com/";
 
     private static final String USER_DETAILS_BASE_URL = "http://space.bilibili.com/";
+
+    private static final String VIP_BASE_URL = "http://vip.bilibili.com/";
 
     private static final String IM9_BASE_URL = "http://www.im9.com/";
 
@@ -740,6 +743,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(BangumiDetailsRecommendService.class);
+    }
+
+
+    /**
+     * 游戏中心大会员礼包专区
+     *
+     * @return
+     */
+    public static VipGameService getVipGameApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(VIP_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(VipGameService.class);
     }
 
     /**

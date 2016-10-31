@@ -1,19 +1,33 @@
 package com.hotbitmapgg.ohmybilibili.module.entry;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.Gson;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.GameCentreAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.discover.GameItem;
+import com.hotbitmapgg.ohmybilibili.entity.discover.GameCenterInfo;
+import com.hotbitmapgg.ohmybilibili.entity.discover.VipGameInfo;
+import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,6 +35,8 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by hcc on 16/8/7 14:12
@@ -41,69 +57,13 @@ public class GameCentreActivity extends RxBaseActivity
     @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    private int[] gameimages = new int[]{
-            R.drawable.game_1,
-            R.drawable.game_2,
-            R.drawable.game_3,
-            R.drawable.game_4,
-            R.drawable.game_5,
-            R.drawable.game_6,
-            R.drawable.game_7,
-            R.drawable.game_8,
-            R.drawable.game_9,
-            R.drawable.game_10,
-            R.drawable.game_11,
-            R.drawable.game_12,
-            };
+    private List<GameCenterInfo.ItemsBean> items = new ArrayList<>();
+    
+    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
-    private String[] gametexts = new String[]{
-            "命运-冠位指定（Fate/GO）",
-            "少女前线",
-            "苍之骑士团",
-            "ICHU偶像进行曲",
-            "幻游猎人",
-            "阴阳师",
-            "神代梦华谭",
-            "少女咖啡枪",
-            "大航海之路",
-            "皇牌机娘",
-            "妖刀少女异闻录",
-            "螺旋境界线",
-            };
+    private ImageView mVipGameImage;
 
-
-    private String[] gameDetails = new String[]
-            {
-                    "Fate系列首款正版手游即将开启！",
-                    "战地誓约，守护羁绊",
-                    "王国的命运，就交到你手上了",
-                    "把我变成真正的偶像吧！",
-                    "即时冒险RPG手游《幻游猎人》预约开启！",
-                    "唯美如樱，百鬼物语",
-                    "想变成蝴蝶Σ(:0」∠)_",
-                    "少女×枪战",
-                    "目标是星辰大海",
-                    "二次元战机娘化游戏",
-                    "拔刀吧，少女！",
-                    "幻想之境，触手可及！",
-                    };
-
-    private String[] gamepaths = new String[]{
-            "http://fgo.biligame.com/dy/",
-            "http://gf.biligame.com/",
-            "http://czqst.biligame.com/",
-            "http://ichu.biligame.com/",
-            "http://hylr.biligame.com/yuyue/",
-            "http://yys.biligame.com/",
-            "http://sdmht.biligame.com/yuyue.html",
-            "http://kfq.biligame.com/yuyue/",
-            "http://dhh.biligame.com/",
-            "http://hpjn.biligame.com/",
-            "http://ydsnywl.biligame.com/",
-            "http://lxjjx.biligame.com/yuyue/",
-            };
-
-    private List<GameItem> games = new ArrayList<>();
+    private VipGameInfo.DataBean mVipGameInfoData;
 
 
     @Override
@@ -117,20 +77,68 @@ public class GameCentreActivity extends RxBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        setGameFill();
+        loadData();
     }
 
-    private void setGameFill()
+    @Override
+    public void loadData()
     {
 
-        Observable.timer(2000, TimeUnit.MILLISECONDS)
-                .compose(this.bindToLifecycle())
+        RetrofitHelper.getVipGameApi()
+                .getVipGame()
+                .compose(bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
+                .delay(2000, TimeUnit.MILLISECONDS)
+                .flatMap(new Func1<VipGameInfo,Observable<String>>()
+                {
 
-                    initData();
+                    @Override
+                    public Observable<String> call(VipGameInfo vipGameInfo)
+                    {
+
+                        mVipGameInfoData = vipGameInfo.getData();
+                        return Observable.just(readAssetsJson());
+                    }
+                })
+                .compose(this.bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+
+                    GameCenterInfo gameCenterInfo = new Gson().fromJson(s, GameCenterInfo.class);
+                    items.addAll(gameCenterInfo.getItems());
+                    finishTask();
+                }, throwable -> {
+                    hideProgressBar();
                 });
+    }
+
+
+    /**
+     * 读取assets下的json数据
+     *
+     * @return
+     */
+    private String readAssetsJson()
+    {
+
+        AssetManager assetManager = getAssets();
+        try
+        {
+            InputStream is = assetManager.open("gamecenter.json");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder stringBuilder = new StringBuilder();
+            String str;
+            while ((str = br.readLine()) != null)
+            {
+                stringBuilder.append(str);
+            }
+            return stringBuilder.toString();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -148,31 +156,9 @@ public class GameCentreActivity extends RxBaseActivity
     public boolean onOptionsItemSelected(MenuItem item)
     {
 
-        switch (item.getItemId())
-        {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-        }
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
         return super.onOptionsItemSelected(item);
-    }
-
-    private void initData()
-    {
-
-        GameItem mGameItem;
-        for (int i = 0; i < gametexts.length; i++)
-        {
-            mGameItem = new GameItem();
-            mGameItem.imageRes = gameimages[i];
-            mGameItem.name = gametexts[i];
-            mGameItem.desc = gameDetails[i];
-            mGameItem.path = gamepaths[i];
-
-            games.add(mGameItem);
-        }
-
-        hideProgressBar();
     }
 
     @Override
@@ -195,12 +181,34 @@ public class GameCentreActivity extends RxBaseActivity
     }
 
     @Override
+    public void finishTask()
+    {
+
+        Glide.with(GameCentreActivity.this).load(mVipGameInfoData.getImgPath())
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(mVipGameImage);
+        mHeaderViewRecyclerAdapter.notifyDataSetChanged();
+        hideProgressBar();
+    }
+
+    @Override
     public void initRecyclerView()
     {
 
         mRecycle.setHasFixedSize(true);
         mRecycle.setLayoutManager(new LinearLayoutManager(GameCentreActivity.this));
-        GameCentreAdapter mAdapter = new GameCentreAdapter(mRecycle, games);
-        mRecycle.setAdapter(mAdapter);
+        GameCentreAdapter mAdapter = new GameCentreAdapter(mRecycle, items);
+        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
+        createHeadView();
+        mRecycle.setAdapter(mHeaderViewRecyclerAdapter);
+    }
+
+    private void createHeadView()
+    {
+
+        View headView = LayoutInflater.from(this).inflate(R.layout.layout_vip_game_head_view, mRecycle, false);
+        mVipGameImage = (ImageView) headView.findViewById(R.id.vip_game_image);
+        mVipGameImage.setOnClickListener(v -> BrowserActivity.launch(GameCentreActivity.this,
+                mVipGameInfoData.getLink(), "年度大会员游戏礼包专区"));
+        mHeaderViewRecyclerAdapter.addHeaderView(headView);
     }
 }

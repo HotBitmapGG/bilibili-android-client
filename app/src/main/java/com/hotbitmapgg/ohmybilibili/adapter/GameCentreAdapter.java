@@ -13,10 +13,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.discover.GameItem;
+import com.hotbitmapgg.ohmybilibili.entity.discover.GameCenterInfo;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,13 +27,13 @@ import java.util.List;
 public class GameCentreAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<GameItem> games = new ArrayList<>();
+    private List<GameCenterInfo.ItemsBean> items;
 
-    public GameCentreAdapter(RecyclerView recyclerView, List<GameItem> games)
+    public GameCentreAdapter(RecyclerView recyclerView, List<GameCenterInfo.ItemsBean> items)
     {
 
         super(recyclerView);
-        this.games = games;
+        this.items = items;
     }
 
     @Override
@@ -53,21 +52,21 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder mHolder = (ItemViewHolder) holder;
-            final GameItem gameItem = games.get(position);
+            GameCenterInfo.ItemsBean itemsBean = items.get(position);
 
             Glide.with(getContext())
-                    .load(gameItem.imageRes)
+                    .load(itemsBean.getCover())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(mHolder.mImageView);
 
-            mHolder.mTitle.setText(gameItem.name);
-            mHolder.mDesc.setText(gameItem.desc);
+            mHolder.mTitle.setText(itemsBean.getTitle());
+            mHolder.mDesc.setText(itemsBean.getSummary());
             mHolder.mButton.setOnClickListener(v -> BrowserActivity.
                     launch((Activity) getContext(),
-                            gameItem.path, gameItem.name));
+                            itemsBean.getDownload_link(), itemsBean.getTitle()));
         }
 
         super.onBindViewHolder(holder, position);
@@ -77,7 +76,7 @@ public class GameCentreAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return games.size();
+        return items.size();
     }
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
