@@ -47,10 +47,6 @@ public class ConstantUtils
 
     public static final String KEY = "login";
 
-    public static final String GOTO_HOME = "goto_home";
-
-    public static final String GOTO_LOGIN = "goto_login";
-
     public final static String EXTRA_BANGUMI_KEY = "extra_bangumi";
 
     public static final String SUNDAY_TYPE = "0";
@@ -84,8 +80,6 @@ public class ConstantUtils
     public static final String EXTRA_NAME = "name";
 
     public static final String EXTRA_PARTITION = "extra_partition";
-
-    public static final String EXTRA_TID = "extra_tid";
 
     public static final String TYPE_TOPIC = "weblink";
 

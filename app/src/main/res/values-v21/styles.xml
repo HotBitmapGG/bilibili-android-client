@@ -7,7 +7,7 @@
 
     </style>
 
-    <!-- 启动页 引导页设置StatusBar为透明色 -->
+    <!-- StatusBar为透明色 -->
     <style name="ColorTranslucentTheme" parent="@style/BaseAppTheme">
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">true</item>
@@ -22,7 +22,6 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
-
 
     <!--搜索界面Style-->
     <style name="AppTheme.Search" parent="AppTheme">

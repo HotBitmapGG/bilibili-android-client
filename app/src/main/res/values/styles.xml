@@ -17,10 +17,10 @@
         <item name="android:windowBackground">@color/window_background</item>
     </style>
 
-    <!-- 启动页 引导页设置StatusBar为透明色 -->
+    <!-- StatusBar为透明色 -->
     <style name="ColorTranslucentTheme" parent="@style/BaseAppTheme" />
 
-    <!--主界面 设置Style-->
+    <!-- 主界面 设置Style -->
     <style name="MainActivityColorTranslucentTheme" parent="@style/BaseAppTheme" />
 
 

@@ -22,6 +22,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.RegionTypeService;
 import com.hotbitmapgg.ohmybilibili.network.api.SeasonNewBangumiService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
 import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
+import com.hotbitmapgg.ohmybilibili.network.api.SplashService;
 import com.hotbitmapgg.ohmybilibili.network.api.TopicCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
 import com.hotbitmapgg.ohmybilibili.network.api.UserChaseBangumiService;
@@ -681,6 +682,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(RegionDetailsService.class);
+    }
+
+
+    /**
+     * 获取启动页图片
+     *
+     * @return
+     */
+    public static SplashService getSplashApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(APP_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(SplashService.class);
     }
 
 
