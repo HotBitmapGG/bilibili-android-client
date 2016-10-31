@@ -25,12 +25,11 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchListener;
-import com.hotbitmapgg.ohmybilibili.media.callback.MediaPlayerControl;
+import com.hotbitmapgg.ohmybilibili.media.callback.MediaPlayerListener;
 import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackListener;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 
 import java.util.Locale;
-
-import tv.danmaku.ijk.media.player.pragma.DebugLog;
 
 /**
  * Created by hcc on 16/8/31 19:50
@@ -41,15 +40,13 @@ import tv.danmaku.ijk.media.player.pragma.DebugLog;
 public class MediaController extends FrameLayout
 {
 
-    private static final String TAG = MediaController.class.getSimpleName();
-
     private static final int sDefaultTimeout = 3000;
 
     private static final int FADE_OUT = 1;
 
     private static final int SHOW_PROGRESS = 2;
 
-    private MediaPlayerControl mPlayer;
+    private MediaPlayerListener mPlayer;
 
     private Context mContext;
 
@@ -359,7 +356,7 @@ public class MediaController extends FrameLayout
         mBack.setOnClickListener(v12 -> mVideoBackListener.back());
     }
 
-    public void setMediaPlayer(MediaPlayerControl player)
+    public void setMediaPlayer(MediaPlayerListener player)
     {
 
         mPlayer = player;
@@ -508,7 +505,7 @@ public class MediaController extends FrameLayout
                     mWindow.dismiss();
             } catch (IllegalArgumentException ex)
             {
-                DebugLog.d(TAG, "MediaController already removed");
+                LogUtil.all("MediaController already removed");
             }
             mShowing = false;
             if (mHiddenListener != null)

@@ -6,7 +6,7 @@ package com.hotbitmapgg.ohmybilibili.media.callback;
  * <p/>
  * 视频控制回调接口
  */
-public interface MediaPlayerControl
+public interface MediaPlayerListener
 {
 
     void start();
@@ -24,8 +24,4 @@ public interface MediaPlayerControl
     int getBufferPercentage();
 
     boolean canPause();
-
-    boolean canSeekBackward();
-
-    boolean canSeekForward();
 }

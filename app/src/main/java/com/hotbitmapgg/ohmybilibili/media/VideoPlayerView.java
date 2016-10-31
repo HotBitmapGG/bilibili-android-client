@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.media.callback.MediaPlayerControl;
+import com.hotbitmapgg.ohmybilibili.media.callback.MediaPlayerListener;
 
 import java.io.IOException;
 
@@ -37,7 +37,7 @@ import tv.danmaku.ijk.media.player.pragma.DebugLog;
  * <p/>
  * 自定义VideoView
  */
-public class VideoPlayerView extends SurfaceView implements MediaPlayerControl
+public class VideoPlayerView extends SurfaceView implements MediaPlayerListener
 {
 
     private static final String TAG = VideoPlayerView.class.getName();
