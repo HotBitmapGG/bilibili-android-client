@@ -7,8 +7,8 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendBannerInfo;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
+import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 
 import java.io.File;

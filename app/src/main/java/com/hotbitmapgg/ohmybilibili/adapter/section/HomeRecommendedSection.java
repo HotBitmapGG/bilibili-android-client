@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiScheduleActivity;

@@ -1,7 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendBannerInfo;
-import com.hotbitmapgg.ohmybilibili.entity.recommended.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
+import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
 
 import retrofit2.http.GET;
 import rx.Observable;

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.entity.recommended;
+package com.hotbitmapgg.ohmybilibili.entity.recommend;
 
 import com.google.gson.annotations.SerializedName;
 
