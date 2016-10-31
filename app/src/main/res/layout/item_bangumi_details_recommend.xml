@@ -23,7 +23,7 @@
             android:scaleType="center" />
 
         <TextView
-            android:id="@+id/item_play"
+            android:id="@+id/item_follow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

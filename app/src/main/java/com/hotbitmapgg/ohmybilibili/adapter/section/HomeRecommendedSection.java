@@ -22,9 +22,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
-import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiScheduleActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.discover.OriginalRankActivity;
@@ -147,11 +145,7 @@ public class HomeRecommendedSection extends StatelessSection
                         bodyBean.getOnline(), bodyBean.getUpFace(), bodyBean.getUp(), 0);
             } else if (gotoX.equals(GOTO_BANGUMI))
             {
-                MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-                middlewareBangumi.setTitle(bodyBean.getTitle());
-                middlewareBangumi.setPic(bodyBean.getCover());
-                middlewareBangumi.setSpid(Integer.valueOf(bodyBean.getParam()));
-                BangumiDetailsActivity.launch((Activity) mContext, middlewareBangumi);
+
             } else
             {
                 VideoDetailsActivity.launch((Activity) mContext,

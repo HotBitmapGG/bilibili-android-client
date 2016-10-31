@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsInfo;
+
+import java.util.List;
 
 /**
  * Created by hcc on 2016/10/1 17:12
@@ -20,15 +23,15 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
 {
 
-    private int count;
-
     private int layoutPosition = 0;
-    
-    public BangumiDetailsSelectionAdapter(RecyclerView recyclerView, int count)
+
+    private List<BangumiDetailsInfo.ResultBean.EpisodesBean> episodes;
+
+    public BangumiDetailsSelectionAdapter(RecyclerView recyclerView, List<BangumiDetailsInfo.ResultBean.EpisodesBean> episodes)
     {
 
         super(recyclerView);
-        this.count = count;
+        this.episodes = episodes;
     }
 
     @Override
@@ -46,7 +49,9 @@ public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            itemViewHolder.mTextView.setText(String.valueOf(position + 1));
+            BangumiDetailsInfo.ResultBean.EpisodesBean episodesBean = episodes.get(position);
+            itemViewHolder.mIndex.setText("第 " + episodesBean.getIndex() + " 话");
+            itemViewHolder.mTitle.setText(episodesBean.getIndex_title());
 
             if (position == layoutPosition)
             {
@@ -70,7 +75,7 @@ public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return count == 0 ? 12 : count;
+        return episodes.size();
     }
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
@@ -78,14 +83,17 @@ public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
 
         CardView mCardView;
 
-        TextView mTextView;
+        TextView mIndex;
+
+        TextView mTitle;
 
         public ItemViewHolder(View itemView)
         {
 
             super(itemView);
             mCardView = $(R.id.card_view);
-            mTextView = $(R.id.tv_num);
+            mIndex = $(R.id.tv_index);
+            mTitle = $(R.id.tv_title);
         }
     }
 }

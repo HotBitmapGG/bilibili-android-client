@@ -5,6 +5,8 @@ import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.network.api.ActivityCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.AllareasRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsRecommendService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
@@ -705,6 +707,42 @@ public class RetrofitHelper
 
 
     /**
+     * 获取番剧详情数据
+     *
+     * @return
+     */
+    public static BangumiDetailsService getBangumiDetailsApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BANGUMI_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(BangumiDetailsService.class);
+    }
+
+    /**
+     * 获取番剧详情番剧推荐
+     *
+     * @return
+     */
+    public static BangumiDetailsRecommendService getBangumiDetailsRecommendApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BANGUMI_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(BangumiDetailsRecommendService.class);
+    }
+
+    /**
      * 初始化OKHttpClient
      * 设置缓存
      * 设置超时时间
@@ -764,7 +802,7 @@ public class RetrofitHelper
 
 
     /**
-     * 为okhttp添加缓存，缓存时间为1天，
+     * 为okhttp添加缓存，缓存时间为1小时，
      * 这里是考虑到服务器不支持缓存时，从而让okhttp支持缓存
      */
     private static class CacheInterceptor implements Interceptor
@@ -778,7 +816,7 @@ public class RetrofitHelper
             return chain.proceed(request).newBuilder()
                     .removeHeader("Pragma")
                     .removeHeader("Cache-Control")
-                    .header("Cache-Control", "max-age=" + 3600 * 24)
+                    .header("Cache-Control", "max-age=" + 3600)
                     .build();
         }
     }

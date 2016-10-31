@@ -12,7 +12,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsRecommendInfo;
+import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 
 import java.util.List;
 
@@ -25,13 +26,13 @@ import java.util.List;
 public class BangumiDetailsRecommendAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<HomeBangumiRecommend.ResultBean.EndsBean> recommends;
+    private List<BangumiDetailsRecommendInfo.ResultBean.ListBean> bangumiRecommends;
 
-    public BangumiDetailsRecommendAdapter(RecyclerView recyclerView, List<HomeBangumiRecommend.ResultBean.EndsBean> recommends)
+    public BangumiDetailsRecommendAdapter(RecyclerView recyclerView, List<BangumiDetailsRecommendInfo.ResultBean.ListBean> bangumiRecommends)
     {
 
         super(recyclerView);
-        this.recommends = recommends;
+        this.bangumiRecommends = bangumiRecommends;
     }
 
     @Override
@@ -51,17 +52,18 @@ public class BangumiDetailsRecommendAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            HomeBangumiRecommend.ResultBean.EndsBean endsBean = recommends.get(position);
+            BangumiDetailsRecommendInfo.ResultBean.ListBean listBean = bangumiRecommends.get(position);
 
             Glide.with(getContext())
-                    .load(endsBean.getCover())
+                    .load(listBean.getCover())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mImage);
 
-            itemViewHolder.mTitle.setText(endsBean.getTitle());
+            itemViewHolder.mTitle.setText(listBean.getTitle());
+            itemViewHolder.mFollow.setText(NumberUtil.converString(Integer.valueOf(listBean.getFollow())) + "人追番");
         }
         super.onBindViewHolder(holder, position);
     }
@@ -70,7 +72,7 @@ public class BangumiDetailsRecommendAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return recommends.size();
+        return bangumiRecommends.size();
     }
 
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
@@ -80,6 +82,8 @@ public class BangumiDetailsRecommendAdapter extends AbsRecyclerViewAdapter
 
         TextView mTitle;
 
+        TextView mFollow;
+
 
         public ItemViewHolder(View itemView)
         {
@@ -87,6 +91,7 @@ public class BangumiDetailsRecommendAdapter extends AbsRecyclerViewAdapter
             super(itemView);
             mImage = $(R.id.item_img);
             mTitle = $(R.id.item_title);
+            mFollow = $(R.id.item_follow);
         }
     }
 }

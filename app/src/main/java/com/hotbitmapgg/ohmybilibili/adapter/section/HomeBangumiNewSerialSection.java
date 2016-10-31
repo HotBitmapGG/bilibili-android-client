@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.NewBangumiSerialActivity;
@@ -82,19 +81,8 @@ public class HomeBangumiNewSerialSection extends StatelessSection
         itemViewHolder.mPlay.setText(NumberUtil.converString(listBean.getPlay_count()) + "人在看");
         itemViewHolder.mUpdate.setText("更新至第" + listBean.getBgmcount() + "话");
 
-        itemViewHolder.mCardView.setOnClickListener(v -> {
-            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-            middlewareBangumi.setPic(listBean.getCover());
-            middlewareBangumi.setTitle(listBean.getTitle());
-            middlewareBangumi.setSpid(listBean.getSpid());
-            middlewareBangumi.setSeason_id(listBean.getSeason_id());
-            middlewareBangumi.setFavorites(listBean.getFavorites());
-            middlewareBangumi.setPlay(listBean.getPlay_count());
-            middlewareBangumi.setWeekday(listBean.getWeekday());
-            middlewareBangumi.setCreate(listBean.getLastupdate_at());
-            middlewareBangumi.setCount(Integer.valueOf(listBean.getBgmcount()));
-            BangumiDetailsActivity.launch((Activity) mContext, middlewareBangumi);
-        });
+        itemViewHolder.mCardView.setOnClickListener(v -> BangumiDetailsActivity.launch(
+                (Activity) mContext, listBean.getSeason_id()));
     }
 
     @Override

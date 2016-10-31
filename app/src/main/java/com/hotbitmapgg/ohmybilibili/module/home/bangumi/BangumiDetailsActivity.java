@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -22,24 +23,21 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsRecommendAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsSelectionAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SpecialTopic;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsInfo;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
-import com.hotbitmapgg.ohmybilibili.utils.WeekDayUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import jp.wasabeef.glide.transformations.BlurTransformation;
@@ -99,17 +97,11 @@ public class BangumiDetailsActivity extends RxBaseActivity
     @BindView(R.id.bangumi_recommend_recycler)
     RecyclerView mBangumiRecommendRecycler;
 
-    private SpecialTopic mSpecialTopic;
+    private int seasonId;
 
-    private MiddlewareBangumi mBangumiInfo;
+    private BangumiDetailsInfo.ResultBean result;
 
-    private Random random = new Random();
-
-    private List<HomeBangumiRecommend.ResultBean.EndsBean> recommends = new ArrayList<>();
-
-    private List<String> tags = Arrays.asList(
-            "轻改", "萌系", "搞笑", "催泪", "热血",
-            "机战", "后宫", "恋爱", "基腐", "百合", "伪娘", "乙女");
+    private List<BangumiDetailsRecommendInfo.ResultBean.ListBean> bangumiRecommends = new ArrayList<>();
 
     @Override
     public int getLayoutId()
@@ -125,41 +117,42 @@ public class BangumiDetailsActivity extends RxBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            Bundle bundle = intent.getExtras();
-            mBangumiInfo = bundle.getParcelable(ConstantUtils.EXTRA_BANGUMI_KEY);
+            seasonId = intent.getIntExtra(ConstantUtils.EXTRA_BANGUMI_KEY, 0);
         }
 
-        getBangumiDetails();
+        loadData();
     }
 
-    public void getBangumiDetails()
+
+    @Override
+    public void loadData()
     {
 
-        RetrofitHelper.getSpInfoApi()
-                .getSpInfo(mBangumiInfo.getSpid(), mBangumiInfo.getTitle())
+        RetrofitHelper.getBangumiDetailsApi()
+                .getBangumiDetails()
                 .compose(bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)
-                .flatMap(new Func1<SpecialTopic,Observable<HomeBangumiRecommend>>()
+                .flatMap(new Func1<BangumiDetailsInfo,Observable<BangumiDetailsRecommendInfo>>()
                 {
 
                     @Override
-                    public Observable<HomeBangumiRecommend> call(SpecialTopic specialTopic)
+                    public Observable<BangumiDetailsRecommendInfo> call(BangumiDetailsInfo bangumiDetailsInfo)
                     {
 
-                        mSpecialTopic = specialTopic;
-                        return RetrofitHelper.getHomeBnagumiRecommendApi()
-                                .getHomeBangumiRecommended();
+                        result = bangumiDetailsInfo.getResult();
+                        return RetrofitHelper.getBangumiDetailsRecommendApi().getBangumiDetailsRecommend();
                     }
                 })
                 .compose(bindToLifecycle())
-                .map(homeBangumiRecommend -> homeBangumiRecommend.getResult().getEnds())
+                .map(bangumiDetailsRecommendInfo -> bangumiDetailsRecommendInfo.getResult().getList())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(endsBeans -> {
+                .subscribe(listBeans -> {
 
-                    recommends.addAll(endsBeans);
+                    bangumiRecommends.addAll(listBeans);
                     finishTask();
                 }, throwable -> {
+
                     hideProgressBar();
                 });
     }
@@ -170,7 +163,7 @@ public class BangumiDetailsActivity extends RxBaseActivity
 
         //设置番剧封面
         Glide.with(this)
-                .load(mBangumiInfo.getPic())
+                .load(result.getCover())
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.bili_default_image_tv)
@@ -179,43 +172,36 @@ public class BangumiDetailsActivity extends RxBaseActivity
 
         //设置背景高斯模糊图片
         Glide.with(this)
-                .load(mBangumiInfo.getPic())
+                .load(result.getCover())
                 .bitmapTransform(new BlurTransformation(this))
                 .into(mBangumiBackgroundImage);
 
         //设置番剧标题
-        mBangumiTitle.setText(mBangumiInfo.getTitle());
+        mBangumiTitle.setText(result.getTitle());
         //设置番剧更新日期
-        int weekDay = random.nextInt(6);
-        mBangumiUpdate.setText("连载中,每周" + (mBangumiInfo.getWeekday() == 0 ? WeekDayUtil.converWeekDay(weekDay) :
-                WeekDayUtil.converWeekDay(mBangumiInfo.getWeekday())) + "更新");
+
+        mBangumiUpdate.setText("连载中");
         //设置番剧播放和追番数量
-        mBangumiPlay.setText("播放: " + (mBangumiInfo.getPlay() == 0 ?
-                NumberUtil.converString(mSpecialTopic.play) : NumberUtil.converString(mBangumiInfo.getPlay()))
-                + "  " + "追番: " + (mBangumiInfo.getFavorites() == 0 ?
-                NumberUtil.converString(mSpecialTopic.attention) : NumberUtil.converString(mBangumiInfo.getFavorites())));
+        mBangumiPlay.setText("播放：" + NumberUtil.converString(Integer.valueOf(result.getPlay_count()))
+                + "  " + "追番：" + NumberUtil.converString(Integer.valueOf(result.getFavorites())));
         //设置番剧简介
-        if (mBangumiInfo.getDescription() == null)
-        {
-            mBangumiIntroduction.setText(mSpecialTopic.description == null ?
-                    mBangumiInfo.getTitle() : mSpecialTopic.description);
-        } else
-        {
-            mBangumiIntroduction.setText(mBangumiInfo.getDescription());
-        }
+
+        mBangumiIntroduction.setText(result.getEvaluate());
+
 
         //设置标签布局
-        List<String> strings = tags.subList(0, random.nextInt(5));
-        mTagsLayout.setAdapter(new TagAdapter<String>(strings)
+        List<BangumiDetailsInfo.ResultBean.TagsBean> tags = result.getTags();
+        mTagsLayout.setAdapter(new TagAdapter<BangumiDetailsInfo.ResultBean.TagsBean>(tags)
         {
 
             @Override
-            public View getView(FlowLayout parent, int position, String s)
+            public View getView(FlowLayout parent, int position, BangumiDetailsInfo.ResultBean.TagsBean tagsBean)
             {
+
 
                 TextView mTags = (TextView) LayoutInflater.from(BangumiDetailsActivity.this)
                         .inflate(R.layout.layout_tags_item, parent, false);
-                mTags.setText(s);
+                mTags.setText(tagsBean.getTag_name());
 
                 return mTags;
             }
@@ -233,15 +219,24 @@ public class BangumiDetailsActivity extends RxBaseActivity
     private void initSelectionRecycler()
     {
 
+        List<BangumiDetailsInfo.ResultBean.EpisodesBean> episodes = result.getEpisodes();
+
         mBangumiSelectionRecycler.setHasFixedSize(false);
         mBangumiSelectionRecycler.setNestedScrollingEnabled(false);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        mBangumiSelectionRecycler.setLayoutManager(gridLayoutManager);
-        BangumiDetailsSelectionAdapter mBangumiDetailsSelectionAdapter = new BangumiDetailsSelectionAdapter(
-                mBangumiSelectionRecycler, mBangumiInfo.getCount() == 0 ? mSpecialTopic.count : mBangumiInfo.getCount());
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mBangumiSelectionRecycler.setLayoutManager(mLinearLayoutManager);
+        BangumiDetailsSelectionAdapter mBangumiDetailsSelectionAdapter = new BangumiDetailsSelectionAdapter(mBangumiSelectionRecycler, episodes);
         mBangumiSelectionRecycler.setAdapter(mBangumiDetailsSelectionAdapter);
-        mBangumiDetailsSelectionAdapter.setOnItemClickListener((position, holder) -> mBangumiDetailsSelectionAdapter.
-                notifyItemForeground(holder.getLayoutPosition()));
+        mBangumiDetailsSelectionAdapter.setOnItemClickListener(new AbsRecyclerViewAdapter.OnItemClickListener()
+        {
+
+            @Override
+            public void onItemClick(int position, AbsRecyclerViewAdapter.ClickableViewHolder holder)
+            {
+
+                mBangumiDetailsSelectionAdapter.notifyItemForeground(holder.getLayoutPosition());
+            }
+        });
     }
 
     /**
@@ -254,7 +249,7 @@ public class BangumiDetailsActivity extends RxBaseActivity
         mBangumiRecommendRecycler.setNestedScrollingEnabled(false);
         mBangumiRecommendRecycler.setLayoutManager(new GridLayoutManager(BangumiDetailsActivity.this, 3));
         BangumiDetailsRecommendAdapter mBangumiDetailsRecommendAdapter = new BangumiDetailsRecommendAdapter(
-                mBangumiRecommendRecycler, recommends);
+                mBangumiRecommendRecycler, bangumiRecommends);
         mBangumiRecommendRecycler.setAdapter(mBangumiDetailsRecommendAdapter);
     }
 
@@ -337,12 +332,12 @@ public class BangumiDetailsActivity extends RxBaseActivity
         mDetailsLayout.setVisibility(View.VISIBLE);
     }
 
-    public static void launch(Activity activity, MiddlewareBangumi bangumi)
+    public static void launch(Activity activity, int seasonId)
     {
 
         Intent mIntent = new Intent(activity, BangumiDetailsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable(ConstantUtils.EXTRA_BANGUMI_KEY, bangumi);
+        bundle.putInt(ConstantUtils.EXTRA_BANGUMI_KEY, seasonId);
         mIntent.putExtras(bundle);
         activity.startActivity(mIntent);
     }

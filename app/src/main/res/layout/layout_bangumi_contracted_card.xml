@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bangumi_details_card_view_height"
+        android:layout_margin="@dimen/default_general_margin"
+        app:cardBackgroundColor="@color/card_view_background"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/app_bar_default_elevation">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ic_pay_bangumi_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:padding="@dimen/default_general_margin"
+                android:src="@drawable/ic_pay_bangumi_tips" />
+
+
+            <TextView
+                android:id="@+id/tv_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_grow_margin"
+                android:layout_toEndOf="@+id/ic_pay_bangumi_tips"
+                android:paddingTop="@dimen/default_tiny_padding"
+                android:text="@string/please_contract_me"
+                android:textColor="@color/yellow_30"
+                android:textSize="@dimen/default_medium_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_pay"
+                android:layout_toEndOf="@+id/ic_pay_bangumi_tips"
+                android:text="@string/have_been_contracting_out_of_me"
+                android:textColor="@color/yellow_30"
+                android:textSize="@dimen/default_tiny_text_size" />
+
+
+            <Button
+                android:layout_width="@dimen/video_details_text_width"
+                android:layout_height="@dimen/video_details_text_height"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/default_general_margin"
+                android:layout_marginTop="@dimen/default_grow_margin"
+                android:background="@drawable/yellow_btn_bg"
+                android:text="@string/contract"
+                android:textColor="@color/white"
+                android:textSize="@dimen/default_small_text_size" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/ic_pay_bangumi_tips"
+                android:layout_marginEnd="@dimen/default_tiny_padding"
+                android:layout_marginStart="@dimen/default_tiny_padding"
+                android:background="@color/line_bg" />
+
+
+            <FrameLayout
+                android:id="@+id/user_avatar_layout"
+                android:layout_width="@dimen/bangumi_details_user_avatar_layout_width"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/default_general_margin"
+                android:layout_marginStart="@dimen/default_general_margin">
+
+                <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                    android:layout_width="@dimen/bangumi_details_user_avatar_size"
+                    android:layout_height="@dimen/bangumi_details_user_avatar_size"
+                    android:layout_gravity="center|start"
+                    android:src="@drawable/ic_avatar1"
+                    app:border_color="@color/white"
+                    app:border_width="@dimen/circle_default_width" />
+
+
+                <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                    android:layout_width="@dimen/bangumi_details_user_avatar_size"
+                    android:layout_height="@dimen/bangumi_details_user_avatar_size"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="@dimen/bangumi_details_user_avatar_margin_1"
+                    android:src="@drawable/ic_avatar2"
+                    app:border_color="@color/white"
+                    app:border_width="@dimen/circle_default_width" />
+
+                <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                    android:layout_width="@dimen/bangumi_details_user_avatar_size"
+                    android:layout_height="@dimen/bangumi_details_user_avatar_size"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="@dimen/bangumi_details_user_avatar_margin_2"
+                    android:src="@drawable/ic_avatar3"
+                    app:border_color="@color/white"
+                    app:border_width="@dimen/circle_default_width" />
+
+                <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                    android:layout_width="@dimen/bangumi_details_user_avatar_size"
+                    android:layout_height="@dimen/bangumi_details_user_avatar_size"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="@dimen/bangumi_details_user_avatar_margin_3"
+                    android:src="@drawable/ic_avatar4"
+                    app:border_color="@color/white"
+                    app:border_width="@dimen/circle_default_width" />
+
+            </FrameLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/default_tiny_padding"
+                android:layout_toEndOf="@+id/user_avatar_layout"
+                android:paddingBottom="@dimen/default_general_margin"
+                android:paddingTop="@dimen/default_general_margin"
+                android:text="@string/contract_text"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_tiny_text_size" />
+
+
+            <Button
+                android:layout_width="@dimen/video_details_text_width"
+                android:layout_height="@dimen/bangumi_details_look_btn_height"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/default_general_margin"
+                android:background="@drawable/btn_black_bg"
+                android:text="@string/look_top_list"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/default_tiny_text_size" />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</merge>

@@ -11,7 +11,6 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.SeasonNewBangumiAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -100,12 +99,6 @@ public class SeasonNewBangumiActivity extends RxBaseActivity
         mAdapter = new SeasonNewBangumiAdapter(mRecyclerView, seasonNewBangumis, true);
         mAdapter.setOnItemClickListener((position, holder) -> {
 
-            SeasonNewBangumi.ListBean listBean = seasonNewBangumis.get(position);
-            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-            middlewareBangumi.setTitle(listBean.getTitle());
-            middlewareBangumi.setPic(listBean.getImageurl());
-            middlewareBangumi.setSpid(listBean.getSpid());
-            BangumiDetailsActivity.launch(SeasonNewBangumiActivity.this, middlewareBangumi);
         });
         mRecyclerView.setAdapter(mAdapter);
     }

@@ -1,7 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.adapter.section;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.MiddlewareBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
-import com.hotbitmapgg.ohmybilibili.module.home.bangumi.BangumiDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.SeasonNewBangumiActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
@@ -88,11 +85,6 @@ public class HomeBangumiSeasonNewSection extends StatelessSection
 
         itemViewHolder.mCardView.setOnClickListener(v -> {
 
-            MiddlewareBangumi middlewareBangumi = new MiddlewareBangumi();
-            middlewareBangumi.setTitle(listBean.getTitle());
-            middlewareBangumi.setPic(listBean.getImageurl());
-            middlewareBangumi.setSpid(listBean.getSpid());
-            BangumiDetailsActivity.launch((Activity) mContext, middlewareBangumi);
         });
     }
 

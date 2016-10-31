@@ -47,7 +47,7 @@ public class ConstantUtils
 
     public static final String KEY = "login";
 
-    public final static String EXTRA_BANGUMI_KEY = "extra_bangumi";
+    public final static String EXTRA_BANGUMI_KEY = "extra_season_id";
 
     public static final String SUNDAY_TYPE = "0";
 
