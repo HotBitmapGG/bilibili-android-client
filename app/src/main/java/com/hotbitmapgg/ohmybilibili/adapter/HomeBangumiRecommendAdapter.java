@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommendInfo;
 
 import java.util.List;
 
@@ -25,9 +25,9 @@ import java.util.List;
 public class HomeBangumiRecommendAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<BangumiRecommend.ResultBean> mBangumiDetailsRecommends;
+    private List<BangumiRecommendInfo.ResultBean> mBangumiDetailsRecommends;
 
-    public HomeBangumiRecommendAdapter(RecyclerView recyclerView, List<BangumiRecommend.ResultBean> mBangumiDetailsRecommends)
+    public HomeBangumiRecommendAdapter(RecyclerView recyclerView, List<BangumiRecommendInfo.ResultBean> mBangumiDetailsRecommends)
     {
 
         super(recyclerView);
@@ -49,7 +49,7 @@ public class HomeBangumiRecommendAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            BangumiRecommend.ResultBean resultBean = mBangumiDetailsRecommends.get(position);
+            BangumiRecommendInfo.ResultBean resultBean = mBangumiDetailsRecommends.get(position);
 
             Glide.with(getContext())
                     .load(resultBean.getCover())

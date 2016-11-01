@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionBangumi;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
 
 import java.util.List;
 
@@ -25,13 +25,13 @@ import java.util.List;
 public class AttentionBangumiAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<AttentionBangumi> attentionBangumis;
+    private List<UserChaseBangumiInfo.DataBean.ResultBean> chaseBangumis;
 
-    public AttentionBangumiAdapter(RecyclerView recyclerView, List<AttentionBangumi> attentionBangumis)
+    public AttentionBangumiAdapter(RecyclerView recyclerView, List<UserChaseBangumiInfo.DataBean.ResultBean> chaseBangumis)
     {
 
         super(recyclerView);
-        this.attentionBangumis = attentionBangumis;
+        this.chaseBangumis = chaseBangumis;
     }
 
     @Override
@@ -49,18 +49,18 @@ public class AttentionBangumiAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            AttentionBangumi attentionBangumi = attentionBangumis.get(position);
+            UserChaseBangumiInfo.DataBean.ResultBean resultBean = chaseBangumis.get(position);
 
             Glide.with(getContext())
-                    .load(attentionBangumi.getPic())
+                    .load(resultBean.getCover())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mImage);
 
-            itemViewHolder.mTitle.setText(attentionBangumi.getTitle());
-            itemViewHolder.mDesc.setText(attentionBangumi.getDesc());
+            itemViewHolder.mTitle.setText(resultBean.getTitle());
+            itemViewHolder.mDesc.setText("更新至第" + resultBean.getNewest_ep_index() + "话");
         }
 
         super.onBindViewHolder(holder, position);
@@ -70,7 +70,7 @@ public class AttentionBangumiAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return attentionBangumis.size();
+        return 3;
     }
 
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder

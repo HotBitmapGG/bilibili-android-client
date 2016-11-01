@@ -1,7 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.rx.cache;
 
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiAppIndexInfo;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
@@ -74,7 +74,7 @@ public class Repository
                 new DynamicKey("首页番剧内容"), new EvictDynamicKey(update));
     }
 
-    public Observable<Reply<BangumiRecommend>> getBangumiRecommended(final boolean update)
+    public Observable<Reply<BangumiRecommendInfo>> getBangumiRecommended(final boolean update)
     {
 
         return providers.getBangumiRecommended(RetrofitHelper.getBangumiRecommendedApi()

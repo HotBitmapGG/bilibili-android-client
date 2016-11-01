@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeBangumiRecommendAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
@@ -30,10 +30,10 @@ public class HomeBangumiRecommendSection extends StatelessSection
 
     private Context mContext;
 
-    private List<BangumiRecommend.ResultBean> bangumiRecommends;
+    private List<BangumiRecommendInfo.ResultBean> bangumiRecommends;
 
 
-    public HomeBangumiRecommendSection(Context context, List<BangumiRecommend.ResultBean> bangumiRecommends)
+    public HomeBangumiRecommendSection(Context context, List<BangumiRecommendInfo.ResultBean> bangumiRecommends)
     {
 
         super(R.layout.layout_home_bangumi_recommend_head, R.layout.layout_home_recommend_empty);

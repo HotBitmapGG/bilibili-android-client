@@ -16,7 +16,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiRecommendSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiSeasonNewSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiAppIndexInfo;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
@@ -56,7 +56,7 @@ public class HomeBangumiFragment extends RxLazyFragment
 
     private List<BannerEntity> bannerList = new ArrayList<>();
 
-    private List<BangumiRecommend.ResultBean> bangumiRecommends = new ArrayList<>();
+    private List<BangumiRecommendInfo.ResultBean> bangumiRecommends = new ArrayList<>();
 
     private List<BangumiAppIndexInfo.ResultBean.AdBean.HeadBean> banners = new ArrayList<>();
 
@@ -164,11 +164,11 @@ public class HomeBangumiFragment extends RxLazyFragment
                 .getBangumiAppIndex(mIsCacheRefresh)
                 .compose(bindToLifecycle())
                 .map(Reply::getData)
-                .flatMap(new Func1<BangumiAppIndexInfo,Observable<Reply<BangumiRecommend>>>()
+                .flatMap(new Func1<BangumiAppIndexInfo,Observable<Reply<BangumiRecommendInfo>>>()
                 {
 
                     @Override
-                    public Observable<Reply<BangumiRecommend>> call(BangumiAppIndexInfo bangumiAppIndexInfo)
+                    public Observable<Reply<BangumiRecommendInfo>> call(BangumiAppIndexInfo bangumiAppIndexInfo)
                     {
 
                         banners.addAll(bangumiAppIndexInfo.getResult().getAd().getHead());

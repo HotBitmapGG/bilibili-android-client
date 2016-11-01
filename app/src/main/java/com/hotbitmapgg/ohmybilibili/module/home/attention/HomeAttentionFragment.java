@@ -12,21 +12,24 @@ import com.hotbitmapgg.ohmybilibili.adapter.AttentionBangumiAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.AttentionDynamicAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionBangumi;
-import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionContents;
-import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionDynamic;
+import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionDynamicInfo;
+import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by hcc on 16/8/22 21:40
  * 100332338@qq.com
  * <p/>
  * 主界面关注界面
- * 该界面由于需要请求登录用户的关注数据
- * 所以这里只能用假数据让界面好看点
  */
 public class HomeAttentionFragment extends RxLazyFragment
 {
@@ -34,11 +37,13 @@ public class HomeAttentionFragment extends RxLazyFragment
     @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private List<AttentionBangumi> attentionBangumis;
-
-    private List<AttentionDynamic> attentionDynamics;
+    private static final int MID = 9467159;
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
+
+    private List<UserChaseBangumiInfo.DataBean.ResultBean> chaseBangumis = new ArrayList<>();
+
+    private List<AttentionDynamicInfo.DataBean.FeedsBean> dynamics = new ArrayList<>();
 
     public static HomeAttentionFragment newIntance()
     {
@@ -57,6 +62,7 @@ public class HomeAttentionFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
+        initRecyclerView();
         loadData();
     }
 
@@ -64,10 +70,38 @@ public class HomeAttentionFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        AttentionContents mAttentionContents = new AttentionContents();
-        attentionBangumis = mAttentionContents.fillBangumiData();
-        attentionDynamics = mAttentionContents.fillDynamicData();
-        initRecyclerView();
+        RetrofitHelper.getUserChaseBangumiApi()
+                .getUserChaseBangumis(MID)
+                .compose(bindToLifecycle())
+                .map(userChaseBangumiInfo -> userChaseBangumiInfo.getData().getResult())
+                .flatMap(new Func1<List<UserChaseBangumiInfo.DataBean.ResultBean>,Observable<AttentionDynamicInfo>>()
+                {
+
+                    @Override
+                    public Observable<AttentionDynamicInfo> call(List<UserChaseBangumiInfo.DataBean.ResultBean> resultBeans)
+                    {
+
+                        chaseBangumis.addAll(resultBeans);
+                        return RetrofitHelper.getAttentionDynamicApi().getAttentionDynamic();
+                    }
+                })
+                .map(attentionDynamicInfo -> attentionDynamicInfo.getData().getFeeds())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(feedsBeans -> {
+
+                    dynamics.addAll(feedsBeans);
+                    finishTask();
+                }, throwable -> {
+
+                });
+    }
+
+    @Override
+    protected void finishTask()
+    {
+
+        mHeaderViewRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -76,7 +110,7 @@ public class HomeAttentionFragment extends RxLazyFragment
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        AttentionDynamicAdapter mAdapter = new AttentionDynamicAdapter(mRecyclerView, attentionDynamics);
+        AttentionDynamicAdapter mAdapter = new AttentionDynamicAdapter(mRecyclerView, dynamics);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         createHeadView();
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
@@ -90,7 +124,7 @@ public class HomeAttentionFragment extends RxLazyFragment
         mBangumiRecycler.setHasFixedSize(false);
         mBangumiRecycler.setNestedScrollingEnabled(false);
         mBangumiRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mBangumiRecycler.setAdapter(new AttentionBangumiAdapter(mBangumiRecycler, attentionBangumis));
+        mBangumiRecycler.setAdapter(new AttentionBangumiAdapter(mBangumiRecycler, chaseBangumis));
         mHeaderViewRecyclerAdapter.addHeaderView(headView);
     }
 }

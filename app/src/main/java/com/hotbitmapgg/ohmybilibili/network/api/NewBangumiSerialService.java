@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerialInfo;
 
 import retrofit2.http.GET;
 import rx.Observable;
@@ -16,5 +16,5 @@ public interface NewBangumiSerialService
 {
 
     @GET("bangumi")
-    Observable<NewBangumiSerial> getNewBangumiSerialList();
+    Observable<NewBangumiSerialInfo> getNewBangumiSerialList();
 }

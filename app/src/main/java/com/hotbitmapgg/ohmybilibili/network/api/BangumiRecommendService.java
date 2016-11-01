@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommendInfo;
 
 import retrofit2.http.GET;
 import rx.Observable;
@@ -19,5 +19,5 @@ public interface BangumiRecommendService
 {
 
     @GET("api/bangumi_recommend?access_key=f5bd4e793b82fba5aaf5b91fb549910a&actionKey=appkey&appkey=27eb53fc9058f8c3&build=3470&cursor=0&device=phone&mobi_app=iphone&pagesize=10&platform=ios&sign=56329a5709c401d4d7c0237f64f7943f&ts=1469613558")
-    Observable<BangumiRecommend> getBangumiRecommended();
+    Observable<BangumiRecommendInfo> getBangumiRecommended();
 }

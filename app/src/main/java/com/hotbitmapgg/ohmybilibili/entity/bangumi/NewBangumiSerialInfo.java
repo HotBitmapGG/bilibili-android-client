@@ -10,7 +10,7 @@ import java.util.List;
  * <p/>
  * 新番连载
  */
-public class NewBangumiSerial
+public class NewBangumiSerialInfo
 {
 
     private String count;

@@ -1,7 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.rx.cache;
 
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiAppIndexInfo;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
@@ -90,7 +90,7 @@ interface CacheProviders
      * @return
      */
     @LifeCache(duration = 1, timeUnit = TimeUnit.DAYS)
-    Observable<Reply<BangumiRecommend>> getBangumiRecommended(Observable<BangumiRecommend> bangumiRecommend, DynamicKey dynamicKey, EvictProvider evictProvider);
+    Observable<Reply<BangumiRecommendInfo>> getBangumiRecommended(Observable<BangumiRecommendInfo> bangumiRecommend, DynamicKey dynamicKey, EvictProvider evictProvider);
 
 
     /**

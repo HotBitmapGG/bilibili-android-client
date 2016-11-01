@@ -12,7 +12,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionDynamic;
+import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionDynamicInfo;
+import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
+import com.hotbitmapgg.ohmybilibili.utils.WeekDayUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 
 import java.util.List;
@@ -27,13 +29,13 @@ import java.util.List;
 public class AttentionDynamicAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<AttentionDynamic> attentionDynamics;
+    private List<AttentionDynamicInfo.DataBean.FeedsBean> dynamics;
 
-    public AttentionDynamicAdapter(RecyclerView recyclerView, List<AttentionDynamic> attentionDynamics)
+    public AttentionDynamicAdapter(RecyclerView recyclerView, List<AttentionDynamicInfo.DataBean.FeedsBean> dynamics)
     {
 
         super(recyclerView);
-        this.attentionDynamics = attentionDynamics;
+        this.dynamics = dynamics;
     }
 
     @Override
@@ -52,10 +54,10 @@ public class AttentionDynamicAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            AttentionDynamic attentionDynamic = attentionDynamics.get(position);
+            AttentionDynamicInfo.DataBean.FeedsBean feedsBean = dynamics.get(position);
 
             Glide.with(getContext())
-                    .load(attentionDynamic.getPic())
+                    .load(feedsBean.getAddition().getPic())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
@@ -63,18 +65,18 @@ public class AttentionDynamicAdapter extends AbsRecyclerViewAdapter
                     .into(itemViewHolder.mImage);
 
             Glide.with(getContext())
-                    .load(attentionDynamic.getAvatar())
+                    .load(feedsBean.getSource().getAvatar())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.ico_user_default)
                     .dontAnimate()
                     .into(itemViewHolder.mAvatar);
 
-            itemViewHolder.mName.setText(attentionDynamic.getName());
-            itemViewHolder.mTitle.setText(attentionDynamic.getTitle());
-            itemViewHolder.mPlay.setText(attentionDynamic.getPlay());
-            itemViewHolder.mReview.setText(attentionDynamic.getDanmaku());
-            itemViewHolder.mUpdateTime.setText("于" + attentionDynamic.getUploadTime() + "投稿");
+            itemViewHolder.mName.setText(feedsBean.getSource().getUname());
+            itemViewHolder.mTitle.setText(feedsBean.getAddition().getTitle());
+            itemViewHolder.mPlay.setText(NumberUtil.converString(feedsBean.getAddition().getPlay()));
+            itemViewHolder.mReview.setText(NumberUtil.converString(feedsBean.getAddition().getVideo_review()));
+            itemViewHolder.mUpdateTime.setText(WeekDayUtil.formatDate(feedsBean.getAddition().getCreate()));
         }
         super.onBindViewHolder(holder, position);
     }
@@ -83,7 +85,7 @@ public class AttentionDynamicAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return attentionDynamics.size();
+        return dynamics.size();
     }
 
     private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder

@@ -11,7 +11,7 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.NewBangumiSerialAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerialInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
@@ -41,7 +41,7 @@ public class NewBangumiSerialActivity extends RxBaseActivity
     @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    private List<NewBangumiSerial.ListBean> newBangumiSerials = new ArrayList<>();
+    private List<NewBangumiSerialInfo.ListBean> newBangumiSerials = new ArrayList<>();
 
     private NewBangumiSerialAdapter mAdapter;
 
@@ -68,7 +68,7 @@ public class NewBangumiSerialActivity extends RxBaseActivity
                 .getNewBangumiSerialList()
                 .compose(this.bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)
-                .map(NewBangumiSerial::getList)
+                .map(NewBangumiSerialInfo::getList)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listBeans -> {

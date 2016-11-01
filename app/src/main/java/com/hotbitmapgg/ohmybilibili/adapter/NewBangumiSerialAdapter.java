@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerialInfo;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 
 import java.util.ArrayList;
@@ -27,11 +27,11 @@ import java.util.List;
 public class NewBangumiSerialAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<NewBangumiSerial.ListBean> newBangumiSerials = new ArrayList<>();
+    private List<NewBangumiSerialInfo.ListBean> newBangumiSerials = new ArrayList<>();
 
     private boolean isShowAll = false;
 
-    public NewBangumiSerialAdapter(RecyclerView recyclerView, List<NewBangumiSerial.ListBean> newBangumiSerials, boolean isShowAll)
+    public NewBangumiSerialAdapter(RecyclerView recyclerView, List<NewBangumiSerialInfo.ListBean> newBangumiSerials, boolean isShowAll)
     {
 
         super(recyclerView);
@@ -56,7 +56,7 @@ public class NewBangumiSerialAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            NewBangumiSerial.ListBean listBean = newBangumiSerials.get(position);
+            NewBangumiSerialInfo.ListBean listBean = newBangumiSerials.get(position);
 
             Glide.with(getContext())
                     .load(listBean.getCover())
