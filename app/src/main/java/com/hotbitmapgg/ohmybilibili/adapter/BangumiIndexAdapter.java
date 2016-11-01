@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndexTag;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndexInfo;
 
 import java.util.List;
 
@@ -24,13 +24,13 @@ import java.util.List;
 public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<BangumiIndexTag> bangumiIndexTags;
+    private List<BangumiIndexInfo.ResultBean.CategoryBean> categorys;
 
-    public BangumiIndexAdapter(RecyclerView recyclerView, List<BangumiIndexTag> bangumiIndexTags)
+    public BangumiIndexAdapter(RecyclerView recyclerView, List<BangumiIndexInfo.ResultBean.CategoryBean> categorys)
     {
 
         super(recyclerView);
-        this.bangumiIndexTags = bangumiIndexTags;
+        this.categorys = categorys;
     }
 
     @Override
@@ -49,17 +49,17 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            BangumiIndexTag bangumiIndexTag = bangumiIndexTags.get(position);
+            BangumiIndexInfo.ResultBean.CategoryBean categoryBean = categorys.get(position);
 
             Glide.with(getContext())
-                    .load(bangumiIndexTag.getPic())
+                    .load(categoryBean.getCover())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mImageView);
 
-            itemViewHolder.mTextView.setText(bangumiIndexTag.getTitle());
+            itemViewHolder.mTextView.setText(categoryBean.getTag_name());
         }
         super.onBindViewHolder(holder, position);
     }
@@ -68,7 +68,7 @@ public class BangumiIndexAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return bangumiIndexTags.size();
+        return categorys.size();
     }
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder

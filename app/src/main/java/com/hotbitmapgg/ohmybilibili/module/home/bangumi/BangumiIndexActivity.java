@@ -13,8 +13,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiIndexAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndex;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndexTag;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiIndexInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
@@ -44,15 +43,11 @@ public class BangumiIndexActivity extends RxBaseActivity
     @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    private List<BangumiIndexTag> bangumiIndexTags = new ArrayList<>();
-
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
     private GridLayoutManager mGridLayoutManager;
 
-    private List<BangumiIndex.ResultBean.CategoriesBean> categories;
-
-    private List<BangumiIndex.ResultBean.RecommendCategoryBean> recommendCategory;
+    private List<BangumiIndexInfo.ResultBean.CategoryBean> categorys = new ArrayList<>();
 
 
     @Override
@@ -86,7 +81,7 @@ public class BangumiIndexActivity extends RxBaseActivity
             }
         });
         mRecyclerView.setLayoutManager(mGridLayoutManager);
-        BangumiIndexAdapter mAdapter = new BangumiIndexAdapter(mRecyclerView, bangumiIndexTags);
+        BangumiIndexAdapter mAdapter = new BangumiIndexAdapter(mRecyclerView, categorys);
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         createHeadLayout();
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
@@ -124,12 +119,12 @@ public class BangumiIndexActivity extends RxBaseActivity
                 .subscribeOn(Schedulers.io())
                 .delay(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(bangumiIndex -> {
+                .subscribe(bangumiIndexInfo -> {
 
-                    categories = bangumiIndex.getResult().getCategories();
-                    recommendCategory = bangumiIndex.getResult().getRecommendCategory();
+                    categorys.addAll(bangumiIndexInfo.getResult().getCategory());
                     finishTask();
                 }, throwable -> {
+
                     hideProgressBar();
                 });
     }
@@ -154,33 +149,10 @@ public class BangumiIndexActivity extends RxBaseActivity
     public void finishTask()
     {
 
-        mergerIndexTags();
         initRecyclerView();
         hideProgressBar();
     }
 
-    private void mergerIndexTags()
-    {
-
-        BangumiIndexTag bangumiIndexTag;
-        for (int i = 0, size = categories.size(); i < size; i++)
-        {
-            BangumiIndex.ResultBean.CategoriesBean.CategoryBean category = categories.get(i).getCategory();
-            bangumiIndexTag = new BangumiIndexTag();
-            bangumiIndexTag.setPic(category.getCover());
-            bangumiIndexTag.setTitle(category.getTag_name());
-            bangumiIndexTags.add(bangumiIndexTag);
-        }
-
-        for (int i = 0, size = recommendCategory.size(); i < size; i++)
-        {
-            BangumiIndex.ResultBean.RecommendCategoryBean recommendCategoryBean = recommendCategory.get(i);
-            bangumiIndexTag = new BangumiIndexTag();
-            bangumiIndexTag.setPic(recommendCategoryBean.getCover());
-            bangumiIndexTag.setTitle(recommendCategoryBean.getTag_name());
-            bangumiIndexTags.add(bangumiIndexTag);
-        }
-    }
 
     private void createHeadLayout()
     {
