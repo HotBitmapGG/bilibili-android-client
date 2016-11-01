@@ -21,7 +21,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.module.user.UserInfoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 import com.hotbitmapgg.ohmybilibili.widget.livelike.LoveLikeLayout;
@@ -121,12 +121,12 @@ public class LivePlayerActivity extends RxBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            cid = intent.getIntExtra(ConstantUtils.EXTRA_CID, 0);
-            title = intent.getStringExtra(ConstantUtils.EXTRA_TITLE);
-            online = intent.getIntExtra(ConstantUtils.EXTRA_ONLINE, 0);
-            face = intent.getStringExtra(ConstantUtils.EXTRA_FACE);
-            name = intent.getStringExtra(ConstantUtils.EXTRA_NAME);
-            mid = intent.getIntExtra(ConstantUtils.EXTRA_MID, 0);
+            cid = intent.getIntExtra(ConstantUtil.EXTRA_CID, 0);
+            title = intent.getStringExtra(ConstantUtil.EXTRA_TITLE);
+            online = intent.getIntExtra(ConstantUtil.EXTRA_ONLINE, 0);
+            face = intent.getStringExtra(ConstantUtil.EXTRA_FACE);
+            name = intent.getStringExtra(ConstantUtil.EXTRA_NAME);
+            mid = intent.getIntExtra(ConstantUtil.EXTRA_MID, 0);
         }
 
 
@@ -301,12 +301,12 @@ public class LivePlayerActivity extends RxBaseActivity
     {
 
         Intent mIntent = new Intent(activity, LivePlayerActivity.class);
-        mIntent.putExtra(ConstantUtils.EXTRA_CID, cid);
-        mIntent.putExtra(ConstantUtils.EXTRA_TITLE, title);
-        mIntent.putExtra(ConstantUtils.EXTRA_ONLINE, online);
-        mIntent.putExtra(ConstantUtils.EXTRA_FACE, face);
-        mIntent.putExtra(ConstantUtils.EXTRA_NAME, name);
-        mIntent.putExtra(ConstantUtils.EXTRA_MID, mid);
+        mIntent.putExtra(ConstantUtil.EXTRA_CID, cid);
+        mIntent.putExtra(ConstantUtil.EXTRA_TITLE, title);
+        mIntent.putExtra(ConstantUtil.EXTRA_ONLINE, online);
+        mIntent.putExtra(ConstantUtil.EXTRA_FACE, face);
+        mIntent.putExtra(ConstantUtil.EXTRA_NAME, name);
+        mIntent.putExtra(ConstantUtil.EXTRA_MID, mid);
         activity.startActivity(mIntent);
     }
 

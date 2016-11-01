@@ -14,7 +14,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.discover.AllareasRankActivity;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
@@ -96,7 +96,7 @@ public class RegionRecommendHotSection extends StatelessSection
     {
 
         HeadViewHolder headViewHolder = (HeadViewHolder) holder;
-        if (rid == ConstantUtils.ADVERTISING_RID)
+        if (rid == ConstantUtil.ADVERTISING_RID)
             headViewHolder.mRankBtn.setVisibility(View.GONE);
         else
             headViewHolder.mRankBtn.setOnClickListener(v -> startRankActivityById());

@@ -11,7 +11,7 @@ import android.os.Build;
  * <p>
  * 复制剪贴工具类
  */
-public class ClipboardUtils
+public class ClipboardUtil
 {
 
     private static ClipboardManager mClipboardManager;

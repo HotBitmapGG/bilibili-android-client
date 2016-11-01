@@ -17,7 +17,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendedSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
@@ -197,14 +197,14 @@ public class HomeRecommendedFragment extends RxLazyFragment
             if (!TextUtils.isEmpty(type))
                 switch (type)
                 {
-                    case ConstantUtils.TYPE_TOPIC:
+                    case ConstantUtil.TYPE_TOPIC:
                         //话题
                         mSectionedAdapter.addSection(new HomeRecommendTopicSection(getActivity(),
                                 results.get(i).getBody().get(0).getCover(),
                                 results.get(i).getBody().get(0).getTitle(),
                                 results.get(i).getBody().get(0).getParam()));
                         break;
-                    case ConstantUtils.TYPE_ACTIVITY_CENTER:
+                    case ConstantUtil.TYPE_ACTIVITY_CENTER:
                         //活动中心
                         mSectionedAdapter.addSection(new HomeRecommendActivityCenterSection(
                                 getActivity(),
@@ -221,7 +221,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
                 }
 
             String style = results.get(i).getHead().getStyle();
-            if (style.equals(ConstantUtils.STYLE_PIC))
+            if (style.equals(ConstantUtil.STYLE_PIC))
             {
                 mSectionedAdapter.addSection(new HomeRecommendPicSection(getActivity(),
                         results.get(i).getBody().get(0).getCover(),

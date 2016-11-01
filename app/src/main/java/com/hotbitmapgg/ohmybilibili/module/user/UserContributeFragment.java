@@ -14,7 +14,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
@@ -22,12 +22,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
-import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_MID;
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtil.EXTRA_DATA;
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtil.EXTRA_MID;
 
 /**
  * Created by hcc on 2016/10/12 13:30
@@ -66,8 +64,8 @@ public class UserContributeFragment extends RxLazyFragment
 
         UserContributeFragment mFragment = new UserContributeFragment();
         Bundle mBundle = new Bundle();
-        mBundle.putInt(ConstantUtils.EXTRA_MID, mid);
-        mBundle.putParcelable(ConstantUtils.EXTRA_DATA, userContributeInfo);
+        mBundle.putInt(ConstantUtil.EXTRA_MID, mid);
+        mBundle.putParcelable(ConstantUtil.EXTRA_DATA, userContributeInfo);
         mFragment.setArguments(mBundle);
         return mFragment;
     }

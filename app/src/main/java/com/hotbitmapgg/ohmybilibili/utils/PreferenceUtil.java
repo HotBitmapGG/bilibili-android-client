@@ -13,7 +13,7 @@ import com.hotbitmapgg.ohmybilibili.BilibiliApp;
  * <p/>
  * SP缓存工具类
  */
-public final class PreferenceUtils
+public final class PreferenceUtil
 {
 
 

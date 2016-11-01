@@ -15,7 +15,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchBangumiInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -63,7 +62,7 @@ public class BangumiResultsFragment extends RxLazyFragment
 
         BangumiResultsFragment fragment = new BangumiResultsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(ConstantUtils.EXTRA_CONTENT, content);
+        bundle.putString(ConstantUtil.EXTRA_CONTENT, content);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -80,7 +79,7 @@ public class BangumiResultsFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        content = getArguments().getString(ConstantUtils.EXTRA_CONTENT);
+        content = getArguments().getString(ConstantUtil.EXTRA_CONTENT);
 
         mLoadingView.setImageResource(R.drawable.anim_search_loading);
         mAnimationDrawable = (AnimationDrawable) mLoadingView.getDrawable();

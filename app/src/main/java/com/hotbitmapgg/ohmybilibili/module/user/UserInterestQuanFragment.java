@@ -20,12 +20,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
-import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
-import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_MID;
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtil.EXTRA_DATA;
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtil.EXTRA_MID;
 
 /**
  * Created by hcc on 2016/10/12 18:17

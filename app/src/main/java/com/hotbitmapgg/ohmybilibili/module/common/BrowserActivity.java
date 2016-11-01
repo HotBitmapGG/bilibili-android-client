@@ -24,8 +24,8 @@ import android.webkit.WebViewClient;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.utils.ClipboardUtils;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ClipboardUtil;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
 
@@ -70,8 +70,8 @@ public class BrowserActivity extends RxBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            url = intent.getStringExtra(ConstantUtils.EXTRA_URL);
-            mTitle = intent.getStringExtra(ConstantUtils.EXTRA_TITLE);
+            url = intent.getStringExtra(ConstantUtil.EXTRA_URL);
+            mTitle = intent.getStringExtra(ConstantUtil.EXTRA_TITLE);
         }
 
 
@@ -118,7 +118,7 @@ public class BrowserActivity extends RxBaseActivity
                 break;
 
             case R.id.menu_copy:
-                ClipboardUtils.setText(BrowserActivity.this, url);
+                ClipboardUtil.setText(BrowserActivity.this, url);
                 ToastUtil.ShortToast("已复制");
                 break;
         }
@@ -156,8 +156,8 @@ public class BrowserActivity extends RxBaseActivity
     {
 
         Intent intent = new Intent(activity, BrowserActivity.class);
-        intent.putExtra(ConstantUtils.EXTRA_URL, url);
-        intent.putExtra(ConstantUtils.EXTRA_TITLE, title);
+        intent.putExtra(ConstantUtil.EXTRA_URL, url);
+        intent.putExtra(ConstantUtil.EXTRA_TITLE, title);
         activity.startActivity(intent);
     }
 

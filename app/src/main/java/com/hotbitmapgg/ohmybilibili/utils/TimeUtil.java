@@ -12,7 +12,7 @@ import java.util.Locale;
  * <p>
  * 常用时间工具类
  */
-public class TimeUtils
+public class TimeUtil
 {
 
     private static SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());

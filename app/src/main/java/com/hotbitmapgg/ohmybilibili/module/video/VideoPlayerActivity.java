@@ -20,7 +20,7 @@ import com.hotbitmapgg.ohmybilibili.media.VideoPlayerView;
 import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchListener;
 import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackListener;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 
 import java.util.HashMap;
 
@@ -93,8 +93,8 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitch
         Intent intent = getIntent();
         if (intent != null)
         {
-            cid = intent.getIntExtra(ConstantUtils.EXTRA_CID, 0);
-            title = intent.getStringExtra(ConstantUtils.EXTRA_TITLE);
+            cid = intent.getIntExtra(ConstantUtil.EXTRA_CID, 0);
+            title = intent.getStringExtra(ConstantUtil.EXTRA_TITLE);
         }
 
         initAnimation();
@@ -173,7 +173,7 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitch
     {
 
         RetrofitHelper.getHDVideoApi()
-                .getHDVideoUrl(cid, 4, ConstantUtils.VIDEO_TYPE_MP4)
+                .getHDVideoUrl(cid, 4, ConstantUtil.VIDEO_TYPE_MP4)
                 .compose(bindToLifecycle())
                 .map(videoInfo -> Uri.parse(videoInfo.getDurl().get(0).getUrl()))
                 .observeOn(AndroidSchedulers.mainThread())
@@ -446,8 +446,8 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitch
     {
 
         Intent mIntent = new Intent(activity, VideoPlayerActivity.class);
-        mIntent.putExtra(ConstantUtils.EXTRA_CID, cid);
-        mIntent.putExtra(ConstantUtils.EXTRA_TITLE, title);
+        mIntent.putExtra(ConstantUtil.EXTRA_CID, cid);
+        mIntent.putExtra(ConstantUtil.EXTRA_TITLE, title);
         activity.startActivity(mIntent);
     }
 }

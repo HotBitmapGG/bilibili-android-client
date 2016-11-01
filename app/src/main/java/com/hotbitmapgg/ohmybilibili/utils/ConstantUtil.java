@@ -7,7 +7,7 @@ package com.hotbitmapgg.ohmybilibili.utils;
  * 常量工具类
  */
 
-public class ConstantUtils
+public class ConstantUtil
 {
 
     public static final String SHOP_URL = "http://bmall.bilibili.com/";
@@ -49,19 +49,19 @@ public class ConstantUtils
 
     public final static String EXTRA_BANGUMI_KEY = "extra_season_id";
 
-    public static final String SUNDAY_TYPE = "0";
+    public static final String SUNDAY_TYPE = "周日";
 
-    public static final String MONDAY_TYPE = "1";
+    public static final String MONDAY_TYPE = "周一";
 
-    public static final String TUESDAY_TYPE = "2";
+    public static final String TUESDAY_TYPE = "周二";
 
-    public static final String WEDNESDAY_TYPE = "3";
+    public static final String WEDNESDAY_TYPE = "周三";
 
-    public static final String THURSDAY_TYPE = "4";
+    public static final String THURSDAY_TYPE = "周四";
 
-    public static final String FRIDAY_TYEP = "5";
+    public static final String FRIDAY_TYEP = "周五";
 
-    public static final String SATURDAY_TYPE = "6";
+    public static final String SATURDAY_TYPE = "周六";
 
     public static final String EXTRA_SPID = "spid";
 

@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager;
 
 import butterknife.BindView;
@@ -65,7 +65,7 @@ public class AllareasRankActivity extends RxBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            position = intent.getIntExtra(ConstantUtils.EXTRA_POSITION, 0);
+            position = intent.getIntExtra(ConstantUtil.EXTRA_POSITION, 0);
         }
 
         AllareasRankPagerAdapter mAdapter =
@@ -151,7 +151,7 @@ public class AllareasRankActivity extends RxBaseActivity
     {
 
         Intent intent = new Intent(activity, AllareasRankActivity.class);
-        intent.putExtra(ConstantUtils.EXTRA_POSITION, position);
+        intent.putExtra(ConstantUtil.EXTRA_POSITION, position);
         activity.startActivity(intent);
     }
 

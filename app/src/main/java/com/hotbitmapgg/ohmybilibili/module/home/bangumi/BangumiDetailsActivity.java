@@ -28,7 +28,7 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsInfo;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -117,7 +117,7 @@ public class BangumiDetailsActivity extends RxBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            seasonId = intent.getIntExtra(ConstantUtils.EXTRA_BANGUMI_KEY, 0);
+            seasonId = intent.getIntExtra(ConstantUtil.EXTRA_BANGUMI_KEY, 0);
         }
 
         loadData();
@@ -333,7 +333,7 @@ public class BangumiDetailsActivity extends RxBaseActivity
 
         Intent mIntent = new Intent(activity, BangumiDetailsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putInt(ConstantUtils.EXTRA_BANGUMI_KEY, seasonId);
+        bundle.putInt(ConstantUtil.EXTRA_BANGUMI_KEY, seasonId);
         mIntent.putExtras(bundle);
         activity.startActivity(mIntent);
     }

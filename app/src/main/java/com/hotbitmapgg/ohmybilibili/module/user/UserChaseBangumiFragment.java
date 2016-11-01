@@ -8,7 +8,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.UserChaseBangumiAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtil.EXTRA_DATA;
 
 /**
  * Created by hcc on 2016/10/12 18:16
@@ -43,7 +43,7 @@ public class UserChaseBangumiFragment extends RxLazyFragment
 
         UserChaseBangumiFragment mFragment = new UserChaseBangumiFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(ConstantUtils.EXTRA_DATA, userChaseBangumiInfo);
+        bundle.putParcelable(ConstantUtil.EXTRA_DATA, userChaseBangumiInfo);
         mFragment.setArguments(bundle);
         return mFragment;
     }

@@ -9,7 +9,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.UserCoinsVideoAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserCoinsInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtils.EXTRA_DATA;
+import static com.hotbitmapgg.ohmybilibili.utils.ConstantUtil.EXTRA_DATA;
 
 /**
  * Created by hcc on 2016/10/12 18:18
@@ -45,7 +45,7 @@ public class UserCoinsVideoFragment extends RxLazyFragment
 
         UserCoinsVideoFragment mFragment = new UserCoinsVideoFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(ConstantUtils.EXTRA_DATA, userCoinsInfo);
+        bundle.putParcelable(ConstantUtil.EXTRA_DATA, userCoinsInfo);
         mFragment.setArguments(bundle);
         return mFragment;
     }

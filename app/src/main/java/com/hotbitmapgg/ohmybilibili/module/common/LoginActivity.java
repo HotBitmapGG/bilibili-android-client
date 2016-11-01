@@ -12,9 +12,9 @@ import android.widget.ImageView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.utils.CommonUtils;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
-import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
+import com.hotbitmapgg.ohmybilibili.utils.CommonUtil;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
+import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 
 import butterknife.BindView;
@@ -118,7 +118,7 @@ public class LoginActivity extends RxBaseActivity
     void startLogin()
     {
 
-        boolean isNetConnected = CommonUtils.isNetworkAvailable(this);
+        boolean isNetConnected = CommonUtil.isNetworkAvailable(this);
         if (!isNetConnected)
         {
             ToastUtil.ShortToast("当前网络不可用,请检查网络设置");
@@ -158,7 +158,7 @@ public class LoginActivity extends RxBaseActivity
             return;
         }
 
-        PreferenceUtils.putBoolean(ConstantUtils.KEY, true);
+        PreferenceUtil.putBoolean(ConstantUtil.KEY, true);
         startActivity(new Intent(LoginActivity.this, MainActivity.class));
         finish();
     }

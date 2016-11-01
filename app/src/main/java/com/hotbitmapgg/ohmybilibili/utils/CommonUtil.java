@@ -14,7 +14,7 @@ import java.io.File;
  * <p/>
  * 通用工具类
  */
-public class CommonUtils
+public class CommonUtil
 {
 
     /**

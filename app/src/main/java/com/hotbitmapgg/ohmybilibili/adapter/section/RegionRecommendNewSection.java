@@ -14,7 +14,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.rx.RxBus;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
@@ -95,7 +95,7 @@ public class RegionRecommendNewSection extends StatelessSection
     {
 
         HeadViewHolder headViewHolder = (HeadViewHolder) holder;
-        if (rid == ConstantUtils.ADVERTISING_RID)
+        if (rid == ConstantUtil.ADVERTISING_RID)
         {
             headViewHolder.mMore.setVisibility(View.GONE);
             headViewHolder.mTypeIcon.setImageResource(R.drawable.ic_header_movie_relate);

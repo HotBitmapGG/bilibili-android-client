@@ -9,8 +9,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
-import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
+import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtil;
 import com.trello.rxlifecycle.components.RxActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -112,7 +112,7 @@ public class SplashActivity extends RxActivity
     private void finishTask()
     {
 
-        boolean isLogin = PreferenceUtils.getBoolean(ConstantUtils.KEY, false);
+        boolean isLogin = PreferenceUtil.getBoolean(ConstantUtil.KEY, false);
         if (isLogin)
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
         else

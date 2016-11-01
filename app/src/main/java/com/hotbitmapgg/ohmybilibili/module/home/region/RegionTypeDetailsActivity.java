@@ -17,7 +17,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.pager.RegionPagerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.rx.RxBus;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager;
 
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class RegionTypeDetailsActivity extends RxBaseActivity
 
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null)
-            mDataBean = mBundle.getParcelable(ConstantUtils.EXTRA_PARTITION);
+            mDataBean = mBundle.getParcelable(ConstantUtil.EXTRA_PARTITION);
 
 
         initViewPager();
@@ -163,7 +163,7 @@ public class RegionTypeDetailsActivity extends RxBaseActivity
 
         Intent mIntent = new Intent(activity, RegionTypeDetailsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable(ConstantUtils.EXTRA_PARTITION, dataBean);
+        bundle.putParcelable(ConstantUtil.EXTRA_PARTITION, dataBean);
         mIntent.putExtras(bundle);
         activity.startActivity(mIntent);
     }

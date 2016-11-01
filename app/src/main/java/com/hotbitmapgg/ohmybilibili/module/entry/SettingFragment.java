@@ -15,8 +15,8 @@ import com.hotbitmapgg.ohmybilibili.module.common.AppIntroduceActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.HotBitmapGGInfoActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.LoginActivity;
 import com.hotbitmapgg.ohmybilibili.module.common.MainActivity;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
-import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
+import com.hotbitmapgg.ohmybilibili.utils.PreferenceUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -86,7 +86,7 @@ public class SettingFragment extends RxLazyFragment
     void logout()
     {
         //退出登录
-        PreferenceUtils.putBoolean(ConstantUtils.KEY, false);
+        PreferenceUtil.putBoolean(ConstantUtil.KEY, false);
         startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
     }

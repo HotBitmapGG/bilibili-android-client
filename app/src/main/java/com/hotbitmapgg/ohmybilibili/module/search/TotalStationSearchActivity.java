@@ -22,9 +22,9 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchArchiveInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.KeyBoardUtil;
-import com.hotbitmapgg.ohmybilibili.utils.StatusBarUtils;
+import com.hotbitmapgg.ohmybilibili.utils.StatusBarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -92,7 +92,7 @@ public class TotalStationSearchActivity extends RxBaseActivity
     public void initToolBar()
     {
         //设置6.0以上StatusBar字体颜色
-        StatusBarUtils.from(this)
+        StatusBarUtil.from(this)
                 .setLightStatusBar(true)
                 .process();
     }
@@ -103,7 +103,7 @@ public class TotalStationSearchActivity extends RxBaseActivity
 
         Intent intent = getIntent();
         if (intent != null)
-            content = intent.getStringExtra(ConstantUtils.EXTRA_CONTENT);
+            content = intent.getStringExtra(ConstantUtil.EXTRA_CONTENT);
 
         mLoadingView.setImageResource(R.drawable.anim_search_loading);
         mAnimationDrawable = (AnimationDrawable) mLoadingView.getDrawable();
@@ -333,7 +333,7 @@ public class TotalStationSearchActivity extends RxBaseActivity
     {
 
         Intent mIntent = new Intent(activity, TotalStationSearchActivity.class);
-        mIntent.putExtra(ConstantUtils.EXTRA_CONTENT, str);
+        mIntent.putExtra(ConstantUtil.EXTRA_CONTENT, str);
         activity.startActivity(mIntent);
     }
 

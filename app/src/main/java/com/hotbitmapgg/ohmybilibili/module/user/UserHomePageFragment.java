@@ -26,7 +26,7 @@ import com.hotbitmapgg.ohmybilibili.entity.user.UserFavoritesInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserInterestQuanInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserLiveRoomStatusInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserPlayGameInfo;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.widget.FavoritesItemLayout;
 
 import java.util.List;
@@ -131,13 +131,13 @@ public class UserHomePageFragment extends RxLazyFragment
 
         UserHomePageFragment mFragment = new UserHomePageFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable(ConstantUtils.USER_CONTRIBUTE, userContributeInfo);
-        bundle.putParcelable(ConstantUtils.USER_FAVORITES, userFavoritesInfo);
-        bundle.putParcelable(ConstantUtils.USER_CHASE_BANGUMI, userChaseBangumiInfo);
-        bundle.putParcelable(ConstantUtils.USER_INTEREST_QUAN, userInterestQuanInfo);
-        bundle.putParcelable(ConstantUtils.USER_COINS, userCoinsInfo);
-        bundle.putParcelable(ConstantUtils.USER_PLAY_GAME, userPlayGameInfo);
-        bundle.putParcelable(ConstantUtils.USER_LIVE_STATUS, userLiveRoomStatusInfo);
+        bundle.putParcelable(ConstantUtil.USER_CONTRIBUTE, userContributeInfo);
+        bundle.putParcelable(ConstantUtil.USER_FAVORITES, userFavoritesInfo);
+        bundle.putParcelable(ConstantUtil.USER_CHASE_BANGUMI, userChaseBangumiInfo);
+        bundle.putParcelable(ConstantUtil.USER_INTEREST_QUAN, userInterestQuanInfo);
+        bundle.putParcelable(ConstantUtil.USER_COINS, userCoinsInfo);
+        bundle.putParcelable(ConstantUtil.USER_PLAY_GAME, userPlayGameInfo);
+        bundle.putParcelable(ConstantUtil.USER_LIVE_STATUS, userLiveRoomStatusInfo);
         mFragment.setArguments(bundle);
         return mFragment;
     }
@@ -153,13 +153,13 @@ public class UserHomePageFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        mUserContributeInfo = getArguments().getParcelable(ConstantUtils.USER_CONTRIBUTE);
-        mUserFavoritesInfo = getArguments().getParcelable(ConstantUtils.USER_FAVORITES);
-        mUserChaseBangumiInfo = getArguments().getParcelable(ConstantUtils.USER_CHASE_BANGUMI);
-        mUserInterestQuanInfo = getArguments().getParcelable(ConstantUtils.USER_INTEREST_QUAN);
-        mUserCoinsInfo = getArguments().getParcelable(ConstantUtils.USER_COINS);
-        mUserPlayGameInfo = getArguments().getParcelable(ConstantUtils.USER_PLAY_GAME);
-        mUserLiveRoomStatusInfo = getArguments().getParcelable(ConstantUtils.USER_LIVE_STATUS);
+        mUserContributeInfo = getArguments().getParcelable(ConstantUtil.USER_CONTRIBUTE);
+        mUserFavoritesInfo = getArguments().getParcelable(ConstantUtil.USER_FAVORITES);
+        mUserChaseBangumiInfo = getArguments().getParcelable(ConstantUtil.USER_CHASE_BANGUMI);
+        mUserInterestQuanInfo = getArguments().getParcelable(ConstantUtil.USER_INTEREST_QUAN);
+        mUserCoinsInfo = getArguments().getParcelable(ConstantUtil.USER_COINS);
+        mUserPlayGameInfo = getArguments().getParcelable(ConstantUtil.USER_PLAY_GAME);
+        mUserLiveRoomStatusInfo = getArguments().getParcelable(ConstantUtil.USER_LIVE_STATUS);
 
         setLive();
         setContribute();

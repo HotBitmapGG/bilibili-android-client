@@ -11,7 +11,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.discover.AllareasRankInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ public class AllareasRankFragment extends RxLazyFragment
 
         AllareasRankFragment mFragment = new AllareasRankFragment();
         Bundle mBundle = new Bundle();
-        mBundle.putString(ConstantUtils.EXTRA_KEY, type);
+        mBundle.putString(ConstantUtil.EXTRA_KEY, type);
         mFragment.setArguments(mBundle);
         return mFragment;
     }
@@ -64,7 +64,7 @@ public class AllareasRankFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        type = getArguments().getString(ConstantUtils.EXTRA_KEY);
+        type = getArguments().getString(ConstantUtil.EXTRA_KEY);
         initRefreshLayout();
         initRecyclerView();
     }

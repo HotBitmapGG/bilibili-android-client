@@ -16,7 +16,7 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.search.SearchMovieInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.SpecialDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +63,7 @@ public class MovieResultsFragment extends RxLazyFragment
 
         MovieResultsFragment fragment = new MovieResultsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(ConstantUtils.EXTRA_CONTENT, content);
+        bundle.putString(ConstantUtil.EXTRA_CONTENT, content);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -80,7 +80,7 @@ public class MovieResultsFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        content = getArguments().getString(ConstantUtils.EXTRA_CONTENT);
+        content = getArguments().getString(ConstantUtil.EXTRA_CONTENT);
 
         mLoadingView.setImageResource(R.drawable.anim_search_loading);
         mAnimationDrawable = (AnimationDrawable) mLoadingView.getDrawable();

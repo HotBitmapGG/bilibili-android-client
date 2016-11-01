@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.utils.CommonUtils;
+import com.hotbitmapgg.ohmybilibili.utils.CommonUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.progressbar.NumberProgressBar;
@@ -46,8 +46,8 @@ public class OffLineDownloadActivity extends RxBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        long phoneTotalSize = CommonUtils.getPhoneTotalSize();
-        long phoneAvailableSize = CommonUtils.getPhoneAvailableSize();
+        long phoneTotalSize = CommonUtil.getPhoneTotalSize();
+        long phoneAvailableSize = CommonUtil.getPhoneAvailableSize();
         //转换为G的显示单位
         String totalSizeStr = Formatter.formatFileSize(this, phoneTotalSize);
         String availabSizeStr = Formatter.formatFileSize(this, phoneAvailableSize);

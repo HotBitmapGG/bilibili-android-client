@@ -34,7 +34,7 @@ import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
 import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.DisplayUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 
@@ -106,8 +106,8 @@ public class VideoDetailsActivity extends RxBaseActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            av = intent.getIntExtra(ConstantUtils.EXTRA_AV, -1);
-            imgUrl = intent.getStringExtra(ConstantUtils.EXTRA_IMG_URL);
+            av = intent.getIntExtra(ConstantUtil.EXTRA_AV, -1);
+            imgUrl = intent.getStringExtra(ConstantUtil.EXTRA_IMG_URL);
         }
 
         Glide.with(VideoDetailsActivity.this)
@@ -220,8 +220,8 @@ public class VideoDetailsActivity extends RxBaseActivity
 
         Intent intent = new Intent(activity, VideoDetailsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(ConstantUtils.EXTRA_AV, aid);
-        intent.putExtra(ConstantUtils.EXTRA_IMG_URL, imgUrl);
+        intent.putExtra(ConstantUtil.EXTRA_AV, aid);
+        intent.putExtra(ConstantUtil.EXTRA_IMG_URL, imgUrl);
         activity.startActivity(intent);
     }
 

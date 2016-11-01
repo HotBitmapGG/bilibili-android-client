@@ -1,8 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.adapter.section;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
+import android.content.res.ColorStateList;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,7 +10,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiSchedule;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiScheduleInfo;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
+import com.hotbitmapgg.ohmybilibili.utils.DateUtil;
+import com.hotbitmapgg.ohmybilibili.utils.WeekDayUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
 import java.util.List;
@@ -23,40 +25,26 @@ import butterknife.ButterKnife;
  * Created by hcc on 16/8/25 20:52
  * 100332338@qq.com
  * <p/>
- * 二三次元番剧专题Section
+ * 番剧放送表section
  */
 public class BangumiScheduleSection extends StatelessSection
 {
 
-
     private Context mContext;
 
-    private int weekDay;
+    private String weekDay;
 
-    private List<BangumiSchedule.ResultBean> bangumiSchedules;
+    private String date;
 
-    private int[] weekDayIcons = new int[]{
-            R.drawable.bangumi_timeline_weekday_7,
-            R.drawable.bangumi_timeline_weekday_1,
-            R.drawable.bangumi_timeline_weekday_2,
-            R.drawable.bangumi_timeline_weekday_3,
-            R.drawable.bangumi_timeline_weekday_4,
-            R.drawable.bangumi_timeline_weekday_5,
-            R.drawable.bangumi_timeline_weekday_6,
-            };
+    private List<BangumiScheduleInfo.ResultBean> bangumiSchedules;
 
-    private String[] weekDayTitles = new String[]{
-            "周日", "周一", "周二",
-            "周三", "周四", "周五", "周六",
-            };
-
-
-    public BangumiScheduleSection(Context context, List<BangumiSchedule.ResultBean> bangumiSchedules, int weekDay)
+    public BangumiScheduleSection(Context context, List<BangumiScheduleInfo.ResultBean> bangumiSchedules, String weekDay, String date)
     {
 
         super(R.layout.layout_bangumi_schedule_head, R.layout.layout_bangumi_schedule_boby);
         this.mContext = context;
         this.weekDay = weekDay;
+        this.date = date;
         this.bangumiSchedules = bangumiSchedules;
     }
 
@@ -79,7 +67,7 @@ public class BangumiScheduleSection extends StatelessSection
     {
 
         ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        BangumiSchedule.ResultBean resultBean = bangumiSchedules.get(position);
+        BangumiScheduleInfo.ResultBean resultBean = bangumiSchedules.get(position);
         Glide.with(mContext)
                 .load(resultBean.getCover())
                 .centerCrop()
@@ -89,9 +77,8 @@ public class BangumiScheduleSection extends StatelessSection
                 .into(itemViewHolder.mImageView);
 
         itemViewHolder.mTitle.setText(resultBean.getTitle());
-        itemViewHolder.mUpdate.setText("第" + resultBean.getTotal_count() + "话");
-        String substring = resultBean.getLast_time().substring(10, 16);
-        itemViewHolder.mTimeLine.setText(substring);
+        itemViewHolder.mUpdate.setText("第" + resultBean.getEp_index() + "话");
+        itemViewHolder.mTimeLine.setText(resultBean.getOntime());
     }
 
     @Override
@@ -107,7 +94,6 @@ public class BangumiScheduleSection extends StatelessSection
 
         HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
         setWeekDay(headerViewHolder);
-        headerViewHolder.mUpdateTime.setText("");
     }
 
     private void setWeekDay(HeaderViewHolder headerViewHolder)
@@ -115,33 +101,26 @@ public class BangumiScheduleSection extends StatelessSection
 
         switch (weekDay)
         {
-            case 0:
-                //周日
-                setWeekDayIconAndTitle(headerViewHolder, weekDayIcons[0], weekDayTitles[0]);
+            case ConstantUtil.SUNDAY_TYPE:
+                setWeekDayIconAndTitle(headerViewHolder, R.drawable.bangumi_timeline_weekday_7, "周日");
                 break;
-            case 1:
-                //周一
-                setWeekDayIconAndTitle(headerViewHolder, weekDayIcons[1], weekDayTitles[1]);
+            case ConstantUtil.MONDAY_TYPE:
+                setWeekDayIconAndTitle(headerViewHolder, R.drawable.bangumi_timeline_weekday_1, "周一");
                 break;
-            case 2:
-                //周二
-                setWeekDayIconAndTitle(headerViewHolder, weekDayIcons[2], weekDayTitles[2]);
+            case ConstantUtil.TUESDAY_TYPE:
+                setWeekDayIconAndTitle(headerViewHolder, R.drawable.bangumi_timeline_weekday_2, "周二");
                 break;
-            case 3:
-                //周三
-                setWeekDayIconAndTitle(headerViewHolder, weekDayIcons[3], weekDayTitles[3]);
+            case ConstantUtil.WEDNESDAY_TYPE:
+                setWeekDayIconAndTitle(headerViewHolder, R.drawable.bangumi_timeline_weekday_3, "周三");
                 break;
-            case 4:
-                //周四
-                setWeekDayIconAndTitle(headerViewHolder, weekDayIcons[4], weekDayTitles[4]);
+            case ConstantUtil.THURSDAY_TYPE:
+                setWeekDayIconAndTitle(headerViewHolder, R.drawable.bangumi_timeline_weekday_4, "周四");
                 break;
-            case 5:
-                //周五
-                setWeekDayIconAndTitle(headerViewHolder, weekDayIcons[5], weekDayTitles[5]);
+            case ConstantUtil.FRIDAY_TYEP:
+                setWeekDayIconAndTitle(headerViewHolder, R.drawable.bangumi_timeline_weekday_5, "周五");
                 break;
-            case 6:
-                //周六
-                setWeekDayIconAndTitle(headerViewHolder, weekDayIcons[6], weekDayTitles[6]);
+            case ConstantUtil.SATURDAY_TYPE:
+                setWeekDayIconAndTitle(headerViewHolder, R.drawable.bangumi_timeline_weekday_6, "周六");
                 break;
         }
     }
@@ -149,18 +128,32 @@ public class BangumiScheduleSection extends StatelessSection
     private void setWeekDayIconAndTitle(HeaderViewHolder headerViewHolder, int iconRes, String title)
     {
 
-        Drawable drawable = ContextCompat.getDrawable(mContext, iconRes);
-        if (drawable != null)
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-        headerViewHolder.mWeekDay.setCompoundDrawables(drawable, null, null, null);
-        headerViewHolder.mWeekDay.setText(title);
+        if (date.equals(WeekDayUtil.formatDate(DateUtil.getCurrentTime("yyyy-MM-dd"))))
+        {
+            headerViewHolder.mUpdateTime.setText("今天");
+            headerViewHolder.mUpdateTime.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+            headerViewHolder.mWeekDayText.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+            headerViewHolder.mWeekDayIcon.setImageTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.colorPrimary)));
+        } else
+        {
+            headerViewHolder.mUpdateTime.setText(date);
+            headerViewHolder.mUpdateTime.setTextColor(mContext.getResources().getColor(R.color.black_alpha_30));
+            headerViewHolder.mWeekDayText.setTextColor(mContext.getResources().getColor(R.color.gray_80));
+            headerViewHolder.mWeekDayIcon.setImageTintList(ColorStateList.valueOf(mContext.getResources().getColor(R.color.gray_80)));
+        }
+
+        headerViewHolder.mWeekDayIcon.setImageResource(iconRes);
+        headerViewHolder.mWeekDayText.setText(title);
     }
 
     static class HeaderViewHolder extends RecyclerView.ViewHolder
     {
 
-        @BindView(R.id.item_weekday)
-        TextView mWeekDay;
+        @BindView(R.id.item_weekday_text)
+        TextView mWeekDayText;
+
+        @BindView(R.id.item_weekday_icon)
+        ImageView mWeekDayIcon;
 
         @BindView(R.id.item_update_time)
         TextView mUpdateTime;

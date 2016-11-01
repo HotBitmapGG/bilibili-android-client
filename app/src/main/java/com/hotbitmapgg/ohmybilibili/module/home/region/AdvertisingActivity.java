@@ -17,7 +17,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.RegionRecommendNewSection;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
@@ -168,7 +168,7 @@ public class AdvertisingActivity extends RxBaseActivity
     {
 
         RetrofitHelper.getRegionRecommendApi()
-                .getRegionRecommends(ConstantUtils.ADVERTISING_RID)
+                .getRegionRecommends(ConstantUtil.ADVERTISING_RID)
                 .compose(bindToLifecycle())
                 .map(RegionRecommendInfo::getData)
                 .subscribeOn(Schedulers.io())
@@ -193,8 +193,8 @@ public class AdvertisingActivity extends RxBaseActivity
 
         converBanner();
         mSectionedRecyclerViewAdapter.addSection(new RegionRecommendBannerSection(bannerEntities));
-        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendHotSection(AdvertisingActivity.this, ConstantUtils.ADVERTISING_RID, recommends));
-        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendNewSection(AdvertisingActivity.this, ConstantUtils.ADVERTISING_RID, news));
+        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendHotSection(AdvertisingActivity.this, ConstantUtil.ADVERTISING_RID, recommends));
+        mSectionedRecyclerViewAdapter.addSection(new RegionRecommendNewSection(AdvertisingActivity.this, ConstantUtil.ADVERTISING_RID, news));
         mSectionedRecyclerViewAdapter.addSection(new RegionRecommendDynamicSection(AdvertisingActivity.this, dynamics));
 
         mIsRefreshing = false;

@@ -11,7 +11,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.RegionDetailsNewsVideoSectio
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionDetailsInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -53,7 +53,7 @@ public class RegionTypeDetailsFragment extends RxLazyFragment
 
         RegionTypeDetailsFragment fragment = new RegionTypeDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(ConstantUtils.EXTRA_RID, rid);
+        bundle.putInt(ConstantUtil.EXTRA_RID, rid);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -69,7 +69,7 @@ public class RegionTypeDetailsFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        rid = getArguments().getInt(ConstantUtils.EXTRA_RID);
+        rid = getArguments().getInt(ConstantUtil.EXTRA_RID);
 
         isPrepared = true;
         lazyLoad();

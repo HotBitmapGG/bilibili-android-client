@@ -9,7 +9,7 @@ import android.webkit.WebView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 
 import butterknife.BindView;
@@ -45,7 +45,7 @@ public class VipActivity extends RxBaseActivity
     public void initViews(Bundle savedInstanceState)
     {
 
-        mWebView.loadUrl(ConstantUtils.VIP_URL);
+        mWebView.loadUrl(ConstantUtil.VIP_URL);
     }
 
     @Override

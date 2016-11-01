@@ -14,7 +14,7 @@ import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
-import com.hotbitmapgg.ohmybilibili.utils.DateUtils;
+import com.hotbitmapgg.ohmybilibili.utils.DateUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 
 import java.util.List;
@@ -82,8 +82,8 @@ public class VideoHotCommentAdapter extends AbsRecyclerViewAdapter
 
                 mHolder.mCommentNum.setText(String.valueOf(hotList.reply_count));
                 mHolder.mSpot.setText(String.valueOf(hotList.good));
-                long l = DateUtils.stringToLong(hotList.create_at, "yyyy-MM-dd HH:mm");
-                String time = DateUtils.getDescriptionTimeFromTimestamp(l);
+                long l = DateUtil.stringToLong(hotList.create_at, "yyyy-MM-dd HH:mm");
+                String time = DateUtil.getDescriptionTimeFromTimestamp(l);
                 mHolder.mCommentTime.setText(time);
                 mHolder.mContent.setText(hotList.msg);
                 mHolder.mFloor.setText("#" + hotList.lv);

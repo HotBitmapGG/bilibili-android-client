@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
  * <p>
  * 沉浸式状态栏工具类
  */
-public class StatusBarUtils
+public class StatusBarUtil
 {
 
     private final boolean lightStatusBar;
@@ -37,8 +37,8 @@ public class StatusBarUtils
 
     private final int current = Build.VERSION.SDK_INT;
 
-    private StatusBarUtils(Window window, boolean lightStatusBar, boolean transparentStatusBar,
-                           boolean transparentNavigationbar, View actionBarView)
+    private StatusBarUtil(Window window, boolean lightStatusBar, boolean transparentStatusBar,
+                          boolean transparentNavigationbar, View actionBarView)
     {
 
         this.lightStatusBar = lightStatusBar;
@@ -327,7 +327,7 @@ public class StatusBarUtils
         public void process()
         {
 
-            new StatusBarUtils(window, lightStatusBar, transparentStatusbar, transparentNavigationbar,
+            new StatusBarUtil(window, lightStatusBar, transparentStatusbar, transparentNavigationbar,
                     actionBarView).process();
         }
     }

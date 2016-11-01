@@ -16,7 +16,7 @@ import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -228,6 +228,6 @@ public class HomeDiscoverFragment extends RxLazyFragment
     void startShop()
     {
 
-        BrowserActivity.launch(getActivity(), ConstantUtils.SHOP_URL, "bilibili - 周边商城");
+        BrowserActivity.launch(getActivity(), ConstantUtil.SHOP_URL, "bilibili - 周边商城");
     }
 }

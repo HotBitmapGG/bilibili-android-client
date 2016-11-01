@@ -14,7 +14,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.RegionRecommendTypesSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
-import com.hotbitmapgg.ohmybilibili.utils.ConstantUtils;
+import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.ToastUtil;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
@@ -66,7 +66,7 @@ public class RegionTypeRecommendFragment extends RxLazyFragment
 
         RegionTypeRecommendFragment fragment = new RegionTypeRecommendFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(ConstantUtils.EXTRA_RID, rid);
+        bundle.putInt(ConstantUtil.EXTRA_RID, rid);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -82,7 +82,7 @@ public class RegionTypeRecommendFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        rid = getArguments().getInt(ConstantUtils.EXTRA_RID);
+        rid = getArguments().getInt(ConstantUtil.EXTRA_RID);
         initRefreshLayout();
         initRecyclerView();
     }
