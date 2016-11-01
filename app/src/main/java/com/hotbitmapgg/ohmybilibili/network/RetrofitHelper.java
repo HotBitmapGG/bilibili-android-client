@@ -12,7 +12,6 @@ import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
 import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
-import com.hotbitmapgg.ohmybilibili.network.api.HomeBangumiRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.HotSearchTagService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveAppIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
@@ -156,26 +155,7 @@ public class RetrofitHelper
     }
 
     /**
-     * 获取首页番剧推荐列表
-     *
-     * @return
-     */
-
-    public static HomeBangumiRecommendService getHomeBnagumiRecommendApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BANGUMI_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(HomeBangumiRecommendService.class);
-    }
-
-    /**
-     * 获取二次元新番
+     * 获取新番连载
      *
      * @return
      */
@@ -426,7 +406,7 @@ public class RetrofitHelper
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APP_BASE_URL)
+                .baseUrl(BANGUMI_BASE_URL)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())

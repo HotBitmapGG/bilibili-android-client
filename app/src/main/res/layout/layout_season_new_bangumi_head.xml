@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
 
 
     <TextView
-        android:id="@+id/tv_all_new_bangumi"
+        android:id="@+id/tv_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -39,7 +40,7 @@
         android:drawableEnd="@drawable/ic_gray_arrow_right"
         android:drawablePadding="@dimen/default_tiny_margin"
         android:padding="@dimen/default_general_margin"
-        android:text="@string/season_list"
+        android:text="@string/more"
         android:textColor="@color/black_alpha_30"
         android:textSize="@dimen/default_tiny_text_size" />
 

@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumiInfo;
 
 import retrofit2.http.GET;
 import rx.Observable;
@@ -10,13 +10,12 @@ import rx.Observable;
  * 100332338@qq.com
  * <p>
  * 分季新番数据请求
- * http://app.bilibili.com/bangumi/operation_module?_device=
- * android&_hwid=ac538400c68784bb&_ulv=10000&module=bangumi&platform=android&screen=xxhdpi
+ * http://bangumi.bilibili.com/api/season_group.json?build=3940&device=phone&mobi_app=iphone&platform=ios
  */
 
 public interface SeasonNewBangumiService
 {
 
-    @GET("bangumi/operation_module?_device=android&_hwid=ac538400c68784bb&_ulv=10000&module=bangumi&platform=android&screen=xxhdpi")
-    Observable<SeasonNewBangumi> getSeasonNewBangumiList();
+    @GET("api/season_group.json?build=3940&device=phone&mobi_app=iphone&platform=ios")
+    Observable<SeasonNewBangumiInfo> getSeasonNewBangumiList();
 }

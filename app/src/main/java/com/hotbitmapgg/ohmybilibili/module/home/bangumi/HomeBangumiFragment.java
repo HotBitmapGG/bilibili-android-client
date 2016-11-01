@@ -68,6 +68,8 @@ public class HomeBangumiFragment extends RxLazyFragment
 
     private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
 
+    private int season;
+
     public static HomeBangumiFragment newInstance()
     {
 
@@ -172,6 +174,7 @@ public class HomeBangumiFragment extends RxLazyFragment
                         banners.addAll(bangumiAppIndexInfo.getResult().getAd().getHead());
                         bangumibobys.addAll(bangumiAppIndexInfo.getResult().getAd().getBody());
                         seasonNewBangumis.addAll(bangumiAppIndexInfo.getResult().getPrevious().getList());
+                        season = bangumiAppIndexInfo.getResult().getPrevious().getSeason();
                         newBangumiSerials.addAll(bangumiAppIndexInfo.getResult().getSerializing());
                         return BilibiliApp.getInstance().getRepository().getBangumiRecommended(mIsCacheRefresh);
                     }
@@ -206,7 +209,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiItemSection(getActivity()));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiNewSerialSection(getActivity(), newBangumiSerials));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiBobySection(getActivity(), bangumibobys));
-        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiSeasonNewSection(getActivity(), seasonNewBangumis));
+        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiSeasonNewSection(getActivity(), season, seasonNewBangumis));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiRecommendSection(getActivity(), bangumiRecommends));
         mSectionedRecyclerViewAdapter.notifyDataSetChanged();
     }

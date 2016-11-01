@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/default_general_margin"
-    android:layout_marginStart="@dimen/default_general_margin"
+    android:layout_marginEnd="@dimen/default_tiny_padding"
+    android:layout_marginStart="@dimen/default_tiny_padding"
     android:layout_marginTop="@dimen/default_general_margin"
     android:orientation="horizontal">
 

@@ -77,6 +77,7 @@ public class HomeBangumiBobySection extends StatelessSection
                 .load(bangumibobys.get(0).getImg())
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.bili_default_image_tv)
                 .dontAnimate()
                 .into(bangumiBobyViewHolder.mBobyImage);
 

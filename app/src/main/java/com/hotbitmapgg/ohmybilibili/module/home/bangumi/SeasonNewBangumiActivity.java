@@ -9,16 +9,18 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.adapter.SeasonNewBangumiAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.section.SeasonNewBangumiSection;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumiInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
+import com.hotbitmapgg.ohmybilibili.widget.sectioned.SectionedRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -41,9 +43,9 @@ public class SeasonNewBangumiActivity extends RxBaseActivity
     @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    private List<SeasonNewBangumi.ListBean> seasonNewBangumis = new ArrayList<>();
+    private List<SeasonNewBangumiInfo.ResultBean> results = new ArrayList<>();
 
-    private SeasonNewBangumiAdapter mAdapter;
+    private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
 
     @Override
     public int getLayoutId()
@@ -66,17 +68,15 @@ public class SeasonNewBangumiActivity extends RxBaseActivity
 
         RetrofitHelper.getSeasonNewBangumiApi()
                 .getSeasonNewBangumiList()
-                .compose(this.bindToLifecycle())
+                .compose(bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)
-                .map(SeasonNewBangumi::getList)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(listBeans -> {
+                .subscribe(seasonNewBangumiInfo -> {
 
-                    seasonNewBangumis.addAll(listBeans);
+                    results.addAll(seasonNewBangumiInfo.getResult());
                     finishTask();
                 }, throwable -> {
-
                     hideProgressBar();
                 });
     }
@@ -85,8 +85,13 @@ public class SeasonNewBangumiActivity extends RxBaseActivity
     public void finishTask()
     {
 
+        Observable.from(results)
+                .compose(bindToLifecycle())
+                .forEach(resultBean -> mSectionedRecyclerViewAdapter.addSection(
+                        new SeasonNewBangumiSection(SeasonNewBangumiActivity.this,
+                                resultBean.getSeason(), resultBean.getYear(), resultBean.getList())));
 
-        mAdapter.notifyDataSetChanged();
+        mSectionedRecyclerViewAdapter.notifyDataSetChanged();
         hideProgressBar();
     }
 
@@ -94,13 +99,29 @@ public class SeasonNewBangumiActivity extends RxBaseActivity
     public void initRecyclerView()
     {
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(SeasonNewBangumiActivity.this, 3));
-        mAdapter = new SeasonNewBangumiAdapter(mRecyclerView, seasonNewBangumis, true);
-        mAdapter.setOnItemClickListener((position, holder) -> {
+        mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(SeasonNewBangumiActivity.this, 3);
+        mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
+        {
 
+            @Override
+            public int getSpanSize(int position)
+            {
+
+                switch (mSectionedRecyclerViewAdapter.getSectionItemViewType(position))
+                {
+                    case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
+                        return 3;
+                    default:
+                        return 1;
+                }
+            }
         });
-        mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setNestedScrollingEnabled(true);
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
+        mRecyclerView.setAdapter(mSectionedRecyclerViewAdapter);
     }
 
     @Override
