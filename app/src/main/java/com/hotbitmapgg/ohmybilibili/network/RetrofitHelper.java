@@ -7,6 +7,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.AllareasRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.AttentionDynamicService;
 import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiAppIndexService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsCommentService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
@@ -782,6 +783,25 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(AttentionDynamicService.class);
+    }
+
+
+    /**
+     * 获取番剧详情番剧评论
+     *
+     * @return
+     */
+    public static BangumiDetailsCommentService getBangumiDetailsCommentApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HOST_API_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(BangumiDetailsCommentService.class);
     }
 
 

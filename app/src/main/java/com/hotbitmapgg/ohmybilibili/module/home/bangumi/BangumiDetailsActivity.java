@@ -1,5 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.module.home.bangumi;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,14 +22,20 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
+import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsCommentAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsHotCommentAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsRecommendAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsSeasonsAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.BangumiDetailsSelectionAdapter;
+import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsCommentInfo;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsInfo;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsRecommendInfo;
 import com.hotbitmapgg.ohmybilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
+import com.hotbitmapgg.ohmybilibili.utils.LogUtil;
 import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SystemBarHelper;
 import com.hotbitmapgg.ohmybilibili.widget.CircleProgressView;
@@ -91,17 +98,32 @@ public class BangumiDetailsActivity extends RxBaseActivity
     @BindView(R.id.bangumi_details_introduction)
     TextView mBangumiIntroduction;
 
-//    @Bind(R.id.bangumi_comment_recycler)
-//    RecyclerView mBangumiCommentRecycler;
+    @BindView(R.id.tv_update_index)
+    TextView mUpdateIndex;
+
+    @BindView(R.id.bangumi_seasons_recycler)
+    RecyclerView mBangumiSeasonsRecycler;
+
+    @BindView(R.id.bangumi_comment_recycler)
+    RecyclerView mBangumiCommentRecycler;
 
     @BindView(R.id.bangumi_recommend_recycler)
     RecyclerView mBangumiRecommendRecycler;
+
+    @BindView(R.id.tv_bangumi_comment_count)
+    TextView mBangumiCommentCount;
 
     private int seasonId;
 
     private BangumiDetailsInfo.ResultBean result;
 
     private List<BangumiDetailsRecommendInfo.ResultBean.ListBean> bangumiRecommends = new ArrayList<>();
+
+    private List<BangumiDetailsCommentInfo.DataBean.HotsBean> hotComments = new ArrayList<>();
+
+    private List<BangumiDetailsCommentInfo.DataBean.RepliesBean> replies = new ArrayList<>();
+
+    private BangumiDetailsCommentInfo.DataBean.PageBean mPageInfo;
 
     @Override
     public int getLayoutId()
@@ -145,18 +167,33 @@ public class BangumiDetailsActivity extends RxBaseActivity
                 })
                 .compose(bindToLifecycle())
                 .map(bangumiDetailsRecommendInfo -> bangumiDetailsRecommendInfo.getResult().getList())
+                .flatMap(new Func1<List<BangumiDetailsRecommendInfo.ResultBean.ListBean>,Observable<BangumiDetailsCommentInfo>>()
+                {
+
+                    @Override
+                    public Observable<BangumiDetailsCommentInfo> call(List<BangumiDetailsRecommendInfo.ResultBean.ListBean> listBeans)
+                    {
+
+                        bangumiRecommends.addAll(listBeans);
+                        return RetrofitHelper.getBangumiDetailsCommentApi().getBangumiDetailsComments();
+                    }
+                })
+                .compose(bindToLifecycle())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(listBeans -> {
+                .subscribe(bangumiDetailsCommentInfo -> {
 
-                    bangumiRecommends.addAll(listBeans);
+                    hotComments.addAll(bangumiDetailsCommentInfo.getData().getHots());
+                    replies.addAll(bangumiDetailsCommentInfo.getData().getReplies());
+                    mPageInfo = bangumiDetailsCommentInfo.getData().getPage();
                     finishTask();
                 }, throwable -> {
-
+                    LogUtil.all(throwable.getMessage());
                     hideProgressBar();
                 });
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void finishTask()
     {
@@ -178,17 +215,24 @@ public class BangumiDetailsActivity extends RxBaseActivity
 
         //设置番剧标题
         mBangumiTitle.setText(result.getTitle());
-        //设置番剧更新日期
+        //设置番剧更新状态
+        if (result.getIs_finish().equals("0"))
+        {
+            mUpdateIndex.setText("更新至第" + result.getNewest_ep_index() + "话");
+            mBangumiUpdate.setText("连载中");
+        } else
+        {
+            mUpdateIndex.setText(result.getNewest_ep_index() + "话全");
+            mBangumiUpdate.setText("已完结" + result.getNewest_ep_index() + "话全");
+        }
 
-        mBangumiUpdate.setText("连载中");
         //设置番剧播放和追番数量
         mBangumiPlay.setText("播放：" + NumberUtil.converString(Integer.valueOf(result.getPlay_count()))
                 + "  " + "追番：" + NumberUtil.converString(Integer.valueOf(result.getFavorites())));
         //设置番剧简介
-
         mBangumiIntroduction.setText(result.getEvaluate());
-
-
+        //设置评论数量
+        mBangumiCommentCount.setText("评论 第1话(" + mPageInfo.getAcount() + ")");
         //设置标签布局
         List<BangumiDetailsInfo.ResultBean.TagsBean> tags = result.getTags();
         mTagsLayout.setAdapter(new TagAdapter<BangumiDetailsInfo.ResultBean.TagsBean>(tags)
@@ -207,10 +251,63 @@ public class BangumiDetailsActivity extends RxBaseActivity
             }
         });
 
-        //设置番剧选集和番剧推荐
+        //设置番剧分季版本
+        initSeasonsRecycler();
+        //设置番剧选集
         initSelectionRecycler();
+        //设置番剧推荐
         initRecommendRecycler();
+        //设置番剧评论
+        initCommentRecycler();
         hideProgressBar();
+    }
+
+    /**
+     * 初始化评论recyclerView
+     */
+    private void initCommentRecycler()
+    {
+
+        mBangumiCommentRecycler.setHasFixedSize(false);
+        mBangumiCommentRecycler.setNestedScrollingEnabled(false);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
+        mBangumiCommentRecycler.setLayoutManager(mLinearLayoutManager);
+        BangumiDetailsCommentAdapter mCommentAdapter = new BangumiDetailsCommentAdapter(mBangumiCommentRecycler, replies);
+        HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mCommentAdapter);
+
+        View headView = LayoutInflater.from(this).inflate(R.layout.layout_video_hot_comment_head, mBangumiCommentRecycler, false);
+        RecyclerView mHotCommentRecycler = (RecyclerView) headView.findViewById(R.id.hot_comment_recycler);
+        mHotCommentRecycler.setHasFixedSize(false);
+        mHotCommentRecycler.setNestedScrollingEnabled(false);
+        mHotCommentRecycler.setLayoutManager(new LinearLayoutManager(this));
+        BangumiDetailsHotCommentAdapter mVideoHotCommentAdapter = new BangumiDetailsHotCommentAdapter(mHotCommentRecycler, hotComments);
+        mHotCommentRecycler.setAdapter(mVideoHotCommentAdapter);
+        mHeaderViewRecyclerAdapter.addHeaderView(headView);
+
+        mBangumiCommentRecycler.setAdapter(mHeaderViewRecyclerAdapter);
+    }
+
+
+    /**
+     * 初始化分季版本recyclerView
+     */
+    private void initSeasonsRecycler()
+    {
+
+        List<BangumiDetailsInfo.ResultBean.SeasonsBean> seasons = result.getSeasons();
+
+        mBangumiSeasonsRecycler.setHasFixedSize(false);
+        mBangumiSeasonsRecycler.setNestedScrollingEnabled(false);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mBangumiSeasonsRecycler.setLayoutManager(mLinearLayoutManager);
+        BangumiDetailsSeasonsAdapter mBangumiDetailsSeasonsAdapter = new BangumiDetailsSeasonsAdapter(mBangumiSeasonsRecycler, seasons);
+        mBangumiSeasonsRecycler.setAdapter(mBangumiDetailsSeasonsAdapter);
+
+        for (int i = 0, size = seasons.size(); i < size; i++)
+        {
+            if (seasons.get(i).getSeason_id().equals(result.getSeason_id()))
+                mBangumiDetailsSeasonsAdapter.notifyItemForeground(i);
+        }
     }
 
     /**
@@ -224,9 +321,12 @@ public class BangumiDetailsActivity extends RxBaseActivity
         mBangumiSelectionRecycler.setHasFixedSize(false);
         mBangumiSelectionRecycler.setNestedScrollingEnabled(false);
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mLinearLayoutManager.setReverseLayout(true);
         mBangumiSelectionRecycler.setLayoutManager(mLinearLayoutManager);
         BangumiDetailsSelectionAdapter mBangumiDetailsSelectionAdapter = new BangumiDetailsSelectionAdapter(mBangumiSelectionRecycler, episodes);
         mBangumiSelectionRecycler.setAdapter(mBangumiDetailsSelectionAdapter);
+        mBangumiDetailsSelectionAdapter.notifyItemForeground(episodes.size() - 1);
+        mBangumiSelectionRecycler.scrollToPosition(episodes.size() - 1);
         mBangumiDetailsSelectionAdapter.setOnItemClickListener((position, holder) -> {
 
             mBangumiDetailsSelectionAdapter.notifyItemForeground(holder.getLayoutPosition());

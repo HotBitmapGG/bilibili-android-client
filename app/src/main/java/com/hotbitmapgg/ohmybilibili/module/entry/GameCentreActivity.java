@@ -177,16 +177,12 @@ public class GameCentreActivity extends RxBaseActivity
         mCircleProgressView.setVisibility(View.GONE);
         mCircleProgressView.stopSpinning();
         mRecycle.setVisibility(View.VISIBLE);
-        initRecyclerView();
     }
 
     @Override
     public void finishTask()
     {
-
-        Glide.with(GameCentreActivity.this).load(mVipGameInfoData.getImgPath())
-                .diskCacheStrategy(DiskCacheStrategy.ALL).into(mVipGameImage);
-        mHeaderViewRecyclerAdapter.notifyDataSetChanged();
+        initRecyclerView();
         hideProgressBar();
     }
 
@@ -207,6 +203,8 @@ public class GameCentreActivity extends RxBaseActivity
 
         View headView = LayoutInflater.from(this).inflate(R.layout.layout_vip_game_head_view, mRecycle, false);
         mVipGameImage = (ImageView) headView.findViewById(R.id.vip_game_image);
+        Glide.with(GameCentreActivity.this).load(mVipGameInfoData.getImgPath())
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(mVipGameImage);
         mVipGameImage.setOnClickListener(v -> BrowserActivity.launch(GameCentreActivity.this,
                 mVipGameInfoData.getLink(), "年度大会员游戏礼包专区"));
         mHeaderViewRecyclerAdapter.addHeaderView(headView);

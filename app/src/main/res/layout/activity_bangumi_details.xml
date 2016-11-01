@@ -55,7 +55,7 @@
                                 android:id="@+id/bangumi_pic"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_margin="@dimen/card_corner_radius"
+                                android:layout_margin="@dimen/default_tiny_margin"
                                 android:scaleType="center"
                                 android:src="@drawable/bili_default_image_tv" />
 
@@ -86,7 +86,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/default_tiny_padding"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/default_small_text_size" />
+                                android:textSize="@dimen/default_tiny_text_size" />
 
 
                             <TextView
@@ -95,7 +95,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/default_tiny_padding"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/default_tiny_text_size" />
+                                android:textSize="10sp" />
 
                         </LinearLayout>
 
@@ -214,24 +214,58 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/bangumi_seasons_recycler"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/default_general_margin"
-                        android:text="@string/selection"
-                        android:textColor="@color/font_normal"
-                        android:textSize="@dimen/default_small_text_size" />
+                        android:layout_marginStart="@dimen/default_tiny_padding"
+                        android:overScrollMode="never"
+                        android:paddingBottom="@dimen/default_general_margin"
+                        android:paddingTop="@dimen/default_general_margin" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/default_general_margin">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:text="@string/selection"
+                            android:textColor="@color/font_normal"
+                            android:textSize="@dimen/default_small_text_size" />
+
+
+                        <TextView
+                            android:id="@+id/tv_update_index"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:drawableEnd="@drawable/register_bottom_arrow"
+                            android:drawablePadding="@dimen/default_tiny_padding"
+                            android:textColor="@color/black_alpha_45"
+                            android:textSize="@dimen/default_tiny_text_size" />
+
+
+                    </RelativeLayout>
+
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/bangumi_selection_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_tiny_padding"
                         android:overScrollMode="never"
                         android:paddingBottom="@dimen/default_general_margin"
                         android:paddingTop="@dimen/default_tiny_padding" />
 
 
-                    <!--<include layout="@layout/layout_bangumi_contracted_card" />-->
+                    <include layout="@layout/layout_bangumi_contracted_card" />
 
                     <View
                         android:layout_width="match_parent"
@@ -295,82 +329,6 @@
                         android:background="@color/gray_light" />
 
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/bangumi_details_more_layout_height"
-                        android:layout_marginTop="@dimen/default_tiny_padding"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerInParent="true"
-                            android:padding="@dimen/default_general_margin"
-                            android:text="@string/commend"
-                            android:textColor="@color/font_normal"
-                            android:textSize="@dimen/default_small_text_size" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerInParent="true"
-                            android:drawableEnd="@drawable/register_bottom_arrow"
-                            android:drawablePadding="@dimen/default_tiny_padding"
-                            android:padding="@dimen/default_general_margin"
-                            android:text="@string/more_commend"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/default_tiny_text_size" />
-
-
-                    </RelativeLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/bangumi_comment_recycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/default_general_margin"
-                        android:visibility="gone" />
-
-
-                    <LinearLayout
-                        android:id="@+id/more_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_general_margin"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
-
-                        <View
-                            android:layout_width="@dimen/app_bar_default_elevation"
-                            android:layout_height="@dimen/line_height"
-                            android:layout_weight="1"
-                            android:background="@color/gray_light" />
-
-                        <TextView
-                            android:id="@+id/tv_more"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingEnd="@dimen/default_general_margin"
-                            android:paddingStart="@dimen/default_general_margin"
-                            android:text="@string/more_commend_arrow"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/default_tiny_text_size" />
-
-                        <View
-                            android:layout_width="@dimen/app_bar_default_elevation"
-                            android:layout_height="@dimen/line_height"
-                            android:layout_weight="1"
-                            android:background="@color/gray_light" />
-
-
-                    </LinearLayout>
-
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -384,6 +342,52 @@
                         android:id="@+id/bangumi_recommend_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/default_general_margin" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/default_general_margin"
+                        android:background="@color/gray_light" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/bangumi_details_more_layout_height"
+                        android:layout_marginTop="@dimen/default_tiny_padding">
+
+                        <TextView
+                            android:id="@+id/tv_bangumi_comment_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:padding="@dimen/default_general_margin"
+                            android:text="评论 第1话"
+                            android:textColor="@color/font_normal"
+                            android:textSize="@dimen/default_small_text_size" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:drawableEnd="@drawable/register_bottom_arrow"
+                            android:drawablePadding="@dimen/default_tiny_padding"
+                            android:padding="@dimen/default_general_margin"
+                            android:text="@string/selection"
+                            android:textColor="@color/black_alpha_45"
+                            android:textSize="@dimen/default_tiny_text_size" />
+
+
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/bangumi_comment_recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"
                         android:paddingTop="@dimen/default_general_margin" />
 
 

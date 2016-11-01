@@ -120,6 +120,7 @@
     </RelativeLayout>
 
     <View
+        android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
         android:layout_alignParentBottom="true"

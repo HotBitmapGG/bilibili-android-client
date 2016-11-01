@@ -46,13 +46,14 @@
                 android:textSize="@dimen/default_tiny_text_size" />
 
 
-            <Button
+            <TextView
                 android:layout_width="@dimen/video_details_text_width"
                 android:layout_height="@dimen/video_details_text_height"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/default_general_margin"
                 android:layout_marginTop="@dimen/default_grow_margin"
                 android:background="@drawable/yellow_btn_bg"
+                android:gravity="center"
                 android:text="@string/contract"
                 android:textColor="@color/white"
                 android:textSize="@dimen/default_small_text_size" />
@@ -128,13 +129,14 @@
                 android:textSize="@dimen/default_tiny_text_size" />
 
 
-            <Button
+            <TextView
                 android:layout_width="@dimen/video_details_text_width"
                 android:layout_height="@dimen/bangumi_details_look_btn_height"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="@dimen/default_general_margin"
                 android:background="@drawable/btn_black_bg"
+                android:gravity="center"
                 android:text="@string/look_top_list"
                 android:textColor="@color/yellow"
                 android:textSize="@dimen/default_tiny_text_size" />

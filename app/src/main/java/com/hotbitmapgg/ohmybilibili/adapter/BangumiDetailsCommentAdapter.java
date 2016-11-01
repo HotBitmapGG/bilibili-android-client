@@ -12,29 +12,28 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
-import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsCommentInfo;
 import com.hotbitmapgg.ohmybilibili.utils.DateUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
 
 import java.util.List;
 
 /**
- * Created by hcc on 16/8/4 14:12
+ * Created by hcc on 16/11/2 14:12
  * 100332338@qq.com
  * <p/>
- * 视频评论Adapter
+ * 番剧详情番剧评论adapter
  */
-public class VideoCommentAdapter extends AbsRecyclerViewAdapter
+public class BangumiDetailsCommentAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<VideoComment.List> comments;
+    private List<BangumiDetailsCommentInfo.DataBean.RepliesBean> replies;
 
-    public VideoCommentAdapter(RecyclerView recyclerView, List<VideoComment.List> comments)
+    public BangumiDetailsCommentAdapter(RecyclerView recyclerView, List<BangumiDetailsCommentInfo.DataBean.RepliesBean> replies)
     {
 
         super(recyclerView);
-        this.comments = comments;
+        this.replies = replies;
     }
 
     @Override
@@ -53,23 +52,22 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
 
         if (holder instanceof ItemViewHolder)
         {
-
             ItemViewHolder mHolder = (ItemViewHolder) holder;
-            VideoComment.List list = comments.get(position);
-            mHolder.mUserName.setText(list.nick);
+            BangumiDetailsCommentInfo.DataBean.RepliesBean repliesBean = replies.get(position);
+            mHolder.mUserName.setText(repliesBean.getMember().getUname());
 
             Glide.with(getContext())
-                    .load(UrlHelper.getFaceUrlByUrl(list.face))
+                    .load(repliesBean.getMember().getAvatar())
                     .centerCrop()
                     .dontAnimate()
                     .placeholder(R.drawable.ico_user_default)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(mHolder.mUserAvatar);
 
-            int currentLevel = list.level_info.current_level;
+            int currentLevel = repliesBean.getMember().getLevel_info().getCurrent_level();
             checkLevel(currentLevel, mHolder);
 
-            switch (list.sex)
+            switch (repliesBean.getMember().getSex())
             {
                 case "女":
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_female);
@@ -82,13 +80,12 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
                     break;
             }
 
-            mHolder.mCommentNum.setText(String.valueOf(list.reply_count));
-            mHolder.mSpot.setText(String.valueOf(list.good));
-            long l = DateUtil.stringToLong(list.create_at, "yyyy-MM-dd HH:mm");
-            String time = DateUtil.getDescriptionTimeFromTimestamp(l);
+            mHolder.mCommentNum.setText(String.valueOf(repliesBean.getCount()));
+            mHolder.mSpot.setText(String.valueOf(repliesBean.getLike()));
+            String time = DateUtil.longToString(repliesBean.getCtime(), DateUtil.FORMAT_DATE_TIME);
             mHolder.mCommentTime.setText(time);
-            mHolder.mContent.setText(list.msg);
-            mHolder.mFloor.setText("#" + list.lv);
+            mHolder.mContent.setText(repliesBean.getContent().getMessage());
+            mHolder.mFloor.setText("#" + repliesBean.getFloor());
         }
 
         super.onBindViewHolder(holder, position);
@@ -125,10 +122,10 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return comments.size();
+        return replies.size();
     }
 
-    public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
+    public class ItemViewHolder extends ClickableViewHolder
     {
 
         CircleImageView mUserAvatar;

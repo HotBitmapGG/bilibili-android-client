@@ -14,24 +14,24 @@ import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiDetailsInfo;
 import java.util.List;
 
 /**
- * Created by hcc on 2016/10/1 17:12
+ * Created by hcc on 2016/11/1 20:34
  * 100332338@qq.com
  * <p>
- * 番剧选集adapter
+ * 番剧详情分季版本adapter
  */
 
-public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
+public class BangumiDetailsSeasonsAdapter extends AbsRecyclerViewAdapter
 {
 
     private int layoutPosition = 0;
 
-    private List<BangumiDetailsInfo.ResultBean.EpisodesBean> episodes;
+    private List<BangumiDetailsInfo.ResultBean.SeasonsBean> seasons;
 
-    public BangumiDetailsSelectionAdapter(RecyclerView recyclerView, List<BangumiDetailsInfo.ResultBean.EpisodesBean> episodes)
+    public BangumiDetailsSeasonsAdapter(RecyclerView recyclerView, List<BangumiDetailsInfo.ResultBean.SeasonsBean> seasons)
     {
 
         super(recyclerView);
-        this.episodes = episodes;
+        this.seasons = seasons;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
     {
 
         bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_bangumi_selection, parent, false));
+        return new ItemViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.item_bangumi_details_seasons, parent, false));
     }
 
     @Override
@@ -49,22 +49,20 @@ public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            BangumiDetailsInfo.ResultBean.EpisodesBean episodesBean = episodes.get(position);
-            itemViewHolder.mIndex.setText("第 " + episodesBean.getIndex() + " 话");
-            itemViewHolder.mTitle.setText(episodesBean.getIndex_title());
+            BangumiDetailsInfo.ResultBean.SeasonsBean seasonsBean = seasons.get(position);
+            itemViewHolder.mSeasons.setText(seasonsBean.getTitle());
 
             if (position == layoutPosition)
             {
                 itemViewHolder.mCardView.setForeground(getContext().getResources().getDrawable(R.drawable.bg_selection));
-                itemViewHolder.mTitle.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
-                itemViewHolder.mIndex.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
+                itemViewHolder.mSeasons.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
             } else
             {
                 itemViewHolder.mCardView.setForeground(getContext().getResources().getDrawable(R.drawable.bg_normal));
-                itemViewHolder.mTitle.setTextColor(getContext().getResources().getColor(R.color.black_alpha_45));
-                itemViewHolder.mIndex.setTextColor(getContext().getResources().getColor(R.color.font_normal));
+                itemViewHolder.mSeasons.setTextColor(getContext().getResources().getColor(R.color.font_normal));
             }
         }
+
         super.onBindViewHolder(holder, position);
     }
 
@@ -79,25 +77,22 @@ public class BangumiDetailsSelectionAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return episodes.size();
+        return seasons.size();
     }
 
-    public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
+    private class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
     {
 
         CardView mCardView;
 
-        TextView mIndex;
-
-        TextView mTitle;
+        TextView mSeasons;
 
         public ItemViewHolder(View itemView)
         {
 
             super(itemView);
             mCardView = $(R.id.card_view);
-            mIndex = $(R.id.tv_index);
-            mTitle = $(R.id.tv_title);
+            mSeasons = $(R.id.tv_seasons);
         }
     }
 }

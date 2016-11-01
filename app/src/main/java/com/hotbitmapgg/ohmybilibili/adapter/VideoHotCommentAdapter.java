@@ -53,44 +53,46 @@ public class VideoHotCommentAdapter extends AbsRecyclerViewAdapter
 
         if (holder instanceof ItemViewHolder)
         {
-            try
+            ItemViewHolder mHolder = (ItemViewHolder) holder;
+            VideoComment.HotList hotList = hotComments.get(position);
+            mHolder.mUserName.setText(hotList.nick);
+
+            Glide.with(getContext())
+                    .load(UrlHelper.getFaceUrlByUrl(hotList.face))
+                    .centerCrop()
+                    .dontAnimate()
+                    .placeholder(R.drawable.ico_user_default)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(mHolder.mUserAvatar);
+
+            int currentLevel = hotList.level_info.current_level;
+            checkLevel(currentLevel, mHolder);
+
+            switch (hotList.sex)
             {
-                ItemViewHolder mHolder = (ItemViewHolder) holder;
-                VideoComment.HotList hotList = hotComments.get(position);
-                mHolder.mUserName.setText(hotList.nick);
-
-                Glide.with(getContext())
-                        .load(UrlHelper.getFaceUrlByUrl(hotList.face))
-                        .centerCrop()
-                        .dontAnimate()
-                        .placeholder(R.drawable.ico_user_default)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(mHolder.mUserAvatar);
-
-                int currentLevel = hotList.level_info.current_level;
-                checkLevel(currentLevel, mHolder);
-                if (hotList.sex.equals("女"))
-                {
+                case "女":
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_female);
-                } else if (hotList.sex.equals("男"))
-                {
+                    break;
+                case "男":
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_male);
-                } else
-                {
+                    break;
+                default:
                     mHolder.mUserSex.setImageResource(R.drawable.ic_user_gay_border);
-                }
-
-                mHolder.mCommentNum.setText(String.valueOf(hotList.reply_count));
-                mHolder.mSpot.setText(String.valueOf(hotList.good));
-                long l = DateUtil.stringToLong(hotList.create_at, "yyyy-MM-dd HH:mm");
-                String time = DateUtil.getDescriptionTimeFromTimestamp(l);
-                mHolder.mCommentTime.setText(time);
-                mHolder.mContent.setText(hotList.msg);
-                mHolder.mFloor.setText("#" + hotList.lv);
-            } catch (Exception e)
-            {
-                e.printStackTrace();
+                    break;
             }
+
+            mHolder.mCommentNum.setText(String.valueOf(hotList.reply_count));
+            mHolder.mSpot.setText(String.valueOf(hotList.good));
+            long l = DateUtil.stringToLong(hotList.create_at, "yyyy-MM-dd HH:mm");
+            String time = DateUtil.getDescriptionTimeFromTimestamp(l);
+            mHolder.mCommentTime.setText(time);
+            mHolder.mContent.setText(hotList.msg);
+            mHolder.mFloor.setText("#" + hotList.lv);
+
+            if (position == hotComments.size() - 1)
+                mHolder.mLine.setVisibility(View.GONE);
+            else
+                mHolder.mLine.setVisibility(View.VISIBLE);
         }
 
         super.onBindViewHolder(holder, position);
@@ -151,6 +153,8 @@ public class VideoHotCommentAdapter extends AbsRecyclerViewAdapter
 
         TextView mContent;
 
+        View mLine;
+
         public ItemViewHolder(View itemView)
         {
 
@@ -164,6 +168,7 @@ public class VideoHotCommentAdapter extends AbsRecyclerViewAdapter
             mCommentNum = $(R.id.item_comment_num);
             mSpot = $(R.id.item_comment_spot);
             mContent = $(R.id.item_comment_content);
+            mLine = $(R.id.line);
         }
     }
 }
