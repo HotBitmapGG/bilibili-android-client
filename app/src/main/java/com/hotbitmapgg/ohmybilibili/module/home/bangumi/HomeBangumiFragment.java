@@ -9,15 +9,14 @@ import android.view.View;
 import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiBannerSection;
+import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiBobySection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiItemSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiNewSerialSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiRecommendSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiSeasonNewSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
@@ -59,11 +58,13 @@ public class HomeBangumiFragment extends RxLazyFragment
 
     private List<BangumiRecommend.ResultBean> bangumiRecommends = new ArrayList<>();
 
-    private List<HomeBangumiRecommend.ResultBean.BannersBean> banners = new ArrayList<>();
+    private List<BangumiAppIndexInfo.ResultBean.AdBean.HeadBean> banners = new ArrayList<>();
 
-    private List<NewBangumiSerial.ListBean> newBangumiSerials = new ArrayList<>();
+    private List<BangumiAppIndexInfo.ResultBean.AdBean.BodyBean> bangumibobys = new ArrayList<>();
 
-    private List<SeasonNewBangumi.ListBean> seasonNewBangumis = new ArrayList<>();
+    private List<BangumiAppIndexInfo.ResultBean.PreviousBean.ListBean> seasonNewBangumis = new ArrayList<>();
+
+    private List<BangumiAppIndexInfo.ResultBean.SerializingBean> newBangumiSerials = new ArrayList<>();
 
     private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
 
@@ -145,6 +146,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         mIsRefreshing = true;
         mIsCacheRefresh = true;
         banners.clear();
+        bangumibobys.clear();
         bangumiRecommends.clear();
         newBangumiSerials.clear();
         seasonNewBangumis.clear();
@@ -157,43 +159,20 @@ public class HomeBangumiFragment extends RxLazyFragment
     {
 
         BilibiliApp.getInstance().getRepository()
-                .getHomeBangumiRecommended(mIsCacheRefresh)
+                .getBangumiAppIndex(mIsCacheRefresh)
                 .compose(bindToLifecycle())
-                .map(homeBangumiRecommendReply -> homeBangumiRecommendReply.getData().getResult().getBanners())
-                .flatMap(new Func1<List<HomeBangumiRecommend.ResultBean.BannersBean>,Observable<Reply<SeasonNewBangumi>>>()
+                .map(Reply::getData)
+                .flatMap(new Func1<BangumiAppIndexInfo,Observable<Reply<BangumiRecommend>>>()
                 {
 
                     @Override
-                    public Observable<Reply<SeasonNewBangumi>> call(List<HomeBangumiRecommend.ResultBean.BannersBean> bannersBeans)
+                    public Observable<Reply<BangumiRecommend>> call(BangumiAppIndexInfo bangumiAppIndexInfo)
                     {
 
-                        banners.addAll(bannersBeans);
-                        return BilibiliApp.getInstance().getRepository().getSeasonNewBangumiList(mIsCacheRefresh);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .map(seasonNewBangumiReply -> seasonNewBangumiReply.getData().getList())
-                .flatMap(new Func1<List<SeasonNewBangumi.ListBean>,Observable<Reply<NewBangumiSerial>>>()
-                {
-
-                    @Override
-                    public Observable<Reply<NewBangumiSerial>> call(List<SeasonNewBangumi.ListBean> listBeans)
-                    {
-
-                        seasonNewBangumis.addAll(listBeans);
-                        return BilibiliApp.getInstance().getRepository().getNewBangumiSerialList(mIsCacheRefresh);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .map(newBangumiSerialReply -> newBangumiSerialReply.getData().getList())
-                .flatMap(new Func1<List<NewBangumiSerial.ListBean>,Observable<Reply<BangumiRecommend>>>()
-                {
-
-                    @Override
-                    public Observable<Reply<BangumiRecommend>> call(List<NewBangumiSerial.ListBean> listBeans)
-                    {
-
-                        newBangumiSerials.addAll(listBeans);
+                        banners.addAll(bangumiAppIndexInfo.getResult().getAd().getHead());
+                        bangumibobys.addAll(bangumiAppIndexInfo.getResult().getAd().getBody());
+                        seasonNewBangumis.addAll(bangumiAppIndexInfo.getResult().getPrevious().getList());
+                        newBangumiSerials.addAll(bangumiAppIndexInfo.getResult().getSerializing());
                         return BilibiliApp.getInstance().getRepository().getBangumiRecommended(mIsCacheRefresh);
                     }
                 })
@@ -226,6 +205,7 @@ public class HomeBangumiFragment extends RxLazyFragment
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiBannerSection(bannerList));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiItemSection(getActivity()));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiNewSerialSection(getActivity(), newBangumiSerials));
+        mSectionedRecyclerViewAdapter.addSection(new HomeBangumiBobySection(getActivity(), bangumibobys));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiSeasonNewSection(getActivity(), seasonNewBangumis));
         mSectionedRecyclerViewAdapter.addSection(new HomeBangumiRecommendSection(getActivity(), bangumiRecommends));
         mSectionedRecyclerViewAdapter.notifyDataSetChanged();

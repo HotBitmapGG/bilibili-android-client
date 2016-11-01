@@ -12,13 +12,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.module.home.bangumi.SeasonNewBangumiActivity;
+import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 import com.hotbitmapgg.ohmybilibili.widget.sectioned.StatelessSection;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,14 +34,10 @@ public class HomeBangumiSeasonNewSection extends StatelessSection
 
     private Context mContext;
 
-    private List<SeasonNewBangumi.ListBean> seasonNewBangumis;
-
-    private Random random = new Random();
-
-    private List<String> texts = Arrays.asList("247.9万人追番", "213.4万人追番", "122.7万人追番", "74.5万人追番", "50.4万人追番");
+    private List<BangumiAppIndexInfo.ResultBean.PreviousBean.ListBean> seasonNewBangumis;
 
 
-    public HomeBangumiSeasonNewSection(Context context, List<SeasonNewBangumi.ListBean> seasonNewBangumis)
+    public HomeBangumiSeasonNewSection(Context context, List<BangumiAppIndexInfo.ResultBean.PreviousBean.ListBean> seasonNewBangumis)
     {
 
         super(R.layout.layout_home_bangumi_season_new_head, R.layout.layout_home_bangumi_season_new_body);
@@ -54,7 +49,7 @@ public class HomeBangumiSeasonNewSection extends StatelessSection
     public int getContentItemsTotal()
     {
 
-        return 3;
+        return seasonNewBangumis.size();
     }
 
     @Override
@@ -71,9 +66,9 @@ public class HomeBangumiSeasonNewSection extends StatelessSection
 
         HomeBangumiSeasonNewSection.ItemViewHolder itemViewHolder = (HomeBangumiSeasonNewSection.ItemViewHolder) holder;
 
-        SeasonNewBangumi.ListBean listBean = seasonNewBangumis.get(position);
+        BangumiAppIndexInfo.ResultBean.PreviousBean.ListBean listBean = seasonNewBangumis.get(position);
         Glide.with(mContext)
-                .load(listBean.getImageurl())
+                .load(listBean.getCover())
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.bili_default_image_tv)
@@ -81,7 +76,7 @@ public class HomeBangumiSeasonNewSection extends StatelessSection
                 .into(itemViewHolder.mImage);
 
         itemViewHolder.mTitle.setText(listBean.getTitle());
-        itemViewHolder.mPlay.setText(texts.get(random.nextInt(texts.size())));
+        itemViewHolder.mPlay.setText(NumberUtil.converString(Integer.valueOf(listBean.getFavourites())) + "人追番剧");
 
         itemViewHolder.mCardView.setOnClickListener(v -> {
 

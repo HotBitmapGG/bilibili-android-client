@@ -5,6 +5,7 @@ import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.network.api.ActivityCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.AllareasRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiAppIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsRecommendService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
@@ -763,6 +764,26 @@ public class RetrofitHelper
 
         return retrofit.create(VipGameService.class);
     }
+
+
+    /**
+     * 获取首页番剧内容
+     *
+     * @return
+     */
+    public static BangumiAppIndexService getBangumiAppIndexApi()
+    {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BANGUMI_BASE_URL)
+                .client(mOkHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(BangumiAppIndexService.class);
+    }
+
 
     /**
      * 初始化OKHttpClient

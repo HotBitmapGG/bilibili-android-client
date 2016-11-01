@@ -1,14 +1,12 @@
 package com.hotbitmapgg.ohmybilibili.rx.cache;
 
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
-import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 
 import java.util.concurrent.TimeUnit;
 
@@ -72,38 +70,15 @@ interface CacheProviders
 
 
     /**
-     * 首页番剧Banner缓存接口
+     * 首页番剧内容缓存接口
      *
-     * @param homeBangumiRecommend
+     * @param bangumiAppIndexInfo
      * @param dynamicKey
      * @param evictProvider
      * @return
      */
     @LifeCache(duration = 1, timeUnit = TimeUnit.DAYS)
-    Observable<Reply<HomeBangumiRecommend>> getHomeBangumiRecommended(Observable<HomeBangumiRecommend> homeBangumiRecommend, DynamicKey dynamicKey, EvictProvider evictProvider);
-
-    /**
-     * 首页番剧分季新番缓存接口
-     *
-     * @param seasonNewBangumi
-     * @param dynamicKey
-     * @param evictProvider
-     * @return
-     */
-    @LifeCache(duration = 1, timeUnit = TimeUnit.DAYS)
-    Observable<Reply<SeasonNewBangumi>> getSeasonNewBangumiList(Observable<SeasonNewBangumi> seasonNewBangumi, DynamicKey dynamicKey, EvictProvider evictProvider);
-
-
-    /**
-     * 首页新番推荐缓存接口
-     *
-     * @param newBangumiSerial
-     * @param dynamicKey
-     * @param evictProvider
-     * @return
-     */
-    @LifeCache(duration = 1, timeUnit = TimeUnit.DAYS)
-    Observable<Reply<NewBangumiSerial>> getNewBangumiSerialList(Observable<NewBangumiSerial> newBangumiSerial, DynamicKey dynamicKey, EvictProvider evictProvider);
+    Observable<Reply<BangumiAppIndexInfo>> getBangumiAppIndex(Observable<BangumiAppIndexInfo> bangumiAppIndexInfo, DynamicKey dynamicKey, EvictProvider evictProvider);
 
 
     /**

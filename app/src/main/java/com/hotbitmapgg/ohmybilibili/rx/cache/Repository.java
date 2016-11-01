@@ -1,14 +1,12 @@
 package com.hotbitmapgg.ohmybilibili.rx.cache;
 
+import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.HomeBangumiRecommend;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.NewBangumiSerial;
-import com.hotbitmapgg.ohmybilibili.entity.bangumi.SeasonNewBangumi;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
-import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 
 import java.io.File;
@@ -69,26 +67,11 @@ public class Repository
                 .getLiveAppIndex(), new DynamicKey("首页直播"), new EvictDynamicKey(update));
     }
 
-
-    public Observable<Reply<HomeBangumiRecommend>> getHomeBangumiRecommended(final boolean update)
+    public Observable<Reply<BangumiAppIndexInfo>> getBangumiAppIndex(final boolean update)
     {
 
-        return providers.getHomeBangumiRecommended(RetrofitHelper.getHomeBnagumiRecommendApi()
-                .getHomeBangumiRecommended(), new DynamicKey("首页番剧Banner"), new EvictDynamicKey(update));
-    }
-
-    public Observable<Reply<SeasonNewBangumi>> getSeasonNewBangumiList(final boolean update)
-    {
-
-        return providers.getSeasonNewBangumiList(RetrofitHelper.getSeasonNewBangumiApi()
-                .getSeasonNewBangumiList(), new DynamicKey("首页番剧分季新番"), new EvictDynamicKey(update));
-    }
-
-    public Observable<Reply<NewBangumiSerial>> getNewBangumiSerialList(final boolean update)
-    {
-
-        return providers.getNewBangumiSerialList(RetrofitHelper.getNewBangumiSerial()
-                .getNewBangumiSerialList(), new DynamicKey("首页番剧新番推荐"), new EvictDynamicKey(update));
+        return providers.getBangumiAppIndex(RetrofitHelper.getBangumiAppIndexApi().getBangumiAppIndex(),
+                new DynamicKey("首页番剧内容"), new EvictDynamicKey(update));
     }
 
     public Observable<Reply<BangumiRecommend>> getBangumiRecommended(final boolean update)
