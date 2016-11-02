@@ -175,10 +175,8 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
         Observable.from(recommendBanners)
                 .compose(bindToLifecycle())
-                .forEach(dataBean -> {
-                    banners.add(new BannerEntity(dataBean.getValue(),
-                            dataBean.getTitle(), dataBean.getImage()));
-                });
+                .forEach(dataBean -> banners.add(new BannerEntity(dataBean.getValue(),
+                        dataBean.getTitle(), dataBean.getImage())));
     }
 
     @Override
