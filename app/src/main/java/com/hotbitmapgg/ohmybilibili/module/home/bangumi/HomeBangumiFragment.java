@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiBannerSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiBobySection;
@@ -17,6 +16,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.HomeBangumiSeasonNewSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.bangumi.BangumiRecommendInfo;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 import com.hotbitmapgg.ohmybilibili.widget.banner.BannerEntity;
@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import io.rx_cache.Reply;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -160,15 +159,14 @@ public class HomeBangumiFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        BilibiliApp.getInstance().getRepository()
-                .getBangumiAppIndex(mIsCacheRefresh)
+        RetrofitHelper.getBangumiAppIndexApi()
+                .getBangumiAppIndex()
                 .compose(bindToLifecycle())
-                .map(Reply::getData)
-                .flatMap(new Func1<BangumiAppIndexInfo,Observable<Reply<BangumiRecommendInfo>>>()
+                .flatMap(new Func1<BangumiAppIndexInfo,Observable<BangumiRecommendInfo>>()
                 {
 
                     @Override
-                    public Observable<Reply<BangumiRecommendInfo>> call(BangumiAppIndexInfo bangumiAppIndexInfo)
+                    public Observable<BangumiRecommendInfo> call(BangumiAppIndexInfo bangumiAppIndexInfo)
                     {
 
                         banners.addAll(bangumiAppIndexInfo.getResult().getAd().getHead());
@@ -176,16 +174,16 @@ public class HomeBangumiFragment extends RxLazyFragment
                         seasonNewBangumis.addAll(bangumiAppIndexInfo.getResult().getPrevious().getList());
                         season = bangumiAppIndexInfo.getResult().getPrevious().getSeason();
                         newBangumiSerials.addAll(bangumiAppIndexInfo.getResult().getSerializing());
-                        return BilibiliApp.getInstance().getRepository().getBangumiRecommended(mIsCacheRefresh);
+                        return RetrofitHelper.getBangumiRecommendedApi().getBangumiRecommended();
                     }
                 })
                 .compose(bindToLifecycle())
-                .map(bangumiRecommendReply -> bangumiRecommendReply.getData().getResult())
+                .map(BangumiRecommendInfo::getResult)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(bangumiDetailsRecommend -> {
+                .subscribe(resultBeans -> {
 
-                    bangumiRecommends.addAll(bangumiDetailsRecommend);
+                    bangumiRecommends.addAll(resultBeans);
                     finishTask();
                 }, throwable -> {
                     initEmptyView();

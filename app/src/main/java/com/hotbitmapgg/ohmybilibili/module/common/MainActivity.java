@@ -38,8 +38,7 @@ import butterknife.BindView;
  * <p/>
  * MainActivity
  */
-public class MainActivity extends RxBaseActivity implements
-        NavigationView.OnNavigationItemSelectedListener
+public class MainActivity extends RxBaseActivity implements NavigationView.OnNavigationItemSelectedListener
 {
 
     @BindView(R.id.drawer_layout)
@@ -174,14 +173,12 @@ public class MainActivity extends RxBaseActivity implements
 
             case R.id.item_download:
                 // 离线缓存
-                startActivity(new Intent(MainActivity.this,
-                        OffLineDownloadActivity.class));
+                startActivity(new Intent(MainActivity.this, OffLineDownloadActivity.class));
                 return true;
 
             case R.id.item_vip:
                 //大会员
-                startActivity(new Intent(MainActivity.this,
-                        VipActivity.class));
+                startActivity(new Intent(MainActivity.this, VipActivity.class));
                 return true;
 
             case R.id.item_favourite:

@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendActivityCenterSection;
 import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendBannerSection;
@@ -17,6 +16,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.section.HomeRecommendedSection;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import io.rx_cache.Reply;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -139,24 +138,23 @@ public class HomeRecommendedFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        BilibiliApp.getInstance().getRepository()
-                .getRecommendedBannerInfo(mIsCacheRefresh)
+        RetrofitHelper.getHomeRecommendedApi()
+                .getRecommendedBannerInfo()
                 .compose(bindToLifecycle())
-                .map(recommendBannerInfoReply -> recommendBannerInfoReply.getData().getData())
-                .flatMap(new Func1<List<RecommendBannerInfo.DataBean>,Observable<Reply<RecommendInfo>>>()
+                .map(RecommendBannerInfo::getData)
+                .flatMap(new Func1<List<RecommendBannerInfo.DataBean>,Observable<RecommendInfo>>()
                 {
 
                     @Override
-                    public Observable<Reply<RecommendInfo>> call(List<RecommendBannerInfo.DataBean> dataBeans)
+                    public Observable<RecommendInfo> call(List<RecommendBannerInfo.DataBean> dataBeans)
                     {
 
                         recommendBanners.addAll(dataBeans);
-                        convertBanner();
-                        return BilibiliApp.getInstance().getRepository().getRecommendedInfo(mIsCacheRefresh);
+                        return RetrofitHelper.getHomeRecommendedApi().getRecommendedInfo();
                     }
                 })
                 .compose(bindToLifecycle())
-                .map(recommendInfoReply -> recommendInfoReply.getData().getResult())
+                .map(RecommendInfo::getResult)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(resultBeans -> {
@@ -186,6 +184,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
         mSwipeRefreshLayout.setRefreshing(false);
         mIsRefreshing = false;
         hideEmptyView();
+        convertBanner();
         mSectionedAdapter.addSection(new HomeRecommendBannerSection(banners));
 
         int size = results.size();

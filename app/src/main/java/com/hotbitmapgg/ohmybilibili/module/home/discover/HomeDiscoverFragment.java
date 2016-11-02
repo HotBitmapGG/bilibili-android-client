@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.module.common.BrowserActivity;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 import com.hotbitmapgg.ohmybilibili.module.search.TotalStationSearchActivity;
+import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -81,11 +81,10 @@ public class HomeDiscoverFragment extends RxLazyFragment
     private void getTags()
     {
 
-        BilibiliApp.getInstance()
-                .getRepository()
-                .getHotSearchTags(false)
+       RetrofitHelper.getHotSearchTagsApi()
+                .getHotSearchTags()
                 .compose(bindToLifecycle())
-                .map(hotSearchTagReply -> hotSearchTagReply.getData().getList())
+                .map(HotSearchTag::getList)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(listBeans -> {
