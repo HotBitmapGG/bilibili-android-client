@@ -58,8 +58,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
 
     private boolean mIsRefreshing = false;
 
-    private boolean mIsCacheRefresh = false;
-
     private SectionedRecyclerViewAdapter mSectionedAdapter;
 
     public static HomeRecommendedFragment newInstance()
@@ -254,7 +252,6 @@ public class HomeRecommendedFragment extends RxLazyFragment
         recommendBanners.clear();
         results.clear();
         mIsRefreshing = true;
-        mIsCacheRefresh = true;
         mSectionedAdapter.removeAllSections();
     }
 

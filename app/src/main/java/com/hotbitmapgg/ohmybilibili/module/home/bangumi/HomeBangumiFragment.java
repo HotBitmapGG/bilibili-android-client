@@ -51,8 +51,6 @@ public class HomeBangumiFragment extends RxLazyFragment
 
     private boolean mIsRefreshing = false;
 
-    private boolean mIsCacheRefresh = false;
-
     private List<BannerEntity> bannerList = new ArrayList<>();
 
     private List<BangumiRecommendInfo.ResultBean> bangumiRecommends = new ArrayList<>();
@@ -145,8 +143,8 @@ public class HomeBangumiFragment extends RxLazyFragment
     {
 
         mIsRefreshing = true;
-        mIsCacheRefresh = true;
         banners.clear();
+        bannerList.clear();
         bangumibobys.clear();
         bangumiRecommends.clear();
         newBangumiSerials.clear();

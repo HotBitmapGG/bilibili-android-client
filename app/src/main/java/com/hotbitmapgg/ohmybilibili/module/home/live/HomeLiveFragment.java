@@ -36,8 +36,6 @@ public class HomeLiveFragment extends RxLazyFragment
     @BindView(R.id.empty_layout)
     CustomEmptyView mCustomEmptyView;
 
-    private boolean mIsCacheRefresh = false;
-
     private LiveAppIndexAdapter mLiveAppIndexAdapter;
 
 
@@ -91,10 +89,7 @@ public class HomeLiveFragment extends RxLazyFragment
     {
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> {
-            mIsCacheRefresh = true;
-            loadData();
-        });
+        mSwipeRefreshLayout.setOnRefreshListener(this::loadData);
         mSwipeRefreshLayout.post(() -> {
 
             mSwipeRefreshLayout.setRefreshing(true);
