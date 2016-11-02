@@ -3,6 +3,7 @@ package com.hotbitmapgg.ohmybilibili.module.common;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -51,6 +52,7 @@ public class SplashActivity extends RxActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         bind = ButterKnife.bind(this);
+        hideStatusBar(true);
     }
 
     @Override
@@ -118,10 +120,30 @@ public class SplashActivity extends RxActivity
         else
             startActivity(new Intent(SplashActivity.this, LoginActivity.class));
 
-
         SplashActivity.this.finish();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
+
+
+    /**
+     * 显示或隐藏StatusBar
+     *
+     * @param enable false 显示，true 隐藏
+     */
+    private void hideStatusBar(boolean enable)
+    {
+
+        WindowManager.LayoutParams p = this.getWindow().getAttributes();
+        if (enable)
+            //|=：或等于，取其一
+            p.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        else
+            //&=：与等于，取其二同时满足，     ~ ： 取反
+            p.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        getWindow().setAttributes(p);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+    }
+
 
     @Override
     protected void onDestroy()

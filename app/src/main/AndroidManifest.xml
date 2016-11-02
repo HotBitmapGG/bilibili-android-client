@@ -27,7 +27,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".module.common.SplashActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+            android:theme="@style/ColorTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

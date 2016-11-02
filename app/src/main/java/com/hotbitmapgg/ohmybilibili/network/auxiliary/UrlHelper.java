@@ -3,7 +3,6 @@ package com.hotbitmapgg.ohmybilibili.network.auxiliary;
 import android.util.Log;
 
 import com.hotbitmapgg.ohmybilibili.entity.user.UserDetailsInfo;
-import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 
 /**
  * Created by hcc on 16/8/4 21:18
@@ -16,6 +15,9 @@ import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
  */
 public class UrlHelper
 {
+
+    public static final String HDSLB_HOST = "http://i2.hdslb.com";
+
 
     private static boolean isVideoUrl(String url)
     {
@@ -47,7 +49,7 @@ public class UrlHelper
         {
             return info.getCard().getFace();
         }
-        String face = RetrofitHelper.HDSLB_HOST + info.getCard().getFace();
+        String face = HDSLB_HOST + info.getCard().getFace();
         if (face.contains("{SIZE}"))
         {
             face = face.replace("{SIZE}", "");

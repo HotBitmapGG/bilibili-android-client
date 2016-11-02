@@ -90,8 +90,6 @@ public class RetrofitHelper
 
     private static final String IM9_BASE_URL = "http://www.im9.com/";
 
-    public static final String HDSLB_HOST = "http://i2.hdslb.com";
-
     private static final String COMMON_UA_STR = "OhMyBiliBili Android Client/2.1 (100332338@qq.com)";
 
     static
