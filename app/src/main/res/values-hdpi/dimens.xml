@@ -100,7 +100,7 @@
 
 
     <!--splash size-->
-    <dimen name="splash_logo_margin">40dp</dimen>
+    <dimen name="splash_logo_margin">60dp</dimen>
 
 
     <!--video details size-->

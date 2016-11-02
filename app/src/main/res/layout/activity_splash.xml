@@ -9,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_splash_default" />
+        android:src="@drawable/ic_splash_default"
+        android:visibility="gone" />
 
 
     <ImageView
@@ -26,6 +27,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/splash_logo_margin"
-        android:src="@drawable/ic_splash_copy" />
+        android:src="@drawable/ic_splash_copy"
+        android:visibility="gone" />
 
 </RelativeLayout>

@@ -159,6 +159,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
+                    .dontAnimate()
                     .into(mImageView);
             imageViewList.add(mImageView);
         }

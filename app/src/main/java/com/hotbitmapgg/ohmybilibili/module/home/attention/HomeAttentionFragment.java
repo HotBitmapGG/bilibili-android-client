@@ -61,8 +61,6 @@ public class HomeAttentionFragment extends RxLazyFragment
     @Override
     public void finishCreateView(Bundle state)
     {
-
-        initRecyclerView();
         loadData();
     }
 
@@ -101,7 +99,7 @@ public class HomeAttentionFragment extends RxLazyFragment
     protected void finishTask()
     {
 
-        mHeaderViewRecyclerAdapter.notifyDataSetChanged();
+        initRecyclerView();
     }
 
     @Override

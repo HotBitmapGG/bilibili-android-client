@@ -55,6 +55,7 @@ public class SplashActivity extends RxActivity
         hideStatusBar(true);
     }
 
+
     @Override
     protected void onResume()
     {
@@ -62,7 +63,6 @@ public class SplashActivity extends RxActivity
         super.onResume();
         setUpSplash();
     }
-
 
     private void setUpSplash()
     {
@@ -91,6 +91,7 @@ public class SplashActivity extends RxActivity
                     finishTask();
                 }, throwable -> {
 
+                    showDefaultSplashImage();
                     Observable.timer(2, TimeUnit.SECONDS)
                             .compose(bindToLifecycle())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -98,6 +99,14 @@ public class SplashActivity extends RxActivity
                                 finishTask();
                             });
                 });
+    }
+
+    private void showDefaultSplashImage()
+    {
+
+        mSplashLogo.setVisibility(View.VISIBLE);
+        mSplashDefaultIv.setVisibility(View.VISIBLE);
+        mSplashImage.setVisibility(View.GONE);
     }
 
     private void loadImageUrl(String s)
