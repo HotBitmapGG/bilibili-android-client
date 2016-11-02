@@ -1,22 +1,28 @@
 package com.hotbitmapgg.ohmybilibili.module.home.region;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.hotbitmapgg.ohmybilibili.BilibiliApp;
+import com.google.gson.Gson;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.HomeRegionItemAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.module.entry.GameCentreActivity;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -32,7 +38,7 @@ public class HomeRegionFragment extends RxLazyFragment
     @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private List<RegionTypesInfo.DataBean> datas = new ArrayList<>();
+    private List<RegionTypesInfo.DataBean> regionTypes = new ArrayList<>();
 
     public static HomeRegionFragment newInstance()
     {
@@ -61,18 +67,47 @@ public class HomeRegionFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        BilibiliApp.getInstance()
-                .getRepository()
-                .getPartitionTypes(false)
+
+        Observable.just(readAssetsJson())
                 .compose(bindToLifecycle())
-                .map(partitionInfoReply -> partitionInfoReply.getData().getData())
+                .map(s -> new Gson().fromJson(s, RegionTypesInfo.class))
+                .map(RegionTypesInfo::getData)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(dataBeans -> {
-                    datas.addAll(dataBeans);
+
+                    regionTypes.addAll(dataBeans);
+                    finishTask();
                 }, throwable -> {
 
                 });
+    }
+
+    /**
+     * 读取assets下的json数据
+     *
+     * @return
+     */
+    private String readAssetsJson()
+    {
+
+        AssetManager assetManager = getActivity().getAssets();
+        try
+        {
+            InputStream is = assetManager.open("region.json");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder stringBuilder = new StringBuilder();
+            String str;
+            while ((str = br.readLine()) != null)
+            {
+                stringBuilder.append(str);
+            }
+            return stringBuilder.toString();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -94,63 +129,56 @@ public class HomeRegionFragment extends RxLazyFragment
 
                 case 1:
                     //番剧
-                    RegionTypesInfo.DataBean mBangumi = datas.get(1);
-                    if (mBangumi != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mBangumi);
+                    RegionTypesInfo.DataBean mBangumi = regionTypes.get(1);
+                    RegionTypeDetailsActivity.launch(getActivity(), mBangumi);
                     break;
 
                 case 2:
                     //动画
-                    RegionTypesInfo.DataBean mAnimation = datas.get(2);
-                    if (mAnimation != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mAnimation);
+                    RegionTypesInfo.DataBean mAnimation = regionTypes.get(2);
+                    RegionTypeDetailsActivity.launch(getActivity(), mAnimation);
                     break;
 
                 case 3:
                     //音乐
-                    RegionTypesInfo.DataBean mMuise = datas.get(3);
-                    if (mMuise != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mMuise);
+                    RegionTypesInfo.DataBean mMuise = regionTypes.get(3);
+                    RegionTypeDetailsActivity.launch(getActivity(), mMuise);
                     break;
 
                 case 4:
                     //舞蹈
-                    RegionTypesInfo.DataBean mDence = datas.get(4);
-                    if (mDence != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mDence);
+                    RegionTypesInfo.DataBean mDence = regionTypes.get(4);
+                    RegionTypeDetailsActivity.launch(getActivity(), mDence);
                     break;
 
                 case 5:
                     //游戏
-                    RegionTypesInfo.DataBean mGame = datas.get(5);
+                    RegionTypesInfo.DataBean mGame = regionTypes.get(5);
                     RegionTypeDetailsActivity.launch(getActivity(), mGame);
                     break;
 
                 case 6:
                     //科技
-                    RegionTypesInfo.DataBean mScience = datas.get(6);
+                    RegionTypesInfo.DataBean mScience = regionTypes.get(6);
                     RegionTypeDetailsActivity.launch(getActivity(), mScience);
                     break;
 
                 case 7:
                     //生活
-                    RegionTypesInfo.DataBean mLife = datas.get(7);
-                    if (mLife != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mLife);
+                    RegionTypesInfo.DataBean mLife = regionTypes.get(7);
+                    RegionTypeDetailsActivity.launch(getActivity(), mLife);
                     break;
 
                 case 8:
                     //鬼畜
-                    RegionTypesInfo.DataBean mKichiku = datas.get(8);
-                    if (mKichiku != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mKichiku);
+                    RegionTypesInfo.DataBean mKichiku = regionTypes.get(8);
+                    RegionTypeDetailsActivity.launch(getActivity(), mKichiku);
                     break;
 
                 case 9:
                     //时尚
-                    RegionTypesInfo.DataBean mFashion = datas.get(9);
-                    if (mFashion != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mFashion);
+                    RegionTypesInfo.DataBean mFashion = regionTypes.get(9);
+                    RegionTypeDetailsActivity.launch(getActivity(), mFashion);
                     break;
 
                 case 10:
@@ -160,24 +188,21 @@ public class HomeRegionFragment extends RxLazyFragment
 
                 case 11:
                     //娱乐
-                    RegionTypesInfo.DataBean mRecreation = datas.get(10);
-                    if (mRecreation != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mRecreation);
+                    RegionTypesInfo.DataBean mRecreation = regionTypes.get(10);
+                    RegionTypeDetailsActivity.launch(getActivity(), mRecreation);
                     break;
 
 
                 case 12:
                     //电影
-                    RegionTypesInfo.DataBean mMovei = datas.get(11);
-                    if (mMovei != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mMovei);
+                    RegionTypesInfo.DataBean mMovei = regionTypes.get(11);
+                    RegionTypeDetailsActivity.launch(getActivity(), mMovei);
                     break;
 
                 case 13:
                     //电视剧
-                    RegionTypesInfo.DataBean mTv = datas.get(12);
-                    if (mTv != null)
-                        RegionTypeDetailsActivity.launch(getActivity(), mTv);
+                    RegionTypesInfo.DataBean mTv = regionTypes.get(12);
+                    RegionTypeDetailsActivity.launch(getActivity(), mTv);
                     break;
 
 

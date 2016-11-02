@@ -6,7 +6,6 @@ import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
-import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 
 import java.io.File;
@@ -79,13 +78,6 @@ public class Repository
 
         return providers.getBangumiRecommended(RetrofitHelper.getBangumiRecommendedApi()
                 .getBangumiRecommended(), new DynamicKey("首页番剧推荐"), new EvictDynamicKey(update));
-    }
-
-    public Observable<Reply<RegionTypesInfo>> getPartitionTypes(final boolean update)
-    {
-
-        return providers.getPartitionTypes(RetrofitHelper.getPartitionTypesApi()
-                .getPartitionTypes(), new DynamicKey("分区数据"), new EvictDynamicKey(update));
     }
 
     public Observable<Reply<HotSearchTag>> getHotSearchTags(final boolean update)

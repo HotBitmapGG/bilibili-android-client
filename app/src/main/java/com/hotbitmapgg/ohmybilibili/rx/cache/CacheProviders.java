@@ -6,7 +6,6 @@ import com.hotbitmapgg.ohmybilibili.entity.discover.HotSearchTag;
 import com.hotbitmapgg.ohmybilibili.entity.live.LiveAppIndexInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendBannerInfo;
 import com.hotbitmapgg.ohmybilibili.entity.recommend.RecommendInfo;
-import com.hotbitmapgg.ohmybilibili.entity.region.RegionTypesInfo;
 
 import java.util.concurrent.TimeUnit;
 
@@ -91,16 +90,6 @@ interface CacheProviders
      */
     @LifeCache(duration = 1, timeUnit = TimeUnit.DAYS)
     Observable<Reply<BangumiRecommendInfo>> getBangumiRecommended(Observable<BangumiRecommendInfo> bangumiRecommend, DynamicKey dynamicKey, EvictProvider evictProvider);
-
-
-    /**
-     * 分区数据缓存接口
-     *
-     * @param partitionInfo
-     * @return
-     */
-    @LifeCache(duration = 7, timeUnit = TimeUnit.DAYS)
-    Observable<Reply<RegionTypesInfo>> getPartitionTypes(Observable<RegionTypesInfo> partitionInfo, DynamicKey dynamicKey, EvictProvider evictProvider);
 
 
     /**
