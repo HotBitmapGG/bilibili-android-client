@@ -73,7 +73,7 @@ public class BannerAdapter extends PagerAdapter
 
             if (mViewPagerOnItemClickListener != null)
             {
-                mViewPagerOnItemClickListener.onItemClick(pos);
+                mViewPagerOnItemClickListener.onItemClick();
             }
         });
 
@@ -92,6 +92,6 @@ public class BannerAdapter extends PagerAdapter
     interface ViewPagerOnItemClickListener
     {
 
-        void onItemClick(int position);
+        void onItemClick();
     }
 }

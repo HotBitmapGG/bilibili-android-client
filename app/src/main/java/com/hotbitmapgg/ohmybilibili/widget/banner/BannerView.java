@@ -58,6 +58,9 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
     //非选中显示Indicator
     private int unSelcetRes = R.drawable.shape_dots_default;
 
+    //当前页的下标
+    private int currrentPos;
+
     public BannerView(Context context)
     {
 
@@ -180,6 +183,7 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
             {
 
                 pos = pos % pointSize;
+                currrentPos = pos;
                 for (int i = 0; i < points.getChildCount(); i++)
                 {
                     points.getChildAt(i).setBackgroundResource(unSelcetRes);
@@ -260,21 +264,13 @@ public class BannerView extends RelativeLayout implements BannerAdapter.ViewPage
 
     /**
      * 设置ViewPager的Item点击回调事件
-     *
-     * @param position
      */
     @Override
-    public void onItemClick(int position)
+    public void onItemClick()
     {
 
-        if (position == 0)
-            position = bannerList.size() - 1;
-        else
-            position -= 1;
-
-
         BrowserActivity.launch((Activity) getContext(),
-                bannerList.get(position).link,
-                bannerList.get(position).title);
+                bannerList.get(currrentPos).link,
+                bannerList.get(currrentPos).title);
     }
 }
