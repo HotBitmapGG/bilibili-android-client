@@ -1,6 +1,7 @@
 package com.hotbitmapgg.ohmybilibili.module.home.attention;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,8 @@ import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
 import com.hotbitmapgg.ohmybilibili.entity.attention.AttentionDynamicInfo;
 import com.hotbitmapgg.ohmybilibili.entity.user.UserChaseBangumiInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
+import com.hotbitmapgg.ohmybilibili.utils.SnackbarUtil;
+import com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +37,18 @@ import rx.schedulers.Schedulers;
 public class HomeAttentionFragment extends RxLazyFragment
 {
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
     @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
+    @BindView(R.id.empty_layout)
+    CustomEmptyView mCustomEmptyView;
+
     private static final int MID = 9467159;
+
+    private boolean mIsRefreshing = false;
 
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
 
@@ -61,7 +72,39 @@ public class HomeAttentionFragment extends RxLazyFragment
     @Override
     public void finishCreateView(Bundle state)
     {
-        loadData();
+
+        isPrepared = true;
+        lazyLoad();
+    }
+
+    @Override
+    protected void lazyLoad()
+    {
+
+        if (!isPrepared || !isVisible)
+            return;
+
+        initRefreshLayout();
+        isPrepared = false;
+    }
+
+    @Override
+    protected void initRefreshLayout()
+    {
+
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefreshLayout.post(() -> {
+
+            mSwipeRefreshLayout.setRefreshing(true);
+            mIsRefreshing = true;
+            loadData();
+        });
+
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
+
+            clearData();
+            loadData();
+        });
     }
 
     @Override
@@ -91,7 +134,7 @@ public class HomeAttentionFragment extends RxLazyFragment
                     dynamics.addAll(feedsBeans);
                     finishTask();
                 }, throwable -> {
-
+                    initEmptyView();
                 });
     }
 
@@ -99,6 +142,9 @@ public class HomeAttentionFragment extends RxLazyFragment
     protected void finishTask()
     {
 
+        mSwipeRefreshLayout.setRefreshing(false);
+        mIsRefreshing = false;
+        hideEmptyView();
         initRecyclerView();
     }
 
@@ -112,6 +158,34 @@ public class HomeAttentionFragment extends RxLazyFragment
         mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
         createHeadView();
         mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+        setRecycleNoScroll();
+    }
+
+
+    public void initEmptyView()
+    {
+
+        mSwipeRefreshLayout.setRefreshing(false);
+        mCustomEmptyView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+        mCustomEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
+        mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+        SnackbarUtil.showMessage(mRecyclerView, "数据加载失败,请重新加载或者检查网络是否链接");
+    }
+
+    public void hideEmptyView()
+    {
+
+        mCustomEmptyView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void clearData()
+    {
+
+        mIsRefreshing = true;
+        chaseBangumis.clear();
+        dynamics.clear();
     }
 
     private void createHeadView()
@@ -124,5 +198,11 @@ public class HomeAttentionFragment extends RxLazyFragment
         mBangumiRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mBangumiRecycler.setAdapter(new AttentionBangumiAdapter(mBangumiRecycler, chaseBangumis));
         mHeaderViewRecyclerAdapter.addHeaderView(headView);
+    }
+
+    private void setRecycleNoScroll()
+    {
+
+        mRecyclerView.setOnTouchListener((v, event) -> mIsRefreshing);
     }
 }

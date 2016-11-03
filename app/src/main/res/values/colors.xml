@@ -45,6 +45,7 @@
     <color name="bangumi_index_yellow_bg">#FFC03A</color>
     <color name="vip_button_bg_color">#FEB1B3</color>
     <color name="vip_button_text_color">#FE6F70</color>
+    <color name="search_background_color">#E9EAEA</color>
 
 
     <color name="theme_color_primary">#fb7299</color>

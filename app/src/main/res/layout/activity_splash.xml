@@ -9,16 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_splash_default"
-        android:visibility="gone" />
+        android:src="@drawable/ic_splash_default" />
 
-
-    <ImageView
-        android:id="@+id/splash_iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY" />
 
     <ImageView
         android:id="@+id/splash_logo"
@@ -27,7 +19,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/splash_logo_margin"
-        android:src="@drawable/ic_splash_copy"
-        android:visibility="gone" />
+        android:src="@drawable/ic_splash_copy" />
 
 </RelativeLayout>

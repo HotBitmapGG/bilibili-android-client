@@ -7,6 +7,7 @@
     android:layout_marginEnd="@dimen/default_tiny_padding"
     android:layout_marginStart="@dimen/default_tiny_padding"
     android:fitsSystemWindows="true"
+    android:layout_marginTop="@dimen/default_general_margin"
     android:focusable="true"
     android:focusableInTouchMode="true"
     app:cardBackgroundColor="@color/cardview_light_background"

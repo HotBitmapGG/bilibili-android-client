@@ -58,8 +58,20 @@ public class HomeLiveFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
+        isPrepared = true;
+        lazyLoad();
+    }
+
+    @Override
+    protected void lazyLoad()
+    {
+
+        if (!isPrepared || !isVisible)
+            return;
+
         initRefreshLayout();
         initRecyclerView();
+        isPrepared = false;
     }
 
     @Override

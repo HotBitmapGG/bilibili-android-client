@@ -77,10 +77,21 @@ public class HomeRecommendedFragment extends RxLazyFragment
     public void finishCreateView(Bundle state)
     {
 
-        initRefreshLayout();
-        initRecyclerView();
+        isPrepared = true;
+        lazyLoad();
     }
 
+    @Override
+    protected void lazyLoad()
+    {
+
+        if (!isPrepared || !isVisible)
+            return;
+
+        initRefreshLayout();
+        initRecyclerView();
+        isPrepared = false;
+    }
 
     @Override
     protected void initRecyclerView()
