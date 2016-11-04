@@ -88,7 +88,7 @@
             android:id="@+id/item_comment_spot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/default_general_margin"
+            android:layout_marginEnd="@dimen/default_grow_margin"
             android:layout_toStartOf="@+id/item_comment_more"
             android:drawablePadding="@dimen/default_tiny_padding"
             android:drawableStart="@drawable/ic_feedback_support_grey"
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/default_general_margin"
+            android:layout_marginEnd="@dimen/default_tiny_padding"
             android:paddingTop="1dp"
             android:src="@drawable/ic_more_grey" />
 

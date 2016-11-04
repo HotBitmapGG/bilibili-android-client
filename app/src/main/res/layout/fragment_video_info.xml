@@ -13,8 +13,6 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
-        android:paddingEnd="@dimen/default_tiny_padding"
-        android:paddingStart="@dimen/default_tiny_padding"
         android:paddingTop="@dimen/video_details_margin_top"
         android:visibility="visible">
 
