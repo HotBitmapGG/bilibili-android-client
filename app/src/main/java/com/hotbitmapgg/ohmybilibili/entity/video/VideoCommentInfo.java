@@ -92,7 +92,7 @@ import java.util.ArrayList;
  * | level_info  | list   | 用户的等级信息?                              |
  * | sex         | String | 用户的性别                                 |
  */
-public class VideoComment
+public class VideoCommentInfo
 {
 
     public int owner;

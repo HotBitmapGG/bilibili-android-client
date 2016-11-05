@@ -1,6 +1,6 @@
 package com.hotbitmapgg.ohmybilibili.network.api;
 
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoCommentInfo;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -16,8 +16,5 @@ public interface VideoCommentService
 {
 
     @GET("feedback")
-    Observable<VideoComment> getVideoComment(@Query("aid") int aid,
-                                             @Query("page") int page,
-                                             @Query("pagesize") int pageSize,
-                                             @Query("ver") int ver);
+    Observable<VideoCommentInfo> getVideoComment(@Query("aid") int aid, @Query("page") int page, @Query("pagesize") int pageSize, @Query("ver") int ver);
 }

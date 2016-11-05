@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoCommentInfo;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.utils.DateUtil;
 import com.hotbitmapgg.ohmybilibili.widget.CircleImageView;
@@ -28,9 +28,9 @@ import java.util.List;
 public class VideoCommentAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<VideoComment.List> comments;
+    private List<VideoCommentInfo.List> comments;
 
-    public VideoCommentAdapter(RecyclerView recyclerView, List<VideoComment.List> comments)
+    public VideoCommentAdapter(RecyclerView recyclerView, List<VideoCommentInfo.List> comments)
     {
 
         super(recyclerView);
@@ -55,7 +55,7 @@ public class VideoCommentAdapter extends AbsRecyclerViewAdapter
         {
 
             ItemViewHolder mHolder = (ItemViewHolder) holder;
-            VideoComment.List list = comments.get(position);
+            VideoCommentInfo.List list = comments.get(position);
             mHolder.mUserName.setText(list.nick);
 
             Glide.with(getContext())

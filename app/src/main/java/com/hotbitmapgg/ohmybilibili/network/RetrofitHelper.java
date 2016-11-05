@@ -5,7 +5,6 @@ import com.hotbitmapgg.ohmybilibili.BilibiliApp;
 import com.hotbitmapgg.ohmybilibili.network.api.ActivityCenterService;
 import com.hotbitmapgg.ohmybilibili.network.api.AllareasRankService;
 import com.hotbitmapgg.ohmybilibili.network.api.AttentionDynamicService;
-import com.hotbitmapgg.ohmybilibili.network.api.AuthorRecommendedService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiAppIndexService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsCommentService;
 import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsRecommendService;
@@ -183,7 +182,7 @@ public class RetrofitHelper
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
+                .baseUrl(APP_BASE_URL)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -208,25 +207,6 @@ public class RetrofitHelper
                 .build();
 
         return retrofit.create(LiveUrlService.class);
-    }
-
-
-    /**
-     * 获取Up主推荐的更多视频
-     *
-     * @return
-     */
-    public static AuthorRecommendedService getAuthorRecommendedApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(AuthorRecommendedService.class);
     }
 
 

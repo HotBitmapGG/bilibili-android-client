@@ -11,8 +11,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.AbsRecyclerViewAdapter;
-import com.hotbitmapgg.ohmybilibili.entity.user.UserRecommendVideoInfo;
-import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetailsInfo;
+import com.hotbitmapgg.ohmybilibili.utils.NumberUtil;
 
 import java.util.List;
 
@@ -20,21 +20,18 @@ import java.util.List;
  * Created by hcc on 16/8/7 21:18
  * 100332338@qq.com
  * <p/>
- * 视频详情界面相关视频Adapter
+ * 视频详情界面相关视频adapter
  */
-public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
+public class VideoRelatedAdapter extends AbsRecyclerViewAdapter
 {
 
-    private List<UserRecommendVideoInfo.AuthorData> authorRecommendList;
+    private List<VideoDetailsInfo.DataBean.RelatesBean> relates;
 
-    private String upName;
-
-    public VideoAlikeListAdapter(RecyclerView recyclerView, List<UserRecommendVideoInfo.AuthorData> authorRecommendList, String upName)
+    public VideoRelatedAdapter(RecyclerView recyclerView, List<VideoDetailsInfo.DataBean.RelatesBean> relates)
     {
 
         super(recyclerView);
-        this.upName = upName;
-        this.authorRecommendList = authorRecommendList;
+        this.relates = relates;
     }
 
     @Override
@@ -53,20 +50,20 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
         if (holder instanceof ItemViewHolder)
         {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            UserRecommendVideoInfo.AuthorData authorData = authorRecommendList.get(position);
+            VideoDetailsInfo.DataBean.RelatesBean relatesBean = relates.get(position);
 
             Glide.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(authorData.cover))
+                    .load(relatesBean.getPic())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
                     .dontAnimate()
                     .into(itemViewHolder.mVideoPic);
 
-            itemViewHolder.mVideoTitle.setText(authorData.title);
-            itemViewHolder.mVideoPlayNum.setText(String.valueOf(authorData.click));
-            itemViewHolder.mVideoReviewNum.setText(String.valueOf(authorData.video_review));
-            itemViewHolder.mUpName.setText(upName);
+            itemViewHolder.mVideoTitle.setText(relatesBean.getTitle());
+            itemViewHolder.mVideoPlayNum.setText(NumberUtil.converString(relatesBean.getStat().getView()));
+            itemViewHolder.mVideoReviewNum.setText(NumberUtil.converString(relatesBean.getStat().getDanmaku()));
+            itemViewHolder.mUpName.setText(relatesBean.getOwner().getName());
         }
 
         super.onBindViewHolder(holder, position);
@@ -76,7 +73,7 @@ public class VideoAlikeListAdapter extends AbsRecyclerViewAdapter
     public int getItemCount()
     {
 
-        return authorRecommendList.size();
+        return relates.size();
     }
 
     public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder

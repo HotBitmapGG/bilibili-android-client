@@ -30,7 +30,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetails;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoDetailsInfo;
 import com.hotbitmapgg.ohmybilibili.event.AppBarStateChangeEvent;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.network.auxiliary.UrlHelper;
@@ -87,9 +87,9 @@ public class VideoDetailsActivity extends RxBaseActivity
 
     private int av;
 
-    private VideoDetails mVideoDetails;
-
     private String imgUrl;
+
+    private VideoDetailsInfo.DataBean mVideoDetailsInfo;
 
 
     @Override
@@ -125,7 +125,7 @@ public class VideoDetailsActivity extends RxBaseActivity
         mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
         mFAB.setTranslationY(-getResources().getDimension(R.dimen.floating_action_button_size_half));
         mFAB.setOnClickListener(v -> VideoPlayerActivity.launch(VideoDetailsActivity.this,
-                mVideoDetails.getList().videoAdditional.cid,mVideoDetails.getTitle()));
+                mVideoDetailsInfo.getPages().get(0).getCid(), mVideoDetailsInfo.getTitle()));
 
         mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> setViewsTranslation(verticalOffset));
         mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeEvent()
@@ -228,9 +228,7 @@ public class VideoDetailsActivity extends RxBaseActivity
     private void showFAB()
     {
 
-        mFAB.animate()
-                .scaleX(1f)
-                .scaleY(1f)
+        mFAB.animate().scaleX(1f).scaleY(1f)
                 .setInterpolator(new OvershootInterpolator())
                 .start();
     }
@@ -238,9 +236,7 @@ public class VideoDetailsActivity extends RxBaseActivity
     private void hideFAB()
     {
 
-        mFAB.animate()
-                .scaleX(0f)
-                .scaleY(0f)
+        mFAB.animate().scaleX(0f).scaleY(0f)
                 .setInterpolator(new AccelerateInterpolator())
                 .start();
     }
@@ -257,7 +253,7 @@ public class VideoDetailsActivity extends RxBaseActivity
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(videoDetails -> {
 
-                    mVideoDetails = videoDetails;
+                    mVideoDetailsInfo = videoDetails.getData();
                     finishTask();
                 }, throwable -> {
 
@@ -272,14 +268,13 @@ public class VideoDetailsActivity extends RxBaseActivity
     {
 
         mFAB.setClickable(true);
-        mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().
-                getColor(R.color.colorPrimary)));
+        mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
         mCollapsingToolbarLayout.setTitle("");
 
         if (TextUtils.isEmpty(imgUrl))
         {
             Glide.with(VideoDetailsActivity.this)
-                    .load(UrlHelper.getClearVideoPreviewUrl(mVideoDetails.getPic()))
+                    .load(mVideoDetailsInfo)
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)
@@ -287,15 +282,13 @@ public class VideoDetailsActivity extends RxBaseActivity
                     .into(mVideoPreview);
         }
 
-        VideoInfoFragment mVideoInfoFragment = VideoInfoFragment
-                .newInstance(mVideoDetails, av);
-        VideoCommentFragment mVideoCommentFragment = VideoCommentFragment
-                .newInstance(av);
+        VideoIntroductionFragment mVideoIntroductionFragment = VideoIntroductionFragment.newInstance(av);
+        VideoCommentFragment mVideoCommentFragment = VideoCommentFragment.newInstance(av);
 
-        fragments.add(mVideoInfoFragment);
+        fragments.add(mVideoIntroductionFragment);
         fragments.add(mVideoCommentFragment);
 
-        setPagerTitle(mVideoDetails.getVideo_review());
+        setPagerTitle(String.valueOf(mVideoDetailsInfo.getStat().getReply()));
     }
 
     private void setPagerTitle(String num)

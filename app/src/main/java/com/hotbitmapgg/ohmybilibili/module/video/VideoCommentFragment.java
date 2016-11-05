@@ -12,7 +12,7 @@ import com.hotbitmapgg.ohmybilibili.adapter.VideoHotCommentAdapter;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.EndlessRecyclerOnScrollListener;
 import com.hotbitmapgg.ohmybilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.ohmybilibili.base.RxLazyFragment;
-import com.hotbitmapgg.ohmybilibili.entity.video.VideoComment;
+import com.hotbitmapgg.ohmybilibili.entity.video.VideoCommentInfo;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
 
@@ -35,9 +35,9 @@ public class VideoCommentFragment extends RxLazyFragment
     @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
 
-    private ArrayList<VideoComment.List> comments = new ArrayList<>();
+    private ArrayList<VideoCommentInfo.List> comments = new ArrayList<>();
 
-    private ArrayList<VideoComment.HotList> hotComments = new ArrayList<>();
+    private ArrayList<VideoCommentInfo.HotList> hotComments = new ArrayList<>();
 
     private HeaderViewRecyclerAdapter mAdapter;
 
@@ -57,9 +57,9 @@ public class VideoCommentFragment extends RxLazyFragment
     {
 
         VideoCommentFragment fragment = new VideoCommentFragment();
-        Bundle args = new Bundle();
-        args.putInt(ConstantUtil.AID, aid);
-        fragment.setArguments(args);
+        Bundle bundle = new Bundle();
+        bundle.putInt(ConstantUtil.AID, aid);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -117,8 +117,8 @@ public class VideoCommentFragment extends RxLazyFragment
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(videoComment -> {
 
-                    ArrayList<VideoComment.List> list = videoComment.list;
-                    ArrayList<VideoComment.HotList> hotList = videoComment.hotList;
+                    ArrayList<VideoCommentInfo.List> list = videoComment.list;
+                    ArrayList<VideoCommentInfo.HotList> hotList = videoComment.hotList;
                     if (list.size() < pageSize)
                     {
                         loadMoreView.setVisibility(View.GONE);
