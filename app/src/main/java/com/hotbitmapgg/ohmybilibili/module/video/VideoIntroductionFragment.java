@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
@@ -65,6 +66,9 @@ public class VideoIntroductionFragment extends RxLazyFragment
 
     @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.layout_video_related)
+    RelativeLayout mVideoRelatedLayout;
 
     private int av;
 
@@ -146,6 +150,11 @@ public class VideoIntroductionFragment extends RxLazyFragment
     {
 
         List<VideoDetailsInfo.DataBean.RelatesBean> relates = mVideoDetailsInfo.getRelates();
+        if (relates == null)
+        {
+            mVideoRelatedLayout.setVisibility(View.GONE);
+            return;
+        }
         VideoRelatedAdapter mVideoRelatedAdapter = new VideoRelatedAdapter(mRecyclerView, relates);
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setNestedScrollingEnabled(false);
