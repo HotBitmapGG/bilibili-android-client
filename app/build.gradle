@@ -4,29 +4,32 @@ buildscript {
         maven { url "https://jitpack.io" }
     }
     dependencies {
-
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
     }
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 Properties props = new Properties()
 props.load(new FileInputStream(file("configuration.properties")))
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '24.0.2'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.hotbitmapgg.ohmybilibili"
         minSdkVersion 19
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode props.getAt("versionCode") as int
         versionName props['versionName']
 
-        jackOptions {
-            enabled true
-        }
+
+// 去掉jack编译，因为跟新25后编译不通过，所以暂时屏蔽掉
+//        jackOptions {
+//            enabled true
+//        }
     }
 
     buildTypes {
@@ -65,9 +68,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:cardview-v7:24.2.0'
-    compile 'com.android.support:design:24.2.0'
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:cardview-v7:25.0.0'
+    compile 'com.android.support:design:25.0.0'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'com.github.ctiao:DanmakuFlameMaster:0.5.6'
     compile 'com.github.bumptech.glide:glide:3.7.0'

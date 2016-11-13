@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.media;
+package com.hotbitmapgg.ohmybilibili.media.danmuku;
 
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
@@ -12,11 +12,11 @@ import java.io.IOException;
  * <p/>
  * 压缩工具类
  */
-public class CompressionTools
+public class BiliDanmukuCompressionTools
 {
 
     // Export only static methods
-    private CompressionTools()
+    private BiliDanmukuCompressionTools()
     {
 
     }

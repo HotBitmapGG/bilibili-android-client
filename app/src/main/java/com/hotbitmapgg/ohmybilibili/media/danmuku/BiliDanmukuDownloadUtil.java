@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.media;
+package com.hotbitmapgg.ohmybilibili.media.danmuku;
 
 import android.text.TextUtils;
 
@@ -17,7 +17,6 @@ import master.flame.danmaku.danmaku.model.IDanmakus;
 import master.flame.danmaku.danmaku.model.android.Danmakus;
 import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 import master.flame.danmaku.danmaku.parser.IDataSource;
-import master.flame.danmaku.danmaku.parser.android.BiliDanmukuParser;
 import rx.Observable;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
@@ -28,7 +27,7 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 视频弹幕下载工具类
  */
-public class DanmakuDownloadUtil
+public class BiliDanmukuDownloadUtil
 {
 
     public static Observable<BaseDanmakuParser> downloadXML(final String uri)
@@ -61,7 +60,7 @@ public class DanmakuDownloadUtil
                 {
                     HttpConnection.Response rsp = (HttpConnection.Response)
                             Jsoup.connect(uri).timeout(20000).execute();
-                    InputStream stream = new ByteArrayInputStream(CompressionTools.
+                    InputStream stream = new ByteArrayInputStream(BiliDanmukuCompressionTools.
                             decompressXML(rsp.bodyAsBytes()));
 
                     loader = DanmakuLoaderFactory.

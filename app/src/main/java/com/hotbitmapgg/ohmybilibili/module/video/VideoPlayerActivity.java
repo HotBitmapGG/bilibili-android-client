@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.ohmybilibili.base.RxBaseActivity;
-import com.hotbitmapgg.ohmybilibili.media.DanmakuDownloadUtil;
+import com.hotbitmapgg.ohmybilibili.media.danmuku.BiliDanmukuDownloadUtil;
 import com.hotbitmapgg.ohmybilibili.media.MediaController;
 import com.hotbitmapgg.ohmybilibili.media.VideoPlayerView;
-import com.hotbitmapgg.ohmybilibili.media.callback.DanmakuSwitchListener;
+import com.hotbitmapgg.ohmybilibili.media.callback.DanmukuSwitchListener;
 import com.hotbitmapgg.ohmybilibili.media.callback.VideoBackListener;
 import com.hotbitmapgg.ohmybilibili.network.RetrofitHelper;
 import com.hotbitmapgg.ohmybilibili.utils.ConstantUtil;
@@ -44,7 +44,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * <p/>
  * 视频播放界面
  */
-public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitchListener, VideoBackListener
+public class VideoPlayerActivity extends RxBaseActivity implements DanmukuSwitchListener, VideoBackListener
 {
 
 
@@ -195,7 +195,7 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmakuSwitch
                         });
 
                         String url = "http://comment.bilibili.com/" + cid + ".xml";
-                        return DanmakuDownloadUtil.downloadXML(url);
+                        return BiliDanmukuDownloadUtil.downloadXML(url);
                     }
                 })
                 .subscribeOn(Schedulers.io())
