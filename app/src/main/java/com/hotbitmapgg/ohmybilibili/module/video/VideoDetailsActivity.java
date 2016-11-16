@@ -231,6 +231,8 @@ public class VideoDetailsActivity extends RxBaseActivity
         mFAB.animate().scaleX(1f).scaleY(1f)
                 .setInterpolator(new OvershootInterpolator())
                 .start();
+
+        mFAB.setClickable(true);
     }
 
     private void hideFAB()
@@ -239,6 +241,8 @@ public class VideoDetailsActivity extends RxBaseActivity
         mFAB.animate().scaleX(0f).scaleY(0f)
                 .setInterpolator(new AccelerateInterpolator())
                 .start();
+
+        mFAB.setClickable(false);
     }
 
 
