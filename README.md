@@ -68,8 +68,7 @@
 
 ## Compilation
 
-因升级至Android Studio2.2，项目已使用新的编译器Jack，如果你不是AS2.2以上版本，遇到编译报错，
-请参考[issues#15](https://github.com/HotBitmapGG/bilibili-android-client/issues/15)
+因之前使用Jack编译出现了很多问题，目前已去掉，如果还遇到编译不通过，你可以给我提issuse，我会及时关注解决。
 
 
 ## UpdateLog
