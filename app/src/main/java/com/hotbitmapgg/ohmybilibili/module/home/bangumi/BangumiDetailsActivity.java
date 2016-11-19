@@ -259,6 +259,7 @@ public class BangumiDetailsActivity extends RxBaseActivity
         initRecommendRecycler();
         //设置番剧评论
         initCommentRecycler();
+        //加载完毕隐藏进度条
         hideProgressBar();
     }
 

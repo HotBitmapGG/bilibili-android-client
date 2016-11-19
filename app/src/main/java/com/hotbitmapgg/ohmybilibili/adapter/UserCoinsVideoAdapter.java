@@ -40,7 +40,7 @@ public class UserCoinsVideoAdapter extends AbsRecyclerViewAdapter
 
         bindContext(parent.getContext());
         return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_video_strip, parent, false));
+                .inflate(R.layout.item_user_coins_video, parent, false));
     }
 
     @Override
@@ -61,7 +61,6 @@ public class UserCoinsVideoAdapter extends AbsRecyclerViewAdapter
                     .into(itemViewHolder.mVideoPic);
 
             itemViewHolder.mVideoTitle.setText(listBean.getTitle());
-            itemViewHolder.mVideoUserInfo.setText(listBean.getOwner().getName());
             itemViewHolder.mVideoPlayNum.setText(String.valueOf(listBean.getStat().getView()));
             itemViewHolder.mVideoReviewNum.setText(String.valueOf(listBean.getStat().getDanmaku()));
         }
@@ -82,8 +81,6 @@ public class UserCoinsVideoAdapter extends AbsRecyclerViewAdapter
 
         TextView mVideoTitle;
 
-        TextView mVideoUserInfo;
-
         TextView mVideoPlayNum;
 
         TextView mVideoReviewNum;
@@ -95,7 +92,6 @@ public class UserCoinsVideoAdapter extends AbsRecyclerViewAdapter
 
             mVideoPic = $(R.id.item_img);
             mVideoTitle = $(R.id.item_title);
-            mVideoUserInfo = $(R.id.item_user_name);
             mVideoPlayNum = $(R.id.item_play);
             mVideoReviewNum = $(R.id.item_review);
         }

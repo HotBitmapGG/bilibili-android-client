@@ -16,18 +16,13 @@ import java.util.List;
 public class UserCoinsInfo implements Parcelable
 {
 
+
     /**
      * status : true
-     * data : {"list":[{"aid":6303824,"tid":28,"tname":"原创音乐","copyright":1,"pic":"http://i0.hdslb.com/bfs/archive/0be59f2ad8ebfeff9ffc02b6c958a1a106f2b51c.jpg","title":"【凹凸君说】夏家三千菜 【给夏一可夏姬八唱首歌】","pubdate":1474014991,"ctime":1474014991,"desc":"早早答应@夏一可  女王大人要写歌给她～然而一直拖到现在。。。不过昨晚正好看到有人说手艺人拖延不叫拖延！叫艺术沉淀需要时间的洗礼！于是就洗礼出了这首歌！有没有摇起来滚起来的感觉？感谢女王大人的耐心等待和种子提供~\n微博：@凹凸君说 weibo.com/aotujunshuo\n编曲：土司、STML\n填词：土司\nPV：aoto\n再次感谢@夏一可 ~\n","state":0,"attribute":540672,"duration":244,"tags":["夏一可","国人男声","原创编曲","守望先锋","凹凸君说","午时已到","夏家三千菜","厉害了我的歌","夏姬八唱"],"rights":{"bp":0,"elec":0,"download":0,"movie":0,"pay":0,"hd5":0},"owner":{"mid":20484551,"name":"凹凸君说","face":"http://i2.hdslb.com/bfs/face/d82be1e7132697946d3d6b6cd4cc07e2ff687215.jpg"},"stat":{"view":400444,"danmaku":2679,"reply":1361,"favorite":19754,"coin":22663,"share":3773,"now_rank":0,"his_rank":78},"ip":"27.217.132.88","time":1474205206,"coins":2},{"aid":6262080,"tid":31,"tname":"翻唱","copyright":1,"pic":"http://i1.hdslb.com/bfs/archive/33ee966a9a144f464072bae2ed4bf45d9b123e4f.jpg","title":"【33是抠脚kami【翻唱】岁月神偷","pubdate":1473750990,"ctime":1473750990,"desc":"米纳桑好啊我是33\n这是我第一次投稿翻唱作品\n非专业录制\n喜欢的小伙伴投个硬币吧~\n么么哒\u2044(\u2044 \u2044\u2022\u2044ω\u2044\u2022\u2044 \u2044)\u2044","state":0,"attribute":540672,"duration":247,"tags":["岁月神偷","翻唱","金玟岐"],"rights":{"bp":0,"elec":0,"download":0,"movie":0,"pay":0,"hd5":0},"owner":{"mid":8919801,"name":"听说33是个很咸的词","face":"http://i1.hdslb.com/bfs/face/f74048bf554a3b27cf618ed9fca83841e5a33d69.gif"},"stat":{"view":296,"danmaku":22,"reply":26,"favorite":6,"coin":71,"share":2,"now_rank":0,"his_rank":0},"ip":"27.217.132.88","time":1473758355,"coins":2},{"aid":6254109,"tid":83,"tname":"其他国家","copyright":2,"pic":"http://i2.hdslb.com/bfs/archive/9c8efd5179ab9994751649476775d39ddbbbb3bb.jpg","title":"【惊悚/灾难】釜山行 2016 中文字幕 1080P 孔侑 郑有美 【TSKS】","pubdate":1473680355,"ctime":1473680355,"desc":"直传 首尔站：釜山行前传 av6484311  链接：http://pan.baidu.com/s/1o8jfNAU 密码：v7q2  抓紧存咯~叫你们不听话~","state":0,"access":10000,"attribute":540672,"duration":7080,"tags":["泪腺崩坏","孔侑","釜山行","会员的世界","我敬你是条汉子","丧尸","全员奔跑啊","人性","夏威夷吉他"],"rights":{"bp":0,"elec":0,"download":0,"movie":0,"pay":0,"hd5":0},"owner":{"mid":2028824,"name":"mpor2","face":"http://i2.hdslb.com/bfs/face/7df214e54e255c862e0b0c9980ec2dc4bf228895.jpg"},"stat":{"view":0,"danmaku":561730,"reply":21785,"favorite":190097,"coin":45355,"share":43614,"now_rank":0,"his_rank":0},"ip":"27.217.132.88","time":1473748211,"coins":1}],"pages":1,"count":3}
+     * data : {"list":[{"aid":7157356,"pic":"http://i1.hdslb.com/bfs/archive/4b4f985f505a5423e63dc49a723c29dd808862c4.jpg","title":"【MMD配布预告】哪个是你老婆呢？随心所欲Mercy [崩坏3模型5人组×K3ls渲]","stat":{"view":610,"danmaku":14,"reply":31,"favorite":70,"coin":36,"share":1,"now_rank":0,"his_rank":0}},{"aid":7076004,"pic":"http://i1.hdslb.com/bfs/archive/d8df0f38c25b6c5775f2c0ddc020fc5929acb4d5.jpg","title":"【MMD】drop pop candy 【简易PV】","stat":{"view":446,"danmaku":7,"reply":21,"favorite":62,"coin":45,"share":2,"now_rank":0,"his_rank":0}}],"pages":1,"count":2}
      */
 
     private boolean status;
-
-    /**
-     * list : [{"aid":6303824,"tid":28,"tname":"原创音乐","copyright":1,"pic":"http://i0.hdslb.com/bfs/archive/0be59f2ad8ebfeff9ffc02b6c958a1a106f2b51c.jpg","title":"【凹凸君说】夏家三千菜 【给夏一可夏姬八唱首歌】","pubdate":1474014991,"ctime":1474014991,"desc":"早早答应@夏一可  女王大人要写歌给她～然而一直拖到现在。。。不过昨晚正好看到有人说手艺人拖延不叫拖延！叫艺术沉淀需要时间的洗礼！于是就洗礼出了这首歌！有没有摇起来滚起来的感觉？感谢女王大人的耐心等待和种子提供~\n微博：@凹凸君说 weibo.com/aotujunshuo\n编曲：土司、STML\n填词：土司\nPV：aoto\n再次感谢@夏一可 ~\n","state":0,"attribute":540672,"duration":244,"tags":["夏一可","国人男声","原创编曲","守望先锋","凹凸君说","午时已到","夏家三千菜","厉害了我的歌","夏姬八唱"],"rights":{"bp":0,"elec":0,"download":0,"movie":0,"pay":0,"hd5":0},"owner":{"mid":20484551,"name":"凹凸君说","face":"http://i2.hdslb.com/bfs/face/d82be1e7132697946d3d6b6cd4cc07e2ff687215.jpg"},"stat":{"view":400444,"danmaku":2679,"reply":1361,"favorite":19754,"coin":22663,"share":3773,"now_rank":0,"his_rank":78},"ip":"27.217.132.88","time":1474205206,"coins":2},{"aid":6262080,"tid":31,"tname":"翻唱","copyright":1,"pic":"http://i1.hdslb.com/bfs/archive/33ee966a9a144f464072bae2ed4bf45d9b123e4f.jpg","title":"【33是抠脚kami【翻唱】岁月神偷","pubdate":1473750990,"ctime":1473750990,"desc":"米纳桑好啊我是33\n这是我第一次投稿翻唱作品\n非专业录制\n喜欢的小伙伴投个硬币吧~\n么么哒\u2044(\u2044 \u2044\u2022\u2044ω\u2044\u2022\u2044 \u2044)\u2044","state":0,"attribute":540672,"duration":247,"tags":["岁月神偷","翻唱","金玟岐"],"rights":{"bp":0,"elec":0,"download":0,"movie":0,"pay":0,"hd5":0},"owner":{"mid":8919801,"name":"听说33是个很咸的词","face":"http://i1.hdslb.com/bfs/face/f74048bf554a3b27cf618ed9fca83841e5a33d69.gif"},"stat":{"view":296,"danmaku":22,"reply":26,"favorite":6,"coin":71,"share":2,"now_rank":0,"his_rank":0},"ip":"27.217.132.88","time":1473758355,"coins":2},{"aid":6254109,"tid":83,"tname":"其他国家","copyright":2,"pic":"http://i2.hdslb.com/bfs/archive/9c8efd5179ab9994751649476775d39ddbbbb3bb.jpg","title":"【惊悚/灾难】釜山行 2016 中文字幕 1080P 孔侑 郑有美 【TSKS】","pubdate":1473680355,"ctime":1473680355,"desc":"直传 首尔站：釜山行前传 av6484311  链接：http://pan.baidu.com/s/1o8jfNAU 密码：v7q2  抓紧存咯~叫你们不听话~","state":0,"access":10000,"attribute":540672,"duration":7080,"tags":["泪腺崩坏","孔侑","釜山行","会员的世界","我敬你是条汉子","丧尸","全员奔跑啊","人性","夏威夷吉他"],"rights":{"bp":0,"elec":0,"download":0,"movie":0,"pay":0,"hd5":0},"owner":{"mid":2028824,"name":"mpor2","face":"http://i2.hdslb.com/bfs/face/7df214e54e255c862e0b0c9980ec2dc4bf228895.jpg"},"stat":{"view":0,"danmaku":561730,"reply":21785,"favorite":190097,"coin":45355,"share":43614,"now_rank":0,"his_rank":0},"ip":"27.217.132.88","time":1473748211,"coins":1}]
-     * pages : 1
-     * count : 3
-     */
 
     private DataBean data;
 
@@ -58,37 +53,15 @@ public class UserCoinsInfo implements Parcelable
     public static class DataBean implements Parcelable
     {
 
+        /**
+         * list : [{"aid":7157356,"pic":"http://i1.hdslb.com/bfs/archive/4b4f985f505a5423e63dc49a723c29dd808862c4.jpg","title":"【MMD配布预告】哪个是你老婆呢？随心所欲Mercy [崩坏3模型5人组×K3ls渲]","stat":{"view":610,"danmaku":14,"reply":31,"favorite":70,"coin":36,"share":1,"now_rank":0,"his_rank":0}},{"aid":7076004,"pic":"http://i1.hdslb.com/bfs/archive/d8df0f38c25b6c5775f2c0ddc020fc5929acb4d5.jpg","title":"【MMD】drop pop candy 【简易PV】","stat":{"view":446,"danmaku":7,"reply":21,"favorite":62,"coin":45,"share":2,"now_rank":0,"his_rank":0}}]
+         * pages : 1
+         * count : 2
+         */
+
         private int pages;
 
         private int count;
-
-        /**
-         * aid : 6303824
-         * tid : 28
-         * tname : 原创音乐
-         * copyright : 1
-         * pic : http://i0.hdslb.com/bfs/archive/0be59f2ad8ebfeff9ffc02b6c958a1a106f2b51c.jpg
-         * title : 【凹凸君说】夏家三千菜 【给夏一可夏姬八唱首歌】
-         * pubdate : 1474014991
-         * ctime : 1474014991
-         * desc : 早早答应@夏一可  女王大人要写歌给她～然而一直拖到现在。。。不过昨晚正好看到有人说手艺人拖延不叫拖延！叫艺术沉淀需要时间的洗礼！于是就洗礼出了这首歌！有没有摇起来滚起来的感觉？感谢女王大人的耐心等待和种子提供~
-         * 微博：@凹凸君说 weibo.com/aotujunshuo
-         * 编曲：土司、STML
-         * 填词：土司
-         * PV：aoto
-         * 再次感谢@夏一可 ~
-         * <p>
-         * state : 0
-         * attribute : 540672
-         * duration : 244
-         * tags : ["夏一可","国人男声","原创编曲","守望先锋","凹凸君说","午时已到","夏家三千菜","厉害了我的歌","夏姬八唱"]
-         * rights : {"bp":0,"elec":0,"download":0,"movie":0,"pay":0,"hd5":0}
-         * owner : {"mid":20484551,"name":"凹凸君说","face":"http://i2.hdslb.com/bfs/face/d82be1e7132697946d3d6b6cd4cc07e2ff687215.jpg"}
-         * stat : {"view":400444,"danmaku":2679,"reply":1361,"favorite":19754,"coin":22663,"share":3773,"now_rank":0,"his_rank":78}
-         * ip : 27.217.132.88
-         * time : 1474205206
-         * coins : 2
-         */
 
         private List<ListBean> list;
 
@@ -131,69 +104,20 @@ public class UserCoinsInfo implements Parcelable
         public static class ListBean implements Parcelable
         {
 
+            /**
+             * aid : 7157356
+             * pic : http://i1.hdslb.com/bfs/archive/4b4f985f505a5423e63dc49a723c29dd808862c4.jpg
+             * title : 【MMD配布预告】哪个是你老婆呢？随心所欲Mercy [崩坏3模型5人组×K3ls渲]
+             * stat : {"view":610,"danmaku":14,"reply":31,"favorite":70,"coin":36,"share":1,"now_rank":0,"his_rank":0}
+             */
+
             private int aid;
-
-            private int tid;
-
-            private String tname;
-
-            private int copyright;
 
             private String pic;
 
             private String title;
 
-            private int pubdate;
-
-            private int ctime;
-
-            private String desc;
-
-            private int state;
-
-            private int attribute;
-
-            private int duration;
-
-            /**
-             * bp : 0
-             * elec : 0
-             * download : 0
-             * movie : 0
-             * pay : 0
-             * hd5 : 0
-             */
-
-            private RightsBean rights;
-
-            /**
-             * mid : 20484551
-             * name : 凹凸君说
-             * face : http://i2.hdslb.com/bfs/face/d82be1e7132697946d3d6b6cd4cc07e2ff687215.jpg
-             */
-
-            private OwnerBean owner;
-
-            /**
-             * view : 400444
-             * danmaku : 2679
-             * reply : 1361
-             * favorite : 19754
-             * coin : 22663
-             * share : 3773
-             * now_rank : 0
-             * his_rank : 78
-             */
-
             private StatBean stat;
-
-            private String ip;
-
-            private int time;
-
-            private int coins;
-
-            private List<String> tags;
 
             public int getAid()
             {
@@ -205,42 +129,6 @@ public class UserCoinsInfo implements Parcelable
             {
 
                 this.aid = aid;
-            }
-
-            public int getTid()
-            {
-
-                return tid;
-            }
-
-            public void setTid(int tid)
-            {
-
-                this.tid = tid;
-            }
-
-            public String getTname()
-            {
-
-                return tname;
-            }
-
-            public void setTname(String tname)
-            {
-
-                this.tname = tname;
-            }
-
-            public int getCopyright()
-            {
-
-                return copyright;
-            }
-
-            public void setCopyright(int copyright)
-            {
-
-                this.copyright = copyright;
             }
 
             public String getPic()
@@ -267,102 +155,6 @@ public class UserCoinsInfo implements Parcelable
                 this.title = title;
             }
 
-            public int getPubdate()
-            {
-
-                return pubdate;
-            }
-
-            public void setPubdate(int pubdate)
-            {
-
-                this.pubdate = pubdate;
-            }
-
-            public int getCtime()
-            {
-
-                return ctime;
-            }
-
-            public void setCtime(int ctime)
-            {
-
-                this.ctime = ctime;
-            }
-
-            public String getDesc()
-            {
-
-                return desc;
-            }
-
-            public void setDesc(String desc)
-            {
-
-                this.desc = desc;
-            }
-
-            public int getState()
-            {
-
-                return state;
-            }
-
-            public void setState(int state)
-            {
-
-                this.state = state;
-            }
-
-            public int getAttribute()
-            {
-
-                return attribute;
-            }
-
-            public void setAttribute(int attribute)
-            {
-
-                this.attribute = attribute;
-            }
-
-            public int getDuration()
-            {
-
-                return duration;
-            }
-
-            public void setDuration(int duration)
-            {
-
-                this.duration = duration;
-            }
-
-            public RightsBean getRights()
-            {
-
-                return rights;
-            }
-
-            public void setRights(RightsBean rights)
-            {
-
-                this.rights = rights;
-            }
-
-            public OwnerBean getOwner()
-            {
-
-                return owner;
-            }
-
-            public void setOwner(OwnerBean owner)
-            {
-
-                this.owner = owner;
-            }
-
             public StatBean getStat()
             {
 
@@ -375,290 +167,19 @@ public class UserCoinsInfo implements Parcelable
                 this.stat = stat;
             }
 
-            public String getIp()
-            {
-
-                return ip;
-            }
-
-            public void setIp(String ip)
-            {
-
-                this.ip = ip;
-            }
-
-            public int getTime()
-            {
-
-                return time;
-            }
-
-            public void setTime(int time)
-            {
-
-                this.time = time;
-            }
-
-            public int getCoins()
-            {
-
-                return coins;
-            }
-
-            public void setCoins(int coins)
-            {
-
-                this.coins = coins;
-            }
-
-            public List<String> getTags()
-            {
-
-                return tags;
-            }
-
-            public void setTags(List<String> tags)
-            {
-
-                this.tags = tags;
-            }
-
-            public static class RightsBean implements Parcelable
-            {
-
-                private int bp;
-
-                private int elec;
-
-                private int download;
-
-                private int movie;
-
-                private int pay;
-
-                private int hd5;
-
-                public int getBp()
-                {
-
-                    return bp;
-                }
-
-                public void setBp(int bp)
-                {
-
-                    this.bp = bp;
-                }
-
-                public int getElec()
-                {
-
-                    return elec;
-                }
-
-                public void setElec(int elec)
-                {
-
-                    this.elec = elec;
-                }
-
-                public int getDownload()
-                {
-
-                    return download;
-                }
-
-                public void setDownload(int download)
-                {
-
-                    this.download = download;
-                }
-
-                public int getMovie()
-                {
-
-                    return movie;
-                }
-
-                public void setMovie(int movie)
-                {
-
-                    this.movie = movie;
-                }
-
-                public int getPay()
-                {
-
-                    return pay;
-                }
-
-                public void setPay(int pay)
-                {
-
-                    this.pay = pay;
-                }
-
-                public int getHd5()
-                {
-
-                    return hd5;
-                }
-
-                public void setHd5(int hd5)
-                {
-
-                    this.hd5 = hd5;
-                }
-
-                @Override
-                public int describeContents()
-                {
-
-                    return 0;
-                }
-
-                @Override
-                public void writeToParcel(Parcel dest, int flags)
-                {
-
-                    dest.writeInt(this.bp);
-                    dest.writeInt(this.elec);
-                    dest.writeInt(this.download);
-                    dest.writeInt(this.movie);
-                    dest.writeInt(this.pay);
-                    dest.writeInt(this.hd5);
-                }
-
-                public RightsBean()
-                {
-
-                }
-
-                protected RightsBean(Parcel in)
-                {
-
-                    this.bp = in.readInt();
-                    this.elec = in.readInt();
-                    this.download = in.readInt();
-                    this.movie = in.readInt();
-                    this.pay = in.readInt();
-                    this.hd5 = in.readInt();
-                }
-
-                public static final Creator<RightsBean> CREATOR = new Creator<RightsBean>()
-                {
-
-                    @Override
-                    public RightsBean createFromParcel(Parcel source)
-                    {
-
-                        return new RightsBean(source);
-                    }
-
-                    @Override
-                    public RightsBean[] newArray(int size)
-                    {
-
-                        return new RightsBean[size];
-                    }
-                };
-            }
-
-            public static class OwnerBean implements Parcelable
-            {
-
-                private int mid;
-
-                private String name;
-
-                private String face;
-
-                public int getMid()
-                {
-
-                    return mid;
-                }
-
-                public void setMid(int mid)
-                {
-
-                    this.mid = mid;
-                }
-
-                public String getName()
-                {
-
-                    return name;
-                }
-
-                public void setName(String name)
-                {
-
-                    this.name = name;
-                }
-
-                public String getFace()
-                {
-
-                    return face;
-                }
-
-                public void setFace(String face)
-                {
-
-                    this.face = face;
-                }
-
-                @Override
-                public int describeContents()
-                {
-
-                    return 0;
-                }
-
-                @Override
-                public void writeToParcel(Parcel dest, int flags)
-                {
-
-                    dest.writeInt(this.mid);
-                    dest.writeString(this.name);
-                    dest.writeString(this.face);
-                }
-
-                public OwnerBean()
-                {
-
-                }
-
-                protected OwnerBean(Parcel in)
-                {
-
-                    this.mid = in.readInt();
-                    this.name = in.readString();
-                    this.face = in.readString();
-                }
-
-                public static final Creator<OwnerBean> CREATOR = new Creator<OwnerBean>()
-                {
-
-                    @Override
-                    public OwnerBean createFromParcel(Parcel source)
-                    {
-
-                        return new OwnerBean(source);
-                    }
-
-                    @Override
-                    public OwnerBean[] newArray(int size)
-                    {
-
-                        return new OwnerBean[size];
-                    }
-                };
-            }
-
             public static class StatBean implements Parcelable
             {
+
+                /**
+                 * view : 610
+                 * danmaku : 14
+                 * reply : 31
+                 * favorite : 70
+                 * coin : 36
+                 * share : 1
+                 * now_rank : 0
+                 * his_rank : 0
+                 */
 
                 private int view;
 
@@ -842,24 +363,9 @@ public class UserCoinsInfo implements Parcelable
             {
 
                 dest.writeInt(this.aid);
-                dest.writeInt(this.tid);
-                dest.writeString(this.tname);
-                dest.writeInt(this.copyright);
                 dest.writeString(this.pic);
                 dest.writeString(this.title);
-                dest.writeInt(this.pubdate);
-                dest.writeInt(this.ctime);
-                dest.writeString(this.desc);
-                dest.writeInt(this.state);
-                dest.writeInt(this.attribute);
-                dest.writeInt(this.duration);
-                dest.writeParcelable(this.rights, flags);
-                dest.writeParcelable(this.owner, flags);
                 dest.writeParcelable(this.stat, flags);
-                dest.writeString(this.ip);
-                dest.writeInt(this.time);
-                dest.writeInt(this.coins);
-                dest.writeStringList(this.tags);
             }
 
             public ListBean()
@@ -871,24 +377,9 @@ public class UserCoinsInfo implements Parcelable
             {
 
                 this.aid = in.readInt();
-                this.tid = in.readInt();
-                this.tname = in.readString();
-                this.copyright = in.readInt();
                 this.pic = in.readString();
                 this.title = in.readString();
-                this.pubdate = in.readInt();
-                this.ctime = in.readInt();
-                this.desc = in.readString();
-                this.state = in.readInt();
-                this.attribute = in.readInt();
-                this.duration = in.readInt();
-                this.rights = in.readParcelable(RightsBean.class.getClassLoader());
-                this.owner = in.readParcelable(OwnerBean.class.getClassLoader());
                 this.stat = in.readParcelable(StatBean.class.getClassLoader());
-                this.ip = in.readString();
-                this.time = in.readInt();
-                this.coins = in.readInt();
-                this.tags = in.createStringArrayList();
             }
 
             public static final Creator<ListBean> CREATOR = new Creator<ListBean>()
