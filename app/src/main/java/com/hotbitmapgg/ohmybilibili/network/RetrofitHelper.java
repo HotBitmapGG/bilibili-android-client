@@ -13,6 +13,7 @@ import com.hotbitmapgg.ohmybilibili.network.api.AccountService;
 import com.hotbitmapgg.ohmybilibili.network.api.Im9Service;
 import com.hotbitmapgg.ohmybilibili.network.api.UserService;
 import com.hotbitmapgg.ohmybilibili.network.api.VipService;
+import com.hotbitmapgg.ohmybilibili.network.auxiliary.ApiConstants;
 import com.hotbitmapgg.ohmybilibili.utils.CommonUtil;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package com.hotbitmapgg.ohmybilibili.network;
+package com.hotbitmapgg.ohmybilibili.network.auxiliary;
 
 /**
  * Created by hcc on 2016/11/20 21:32
