@@ -237,7 +237,7 @@ public class HomeRecommendedSection extends StatelessSection
             case "热门焦点":
                 headerViewHolder.mTypeImg.setImageResource(icons[0]);
                 break;
-            case "热门直播":
+            case "正在直播":
                 headerViewHolder.mTypeImg.setImageResource(icons[1]);
                 break;
             case "番剧推荐":
