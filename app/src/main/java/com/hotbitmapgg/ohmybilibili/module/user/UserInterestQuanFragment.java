@@ -119,7 +119,7 @@ public class UserInterestQuanFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getUserInterestQuanApi()
+        RetrofitHelper.getIm9API()
                 .getUserInterestQuanData(mid, pageNum, pageSize)
                 .compose(bindToLifecycle())
                 .map(userInterestQuanInfo -> userInterestQuanInfo.getData().getResult())

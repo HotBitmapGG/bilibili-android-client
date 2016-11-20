@@ -199,7 +199,7 @@ public class LivePlayerActivity extends RxBaseActivity
     private void getLiveUrl()
     {
 
-        RetrofitHelper.getLiveUrlApi()
+        RetrofitHelper.getLiveAPI()
                 .getLiveUrl(cid)
                 .compose(this.bindToLifecycle())
                 .map(responseBody -> {

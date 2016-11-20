@@ -20,7 +20,7 @@ android {
 
     defaultConfig {
         applicationId "com.hotbitmapgg.ohmybilibili"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode props.getAt("versionCode") as int
         versionName props['versionName']

@@ -111,7 +111,7 @@ public class HomeAttentionFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getUserChaseBangumiApi()
+        RetrofitHelper.getUserAPI()
                 .getUserChaseBangumis(MID)
                 .compose(bindToLifecycle())
                 .map(userChaseBangumiInfo -> userChaseBangumiInfo.getData().getResult())
@@ -123,7 +123,7 @@ public class HomeAttentionFragment extends RxLazyFragment
                     {
 
                         chaseBangumis.addAll(resultBeans);
-                        return RetrofitHelper.getAttentionDynamicApi().getAttentionDynamic();
+                        return RetrofitHelper.getBiliAPI().getAttentionDynamic();
                     }
                 })
                 .map(attentionDynamicInfo -> attentionDynamicInfo.getData().getFeeds())

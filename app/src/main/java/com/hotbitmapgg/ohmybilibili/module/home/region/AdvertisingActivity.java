@@ -167,7 +167,7 @@ public class AdvertisingActivity extends RxBaseActivity
     public void loadData()
     {
 
-        RetrofitHelper.getRegionRecommendApi()
+        RetrofitHelper.getBiliAppAPI()
                 .getRegionRecommends(ConstantUtil.ADVERTISING_RID)
                 .compose(bindToLifecycle())
                 .map(RegionRecommendInfo::getData)

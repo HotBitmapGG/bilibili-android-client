@@ -95,7 +95,7 @@ public class UserContributeFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getUserContributeVideoApi()
+        RetrofitHelper.getUserAPI()
                 .getUserContributeVideos(mid, pageNum, pageSize)
                 .compose(this.bindToLifecycle())
                 .map(userContributeInfo -> userContributeInfo.getData().getVlist())

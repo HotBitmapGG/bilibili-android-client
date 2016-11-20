@@ -256,7 +256,7 @@ public class UserInfoDetailsActivity extends RxBaseActivity
     public void getUserInfo()
     {
 
-        RetrofitHelper.getUserInfoDetailsApi()
+        RetrofitHelper.getAccountAPI()
                 .getUserInfoById(mid)
                 .compose(this.bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)
@@ -333,7 +333,7 @@ public class UserInfoDetailsActivity extends RxBaseActivity
     private void getUserAllData()
     {
 
-        RetrofitHelper.getUserContributeVideoApi()
+        RetrofitHelper.getUserAPI()
                 .getUserContributeVideos(mid, 1, 10)
                 .compose(this.bindToLifecycle())
                 .flatMap(new Func1<UserContributeInfo,Observable<UserFavoritesInfo>>()
@@ -346,8 +346,7 @@ public class UserInfoDetailsActivity extends RxBaseActivity
                         mUserContributeInfo = userContributeInfo;
                         userContributeCount = userContributeInfo.getData().getCount();
                         userContributes.addAll(userContributeInfo.getData().getVlist());
-                        return RetrofitHelper.getUserFavoritesApi()
-                                .getUserFavorites(mid);
+                        return RetrofitHelper.getBiliAPI().getUserFavorites(mid);
                     }
                 })
                 .compose(bindToLifecycle())
@@ -361,8 +360,7 @@ public class UserInfoDetailsActivity extends RxBaseActivity
                         mUserFavoritesInfo = userFavoritesInfo;
                         userFavoritesCount = userFavoritesInfo.getData().size();
                         userFavorites.addAll(userFavoritesInfo.getData());
-                        return RetrofitHelper.getUserChaseBangumiApi()
-                                .getUserChaseBangumis(mid);
+                        return RetrofitHelper.getUserAPI().getUserChaseBangumis(mid);
                     }
                 })
                 .compose(bindToLifecycle())
@@ -376,8 +374,7 @@ public class UserInfoDetailsActivity extends RxBaseActivity
                         mUserChaseBangumiInfo = userChaseBangumiInfo;
                         userChaseBangumiCount = userChaseBangumiInfo.getData().getCount();
                         userChaseBangumis.addAll(userChaseBangumiInfo.getData().getResult());
-                        return RetrofitHelper.getUserInterestQuanApi()
-                                .getUserInterestQuanData(mid, 1, 10);
+                        return RetrofitHelper.getIm9API().getUserInterestQuanData(mid, 1, 10);
                     }
                 })
                 .compose(bindToLifecycle())
@@ -391,8 +388,7 @@ public class UserInfoDetailsActivity extends RxBaseActivity
                         mUserInterestQuanInfo = userInterestQuanInfo;
                         userInterestQuanCount = userInterestQuanInfo.getData().getTotal_count();
                         userInterestQuans.addAll(userInterestQuanInfo.getData().getResult());
-                        return RetrofitHelper.getUserCoinsVideoApi()
-                                .getUserCoinVideos(mid);
+                        return RetrofitHelper.getUserAPI().getUserCoinVideos(mid);
                     }
                 })
                 .compose(bindToLifecycle())
@@ -406,8 +402,7 @@ public class UserInfoDetailsActivity extends RxBaseActivity
                         mUserCoinsInfo = userCoinsInfo;
                         userCoinsCount = userCoinsInfo.getData().getCount();
                         userCoins.addAll(userCoinsInfo.getData().getList());
-                        return RetrofitHelper.getUserPlayGameApi()
-                                .getUserPlayGames(mid);
+                        return RetrofitHelper.getUserAPI().getUserPlayGames(mid);
                     }
                 })
                 .compose(bindToLifecycle())
@@ -421,8 +416,7 @@ public class UserInfoDetailsActivity extends RxBaseActivity
                         mUserPlayGameInfo = userPlayGameInfo;
                         userPlayGameCount = userPlayGameInfo.getData().getCount();
                         userPlayGames.addAll(userPlayGameInfo.getData().getGames());
-                        return RetrofitHelper.getUserLiveRoomStatusApi()
-                                .getUserLiveRoomStatus(mid);
+                        return RetrofitHelper.getLiveAPI().getUserLiveRoomStatus(mid);
                     }
                 })
                 .compose(bindToLifecycle())

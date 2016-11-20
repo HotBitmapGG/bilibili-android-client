@@ -172,7 +172,7 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmukuSwitch
     public void loadData()
     {
 
-        RetrofitHelper.getHDVideoApi()
+        RetrofitHelper.getBiliGoAPI()
                 .getHDVideoUrl(cid, 4, ConstantUtil.VIDEO_TYPE_MP4)
                 .compose(bindToLifecycle())
                 .map(videoInfo -> Uri.parse(videoInfo.getDurl().get(0).getUrl()))

@@ -150,7 +150,7 @@ public class BangumiDetailsActivity extends RxBaseActivity
     public void loadData()
     {
 
-        RetrofitHelper.getBangumiDetailsApi()
+        RetrofitHelper.getBangumiAPI()
                 .getBangumiDetails()
                 .compose(bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)
@@ -162,7 +162,7 @@ public class BangumiDetailsActivity extends RxBaseActivity
                     {
 
                         result = bangumiDetailsInfo.getResult();
-                        return RetrofitHelper.getBangumiDetailsRecommendApi().getBangumiDetailsRecommend();
+                        return RetrofitHelper.getBangumiAPI().getBangumiDetailsRecommend();
                     }
                 })
                 .compose(bindToLifecycle())
@@ -175,7 +175,7 @@ public class BangumiDetailsActivity extends RxBaseActivity
                     {
 
                         bangumiRecommends.addAll(listBeans);
-                        return RetrofitHelper.getBangumiDetailsCommentApi().getBangumiDetailsComments();
+                        return RetrofitHelper.getBiliAPI().getBangumiDetailsComments();
                     }
                 })
                 .compose(bindToLifecycle())

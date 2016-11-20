@@ -136,7 +136,7 @@ public class MovieResultsFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getSearchApi()
+        RetrofitHelper.getBiliAppAPI()
                 .searchMovie(content, pageNum, pageSize)
                 .compose(bindToLifecycle())
                 .map(SearchMovieInfo::getData)

@@ -169,7 +169,7 @@ public class HomeBangumiFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getBangumiAppIndexApi()
+        RetrofitHelper.getBangumiAPI()
                 .getBangumiAppIndex()
                 .compose(bindToLifecycle())
                 .flatMap(new Func1<BangumiAppIndexInfo,Observable<BangumiRecommendInfo>>()
@@ -184,7 +184,7 @@ public class HomeBangumiFragment extends RxLazyFragment
                         seasonNewBangumis.addAll(bangumiAppIndexInfo.getResult().getPrevious().getList());
                         season = bangumiAppIndexInfo.getResult().getPrevious().getSeason();
                         newBangumiSerials.addAll(bangumiAppIndexInfo.getResult().getSerializing());
-                        return RetrofitHelper.getBangumiRecommendedApi().getBangumiRecommended();
+                        return RetrofitHelper.getBangumiAPI().getBangumiRecommended();
                     }
                 })
                 .compose(bindToLifecycle())

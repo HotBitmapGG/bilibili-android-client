@@ -9,14 +9,18 @@ import rx.Observable;
 /**
  * Created by hcc on 16/8/8 20:48
  * 100332338@qq.com
- * <p/>
- * 查询用户详情数据
- * <p/>
- * https://account.bilibili.com/api/member/getCardByMid?mid=279463
+ *
+ * 用户个人账号相关api
  */
-public interface UserInfoDetailsService
+public interface AccountService
 {
 
+    /**
+     * 用户详情数据
+     *
+     * @param mid
+     * @return
+     */
     @GET("api/member/getCardByMid")
     Observable<UserDetailsInfo> getUserInfoById(@Query("mid") int mid);
 }

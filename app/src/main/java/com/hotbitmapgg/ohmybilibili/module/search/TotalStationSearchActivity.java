@@ -196,7 +196,7 @@ public class TotalStationSearchActivity extends RxBaseActivity
 
         int page = 1;
         int pageSize = 10;
-        RetrofitHelper.getSearchApi()
+        RetrofitHelper.getBiliAppAPI()
                 .searchArchive(content, page, pageSize)
                 .compose(this.bindToLifecycle())
                 .map(SearchArchiveInfo::getData)

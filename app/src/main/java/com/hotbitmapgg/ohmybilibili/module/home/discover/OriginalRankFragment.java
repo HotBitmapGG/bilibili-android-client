@@ -95,7 +95,7 @@ public class OriginalRankFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getOriginalRankApi()
+        RetrofitHelper.getRankAPI()
                 .getOriginalRanks(order)
                 .compose(this.bindToLifecycle())
                 .map(originalRankInfo -> originalRankInfo.getRank().getList())

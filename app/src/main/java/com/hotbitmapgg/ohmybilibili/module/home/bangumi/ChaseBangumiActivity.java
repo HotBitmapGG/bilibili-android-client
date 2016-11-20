@@ -67,7 +67,7 @@ public class ChaseBangumiActivity extends RxBaseActivity
     public void loadData()
     {
 
-        RetrofitHelper.getUserChaseBangumiApi()
+        RetrofitHelper.getUserAPI()
                 .getUserChaseBangumis(MID)
                 .compose(bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)

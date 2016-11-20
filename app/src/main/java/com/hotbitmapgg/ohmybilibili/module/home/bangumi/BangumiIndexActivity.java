@@ -112,7 +112,7 @@ public class BangumiIndexActivity extends RxBaseActivity
     public void loadData()
     {
 
-        RetrofitHelper.getBangumiIndexApi()
+        RetrofitHelper.getBangumiAPI()
                 .getBangumiIndex()
                 .compose(this.bindToLifecycle())
                 .doOnSubscribe(this::showProgressBar)

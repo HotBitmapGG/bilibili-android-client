@@ -147,7 +147,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getHomeRecommendedApi()
+        RetrofitHelper.getBiliAppAPI()
                 .getRecommendedBannerInfo()
                 .compose(bindToLifecycle())
                 .map(RecommendBannerInfo::getData)
@@ -159,7 +159,7 @@ public class HomeRecommendedFragment extends RxLazyFragment
                     {
 
                         recommendBanners.addAll(dataBeans);
-                        return RetrofitHelper.getHomeRecommendedApi().getRecommendedInfo();
+                        return RetrofitHelper.getBiliAppAPI().getRecommendedInfo();
                     }
                 })
                 .compose(bindToLifecycle())

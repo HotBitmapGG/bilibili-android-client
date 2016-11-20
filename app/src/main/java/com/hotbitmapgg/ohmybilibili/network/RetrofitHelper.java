@@ -2,42 +2,17 @@ package com.hotbitmapgg.ohmybilibili.network;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.hotbitmapgg.ohmybilibili.BilibiliApp;
-import com.hotbitmapgg.ohmybilibili.network.api.ActivityCenterService;
-import com.hotbitmapgg.ohmybilibili.network.api.AllareasRankService;
-import com.hotbitmapgg.ohmybilibili.network.api.AttentionDynamicService;
-import com.hotbitmapgg.ohmybilibili.network.api.BangumiAppIndexService;
-import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsCommentService;
-import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsRecommendService;
-import com.hotbitmapgg.ohmybilibili.network.api.BangumiDetailsService;
-import com.hotbitmapgg.ohmybilibili.network.api.BangumiIndexService;
-import com.hotbitmapgg.ohmybilibili.network.api.BangumiRecommendService;
-import com.hotbitmapgg.ohmybilibili.network.api.BangumiScheduleService;
-import com.hotbitmapgg.ohmybilibili.network.api.HDVideoService;
-import com.hotbitmapgg.ohmybilibili.network.api.HotSearchTagService;
-import com.hotbitmapgg.ohmybilibili.network.api.LiveAppIndexService;
-import com.hotbitmapgg.ohmybilibili.network.api.LiveUrlService;
-import com.hotbitmapgg.ohmybilibili.network.api.NewBangumiSerialService;
-import com.hotbitmapgg.ohmybilibili.network.api.OriginalRankService;
-import com.hotbitmapgg.ohmybilibili.network.api.RecommendedService;
-import com.hotbitmapgg.ohmybilibili.network.api.RegionDetailsService;
-import com.hotbitmapgg.ohmybilibili.network.api.RegionRecommendService;
-import com.hotbitmapgg.ohmybilibili.network.api.RegionTypeService;
-import com.hotbitmapgg.ohmybilibili.network.api.SeasonNewBangumiService;
-import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicInfoService;
-import com.hotbitmapgg.ohmybilibili.network.api.SpecialTopicItemService;
-import com.hotbitmapgg.ohmybilibili.network.api.TopicCenterService;
-import com.hotbitmapgg.ohmybilibili.network.api.TotalStationSearchService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserChaseBangumiService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserCoinsVideoService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserContributeVideoService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserFavoritesService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserInfoDetailsService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserInterestQuanService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserLiveRoomStatusService;
-import com.hotbitmapgg.ohmybilibili.network.api.UserPlayGameService;
-import com.hotbitmapgg.ohmybilibili.network.api.VideoCommentService;
-import com.hotbitmapgg.ohmybilibili.network.api.VideoDetailsService;
-import com.hotbitmapgg.ohmybilibili.network.api.VipGameService;
+import com.hotbitmapgg.ohmybilibili.network.api.BiliApiService;
+import com.hotbitmapgg.ohmybilibili.network.api.BiliAppService;
+import com.hotbitmapgg.ohmybilibili.network.api.BangumiService;
+import com.hotbitmapgg.ohmybilibili.network.api.BiliGoService;
+import com.hotbitmapgg.ohmybilibili.network.api.LiveService;
+import com.hotbitmapgg.ohmybilibili.network.api.RankService;
+import com.hotbitmapgg.ohmybilibili.network.api.SearchService;
+import com.hotbitmapgg.ohmybilibili.network.api.AccountService;
+import com.hotbitmapgg.ohmybilibili.network.api.Im9Service;
+import com.hotbitmapgg.ohmybilibili.network.api.UserService;
+import com.hotbitmapgg.ohmybilibili.network.api.VipService;
 import com.hotbitmapgg.ohmybilibili.utils.CommonUtil;
 
 import java.io.File;
@@ -66,702 +41,106 @@ public class RetrofitHelper
 
     private static OkHttpClient mOkHttpClient;
 
-    private static final String API_BASE_URL = "http://bilibili-service.daoapp.io/";
-
-    private static final String MAIN_BASE_URL = "http://www.bilibili.com/";
-
-    private static final String APP_BASE_URL = "http://app.bilibili.com/";
-
-    private static final String LIVE_BASE_URL = "http://live.bilibili.com/";
-
-    private static final String HOST_API_BASE_URL = "http://api.bilibili.cn/";
-
-    private static final String BANGUMI_BASE_URL = "http://bangumi.bilibili.com/";
-
-    private static final String SEARCH_BASE_URL = "http://s.search.bilibili.com/";
-
-    private static final String ACCOUNT_BASE_URL = "https://account.bilibili.com/";
-
-    private static final String USER_DETAILS_BASE_URL = "http://space.bilibili.com/";
-
-    private static final String VIP_BASE_URL = "http://vip.bilibili.com/";
-
-    private static final String IM9_BASE_URL = "http://www.im9.com/";
-
-    private static final String COMMON_UA_STR = "OhMyBiliBili Android Client/2.1 (100332338@qq.com)";
-
     static
     {
         initOkHttpClient();
     }
 
-    /**
-     * 获取哔哩哔哩直播Api
-     *
-     * @return
-     */
-
-    public static LiveAppIndexService getLiveAppIndexApi()
+    public static LiveService getLiveAPI()
     {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(LIVE_BASE_URL)
-                .client(mOkHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
+        return createApi(LiveService.class, ApiConstants.LIVE_BASE_URL);
+    }
 
-        return retrofit.create(LiveAppIndexService.class);
+
+    public static BiliAppService getBiliAppAPI()
+    {
+
+        return createApi(BiliAppService.class, ApiConstants.APP_BASE_URL);
+    }
+
+
+    public static BiliApiService getBiliAPI()
+    {
+
+        return createApi(BiliApiService.class, ApiConstants.API_BASE_URL);
+    }
+
+
+    public static BiliGoService getBiliGoAPI()
+    {
+
+        return createApi(BiliGoService.class, ApiConstants.BILI_GO_BASE_URL);
+    }
+
+
+    public static RankService getRankAPI()
+    {
+
+        return createApi(RankService.class, ApiConstants.RANK_BASE_URL);
+    }
+
+
+    public static UserService getUserAPI()
+    {
+
+        return createApi(UserService.class, ApiConstants.USER_BASE_URL);
+    }
+
+
+    public static VipService getVipAPI()
+    {
+
+        return createApi(VipService.class, ApiConstants.VIP_BASE_URL);
+    }
+
+
+    public static BangumiService getBangumiAPI()
+    {
+
+        return createApi(BangumiService.class, ApiConstants.BANGUMI_BASE_URL);
+    }
+
+
+    public static SearchService getSearchAPI()
+    {
+
+        return createApi(SearchService.class, ApiConstants.SEARCH_BASE_URL);
+    }
+
+    public static AccountService getAccountAPI()
+    {
+
+        return createApi(AccountService.class, ApiConstants.ACCOUNT_BASE_URL);
+    }
+
+
+    public static Im9Service getIm9API()
+    {
+
+        return createApi(Im9Service.class, ApiConstants.IM9_BASE_URL);
     }
 
 
     /**
-     * 获取番剧索引Api
+     * 根据传入的baseUrl，和api创建retrofit
      *
+     * @param clazz
+     * @param baseUrl
+     * @param <T>
      * @return
      */
-
-    public static BangumiIndexService getBangumiIndexApi()
+    private static <T> T createApi(Class<T> clazz, String baseUrl)
     {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BANGUMI_BASE_URL)
-                .client(mOkHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-
-        return retrofit.create(BangumiIndexService.class);
-    }
-
-    /**
-     * 获取主页推荐Api
-     *
-     * @return
-     */
-
-    public static RecommendedService getHomeRecommendedApi()
-    {
-
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APP_BASE_URL)
-                .client(mOkHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-
-        return retrofit.create(RecommendedService.class);
-    }
-
-    /**
-     * 获取新番连载
-     *
-     * @return
-     */
-    public static NewBangumiSerialService getNewBangumiSerial()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(NewBangumiSerialService.class);
-    }
-
-
-    /**
-     * 获取视频详情
-     *
-     * @return
-     */
-    public static VideoDetailsService getVideoDetailsApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APP_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(VideoDetailsService.class);
-    }
-
-
-    /**
-     * 获取直播数据Url
-     *
-     * @return
-     */
-    public static LiveUrlService getLiveUrlApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(LIVE_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-
-        return retrofit.create(LiveUrlService.class);
-    }
-
-
-    /**
-     * 获取番剧时间表数据
-     *
-     * @return
-     */
-    public static BangumiScheduleService getBangumiScheduleApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BANGUMI_BASE_URL)
+                .baseUrl(baseUrl)
                 .client(mOkHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        return retrofit.create(BangumiScheduleService.class);
-    }
-
-
-    /**
-     * 获取用户详情数据
-     *
-     * @return
-     */
-    public static UserInfoDetailsService getUserInfoDetailsApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ACCOUNT_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(UserInfoDetailsService.class);
-    }
-
-
-    /**
-     * 获取视频评论
-     *
-     * @return
-     */
-    public static VideoCommentService getVideoCommentApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(VideoCommentService.class);
-    }
-
-    /**
-     * 获取专题详情数据
-     *
-     * @return
-     */
-    public static SpecialTopicInfoService getSpInfoApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(SpecialTopicInfoService.class);
-    }
-
-
-    /**
-     * 获取专题下的视频列表数据
-     *
-     * @return
-     */
-    public static SpecialTopicItemService getSpItemApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(SpecialTopicItemService.class);
-    }
-
-    /**
-     * 获取全站搜索结果
-     *
-     * @return
-     */
-    public static TotalStationSearchService getSearchApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APP_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(TotalStationSearchService.class);
-    }
-
-
-    /**
-     * 获取B站高清视频地址数据
-     *
-     * @return
-     */
-    public static HDVideoService getHDVideoApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(HDVideoService.class);
-    }
-
-
-    /**
-     * 获取原创排行榜数据
-     *
-     * @return
-     */
-    public static OriginalRankService getOriginalRankApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MAIN_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(OriginalRankService.class);
-    }
-
-    /**
-     * 获取全区排行榜数据
-     *
-     * @return
-     */
-    public static AllareasRankService getAllareasRankApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MAIN_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(AllareasRankService.class);
-    }
-
-
-    /**
-     * 获取分季新番数据
-     *
-     * @return
-     */
-    public static SeasonNewBangumiService getSeasonNewBangumiApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BANGUMI_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(SeasonNewBangumiService.class);
-    }
-
-    /**
-     * 获取番剧推荐
-     *
-     * @return
-     */
-    public static BangumiRecommendService getBangumiRecommendedApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BANGUMI_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(BangumiRecommendService.class);
-    }
-
-
-    /**
-     * 获取发现页面热搜词标签数据
-     *
-     * @return
-     */
-    public static HotSearchTagService getHotSearchTagsApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(SEARCH_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(HotSearchTagService.class);
-    }
-
-    /**
-     * 获取话题中心数据
-     *
-     * @return
-     */
-    public static TopicCenterService getTopicCenterApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(TopicCenterService.class);
-    }
-
-    /**
-     * 获取活动中心数据
-     *
-     * @return
-     */
-    public static ActivityCenterService getActivityCenterApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(ActivityCenterService.class);
-    }
-
-    /**
-     * 获取全部分区数据类型
-     *
-     * @return
-     */
-    public static RegionTypeService getPartitionTypesApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APP_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(RegionTypeService.class);
-    }
-
-    /**
-     * 获取用户投稿视频数据
-     *
-     * @return
-     */
-    public static UserContributeVideoService getUserContributeVideoApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(USER_DETAILS_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(UserContributeVideoService.class);
-    }
-
-
-    /**
-     * 获取用户追番数据
-     *
-     * @return
-     */
-    public static UserChaseBangumiService getUserChaseBangumiApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(USER_DETAILS_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(UserChaseBangumiService.class);
-    }
-
-    /**
-     * 获取用户兴趣圈数据
-     *
-     * @return
-     */
-    public static UserInterestQuanService getUserInterestQuanApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(IM9_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(UserInterestQuanService.class);
-    }
-
-    /**
-     * 获取用户投币视频数据
-     *
-     * @return
-     */
-    public static UserCoinsVideoService getUserCoinsVideoApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(USER_DETAILS_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(UserCoinsVideoService.class);
-    }
-
-    /**
-     * 获取用户所玩游戏数据
-     *
-     * @return
-     */
-    public static UserPlayGameService getUserPlayGameApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(USER_DETAILS_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(UserPlayGameService.class);
-    }
-
-    /**
-     * 获取用户收藏夹
-     *
-     * @return
-     */
-    public static UserFavoritesService getUserFavoritesApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(UserFavoritesService.class);
-    }
-
-    /**
-     * 获取用户直播状态
-     *
-     * @return
-     */
-    public static UserLiveRoomStatusService getUserLiveRoomStatusApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(LIVE_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(UserLiveRoomStatusService.class);
-    }
-
-
-    /**
-     * 获取分区推荐页数据
-     *
-     * @return
-     */
-    public static RegionRecommendService getRegionRecommendApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APP_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(RegionRecommendService.class);
-    }
-
-    /**
-     * 获取分区详情数据
-     *
-     * @return
-     */
-    public static RegionDetailsService getRegionDetailsApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APP_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(RegionDetailsService.class);
-    }
-
-
-    /**
-     * 获取番剧详情数据
-     *
-     * @return
-     */
-    public static BangumiDetailsService getBangumiDetailsApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BANGUMI_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(BangumiDetailsService.class);
-    }
-
-    /**
-     * 获取番剧详情番剧推荐
-     *
-     * @return
-     */
-    public static BangumiDetailsRecommendService getBangumiDetailsRecommendApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BANGUMI_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(BangumiDetailsRecommendService.class);
-    }
-
-
-    /**
-     * 游戏中心大会员礼包专区
-     *
-     * @return
-     */
-    public static VipGameService getVipGameApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(VIP_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(VipGameService.class);
-    }
-
-
-    /**
-     * 获取首页番剧内容
-     *
-     * @return
-     */
-    public static BangumiAppIndexService getBangumiAppIndexApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BANGUMI_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(BangumiAppIndexService.class);
-    }
-
-
-    /**
-     * 获取关注界面动态数据
-     *
-     * @return
-     */
-    public static AttentionDynamicService getAttentionDynamicApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(AttentionDynamicService.class);
-    }
-
-
-    /**
-     * 获取番剧详情番剧评论
-     *
-     * @return
-     */
-    public static BangumiDetailsCommentService getBangumiDetailsCommentApi()
-    {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HOST_API_BASE_URL)
-                .client(mOkHttpClient)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit.create(BangumiDetailsCommentService.class);
+        return retrofit.create(clazz);
     }
 
 
@@ -813,7 +192,7 @@ public class RetrofitHelper
             Request originalRequest = chain.request();
             Request requestWithUserAgent = originalRequest.newBuilder()
                     .removeHeader("User-Agent")
-                    .addHeader("User-Agent", COMMON_UA_STR)
+                    .addHeader("User-Agent", ApiConstants.COMMON_UA_STR)
                     .build();
             return chain.proceed(requestWithUserAgent);
         }

@@ -122,7 +122,7 @@ public class TopicCenterActivity extends RxBaseActivity
     public void loadData()
     {
 
-        RetrofitHelper.getTopicCenterApi()
+        RetrofitHelper.getBiliAPI()
                 .getTopicCenterList()
                 .compose(bindToLifecycle())
                 .map(TopicCenterInfo::getList)

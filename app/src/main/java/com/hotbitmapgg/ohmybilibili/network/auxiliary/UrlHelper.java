@@ -16,7 +16,7 @@ import com.hotbitmapgg.ohmybilibili.entity.user.UserDetailsInfo;
 public class UrlHelper
 {
 
-    public static final String HDSLB_HOST = "http://i2.hdslb.com";
+    private static final String HDSLB_HOST = "http://i2.hdslb.com";
 
 
     private static boolean isVideoUrl(String url)

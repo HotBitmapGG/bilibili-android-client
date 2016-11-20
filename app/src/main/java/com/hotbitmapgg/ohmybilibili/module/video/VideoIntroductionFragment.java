@@ -105,7 +105,7 @@ public class VideoIntroductionFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getVideoDetailsApi()
+        RetrofitHelper.getBiliAppAPI()
                 .getVideoDetails(av)
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())

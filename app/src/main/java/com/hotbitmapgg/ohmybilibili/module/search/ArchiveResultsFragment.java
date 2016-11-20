@@ -135,7 +135,7 @@ public class ArchiveResultsFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getSearchApi()
+        RetrofitHelper.getBiliAppAPI()
                 .searchArchive(content, pageNum, pageSize)
                 .compose(this.bindToLifecycle())
                 .map(SearchArchiveInfo::getData)

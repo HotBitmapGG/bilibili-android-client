@@ -250,7 +250,7 @@ public class VideoDetailsActivity extends RxBaseActivity
     public void loadData()
     {
 
-        RetrofitHelper.getVideoDetailsApi()
+        RetrofitHelper.getBiliAppAPI()
                 .getVideoDetails(av)
                 .compose(this.bindToLifecycle())
                 .subscribeOn(Schedulers.io())

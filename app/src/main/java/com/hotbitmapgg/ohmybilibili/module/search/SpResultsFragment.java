@@ -136,7 +136,7 @@ public class SpResultsFragment extends RxLazyFragment
     protected void loadData()
     {
 
-        RetrofitHelper.getSearchApi()
+        RetrofitHelper.getBiliAppAPI()
                 .searchSp(content, pageNum, pageSize)
                 .compose(bindToLifecycle())
                 .map(SearchSpInfo::getData)
