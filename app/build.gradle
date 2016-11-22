@@ -25,11 +25,6 @@ android {
         versionCode props.getAt("versionCode") as int
         versionName props['versionName']
 
-
-// 去掉jack编译，因为更新25后编译不通过，所以暂时屏蔽掉
-//        jackOptions {
-//            enabled true
-//        }
     }
 
     buildTypes {
