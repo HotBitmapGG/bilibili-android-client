@@ -427,7 +427,6 @@ public class UserInfoDetailsActivity extends RxBaseActivity
                     initViewPager();
                 }, throwable -> {
                     hideProgressBar();
-                    LogUtil.all(throwable.getMessage());
                 });
     }
 
