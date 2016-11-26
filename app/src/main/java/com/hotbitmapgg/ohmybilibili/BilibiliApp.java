@@ -8,6 +8,7 @@ import android.support.annotation.ColorRes;
 import com.bilibili.magicasakura.utils.ThemeUtils;
 import com.facebook.stetho.Stetho;
 import com.hotbitmapgg.ohmybilibili.utils.ThemeHelper;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by hcc on 16/8/7 21:18
@@ -34,6 +35,8 @@ public class BilibiliApp extends Application implements ThemeUtils.switchColor
     {
         // 初始化主题切换
         ThemeUtils.setSwitchColor(this);
+        //初始化Leak内存泄露检测工具
+        LeakCanary.install(this);
         //初始化Stetho调试工具
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
