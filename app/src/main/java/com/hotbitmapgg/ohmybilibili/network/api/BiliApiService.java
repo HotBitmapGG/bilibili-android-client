@@ -89,7 +89,7 @@ public interface BiliApiService
      *
      * @return
      */
-    @GET("x/feed/pull?access_key=19946e1ef3b5cad1a756c475a67185bb&actionKey=appkey&appkey=27eb53fc9058f8c3&build=3940&device=phone&mobi_app=iphone&platform=ios&pn=1&ps=30&sign=4ab1598d07506c09e3dbab800d331a6a&ts=1477997574&type=0")
+    @GET("x/feed/pull?access_key=9afd8a2836e5948e84e037ca5b33309c&actionKey=appkey&appkey=27eb53fc9058f8c3&build=4000&device=phone&mobi_app=iphone&platform=ios&pn=1&ps=30&sign=8d5f090c70b3743a6a7d899d885061f0&ts=1480131936&type=0")
     Observable<AttentionDynamicInfo> getAttentionDynamic();
 
     /**
