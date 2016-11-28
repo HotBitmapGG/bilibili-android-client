@@ -7,7 +7,7 @@
 
     <include layout="@layout/layout_toolbar" />
 
-    <com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
+    <com.hotbitmapgg.bilibili.widget.SpringScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
 
-            <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+            <com.hotbitmapgg.bilibili.widget.CircleImageView
                 android:layout_width="@dimen/circle_default_size"
                 android:layout_height="@dimen/circle_default_size"
                 android:layout_marginTop="@dimen/circle_margin_top"
@@ -71,7 +71,7 @@
 
         </LinearLayout>
 
-    </com.hotbitmapgg.ohmybilibili.widget.SpringScrollView>
+    </com.hotbitmapgg.bilibili.widget.SpringScrollView>
 
 </LinearLayout>
 

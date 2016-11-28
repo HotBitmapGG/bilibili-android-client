@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.hotbitmapgg.ohmybilibili.widget.banner.BannerView
+    <com.hotbitmapgg.bilibili.widget.banner.BannerView
         android:id="@+id/item_live_banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

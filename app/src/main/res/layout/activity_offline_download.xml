@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
+            <com.hotbitmapgg.bilibili.widget.SpringScrollView
                 android:id="@+id/download_scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -24,7 +24,7 @@
                 android:scrollbars="none" />
 
 
-            <com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView
+            <com.hotbitmapgg.bilibili.widget.CustomEmptyView
                 android:id="@+id/empty_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.hotbitmapgg.ohmybilibili.widget.progressbar.NumberProgressBar
+                <com.hotbitmapgg.bilibili.widget.progressbar.NumberProgressBar
                     android:id="@+id/progress_bar"
                     style="@style/NumberProgressBar_Beauty_Red"
                     android:layout_width="match_parent"

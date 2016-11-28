@@ -33,7 +33,7 @@
                 app:tl_textSelectColor="@color/colorPrimary"
                 app:tl_textUnselectColor="@color/font_normal" />
 
-            <com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager
+            <com.hotbitmapgg.bilibili.widget.NoScrollViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

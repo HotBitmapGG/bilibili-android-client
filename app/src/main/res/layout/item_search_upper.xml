@@ -7,7 +7,7 @@
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground">
 
-    <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+    <com.hotbitmapgg.bilibili.widget.CircleImageView
         android:id="@+id/item_avatar_view"
         android:layout_width="@dimen/search_upper_avatar_size"
         android:layout_height="@dimen/search_upper_avatar_size"

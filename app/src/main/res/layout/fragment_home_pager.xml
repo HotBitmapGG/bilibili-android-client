@@ -38,7 +38,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_drawer_home" />
 
-                    <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                    <com.hotbitmapgg.bilibili.widget.CircleImageView
                         android:id="@+id/toolbar_user_avatar"
                         android:layout_width="@dimen/circle_user_small_size"
                         android:layout_height="@dimen/circle_user_small_size"
@@ -79,7 +79,7 @@
         </android.support.design.widget.AppBarLayout>
 
 
-        <com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager
+        <com.hotbitmapgg.bilibili.widget.NoScrollViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

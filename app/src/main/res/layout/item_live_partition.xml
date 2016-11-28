@@ -36,7 +36,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/default_tiny_padding">
 
-                <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                <com.hotbitmapgg.bilibili.widget.CircleImageView
                     android:id="@+id/item_live_user_cover"
                     android:layout_width="@dimen/user_avatar_small_size"
                     android:layout_height="@dimen/user_avatar_small_size"

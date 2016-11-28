@@ -181,7 +181,7 @@
                     </LinearLayout>
 
 
-                    <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+                    <com.hotbitmapgg.bilibili.widget.CircleImageView
                         android:id="@+id/user_avatar_view"
                         android:layout_width="@dimen/user_info_avatar_size"
                         android:layout_height="@dimen/user_info_avatar_size"
@@ -268,14 +268,14 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager
+        <com.hotbitmapgg.bilibili.widget.NoScrollViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never" />
 
 
-        <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
+        <com.hotbitmapgg.bilibili.widget.CircleProgressView
             android:id="@+id/circle_progress"
             android:layout_width="@dimen/circle_progress_view_default_size"
             android:layout_height="@dimen/circle_progress_view_default_size"

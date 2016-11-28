@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="horizontal">
 
-    <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
+    <com.hotbitmapgg.bilibili.widget.CircleProgressView
         android:id="@+id/load_pro"
         android:layout_width="@dimen/load_more_layout_circle_progress_size"
         android:layout_height="@dimen/load_more_layout_circle_progress_size"

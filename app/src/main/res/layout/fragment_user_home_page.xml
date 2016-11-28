@@ -190,7 +190,7 @@
         </RelativeLayout>
 
 
-        <com.hotbitmapgg.ohmybilibili.widget.FavoritesItemLayout
+        <com.hotbitmapgg.bilibili.widget.FavoritesItemLayout
             android:id="@+id/favorites_layout"
             android:layout_width="@dimen/user_favorites_image_height"
             android:layout_height="@dimen/user_favorites_image_height"

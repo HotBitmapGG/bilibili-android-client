@@ -94,7 +94,7 @@
                 android:src="@drawable/ic_live_palyer_zoom_in" />
         </RelativeLayout>
 
-        <com.hotbitmapgg.ohmybilibili.widget.livelike.LoveLikeLayout
+        <com.hotbitmapgg.bilibili.widget.livelike.LoveLikeLayout
             android:id="@+id/love_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -108,7 +108,7 @@
         android:background="@color/card_view_background">
 
 
-        <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+        <com.hotbitmapgg.bilibili.widget.CircleImageView
             android:id="@+id/user_pic"
             android:layout_width="@dimen/user_avatar_size"
             android:layout_height="@dimen/user_avatar_size"

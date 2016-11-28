@@ -393,7 +393,7 @@
 
                 </LinearLayout>
 
-                <com.hotbitmapgg.ohmybilibili.widget.CircleProgressView
+                <com.hotbitmapgg.bilibili.widget.CircleProgressView
                     android:id="@+id/circle_progress"
                     android:layout_width="@dimen/circle_progress_view_default_size"
                     android:layout_height="@dimen/circle_progress_view_default_size"

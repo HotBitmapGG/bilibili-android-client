@@ -11,7 +11,7 @@
     app:cardElevation="@dimen/card_elevation">
 
 
-    <com.hotbitmapgg.ohmybilibili.widget.FavoritesItemLayout
+    <com.hotbitmapgg.bilibili.widget.FavoritesItemLayout
         android:id="@+id/item_favorites"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

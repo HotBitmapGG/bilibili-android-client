@@ -233,7 +233,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/default_general_margin">
 
-            <com.hotbitmapgg.ohmybilibili.widget.UserTagView
+            <com.hotbitmapgg.bilibili.widget.UserTagView
                 android:id="@+id/author_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

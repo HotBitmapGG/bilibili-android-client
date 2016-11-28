@@ -16,7 +16,7 @@
             android:scrollbars="none" />
 
 
-        <com.hotbitmapgg.ohmybilibili.widget.CustomEmptyView
+        <com.hotbitmapgg.bilibili.widget.CustomEmptyView
             android:id="@+id/empty_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

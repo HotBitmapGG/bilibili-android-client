@@ -7,7 +7,7 @@
 
     <include layout="@layout/layout_toolbar" />
 
-    <com.hotbitmapgg.ohmybilibili.widget.SpringScrollView
+    <com.hotbitmapgg.bilibili.widget.SpringScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -127,6 +127,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/default_medium_text_size" />
         </LinearLayout>
-    </com.hotbitmapgg.ohmybilibili.widget.SpringScrollView>
+    </com.hotbitmapgg.bilibili.widget.SpringScrollView>
 
 </LinearLayout>

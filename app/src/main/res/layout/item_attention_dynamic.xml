@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/focus_dynamic_user_height">
 
-            <com.hotbitmapgg.ohmybilibili.widget.CircleImageView
+            <com.hotbitmapgg.bilibili.widget.CircleImageView
                 android:id="@+id/item_user_avatar"
                 android:layout_width="@dimen/focus_dynamic_user_avatar_size"
                 android:layout_height="@dimen/focus_dynamic_user_avatar_size"

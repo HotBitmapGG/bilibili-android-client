@@ -34,7 +34,7 @@
                 app:tl_tab_space_equal="false"
                 app:tl_tab_padding="@dimen/tab_bar_item_padding" />
 
-            <com.hotbitmapgg.ohmybilibili.widget.NoScrollViewPager
+            <com.hotbitmapgg.bilibili.widget.NoScrollViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
