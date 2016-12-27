@@ -21,108 +21,105 @@ import java.util.List;
  * <p/>
  * 全区排行榜adapter
  */
-public class AllareasRankAdapter extends AbsRecyclerViewAdapter
-{
+public class AllareasRankAdapter extends AbsRecyclerViewAdapter {
 
-    private List<AllareasRankInfo.RankBean.ListBean> allRanks;
+  private List<AllareasRankInfo.RankBean.ListBean> allRanks;
 
-    public AllareasRankAdapter(RecyclerView recyclerView, List<AllareasRankInfo.RankBean.ListBean> allRanks)
-    {
 
-        super(recyclerView);
-        this.allRanks = allRanks;
+  public AllareasRankAdapter(RecyclerView recyclerView, List<AllareasRankInfo.RankBean.ListBean> allRanks) {
+
+    super(recyclerView);
+    this.allRanks = allRanks;
+  }
+
+
+  @Override
+  public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+    bindContext(parent.getContext());
+    return new ItemViewHolder(LayoutInflater.from(getContext())
+        .inflate(R.layout.item_rank_video, parent, false));
+  }
+
+
+  @Override
+  public void onBindViewHolder(ClickableViewHolder holder, int position) {
+
+    if (holder instanceof ItemViewHolder) {
+      ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+      AllareasRankInfo.RankBean.ListBean listBean = allRanks.get(position);
+      itemViewHolder.mVideoTitle.setText(listBean.getTitle());
+      itemViewHolder.mVideoPlayNum.setText(String.valueOf(listBean.getPlay()));
+      itemViewHolder.mVideoReviewCount.setText(String.valueOf(listBean.getVideo_review()));
+      itemViewHolder.mUserName.setText(listBean.getAuthor());
+      itemViewHolder.mSortNum.setText(String.valueOf(position + 1));
+      setSortNumTextSize(itemViewHolder, position);
+
+      Glide.with(getContext())
+          .load(listBean.getPic())
+          .centerCrop()
+          .diskCacheStrategy(DiskCacheStrategy.ALL)
+          .placeholder(R.drawable.bili_default_image_tv)
+          .dontAnimate()
+          .into(itemViewHolder.mVideoImg);
     }
+    super.onBindViewHolder(holder, position);
+  }
 
-    @Override
-    public ClickableViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
 
-        bindContext(parent.getContext());
-        return new ItemViewHolder(LayoutInflater.from(getContext())
-                .inflate(R.layout.item_rank_video, parent, false));
+  private void setSortNumTextSize(ItemViewHolder itemViewHolder, int position) {
+
+    if (position == 0) {
+      itemViewHolder.mSortNum.setTextSize(24);
+      itemViewHolder.mSortNum.setTextColor(
+          getContext().getResources().getColor(R.color.colorPrimary));
+    } else if (position == 1) {
+      itemViewHolder.mSortNum.setTextSize(22);
+      itemViewHolder.mSortNum.setTextColor(
+          getContext().getResources().getColor(R.color.colorPrimary));
+    } else if (position == 2) {
+      itemViewHolder.mSortNum.setTextSize(18);
+      itemViewHolder.mSortNum.setTextColor(
+          getContext().getResources().getColor(R.color.colorPrimary));
+    } else {
+      itemViewHolder.mSortNum.setTextSize(16);
+      itemViewHolder.mSortNum.setTextColor(
+          getContext().getResources().getColor(R.color.black_alpha_30));
     }
+  }
 
-    @Override
-    public void onBindViewHolder(ClickableViewHolder holder, int position)
-    {
 
-        if (holder instanceof ItemViewHolder)
-        {
-            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            AllareasRankInfo.RankBean.ListBean listBean = allRanks.get(position);
-            itemViewHolder.mVideoTitle.setText(listBean.getTitle());
-            itemViewHolder.mVideoPlayNum.setText(String.valueOf(listBean.getPlay()));
-            itemViewHolder.mVideoReviewCount.setText(String.valueOf(listBean.getVideo_review()));
-            itemViewHolder.mUserName.setText(listBean.getAuthor());
-            itemViewHolder.mSortNum.setText(String.valueOf(position + 1));
-            setSortNumTextSize(itemViewHolder, position);
+  @Override
+  public int getItemCount() {
 
-            Glide.with(getContext())
-                    .load(listBean.getPic())
-                    .centerCrop()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.drawable.bili_default_image_tv)
-                    .dontAnimate()
-                    .into(itemViewHolder.mVideoImg);
-        }
-        super.onBindViewHolder(holder, position);
+    return allRanks.size();
+  }
+
+
+  public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder {
+
+    ImageView mVideoImg;
+
+    TextView mVideoTitle;
+
+    TextView mVideoPlayNum;
+
+    TextView mVideoReviewCount;
+
+    TextView mSortNum;
+
+    TextView mUserName;
+
+
+    public ItemViewHolder(View itemView) {
+
+      super(itemView);
+      mVideoImg = $(R.id.item_img);
+      mVideoTitle = $(R.id.item_title);
+      mVideoPlayNum = $(R.id.item_play);
+      mVideoReviewCount = $(R.id.item_review);
+      mSortNum = $(R.id.item_sort_num);
+      mUserName = $(R.id.item_user_name);
     }
-
-    private void setSortNumTextSize(ItemViewHolder itemViewHolder, int position)
-    {
-
-        if (position == 0)
-        {
-            itemViewHolder.mSortNum.setTextSize(24);
-            itemViewHolder.mSortNum.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
-        } else if (position == 1)
-        {
-            itemViewHolder.mSortNum.setTextSize(22);
-            itemViewHolder.mSortNum.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
-        } else if (position == 2)
-        {
-            itemViewHolder.mSortNum.setTextSize(18);
-            itemViewHolder.mSortNum.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
-        } else
-        {
-            itemViewHolder.mSortNum.setTextSize(16);
-            itemViewHolder.mSortNum.setTextColor(getContext().getResources().getColor(R.color.black_alpha_30));
-        }
-    }
-
-    @Override
-    public int getItemCount()
-    {
-
-        return allRanks.size();
-    }
-
-
-    public class ItemViewHolder extends AbsRecyclerViewAdapter.ClickableViewHolder
-    {
-
-        ImageView mVideoImg;
-
-        TextView mVideoTitle;
-
-        TextView mVideoPlayNum;
-
-        TextView mVideoReviewCount;
-
-        TextView mSortNum;
-
-        TextView mUserName;
-
-        public ItemViewHolder(View itemView)
-        {
-
-            super(itemView);
-            mVideoImg = $(R.id.item_img);
-            mVideoTitle = $(R.id.item_title);
-            mVideoPlayNum = $(R.id.item_play);
-            mVideoReviewCount = $(R.id.item_review);
-            mSortNum = $(R.id.item_sort_num);
-            mUserName = $(R.id.item_user_name);
-        }
-    }
+  }
 }

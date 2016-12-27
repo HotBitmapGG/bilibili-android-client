@@ -9,12 +9,10 @@ import android.view.View;
  * <p/>
  * 一个简单的SnackBar工具类
  */
-public class SnackbarUtil
-{
+public class SnackbarUtil {
 
-    public static void showMessage(View view, String text)
-    {
+  public static void showMessage(View view, String text) {
 
-        Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show();
-    }
+    Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show();
+  }
 }

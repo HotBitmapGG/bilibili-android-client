@@ -6,8 +6,7 @@ package com.hotbitmapgg.bilibili.media.callback;
  * <p/>
  * 弹幕开关回调接口
  */
-public interface DanmukuSwitchListener
-{
+public interface DanmukuSwitchListener {
 
-    void setDanmakushow(boolean isShow);
+  void setDanmakushow(boolean isShow);
 }

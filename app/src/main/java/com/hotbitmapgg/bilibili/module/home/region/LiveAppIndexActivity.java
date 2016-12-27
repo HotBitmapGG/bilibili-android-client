@@ -25,115 +25,113 @@ import rx.schedulers.Schedulers;
  * 分区直播界面
  */
 
-public class LiveAppIndexActivity extends RxBaseActivity
-{
+public class LiveAppIndexActivity extends RxBaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+  @BindView(R.id.toolbar)
+  Toolbar mToolbar;
 
-    @BindView(R.id.recycle)
-    RecyclerView mRecyclerView;
+  @BindView(R.id.recycle)
+  RecyclerView mRecyclerView;
 
-    @BindView(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
+  @BindView(R.id.swipe_refresh_layout)
+  SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private LiveAppIndexAdapter mLiveAppIndexAdapter;
+  private LiveAppIndexAdapter mLiveAppIndexAdapter;
 
-    @Override
-    public int getLayoutId()
-    {
 
-        return R.layout.activity_live_app_index;
+  @Override
+  public int getLayoutId() {
+
+    return R.layout.activity_live_app_index;
+  }
+
+
+  @Override
+  public void initViews(Bundle savedInstanceState) {
+
+    initRefreshLayout();
+    initRecyclerView();
+  }
+
+
+  @Override
+  public void initToolBar() {
+
+    mToolbar.setTitle("直播");
+    setSupportActionBar(mToolbar);
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar != null) {
+      supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
+  }
 
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
 
-        initRefreshLayout();
-        initRecyclerView();
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
     }
+    return super.onOptionsItemSelected(item);
+  }
 
-    @Override
-    public void initToolBar()
-    {
 
-        mToolbar.setTitle("直播");
-        setSupportActionBar(mToolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null)
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-    }
+  @Override
+  public void initRecyclerView() {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    mLiveAppIndexAdapter = new LiveAppIndexAdapter(LiveAppIndexActivity.this);
+    mRecyclerView.setAdapter(mLiveAppIndexAdapter);
+    GridLayoutManager layout = new GridLayoutManager(LiveAppIndexActivity.this, 12);
+    layout.setOrientation(LinearLayoutManager.VERTICAL);
+    layout.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 
-        if (item.getItemId() == android.R.id.home)
-            onBackPressed();
-        return super.onOptionsItemSelected(item);
-    }
+      @Override
+      public int getSpanSize(int position) {
 
-    @Override
-    public void initRecyclerView()
-    {
+        return mLiveAppIndexAdapter.getSpanSize(position);
+      }
+    });
 
-        mLiveAppIndexAdapter = new LiveAppIndexAdapter(LiveAppIndexActivity.this);
-        mRecyclerView.setAdapter(mLiveAppIndexAdapter);
-        GridLayoutManager layout = new GridLayoutManager(LiveAppIndexActivity.this, 12);
-        layout.setOrientation(LinearLayoutManager.VERTICAL);
-        layout.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
-        {
+    mRecyclerView.setLayoutManager(layout);
+  }
 
-            @Override
-            public int getSpanSize(int position)
-            {
 
-                return mLiveAppIndexAdapter.getSpanSize(position);
-            }
+  @Override
+  public void initRefreshLayout() {
+
+    mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+    mSwipeRefreshLayout.setOnRefreshListener(this::loadData);
+    mSwipeRefreshLayout.post(() -> {
+
+      mSwipeRefreshLayout.setRefreshing(true);
+      loadData();
+    });
+  }
+
+
+  @Override
+  public void loadData() {
+
+    RetrofitHelper.getLiveAPI()
+        .getLiveAppIndex()
+        .compose(bindToLifecycle())
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(liveAppIndexInfo -> {
+
+          mLiveAppIndexAdapter.setLiveInfo(liveAppIndexInfo);
+          finishTask();
+        }, throwable -> {
+
         });
-
-        mRecyclerView.setLayoutManager(layout);
-    }
-
-    @Override
-    public void initRefreshLayout()
-    {
-
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        mSwipeRefreshLayout.setOnRefreshListener(this::loadData);
-        mSwipeRefreshLayout.post(() -> {
-
-            mSwipeRefreshLayout.setRefreshing(true);
-            loadData();
-        });
-    }
-
-    @Override
-    public void loadData()
-    {
-
-        RetrofitHelper.getLiveAPI()
-                .getLiveAppIndex()
-                .compose(bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(liveAppIndexInfo -> {
-
-                    mLiveAppIndexAdapter.setLiveInfo(liveAppIndexInfo);
-                    finishTask();
-                }, throwable -> {
-
-                });
-    }
+  }
 
 
-    @Override
-    public void finishTask()
-    {
+  @Override
+  public void finishTask() {
 
-        mSwipeRefreshLayout.setRefreshing(false);
-        mLiveAppIndexAdapter.notifyDataSetChanged();
-        mRecyclerView.scrollToPosition(0);
-    }
+    mSwipeRefreshLayout.setRefreshing(false);
+    mLiveAppIndexAdapter.notifyDataSetChanged();
+    mRecyclerView.scrollToPosition(0);
+  }
 }

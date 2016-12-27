@@ -31,133 +31,130 @@ import rx.schedulers.Schedulers;
  * 更多新番列表界面
  */
 
-public class SeasonNewBangumiActivity extends RxBaseActivity
-{
+public class SeasonNewBangumiActivity extends RxBaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+  @BindView(R.id.toolbar)
+  Toolbar mToolbar;
 
-    @BindView(R.id.recycle)
-    RecyclerView mRecyclerView;
+  @BindView(R.id.recycle)
+  RecyclerView mRecyclerView;
 
-    @BindView(R.id.circle_progress)
-    CircleProgressView mCircleProgressView;
+  @BindView(R.id.circle_progress)
+  CircleProgressView mCircleProgressView;
 
-    private List<SeasonNewBangumiInfo.ResultBean> results = new ArrayList<>();
+  private List<SeasonNewBangumiInfo.ResultBean> results = new ArrayList<>();
 
-    private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
+  private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
 
-    @Override
-    public int getLayoutId()
-    {
 
-        return R.layout.activity_season_new_bangumi;
-    }
+  @Override
+  public int getLayoutId() {
 
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
+    return R.layout.activity_season_new_bangumi;
+  }
 
-        initRecyclerView();
-        loadData();
-    }
 
-    @Override
-    public void loadData()
-    {
+  @Override
+  public void initViews(Bundle savedInstanceState) {
 
-        RetrofitHelper.getBangumiAPI()
-                .getSeasonNewBangumiList()
-                .compose(bindToLifecycle())
-                .doOnSubscribe(this::showProgressBar)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(seasonNewBangumiInfo -> {
+    initRecyclerView();
+    loadData();
+  }
 
-                    results.addAll(seasonNewBangumiInfo.getResult());
-                    finishTask();
-                }, throwable -> {
-                    hideProgressBar();
-                });
-    }
 
-    @Override
-    public void finishTask()
-    {
+  @Override
+  public void loadData() {
 
-        Observable.from(results)
-                .compose(bindToLifecycle())
-                .forEach(resultBean -> mSectionedRecyclerViewAdapter.addSection(
-                        new SeasonNewBangumiSection(SeasonNewBangumiActivity.this,
-                                resultBean.getSeason(), resultBean.getYear(), resultBean.getList())));
+    RetrofitHelper.getBangumiAPI()
+        .getSeasonNewBangumiList()
+        .compose(bindToLifecycle())
+        .doOnSubscribe(this::showProgressBar)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(seasonNewBangumiInfo -> {
 
-        mSectionedRecyclerViewAdapter.notifyDataSetChanged();
-        hideProgressBar();
-    }
-
-    @Override
-    public void initRecyclerView()
-    {
-
-        mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
-        GridLayoutManager mGridLayoutManager = new GridLayoutManager(SeasonNewBangumiActivity.this, 3);
-        mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
-        {
-
-            @Override
-            public int getSpanSize(int position)
-            {
-
-                switch (mSectionedRecyclerViewAdapter.getSectionItemViewType(position))
-                {
-                    case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
-                        return 3;
-                    default:
-                        return 1;
-                }
-            }
+          results.addAll(seasonNewBangumiInfo.getResult());
+          finishTask();
+        }, throwable -> {
+          hideProgressBar();
         });
+  }
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setNestedScrollingEnabled(true);
-        mRecyclerView.setLayoutManager(mGridLayoutManager);
-        mRecyclerView.setAdapter(mSectionedRecyclerViewAdapter);
+
+  @Override
+  public void finishTask() {
+
+    Observable.from(results)
+        .compose(bindToLifecycle())
+        .forEach(resultBean -> mSectionedRecyclerViewAdapter.addSection(
+            new SeasonNewBangumiSection(SeasonNewBangumiActivity.this,
+                resultBean.getSeason(), resultBean.getYear(), resultBean.getList())));
+
+    mSectionedRecyclerViewAdapter.notifyDataSetChanged();
+    hideProgressBar();
+  }
+
+
+  @Override
+  public void initRecyclerView() {
+
+    mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
+    GridLayoutManager mGridLayoutManager = new GridLayoutManager(SeasonNewBangumiActivity.this, 3);
+    mGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+
+      @Override
+      public int getSpanSize(int position) {
+
+        switch (mSectionedRecyclerViewAdapter.getSectionItemViewType(position)) {
+          case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
+            return 3;
+          default:
+            return 1;
+        }
+      }
+    });
+
+    mRecyclerView.setHasFixedSize(true);
+    mRecyclerView.setNestedScrollingEnabled(true);
+    mRecyclerView.setLayoutManager(mGridLayoutManager);
+    mRecyclerView.setAdapter(mSectionedRecyclerViewAdapter);
+  }
+
+
+  @Override
+  public void initToolBar() {
+
+    mToolbar.setTitle("分季全部新番");
+    setSupportActionBar(mToolbar);
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar != null) {
+      supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
+  }
 
-    @Override
-    public void initToolBar()
-    {
 
-        mToolbar.setTitle("分季全部新番");
-        setSupportActionBar(mToolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null)
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-
-        if (item.getItemId() == android.R.id.home)
-            onBackPressed();
-        return super.onOptionsItemSelected(item);
-    }
+    return super.onOptionsItemSelected(item);
+  }
 
 
-    @Override
-    public void showProgressBar()
-    {
+  @Override
+  public void showProgressBar() {
 
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
-    }
+    mCircleProgressView.setVisibility(View.VISIBLE);
+    mCircleProgressView.spin();
+  }
 
-    @Override
-    public void hideProgressBar()
-    {
 
-        mCircleProgressView.setVisibility(View.GONE);
-        mCircleProgressView.stopSpinning();
-    }
+  @Override
+  public void hideProgressBar() {
+
+    mCircleProgressView.setVisibility(View.GONE);
+    mCircleProgressView.stopSpinning();
+  }
 }

@@ -8,10 +8,9 @@ import java.util.List;
  * <p/>
  * 专题数据Result
  */
-public class SpecialTopicIResult
-{
+public class SpecialTopicIResult {
 
-    public int result;
+  public int result;
 
-    public List<SpecialTopic.Item> list;
+  public List<SpecialTopic.Item> list;
 }

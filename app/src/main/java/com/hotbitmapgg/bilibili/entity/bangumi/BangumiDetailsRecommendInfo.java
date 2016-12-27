@@ -9,218 +9,217 @@ import java.util.List;
  * 番剧详情番剧推荐模型类
  */
 
-public class BangumiDetailsRecommendInfo
-{
+public class BangumiDetailsRecommendInfo {
+
+  /**
+   * code : 0
+   * message : success
+   * result : {"list":[{"bangumi_id":"2995","cover":"http://i0.hdslb.com/bfs/bangumi/e2b46584e29f2349748b48c5fb26ce02fcbca4e8.jpg","follow":"699942","isfinish":"1","season_id":"5058","title":"路人超能100(灵能百分百)","total_count":"12"},{"bangumi_id":"3282","cover":"http://i0.hdslb.com/bfs/bangumi/eb53e1b66b8f25c87449dda817ece92f0bfe8308.jpg","follow":"30098","isfinish":"0","season_id":"5473","title":"心灵的声音","total_count":"70"},{"bangumi_id":"3326","cover":"http://i0.hdslb.com/bfs/bangumi/dcbf3c193f4f8c0433d8dee2ee02580de15948b6.jpg","follow":"98686","isfinish":"0","season_id":"5538","title":"青鬼","total_count":"12"},{"bangumi_id":"3300","cover":"http://i0.hdslb.com/bfs/bangumi/9925ece99e3458760fc074e8564f74a1d6f46e1d.jpg","follow":"48257","isfinish":"0","season_id":"5504","title":"喵阿楞","total_count":"26"},{"bangumi_id":"2975","cover":"http://i0.hdslb.com/bfs/bangumi/65b007cb885f74804c6662180e4d6a5e0ec57dd0.jpg","follow":"490202","isfinish":"1","season_id":"5033","title":"腐男子高校生活","total_count":"12"},{"bangumi_id":"3331","cover":"http://i0.hdslb.com/bfs/bangumi/c74ba43e76c346476c8c09e653d35de69073cc49.jpg","follow":"112141","isfinish":"0","season_id":"5543","title":"学园Handsome","total_count":"12"}],"season_id":"5070","title":"齐木楠雄的灾难（日播版）"}
+   */
+
+  private int code;
+
+  private String message;
+
+  /**
+   * list : [{"bangumi_id":"2995","cover":"http://i0.hdslb.com/bfs/bangumi/e2b46584e29f2349748b48c5fb26ce02fcbca4e8.jpg","follow":"699942","isfinish":"1","season_id":"5058","title":"路人超能100(灵能百分百)","total_count":"12"},{"bangumi_id":"3282","cover":"http://i0.hdslb.com/bfs/bangumi/eb53e1b66b8f25c87449dda817ece92f0bfe8308.jpg","follow":"30098","isfinish":"0","season_id":"5473","title":"心灵的声音","total_count":"70"},{"bangumi_id":"3326","cover":"http://i0.hdslb.com/bfs/bangumi/dcbf3c193f4f8c0433d8dee2ee02580de15948b6.jpg","follow":"98686","isfinish":"0","season_id":"5538","title":"青鬼","total_count":"12"},{"bangumi_id":"3300","cover":"http://i0.hdslb.com/bfs/bangumi/9925ece99e3458760fc074e8564f74a1d6f46e1d.jpg","follow":"48257","isfinish":"0","season_id":"5504","title":"喵阿楞","total_count":"26"},{"bangumi_id":"2975","cover":"http://i0.hdslb.com/bfs/bangumi/65b007cb885f74804c6662180e4d6a5e0ec57dd0.jpg","follow":"490202","isfinish":"1","season_id":"5033","title":"腐男子高校生活","total_count":"12"},{"bangumi_id":"3331","cover":"http://i0.hdslb.com/bfs/bangumi/c74ba43e76c346476c8c09e653d35de69073cc49.jpg","follow":"112141","isfinish":"0","season_id":"5543","title":"学园Handsome","total_count":"12"}]
+   * season_id : 5070
+   * title : 齐木楠雄的灾难（日播版）
+   */
+
+  private ResultBean result;
+
+
+  public int getCode() {
+
+    return code;
+  }
+
+
+  public void setCode(int code) {
+
+    this.code = code;
+  }
+
+
+  public String getMessage() {
+
+    return message;
+  }
+
+
+  public void setMessage(String message) {
+
+    this.message = message;
+  }
+
+
+  public ResultBean getResult() {
+
+    return result;
+  }
+
+
+  public void setResult(ResultBean result) {
+
+    this.result = result;
+  }
+
+
+  public static class ResultBean {
+
+    private String season_id;
+
+    private String title;
 
     /**
-     * code : 0
-     * message : success
-     * result : {"list":[{"bangumi_id":"2995","cover":"http://i0.hdslb.com/bfs/bangumi/e2b46584e29f2349748b48c5fb26ce02fcbca4e8.jpg","follow":"699942","isfinish":"1","season_id":"5058","title":"路人超能100(灵能百分百)","total_count":"12"},{"bangumi_id":"3282","cover":"http://i0.hdslb.com/bfs/bangumi/eb53e1b66b8f25c87449dda817ece92f0bfe8308.jpg","follow":"30098","isfinish":"0","season_id":"5473","title":"心灵的声音","total_count":"70"},{"bangumi_id":"3326","cover":"http://i0.hdslb.com/bfs/bangumi/dcbf3c193f4f8c0433d8dee2ee02580de15948b6.jpg","follow":"98686","isfinish":"0","season_id":"5538","title":"青鬼","total_count":"12"},{"bangumi_id":"3300","cover":"http://i0.hdslb.com/bfs/bangumi/9925ece99e3458760fc074e8564f74a1d6f46e1d.jpg","follow":"48257","isfinish":"0","season_id":"5504","title":"喵阿楞","total_count":"26"},{"bangumi_id":"2975","cover":"http://i0.hdslb.com/bfs/bangumi/65b007cb885f74804c6662180e4d6a5e0ec57dd0.jpg","follow":"490202","isfinish":"1","season_id":"5033","title":"腐男子高校生活","total_count":"12"},{"bangumi_id":"3331","cover":"http://i0.hdslb.com/bfs/bangumi/c74ba43e76c346476c8c09e653d35de69073cc49.jpg","follow":"112141","isfinish":"0","season_id":"5543","title":"学园Handsome","total_count":"12"}],"season_id":"5070","title":"齐木楠雄的灾难（日播版）"}
+     * bangumi_id : 2995
+     * cover : http://i0.hdslb.com/bfs/bangumi/e2b46584e29f2349748b48c5fb26ce02fcbca4e8.jpg
+     * follow : 699942
+     * isfinish : 1
+     * season_id : 5058
+     * title : 路人超能100(灵能百分百)
+     * total_count : 12
      */
 
-    private int code;
+    private List<ListBean> list;
 
-    private String message;
 
-    /**
-     * list : [{"bangumi_id":"2995","cover":"http://i0.hdslb.com/bfs/bangumi/e2b46584e29f2349748b48c5fb26ce02fcbca4e8.jpg","follow":"699942","isfinish":"1","season_id":"5058","title":"路人超能100(灵能百分百)","total_count":"12"},{"bangumi_id":"3282","cover":"http://i0.hdslb.com/bfs/bangumi/eb53e1b66b8f25c87449dda817ece92f0bfe8308.jpg","follow":"30098","isfinish":"0","season_id":"5473","title":"心灵的声音","total_count":"70"},{"bangumi_id":"3326","cover":"http://i0.hdslb.com/bfs/bangumi/dcbf3c193f4f8c0433d8dee2ee02580de15948b6.jpg","follow":"98686","isfinish":"0","season_id":"5538","title":"青鬼","total_count":"12"},{"bangumi_id":"3300","cover":"http://i0.hdslb.com/bfs/bangumi/9925ece99e3458760fc074e8564f74a1d6f46e1d.jpg","follow":"48257","isfinish":"0","season_id":"5504","title":"喵阿楞","total_count":"26"},{"bangumi_id":"2975","cover":"http://i0.hdslb.com/bfs/bangumi/65b007cb885f74804c6662180e4d6a5e0ec57dd0.jpg","follow":"490202","isfinish":"1","season_id":"5033","title":"腐男子高校生活","total_count":"12"},{"bangumi_id":"3331","cover":"http://i0.hdslb.com/bfs/bangumi/c74ba43e76c346476c8c09e653d35de69073cc49.jpg","follow":"112141","isfinish":"0","season_id":"5543","title":"学园Handsome","total_count":"12"}]
-     * season_id : 5070
-     * title : 齐木楠雄的灾难（日播版）
-     */
+    public String getSeason_id() {
 
-    private ResultBean result;
-
-    public int getCode()
-    {
-
-        return code;
+      return season_id;
     }
 
-    public void setCode(int code)
-    {
 
-        this.code = code;
+    public void setSeason_id(String season_id) {
+
+      this.season_id = season_id;
     }
 
-    public String getMessage()
-    {
 
-        return message;
+    public String getTitle() {
+
+      return title;
     }
 
-    public void setMessage(String message)
-    {
 
-        this.message = message;
+    public void setTitle(String title) {
+
+      this.title = title;
     }
 
-    public ResultBean getResult()
-    {
 
-        return result;
+    public List<ListBean> getList() {
+
+      return list;
     }
 
-    public void setResult(ResultBean result)
-    {
 
-        this.result = result;
+    public void setList(List<ListBean> list) {
+
+      this.list = list;
     }
 
-    public static class ResultBean
-    {
 
-        private String season_id;
+    public static class ListBean {
 
-        private String title;
+      private String bangumi_id;
 
-        /**
-         * bangumi_id : 2995
-         * cover : http://i0.hdslb.com/bfs/bangumi/e2b46584e29f2349748b48c5fb26ce02fcbca4e8.jpg
-         * follow : 699942
-         * isfinish : 1
-         * season_id : 5058
-         * title : 路人超能100(灵能百分百)
-         * total_count : 12
-         */
+      private String cover;
 
-        private List<ListBean> list;
+      private String follow;
 
-        public String getSeason_id()
-        {
+      private String isfinish;
 
-            return season_id;
-        }
+      private String season_id;
 
-        public void setSeason_id(String season_id)
-        {
+      private String title;
 
-            this.season_id = season_id;
-        }
+      private String total_count;
 
-        public String getTitle()
-        {
 
-            return title;
-        }
+      public String getBangumi_id() {
 
-        public void setTitle(String title)
-        {
+        return bangumi_id;
+      }
 
-            this.title = title;
-        }
 
-        public List<ListBean> getList()
-        {
+      public void setBangumi_id(String bangumi_id) {
 
-            return list;
-        }
+        this.bangumi_id = bangumi_id;
+      }
 
-        public void setList(List<ListBean> list)
-        {
 
-            this.list = list;
-        }
+      public String getCover() {
 
-        public static class ListBean
-        {
+        return cover;
+      }
 
-            private String bangumi_id;
 
-            private String cover;
+      public void setCover(String cover) {
 
-            private String follow;
+        this.cover = cover;
+      }
 
-            private String isfinish;
 
-            private String season_id;
+      public String getFollow() {
 
-            private String title;
+        return follow;
+      }
 
-            private String total_count;
 
-            public String getBangumi_id()
-            {
+      public void setFollow(String follow) {
 
-                return bangumi_id;
-            }
+        this.follow = follow;
+      }
 
-            public void setBangumi_id(String bangumi_id)
-            {
 
-                this.bangumi_id = bangumi_id;
-            }
+      public String getIsfinish() {
 
-            public String getCover()
-            {
+        return isfinish;
+      }
 
-                return cover;
-            }
 
-            public void setCover(String cover)
-            {
+      public void setIsfinish(String isfinish) {
 
-                this.cover = cover;
-            }
+        this.isfinish = isfinish;
+      }
 
-            public String getFollow()
-            {
 
-                return follow;
-            }
+      public String getSeason_id() {
 
-            public void setFollow(String follow)
-            {
+        return season_id;
+      }
 
-                this.follow = follow;
-            }
 
-            public String getIsfinish()
-            {
+      public void setSeason_id(String season_id) {
 
-                return isfinish;
-            }
+        this.season_id = season_id;
+      }
 
-            public void setIsfinish(String isfinish)
-            {
 
-                this.isfinish = isfinish;
-            }
+      public String getTitle() {
 
-            public String getSeason_id()
-            {
+        return title;
+      }
 
-                return season_id;
-            }
 
-            public void setSeason_id(String season_id)
-            {
+      public void setTitle(String title) {
 
-                this.season_id = season_id;
-            }
+        this.title = title;
+      }
 
-            public String getTitle()
-            {
 
-                return title;
-            }
+      public String getTotal_count() {
 
-            public void setTitle(String title)
-            {
+        return total_count;
+      }
 
-                this.title = title;
-            }
 
-            public String getTotal_count()
-            {
+      public void setTotal_count(String total_count) {
 
-                return total_count;
-            }
-
-            public void setTotal_count(String total_count)
-            {
-
-                this.total_count = total_count;
-            }
-        }
+        this.total_count = total_count;
+      }
     }
+  }
 }

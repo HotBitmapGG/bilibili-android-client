@@ -14,29 +14,21 @@ import rx.Observable;
  * <p>
  * bilibili-go相关api
  */
-public interface BiliGoService
-{
+public interface BiliGoService {
 
-    /**
-     * b站高清视频
-     * quailty:清晰度(1~2，根据视频有不同)
-     * type: 格式(mp4/flv)
-     *
-     * @param cid
-     * @param quailty
-     * @param type
-     * @return
-     */
-    @GET("/video/{cid}")
-    Observable<HDVideoInfo> getHDVideoUrl(@Path("cid") int cid,
-                                          @Query("quailty") int quailty,
-                                          @Query("type") String type);
+  /**
+   * b站高清视频
+   * quailty:清晰度(1~2，根据视频有不同)
+   * type: 格式(mp4/flv)
+   */
+  @GET("/video/{cid}")
+  Observable<HDVideoInfo> getHDVideoUrl(@Path("cid") int cid,
+                                        @Query("quailty") int quailty,
+                                        @Query("type") String type);
 
-    /**
-     * 新番连载
-     *
-     * @return
-     */
-    @GET("bangumi")
-    Observable<NewBangumiSerialInfo> getNewBangumiSerialList();
+  /**
+   * 新番连载
+   */
+  @GET("bangumi")
+  Observable<NewBangumiSerialInfo> getNewBangumiSerialList();
 }

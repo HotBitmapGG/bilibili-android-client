@@ -57,569 +57,532 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 用户个人中心界面
  */
-public class UserInfoDetailsActivity extends RxBaseActivity
-{
+public class UserInfoDetailsActivity extends RxBaseActivity {
 
-    @BindView(R.id.user_avatar_view)
-    CircleImageView mAvatarImage;
+  @BindView(R.id.user_avatar_view)
+  CircleImageView mAvatarImage;
 
-    @BindView(R.id.user_name)
-    TextView mUserNameText;
+  @BindView(R.id.user_name)
+  TextView mUserNameText;
 
-    @BindView(R.id.user_desc)
-    TextView mDescriptionText;
+  @BindView(R.id.user_desc)
+  TextView mDescriptionText;
 
-    @BindView(R.id.tv_follow_users)
-    TextView mFollowNumText;
+  @BindView(R.id.tv_follow_users)
+  TextView mFollowNumText;
 
-    @BindView(R.id.tv_fans)
-    TextView mFansNumText;
+  @BindView(R.id.tv_fans)
+  TextView mFansNumText;
 
-    @BindView(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout mCollapsingToolbarLayout;
+  @BindView(R.id.collapsing_toolbar)
+  CollapsingToolbarLayout mCollapsingToolbarLayout;
 
-    @BindView(R.id.user_lv)
-    ImageView mUserLv;
+  @BindView(R.id.user_lv)
+  ImageView mUserLv;
 
-    @BindView(R.id.user_sex)
-    ImageView mUserSex;
+  @BindView(R.id.user_sex)
+  ImageView mUserSex;
 
-    @BindView(R.id.author_verified_layout)
-    LinearLayout mAuthorVerifiedLayout;
+  @BindView(R.id.author_verified_layout)
+  LinearLayout mAuthorVerifiedLayout;
 
-    @BindView(R.id.author_verified_text)
-    TextView mAuthorVerifiedText;
+  @BindView(R.id.author_verified_text)
+  TextView mAuthorVerifiedText;
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+  @BindView(R.id.toolbar)
+  Toolbar mToolbar;
 
-    @BindView(R.id.sliding_tabs)
-    SlidingTabLayout mSlidingTabLayout;
+  @BindView(R.id.sliding_tabs)
+  SlidingTabLayout mSlidingTabLayout;
 
-    @BindView(R.id.view_pager)
-    NoScrollViewPager mViewPager;
+  @BindView(R.id.view_pager)
+  NoScrollViewPager mViewPager;
 
-    @BindView(R.id.app_bar_layout)
-    AppBarLayout mAppBarLayout;
+  @BindView(R.id.app_bar_layout)
+  AppBarLayout mAppBarLayout;
 
-    @BindView(R.id.line)
-    View mLineView;
+  @BindView(R.id.line)
+  View mLineView;
 
-    @BindView(R.id.circle_progress)
-    CircleProgressView mCircleProgressView;
+  @BindView(R.id.circle_progress)
+  CircleProgressView mCircleProgressView;
 
-    private String name = "";
+  private String name = "";
 
-    private int mid;
+  private int mid;
 
-    private String avatar_url;
+  private String avatar_url;
 
-    private UserDetailsInfo mUserDetailsInfo;
+  private UserDetailsInfo mUserDetailsInfo;
 
-    private List<String> titles = new ArrayList<>();
+  private List<String> titles = new ArrayList<>();
 
-    private List<Fragment> fragments = new ArrayList<>();
+  private List<Fragment> fragments = new ArrayList<>();
 
-    private int userContributeCount;
+  private int userContributeCount;
 
-    private int userFavoritesCount;
+  private int userFavoritesCount;
 
-    private int userChaseBangumiCount;
+  private int userChaseBangumiCount;
 
-    private int userInterestQuanCount;
+  private int userInterestQuanCount;
 
-    private int userCoinsCount;
+  private int userCoinsCount;
 
-    private int userPlayGameCount;
+  private int userPlayGameCount;
 
-    private UserContributeInfo mUserContributeInfo;
+  private UserContributeInfo mUserContributeInfo;
 
-    private UserFavoritesInfo mUserFavoritesInfo;
+  private UserFavoritesInfo mUserFavoritesInfo;
 
-    private UserChaseBangumiInfo mUserChaseBangumiInfo;
+  private UserChaseBangumiInfo mUserChaseBangumiInfo;
 
-    private UserInterestQuanInfo mUserInterestQuanInfo;
+  private UserInterestQuanInfo mUserInterestQuanInfo;
 
-    private UserCoinsInfo mUserCoinsInfo;
+  private UserCoinsInfo mUserCoinsInfo;
 
-    private UserPlayGameInfo mUserPlayGameInfo;
+  private UserPlayGameInfo mUserPlayGameInfo;
 
-    private UserLiveRoomStatusInfo mUserLiveRoomStatusInfo;
+  private UserLiveRoomStatusInfo mUserLiveRoomStatusInfo;
 
-    private List<UserContributeInfo.DataBean.VlistBean> userContributes = new ArrayList<>();
+  private List<UserContributeInfo.DataBean.VlistBean> userContributes = new ArrayList<>();
 
-    private List<UserCoinsInfo.DataBean.ListBean> userCoins = new ArrayList<>();
+  private List<UserCoinsInfo.DataBean.ListBean> userCoins = new ArrayList<>();
 
-    private List<UserFavoritesInfo.DataBean> userFavorites = new ArrayList<>();
+  private List<UserFavoritesInfo.DataBean> userFavorites = new ArrayList<>();
 
-    private List<UserChaseBangumiInfo.DataBean.ResultBean> userChaseBangumis = new ArrayList<>();
+  private List<UserChaseBangumiInfo.DataBean.ResultBean> userChaseBangumis = new ArrayList<>();
 
-    private List<UserInterestQuanInfo.DataBean.ResultBean> userInterestQuans = new ArrayList<>();
+  private List<UserInterestQuanInfo.DataBean.ResultBean> userInterestQuans = new ArrayList<>();
 
-    private List<UserPlayGameInfo.DataBean.GamesBean> userPlayGames = new ArrayList<>();
+  private List<UserPlayGameInfo.DataBean.GamesBean> userPlayGames = new ArrayList<>();
 
-    private static final String EXTRA_USER_NAME = "extra_user_name",
-            EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
+  private static final String EXTRA_USER_NAME = "extra_user_name",
+      EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
 
 
-    @Override
-    public int getLayoutId()
-    {
+  @Override
+  public int getLayoutId() {
 
-        return R.layout.activity_user_info;
+    return R.layout.activity_user_info;
+  }
+
+
+  @Override
+  public void initViews(Bundle savedInstanceState) {
+
+    Intent intent = getIntent();
+    if (intent != null) {
+      name = intent.getStringExtra(EXTRA_USER_NAME);
+      mid = intent.getIntExtra(EXTRA_MID, -1);
+      avatar_url = intent.getStringExtra(EXTRA_AVATAR_URL);
     }
 
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
+    if (name != null) {
+      mUserNameText.setText(name);
+    }
 
-        Intent intent = getIntent();
-        if (intent != null)
-        {
-            name = intent.getStringExtra(EXTRA_USER_NAME);
-            mid = intent.getIntExtra(EXTRA_MID, -1);
-            avatar_url = intent.getStringExtra(EXTRA_AVATAR_URL);
+    if (avatar_url != null) {
+      Glide.with(UserInfoDetailsActivity.this)
+          .load(avatar_url)
+          .centerCrop()
+          .dontAnimate()
+          .placeholder(R.drawable.ico_user_default)
+          .diskCacheStrategy(DiskCacheStrategy.ALL)
+          .into(mAvatarImage);
+    }
+
+    //获取用户详情
+    getUserInfo();
+    //隐藏ViewPager
+    mViewPager.setVisibility(View.INVISIBLE);
+  }
+
+
+  @Override
+  public void initToolBar() {
+
+    mToolbar.setTitle("");
+    setSupportActionBar(mToolbar);
+    ActionBar supportActionBar = getSupportActionBar();
+    if (supportActionBar != null) {
+      supportActionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    //设置StatusBar透明
+    SystemBarHelper.immersiveStatusBar(this);
+    SystemBarHelper.setHeightAndPadding(this, mToolbar);
+
+    //设置AppBar展开折叠状态监听
+    mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeEvent() {
+
+      @Override
+      public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset) {
+
+        if (state == State.EXPANDED) {
+          //展开状态
+          mCollapsingToolbarLayout.setTitle("");
+          mLineView.setVisibility(View.VISIBLE);
+        } else if (state == State.COLLAPSED) {
+          //折叠状态
+          mCollapsingToolbarLayout.setTitle(name);
+          mLineView.setVisibility(View.GONE);
+        } else {
+          mCollapsingToolbarLayout.setTitle("");
+          mLineView.setVisibility(View.VISIBLE);
         }
+      }
+    });
+  }
 
-        if (name != null)
-            mUserNameText.setText(name);
 
-        if (avatar_url != null)
-            Glide.with(UserInfoDetailsActivity.this)
-                    .load(avatar_url)
-                    .centerCrop()
-                    .dontAnimate()
-                    .placeholder(R.drawable.ico_user_default)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(mAvatarImage);
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
 
-        //获取用户详情
-        getUserInfo();
-        //隐藏ViewPager
-        mViewPager.setVisibility(View.INVISIBLE);
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
     }
+    return super.onOptionsItemSelected(item);
+  }
 
 
-    @Override
-    public void initToolBar()
-    {
+  public void getUserInfo() {
 
-        mToolbar.setTitle("");
-        setSupportActionBar(mToolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        if (supportActionBar != null)
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
+    RetrofitHelper.getAccountAPI()
+        .getUserInfoById(mid)
+        .compose(this.bindToLifecycle())
+        .doOnSubscribe(this::showProgressBar)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(userInfo -> {
 
-
-        //设置StatusBar透明
-        SystemBarHelper.immersiveStatusBar(this);
-        SystemBarHelper.setHeightAndPadding(this, mToolbar);
-
-        //设置AppBar展开折叠状态监听
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeEvent()
-        {
-
-
-            @Override
-            public void onStateChanged(AppBarLayout appBarLayout, State state, int verticalOffset)
-            {
-
-                if (state == State.EXPANDED)
-                {
-                    //展开状态
-                    mCollapsingToolbarLayout.setTitle("");
-                    mLineView.setVisibility(View.VISIBLE);
-                } else if (state == State.COLLAPSED)
-                {
-                    //折叠状态
-                    mCollapsingToolbarLayout.setTitle(name);
-                    mLineView.setVisibility(View.GONE);
-                } else
-                {
-                    mCollapsingToolbarLayout.setTitle("");
-                    mLineView.setVisibility(View.VISIBLE);
-                }
-            }
+          mUserDetailsInfo = userInfo;
+          finishTask();
+        }, throwable -> {
+          hideProgressBar();
         });
+  }
+
+
+  public void finishTask() {
+    //设置用户头像
+    Glide.with(UserInfoDetailsActivity.this)
+        .load(mUserDetailsInfo.getCard().getFace())
+        .centerCrop()
+        .dontAnimate()
+        .placeholder(R.drawable.ico_user_default)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .into(mAvatarImage);
+
+    //设置粉丝和关注
+    mUserNameText.setText(mUserDetailsInfo.getCard().getName());
+    mFollowNumText.setText(String.valueOf(mUserDetailsInfo.getCard().getAttention()));
+    mFansNumText.setText(NumberUtil.converString(mUserDetailsInfo.getCard().getFans()));
+
+    //设置用户等级
+    setUserLevel(Integer.valueOf(mUserDetailsInfo.getCard().getRank()));
+
+    //设置用户性别
+    switch (mUserDetailsInfo.getCard().getSex()) {
+      case "男":
+        mUserSex.setImageResource(R.drawable.ic_user_male);
+        break;
+      case "女":
+        mUserSex.setImageResource(R.drawable.ic_user_female);
+        break;
+      default:
+        mUserSex.setImageResource(R.drawable.ic_user_gay_border);
+        break;
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-
-        if (item.getItemId() == android.R.id.home)
-            onBackPressed();
-        return super.onOptionsItemSelected(item);
+    //设置用户签名信息
+    if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getSign())) {
+      mDescriptionText.setText(mUserDetailsInfo.getCard().getSign());
+    } else {
+      mDescriptionText.setText("这个人懒死了,什么都没有写(・－・。)");
     }
 
-    public void getUserInfo()
-    {
-
-        RetrofitHelper.getAccountAPI()
-                .getUserInfoById(mid)
-                .compose(this.bindToLifecycle())
-                .doOnSubscribe(this::showProgressBar)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userInfo -> {
-
-                    mUserDetailsInfo = userInfo;
-                    finishTask();
-                }, throwable -> {
-                    hideProgressBar();
-                });
+    //设置认证用户信息
+    if (mUserDetailsInfo.getCard().isApprove()) {
+      //认证用户 显示认证资料
+      mAuthorVerifiedLayout.setVisibility(View.VISIBLE);
+      if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getDescription())) {
+        mAuthorVerifiedText.setText(mUserDetailsInfo.getCard().getDescription());
+      } else {
+        mAuthorVerifiedText.setText("这个人懒死了,什么都没有写(・－・。)");
+      }
+    } else {
+      //普通用户
+      mAuthorVerifiedLayout.setVisibility(View.GONE);
     }
 
-
-    public void finishTask()
-    {
-        //设置用户头像
-        Glide.with(UserInfoDetailsActivity.this)
-                .load(mUserDetailsInfo.getCard().getFace())
-                .centerCrop()
-                .dontAnimate()
-                .placeholder(R.drawable.ico_user_default)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(mAvatarImage);
-
-        //设置粉丝和关注
-        mUserNameText.setText(mUserDetailsInfo.getCard().getName());
-        mFollowNumText.setText(String.valueOf(mUserDetailsInfo.getCard().getAttention()));
-        mFansNumText.setText(NumberUtil.converString(mUserDetailsInfo.getCard().getFans()));
-
-        //设置用户等级
-        setUserLevel(Integer.valueOf(mUserDetailsInfo.getCard().getRank()));
-
-        //设置用户性别
-        switch (mUserDetailsInfo.getCard().getSex())
-        {
-            case "男":
-                mUserSex.setImageResource(R.drawable.ic_user_male);
-                break;
-            case "女":
-                mUserSex.setImageResource(R.drawable.ic_user_female);
-                break;
-            default:
-                mUserSex.setImageResource(R.drawable.ic_user_gay_border);
-                break;
-        }
-
-        //设置用户签名信息
-        if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getSign()))
-            mDescriptionText.setText(mUserDetailsInfo.getCard().getSign());
-        else
-            mDescriptionText.setText("这个人懒死了,什么都没有写(・－・。)");
-
-        //设置认证用户信息
-        if (mUserDetailsInfo.getCard().isApprove())
-        {
-            //认证用户 显示认证资料
-            mAuthorVerifiedLayout.setVisibility(View.VISIBLE);
-            if (!TextUtils.isEmpty(mUserDetailsInfo.getCard().getDescription()))
-                mAuthorVerifiedText.setText(mUserDetailsInfo.getCard().getDescription());
-            else
-                mAuthorVerifiedText.setText("这个人懒死了,什么都没有写(・－・。)");
-        } else
-        {
-            //普通用户
-            mAuthorVerifiedLayout.setVisibility(View.GONE);
-        }
-
-        //获取用户详情全部数据
-        getUserAllData();
-    }
-
-    private void getUserAllData()
-    {
-
-        RetrofitHelper.getUserAPI()
-                .getUserContributeVideos(mid, 1, 10)
-                .compose(this.bindToLifecycle())
-                .flatMap(new Func1<UserContributeInfo,Observable<UserFavoritesInfo>>()
-                {
-
-                    @Override
-                    public Observable<UserFavoritesInfo> call(UserContributeInfo userContributeInfo)
-                    {
-
-                        mUserContributeInfo = userContributeInfo;
-                        userContributeCount = userContributeInfo.getData().getCount();
-                        userContributes.addAll(userContributeInfo.getData().getVlist());
-                        return RetrofitHelper.getBiliAPI().getUserFavorites(mid);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .flatMap(new Func1<UserFavoritesInfo,Observable<UserChaseBangumiInfo>>()
-                {
-
-                    @Override
-                    public Observable<UserChaseBangumiInfo> call(UserFavoritesInfo userFavoritesInfo)
-                    {
-
-                        mUserFavoritesInfo = userFavoritesInfo;
-                        userFavoritesCount = userFavoritesInfo.getData().size();
-                        userFavorites.addAll(userFavoritesInfo.getData());
-                        return RetrofitHelper.getUserAPI().getUserChaseBangumis(mid);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .flatMap(new Func1<UserChaseBangumiInfo,Observable<UserInterestQuanInfo>>()
-                {
-
-                    @Override
-                    public Observable<UserInterestQuanInfo> call(UserChaseBangumiInfo userChaseBangumiInfo)
-                    {
-
-                        mUserChaseBangumiInfo = userChaseBangumiInfo;
-                        userChaseBangumiCount = userChaseBangumiInfo.getData().getCount();
-                        userChaseBangumis.addAll(userChaseBangumiInfo.getData().getResult());
-                        return RetrofitHelper.getIm9API().getUserInterestQuanData(mid, 1, 10);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .flatMap(new Func1<UserInterestQuanInfo,Observable<UserCoinsInfo>>()
-                {
-
-                    @Override
-                    public Observable<UserCoinsInfo> call(UserInterestQuanInfo userInterestQuanInfo)
-                    {
-
-                        mUserInterestQuanInfo = userInterestQuanInfo;
-                        userInterestQuanCount = userInterestQuanInfo.getData().getTotal_count();
-                        userInterestQuans.addAll(userInterestQuanInfo.getData().getResult());
-                        return RetrofitHelper.getUserAPI().getUserCoinVideos(mid);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .flatMap(new Func1<UserCoinsInfo,Observable<UserPlayGameInfo>>()
-                {
-
-                    @Override
-                    public Observable<UserPlayGameInfo> call(UserCoinsInfo userCoinsInfo)
-                    {
-
-                        mUserCoinsInfo = userCoinsInfo;
-                        userCoinsCount = userCoinsInfo.getData().getCount();
-                        userCoins.addAll(userCoinsInfo.getData().getList());
-                        return RetrofitHelper.getUserAPI().getUserPlayGames(mid);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .flatMap(new Func1<UserPlayGameInfo,Observable<UserLiveRoomStatusInfo>>()
-                {
-
-                    @Override
-                    public Observable<UserLiveRoomStatusInfo> call(UserPlayGameInfo userPlayGameInfo)
-                    {
-
-                        mUserPlayGameInfo = userPlayGameInfo;
-                        userPlayGameCount = userPlayGameInfo.getData().getCount();
-                        userPlayGames.addAll(userPlayGameInfo.getData().getGames());
-                        return RetrofitHelper.getLiveAPI().getUserLiveRoomStatus(mid);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userLiveRoomStatusInfo -> {
-                    mUserLiveRoomStatusInfo = userLiveRoomStatusInfo;
-                    initViewPager();
-                }, throwable -> {
-                    hideProgressBar();
-                });
-    }
+    //获取用户详情全部数据
+    getUserAllData();
+  }
 
 
-    private void initViewPager()
-    {
+  private void getUserAllData() {
 
-        fragments.add(UserHomePageFragment.newInstance(
-                mUserContributeInfo, mUserFavoritesInfo,
-                mUserChaseBangumiInfo, mUserInterestQuanInfo,
-                mUserCoinsInfo, mUserPlayGameInfo, mUserLiveRoomStatusInfo));
-        fragments.add(UserContributeFragment.newInstance(mid, mUserContributeInfo));
-        fragments.add(UserFavoritesFragment.newInstance(mUserFavoritesInfo));
-        fragments.add(UserChaseBangumiFragment.newInstance(mUserChaseBangumiInfo));
-        fragments.add(UserInterestQuanFragment.newInstance(mid, mUserInterestQuanInfo));
-        fragments.add(UserCoinsVideoFragment.newInstance(mUserCoinsInfo));
-        fragments.add(UserPlayGameFragment.newInstance(mUserPlayGameInfo));
+    RetrofitHelper.getUserAPI()
+        .getUserContributeVideos(mid, 1, 10)
+        .compose(this.bindToLifecycle())
+        .flatMap(new Func1<UserContributeInfo, Observable<UserFavoritesInfo>>() {
 
-        UserInfoDetailsPagerAdapter mAdapter = new UserInfoDetailsPagerAdapter(getSupportFragmentManager(), fragments);
-        mViewPager.setOffscreenPageLimit(fragments.size());
-        mViewPager.setAdapter(mAdapter);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
-        {
+          @Override
+          public Observable<UserFavoritesInfo> call(UserContributeInfo userContributeInfo) {
 
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-            {
+            mUserContributeInfo = userContributeInfo;
+            userContributeCount = userContributeInfo.getData().getCount();
+            userContributes.addAll(userContributeInfo.getData().getVlist());
+            return RetrofitHelper.getBiliAPI().getUserFavorites(mid);
+          }
+        })
+        .compose(bindToLifecycle())
+        .flatMap(new Func1<UserFavoritesInfo, Observable<UserChaseBangumiInfo>>() {
 
-            }
+          @Override
+          public Observable<UserChaseBangumiInfo> call(UserFavoritesInfo userFavoritesInfo) {
 
-            @Override
-            public void onPageSelected(int position)
-            {
+            mUserFavoritesInfo = userFavoritesInfo;
+            userFavoritesCount = userFavoritesInfo.getData().size();
+            userFavorites.addAll(userFavoritesInfo.getData());
+            return RetrofitHelper.getUserAPI().getUserChaseBangumis(mid);
+          }
+        })
+        .compose(bindToLifecycle())
+        .flatMap(new Func1<UserChaseBangumiInfo, Observable<UserInterestQuanInfo>>() {
 
-                measureTabLayoutTextWidth(position);
-            }
+          @Override
+          public Observable<UserInterestQuanInfo> call(UserChaseBangumiInfo userChaseBangumiInfo) {
 
-            @Override
-            public void onPageScrollStateChanged(int state)
-            {
+            mUserChaseBangumiInfo = userChaseBangumiInfo;
+            userChaseBangumiCount = userChaseBangumiInfo.getData().getCount();
+            userChaseBangumis.addAll(userChaseBangumiInfo.getData().getResult());
+            return RetrofitHelper.getIm9API().getUserInterestQuanData(mid, 1, 10);
+          }
+        })
+        .compose(bindToLifecycle())
+        .flatMap(new Func1<UserInterestQuanInfo, Observable<UserCoinsInfo>>() {
 
-            }
+          @Override
+          public Observable<UserCoinsInfo> call(UserInterestQuanInfo userInterestQuanInfo) {
+
+            mUserInterestQuanInfo = userInterestQuanInfo;
+            userInterestQuanCount = userInterestQuanInfo.getData().getTotal_count();
+            userInterestQuans.addAll(userInterestQuanInfo.getData().getResult());
+            return RetrofitHelper.getUserAPI().getUserCoinVideos(mid);
+          }
+        })
+        .compose(bindToLifecycle())
+        .flatMap(new Func1<UserCoinsInfo, Observable<UserPlayGameInfo>>() {
+
+          @Override
+          public Observable<UserPlayGameInfo> call(UserCoinsInfo userCoinsInfo) {
+
+            mUserCoinsInfo = userCoinsInfo;
+            userCoinsCount = userCoinsInfo.getData().getCount();
+            userCoins.addAll(userCoinsInfo.getData().getList());
+            return RetrofitHelper.getUserAPI().getUserPlayGames(mid);
+          }
+        })
+        .compose(bindToLifecycle())
+        .flatMap(new Func1<UserPlayGameInfo, Observable<UserLiveRoomStatusInfo>>() {
+
+          @Override
+          public Observable<UserLiveRoomStatusInfo> call(UserPlayGameInfo userPlayGameInfo) {
+
+            mUserPlayGameInfo = userPlayGameInfo;
+            userPlayGameCount = userPlayGameInfo.getData().getCount();
+            userPlayGames.addAll(userPlayGameInfo.getData().getGames());
+            return RetrofitHelper.getLiveAPI().getUserLiveRoomStatus(mid);
+          }
+        })
+        .compose(bindToLifecycle())
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(userLiveRoomStatusInfo -> {
+          mUserLiveRoomStatusInfo = userLiveRoomStatusInfo;
+          initViewPager();
+        }, throwable -> {
+          hideProgressBar();
         });
+  }
 
-        Observable.timer(2000, TimeUnit.MILLISECONDS)
-                .compose(bindToLifecycle())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    setPagerTitles();
-                }, throwable -> {
-                    LogUtil.all(throwable.getMessage());
-                });
+
+  private void initViewPager() {
+
+    fragments.add(UserHomePageFragment.newInstance(
+        mUserContributeInfo, mUserFavoritesInfo,
+        mUserChaseBangumiInfo, mUserInterestQuanInfo,
+        mUserCoinsInfo, mUserPlayGameInfo, mUserLiveRoomStatusInfo));
+    fragments.add(UserContributeFragment.newInstance(mid, mUserContributeInfo));
+    fragments.add(UserFavoritesFragment.newInstance(mUserFavoritesInfo));
+    fragments.add(UserChaseBangumiFragment.newInstance(mUserChaseBangumiInfo));
+    fragments.add(UserInterestQuanFragment.newInstance(mid, mUserInterestQuanInfo));
+    fragments.add(UserCoinsVideoFragment.newInstance(mUserCoinsInfo));
+    fragments.add(UserPlayGameFragment.newInstance(mUserPlayGameInfo));
+
+    UserInfoDetailsPagerAdapter mAdapter = new UserInfoDetailsPagerAdapter(
+        getSupportFragmentManager(), fragments);
+    mViewPager.setOffscreenPageLimit(fragments.size());
+    mViewPager.setAdapter(mAdapter);
+    mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+      @Override
+      public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+      }
+
+
+      @Override
+      public void onPageSelected(int position) {
+
+        measureTabLayoutTextWidth(position);
+      }
+
+
+      @Override
+      public void onPageScrollStateChanged(int state) {
+
+      }
+    });
+
+    Observable.timer(2000, TimeUnit.MILLISECONDS)
+        .compose(bindToLifecycle())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(aLong -> {
+          setPagerTitles();
+        }, throwable -> {
+          LogUtil.all(throwable.getMessage());
+        });
+  }
+
+
+  private void setPagerTitles() {
+
+    titles.add("主页");
+    titles.add("投稿 " + userContributeCount);
+    titles.add("收藏 " + userFavoritesCount);
+    titles.add("追番 " + userChaseBangumiCount);
+    titles.add("兴趣圈 " + userInterestQuanCount);
+    titles.add("投币 " + userCoinsCount);
+    titles.add("游戏 " + userPlayGameCount);
+    mSlidingTabLayout.setViewPager(mViewPager, titles.toArray(new String[titles.size()]));
+    measureTabLayoutTextWidth(1);
+    mViewPager.setCurrentItem(1);
+    hideProgressBar();
+    mViewPager.setVisibility(View.VISIBLE);
+  }
+
+
+  private void measureTabLayoutTextWidth(int position) {
+
+    String title = titles.get(position);
+    TextView titleView = mSlidingTabLayout.getTitleView(position);
+    TextPaint paint = titleView.getPaint();
+    float textWidth = paint.measureText(title);
+    mSlidingTabLayout.setIndicatorWidth(textWidth / 3);
+  }
+
+
+  private void setUserLevel(int rank) {
+
+    if (rank == 0) {
+      mUserLv.setImageResource(R.drawable.ic_lv0);
+    } else if (rank == 1) {
+      mUserLv.setImageResource(R.drawable.ic_lv1);
+    } else if (rank == 200) {
+      mUserLv.setImageResource(R.drawable.ic_lv2);
+    } else if (rank == 1500) {
+      mUserLv.setImageResource(R.drawable.ic_lv3);
+    } else if (rank == 3000) {
+      mUserLv.setImageResource(R.drawable.ic_lv4);
+    } else if (rank == 7000) {
+      mUserLv.setImageResource(R.drawable.ic_lv5);
+    } else if (rank == 10000) {
+      mUserLv.setImageResource(R.drawable.ic_lv6);
     }
+  }
 
-    private void setPagerTitles()
-    {
 
-        titles.add("主页");
-        titles.add("投稿 " + userContributeCount);
-        titles.add("收藏 " + userFavoritesCount);
-        titles.add("追番 " + userChaseBangumiCount);
-        titles.add("兴趣圈 " + userInterestQuanCount);
-        titles.add("投币 " + userCoinsCount);
-        titles.add("游戏 " + userPlayGameCount);
-        mSlidingTabLayout.setViewPager(mViewPager, titles.toArray(new String[titles.size()]));
-        measureTabLayoutTextWidth(1);
+  @Override
+  public void showProgressBar() {
+
+    mCircleProgressView.setVisibility(View.VISIBLE);
+    mCircleProgressView.spin();
+  }
+
+
+  @Override
+  public void hideProgressBar() {
+
+    mCircleProgressView.setVisibility(View.GONE);
+    mCircleProgressView.stopSpinning();
+  }
+
+
+  public static void launch(Activity activity, String name, int mid, String avatar_url) {
+
+    Intent intent = new Intent(activity, UserInfoDetailsActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    intent.putExtra(EXTRA_USER_NAME, name);
+    intent.putExtra(EXTRA_MID, mid);
+    intent.putExtra(EXTRA_AVATAR_URL, avatar_url);
+    activity.startActivity(intent);
+  }
+
+
+  /**
+   * 根据下标切换页面
+   */
+  public void switchPager(int index) {
+
+    switch (index) {
+      case 1:
         mViewPager.setCurrentItem(1);
-        hideProgressBar();
-        mViewPager.setVisibility(View.VISIBLE);
+        break;
+      case 2:
+        mViewPager.setCurrentItem(2);
+        break;
+      case 3:
+        mViewPager.setCurrentItem(3);
+        break;
+      case 4:
+        mViewPager.setCurrentItem(4);
+        break;
+      case 5:
+        mViewPager.setCurrentItem(5);
+        break;
+      case 6:
+        mViewPager.setCurrentItem(6);
+        break;
     }
+  }
 
-    private void measureTabLayoutTextWidth(int position)
-    {
 
-        String title = titles.get(position);
-        TextView titleView = mSlidingTabLayout.getTitleView(position);
-        TextPaint paint = titleView.getPaint();
-        float textWidth = paint.measureText(title);
-        mSlidingTabLayout.setIndicatorWidth(textWidth / 3);
-    }
+  private static class UserInfoDetailsPagerAdapter extends FragmentStatePagerAdapter {
 
-    private void setUserLevel(int rank)
-    {
+    private List<Fragment> fragments;
 
-        if (rank == 0)
-        {
-            mUserLv.setImageResource(R.drawable.ic_lv0);
-        } else if (rank == 1)
-        {
-            mUserLv.setImageResource(R.drawable.ic_lv1);
-        } else if (rank == 200)
-        {
-            mUserLv.setImageResource(R.drawable.ic_lv2);
-        } else if (rank == 1500)
-        {
-            mUserLv.setImageResource(R.drawable.ic_lv3);
-        } else if (rank == 3000)
-        {
-            mUserLv.setImageResource(R.drawable.ic_lv4);
-        } else if (rank == 7000)
-        {
-            mUserLv.setImageResource(R.drawable.ic_lv5);
-        } else if (rank == 10000)
-        {
-            mUserLv.setImageResource(R.drawable.ic_lv6);
-        }
+
+    UserInfoDetailsPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+
+      super(fm);
+      this.fragments = fragments;
     }
 
 
     @Override
-    public void showProgressBar()
-    {
+    public Fragment getItem(int position) {
 
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
+      return fragments.get(position);
     }
+
 
     @Override
-    public void hideProgressBar()
-    {
+    public int getCount() {
 
-        mCircleProgressView.setVisibility(View.GONE);
-        mCircleProgressView.stopSpinning();
+      return fragments.size();
     }
-
-    public static void launch(Activity activity, String name, int mid, String avatar_url)
-    {
-
-        Intent intent = new Intent(activity, UserInfoDetailsActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(EXTRA_USER_NAME, name);
-        intent.putExtra(EXTRA_MID, mid);
-        intent.putExtra(EXTRA_AVATAR_URL, avatar_url);
-        activity.startActivity(intent);
-    }
-
-
-    /**
-     * 根据下标切换页面
-     *
-     * @param index
-     */
-    public void switchPager(int index)
-    {
-
-        switch (index)
-        {
-            case 1:
-                mViewPager.setCurrentItem(1);
-                break;
-            case 2:
-                mViewPager.setCurrentItem(2);
-                break;
-            case 3:
-                mViewPager.setCurrentItem(3);
-                break;
-            case 4:
-                mViewPager.setCurrentItem(4);
-                break;
-            case 5:
-                mViewPager.setCurrentItem(5);
-                break;
-            case 6:
-                mViewPager.setCurrentItem(6);
-                break;
-        }
-    }
-
-    private static class UserInfoDetailsPagerAdapter extends FragmentStatePagerAdapter
-    {
-
-        private List<Fragment> fragments;
-
-
-        UserInfoDetailsPagerAdapter(FragmentManager fm, List<Fragment> fragments)
-        {
-
-            super(fm);
-            this.fragments = fragments;
-        }
-
-        @Override
-        public Fragment getItem(int position)
-        {
-
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount()
-        {
-
-            return fragments.size();
-        }
-    }
+  }
 }

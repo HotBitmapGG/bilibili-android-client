@@ -9,267 +9,265 @@ import java.util.List;
  * 分季新番模型类
  */
 
-public class SeasonNewBangumiInfo
-{
+public class SeasonNewBangumiInfo {
+
+  private int code;
+
+  private String message;
+
+  private List<ResultBean> result;
 
 
-    private int code;
+  public int getCode() {
 
-    private String message;
+    return code;
+  }
 
-    private List<ResultBean> result;
 
-    public int getCode()
-    {
+  public void setCode(int code) {
 
-        return code;
+    this.code = code;
+  }
+
+
+  public String getMessage() {
+
+    return message;
+  }
+
+
+  public void setMessage(String message) {
+
+    this.message = message;
+  }
+
+
+  public List<ResultBean> getResult() {
+
+    return result;
+  }
+
+
+  public void setResult(List<ResultBean> result) {
+
+    this.result = result;
+  }
+
+
+  public static class ResultBean {
+
+    private int season;
+
+    private int year;
+
+    /**
+     * cover : http://i0.hdslb.com/bfs/bangumi/2673ac643b48eb5bda64c960a2ca850fbebb839d.jpg
+     * favourites : 1262185
+     * is_finish : 0
+     * last_time : 0
+     * newest_ep_index : 4
+     * pub_time : 1475607600
+     * season_id : 5550
+     * season_status : 2
+     * title : 夏目友人帐 伍
+     * version : tv
+     * watching_count : 0
+     */
+
+    private List<ListBean> list;
+
+
+    public int getSeason() {
+
+      return season;
     }
 
-    public void setCode(int code)
-    {
 
-        this.code = code;
+    public void setSeason(int season) {
+
+      this.season = season;
     }
 
-    public String getMessage()
-    {
 
-        return message;
+    public int getYear() {
+
+      return year;
     }
 
-    public void setMessage(String message)
-    {
 
-        this.message = message;
+    public void setYear(int year) {
+
+      this.year = year;
     }
 
-    public List<ResultBean> getResult()
-    {
 
-        return result;
+    public List<ListBean> getList() {
+
+      return list;
     }
 
-    public void setResult(List<ResultBean> result)
-    {
 
-        this.result = result;
+    public void setList(List<ListBean> list) {
+
+      this.list = list;
     }
 
-    public static class ResultBean
-    {
 
-        private int season;
+    public static class ListBean {
 
-        private int year;
+      private String cover;
 
-        /**
-         * cover : http://i0.hdslb.com/bfs/bangumi/2673ac643b48eb5bda64c960a2ca850fbebb839d.jpg
-         * favourites : 1262185
-         * is_finish : 0
-         * last_time : 0
-         * newest_ep_index : 4
-         * pub_time : 1475607600
-         * season_id : 5550
-         * season_status : 2
-         * title : 夏目友人帐 伍
-         * version : tv
-         * watching_count : 0
-         */
+      private String favourites;
 
-        private List<ListBean> list;
+      private int is_finish;
 
-        public int getSeason()
-        {
+      private int last_time;
 
-            return season;
-        }
+      private String newest_ep_index;
 
-        public void setSeason(int season)
-        {
+      private int pub_time;
 
-            this.season = season;
-        }
+      private int season_id;
 
-        public int getYear()
-        {
+      private int season_status;
 
-            return year;
-        }
+      private String title;
 
-        public void setYear(int year)
-        {
+      private String version;
 
-            this.year = year;
-        }
+      private int watching_count;
 
-        public List<ListBean> getList()
-        {
 
-            return list;
-        }
+      public String getCover() {
 
-        public void setList(List<ListBean> list)
-        {
+        return cover;
+      }
 
-            this.list = list;
-        }
 
-        public static class ListBean
-        {
+      public void setCover(String cover) {
 
-            private String cover;
+        this.cover = cover;
+      }
 
-            private String favourites;
 
-            private int is_finish;
+      public String getFavourites() {
 
-            private int last_time;
+        return favourites;
+      }
 
-            private String newest_ep_index;
 
-            private int pub_time;
+      public void setFavourites(String favourites) {
 
-            private int season_id;
+        this.favourites = favourites;
+      }
 
-            private int season_status;
 
-            private String title;
+      public int getIs_finish() {
 
-            private String version;
+        return is_finish;
+      }
 
-            private int watching_count;
 
-            public String getCover()
-            {
+      public void setIs_finish(int is_finish) {
 
-                return cover;
-            }
+        this.is_finish = is_finish;
+      }
 
-            public void setCover(String cover)
-            {
 
-                this.cover = cover;
-            }
+      public int getLast_time() {
 
-            public String getFavourites()
-            {
+        return last_time;
+      }
 
-                return favourites;
-            }
 
-            public void setFavourites(String favourites)
-            {
+      public void setLast_time(int last_time) {
 
-                this.favourites = favourites;
-            }
+        this.last_time = last_time;
+      }
 
-            public int getIs_finish()
-            {
 
-                return is_finish;
-            }
+      public String getNewest_ep_index() {
 
-            public void setIs_finish(int is_finish)
-            {
+        return newest_ep_index;
+      }
 
-                this.is_finish = is_finish;
-            }
 
-            public int getLast_time()
-            {
+      public void setNewest_ep_index(String newest_ep_index) {
 
-                return last_time;
-            }
+        this.newest_ep_index = newest_ep_index;
+      }
 
-            public void setLast_time(int last_time)
-            {
 
-                this.last_time = last_time;
-            }
+      public int getPub_time() {
 
-            public String getNewest_ep_index()
-            {
+        return pub_time;
+      }
 
-                return newest_ep_index;
-            }
 
-            public void setNewest_ep_index(String newest_ep_index)
-            {
+      public void setPub_time(int pub_time) {
 
-                this.newest_ep_index = newest_ep_index;
-            }
+        this.pub_time = pub_time;
+      }
 
-            public int getPub_time()
-            {
 
-                return pub_time;
-            }
+      public int getSeason_id() {
 
-            public void setPub_time(int pub_time)
-            {
+        return season_id;
+      }
 
-                this.pub_time = pub_time;
-            }
 
-            public int getSeason_id()
-            {
+      public void setSeason_id(int season_id) {
 
-                return season_id;
-            }
+        this.season_id = season_id;
+      }
 
-            public void setSeason_id(int season_id)
-            {
 
-                this.season_id = season_id;
-            }
+      public int getSeason_status() {
 
-            public int getSeason_status()
-            {
+        return season_status;
+      }
 
-                return season_status;
-            }
 
-            public void setSeason_status(int season_status)
-            {
+      public void setSeason_status(int season_status) {
 
-                this.season_status = season_status;
-            }
+        this.season_status = season_status;
+      }
 
-            public String getTitle()
-            {
 
-                return title;
-            }
+      public String getTitle() {
 
-            public void setTitle(String title)
-            {
+        return title;
+      }
 
-                this.title = title;
-            }
 
-            public String getVersion()
-            {
+      public void setTitle(String title) {
 
-                return version;
-            }
+        this.title = title;
+      }
 
-            public void setVersion(String version)
-            {
 
-                this.version = version;
-            }
+      public String getVersion() {
 
-            public int getWatching_count()
-            {
+        return version;
+      }
 
-                return watching_count;
-            }
 
-            public void setWatching_count(int watching_count)
-            {
+      public void setVersion(String version) {
 
-                this.watching_count = watching_count;
-            }
-        }
+        this.version = version;
+      }
+
+
+      public int getWatching_count() {
+
+        return watching_count;
+      }
+
+
+      public void setWatching_count(int watching_count) {
+
+        this.watching_count = watching_count;
+      }
     }
+  }
 }

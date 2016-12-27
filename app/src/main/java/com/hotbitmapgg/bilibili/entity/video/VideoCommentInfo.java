@@ -92,103 +92,98 @@ import java.util.ArrayList;
  * | level_info  | list   | 用户的等级信息?                              |
  * | sex         | String | 用户的性别                                 |
  */
-public class VideoCommentInfo
-{
+public class VideoCommentInfo {
 
-    public int owner;
+  public int owner;
 
-    public int pages;
+  public int pages;
 
-    public boolean needCode;
+  public boolean needCode;
 
-    public int isAdmin;
+  public int isAdmin;
 
-    public int results;
+  public int results;
 
-    //热门评论
-    public ArrayList<HotList> hotList;
+  //热门评论
+  public ArrayList<HotList> hotList;
 
-    //普通评论
-    public ArrayList<List> list;
+  //普通评论
+  public ArrayList<List> list;
 
-    public int page;
+  public int page;
 
+  public class HotList {
 
-    public class HotList
-    {
+    public String face;
 
-        public String face;
+    public int mid;
 
-        public int mid;
+    public String sex;
 
-        public String sex;
+    public int isgood;
 
-        public int isgood;
+    public int adCheck;
 
-        public int adCheck;
+    public String nick;
 
-        public String nick;
+    public String create_at;
 
-        public String create_at;
+    public int rank;
 
-        public int rank;
+    public int good;
 
-        public int good;
+    public LevelInfo level_info;
 
-        public LevelInfo level_info;
+    public int lv;
 
-        public int lv;
+    public String fbid;
 
-        public String fbid;
+    public int reply_count;
 
-        public int reply_count;
+    public String msg;
 
-        public String msg;
+    public int create;
 
-        public int create;
+    public String device;
+  }
 
-        public String device;
-    }
+  public class List {
 
-    public class List
-    {
+    public String face;
 
-        public String face;
+    public int mid;
 
-        public int mid;
+    public String sex;
 
-        public String sex;
+    public int isgood;
 
-        public int isgood;
+    public int adCheck;
 
-        public int adCheck;
+    public String nick;
 
-        public String nick;
+    public String create_at;
 
-        public String create_at;
+    public int rank;
 
-        public int rank;
+    public int good;
 
-        public int good;
+    public LevelInfo level_info;
 
-        public LevelInfo level_info;
+    public int lv;
 
-        public int lv;
+    public String fbid;
 
-        public String fbid;
+    public int reply_count;
 
-        public int reply_count;
+    public String msg;
 
-        public String msg;
+    public int create;
 
-        public int create;
+    public String device;
+  }
 
-        public String device;
-    }
+  public class LevelInfo {
 
-    public class LevelInfo
-    {
-
-        public int current_level;
-    }
+    public int current_level;
+  }
 }

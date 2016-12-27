@@ -1,6 +1,5 @@
 package com.hotbitmapgg.bilibili.module.home.bangumi;
 
-
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
@@ -35,193 +34,198 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 番剧时间表界面
  */
-public class BangumiScheduleActivity extends RxBaseActivity
-{
+public class BangumiScheduleActivity extends RxBaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+  @BindView(R.id.toolbar)
+  Toolbar mToolbar;
 
-    @BindView(R.id.recycle)
-    RecyclerView mRecyclerView;
+  @BindView(R.id.recycle)
+  RecyclerView mRecyclerView;
 
-    @BindView(R.id.circle_progress)
-    CircleProgressView mCircleProgressView;
+  @BindView(R.id.circle_progress)
+  CircleProgressView mCircleProgressView;
 
-    private List<BangumiScheduleInfo.ResultBean> bangumiSchedules = new ArrayList<>();
+  private List<BangumiScheduleInfo.ResultBean> bangumiSchedules = new ArrayList<>();
 
-    private List<BangumiScheduleInfo.ResultBean> sundayBangumis = new ArrayList<>();
+  private List<BangumiScheduleInfo.ResultBean> sundayBangumis = new ArrayList<>();
 
-    private List<BangumiScheduleInfo.ResultBean> mondayBangumis = new ArrayList<>();
+  private List<BangumiScheduleInfo.ResultBean> mondayBangumis = new ArrayList<>();
 
-    private List<BangumiScheduleInfo.ResultBean> tuesdayBangumis = new ArrayList<>();
+  private List<BangumiScheduleInfo.ResultBean> tuesdayBangumis = new ArrayList<>();
 
-    private List<BangumiScheduleInfo.ResultBean> wednesdayBangumis = new ArrayList<>();
+  private List<BangumiScheduleInfo.ResultBean> wednesdayBangumis = new ArrayList<>();
 
-    private List<BangumiScheduleInfo.ResultBean> thursdayBangumis = new ArrayList<>();
+  private List<BangumiScheduleInfo.ResultBean> thursdayBangumis = new ArrayList<>();
 
-    private List<BangumiScheduleInfo.ResultBean> fridayBangumis = new ArrayList<>();
+  private List<BangumiScheduleInfo.ResultBean> fridayBangumis = new ArrayList<>();
 
-    private List<BangumiScheduleInfo.ResultBean> saturdayBangumis = new ArrayList<>();
+  private List<BangumiScheduleInfo.ResultBean> saturdayBangumis = new ArrayList<>();
 
-    private SectionedRecyclerViewAdapter mSectionedAdapter;
-
-
-    @Override
-    public int getLayoutId()
-    {
-
-        return R.layout.activity_bangumi_schedule;
-    }
-
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
-
-        initRecyclerView();
-        loadData();
-    }
-
-    @Override
-    public void initRecyclerView()
-    {
-
-        mSectionedAdapter = new SectionedRecyclerViewAdapter();
-        GridLayoutManager mLayoutManager = new GridLayoutManager(BangumiScheduleActivity.this, 3);
-        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup()
-        {
-
-            @Override
-            public int getSpanSize(int position)
-            {
-
-                switch (mSectionedAdapter.getSectionItemViewType(position))
-                {
-                    case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
-                        return 3;
-                    default:
-                        return 1;
-                }
-            }
-        });
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mSectionedAdapter);
-    }
-
-    @Override
-    public void loadData()
-    {
-
-        RetrofitHelper.getBangumiAPI()
-                .getBangumiSchedules()
-                .compose(bindToLifecycle())
-                .doOnSubscribe(this::showProgressBar)
-                .delay(2000, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(bangumiSchedule -> {
-
-                    bangumiSchedules.addAll(bangumiSchedule.getResult());
-                    finishTask();
-                }, throwable -> {
-
-                    hideProgressBar();
-                    ToastUtil.ShortToast("加载失败啦,请重新加载~");
-                });
-    }
+  private SectionedRecyclerViewAdapter mSectionedAdapter;
 
 
-    @Override
-    public void finishTask()
-    {
+  @Override
+  public int getLayoutId() {
 
-        Observable.from(bangumiSchedules)
-                .compose(bindToLifecycle())
-                .forEach(this::accordingWeekGroup);
+    return R.layout.activity_bangumi_schedule;
+  }
 
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, sundayBangumis,
-                ConstantUtil.SUNDAY_TYPE, WeekDayUtil.formatDate(sundayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, mondayBangumis,
-                ConstantUtil.MONDAY_TYPE, WeekDayUtil.formatDate(mondayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, tuesdayBangumis,
-                ConstantUtil.TUESDAY_TYPE, WeekDayUtil.formatDate(tuesdayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, wednesdayBangumis,
-                ConstantUtil.WEDNESDAY_TYPE, WeekDayUtil.formatDate(wednesdayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, thursdayBangumis,
-                ConstantUtil.THURSDAY_TYPE, WeekDayUtil.formatDate(thursdayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, fridayBangumis,
-                ConstantUtil.FRIDAY_TYEP, WeekDayUtil.formatDate(fridayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, saturdayBangumis,
-                ConstantUtil.SATURDAY_TYPE, WeekDayUtil.formatDate(saturdayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.notifyDataSetChanged();
-        hideProgressBar();
-    }
 
-    private void accordingWeekGroup(BangumiScheduleInfo.ResultBean resultBean)
-    {
+  @Override
+  public void initViews(Bundle savedInstanceState) {
 
-        switch (WeekDayUtil.getWeek(resultBean.getPub_date()))
-        {
-            case ConstantUtil.SUNDAY_TYPE:
-                sundayBangumis.add(resultBean);
-                break;
-            case ConstantUtil.MONDAY_TYPE:
-                mondayBangumis.add(resultBean);
-                break;
-            case ConstantUtil.TUESDAY_TYPE:
-                tuesdayBangumis.add(resultBean);
-                break;
-            case ConstantUtil.WEDNESDAY_TYPE:
-                wednesdayBangumis.add(resultBean);
-                break;
-            case ConstantUtil.THURSDAY_TYPE:
-                thursdayBangumis.add(resultBean);
-                break;
-            case ConstantUtil.FRIDAY_TYEP:
-                fridayBangumis.add(resultBean);
-                break;
-            case ConstantUtil.SATURDAY_TYPE:
-                saturdayBangumis.add(resultBean);
-                break;
+    initRecyclerView();
+    loadData();
+  }
+
+
+  @Override
+  public void initRecyclerView() {
+
+    mSectionedAdapter = new SectionedRecyclerViewAdapter();
+    GridLayoutManager mLayoutManager = new GridLayoutManager(BangumiScheduleActivity.this, 3);
+    mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+
+      @Override
+      public int getSpanSize(int position) {
+
+        switch (mSectionedAdapter.getSectionItemViewType(position)) {
+          case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
+            return 3;
+          default:
+            return 1;
         }
+      }
+    });
+    mRecyclerView.setLayoutManager(mLayoutManager);
+    mRecyclerView.setAdapter(mSectionedAdapter);
+  }
+
+
+  @Override
+  public void loadData() {
+
+    RetrofitHelper.getBangumiAPI()
+        .getBangumiSchedules()
+        .compose(bindToLifecycle())
+        .doOnSubscribe(this::showProgressBar)
+        .delay(2000, TimeUnit.MILLISECONDS)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(bangumiSchedule -> {
+
+          bangumiSchedules.addAll(bangumiSchedule.getResult());
+          finishTask();
+        }, throwable -> {
+
+          hideProgressBar();
+          ToastUtil.ShortToast("加载失败啦,请重新加载~");
+        });
+  }
+
+
+  @Override
+  public void finishTask() {
+
+    Observable.from(bangumiSchedules)
+        .compose(bindToLifecycle())
+        .forEach(this::accordingWeekGroup);
+
+    mSectionedAdapter.addSection(
+        new BangumiScheduleSection(BangumiScheduleActivity.this, sundayBangumis,
+            ConstantUtil.SUNDAY_TYPE, WeekDayUtil.formatDate(sundayBangumis.get(0).getPub_date())));
+    mSectionedAdapter.addSection(
+        new BangumiScheduleSection(BangumiScheduleActivity.this, mondayBangumis,
+            ConstantUtil.MONDAY_TYPE, WeekDayUtil.formatDate(mondayBangumis.get(0).getPub_date())));
+    mSectionedAdapter.addSection(
+        new BangumiScheduleSection(BangumiScheduleActivity.this, tuesdayBangumis,
+            ConstantUtil.TUESDAY_TYPE,
+            WeekDayUtil.formatDate(tuesdayBangumis.get(0).getPub_date())));
+    mSectionedAdapter.addSection(
+        new BangumiScheduleSection(BangumiScheduleActivity.this, wednesdayBangumis,
+            ConstantUtil.WEDNESDAY_TYPE,
+            WeekDayUtil.formatDate(wednesdayBangumis.get(0).getPub_date())));
+    mSectionedAdapter.addSection(
+        new BangumiScheduleSection(BangumiScheduleActivity.this, thursdayBangumis,
+            ConstantUtil.THURSDAY_TYPE,
+            WeekDayUtil.formatDate(thursdayBangumis.get(0).getPub_date())));
+    mSectionedAdapter.addSection(
+        new BangumiScheduleSection(BangumiScheduleActivity.this, fridayBangumis,
+            ConstantUtil.FRIDAY_TYEP, WeekDayUtil.formatDate(fridayBangumis.get(0).getPub_date())));
+    mSectionedAdapter.addSection(
+        new BangumiScheduleSection(BangumiScheduleActivity.this, saturdayBangumis,
+            ConstantUtil.SATURDAY_TYPE,
+            WeekDayUtil.formatDate(saturdayBangumis.get(0).getPub_date())));
+    mSectionedAdapter.notifyDataSetChanged();
+    hideProgressBar();
+  }
+
+
+  private void accordingWeekGroup(BangumiScheduleInfo.ResultBean resultBean) {
+
+    switch (WeekDayUtil.getWeek(resultBean.getPub_date())) {
+      case ConstantUtil.SUNDAY_TYPE:
+        sundayBangumis.add(resultBean);
+        break;
+      case ConstantUtil.MONDAY_TYPE:
+        mondayBangumis.add(resultBean);
+        break;
+      case ConstantUtil.TUESDAY_TYPE:
+        tuesdayBangumis.add(resultBean);
+        break;
+      case ConstantUtil.WEDNESDAY_TYPE:
+        wednesdayBangumis.add(resultBean);
+        break;
+      case ConstantUtil.THURSDAY_TYPE:
+        thursdayBangumis.add(resultBean);
+        break;
+      case ConstantUtil.FRIDAY_TYEP:
+        fridayBangumis.add(resultBean);
+        break;
+      case ConstantUtil.SATURDAY_TYPE:
+        saturdayBangumis.add(resultBean);
+        break;
+    }
+  }
+
+
+  @Override
+  public void initToolBar() {
+
+    mToolbar.setTitle("番剧时间表");
+    setSupportActionBar(mToolbar);
+    ActionBar mActionBar = getSupportActionBar();
+    if (mActionBar != null) {
+      mActionBar.setDisplayHomeAsUpEnabled(true);
+    }
+  }
+
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
     }
 
+    return super.onOptionsItemSelected(item);
+  }
 
-    @Override
-    public void initToolBar()
-    {
 
-        mToolbar.setTitle("番剧时间表");
-        setSupportActionBar(mToolbar);
-        ActionBar mActionBar = getSupportActionBar();
-        if (mActionBar != null)
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-    }
+  @Override
+  public void showProgressBar() {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    super.showProgressBar();
+    mCircleProgressView.setVisibility(View.VISIBLE);
+    mCircleProgressView.spin();
+  }
 
-        if (item.getItemId() == android.R.id.home)
-            onBackPressed();
 
-        return super.onOptionsItemSelected(item);
-    }
+  @Override
+  public void hideProgressBar() {
 
-    @Override
-    public void showProgressBar()
-    {
-
-        super.showProgressBar();
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
-    }
-
-    @Override
-    public void hideProgressBar()
-    {
-
-        super.hideProgressBar();
-        mCircleProgressView.setVisibility(View.GONE);
-        mCircleProgressView.stopSpinning();
-    }
+    super.hideProgressBar();
+    mCircleProgressView.setVisibility(View.GONE);
+    mCircleProgressView.stopSpinning();
+  }
 }

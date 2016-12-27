@@ -12,15 +12,11 @@ import rx.Observable;
  *
  * 用户个人账号相关api
  */
-public interface AccountService
-{
+public interface AccountService {
 
-    /**
-     * 用户详情数据
-     *
-     * @param mid
-     * @return
-     */
-    @GET("api/member/getCardByMid")
-    Observable<UserDetailsInfo> getUserInfoById(@Query("mid") int mid);
+  /**
+   * 用户详情数据
+   */
+  @GET("api/member/getCardByMid")
+  Observable<UserDetailsInfo> getUserInfoById(@Query("mid") int mid);
 }

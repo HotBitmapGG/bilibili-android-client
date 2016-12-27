@@ -10,42 +10,37 @@ import android.util.AttributeSet;
  * <p/>
  * 重写Viewpager解决点击tab去除滑动动画效果的问题
  */
-public class NoScrollViewPager extends ViewPager
-{
+public class NoScrollViewPager extends ViewPager {
+
+  public NoScrollViewPager(Context context) {
+
+    super(context);
+  }
 
 
-    public NoScrollViewPager(Context context)
-    {
+  public NoScrollViewPager(Context context, AttributeSet attrs) {
 
-        super(context);
-    }
-
-    public NoScrollViewPager(Context context, AttributeSet attrs)
-    {
-
-        super(context, attrs);
-    }
+    super(context, attrs);
+  }
 
 
-    @Override
-    public void scrollTo(int x, int y)
-    {
+  @Override
+  public void scrollTo(int x, int y) {
 
-        super.scrollTo(x, y);
-    }
+    super.scrollTo(x, y);
+  }
 
 
-    @Override
-    public void setCurrentItem(int item, boolean smoothScroll)
-    {
+  @Override
+  public void setCurrentItem(int item, boolean smoothScroll) {
 
-        super.setCurrentItem(item, smoothScroll);
-    }
+    super.setCurrentItem(item, smoothScroll);
+  }
 
-    @Override
-    public void setCurrentItem(int item)
-    {
 
-        super.setCurrentItem(item, false);
-    }
+  @Override
+  public void setCurrentItem(int item) {
+
+    super.setCurrentItem(item, false);
+  }
 }

@@ -1,5 +1,9 @@
 package com.hotbitmapgg.bilibili.widget;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.hotbitmapgg.bilibili.module.user.UserInfoDetailsActivity;
+import com.hotbitmapgg.ohmybilibili.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,128 +18,122 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.bilibili.module.user.UserInfoDetailsActivity;
-
 /**
  * Created by hcc on 16/8/7 21:18
  * 100332338@qq.com
  * <p/>
  * 用户Tag自定义View
  */
-public class UserTagView extends FrameLayout
-{
+public class UserTagView extends FrameLayout {
 
-    private CircleImageView avatarView;
+  private CircleImageView avatarView;
 
-    private TextView userNameText;
+  private TextView userNameText;
 
-    private OnClickListener onClickListener;
+  private OnClickListener onClickListener;
 
-    private Activity activity;
+  private Activity activity;
 
-    private String name;
+  private String name;
 
-    private int mid = -1;
+  private int mid = -1;
 
-    private String avatarUrl;
+  private String avatarUrl;
 
-    public UserTagView(Context context)
-    {
 
-        this(context, null);
-    }
+  public UserTagView(Context context) {
 
-    public UserTagView(Context context, AttributeSet attrs)
-    {
+    this(context, null);
+  }
 
-        this(context, attrs, 0);
-    }
 
-    public UserTagView(Context context, AttributeSet attrs, int defStyleAttr)
-    {
+  public UserTagView(Context context, AttributeSet attrs) {
 
-        super(context, attrs, defStyleAttr);
-        @SuppressLint("InflateParams")
-        LinearLayout cardView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_user_tag_view, null);
-        avatarView = (CircleImageView) cardView.findViewById(R.id.user_avatar);
-        userNameText = (TextView) cardView.findViewById(R.id.user_name);
+    this(context, attrs, 0);
+  }
 
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getResources().getDimensionPixelSize(R.dimen.user_tag_view_height));
-        this.addView(cardView, lp);
 
-        cardView.setOnClickListener(view -> {
+  public UserTagView(Context context, AttributeSet attrs, int defStyleAttr) {
 
-            if (mid != -1 && activity != null)
-            {
-                UserInfoDetailsActivity.launch(activity, name, mid, avatarUrl);
-            } else if (onClickListener != null)
-            {
-                onClickListener.onClick(view);
-            }
-        });
-    }
+    super(context, attrs, defStyleAttr);
+    @SuppressLint("InflateParams")
+    LinearLayout cardView = (LinearLayout) LayoutInflater.from(context)
+        .inflate(R.layout.layout_user_tag_view, null);
+    avatarView = (CircleImageView) cardView.findViewById(R.id.user_avatar);
+    userNameText = (TextView) cardView.findViewById(R.id.user_name);
 
-    public void setAvatar(Bitmap bitmap)
-    {
+    ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+        getResources().getDimensionPixelSize(R.dimen.user_tag_view_height));
+    this.addView(cardView, lp);
 
-        avatarView.setImageBitmap(bitmap);
-    }
+    cardView.setOnClickListener(view -> {
 
-    public void setAvatar(Drawable drawable)
-    {
+      if (mid != -1 && activity != null) {
+        UserInfoDetailsActivity.launch(activity, name, mid, avatarUrl);
+      } else if (onClickListener != null) {
+        onClickListener.onClick(view);
+      }
+    });
+  }
 
-        avatarView.setImageDrawable(drawable);
-    }
 
-    public void setAvatar(@DrawableRes int id)
-    {
+  public void setAvatar(Bitmap bitmap) {
 
-        avatarView.setImageResource(id);
-    }
+    avatarView.setImageBitmap(bitmap);
+  }
 
-    public CircleImageView getAvatarView()
-    {
 
-        return this.avatarView;
-    }
+  public void setAvatar(Drawable drawable) {
 
-    public void setUserName(String userName)
-    {
+    avatarView.setImageDrawable(drawable);
+  }
 
-        userNameText.setText(userName);
-    }
 
-    public TextView getUserNameText()
-    {
+  public void setAvatar(@DrawableRes int id) {
 
-        return this.userNameText;
-    }
+    avatarView.setImageResource(id);
+  }
 
-    public void setUpWithInfo(Activity activity, String name, int mid, String avatarUrl)
-    {
 
-        this.activity = activity;
-        this.name = name;
-        this.mid = mid;
-        this.avatarUrl = avatarUrl;
-        this.setUserName(name);
+  public CircleImageView getAvatarView() {
 
-        Glide.with(getContext())
-                .load(this.avatarUrl)
-                .centerCrop()
-                .dontAnimate()
-                .placeholder(R.drawable.ico_user_default)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(avatarView);
-    }
+    return this.avatarView;
+  }
 
-    @Override
-    public void setOnClickListener(OnClickListener listener)
-    {
 
-        this.onClickListener = listener;
-    }
+  public void setUserName(String userName) {
+
+    userNameText.setText(userName);
+  }
+
+
+  public TextView getUserNameText() {
+
+    return this.userNameText;
+  }
+
+
+  public void setUpWithInfo(Activity activity, String name, int mid, String avatarUrl) {
+
+    this.activity = activity;
+    this.name = name;
+    this.mid = mid;
+    this.avatarUrl = avatarUrl;
+    this.setUserName(name);
+
+    Glide.with(getContext())
+        .load(this.avatarUrl)
+        .centerCrop()
+        .dontAnimate()
+        .placeholder(R.drawable.ico_user_default)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .into(avatarView);
+  }
+
+
+  @Override
+  public void setOnClickListener(OnClickListener listener) {
+
+    this.onClickListener = listener;
+  }
 }

@@ -41,217 +41,210 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 专题详情界面
  */
-public class SpecialDetailsActivity extends RxBaseActivity
-{
+public class SpecialDetailsActivity extends RxBaseActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+  @BindView(R.id.toolbar)
+  Toolbar mToolbar;
 
-    @BindView(R.id.sp_preview)
-    ImageView mPreviewImage;
+  @BindView(R.id.sp_preview)
+  ImageView mPreviewImage;
 
-    @BindView(R.id.sp_title)
-    TextView mTitleText;
+  @BindView(R.id.sp_title)
+  TextView mTitleText;
 
-    @BindView(R.id.sp_last_update_at)
-    TextView mLastUpdateText;
+  @BindView(R.id.sp_last_update_at)
+  TextView mLastUpdateText;
 
-    @BindView(R.id.sp_desc)
-    TextView mDescText;
+  @BindView(R.id.sp_desc)
+  TextView mDescText;
 
-    @BindView(R.id.tv_play_time)
-    TextView mPlayTimeText;
+  @BindView(R.id.tv_play_time)
+  TextView mPlayTimeText;
 
-    @BindView(R.id.tv_video_count)
-    TextView mVideoCountText;
+  @BindView(R.id.tv_video_count)
+  TextView mVideoCountText;
 
-    @BindView(R.id.recycle)
-    RecyclerView mRecyclerView;
+  @BindView(R.id.recycle)
+  RecyclerView mRecyclerView;
 
-    @BindView(R.id.tv_favourite)
-    TextView mFavourite;
+  @BindView(R.id.tv_favourite)
+  TextView mFavourite;
 
-    @BindView(R.id.tv_attention)
-    TextView mAttention;
+  @BindView(R.id.tv_attention)
+  TextView mAttention;
 
-    @BindView(R.id.circle_progress)
-    CircleProgressView mCircleProgressView;
+  @BindView(R.id.circle_progress)
+  CircleProgressView mCircleProgressView;
 
-    @BindView(R.id.root_layout)
-    LinearLayout mRootLayout;
+  @BindView(R.id.root_layout)
+  LinearLayout mRootLayout;
 
-    private int spid;
+  private int spid;
 
-    private String title;
+  private String title;
 
-    private SpecialTopic mSpecialTopic;
+  private SpecialTopic mSpecialTopic;
 
-    private int season_id;
+  private int season_id;
 
-    private ArrayList<SpecialTopic.Item> spList = new ArrayList<>();
+  private ArrayList<SpecialTopic.Item> spList = new ArrayList<>();
 
 
-    @Override
-    public int getLayoutId()
-    {
+  @Override
+  public int getLayoutId() {
 
-        return R.layout.activity_special_details;
+    return R.layout.activity_special_details;
+  }
+
+
+  @Override
+  public void initViews(Bundle savedInstanceState) {
+
+    Intent intent = getIntent();
+    if (intent != null) {
+      spid = Integer.parseInt(intent.getStringExtra(ConstantUtil.EXTRA_SPID));
+      title = intent.getStringExtra(ConstantUtil.EXTRA_TITLE);
+      season_id = intent.getIntExtra(ConstantUtil.EXTRA_SEASON_ID, 0);
     }
 
-    @Override
-    public void initViews(Bundle savedInstanceState)
-    {
+    loadData();
+  }
 
-        Intent intent = getIntent();
-        if (intent != null)
-        {
-            spid = Integer.parseInt(intent.getStringExtra(ConstantUtil.EXTRA_SPID));
-            title = intent.getStringExtra(ConstantUtil.EXTRA_TITLE);
-            season_id = intent.getIntExtra(ConstantUtil.EXTRA_SEASON_ID, 0);
-        }
 
-        loadData();
+  @Override
+  public void initToolBar() {
+
+    mToolbar.setTitle("专题详情");
+    setSupportActionBar(mToolbar);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+  }
+
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+
+    if (item.getItemId() == android.R.id.home) {
+      onBackPressed();
     }
 
-    @Override
-    public void initToolBar()
-    {
-
-        mToolbar.setTitle("专题详情");
-        setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
-            actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-
-        if (item.getItemId() == android.R.id.home)
-            onBackPressed();
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void loadData()
-    {
-
-        RetrofitHelper.getBiliAPI()
-                .getSpInfo(spid, title)
-                .compose(this.bindToLifecycle())
-                .doOnSubscribe(this::showProgressBar)
-                .flatMap(new Func1<SpecialTopic,Observable<SpecialTopicIResult>>()
-                {
-
-                    @Override
-                    public Observable<SpecialTopicIResult> call(SpecialTopic specialTopic)
-                    {
-
-                        mSpecialTopic = specialTopic;
-                        return RetrofitHelper.getBiliAPI()
-                                .getSpItemList(spid, season_id, 1);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(specialTopicIResult -> {
-                    spList.addAll(specialTopicIResult.list);
-                    finishTask();
-                }, throwable -> {
-                    hideProgressBar();
-                });
-    }
+    return super.onOptionsItemSelected(item);
+  }
 
 
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void finishTask()
-    {
+  @Override
+  public void loadData() {
 
-        hideProgressBar();
-        mRootLayout.setVisibility(View.VISIBLE);
+    RetrofitHelper.getBiliAPI()
+        .getSpInfo(spid, title)
+        .compose(this.bindToLifecycle())
+        .doOnSubscribe(this::showProgressBar)
+        .flatMap(new Func1<SpecialTopic, Observable<SpecialTopicIResult>>() {
 
-        // 专题名称
-        String spTitle = mSpecialTopic.title;
-        // 最后更新日期
-        String lastupdate_at = mSpecialTopic.lastupdate_at;
-        // 专题简介
-        String description = mSpecialTopic.description;
-        // 播放次数
-        int playCount = mSpecialTopic.view;
-        // 专题列表数量
-        int count = mSpecialTopic.count;
-        // 专题封面
-        String cover = mSpecialTopic.cover;
-        //收藏数量
-        int favourite = mSpecialTopic.favourite;
-        //关注数量
-        int attention = mSpecialTopic.attention;
+          @Override
+          public Observable<SpecialTopicIResult> call(SpecialTopic specialTopic) {
 
-        // 初始化界面数据
-        Glide.with(SpecialDetailsActivity.this)
-                .load(cover)
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.bili_default_image_tv)
-                .dontAnimate()
-                .into(mPreviewImage);
-
-        mTitleText.setText(spTitle);
-        mLastUpdateText.setText("最后更新日期:" + lastupdate_at);
-        if (!TextUtils.isEmpty(description))
-        {
-            mDescText.setText(description);
-        } else
-        {
-            mDescText.setText("该专题没有任何介绍~");
-        }
-
-        mPlayTimeText.setText(String.valueOf(playCount));
-        mVideoCountText.setText(count + "话");
-        mFavourite.setText(String.valueOf(favourite));
-        mAttention.setText(String.valueOf(attention));
-
-        //设置专题视频
-        mRecyclerView.setHasFixedSize(false);
-        mRecyclerView.setNestedScrollingEnabled(false);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(SpecialDetailsActivity.this, 2));
-        SpecialVideoRecyclerAdapter mAdapter = new SpecialVideoRecyclerAdapter(mRecyclerView, spList);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener((position, holder) -> {
-
-            SpecialTopic.Item item = spList.get(position);
-            VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid, item.cover);
+            mSpecialTopic = specialTopic;
+            return RetrofitHelper.getBiliAPI()
+                .getSpItemList(spid, season_id, 1);
+          }
+        })
+        .compose(bindToLifecycle())
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(specialTopicIResult -> {
+          spList.addAll(specialTopicIResult.list);
+          finishTask();
+        }, throwable -> {
+          hideProgressBar();
         });
+  }
+
+
+  @SuppressLint("SetTextI18n")
+  @Override
+  public void finishTask() {
+
+    hideProgressBar();
+    mRootLayout.setVisibility(View.VISIBLE);
+
+    // 专题名称
+    String spTitle = mSpecialTopic.title;
+    // 最后更新日期
+    String lastupdate_at = mSpecialTopic.lastupdate_at;
+    // 专题简介
+    String description = mSpecialTopic.description;
+    // 播放次数
+    int playCount = mSpecialTopic.view;
+    // 专题列表数量
+    int count = mSpecialTopic.count;
+    // 专题封面
+    String cover = mSpecialTopic.cover;
+    //收藏数量
+    int favourite = mSpecialTopic.favourite;
+    //关注数量
+    int attention = mSpecialTopic.attention;
+
+    // 初始化界面数据
+    Glide.with(SpecialDetailsActivity.this)
+        .load(cover)
+        .centerCrop()
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .placeholder(R.drawable.bili_default_image_tv)
+        .dontAnimate()
+        .into(mPreviewImage);
+
+    mTitleText.setText(spTitle);
+    mLastUpdateText.setText("最后更新日期:" + lastupdate_at);
+    if (!TextUtils.isEmpty(description)) {
+      mDescText.setText(description);
+    } else {
+      mDescText.setText("该专题没有任何介绍~");
     }
 
+    mPlayTimeText.setText(String.valueOf(playCount));
+    mVideoCountText.setText(count + "话");
+    mFavourite.setText(String.valueOf(favourite));
+    mAttention.setText(String.valueOf(attention));
 
-    @Override
-    public void showProgressBar()
-    {
+    //设置专题视频
+    mRecyclerView.setHasFixedSize(false);
+    mRecyclerView.setNestedScrollingEnabled(false);
+    mRecyclerView.setLayoutManager(new GridLayoutManager(SpecialDetailsActivity.this, 2));
+    SpecialVideoRecyclerAdapter mAdapter = new SpecialVideoRecyclerAdapter(mRecyclerView, spList);
+    mRecyclerView.setAdapter(mAdapter);
+    mAdapter.setOnItemClickListener((position, holder) -> {
 
-        mCircleProgressView.setVisibility(View.VISIBLE);
-        mCircleProgressView.spin();
-    }
+      SpecialTopic.Item item = spList.get(position);
+      VideoDetailsActivity.launch(SpecialDetailsActivity.this, item.aid, item.cover);
+    });
+  }
 
-    @Override
-    public void hideProgressBar()
-    {
 
-        mCircleProgressView.setVisibility(View.GONE);
-        mCircleProgressView.stopSpinning();
-    }
+  @Override
+  public void showProgressBar() {
 
-    public static void launch(Activity activity, String spid, String title, int seasonId)
-    {
+    mCircleProgressView.setVisibility(View.VISIBLE);
+    mCircleProgressView.spin();
+  }
 
-        Intent mIntent = new Intent(activity, SpecialDetailsActivity.class);
-        mIntent.putExtra(ConstantUtil.EXTRA_SPID, spid);
-        mIntent.putExtra(ConstantUtil.EXTRA_TITLE, title);
-        mIntent.putExtra(ConstantUtil.EXTRA_SEASON_ID, seasonId);
-        activity.startActivity(mIntent);
-    }
+
+  @Override
+  public void hideProgressBar() {
+
+    mCircleProgressView.setVisibility(View.GONE);
+    mCircleProgressView.stopSpinning();
+  }
+
+
+  public static void launch(Activity activity, String spid, String title, int seasonId) {
+
+    Intent mIntent = new Intent(activity, SpecialDetailsActivity.class);
+    mIntent.putExtra(ConstantUtil.EXTRA_SPID, spid);
+    mIntent.putExtra(ConstantUtil.EXTRA_TITLE, title);
+    mIntent.putExtra(ConstantUtil.EXTRA_SEASON_ID, seasonId);
+    activity.startActivity(mIntent);
+  }
 }
