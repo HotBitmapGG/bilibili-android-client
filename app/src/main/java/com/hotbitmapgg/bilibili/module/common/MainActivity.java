@@ -1,5 +1,21 @@
 package com.hotbitmapgg.bilibili.module.common;
 
+import butterknife.BindView;
+import com.hotbitmapgg.bilibili.base.RxBaseActivity;
+import com.hotbitmapgg.bilibili.module.entry.AttentionPeopleFragment;
+import com.hotbitmapgg.bilibili.module.entry.ConsumeHistoryFragment;
+import com.hotbitmapgg.bilibili.module.entry.HistoryFragment;
+import com.hotbitmapgg.bilibili.module.entry.IFavoritesFragment;
+import com.hotbitmapgg.bilibili.module.entry.OffLineDownloadActivity;
+import com.hotbitmapgg.bilibili.module.entry.SettingFragment;
+import com.hotbitmapgg.bilibili.module.entry.VipActivity;
+import com.hotbitmapgg.bilibili.module.home.HomePageFragment;
+import com.hotbitmapgg.bilibili.utils.ConstantUtil;
+import com.hotbitmapgg.bilibili.utils.PreferenceUtil;
+import com.hotbitmapgg.bilibili.utils.ToastUtil;
+import com.hotbitmapgg.bilibili.widget.CircleImageView;
+import com.hotbitmapgg.ohmybilibili.R;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,23 +30,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.hotbitmapgg.bilibili.base.RxBaseActivity;
-import com.hotbitmapgg.bilibili.utils.ConstantUtil;
-import com.hotbitmapgg.bilibili.utils.PreferenceUtil;
-import com.hotbitmapgg.bilibili.widget.CircleImageView;
-import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.bilibili.module.entry.AttentionPeopleFragment;
-import com.hotbitmapgg.bilibili.module.entry.ConsumeHistoryFragment;
-import com.hotbitmapgg.bilibili.module.entry.HistoryFragment;
-import com.hotbitmapgg.bilibili.module.entry.IFavoritesFragment;
-import com.hotbitmapgg.bilibili.module.entry.OffLineDownloadActivity;
-import com.hotbitmapgg.bilibili.module.entry.SettingFragment;
-import com.hotbitmapgg.bilibili.module.entry.VipActivity;
-import com.hotbitmapgg.bilibili.module.home.HomePageFragment;
-import com.hotbitmapgg.bilibili.utils.ToastUtil;
-
-import butterknife.BindView;
 
 /**
  * Created by hcc on 16/8/7 14:12
@@ -195,9 +194,9 @@ public class MainActivity extends RxBaseActivity
 
       case R.id.item_theme:
         // 主题选择
-        //                CardPickerDialog dialog = new CardPickerDialog();
-        //                dialog.setClickListener(this);
-        //                dialog.show(getSupportFragmentManager(), CardPickerDialog.TAG);
+        // CardPickerDialog dialog = new CardPickerDialog();
+        // dialog.setClickListener(this);
+        // dialog.show(getSupportFragmentManager(), CardPickerDialog.TAG);
         return true;
 
       case R.id.item_app:
