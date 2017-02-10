@@ -210,8 +210,10 @@ public class HomeBangumiFragment extends RxLazyFragment {
     mSectionedRecyclerViewAdapter.addSection(new HomeBangumiItemSection(getActivity()));
     mSectionedRecyclerViewAdapter.addSection(
         new HomeBangumiNewSerialSection(getActivity(), newBangumiSerials));
-    mSectionedRecyclerViewAdapter.addSection(
-        new HomeBangumiBobySection(getActivity(), bangumibobys));
+    if (!bangumibobys.isEmpty()) {
+      mSectionedRecyclerViewAdapter.addSection(
+          new HomeBangumiBobySection(getActivity(), bangumibobys));
+    }
     mSectionedRecyclerViewAdapter.addSection(
         new HomeBangumiSeasonNewSection(getActivity(), season, seasonNewBangumis));
     mSectionedRecyclerViewAdapter.addSection(
