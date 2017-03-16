@@ -127,7 +127,7 @@ If you want to make friends with me, You can focus on my weibo.
 
 ## License
 
-      DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 
 Everyone is permitted to copy and distribute verbatim or modified
 copies of this license document, and changing it is allowed as long
