@@ -55,11 +55,6 @@
 [Version update log viewer](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
 
 
-## Statement
-
-The project only for the use of exchange of learning, such as the project have bilibili copyright infringement problem, I will delete this page and the whole project in time.
-
-
 ## Thanks to the open source project
 
 * [RxJava](https://github.com/ReactiveX/RxJava)
@@ -76,6 +71,12 @@ The project only for the use of exchange of learning, such as the project have b
 * [FlycoTabLayout](https://github.com/H07000223/FlycoTabLayout)
 * [MagicaSakura](https://github.com/Bilibili/MagicaSakura)
 * [FlowLayout](https://github.com/hongyangAndroid/FlowLayout)
+
+
+
+## Statement
+
+The project only for the use of exchange of learning, such as the project have bilibili copyright infringement problem, I will delete this page and the whole project in time.
 
 
 
