@@ -66,34 +66,19 @@
 ![](https://github.com/HotBitmapGG/bilibili/blob/master-x/art/002.png?raw=true)
 
 
-## Compilation
-
-因之前使用Jack编译出现了很多问题，目前已去掉，如果还遇到编译不通过，你可以给我提issuse，我会及时关注解决。
-
-
 ## UpdateLog
 
 版本详细更新日志查看:[更新日志](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
 
 
-## API
-
-现用接口都已不需要Appkey，大部分接口是使用iOS客户端抓包获取的接口，后期会抽时间整理成详细的接口文档放出来。
-
-
-
 ## Instructions
 
- * 如果你有任何意见，bug，问题都可以给我提Issuse，我会第一时间关注并解决.
-
- * Apk暂时不提供下载,因为还有一些界面功能没有做完,等全部完善后会上传到fir.im。
-
- * 后期会抽时间使用MVP来重构该项目,让整体架构更清晰。
+ * 目前发现很多朋友反馈接口返回失败，接口挂掉，低版本的机型适配，无法播放视频等问题，我后期会抽时间进行修改，也欢迎pr，issuse。
 
 
 ## Statement
 
-该项目仅供交流学习使用，如果该项目有侵犯bilibili版权问题，本人会及时删除此页面与整个项目。
+该项目仅供交流学习使用，如该项目有侵犯bilibili版权问题，本人会及时删除此页面与整个项目。
 
 
 ## Thanks to the open source project
@@ -102,7 +87,6 @@
 * [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 * [RxBinding](https://github.com/JakeWharton/RxBinding)
 * [RxLifecycle](https://github.com/trello/RxLifecycle)
-* [RxCache](https://github.com/VictorAlbertos/RxCache)
 * [okhttp](https://github.com/square/okhttp)
 * [retrofit](https://github.com/square/retrofit)
 * [ijkplayer](https://github.com/Bilibili/ijkplayer)
