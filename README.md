@@ -5,6 +5,12 @@
 ![](https://github.com/HotBitmapGG/OhMyBiliBili/blob/OhMyBiliBili/art/bg2.png?raw=true)
 
 
+
+## Introduction
+
+目前发现很多朋友反馈接口返回失败，接口挂掉，低版本的机型适配，无法播放视频等问题，我后期会抽时间进行修改，也欢迎pr，issuse。
+
+
 ## Screenshots
 
 <a href="art/00.png"><img src="art/00.png" width="30%"/></a> <a href="art/01.png"><img src="art/01.png" width="30%"/></a> <a href="art/02.png"><img src="art/02.png" width="30%"/></a>
@@ -46,17 +52,12 @@
 
 ## UpdateLog
 
-版本详细更新日志查看:[更新日志](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
-
-
-## Instructions
-
-目前发现很多朋友反馈接口返回失败，接口挂掉，低版本的机型适配，无法播放视频等问题，我后期会抽时间进行修改，也欢迎pr，issuse。
+[Version update log viewer](https://github.com/HotBitmapGG/bilibili-android-client/blob/master-x/UpdateLog.md)
 
 
 ## Statement
 
-该项目仅供交流学习使用，如该项目有侵犯bilibili版权问题，本人会及时删除此页面与整个项目。
+The project only for the use of exchange of learning, such as the project have bilibili copyright infringement problem, I will delete this page and the whole project in time.
 
 
 ## Thanks to the open source project
