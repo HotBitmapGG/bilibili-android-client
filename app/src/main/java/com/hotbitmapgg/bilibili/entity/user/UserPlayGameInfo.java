@@ -1,10 +1,10 @@
 package com.hotbitmapgg.bilibili.entity.user;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hcc on 2016/10/12 22:39
@@ -14,262 +14,180 @@ import android.os.Parcelable;
  */
 
 public class UserPlayGameInfo implements Parcelable {
+    private boolean status;
+    private DataBean data;
 
-  /**
-   * status : true
-   * data : {"games":[{"website":"http://yys.biligame.com/","image":"http://i0.hdslb.com/bfs/game/3b205675d44bbd90e6ea46d4baec9674bda6e642.png","name":"阴阳师"},{"website":"http://djsy.biligame.com/","image":"http://i0.hdslb.com/bfs/game/80008bbf4cb9b0343fd6e4325127645b2323c1a3.png","name":"刀剑神域黑衣剑士"},{"website":"http://acg.tv/u1g3","image":"http://i0.hdslb.com/u_user/7baceb341073fe823faad36d2e1c805e.png","name":"ICHU偶像进行曲"},{"website":"http://100p.biligame.com/","image":"http://i0.hdslb.com/bfs/game/3e8f079c18c2f81627703c0914e3c285f6d1a7b2.png","name":"梦100"},{"website":"http://xsqst.biligame.com/","image":"http://i2.hdslb.com/u_user/b3c01eb5b7d9925e4488f581baef8006.jpg","name":"像素骑士团"}],"count":5}
-   */
-
-  private boolean status;
-
-  /**
-   * games : [{"website":"http://yys.biligame.com/","image":"http://i0.hdslb.com/bfs/game/3b205675d44bbd90e6ea46d4baec9674bda6e642.png","name":"阴阳师"},{"website":"http://djsy.biligame.com/","image":"http://i0.hdslb.com/bfs/game/80008bbf4cb9b0343fd6e4325127645b2323c1a3.png","name":"刀剑神域黑衣剑士"},{"website":"http://acg.tv/u1g3","image":"http://i0.hdslb.com/u_user/7baceb341073fe823faad36d2e1c805e.png","name":"ICHU偶像进行曲"},{"website":"http://100p.biligame.com/","image":"http://i0.hdslb.com/bfs/game/3e8f079c18c2f81627703c0914e3c285f6d1a7b2.png","name":"梦100"},{"website":"http://xsqst.biligame.com/","image":"http://i2.hdslb.com/u_user/b3c01eb5b7d9925e4488f581baef8006.jpg","name":"像素骑士团"}]
-   * count : 5
-   */
-
-  private DataBean data;
-
-
-  public boolean isStatus() {
-
-    return status;
-  }
-
-
-  public void setStatus(boolean status) {
-
-    this.status = status;
-  }
-
-
-  public DataBean getData() {
-
-    return data;
-  }
-
-
-  public void setData(DataBean data) {
-
-    this.data = data;
-  }
-
-
-  public static class DataBean implements Parcelable {
-
-    private int count;
-
-    /**
-     * website : http://yys.biligame.com/
-     * image : http://i0.hdslb.com/bfs/game/3b205675d44bbd90e6ea46d4baec9674bda6e642.png
-     * name : 阴阳师
-     */
-
-    private List<GamesBean> games;
-
-
-    public int getCount() {
-
-      return count;
+    public boolean isStatus() {
+        return status;
     }
 
-
-    public void setCount(int count) {
-
-      this.count = count;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
-
-    public List<GamesBean> getGames() {
-
-      return games;
+    public DataBean getData() {
+        return data;
     }
 
-
-    public void setGames(List<GamesBean> games) {
-
-      this.games = games;
+    public void setData(DataBean data) {
+        this.data = data;
     }
 
+    public static class DataBean implements Parcelable {
+        private int count;
+        private List<GamesBean> games;
 
-    public static class GamesBean implements Parcelable {
+        public int getCount() {
+            return count;
+        }
 
-      private String website;
+        public void setCount(int count) {
+            this.count = count;
+        }
 
-      private String image;
+        public List<GamesBean> getGames() {
+            return games;
+        }
 
-      private String name;
+        public void setGames(List<GamesBean> games) {
+            this.games = games;
+        }
 
+        public static class GamesBean implements Parcelable {
+            private String website;
+            private String image;
+            private String name;
 
-      public String getWebsite() {
+            public String getWebsite() {
+                return website;
+            }
 
-        return website;
-      }
+            public void setWebsite(String website) {
+                this.website = website;
+            }
 
+            public String getImage() {
+                return image;
+            }
 
-      public void setWebsite(String website) {
+            public void setImage(String image) {
+                this.image = image;
+            }
 
-        this.website = website;
-      }
+            public String getName() {
+                return name;
+            }
 
+            public void setName(String name) {
+                this.name = name;
+            }
 
-      public String getImage() {
+            @Override
+            public int describeContents() {
+                return 0;
+            }
 
-        return image;
-      }
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.website);
+                dest.writeString(this.image);
+                dest.writeString(this.name);
+            }
 
-
-      public void setImage(String image) {
-
-        this.image = image;
-      }
-
-
-      public String getName() {
-
-        return name;
-      }
-
-
-      public void setName(String name) {
-
-        this.name = name;
-      }
-
-
-      @Override
-      public int describeContents() {
-
-        return 0;
-      }
-
-
-      @Override
-      public void writeToParcel(Parcel dest, int flags) {
-
-        dest.writeString(this.website);
-        dest.writeString(this.image);
-        dest.writeString(this.name);
-      }
-
-
-      public GamesBean() {
-
-      }
+            public GamesBean() {
+            }
 
 
-      protected GamesBean(Parcel in) {
+            protected GamesBean(Parcel in) {
+                this.website = in.readString();
+                this.image = in.readString();
+                this.name = in.readString();
+            }
 
-        this.website = in.readString();
-        this.image = in.readString();
-        this.name = in.readString();
-      }
+            public static final Creator<GamesBean> CREATOR = new Creator<GamesBean>() {
+                @Override
+                public GamesBean createFromParcel(Parcel source) {
+                    return new GamesBean(source);
+                }
 
-
-      public static final Creator<GamesBean> CREATOR = new Creator<GamesBean>() {
-
-        @Override
-        public GamesBean createFromParcel(Parcel source) {
-
-          return new GamesBean(source);
+                @Override
+                public GamesBean[] newArray(int size) {
+                    return new GamesBean[size];
+                }
+            };
         }
 
 
         @Override
-        public GamesBean[] newArray(int size) {
-
-          return new GamesBean[size];
+        public int describeContents() {
+            return 0;
         }
-      };
-    }
 
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.count);
+            dest.writeList(this.games);
+        }
+
+        public DataBean() {
+        }
+
+
+        protected DataBean(Parcel in) {
+            this.count = in.readInt();
+            this.games = new ArrayList<GamesBean>();
+            in.readList(this.games, GamesBean.class.getClassLoader());
+        }
+
+
+        public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+            @Override
+            public DataBean createFromParcel(Parcel source) {
+                return new DataBean(source);
+            }
+
+            @Override
+            public DataBean[] newArray(int size) {
+                return new DataBean[size];
+            }
+        };
+    }
 
     @Override
     public int describeContents() {
-
-      return 0;
+        return 0;
     }
 
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
-      dest.writeInt(this.count);
-      dest.writeList(this.games);
+        dest.writeByte(this.status ? (byte) 1 : (byte) 0);
+        dest.writeParcelable(this.data, flags);
     }
 
 
-    public DataBean() {
-
+    public UserPlayGameInfo() {
     }
 
 
-    protected DataBean(Parcel in) {
-
-      this.count = in.readInt();
-      this.games = new ArrayList<GamesBean>();
-      in.readList(this.games, GamesBean.class.getClassLoader());
+    protected UserPlayGameInfo(Parcel in) {
+        this.status = in.readByte() != 0;
+        this.data = in.readParcelable(DataBean.class.getClassLoader());
     }
 
 
-    public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+    public static final Parcelable.Creator<UserPlayGameInfo> CREATOR
+            = new Parcelable.Creator<UserPlayGameInfo>() {
 
-      @Override
-      public DataBean createFromParcel(Parcel source) {
+        @Override
+        public UserPlayGameInfo createFromParcel(Parcel source) {
+            return new UserPlayGameInfo(source);
+        }
 
-        return new DataBean(source);
-      }
-
-
-      @Override
-      public DataBean[] newArray(int size) {
-
-        return new DataBean[size];
-      }
+        @Override
+        public UserPlayGameInfo[] newArray(int size) {
+            return new UserPlayGameInfo[size];
+        }
     };
-  }
-
-
-  @Override
-  public int describeContents() {
-
-    return 0;
-  }
-
-
-  @Override
-  public void writeToParcel(Parcel dest, int flags) {
-
-    dest.writeByte(this.status ? (byte) 1 : (byte) 0);
-    dest.writeParcelable(this.data, flags);
-  }
-
-
-  public UserPlayGameInfo() {
-
-  }
-
-
-  protected UserPlayGameInfo(Parcel in) {
-
-    this.status = in.readByte() != 0;
-    this.data = in.readParcelable(DataBean.class.getClassLoader());
-  }
-
-
-  public static final Parcelable.Creator<UserPlayGameInfo> CREATOR
-      = new Parcelable.Creator<UserPlayGameInfo>() {
-
-    @Override
-    public UserPlayGameInfo createFromParcel(Parcel source) {
-
-      return new UserPlayGameInfo(source);
-    }
-
-
-    @Override
-    public UserPlayGameInfo[] newArray(int size) {
-
-      return new UserPlayGameInfo[size];
-    }
-  };
 }

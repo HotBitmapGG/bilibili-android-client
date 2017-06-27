@@ -93,97 +93,54 @@ import java.util.ArrayList;
  * | sex         | String | 用户的性别                                 |
  */
 public class VideoCommentInfo {
+    public int owner;
+    public int pages;
+    public boolean needCode;
+    public int isAdmin;
+    public int results;
+    public ArrayList<HotList> hotList;
+    public ArrayList<List> list;
+    public int page;
 
-  public int owner;
+    public class HotList {
+        public String face;
+        public int mid;
+        public String sex;
+        public int isgood;
+        public int adCheck;
+        public String nick;
+        public String create_at;
+        public int rank;
+        public int good;
+        public LevelInfo level_info;
+        public int lv;
+        public String fbid;
+        public int reply_count;
+        public String msg;
+        public int create;
+        public String device;
+    }
 
-  public int pages;
+    public class List {
+        public String face;
+        public int mid;
+        public String sex;
+        public int isgood;
+        public int adCheck;
+        public String nick;
+        public String create_at;
+        public int rank;
+        public int good;
+        public LevelInfo level_info;
+        public int lv;
+        public String fbid;
+        public int reply_count;
+        public String msg;
+        public int create;
+        public String device;
+    }
 
-  public boolean needCode;
-
-  public int isAdmin;
-
-  public int results;
-
-  //热门评论
-  public ArrayList<HotList> hotList;
-
-  //普通评论
-  public ArrayList<List> list;
-
-  public int page;
-
-  public class HotList {
-
-    public String face;
-
-    public int mid;
-
-    public String sex;
-
-    public int isgood;
-
-    public int adCheck;
-
-    public String nick;
-
-    public String create_at;
-
-    public int rank;
-
-    public int good;
-
-    public LevelInfo level_info;
-
-    public int lv;
-
-    public String fbid;
-
-    public int reply_count;
-
-    public String msg;
-
-    public int create;
-
-    public String device;
-  }
-
-  public class List {
-
-    public String face;
-
-    public int mid;
-
-    public String sex;
-
-    public int isgood;
-
-    public int adCheck;
-
-    public String nick;
-
-    public String create_at;
-
-    public int rank;
-
-    public int good;
-
-    public LevelInfo level_info;
-
-    public int lv;
-
-    public String fbid;
-
-    public int reply_count;
-
-    public String msg;
-
-    public int create;
-
-    public String device;
-  }
-
-  public class LevelInfo {
-
-    public int current_level;
-  }
+    public class LevelInfo {
+        public int current_level;
+    }
 }
