@@ -1,15 +1,15 @@
 package com.hotbitmapgg.bilibili;
 
+import android.app.Application;
+import android.content.Context;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
+
 import com.bilibili.magicasakura.utils.ThemeUtils;
 import com.facebook.stetho.Stetho;
 import com.hotbitmapgg.bilibili.utils.ThemeHelper;
 import com.hotbitmapgg.ohmybilibili.R;
 import com.squareup.leakcanary.LeakCanary;
-
-import android.app.Application;
-import android.content.Context;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 
 /**
  * Created by hcc on 16/8/7 21:18
@@ -18,19 +18,14 @@ import android.support.annotation.ColorRes;
  * 哔哩哔哩动画App
  */
 public class BilibiliApp extends Application implements ThemeUtils.switchColor {
-
   public static BilibiliApp mInstance;
-
 
   @Override
   public void onCreate() {
-
     super.onCreate();
-
     mInstance = this;
     init();
   }
-
 
   private void init() {
     // 初始化主题切换
@@ -45,16 +40,12 @@ public class BilibiliApp extends Application implements ThemeUtils.switchColor {
             .build());
   }
 
-
   public static BilibiliApp getInstance() {
-
     return mInstance;
   }
 
-
   @Override
   public int replaceColorById(Context context, @ColorRes int colorId) {
-
     if (ThemeHelper.isDefaultTheme(context)) {
       return context.getResources().getColor(colorId);
     }
@@ -65,10 +56,8 @@ public class BilibiliApp extends Application implements ThemeUtils.switchColor {
     return context.getResources().getColor(colorId);
   }
 
-
   @Override
   public int replaceColor(Context context, @ColorInt int color) {
-
     if (ThemeHelper.isDefaultTheme(context)) {
       return color;
     }
@@ -83,7 +72,6 @@ public class BilibiliApp extends Application implements ThemeUtils.switchColor {
 
 
   private String getTheme(Context context) {
-
     if (ThemeHelper.getTheme(context) == ThemeHelper.CARD_STORM) {
       return "blue";
     } else if (ThemeHelper.getTheme(context) == ThemeHelper.CARD_HOPE) {
@@ -106,7 +94,6 @@ public class BilibiliApp extends Application implements ThemeUtils.switchColor {
   private
   @ColorRes
   int getThemeColorId(Context context, int colorId, String theme) {
-
     switch (colorId) {
       case R.color.theme_color_primary:
         return context.getResources().getIdentifier(theme, "color", getPackageName());
@@ -122,7 +109,6 @@ public class BilibiliApp extends Application implements ThemeUtils.switchColor {
   private
   @ColorRes
   int getThemeColor(Context context, int color, String theme) {
-
     switch (color) {
       case 0xfffb7299:
         return context.getResources().getIdentifier(theme, "color", getPackageName());

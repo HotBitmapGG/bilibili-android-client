@@ -18,28 +18,28 @@ import rx.Observable;
 
 public interface UserService {
 
-  /**
-   * 用户所玩游戏
-   */
-  @GET("ajax/game/GetLastPlay")
-  Observable<UserPlayGameInfo> getUserPlayGames(@Query("mid") int mid);
+    /**
+     * 用户所玩游戏
+     */
+    @GET("ajax/game/GetLastPlay")
+    Observable<UserPlayGameInfo> getUserPlayGames(@Query("mid") int mid);
 
-  /**
-   * 用户投币视频
-   */
-  @GET("ajax/member/getCoinVideos")
-  Observable<UserCoinsInfo> getUserCoinVideos(@Query("mid") int mid);
+    /**
+     * 用户投币视频
+     */
+    @GET("ajax/member/getCoinVideos")
+    Observable<UserCoinsInfo> getUserCoinVideos(@Query("mid") int mid);
 
-  /**
-   * 用户追番
-   */
-  @GET("ajax/Bangumi/getList")
-  Observable<UserChaseBangumiInfo> getUserChaseBangumis(@Query("mid") int mid);
+    /**
+     * 用户追番
+     */
+    @GET("ajax/Bangumi/getList")
+    Observable<UserChaseBangumiInfo> getUserChaseBangumis(@Query("mid") int mid);
 
-  /**
-   * 用户投稿视频
-   */
-  @GET("ajax/member/getSubmitVideos")
-  Observable<UserContributeInfo> getUserContributeVideos(
-      @Query("mid") int mid, @Query("page") int page, @Query("pagesize") int pageSize);
+    /**
+     * 用户投稿视频
+     */
+    @GET("ajax/member/getSubmitVideos")
+    Observable<UserContributeInfo> getUserContributeVideos(
+            @Query("mid") int mid, @Query("page") int page, @Query("pagesize") int pageSize);
 }

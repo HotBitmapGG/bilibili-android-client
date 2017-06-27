@@ -16,15 +16,15 @@ import rx.Observable;
 
 public interface RankService {
 
-  /**
-   * 原创排行榜请求
-   */
-  @GET("index/rank/{type}")
-  Observable<OriginalRankInfo> getOriginalRanks(@Path("type") String type);
+    /**
+     * 原创排行榜请求
+     */
+    @GET("index/rank/{type}")
+    Observable<OriginalRankInfo> getOriginalRanks(@Path("type") String type);
 
-  /**
-   * 全区排行榜数据请求
-   */
-  @GET("index/rank/{type}")
-  Observable<AllareasRankInfo> getAllareasRanks(@Path("type") String type);
+    /**
+     * 全区排行榜数据请求
+     */
+    @GET("index/rank/{type}")
+    Observable<AllareasRankInfo> getAllareasRanks(@Path("type") String type);
 }

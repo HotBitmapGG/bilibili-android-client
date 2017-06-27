@@ -10,9 +10,7 @@ import android.view.View;
  * 一个简单的SnackBar工具类
  */
 public class SnackbarUtil {
-
-  public static void showMessage(View view, String text) {
-
-    Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show();
-  }
+    public static void showMessage(View view, String text) {
+        Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show();
+    }
 }

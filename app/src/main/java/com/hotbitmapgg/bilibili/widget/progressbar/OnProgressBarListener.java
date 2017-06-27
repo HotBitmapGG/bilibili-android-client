@@ -1,9 +1,8 @@
 package com.hotbitmapgg.bilibili.widget.progressbar;
 
+/**
+ * 数字进度条进度回调接口
+ */
 public interface OnProgressBarListener {
-  /**
-   * 数字进度条进度回调接口
-   */
-
-  void onProgressChange(int current, int max);
+    void onProgressChange(int current, int max);
 }

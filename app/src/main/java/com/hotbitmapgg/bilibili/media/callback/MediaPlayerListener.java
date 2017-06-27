@@ -7,20 +7,19 @@ package com.hotbitmapgg.bilibili.media.callback;
  * 视频控制回调接口
  */
 public interface MediaPlayerListener {
+    void start();
 
-  void start();
+    void pause();
 
-  void pause();
+    int getDuration();
 
-  int getDuration();
+    int getCurrentPosition();
 
-  int getCurrentPosition();
+    void seekTo(long pos);
 
-  void seekTo(long pos);
+    boolean isPlaying();
 
-  boolean isPlaying();
+    int getBufferPercentage();
 
-  int getBufferPercentage();
-
-  boolean canPause();
+    boolean canPause();
 }

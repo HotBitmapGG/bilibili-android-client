@@ -14,10 +14,9 @@ import rx.Observable;
 
 public interface SearchService {
 
-  /**
-   * 首页发现热搜词
-   */
-  @GET(
-      "main/hotword?access_key=ec0f54fc369d8c104ee1068672975d6a&actionKey=appkey&appkey=27eb53fc9058f8c3")
-  Observable<HotSearchTag> getHotSearchTags();
+    /**
+     * 首页发现热搜词
+     */
+    @GET("main/hotword?access_key=ec0f54fc369d8c104ee1068672975d6a&actionKey=appkey&appkey=27eb53fc9058f8c3")
+    Observable<HotSearchTag> getHotSearchTags();
 }

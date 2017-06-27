@@ -10,37 +10,24 @@ import android.view.View;
  * Abstract Section used by SectionedRecyclerViewAdapter.
  */
 public abstract class Section {
-
   public enum State {
     LOADING, LOADED, FAILED
   }
 
   private State state = State.LOADED;
-
   boolean visible = true;
-
   boolean hasHeader = false;
-
   boolean hasFooter = false;
-
   Integer headerResourceId;
-
   Integer footerResourceId;
-
   int itemResourceId;
-
   private Integer loadingResourceId;
-
   private Integer failedResourceId;
-
 
   /**
    * Package-level constructor
    */
-  Section() {
-
-  }
-
+  Section() {}
 
   /**
    * Create a Section object with loading/failed states but no header and footer
@@ -50,7 +37,6 @@ public abstract class Section {
    * @param failedResourceId layout resource for its failed state
    */
   public Section(int itemResourceId, int loadingResourceId, int failedResourceId) {
-
     this.itemResourceId = itemResourceId;
     this.loadingResourceId = loadingResourceId;
     this.failedResourceId = failedResourceId;
@@ -66,7 +52,6 @@ public abstract class Section {
    * @param failedResourceId layout resource for its failed state
    */
   public Section(int headerResourceId, int itemResourceId, int loadingResourceId, int failedResourceId) {
-
     this(itemResourceId, loadingResourceId, failedResourceId);
     this.headerResourceId = headerResourceId;
     hasHeader = true;
@@ -83,7 +68,6 @@ public abstract class Section {
    * @param failedResourceId layout resource for its failed state
    */
   public Section(int headerResourceId, int footerResourceId, int itemResourceId, int loadingResourceId, int failedResourceId) {
-
     this(headerResourceId, itemResourceId, loadingResourceId, failedResourceId);
     this.footerResourceId = footerResourceId;
     hasFooter = true;
@@ -96,7 +80,6 @@ public abstract class Section {
    * @param state state of this section
    */
   public final void setState(State state) {
-
     this.state = state;
   }
 
@@ -107,7 +90,6 @@ public abstract class Section {
    * @return current state of this section
    */
   public final State getState() {
-
     return state;
   }
 
@@ -118,7 +100,6 @@ public abstract class Section {
    * @return true if this Section is vibisle
    */
   public final boolean isVisible() {
-
     return visible;
   }
 
@@ -129,7 +110,6 @@ public abstract class Section {
    * @param visible true if this Section is visible
    */
   public final void setVisible(boolean visible) {
-
     this.visible = visible;
   }
 
@@ -140,7 +120,6 @@ public abstract class Section {
    * @return true if this Section has a header
    */
   public final boolean hasHeader() {
-
     return hasHeader;
   }
 
@@ -151,7 +130,6 @@ public abstract class Section {
    * @param hasHeader true if this Section has a header
    */
   public final void setHasHeader(boolean hasHeader) {
-
     this.hasHeader = hasHeader;
   }
 
@@ -162,7 +140,6 @@ public abstract class Section {
    * @return true if this Section has a footer
    */
   public final boolean hasFooter() {
-
     return hasFooter;
   }
 
@@ -173,7 +150,6 @@ public abstract class Section {
    * @param hasFooter true if this Section has a footer
    */
   public final void setHasFooter(boolean hasFooter) {
-
     this.hasFooter = hasFooter;
   }
 
@@ -184,7 +160,6 @@ public abstract class Section {
    * @return layout resource id of the header
    */
   public final Integer getHeaderResourceId() {
-
     return headerResourceId;
   }
 
@@ -195,7 +170,6 @@ public abstract class Section {
    * @return layout resource id of the footer
    */
   public final Integer getFooterResourceId() {
-
     return footerResourceId;
   }
 
@@ -206,7 +180,6 @@ public abstract class Section {
    * @return layout resource id of the item
    */
   public final int getItemResourceId() {
-
     return itemResourceId;
   }
 
@@ -217,7 +190,6 @@ public abstract class Section {
    * @return layout resource id of the loading view
    */
   public final Integer getLoadingResourceId() {
-
     return loadingResourceId;
   }
 
@@ -228,7 +200,6 @@ public abstract class Section {
    * @return layout resource id of the failed view
    */
   public final Integer getFailedResourceId() {
-
     return failedResourceId;
   }
 
@@ -241,7 +212,6 @@ public abstract class Section {
    * @param position position of the item in the Section, not in the RecyclerView
    */
   public final void onBindContentViewHolder(RecyclerView.ViewHolder holder, int position) {
-
     switch (state) {
       case LOADING:
         onBindLoadingViewHolder(holder);
@@ -265,9 +235,7 @@ public abstract class Section {
    * @return total of items of this section
    */
   public final int getSectionItemsTotal() {
-
     int contentItemsTotal;
-
     switch (state) {
       case LOADING:
         contentItemsTotal = 1;
@@ -281,7 +249,6 @@ public abstract class Section {
       default:
         throw new IllegalStateException("Invalid state");
     }
-
     return contentItemsTotal + (hasHeader ? 1 : 0) + (hasFooter ? 1 : 0);
   }
 
@@ -301,7 +268,6 @@ public abstract class Section {
    * @return ViewHolder for the Header of this Section
    */
   public RecyclerView.ViewHolder getHeaderViewHolder(View view) {
-
     return new SectionedRecyclerViewAdapter.EmptyViewHolder(view);
   }
 
@@ -323,7 +289,6 @@ public abstract class Section {
    * @return ViewHolder for the Footer of this Section
    */
   public RecyclerView.ViewHolder getFooterViewHolder(View view) {
-
     return new SectionedRecyclerViewAdapter.EmptyViewHolder(view);
   }
 
@@ -362,7 +327,6 @@ public abstract class Section {
    * @return ViewHolder for the Loading state of this Section
    */
   public RecyclerView.ViewHolder getLoadingViewHolder(View view) {
-
     return new SectionedRecyclerViewAdapter.EmptyViewHolder(view);
   }
 
@@ -384,7 +348,6 @@ public abstract class Section {
    * @return ViewHolder for the Failed of this Section
    */
   public RecyclerView.ViewHolder getFailedViewHolder(View view) {
-
     return new SectionedRecyclerViewAdapter.EmptyViewHolder(view);
   }
 
