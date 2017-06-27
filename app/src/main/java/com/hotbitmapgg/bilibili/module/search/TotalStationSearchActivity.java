@@ -202,7 +202,6 @@ public class TotalStationSearchActivity extends RxBaseActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
-
             @Override
             public void onPageSelected(int position) {
                 measureTabLayoutTextWidth(position);
