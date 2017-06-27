@@ -1,6 +1,10 @@
 package com.hotbitmapgg.bilibili.module.home.region;
 
-import butterknife.BindView;
+import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.hotbitmapgg.bilibili.adapter.section.RegionRecommendBannerSection;
 import com.hotbitmapgg.bilibili.adapter.section.RegionRecommendDynamicSection;
 import com.hotbitmapgg.bilibili.adapter.section.RegionRecommendHotSection;
@@ -15,16 +19,14 @@ import com.hotbitmapgg.bilibili.utils.ToastUtil;
 import com.hotbitmapgg.bilibili.widget.banner.BannerEntity;
 import com.hotbitmapgg.bilibili.widget.sectioned.SectionedRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.R;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
-import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 /**
  * Created by hcc on 2016/10/21 20:39
@@ -34,32 +36,22 @@ import android.support.v7.widget.RecyclerView;
  */
 
 public class RegionTypeRecommendFragment extends RxLazyFragment {
-
   @BindView(R.id.recycle)
   RecyclerView mRecyclerView;
-
   @BindView(R.id.swipe_refresh_layout)
   SwipeRefreshLayout mRefreshLayout;
 
   private int rid;
-
   private boolean mIsRefreshing = false;
-
-  private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
-
   private List<BannerEntity> bannerEntities = new ArrayList<>();
-
+  private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
   private List<RegionRecommendInfo.DataBean.BannerBean.TopBean> banners = new ArrayList<>();
-
   private List<RegionRecommendInfo.DataBean.RecommendBean> recommends = new ArrayList<>();
-
   private List<RegionRecommendInfo.DataBean.NewBean> news = new ArrayList<>();
-
   private List<RegionRecommendInfo.DataBean.DynamicBean> dynamics = new ArrayList<>();
 
 
   public static RegionTypeRecommendFragment newInstance(int rid) {
-
     RegionTypeRecommendFragment fragment = new RegionTypeRecommendFragment();
     Bundle bundle = new Bundle();
     bundle.putInt(ConstantUtil.EXTRA_RID, rid);
@@ -67,26 +59,20 @@ public class RegionTypeRecommendFragment extends RxLazyFragment {
     return fragment;
   }
 
-
   @Override
   public int getLayoutResId() {
-
     return R.layout.fragment_region_recommend;
   }
 
-
   @Override
   public void finishCreateView(Bundle state) {
-
     rid = getArguments().getInt(ConstantUtil.EXTRA_RID);
     initRefreshLayout();
     initRecyclerView();
   }
 
-
   @Override
   protected void initRefreshLayout() {
-
     mRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
     mRecyclerView.post(() -> {
       mRefreshLayout.setRefreshing(true);
@@ -101,7 +87,6 @@ public class RegionTypeRecommendFragment extends RxLazyFragment {
 
 
   private void clearData() {
-
     bannerEntities.clear();
     banners.clear();
     recommends.clear();
@@ -114,18 +99,14 @@ public class RegionTypeRecommendFragment extends RxLazyFragment {
 
   @Override
   protected void initRecyclerView() {
-
     mSectionedRecyclerViewAdapter = new SectionedRecyclerViewAdapter();
     GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
     mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-
       @Override
       public int getSpanSize(int position) {
-
         switch (mSectionedRecyclerViewAdapter.getSectionItemViewType(position)) {
           case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
             return 2;
-
           default:
             return 1;
         }
@@ -139,7 +120,6 @@ public class RegionTypeRecommendFragment extends RxLazyFragment {
 
   @Override
   protected void loadData() {
-
     RetrofitHelper.getBiliAppAPI()
         .getRegionRecommends(rid)
         .compose(bindToLifecycle())
@@ -147,7 +127,6 @@ public class RegionTypeRecommendFragment extends RxLazyFragment {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(dataBean -> {
-
           banners.addAll(dataBean.getBanner().getTop());
           recommends.addAll(dataBean.getRecommend());
           news.addAll(dataBean.getNewX());
@@ -163,17 +142,12 @@ public class RegionTypeRecommendFragment extends RxLazyFragment {
 
   @Override
   protected void finishTask() {
-
     converBanner();
     mSectionedRecyclerViewAdapter.addSection(new RegionRecommendBannerSection(bannerEntities));
     mSectionedRecyclerViewAdapter.addSection(new RegionRecommendTypesSection(getActivity(), rid));
-    mSectionedRecyclerViewAdapter.addSection(
-        new RegionRecommendHotSection(getActivity(), rid, recommends));
-    mSectionedRecyclerViewAdapter.addSection(
-        new RegionRecommendNewSection(getActivity(), rid, news));
-    mSectionedRecyclerViewAdapter.addSection(
-        new RegionRecommendDynamicSection(getActivity(), dynamics));
-
+    mSectionedRecyclerViewAdapter.addSection(new RegionRecommendHotSection(getActivity(), rid, recommends));
+    mSectionedRecyclerViewAdapter.addSection(new RegionRecommendNewSection(getActivity(), rid, news));
+    mSectionedRecyclerViewAdapter.addSection(new RegionRecommendDynamicSection(getActivity(), dynamics));
     mIsRefreshing = false;
     mRefreshLayout.setRefreshing(false);
     mSectionedRecyclerViewAdapter.notifyDataSetChanged();
@@ -181,7 +155,6 @@ public class RegionTypeRecommendFragment extends RxLazyFragment {
 
 
   private void converBanner() {
-
     Observable.from(banners)
         .compose(bindToLifecycle())
         .forEach(topBean -> bannerEntities.add(new BannerEntity(topBean.getUri(),
@@ -190,7 +163,6 @@ public class RegionTypeRecommendFragment extends RxLazyFragment {
 
 
   private void setRecycleNoScroll() {
-
     mRecyclerView.setOnTouchListener((v, event) -> mIsRefreshing);
   }
 }

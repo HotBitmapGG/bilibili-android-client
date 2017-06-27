@@ -31,119 +31,99 @@ import rx.schedulers.Schedulers;
  */
 
 public class ChaseBangumiActivity extends RxBaseActivity {
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.recycle)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.circle_progress)
+    CircleProgressView mCircleProgressView;
 
-  @BindView(R.id.toolbar)
-  Toolbar mToolbar;
-
-  @BindView(R.id.recycle)
-  RecyclerView mRecyclerView;
-
-  @BindView(R.id.circle_progress)
-  CircleProgressView mCircleProgressView;
-
-  private static final int MID = 9467159;
-
-  private List<UserChaseBangumiInfo.DataBean.ResultBean> chaseBangumis = new ArrayList<>();
-
-  private ChaseBangumiAdapter mAdapter;
+    private static final int MID = 9467159;
+    private ChaseBangumiAdapter mAdapter;
+    private List<UserChaseBangumiInfo.DataBean.ResultBean> chaseBangumis = new ArrayList<>();
 
 
-  @Override
-  public int getLayoutId() {
-
-    return R.layout.activity_chase_bangumi;
-  }
-
-
-  @Override
-  public void initViews(Bundle savedInstanceState) {
-
-    initRecyclerView();
-    loadData();
-  }
-
-
-  @Override
-  public void loadData() {
-
-    RetrofitHelper.getUserAPI()
-        .getUserChaseBangumis(MID)
-        .compose(bindToLifecycle())
-        .doOnSubscribe(this::showProgressBar)
-        .map(userChaseBangumiInfo -> userChaseBangumiInfo.getData().getResult())
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(resultBeans -> {
-
-          chaseBangumis.addAll(resultBeans);
-          finishTask();
-        }, throwable -> {
-
-        });
-  }
-
-
-  @Override
-  public void initRecyclerView() {
-
-    mRecyclerView.setHasFixedSize(true);
-    mRecyclerView.setLayoutManager(new LinearLayoutManager(ChaseBangumiActivity.this));
-    mAdapter = new ChaseBangumiAdapter(mRecyclerView, chaseBangumis);
-    mRecyclerView.setAdapter(mAdapter);
-  }
-
-
-  @Override
-  public void finishTask() {
-
-    hideProgressBar();
-    mAdapter.notifyDataSetChanged();
-  }
-
-
-  @Override
-  public void initToolBar() {
-
-    mToolbar.setTitle("追番");
-    setSupportActionBar(mToolbar);
-    ActionBar mActionBar = getSupportActionBar();
-    if (mActionBar != null) {
-      mActionBar.setDisplayHomeAsUpEnabled(true);
-    }
-  }
-
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-
-    getMenuInflater().inflate(R.menu.menu_chase_bangumi, menu);
-    return true;
-  }
-
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-
-    if (item.getItemId() == android.R.id.home) {
-      onBackPressed();
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_chase_bangumi;
     }
 
-    return super.onOptionsItemSelected(item);
-  }
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        initRecyclerView();
+        loadData();
+    }
+
+    @Override
+    public void loadData() {
+        RetrofitHelper.getUserAPI()
+                .getUserChaseBangumis(MID)
+                .compose(bindToLifecycle())
+                .doOnSubscribe(this::showProgressBar)
+                .map(userChaseBangumiInfo -> userChaseBangumiInfo.getData().getResult())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(resultBeans -> {
+                    chaseBangumis.addAll(resultBeans);
+                    finishTask();
+                }, throwable -> {
+                });
+    }
 
 
-  @Override
-  public void showProgressBar() {
+    @Override
+    public void initRecyclerView() {
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(ChaseBangumiActivity.this));
+        mAdapter = new ChaseBangumiAdapter(mRecyclerView, chaseBangumis);
+        mRecyclerView.setAdapter(mAdapter);
+    }
 
-    mCircleProgressView.setVisibility(View.VISIBLE);
-    mCircleProgressView.spin();
-  }
+
+    @Override
+    public void finishTask() {
+        hideProgressBar();
+        mAdapter.notifyDataSetChanged();
+    }
 
 
-  @Override
-  public void hideProgressBar() {
+    @Override
+    public void initToolBar() {
+        mToolbar.setTitle("追番");
+        setSupportActionBar(mToolbar);
+        ActionBar mActionBar = getSupportActionBar();
+        if (mActionBar != null) {
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
 
-    mCircleProgressView.setVisibility(View.GONE);
-    mCircleProgressView.stopSpinning();
-  }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_chase_bangumi, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void showProgressBar() {
+        mCircleProgressView.setVisibility(View.VISIBLE);
+        mCircleProgressView.spin();
+    }
+
+
+    @Override
+    public void hideProgressBar() {
+        mCircleProgressView.setVisibility(View.GONE);
+        mCircleProgressView.stopSpinning();
+    }
 }

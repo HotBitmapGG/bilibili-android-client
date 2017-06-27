@@ -30,112 +30,90 @@ import rx.schedulers.Schedulers;
  */
 
 public class NewBangumiSerialActivity extends RxBaseActivity {
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.recycle)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.circle_progress)
+    CircleProgressView mCircleProgressView;
 
-  @BindView(R.id.toolbar)
-  Toolbar mToolbar;
+    private List<NewBangumiSerialInfo.ListBean> newBangumiSerials = new ArrayList<>();
+    private NewBangumiSerialAdapter mAdapter;
 
-  @BindView(R.id.recycle)
-  RecyclerView mRecyclerView;
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_new_bangumi_serial;
+    }
 
-  @BindView(R.id.circle_progress)
-  CircleProgressView mCircleProgressView;
+    @Override
+    public void initViews(Bundle savedInstanceState) {
+        initRecyclerView();
+        loadData();
+    }
 
-  private List<NewBangumiSerialInfo.ListBean> newBangumiSerials = new ArrayList<>();
-
-  private NewBangumiSerialAdapter mAdapter;
-
-
-  @Override
-  public int getLayoutId() {
-
-    return R.layout.activity_new_bangumi_serial;
-  }
-
-
-  @Override
-  public void initViews(Bundle savedInstanceState) {
-
-    initRecyclerView();
-    loadData();
-  }
+    @Override
+    public void loadData() {
+        RetrofitHelper.getBiliGoAPI()
+                .getNewBangumiSerialList()
+                .compose(this.bindToLifecycle())
+                .doOnSubscribe(this::showProgressBar)
+                .map(NewBangumiSerialInfo::getList)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(listBeans -> {
+                    newBangumiSerials.addAll(listBeans);
+                    finishTask();
+                }, throwable -> hideProgressBar());
+    }
 
 
-  @Override
-  public void loadData() {
+    @Override
+    public void finishTask() {
+        hideProgressBar();
+        mAdapter.notifyDataSetChanged();
+    }
 
-    RetrofitHelper.getBiliGoAPI()
-        .getNewBangumiSerialList()
-        .compose(this.bindToLifecycle())
-        .doOnSubscribe(this::showProgressBar)
-        .map(NewBangumiSerialInfo::getList)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(listBeans -> {
 
-          newBangumiSerials.addAll(listBeans);
-          finishTask();
-        }, throwable -> {
+    @Override
+    public void initToolBar() {
+        mToolbar.setTitle("全部新番连载");
+        setSupportActionBar(mToolbar);
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
 
-          hideProgressBar();
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void initRecyclerView() {
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(NewBangumiSerialActivity.this, 3));
+        mAdapter = new NewBangumiSerialAdapter(mRecyclerView, newBangumiSerials, true);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener((position, holder) -> {
+
         });
-  }
-
-
-  @Override
-  public void finishTask() {
-
-    hideProgressBar();
-    mAdapter.notifyDataSetChanged();
-  }
-
-
-  @Override
-  public void initToolBar() {
-
-    mToolbar.setTitle("全部新番连载");
-    setSupportActionBar(mToolbar);
-    ActionBar supportActionBar = getSupportActionBar();
-    if (supportActionBar != null) {
-      supportActionBar.setDisplayHomeAsUpEnabled(true);
     }
-  }
 
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-
-    if (item.getItemId() == android.R.id.home) {
-      onBackPressed();
+    @Override
+    public void showProgressBar() {
+        mCircleProgressView.setVisibility(View.VISIBLE);
+        mCircleProgressView.spin();
     }
-    return super.onOptionsItemSelected(item);
-  }
 
-
-  @Override
-  public void initRecyclerView() {
-
-    mRecyclerView.setHasFixedSize(true);
-    mRecyclerView.setLayoutManager(new GridLayoutManager(NewBangumiSerialActivity.this, 3));
-    mAdapter = new NewBangumiSerialAdapter(mRecyclerView, newBangumiSerials, true);
-    mRecyclerView.setAdapter(mAdapter);
-    mAdapter.setOnItemClickListener((position, holder) -> {
-
-    });
-  }
-
-
-  @Override
-  public void showProgressBar() {
-
-    mCircleProgressView.setVisibility(View.VISIBLE);
-    mCircleProgressView.spin();
-  }
-
-
-  @Override
-  public void hideProgressBar() {
-
-    mCircleProgressView.setVisibility(View.GONE);
-    mCircleProgressView.stopSpinning();
-  }
+    @Override
+    public void hideProgressBar() {
+        mCircleProgressView.setVisibility(View.GONE);
+        mCircleProgressView.stopSpinning();
+    }
 }
