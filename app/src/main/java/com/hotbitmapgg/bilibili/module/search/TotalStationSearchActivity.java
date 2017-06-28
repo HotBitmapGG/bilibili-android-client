@@ -175,19 +175,16 @@ public class TotalStationSearchActivity extends RxBaseActivity {
         titles.add(navs.get(0).getName() + "(" + checkNumResults(navs.get(0).getTotal()) + ")");
         titles.add(navs.get(1).getName() + "(" + checkNumResults(navs.get(1).getTotal()) + ")");
         titles.add(navs.get(2).getName() + "(" + checkNumResults(navs.get(2).getTotal()) + ")");
-        //titles.add(navs.get(3).getName() + "(" + checkNumResults(navs.get(3).getTotal()) + ")");
 
         ArchiveResultsFragment archiveResultsFragment = ArchiveResultsFragment.newInstance(content);
         BangumiResultsFragment bangumiResultsFragment = BangumiResultsFragment.newInstance(content);
         UpperResultsFragment upperResultsFragment = UpperResultsFragment.newInstance(content);
         MovieResultsFragment movieResultsFragment = MovieResultsFragment.newInstance(content);
-        //SpResultsFragment spResultsFragment = SpResultsFragment.newInstance(content);
 
         fragments.add(archiveResultsFragment);
         fragments.add(bangumiResultsFragment);
         fragments.add(upperResultsFragment);
         fragments.add(movieResultsFragment);
-        //fragments.add(spResultsFragment);
 
         SearchTabAdapter mAdapter = new SearchTabAdapter(getSupportFragmentManager(), titles, fragments);
         mViewPager.setAdapter(mAdapter);
