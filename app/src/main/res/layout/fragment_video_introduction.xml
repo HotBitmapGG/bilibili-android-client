@@ -20,6 +20,9 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
+            android:paddingEnd="@dimen/title_margin_small"
+            android:paddingStart="@dimen/title_margin_small"
             android:textColor="@color/font_normal"
             android:textSize="@dimen/default_medium_text_size" />
 

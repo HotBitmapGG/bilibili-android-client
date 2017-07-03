@@ -65,7 +65,7 @@ public class SeasonNewBangumiActivity extends RxBaseActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(seasonNewBangumiInfo -> {
-                    results.addAll(seasonNewBangumiInfo.getResult());
+                    results.addAll(seasonNewBangumiInfo.getResult().subList(0,50));
                     finishTask();
                 }, throwable -> hideProgressBar());
     }
