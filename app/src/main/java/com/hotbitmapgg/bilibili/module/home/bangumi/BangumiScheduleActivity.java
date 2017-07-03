@@ -11,13 +11,13 @@ import android.view.View;
 import com.hotbitmapgg.bilibili.adapter.section.BangumiScheduleSection;
 import com.hotbitmapgg.bilibili.base.RxBaseActivity;
 import com.hotbitmapgg.bilibili.entity.bangumi.BangumiScheduleInfo;
+import com.hotbitmapgg.bilibili.network.RetrofitHelper;
 import com.hotbitmapgg.bilibili.utils.ConstantUtil;
+import com.hotbitmapgg.bilibili.utils.ToastUtil;
 import com.hotbitmapgg.bilibili.utils.WeekDayUtil;
 import com.hotbitmapgg.bilibili.widget.CircleProgressView;
 import com.hotbitmapgg.bilibili.widget.sectioned.SectionedRecyclerViewAdapter;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.bilibili.network.RetrofitHelper;
-import com.hotbitmapgg.bilibili.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,20 +108,22 @@ public class BangumiScheduleActivity extends RxBaseActivity {
         Observable.from(bangumiSchedules)
                 .compose(bindToLifecycle())
                 .forEach(this::accordingWeekGroup);
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, sundayBangumis,
-                ConstantUtil.SUNDAY_TYPE, WeekDayUtil.formatDate(sundayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, mondayBangumis,
-                ConstantUtil.MONDAY_TYPE, WeekDayUtil.formatDate(mondayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, tuesdayBangumis,
-                ConstantUtil.TUESDAY_TYPE, WeekDayUtil.formatDate(tuesdayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, wednesdayBangumis,
-                ConstantUtil.WEDNESDAY_TYPE, WeekDayUtil.formatDate(wednesdayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, thursdayBangumis,
-                ConstantUtil.THURSDAY_TYPE, WeekDayUtil.formatDate(thursdayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, fridayBangumis,
-                ConstantUtil.FRIDAY_TYEP, WeekDayUtil.formatDate(fridayBangumis.get(0).getPub_date())));
-        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, saturdayBangumis,
-                ConstantUtil.SATURDAY_TYPE, WeekDayUtil.formatDate(saturdayBangumis.get(0).getPub_date())));
+
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, sundayBangumis, ConstantUtil.SUNDAY_TYPE,
+                saturdayBangumis.size() > 0 ? WeekDayUtil.formatDate(sundayBangumis.get(0).getPub_date()) : ""));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, mondayBangumis, ConstantUtil.MONDAY_TYPE,
+                mondayBangumis.size() > 0 ? WeekDayUtil.formatDate(mondayBangumis.get(0).getPub_date()) : ""));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, tuesdayBangumis, ConstantUtil.TUESDAY_TYPE,
+                tuesdayBangumis.size() > 0 ? WeekDayUtil.formatDate(tuesdayBangumis.get(0).getPub_date()) : ""));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, wednesdayBangumis, ConstantUtil.WEDNESDAY_TYPE,
+                wednesdayBangumis.size() > 0 ? WeekDayUtil.formatDate(wednesdayBangumis.get(0).getPub_date()) : ""));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, thursdayBangumis, ConstantUtil.THURSDAY_TYPE,
+                thursdayBangumis.size() > 0 ? WeekDayUtil.formatDate(thursdayBangumis.get(0).getPub_date()) : ""));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, fridayBangumis, ConstantUtil.FRIDAY_TYEP,
+                fridayBangumis.size() > 0 ? WeekDayUtil.formatDate(fridayBangumis.get(0).getPub_date()) : ""));
+        mSectionedAdapter.addSection(new BangumiScheduleSection(BangumiScheduleActivity.this, saturdayBangumis, ConstantUtil.SATURDAY_TYPE,
+                saturdayBangumis.size() > 0 ? WeekDayUtil.formatDate(saturdayBangumis.get(0).getPub_date()) : ""));
+
         mSectionedAdapter.notifyDataSetChanged();
         hideProgressBar();
     }

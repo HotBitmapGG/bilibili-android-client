@@ -12,9 +12,9 @@ import android.view.View;
 import com.hotbitmapgg.bilibili.adapter.ChaseBangumiAdapter;
 import com.hotbitmapgg.bilibili.base.RxBaseActivity;
 import com.hotbitmapgg.bilibili.entity.user.UserChaseBangumiInfo;
+import com.hotbitmapgg.bilibili.network.RetrofitHelper;
 import com.hotbitmapgg.bilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.bilibili.network.RetrofitHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +67,7 @@ public class ChaseBangumiActivity extends RxBaseActivity {
                     chaseBangumis.addAll(resultBeans);
                     finishTask();
                 }, throwable -> {
+                    hideProgressBar();
                 });
     }
 
