@@ -71,7 +71,11 @@
 
 The project only for the use of exchange of learning, such as the project have bilibili copyright infringement problem, I will delete this page and the whole project in time.
 
+## Recommend
 
+![Acg-community](https://github.com/HotBitmapGG/Acg)
+
+The old driver, hurry to get on the bus~!
 
 ## About me
 
