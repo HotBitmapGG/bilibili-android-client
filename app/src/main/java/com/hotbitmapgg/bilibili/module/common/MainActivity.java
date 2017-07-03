@@ -28,7 +28,6 @@ import com.hotbitmapgg.bilibili.utils.ConstantUtil;
 import com.hotbitmapgg.bilibili.utils.PreferenceUtil;
 import com.hotbitmapgg.bilibili.utils.ToastUtil;
 import com.hotbitmapgg.bilibili.widget.CircleImageView;
-import com.hotbitmapgg.bilibili.widget.dialog.CardPickerDialog;
 import com.hotbitmapgg.ohmybilibili.R;
 
 import butterknife.BindView;
@@ -170,9 +169,6 @@ public class MainActivity extends RxBaseActivity implements NavigationView.OnNav
                 return true;
             case R.id.item_theme:
                 // 主题选择
-                CardPickerDialog dialog = new CardPickerDialog();
-                dialog.setClickListener(this);
-                dialog.show(getSupportFragmentManager(), CardPickerDialog.TAG);
                 return true;
             case R.id.item_app:
                 // 应用推荐
