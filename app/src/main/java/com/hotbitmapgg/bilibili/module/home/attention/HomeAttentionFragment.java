@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.hotbitmapgg.bilibili.adapter.AttentionDynamicAdapter;
 import com.hotbitmapgg.bilibili.base.RxLazyFragment;
@@ -34,6 +35,8 @@ public class HomeAttentionFragment extends RxLazyFragment {
     RecyclerView mRecyclerView;
     @BindView(R.id.empty_layout)
     CustomEmptyView mCustomEmptyView;
+    @BindView(R.id.layout_top)
+    RelativeLayout topLayout;
 
     private boolean mIsRefreshing = false;
     private List<AttentionDynamicInfo.DataBean.FeedsBean> dynamics = new ArrayList<>();
@@ -110,6 +113,7 @@ public class HomeAttentionFragment extends RxLazyFragment {
 
 
     public void initEmptyView() {
+        topLayout.setVisibility(View.GONE);
         mSwipeRefreshLayout.setRefreshing(false);
         mCustomEmptyView.setVisibility(View.VISIBLE);
         mRecyclerView.setVisibility(View.GONE);
@@ -119,6 +123,7 @@ public class HomeAttentionFragment extends RxLazyFragment {
     }
 
     public void hideEmptyView() {
+        topLayout.setVisibility(View.VISIBLE);
         mCustomEmptyView.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
