@@ -37,8 +37,8 @@ public class NewBangumiSerialActivity extends RxBaseActivity {
     @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    private List<NewBangumiSerialInfo.ListBean> newBangumiSerials = new ArrayList<>();
     private NewBangumiSerialAdapter mAdapter;
+    private List<NewBangumiSerialInfo.ListBean> newBangumiSerials = new ArrayList<>();
 
     @Override
     public int getLayoutId() {

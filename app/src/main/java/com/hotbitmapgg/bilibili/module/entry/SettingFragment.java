@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.hotbitmapgg.bilibili.base.RxLazyFragment;
@@ -57,24 +58,24 @@ public class SettingFragment extends RxLazyFragment {
         mVersionCode.setText("v" + getVersionCode());
     }
 
-    @OnClick(R.id.layout_about_me)
-    void startAboutMeActivity() {
-        //关于我
-        startActivity(new Intent(getActivity(), HotBitmapGGInfoActivity.class));
-    }
-
-    @OnClick(R.id.layout_about_app)
-    void startAboutBiliBiliActivity() {
-        //关于哔哩哔哩
-        startActivity(new Intent(getActivity(), AppIntroduceActivity.class));
-    }
-
-    @OnClick(R.id.btn_logout)
-    void logout() {
-        //退出登录
-        PreferenceUtil.putBoolean(ConstantUtil.KEY, false);
-        startActivity(new Intent(getActivity(), LoginActivity.class));
-        getActivity().finish();
+    @OnClick({R.id.layout_about_me, R.id.layout_about_app, R.id.btn_logout})
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.layout_about_me:
+                //关于我
+                startActivity(new Intent(getActivity(), HotBitmapGGInfoActivity.class));
+                break;
+            case R.id.layout_about_app:
+                //关于哔哩哔哩
+                startActivity(new Intent(getActivity(), AppIntroduceActivity.class));
+                break;
+            case R.id.btn_logout:
+                //退出登录
+                PreferenceUtil.putBoolean(ConstantUtil.KEY, false);
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
+                break;
+        }
     }
 
     public String getVersionCode() {

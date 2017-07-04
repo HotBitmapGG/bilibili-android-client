@@ -18,13 +18,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.bilibili.base.RxBaseActivity;
-import com.hotbitmapgg.bilibili.utils.ConstantUtil;
-import com.hotbitmapgg.bilibili.widget.CircleImageView;
-import com.hotbitmapgg.ohmybilibili.R;
 import com.hotbitmapgg.bilibili.module.user.UserInfoDetailsActivity;
 import com.hotbitmapgg.bilibili.network.RetrofitHelper;
+import com.hotbitmapgg.bilibili.utils.ConstantUtil;
 import com.hotbitmapgg.bilibili.utils.LogUtil;
+import com.hotbitmapgg.bilibili.widget.CircleImageView;
 import com.hotbitmapgg.bilibili.widget.livelike.LoveLikeLayout;
+import com.hotbitmapgg.ohmybilibili.R;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -228,59 +228,36 @@ public class LivePlayerActivity extends RxBaseActivity {
         mRightPlayBtn.setVisibility(View.GONE);
     }
 
-
-    public static void launch(Activity activity, int cid, String title, int online, String face, String name, int mid) {
-        Intent mIntent = new Intent(activity, LivePlayerActivity.class);
-        mIntent.putExtra(ConstantUtil.EXTRA_CID, cid);
-        mIntent.putExtra(ConstantUtil.EXTRA_TITLE, title);
-        mIntent.putExtra(ConstantUtil.EXTRA_ONLINE, online);
-        mIntent.putExtra(ConstantUtil.EXTRA_FACE, face);
-        mIntent.putExtra(ConstantUtil.EXTRA_NAME, name);
-        mIntent.putExtra(ConstantUtil.EXTRA_MID, mid);
-        activity.startActivity(mIntent);
-    }
-
-
-    @OnClick(R.id.right_play)
-    void rightPlay() {
-        ControlVideo();
-    }
-
-
-    @OnClick(R.id.bottom_play)
-    void bottomPlay() {
-        ControlVideo();
-    }
-
-
-    @OnClick(R.id.bottom_fullscreen)
-    void fullScreen() {
-
-    }
-
-
-    @OnClick(R.id.video_view)
-    void showBottomLayout() {
-        if (flag == 0) {
-            startBottomShowAnim();
-            flag = 1;
-        } else {
-            startBottomHideAnim();
-            flag = 0;
+    @OnClick({R.id.right_play, R.id.bottom_play, R.id.bottom_fullscreen,
+            R.id.video_view, R.id.user_pic, R.id.bottom_love})
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.right_play:
+                ControlVideo();
+                break;
+            case R.id.bottom_play:
+                ControlVideo();
+                break;
+            case R.id.bottom_fullscreen:
+                break;
+            case R.id.video_view:
+                if (flag == 0) {
+                    startBottomShowAnim();
+                    flag = 1;
+                } else {
+                    startBottomHideAnim();
+                    flag = 0;
+                }
+                break;
+            case R.id.user_pic:
+                UserInfoDetailsActivity.launch(LivePlayerActivity.this, name, mid, face);
+                ControlVideo();
+                mRightPlayBtn.setVisibility(View.VISIBLE);
+                break;
+            case R.id.bottom_love:
+                mLoveLikeLayout.addLove();
+                break;
         }
-    }
-
-
-    @OnClick(R.id.user_pic)
-    void startUserInfo() {
-        UserInfoDetailsActivity.launch(LivePlayerActivity.this, name, mid, face);
-        ControlVideo();
-        mRightPlayBtn.setVisibility(View.VISIBLE);
-    }
-
-    @OnClick(R.id.bottom_love)
-    void clickLove() {
-        mLoveLikeLayout.addLove();
     }
 
 
@@ -298,6 +275,17 @@ public class LivePlayerActivity extends RxBaseActivity {
         }
     }
 
+
+    public static void launch(Activity activity, int cid, String title, int online, String face, String name, int mid) {
+        Intent mIntent = new Intent(activity, LivePlayerActivity.class);
+        mIntent.putExtra(ConstantUtil.EXTRA_CID, cid);
+        mIntent.putExtra(ConstantUtil.EXTRA_TITLE, title);
+        mIntent.putExtra(ConstantUtil.EXTRA_ONLINE, online);
+        mIntent.putExtra(ConstantUtil.EXTRA_FACE, face);
+        mIntent.putExtra(ConstantUtil.EXTRA_NAME, name);
+        mIntent.putExtra(ConstantUtil.EXTRA_MID, mid);
+        activity.startActivity(mIntent);
+    }
 
     @Override
     protected void onDestroy() {

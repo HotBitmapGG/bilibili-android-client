@@ -333,7 +333,7 @@ public class VideoPlayerActivity extends RxBaseActivity implements DanmukuSwitch
      * 弹幕开关回调
      */
     @Override
-    public void setDanmakushow(boolean isShow) {
+    public void setDanmakuShow(boolean isShow) {
         if (mDanmakuView != null) {
             if (isShow) {
                 mDanmakuView.show();

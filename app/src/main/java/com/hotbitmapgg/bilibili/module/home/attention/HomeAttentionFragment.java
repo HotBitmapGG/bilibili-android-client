@@ -35,11 +35,10 @@ public class HomeAttentionFragment extends RxLazyFragment {
     @BindView(R.id.empty_layout)
     CustomEmptyView mCustomEmptyView;
 
-    private static final int MID = 9467159;
     private boolean mIsRefreshing = false;
     private List<AttentionDynamicInfo.DataBean.FeedsBean> dynamics = new ArrayList<>();
 
-    public static HomeAttentionFragment newIntance() {
+    public static HomeAttentionFragment newInstance() {
         return new HomeAttentionFragment();
     }
 

@@ -21,10 +21,10 @@ import java.util.List;
  * <p/>
  * 全区排行榜adapter
  */
-public class AllareasRankAdapter extends AbsRecyclerViewAdapter {
+public class AllAreasRankAdapter extends AbsRecyclerViewAdapter {
     private List<AllareasRankInfo.RankBean.ListBean> allRanks;
 
-    public AllareasRankAdapter(RecyclerView recyclerView, List<AllareasRankInfo.RankBean.ListBean> allRanks) {
+    public AllAreasRankAdapter(RecyclerView recyclerView, List<AllareasRankInfo.RankBean.ListBean> allRanks) {
         super(recyclerView);
         this.allRanks = allRanks;
     }

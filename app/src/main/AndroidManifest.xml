@@ -125,7 +125,7 @@
 
         <!-- 全区排行榜界面 -->
         <activity
-            android:name="com.hotbitmapgg.bilibili.module.home.discover.AllareasRankActivity"
+            android:name="com.hotbitmapgg.bilibili.module.home.discover.AllAreasRankActivity"
             android:screenOrientation="portrait" />
 
 

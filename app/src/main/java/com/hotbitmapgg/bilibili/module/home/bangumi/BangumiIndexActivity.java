@@ -39,8 +39,8 @@ public class BangumiIndexActivity extends RxBaseActivity {
   @BindView(R.id.circle_progress)
   CircleProgressView mCircleProgressView;
 
-  private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
   private GridLayoutManager mGridLayoutManager;
+  private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
   private List<BangumiIndexInfo.ResultBean.CategoryBean> categorys = new ArrayList<>();
 
   @Override

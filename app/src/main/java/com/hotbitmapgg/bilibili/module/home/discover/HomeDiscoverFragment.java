@@ -153,7 +153,7 @@ public class HomeDiscoverFragment extends RxLazyFragment {
      */
     @OnClick(R.id.layout_all_rank)
     void startAllRankActivity() {
-        startActivity(new Intent(getActivity(), AllareasRankActivity.class));
+        startActivity(new Intent(getActivity(), AllAreasRankActivity.class));
     }
 
 

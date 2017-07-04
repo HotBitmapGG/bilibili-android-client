@@ -42,6 +42,7 @@ public class BangumiScheduleActivity extends RxBaseActivity {
     @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
+    private SectionedRecyclerViewAdapter mSectionedAdapter;
     private List<BangumiScheduleInfo.ResultBean> bangumiSchedules = new ArrayList<>();
     private List<BangumiScheduleInfo.ResultBean> sundayBangumis = new ArrayList<>();
     private List<BangumiScheduleInfo.ResultBean> mondayBangumis = new ArrayList<>();
@@ -50,7 +51,6 @@ public class BangumiScheduleActivity extends RxBaseActivity {
     private List<BangumiScheduleInfo.ResultBean> thursdayBangumis = new ArrayList<>();
     private List<BangumiScheduleInfo.ResultBean> fridayBangumis = new ArrayList<>();
     private List<BangumiScheduleInfo.ResultBean> saturdayBangumis = new ArrayList<>();
-    private SectionedRecyclerViewAdapter mSectionedAdapter;
 
 
     @Override

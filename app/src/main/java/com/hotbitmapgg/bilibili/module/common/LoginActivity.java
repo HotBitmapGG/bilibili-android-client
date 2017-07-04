@@ -93,27 +93,28 @@ public class LoginActivity extends RxBaseActivity {
         mToolbar.setNavigationOnClickListener(v -> finish());
     }
 
-
-    @OnClick(R.id.btn_login)
-    void startLogin() {
-        boolean isNetConnected = CommonUtil.isNetworkAvailable(this);
-        if (!isNetConnected) {
-            ToastUtil.ShortToast("当前网络不可用,请检查网络设置");
-            return;
+    @OnClick({R.id.btn_login, R.id.delete_username})
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_login:
+                //登录
+                boolean isNetConnected = CommonUtil.isNetworkAvailable(this);
+                if (!isNetConnected) {
+                    ToastUtil.ShortToast("当前网络不可用,请检查网络设置");
+                    return;
+                }
+                login();
+                break;
+            case R.id.delete_username:
+                // 清空用户名以及密码
+                et_username.setText("");
+                et_password.setText("");
+                mDeleteUserName.setVisibility(View.GONE);
+                et_username.setFocusable(true);
+                et_username.setFocusableInTouchMode(true);
+                et_username.requestFocus();
+                break;
         }
-        login();
-    }
-
-
-    @OnClick(R.id.delete_username)
-    void delete() {
-        // 清空用户名以及密码
-        et_username.setText("");
-        et_password.setText("");
-        mDeleteUserName.setVisibility(View.GONE);
-        et_username.setFocusable(true);
-        et_username.setFocusableInTouchMode(true);
-        et_username.requestFocus();
     }
 
 

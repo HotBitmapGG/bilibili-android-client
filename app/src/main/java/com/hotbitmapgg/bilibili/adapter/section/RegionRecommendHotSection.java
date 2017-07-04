@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.bilibili.entity.region.RegionRecommendInfo;
-import com.hotbitmapgg.bilibili.module.home.discover.AllareasRankActivity;
+import com.hotbitmapgg.bilibili.module.home.discover.AllAreasRankActivity;
 import com.hotbitmapgg.bilibili.module.video.VideoDetailsActivity;
 import com.hotbitmapgg.bilibili.utils.ConstantUtil;
 import com.hotbitmapgg.bilibili.utils.NumberUtil;
@@ -98,51 +98,51 @@ public class RegionRecommendHotSection extends StatelessSection {
         switch (rid) {
             case 13:
                 //番剧
-                AllareasRankActivity.launch((Activity) mContext, 0);
+                AllAreasRankActivity.launch((Activity) mContext, 0);
                 break;
             case 1:
                 //动画
-                AllareasRankActivity.launch((Activity) mContext, 1);
+                AllAreasRankActivity.launch((Activity) mContext, 1);
                 break;
             case 3:
                 //音乐
-                AllareasRankActivity.launch((Activity) mContext, 2);
+                AllAreasRankActivity.launch((Activity) mContext, 2);
                 break;
             case 129:
                 //舞蹈
-                AllareasRankActivity.launch((Activity) mContext, 3);
+                AllAreasRankActivity.launch((Activity) mContext, 3);
                 break;
             case 4:
                 //游戏
-                AllareasRankActivity.launch((Activity) mContext, 4);
+                AllAreasRankActivity.launch((Activity) mContext, 4);
                 break;
             case 36:
                 //科技
-                AllareasRankActivity.launch((Activity) mContext, 5);
+                AllAreasRankActivity.launch((Activity) mContext, 5);
                 break;
             case 160:
                 //生活
-                AllareasRankActivity.launch((Activity) mContext, 6);
+                AllAreasRankActivity.launch((Activity) mContext, 6);
                 break;
             case 119:
                 //鬼畜
-                AllareasRankActivity.launch((Activity) mContext, 7);
+                AllAreasRankActivity.launch((Activity) mContext, 7);
                 break;
             case 155:
                 //时尚
-                AllareasRankActivity.launch((Activity) mContext, 8);
+                AllAreasRankActivity.launch((Activity) mContext, 8);
                 break;
             case 5:
                 //娱乐
-                AllareasRankActivity.launch((Activity) mContext, 9);
+                AllAreasRankActivity.launch((Activity) mContext, 9);
                 break;
             case 23:
                 //电影
-                AllareasRankActivity.launch((Activity) mContext, 10);
+                AllAreasRankActivity.launch((Activity) mContext, 10);
                 break;
             case 11:
                 //电视剧
-                AllareasRankActivity.launch((Activity) mContext, 11);
+                AllAreasRankActivity.launch((Activity) mContext, 11);
                 break;
         }
     }

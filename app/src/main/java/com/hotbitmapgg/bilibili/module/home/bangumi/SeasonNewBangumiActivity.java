@@ -39,8 +39,8 @@ public class SeasonNewBangumiActivity extends RxBaseActivity {
     @BindView(R.id.circle_progress)
     CircleProgressView mCircleProgressView;
 
-    private List<SeasonNewBangumiInfo.ResultBean> results = new ArrayList<>();
     private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
+    private List<SeasonNewBangumiInfo.ResultBean> results = new ArrayList<>();
 
 
     @Override

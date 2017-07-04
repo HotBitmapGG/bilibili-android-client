@@ -69,8 +69,8 @@ public class SpecialDetailsActivity extends RxBaseActivity {
 
     private int spid;
     private String title;
-    private SpecialTopic mSpecialTopic;
     private int season_id;
+    private SpecialTopic mSpecialTopic;
     private ArrayList<SpecialTopic.Item> spList = new ArrayList<>();
 
     @Override

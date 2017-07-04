@@ -16,8 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -25,9 +23,9 @@ import android.webkit.WebViewClient;
 import com.hotbitmapgg.bilibili.base.RxBaseActivity;
 import com.hotbitmapgg.bilibili.utils.ClipboardUtil;
 import com.hotbitmapgg.bilibili.utils.ConstantUtil;
+import com.hotbitmapgg.bilibili.utils.ToastUtil;
 import com.hotbitmapgg.bilibili.widget.CircleProgressView;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.bilibili.utils.ToastUtil;
 
 import butterknife.BindView;
 
@@ -186,11 +184,12 @@ public class BrowserActivity extends RxBaseActivity {
         }
 
         @Override
-        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-            super.onReceivedError(view, request, error);
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
             String errorHtml = "<html><body><h2>找不到网页</h2></body></html>";
             view.loadDataWithBaseURL(null, errorHtml, "text/html", "UTF-8", null);
         }
+
     }
 
 

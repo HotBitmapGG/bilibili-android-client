@@ -97,10 +97,10 @@ public class BangumiDetailsActivity extends RxBaseActivity {
 
     private int seasonId;
     private BangumiDetailsInfo.ResultBean result;
-    private List<BangumiDetailsRecommendInfo.ResultBean.ListBean> bangumiRecommends = new ArrayList<>();
-    private List<BangumiDetailsCommentInfo.DataBean.HotsBean> hotComments = new ArrayList<>();
-    private List<BangumiDetailsCommentInfo.DataBean.RepliesBean> replies = new ArrayList<>();
     private BangumiDetailsCommentInfo.DataBean.PageBean mPageInfo;
+    private List<BangumiDetailsCommentInfo.DataBean.RepliesBean> replies = new ArrayList<>();
+    private List<BangumiDetailsCommentInfo.DataBean.HotsBean> hotComments = new ArrayList<>();
+    private List<BangumiDetailsRecommendInfo.ResultBean.ListBean> bangumiRecommends = new ArrayList<>();
 
     @Override
     public int getLayoutId() {

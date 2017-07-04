@@ -69,9 +69,7 @@ public class RegionTypeDetailsActivity extends RxBaseActivity {
     private void initViewPager() {
         titles.add("推荐");
         Observable.from(mDataBean.getChildren())
-                .subscribe(childrenBean -> {
-                    titles.add(childrenBean.getName());
-                });
+                .subscribe(childrenBean -> titles.add(childrenBean.getName()));
         RegionPagerAdapter mAdapter = new RegionPagerAdapter(getSupportFragmentManager(), mDataBean.getTid(), titles, mDataBean.getChildren());
         mViewPager.setOffscreenPageLimit(titles.size());
         mViewPager.setAdapter(mAdapter);

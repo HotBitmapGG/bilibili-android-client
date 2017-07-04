@@ -45,15 +45,15 @@ public class HomeBangumiFragment extends RxLazyFragment {
     @BindView(R.id.empty_layout)
     CustomEmptyView mCustomEmptyView;
 
+    private int season;
     private boolean mIsRefreshing = false;
     private List<BannerEntity> bannerList = new ArrayList<>();
+    private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
     private List<BangumiRecommendInfo.ResultBean> bangumiRecommends = new ArrayList<>();
     private List<BangumiAppIndexInfo.ResultBean.AdBean.HeadBean> banners = new ArrayList<>();
     private List<BangumiAppIndexInfo.ResultBean.AdBean.BodyBean> bangumibobys = new ArrayList<>();
     private List<BangumiAppIndexInfo.ResultBean.PreviousBean.ListBean> seasonNewBangumis = new ArrayList<>();
     private List<BangumiAppIndexInfo.ResultBean.SerializingBean> newBangumiSerials = new ArrayList<>();
-    private SectionedRecyclerViewAdapter mSectionedRecyclerViewAdapter;
-    private int season;
 
     public static HomeBangumiFragment newInstance() {
         return new HomeBangumiFragment();

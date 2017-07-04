@@ -5,7 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.hotbitmapgg.bilibili.adapter.AllareasRankAdapter;
+import com.hotbitmapgg.bilibili.adapter.AllAreasRankAdapter;
 import com.hotbitmapgg.bilibili.base.RxLazyFragment;
 import com.hotbitmapgg.bilibili.entity.discover.AllareasRankInfo;
 import com.hotbitmapgg.bilibili.module.video.VideoDetailsActivity;
@@ -27,18 +27,18 @@ import rx.schedulers.Schedulers;
  * <p/>
  * 全区排行榜界面
  */
-public class AllareasRankFragment extends RxLazyFragment {
+public class AllAreasRankFragment extends RxLazyFragment {
     @BindView(R.id.recycle)
     RecyclerView mRecyclerView;
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     private String type;
-    private AllareasRankAdapter mAdapter;
+    private AllAreasRankAdapter mAdapter;
     private List<AllareasRankInfo.RankBean.ListBean> allRanks = new ArrayList<>();
 
-    public static AllareasRankFragment newInstance(String type) {
-        AllareasRankFragment mFragment = new AllareasRankFragment();
+    public static AllAreasRankFragment newInstance(String type) {
+        AllAreasRankFragment mFragment = new AllAreasRankFragment();
         Bundle mBundle = new Bundle();
         mBundle.putString(ConstantUtil.EXTRA_KEY, type);
         mFragment.setArguments(mBundle);
@@ -98,7 +98,7 @@ public class AllareasRankFragment extends RxLazyFragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setNestedScrollingEnabled(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new AllareasRankAdapter(mRecyclerView, allRanks);
+        mAdapter = new AllAreasRankAdapter(mRecyclerView, allRanks);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener((position, holder) -> VideoDetailsActivity.launch(getActivity(),
                 allRanks.get(position).getAid(),

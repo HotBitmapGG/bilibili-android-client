@@ -46,11 +46,11 @@ public class ActivityCenterActivity extends RxBaseActivity {
     private int pageNum = 1;
     private int pageSize = 20;
     private View loadMoreView;
-    private List<ActivityCenterInfo.ListBean> activityCenters = new ArrayList<>();
+    private boolean mIsRefreshing = false;
     private ActivityCenterAdapter mAdapter;
     private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
-    private boolean mIsRefreshing = false;
     private EndlessRecyclerOnScrollListener mEndlessRecyclerOnScrollListener;
+    private List<ActivityCenterInfo.ListBean> activityCenters = new ArrayList<>();
 
 
     @Override

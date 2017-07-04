@@ -270,12 +270,12 @@ public class MediaController extends FrameLayout {
             if (mDanmakuShow) {
                 mDanmakuImage.setImageResource(R.drawable.bili_player_danmaku_is_open);
                 mDanmakuText.setText("弹幕开");
-                mDanmukuSwitchListener.setDanmakushow(true);
+                mDanmukuSwitchListener.setDanmakuShow(true);
                 mDanmakuShow = false;
             } else {
                 mDanmakuImage.setImageResource(R.drawable.bili_player_danmaku_is_closed);
                 mDanmakuText.setText("弹幕关");
-                mDanmukuSwitchListener.setDanmakushow(false);
+                mDanmukuSwitchListener.setDanmakuShow(false);
                 mDanmakuShow = true;
             }
         });
