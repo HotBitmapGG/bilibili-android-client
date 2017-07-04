@@ -1,12 +1,11 @@
 package com.hotbitmapgg.bilibili.network.api;
 
-import com.hotbitmapgg.bilibili.entity.bangumi.SpecialTopic;
-import com.hotbitmapgg.bilibili.entity.bangumi.SpecialTopicIResult;
-import com.hotbitmapgg.bilibili.entity.discover.TopicCenterInfo;
 import com.hotbitmapgg.bilibili.entity.attention.AttentionDynamicInfo;
 import com.hotbitmapgg.bilibili.entity.bangumi.BangumiDetailsCommentInfo;
+import com.hotbitmapgg.bilibili.entity.bangumi.SpecialTopic;
+import com.hotbitmapgg.bilibili.entity.bangumi.SpecialTopicIResult;
 import com.hotbitmapgg.bilibili.entity.discover.ActivityCenterInfo;
-import com.hotbitmapgg.bilibili.entity.user.UserFavoritesInfo;
+import com.hotbitmapgg.bilibili.entity.discover.TopicCenterInfo;
 import com.hotbitmapgg.bilibili.entity.video.VideoCommentInfo;
 
 import retrofit2.http.GET;
@@ -49,11 +48,6 @@ public interface BiliApiService {
     @GET("event/getlist?device=phone&mobi_app=iphone")
     Observable<ActivityCenterInfo> getActivityCenterList(@Query("page") int page, @Query("pagesize") int pageSize);
 
-    /**
-     * 用户收藏夹
-     */
-    @GET("x/app/favourite/folder?")
-    Observable<UserFavoritesInfo> getUserFavorites(@Query("mid") int mid);
 
     /**
      * 首页关注

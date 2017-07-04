@@ -45,7 +45,7 @@ public class UserHomePagerContributeAdapter extends AbsRecyclerViewAdapter {
             UserContributeInfo.DataBean.VlistBean vlistBean = userContributes.get(position);
 
             Glide.with(getContext())
-                    .load(vlistBean.getPic())
+                    .load("http:" + vlistBean.getPic())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)

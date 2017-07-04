@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hotbitmapgg.bilibili.adapter.helper.AbsRecyclerViewAdapter;
 import com.hotbitmapgg.bilibili.entity.user.UserContributeInfo;
-import com.hotbitmapgg.bilibili.network.auxiliary.UrlHelper;
 import com.hotbitmapgg.ohmybilibili.R;
 
 import java.util.List;
@@ -46,7 +45,7 @@ public class UserContributeVideoAdapter extends AbsRecyclerViewAdapter {
             UserContributeInfo.DataBean.VlistBean vlistBean = userVideoList.get(position);
 
             Glide.with(getContext())
-                    .load(UrlHelper.getClearVideoPreviewUrl(vlistBean.getPic()))
+                    .load("http:" + vlistBean.getPic())
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.bili_default_image_tv)

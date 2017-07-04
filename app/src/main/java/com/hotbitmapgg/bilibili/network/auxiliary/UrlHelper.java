@@ -1,7 +1,5 @@
 package com.hotbitmapgg.bilibili.network.auxiliary;
 
-import android.util.Log;
-
 import com.hotbitmapgg.bilibili.entity.user.UserDetailsInfo;
 
 /**
@@ -15,22 +13,6 @@ import com.hotbitmapgg.bilibili.entity.user.UserDetailsInfo;
  */
 public class UrlHelper {
     private static final String HDSLB_HOST = "http://i2.hdslb.com";
-
-    private static boolean isVideoUrl(String url) {
-        return url.contains("bilibili.com/video/av");
-    }
-
-    public static int getAVfromVideoUrl(String url) {
-        if (!isVideoUrl(url)) {
-            return -1;
-        }
-        String av = url;
-        av = av.substring(av.indexOf("bilibili.com/video/av") + "bilibili.com/video/av".length());
-        Log.i("test", av);
-        av = av.substring(0, av.indexOf("/"));
-        Log.i("test", av);
-        return Integer.parseInt(av);
-    }
 
     public static String getFaceUrl(UserDetailsInfo info) {
         if (info.getCard().getFace().contains(".hdslb.com")) {

@@ -12,22 +12,18 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hotbitmapgg.bilibili.adapter.UserHomePagerChaseBangumiAdapter;
 import com.hotbitmapgg.bilibili.adapter.UserHomePagerCoinsAdapter;
 import com.hotbitmapgg.bilibili.adapter.UserHomePagerContributeAdapter;
 import com.hotbitmapgg.bilibili.adapter.UserHomePagerInterestQuanAdapter;
 import com.hotbitmapgg.bilibili.adapter.UserHomePagerPlayGameAdapter;
 import com.hotbitmapgg.bilibili.base.RxLazyFragment;
-import com.hotbitmapgg.bilibili.entity.user.UserChaseBangumiInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserCoinsInfo;
+import com.hotbitmapgg.bilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserInterestQuanInfo;
+import com.hotbitmapgg.bilibili.entity.user.UserLiveRoomStatusInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserPlayGameInfo;
 import com.hotbitmapgg.bilibili.utils.ConstantUtil;
 import com.hotbitmapgg.ohmybilibili.R;
-import com.hotbitmapgg.bilibili.entity.user.UserContributeInfo;
-import com.hotbitmapgg.bilibili.entity.user.UserFavoritesInfo;
-import com.hotbitmapgg.bilibili.entity.user.UserLiveRoomStatusInfo;
-import com.hotbitmapgg.bilibili.widget.FavoritesItemLayout;
 
 import java.util.List;
 
@@ -50,14 +46,6 @@ public class UserHomePageFragment extends RxLazyFragment {
     TextView mCoinsCount;
     @BindView(R.id.coins_recycler)
     RecyclerView mCoinsRecycler;
-    @BindView(R.id.favorites_count)
-    TextView mFavoritesCount;
-    @BindView(R.id.favorites_layout)
-    FavoritesItemLayout mFavoritesLayout;
-    @BindView(R.id.chase_bangumi_count)
-    TextView mChaseBangumiCount;
-    @BindView(R.id.chase_bangumi_recycler)
-    RecyclerView mChaseBangumiRecycler;
     @BindView(R.id.quanzi_count)
     TextView mQuanziCount;
     @BindView(R.id.quanzi_recycler)
@@ -70,10 +58,6 @@ public class UserHomePageFragment extends RxLazyFragment {
     RelativeLayout contributeLayout;
     @BindView(R.id.coins_layout)
     RelativeLayout coinsLayout;
-    @BindView(R.id.favorites_head_layout)
-    RelativeLayout favoritesHeadLayout;
-    @BindView(R.id.chase_bangumi_layout)
-    RelativeLayout chaseBangumiLayout;
     @BindView(R.id.quanzi_layout)
     RelativeLayout quanziLayout;
     @BindView(R.id.play_game_layout)
@@ -88,23 +72,18 @@ public class UserHomePageFragment extends RxLazyFragment {
     private UserCoinsInfo mUserCoinsInfo;
     private UserPlayGameInfo mUserPlayGameInfo;
     private UserContributeInfo mUserContributeInfo;
-    private UserFavoritesInfo mUserFavoritesInfo;
-    private UserChaseBangumiInfo mUserChaseBangumiInfo;
     private UserInterestQuanInfo mUserInterestQuanInfo;
     private UserLiveRoomStatusInfo mUserLiveRoomStatusInfo;
 
-
-    public static UserHomePageFragment newInstance(
-            UserContributeInfo userContributeInfo, UserFavoritesInfo userFavoritesInfo,
-            UserChaseBangumiInfo userChaseBangumiInfo, UserInterestQuanInfo userInterestQuanInfo,
-            UserCoinsInfo userCoinsInfo, UserPlayGameInfo userPlayGameInfo,
-            UserLiveRoomStatusInfo userLiveRoomStatusInfo) {
+    public static UserHomePageFragment newInstance(UserContributeInfo userContributeInfo,
+                                                   UserInterestQuanInfo userInterestQuanInfo,
+                                                   UserCoinsInfo userCoinsInfo,
+                                                   UserPlayGameInfo userPlayGameInfo,
+                                                   UserLiveRoomStatusInfo userLiveRoomStatusInfo) {
 
         UserHomePageFragment mFragment = new UserHomePageFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(ConstantUtil.USER_CONTRIBUTE, userContributeInfo);
-        bundle.putParcelable(ConstantUtil.USER_FAVORITES, userFavoritesInfo);
-        bundle.putParcelable(ConstantUtil.USER_CHASE_BANGUMI, userChaseBangumiInfo);
         bundle.putParcelable(ConstantUtil.USER_INTEREST_QUAN, userInterestQuanInfo);
         bundle.putParcelable(ConstantUtil.USER_COINS, userCoinsInfo);
         bundle.putParcelable(ConstantUtil.USER_PLAY_GAME, userPlayGameInfo);
@@ -122,8 +101,6 @@ public class UserHomePageFragment extends RxLazyFragment {
     @Override
     public void finishCreateView(Bundle state) {
         mUserContributeInfo = getArguments().getParcelable(ConstantUtil.USER_CONTRIBUTE);
-        mUserFavoritesInfo = getArguments().getParcelable(ConstantUtil.USER_FAVORITES);
-        mUserChaseBangumiInfo = getArguments().getParcelable(ConstantUtil.USER_CHASE_BANGUMI);
         mUserInterestQuanInfo = getArguments().getParcelable(ConstantUtil.USER_INTEREST_QUAN);
         mUserCoinsInfo = getArguments().getParcelable(ConstantUtil.USER_COINS);
         mUserPlayGameInfo = getArguments().getParcelable(ConstantUtil.USER_PLAY_GAME);
@@ -132,8 +109,6 @@ public class UserHomePageFragment extends RxLazyFragment {
         setLive();
         setContribute();
         setCoins();
-        setFavorites();
-        setChaseBangumi();
         setQuanzi();
         setPlayGame();
     }
@@ -183,31 +158,6 @@ public class UserHomePageFragment extends RxLazyFragment {
         mQuanziCount.setText(String.valueOf(total_count));
     }
 
-    private void setChaseBangumi() {
-        int count = mUserChaseBangumiInfo.getData().getCount();
-        if (count == 0) {
-            chaseBangumiLayout.setVisibility(View.GONE);
-        }
-        List<UserChaseBangumiInfo.DataBean.ResultBean> result = mUserChaseBangumiInfo.getData().getResult();
-        mChaseBangumiRecycler.setHasFixedSize(false);
-        mChaseBangumiRecycler.setNestedScrollingEnabled(false);
-        mChaseBangumiRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mChaseBangumiRecycler.setAdapter(new UserHomePagerChaseBangumiAdapter(mChaseBangumiRecycler, result));
-        mChaseBangumiCount.setText(String.valueOf(count));
-    }
-
-    private void setFavorites() {
-        int size = mUserFavoritesInfo.getData().size();
-        if (size == 0) {
-            favoritesHeadLayout.setVisibility(View.GONE);
-        }
-        List<UserFavoritesInfo.DataBean> data = mUserFavoritesInfo.getData();
-        List<UserFavoritesInfo.DataBean.VideosBean> videos = data.get(0).getVideos();
-        mFavoritesLayout.setImages(videos);
-        mFavoritesCount.setText(String.valueOf(size));
-    }
-
-
     private void setCoins() {
         int count = mUserCoinsInfo.getData().getCount();
         if (count == 0) {
@@ -235,38 +185,26 @@ public class UserHomePageFragment extends RxLazyFragment {
     }
 
 
-    @OnClick(R.id.contribute_more)
-    void gotoContributePager() {
-        ((UserInfoDetailsActivity) getActivity()).switchPager(1);
-    }
+    @OnClick({R.id.contribute_more, R.id.quanzi_more, R.id.coins_more, R.id.play_game_more})
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.contribute_more:
+                //更多投稿
+                ((UserInfoDetailsActivity) getActivity()).switchPager(1);
+                break;
+            case R.id.quanzi_more:
+                //更多圈子
+                ((UserInfoDetailsActivity) getActivity()).switchPager(2);
+                break;
+            case R.id.coins_more:
+                //更多投币
+                ((UserInfoDetailsActivity) getActivity()).switchPager(3);
+                break;
+            case R.id.play_game_more:
+                //更多游戏
+                ((UserInfoDetailsActivity) getActivity()).switchPager(4);
+                break;
 
-
-    @OnClick(R.id.favorites_more)
-    void gotoFavoritesPager() {
-        ((UserInfoDetailsActivity) getActivity()).switchPager(2);
-    }
-
-
-    @OnClick(R.id.chase_bangumi_more)
-    void gotoChaseBangumiPager() {
-        ((UserInfoDetailsActivity) getActivity()).switchPager(3);
-    }
-
-
-    @OnClick(R.id.quanzi_more)
-    void gotoQuanziPager() {
-        ((UserInfoDetailsActivity) getActivity()).switchPager(4);
-    }
-
-
-    @OnClick(R.id.coins_more)
-    void gotoCoinsPager() {
-        ((UserInfoDetailsActivity) getActivity()).switchPager(5);
-    }
-
-
-    @OnClick(R.id.play_game_more)
-    void gotoPlayGamePager() {
-        ((UserInfoDetailsActivity) getActivity()).switchPager(6);
+        }
     }
 }

@@ -23,11 +23,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.hotbitmapgg.bilibili.base.RxBaseActivity;
-import com.hotbitmapgg.bilibili.entity.user.UserChaseBangumiInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserCoinsInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserDetailsInfo;
-import com.hotbitmapgg.bilibili.entity.user.UserFavoritesInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserInterestQuanInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserLiveRoomStatusInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserPlayGameInfo;
@@ -36,6 +34,7 @@ import com.hotbitmapgg.bilibili.network.RetrofitHelper;
 import com.hotbitmapgg.bilibili.utils.LogUtil;
 import com.hotbitmapgg.bilibili.utils.NumberUtil;
 import com.hotbitmapgg.bilibili.utils.SystemBarHelper;
+import com.hotbitmapgg.bilibili.utils.ToastUtil;
 import com.hotbitmapgg.bilibili.widget.CircleImageView;
 import com.hotbitmapgg.bilibili.widget.CircleProgressView;
 import com.hotbitmapgg.bilibili.widget.NoScrollViewPager;
@@ -95,26 +94,20 @@ public class UserInfoDetailsActivity extends RxBaseActivity {
     private String name = "";
     private String avatar_url;
     private int userContributeCount;
-    private int userFavoritesCount;
-    private int userChaseBangumiCount;
     private int userInterestQuanCount;
     private int userCoinsCount;
     private int userPlayGameCount;
     private UserDetailsInfo mUserDetailsInfo;
     private UserCoinsInfo mUserCoinsInfo;
     private UserPlayGameInfo mUserPlayGameInfo;
-    private UserFavoritesInfo mUserFavoritesInfo;
     private UserContributeInfo mUserContributeInfo;
-    private UserChaseBangumiInfo mUserChaseBangumiInfo;
     private UserInterestQuanInfo mUserInterestQuanInfo;
     private UserLiveRoomStatusInfo mUserLiveRoomStatusInfo;
     private List<String> titles = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
-    private List<UserFavoritesInfo.DataBean> userFavorites = new ArrayList<>();
     private List<UserCoinsInfo.DataBean.ListBean> userCoins = new ArrayList<>();
     private List<UserPlayGameInfo.DataBean.GamesBean> userPlayGames = new ArrayList<>();
     private List<UserContributeInfo.DataBean.VlistBean> userContributes = new ArrayList<>();
-    private List<UserChaseBangumiInfo.DataBean.ResultBean> userChaseBangumis = new ArrayList<>();
     private List<UserInterestQuanInfo.DataBean.ResultBean> userInterestQuans = new ArrayList<>();
     private static final String EXTRA_USER_NAME = "extra_user_name", EXTRA_MID = "extra_mid", EXTRA_AVATAR_URL = "extra_avatar_url";
 
@@ -261,32 +254,12 @@ public class UserInfoDetailsActivity extends RxBaseActivity {
         RetrofitHelper.getUserAPI()
                 .getUserContributeVideos(mid, 1, 10)
                 .compose(this.bindToLifecycle())
-                .flatMap(new Func1<UserContributeInfo, Observable<UserFavoritesInfo>>() {
+                .flatMap(new Func1<UserContributeInfo, Observable<UserInterestQuanInfo>>() {
                     @Override
-                    public Observable<UserFavoritesInfo> call(UserContributeInfo userContributeInfo) {
+                    public Observable<UserInterestQuanInfo> call(UserContributeInfo userContributeInfo) {
                         mUserContributeInfo = userContributeInfo;
                         userContributeCount = userContributeInfo.getData().getCount();
                         userContributes.addAll(userContributeInfo.getData().getVlist());
-                        return RetrofitHelper.getBiliAPI().getUserFavorites(mid);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .flatMap(new Func1<UserFavoritesInfo, Observable<UserChaseBangumiInfo>>() {
-                    @Override
-                    public Observable<UserChaseBangumiInfo> call(UserFavoritesInfo userFavoritesInfo) {
-                        mUserFavoritesInfo = userFavoritesInfo;
-                        userFavoritesCount = userFavoritesInfo.getData().size();
-                        userFavorites.addAll(userFavoritesInfo.getData());
-                        return RetrofitHelper.getUserAPI().getUserChaseBangumis(mid);
-                    }
-                })
-                .compose(bindToLifecycle())
-                .flatMap(new Func1<UserChaseBangumiInfo, Observable<UserInterestQuanInfo>>() {
-                    @Override
-                    public Observable<UserInterestQuanInfo> call(UserChaseBangumiInfo userChaseBangumiInfo) {
-                        mUserChaseBangumiInfo = userChaseBangumiInfo;
-                        userChaseBangumiCount = userChaseBangumiInfo.getData().getCount();
-                        userChaseBangumis.addAll(userChaseBangumiInfo.getData().getResult());
                         return RetrofitHelper.getIm9API().getUserInterestQuanData(mid, 1, 10);
                     }
                 })
@@ -326,15 +299,17 @@ public class UserInfoDetailsActivity extends RxBaseActivity {
                 .subscribe(userLiveRoomStatusInfo -> {
                     mUserLiveRoomStatusInfo = userLiveRoomStatusInfo;
                     initViewPager();
-                }, throwable -> hideProgressBar());
+                }, throwable -> {
+                    ToastUtil.ShortToast("用户隐私未公开");
+                    hideProgressBar();
+                });
     }
 
 
     private void initViewPager() {
-        fragments.add(UserHomePageFragment.newInstance(mUserContributeInfo, mUserFavoritesInfo, mUserChaseBangumiInfo, mUserInterestQuanInfo, mUserCoinsInfo, mUserPlayGameInfo, mUserLiveRoomStatusInfo));
+        fragments.add(UserHomePageFragment.newInstance(mUserContributeInfo,
+                mUserInterestQuanInfo, mUserCoinsInfo, mUserPlayGameInfo, mUserLiveRoomStatusInfo));
         fragments.add(UserContributeFragment.newInstance(mid, mUserContributeInfo));
-        fragments.add(UserFavoritesFragment.newInstance(mUserFavoritesInfo));
-        fragments.add(UserChaseBangumiFragment.newInstance(mUserChaseBangumiInfo));
         fragments.add(UserInterestQuanFragment.newInstance(mid, mUserInterestQuanInfo));
         fragments.add(UserCoinsVideoFragment.newInstance(mUserCoinsInfo));
         fragments.add(UserPlayGameFragment.newInstance(mUserPlayGameInfo));
@@ -365,8 +340,6 @@ public class UserInfoDetailsActivity extends RxBaseActivity {
     private void setPagerTitles() {
         titles.add("主页");
         titles.add("投稿 " + userContributeCount);
-        titles.add("收藏 " + userFavoritesCount);
-        titles.add("追番 " + userChaseBangumiCount);
         titles.add("兴趣圈 " + userInterestQuanCount);
         titles.add("投币 " + userCoinsCount);
         titles.add("游戏 " + userPlayGameCount);
@@ -446,12 +419,6 @@ public class UserInfoDetailsActivity extends RxBaseActivity {
                 break;
             case 4:
                 mViewPager.setCurrentItem(4);
-                break;
-            case 5:
-                mViewPager.setCurrentItem(5);
-                break;
-            case 6:
-                mViewPager.setCurrentItem(6);
                 break;
         }
     }
