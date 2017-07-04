@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.hotbitmapgg.bilibili.module.home.bangumi.BangumiIndexActivity;
 import com.hotbitmapgg.bilibili.module.home.bangumi.BangumiScheduleActivity;
-import com.hotbitmapgg.bilibili.module.home.bangumi.ChaseBangumiActivity;
 import com.hotbitmapgg.bilibili.widget.sectioned.StatelessSection;
 import com.hotbitmapgg.ohmybilibili.R;
 
@@ -59,8 +58,8 @@ public class HomeBangumiItemSection extends StatelessSection {
         HomeBangumiItemSection.TopItemViewHolder topItemViewHolder
                 = (HomeBangumiItemSection.TopItemViewHolder) holder;
         //前往追番
-        topItemViewHolder.mChaseBangumi.setOnClickListener(v -> mContext.startActivity(
-                new Intent(mContext, ChaseBangumiActivity.class)));
+        topItemViewHolder.mChaseBangumi.setOnClickListener(v -> {
+        });
         //前往番剧放送表
         topItemViewHolder.mBangumiSchedule.setOnClickListener(v -> mContext.startActivity(
                 new Intent(mContext, BangumiScheduleActivity.class)));

@@ -2,18 +2,13 @@ package com.hotbitmapgg.bilibili.module.home.attention;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 
-import com.hotbitmapgg.bilibili.adapter.AttentionBangumiAdapter;
 import com.hotbitmapgg.bilibili.adapter.AttentionDynamicAdapter;
-import com.hotbitmapgg.bilibili.adapter.helper.HeaderViewRecyclerAdapter;
 import com.hotbitmapgg.bilibili.base.RxLazyFragment;
 import com.hotbitmapgg.bilibili.entity.attention.AttentionDynamicInfo;
-import com.hotbitmapgg.bilibili.entity.user.UserChaseBangumiInfo;
 import com.hotbitmapgg.bilibili.network.RetrofitHelper;
 import com.hotbitmapgg.bilibili.utils.SnackbarUtil;
 import com.hotbitmapgg.bilibili.widget.CustomEmptyView;
@@ -23,9 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -44,8 +37,6 @@ public class HomeAttentionFragment extends RxLazyFragment {
 
     private static final int MID = 9467159;
     private boolean mIsRefreshing = false;
-    private HeaderViewRecyclerAdapter mHeaderViewRecyclerAdapter;
-    private List<UserChaseBangumiInfo.DataBean.ResultBean> chaseBangumis = new ArrayList<>();
     private List<AttentionDynamicInfo.DataBean.FeedsBean> dynamics = new ArrayList<>();
 
     public static HomeAttentionFragment newIntance() {
@@ -88,17 +79,9 @@ public class HomeAttentionFragment extends RxLazyFragment {
 
     @Override
     protected void loadData() {
-        RetrofitHelper.getUserAPI()
-                .getUserChaseBangumis(MID)
+        RetrofitHelper.getBiliAPI()
+                .getAttentionDynamic()
                 .compose(bindToLifecycle())
-                .map(userChaseBangumiInfo -> userChaseBangumiInfo.getData().getResult())
-                .flatMap(new Func1<List<UserChaseBangumiInfo.DataBean.ResultBean>, Observable<AttentionDynamicInfo>>() {
-                    @Override
-                    public Observable<AttentionDynamicInfo> call(List<UserChaseBangumiInfo.DataBean.ResultBean> resultBeans) {
-                        chaseBangumis.addAll(resultBeans);
-                        return RetrofitHelper.getBiliAPI().getAttentionDynamic();
-                    }
-                })
                 .map(attentionDynamicInfo -> attentionDynamicInfo.getData().getFeeds())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -122,9 +105,7 @@ public class HomeAttentionFragment extends RxLazyFragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         AttentionDynamicAdapter mAdapter = new AttentionDynamicAdapter(mRecyclerView, dynamics);
-        mHeaderViewRecyclerAdapter = new HeaderViewRecyclerAdapter(mAdapter);
-        createHeadView();
-        mRecyclerView.setAdapter(mHeaderViewRecyclerAdapter);
+        mRecyclerView.setAdapter(mAdapter);
         setRecycleNoScroll();
     }
 
@@ -145,18 +126,7 @@ public class HomeAttentionFragment extends RxLazyFragment {
 
     private void clearData() {
         mIsRefreshing = true;
-        chaseBangumis.clear();
         dynamics.clear();
-    }
-
-    private void createHeadView() {
-        View headView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_attention_head_view, mRecyclerView, false);
-        RecyclerView mBangumiRecycler = (RecyclerView) headView.findViewById(R.id.focus_head_recycler);
-        mBangumiRecycler.setHasFixedSize(false);
-        mBangumiRecycler.setNestedScrollingEnabled(false);
-        mBangumiRecycler.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mBangumiRecycler.setAdapter(new AttentionBangumiAdapter(mBangumiRecycler, chaseBangumis));
-        mHeaderViewRecyclerAdapter.addHeaderView(headView);
     }
 
     private void setRecycleNoScroll() {

@@ -93,9 +93,6 @@
             android:screenOrientation="portrait" />
 
         <!--追番界面-->
-        <activity
-            android:name="com.hotbitmapgg.bilibili.module.home.bangumi.ChaseBangumiActivity"
-            android:screenOrientation="portrait" />
 
 
         <!-- 游戏中心界面 -->

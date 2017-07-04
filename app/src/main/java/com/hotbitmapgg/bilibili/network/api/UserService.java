@@ -1,6 +1,5 @@
 package com.hotbitmapgg.bilibili.network.api;
 
-import com.hotbitmapgg.bilibili.entity.user.UserChaseBangumiInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserCoinsInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserContributeInfo;
 import com.hotbitmapgg.bilibili.entity.user.UserPlayGameInfo;
@@ -30,11 +29,6 @@ public interface UserService {
     @GET("ajax/member/getCoinVideos")
     Observable<UserCoinsInfo> getUserCoinVideos(@Query("mid") int mid);
 
-    /**
-     * 用户追番
-     */
-    @GET("ajax/Bangumi/getList")
-    Observable<UserChaseBangumiInfo> getUserChaseBangumis(@Query("mid") int mid);
 
     /**
      * 用户投稿视频
