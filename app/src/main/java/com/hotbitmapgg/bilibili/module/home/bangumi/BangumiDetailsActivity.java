@@ -312,7 +312,7 @@ public class BangumiDetailsActivity extends RxBaseActivity {
                 //计算滑动距离的偏移量
                 float offset = 1 - Math.max((offsetY - scrollY) / offsetY, 0f);
                 float absOffset = Math.abs(offset);
-                //如果滑动距离大于1就设置完全不透明度
+                //如果滑动距离大于1就设置完全不透明
                 if (absOffset >= 1) {
                     absOffset = 1;
                 }

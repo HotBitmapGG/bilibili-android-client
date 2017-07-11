@@ -165,10 +165,8 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
                 }
             }
             if (getWindowToken() != null) {
-                int message = framework_err == IMediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK
-                        ?
-                        R.string.video_error_text_invalid_progressive_playback
-                        : R.string.video_error_text_unknown;
+                int message = framework_err == IMediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK ?
+                        R.string.video_error_text_invalid_progressive_playback : R.string.video_error_text_unknown;
                 new AlertDialog.Builder(mContext)
                         .setTitle(R.string.video_error_title)
                         .setMessage(message)
